@@ -2,71 +2,321 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Wai-aria testdokument</title>
+	<style>
+		.tabpanel {
+		  margin: 20px;
+		  padding: 0;
+		 
+		}
+		.tablist {
+		  margin: 0 0px;
+		  padding: 0;
+		  list-style: none;
+		}
+
+		.tab {
+
+		  margin: .2em 1px 0 0;
+		  padding: 10px;
+		  height: 1em;
+		  font-weight: bold;
+		 
+
+		  border: 1px solid black;
+			background:#dddddd;
+			border-top-left-radius:.5em;
+			border-top-right-radius:.5em;
+		 
+		  float: left;
+		  display: inline; /* IE float bug fix */
+		}
+
+		.panel {
+		  clear: both;
+		  display: block;
+		  margin: 0 0 0 0;
+		  padding: 10px;
+		  width: 300px;
+		  background:#f2f2f2;
+			border-bottom-left-radius:.5em;
+			border-bottom-right-radius:.5em;
+		  
+		}
+
+		ul.controlList {
+		  list-style-type: none;
+		}
+
+		li[aria-selected='true'] {
+		  color: black;
+		  background-color: #fff;
+		  border-bottom: 1px solid white;
+		}
+
+		div[aria-hidden='true'] {
+		   display: none;
+		}
+		div[aria-hidden='false'] {
+		   display:block;
+		}
+
+		.focus {
+		  margin-top: 0;
+		  height: 1.2em;
+		}
+
+		.hidden {display:none;}
+</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+		  $("li[role='tab']").click(function(){
+			$("li[role='tab']:not(this)").attr("aria-selected","false");
+		 	//$("li[role='tab']").attr("tabindex","-1");
+			$(this).attr("aria-selected","true");
+			//$(this).attr("tabindex","0");
+		  var tabpanid= $(this).attr("aria-controls");
+		   var tabpan = $("#"+tabpanid);
+		$("div[role='tabpanel']:not(tabpan)").attr("aria-hidden","true");
+		$("div[role='tabpanel']:not(tabpan)").addClass("hidden");
+
+		tabpan.removeClass("hidden");
+		//tabpan.className = "panel";
+		tabpan.attr("aria-hidden","false");		
+		  });
+		  
+		  //This adds keyboard accessibility by adding the enter key to the basic click event.
+		  $("li[role='tab']").keydown(function(ev) {
+		if (ev.which ==13) {
+		$(this).click();
+		}
+		}); 
+		 
+		  //This adds keyboard function that pressing an arrow left or arrow right from the tabs toggel the tabs. 
+		   $("li[role='tab']").keydown(function(ev) {
+		if ((ev.which ==39)||(ev.which ==37))  {
+		var selected= $(this).attr("aria-selected");
+		if  (selected =="true"){
+			$("li[aria-selected='false']").attr("aria-selected","true").focus() ;
+			$(this).attr("aria-selected","false");
+
+		  var tabpanid= $("li[aria-selected='true']").attr("aria-controls");
+		   var tabpan = $("#"+tabpanid);
+		$("div[role='tabpanel']:not(tabpan)").attr("aria-hidden","true");
+		$("div[role='tabpanel']:not(tabpan)").addClass("hidden");
+
+		tabpan.attr("aria-hidden","false");
+		tabpan.removeClass("hidden");
+		//tabpan.className = "panel";
+
+
+		}
+		}
+		}); 
+
+		}); 
+</script>
 </head>
 <body>
 	<h1>Testdokument för Wai-aria</h1>
+	<ol>
+	<li>
 	<h2>Aria-hidden</h2>
-		<button>Synlig knapp</button>
-		<button aria-hidden="true">Knapp med aria-hidden</button>
-		<button aria-hidden="true">Knapp med aria-hidden=true och tabindex=-1</button>
+		<button class="btn">Synlig knapp</button>
+		<button class="btn" aria-hidden="true">Knapp med aria-hidden</button>
+		<button class="btn" aria-hidden="true" tabindex=-1>Knapp med aria-hidden=true och tabindex=-1</button>
 
 		<hr>
+	</li>
 	
-	<h2>Aria-describedby</h2>
-		<button aria-describedby="beskrivning">Min knapp</button><br>
-		<span id="beskrivning" style="display:none">Min beskrivning</span>
-		<hr>
+	<li>
+		<h2>Aria-expanded (med och utan aria-controls)</h2>
+		<script>
+		  function myFunction() {
+			  var x = document.getElementById("b1").getAttribute("aria-expanded"); 
+			  if (x == "true") {
+			  	x = "false";
+			  	document.getElementById("new-area").style.display = "none";
+			  }
+			  else {
+			  	x = "true";
+			  	document.getElementById("new-area").style.display = "block";
+			  }
+			  document.getElementById("b1").setAttribute("aria-expanded", x);
 
-	<h2>Aria-expanded (med och utan aria-controls)</h2>
+			  
+
+
+			  var y = document.getElementById("b2").getAttribute("aria-expanded"); 
+			  if (y == "true") {
+			  	y = "false";
+			  	document.getElementById("new-area").style.display = "none";
+			  }
+			  else {
+			  	y = "true";
+			  	document.getElementById("new-area").style.display = "block";
+			  }
+			  document.getElementById("b2").setAttribute("aria-expanded", x);
+		  }
+		</script>
+
+		<button class="btn" onClick="myFunction()" id="b1" aria-expanded="false">Knapp</button>
+		<button class="btn" onClick="myFunction()" id="b2" aria-expanded="false" aria-controls="new-area">Knapp med aria-controls</button><br>
+		<div id="new-area" style="display:none">
+			<p>Nytt område som fälls ut</p>
+		</div>
+
+		<hr>
+	</li>
+
+	<li>
+		<h2>Aria-labelledby (formulärsobjekt med flera etiketter)</h2>
+		<p>Både rubriken och ledtexten ska läsas upp. Exempel: "Faktureringsadress namn, redigera text"</p>
+		<fieldset>
+		<legend id="rubrik">Faktureringsadress</legend>
+		
+		<label for="namn-input" id="namn-label">Namn</label>
+		<input id="namn-input" type="text" aria-labelledby="rubrik namn-label"/>
+		
+
+	    <label for="adress-input" id="adress-label">Address</label>
+	    <input id="adress-input" type="text" aria-labelledby="rubrik adress-label"/>
+	    </fieldset>
+	    <hr>
+    </li>
+
+    <li>
+	    <h2>Aria-describedby</h2>
+	    	<p>Knappen har en dold beskrivning som ska läsas upp av skärmläsaren efter en kort paus.</p>
+			<button aria-describedby="beskrivning">Min knapp</button><br>
+			<span id="beskrivning" style="display:none">Min beskrivning</span>
+			<hr>
+	</li>
+
+	<li>
+	<h2>Aria-haspopup (FUNKAR EJ)</h2>
 	<script>
-	  function myFunction() {
-		  var x = document.getElementById("b1").getAttribute("aria-expanded"); 
-		  if (x == "true") {
-		  	x = "false";
-		  	document.getElementById("new-area").style.display = "none";
-		  }
-		  else {
-		  	x = "true";
-		  	document.getElementById("new-area").style.display = "block";
-		  }
-		  document.getElementById("b1").setAttribute("aria-expanded", x);
+		/* 9. Simple dropdowns
+		-----------------------------------------------------------------------------------------
+		*/
+		console.log("test!");
 
-		  
+		$('[role="navigation"] ul ul').prev('a')
+		  .attr('aria-haspopup', 'true')
+		  .append('<span aria-hidden="true"> &#x25be;</span>');
 
+		var showSubmenu = function(dropdown) {
+		  dropdown.attr('aria-hidden', 'false');
+		};
 
-		  var y = document.getElementById("b2").getAttribute("aria-expanded"); 
-		  if (y == "true") {
-		  	y = "false";
-		  	document.getElementById("new-area").style.display = "none";
-		  }
-		  else {
-		  	y = "true";
-		  	document.getElementById("new-area").style.display = "block";
-		  }
-		  document.getElementById("b2").setAttribute("aria-expanded", x);
-	  }
+		var hideSubmenu = function(dropdown) {
+		  dropdown.attr('aria-hidden', 'true');
+		};
+
+		$('.with-dropdowns > li > a').on('focus', function(e) {
+		  hideSubmenu($('[aria-label="submenu"]'));
+		});
+
+		$('[aria-haspopup]').on('click', function(e) {
+		  var submenu = $(this).next();
+		  showSubmenu(submenu);
+		  //$(submenu).find('li:first-child a').focus();
+		  return false;
+		});
+
+		$('[aria-haspopup]').hover(function() {
+		  showSubmenu($(this).next());
+		  $(this).off('click');
+		});
+
+		$('[aria-haspopup]').parents('li').mouseleave(function() {
+		  hideSubmenu($(this).find('[aria-label="submenu"]'));
+		});
 	</script>
-
-	<button onClick="myFunction()" id="b1" aria-expanded="false">Knapp</button>
-	<button onClick="myFunction()" id="b2" aria-expanded="false" aria-controls="new-area">Knapp med aria-controls</button><br>
-	<div id="new-area" style="display:none">
-		<p>Nytt område som fälls ut</p>
-	</div>
-
+	<nav role="navigation" aria-label="example with dropdowns">
+	<ul class="with-dropdowns">
+		<li><a href="#">Home</a></li>
+		<li>
+			<a href="/about" aria-haspopup="true">About</a>
+			<ul aria-hidden="true" aria-label="submenu">
+				<li><a href="/about/#who-we-are">Who we are</a></li>
+				<li><a href="/about/#what-we-do">What we do</a></li>
+				<li><a href="/about/#why">Why</a></li>
+			</ul>
+		</li>
+		<li><a href="#">Blog</a></li>
+		<li><a href="#">Contact</a></li>
+	</ul>
+	</nav>
 	<hr>
-
-	<h2>Aria-labelledby (formulärsobjekt med flera etiketter)</h2>
-	<p>Både rubriken och ledtexten ska läsas upp. Exempel: "Faktureringsadress namn, redigera text"</p>
-	<fieldset>
-	<legend id="rubrik">Faktureringsadress</legend>
+	</li>
 	
-	<label for="namn-input" id="namn-label">Namn</label>
-	<input id="namn-input" type="text" aria-labelledby="rubrik namn-label"/>
-	
+    <li>
+	    <h2>Aria-pressed</h2>
+	    <p>Knappen ska meddela om den är tryck eller inte tryckt.</p>
+	    	<script>
+	    	function myToggle() {
+	    		var x = $(".toggle");
+	    		if (x.attr("aria-pressed")=="false"){
+	    			x.attr("aria-pressed", "true");//.html("Knapp PÅ");
 
-    <label for="adress-input" id="adress-label">Address</label>
-    <input id="adress-input" type="text" aria-labelledby="rubrik adress-label"/>
-    </fieldset>
+
+	    		} else
+	    			x.attr("aria-pressed", "false");//.html("Knapp AV")
+   			
+	    	}
+	    	</script>
+			<button class="btn" onClick="myToggle()" class="toggle" aria-pressed="false">Toggleknapp</button><br>
+			
+	<hr>
+	</li>
+
+	<li><h2>Aria-selected</h2></li>
+	<p>Skärmläsaren ska meddela vilken tabb som är aktiv</p>
+	<p>Exempel från <a href="http://accessibility.athena-ict.com/aria/examples/tabpanel2.shtml">Athena ICT Accessibility (extern länk)</a>
+		<ul class="tablist" role="tablist">
+	   	<li id="tab1" class="tab" aria-controls="panel1" aria-selected="false" role="tab" tabindex="0">Prices</li>
+		<li id="tab2" class="tab" aria-controls="panel2" role="tab" aria-selected="true" tabindex="0">Features </li>
+	   	</ul>
+
+		<div id="panel1" class="panel hidden" aria-labelledby="tab1" role="tabpanel" aria-hidden="true">
+		 	<h3 tabindex="0">Prices</h3>
+		        List of prices   
+		</div>
+
+		<div id="panel2" class="panel" aria-labelledby="tab2" role="tabpanel" aria-hidden="false">
+	  		<h3 tabindex="0">Features</h3>
+			List of product features....
+		</div>
+	</li>
+
+	<li><h2>Aria-required och aria-invalid</h2>
+	
+	<p>Fältet "Namn" har aria-required=true samt aria-invalid=true. Skärmläsaren ska meddela att fältet krävs och att det har felaktig data.</p> 
+	<p>Exempel från <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-invalid_attribute">Mozilla Developer Network</a></p>
+	
+	<label>Namn
+		<input name="name" id="name" aria-required="true" aria-invalid="true"/>
+ 	</label>
+ 	<label>E-post (frivilligt)
+	 	<input name="email" id="email" aria-required="false" aria-invalid="false"/>
+     </label>
+    <hr>
+    </li>
+
+    <li><h2>Role=button</h2>
+
+    <div class="btn" role="button">DIV med role=button</div>
+    <div class="btn" role="button" tabindex="0">DIV med role=button och tabindex</div>
+    <button class="btn">Button</button>
+
+
+
+    </li>
+
+
+
+
 	
 	
 </body>
@@ -101,10 +351,6 @@
 		background-color: steelblue!important;
 	}
 
-	li input:focus+label{
-		outline: 3px solid darkgrey;
-	}
-
 	li input:hover+label {
 		background-color: whitesmoke;
 	}
@@ -126,6 +372,62 @@
 		float:left;
 		display:block;
 	}
+
+	/* 9. Simple dropdowns */
+
+		[aria-label^="example"] ul {
+			background: #1928cf;
+		}
+
+		[aria-label^="example"] ul:after {
+			content: '\0020';
+			display: block;
+			clear: both;
+		}
+
+		[aria-label^="example"] li {
+			float: left;
+			vertical-align: top;
+			list-style: none;
+		}
+
+		[aria-label^="example"] li + li a {
+			border-left: 1px solid;
+		}
+
+		[aria-label^="example"] a {
+			color: #fff;
+			display: block;
+			padding: 0.5em;
+		}
+
+		[aria-label^="example"] a:hover, [aria-label^="example"] a:focus {
+			background: #222;
+		}
+
+		[aria-haspopup="true"] {
+			position: relative;
+		}
+
+		[aria-haspopup="true"] span {
+			font-size: 0.85em;
+			padding-left: 0.25em;
+		}
+
+		ul[aria-hidden="true"] {
+			display: none;
+		}
+
+		[aria-haspopup="true"] + ul[aria-hidden="false"] {
+			margin-top: 0;
+			display: block;
+			position: absolute;
+			min-width: 200px;
+		}
+
+		[aria-haspopup="true"] + ul li {
+			float: none;
+		}
 
 </style>
 </html>
