@@ -1,0 +1,94 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Wai-aria testdokument</title>
+</head>
+<body>
+	
+	<div>
+		<h1>Aria-hidden exempel</h1>
+		<button>Synlig knapp</button><br>
+		<button aria-hidden="true">Knapp med aria-hidden</button><br>
+	</div>
+
+	<div>
+		<h1>Aria-describedby exempel</h1>
+		<button aria-describedby="beskrivning">Min knapp</button><br>
+		<span id="beskrivning" style="display:none">Min beskrivning</span>
+	</div>
+	
+</body>
+<style>
+
+	/*
+	*  Hjälpklass för att dölja input-objekten
+	*/
+	.visually-hidden {
+		position:absolute;
+		left:-9999px;
+	}
+
+	/*
+	*  Label får knapplikt utseende med stora klickytor
+	*/
+	.btn{
+		display:inline-block;
+		padding:13px;
+		background-color: white;
+		border: 1px solid black;
+		border-radius: 15px;
+		margin: 5px;
+		cursor:pointer;
+	}
+
+	/*
+	*  Utseende för ikryssade och ej ikryssade knappar. 
+	*  Använder pseudo-klassen :checked samt syskon-selektorn + ;
+	*/
+	li input:checked+label{
+		background-color: steelblue!important;
+	}
+
+	li input:focus+label{
+		outline: 3px solid darkgrey;
+	}
+
+	li input:hover+label {
+		background-color: whitesmoke;
+	}
+
+
+	/*
+	* Reset för fieldset och legend
+	*/
+	legend {
+	  padding: 0;
+	  display: table;
+	  font-size: 18px;
+	  font-weight:bold;
+	  padding: 30px 0 10px 0;
+	}
+	fieldset {
+	  border: 0;
+	  padding: 0.01em 0 0 0;
+	  margin: 0;
+	  min-width: 0;
+	}
+
+	/*
+	*  Inline-listor
+	*/
+
+	ul {
+		list-style-type: none;
+    	margin: 0;
+    	padding: 0;
+	}
+
+	ul > li {
+		float:left;
+		display:block;
+	}
+
+</style>
+</html>
