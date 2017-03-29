@@ -168,7 +168,7 @@ function nollstall() {
 function busyClick() {
 	var x = $("#busy-area");
 	x.removeClass("klar hidden");
-	x.html("Sidan laddar, vänta...").attr('aria-busy', 'true');
+	x.html("Sidan laddar, vänta...")//.attr('aria-busy', 'true');
 	
 	setTimeout(function(){
         x.html("Färdig!").attr('aria-busy', 'false').addClass("klar");
