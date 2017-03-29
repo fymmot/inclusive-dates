@@ -40,6 +40,14 @@ ol > li {
 	margin-bottom: 2rem;
 }
 
+ol {
+	margin: 2.5rem 0 10rem 0;
+}
+
+h1 {
+	margin-top: 2rem;
+}
+
 .btn{
 	display:inline-block;
 	padding:13px;
@@ -243,4 +251,10 @@ button[aria-pressed='true'] {
 
 #off-area {
 	background-color: lightgrey;
+}
+#busy-area.klar{
+	background-color: lightgreen;
+}
+#busy-area{
+	background-color: lightcoral;
 }

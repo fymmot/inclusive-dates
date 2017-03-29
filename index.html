@@ -3,6 +3,7 @@
 	<meta charset="UTF-8">
 	<title>Wai-aria testdokument</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="prism.css" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="script.js"></script>
@@ -36,7 +37,8 @@
 
 	<li>
 		<h2>Aria-labelledby (formulärsobjekt med flera etiketter)</h2>
-		<p>Både rubriken och ledtexten ska läsas upp. Exempel: "Faktureringsadress namn, redigera text"</p>
+		<p>Både rubriken och ledtexten ska läsas upp.</p>
+		<p>Exempel: "Faktureringsadress namn, redigera text"</p>
 		
 		<fieldset>
 		<legend id="rubrik">Faktureringsadress</legend>
@@ -45,7 +47,7 @@
 		<input id="namn-input" type="text" aria-labelledby="rubrik namn-label"/>
 		
 
-	    <label for="adress-input" id="adress-label">Address</label>
+	    <label for="adress-input" id="adress-label">Gatuddress</label>
 	    <input id="adress-input" type="text" aria-labelledby="rubrik adress-label"/>
 	    </fieldset>
 	</li>
@@ -108,7 +110,8 @@
 
 	<li><h2>Aria-required och aria-invalid</h2>
 	
-	<p>Fältet "Namn" har aria-required=true samt aria-invalid=true. Skärmläsaren ska meddela att fältet krävs och att det har felaktig data.</p> 
+	<p>Fältet <strong>Namn</strong> har attributen <code class="language-html">aria-required="true"</code> samt <code class="language-html">aria-invalid="true"</code>.</p>
+	<p>Skärmläsaren ska meddela att fältet krävs och att det har felaktig data.</p> 
 	
 	<label>Namn
 		<p class="error">Mata in ett giltigt namn!</p>
@@ -123,11 +126,10 @@
     <li><h2>Role=button</h2>
 
     <div class="btn" role="button">DIV med role=button</div>
-    <div class="btn" role="button" tabindex="0">DIV med role=button och tabindex</div>
-    <button class="btn">Button</button>
+    <div class="btn" role="button" tabindex="0">DIV med <code class="language-html">role="button"</code> och <code class="language-html">tabindex=0</code></div>
+    <button class="btn">Vanlig button</button>
 
     </li>
-    <hr>
 
     <li><h2>Aria-live</h2>
 
@@ -147,15 +149,19 @@
 
     </li>
 
+    <li><h2>Aria-live med aria-busy</h2>
+
+    <button onclick="busyClick()" class="btn">Testa mig!</button>
+    
+    <div id="busy-area" class="livearea hidden" aria-live="assertive" aria-busy="false">
+    </div>
+
+    </li>
+
 
 
 
 	
-	
+	<script src="prism.js"></script>
 </body>
-<style>
-
-	
-
-</style>
 </html>

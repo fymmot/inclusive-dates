@@ -154,5 +154,28 @@ function offClick() {
 	x.removeClass("hidden").html("Nu tryckte du på knappen off");
 }
 
+/**
+*	Aria-live med aria-busy
+*
+**/ 
+
+function nollstall() {
+	setTimeout(function(){
+        $("#busy-area").html("").addClass("hidden").removeClass("klar");
+    }, 10000);
+}
+
+function busyClick() {
+	var x = $("#busy-area");
+	x.removeClass("klar hidden");
+	x.html("Sidan laddar, vänta...").attr('aria-busy', 'true');
+	
+	setTimeout(function(){
+        x.html("Färdig!").attr('aria-busy', 'false').addClass("klar");
+        nollstall();
+    }, 10000);
+}
+
+
 
 
