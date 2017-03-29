@@ -1,0 +1,246 @@
+/* GRUNDSTILAR
+---------------------------------------------------------
+---------------------------------------------------------
+*/
+body {
+	max-width: 900px;
+	margin: auto;
+	font-size: 100%;
+	font-family: 'Arial';
+}
+
+button {
+	font-size: 1rem;
+}
+
+fieldset {
+	display:inline-block;
+	padding: 0.5rem 1rem 0 1rem;
+}
+
+input {
+	padding: 5px;
+	font-size: 13px;
+	display: block;
+    margin-bottom: 1rem;
+}
+
+label {
+	font-weight: bold;
+}
+label > .error {
+	color:red;
+	font-weight: normal;
+	margin: 0 0 0.5rem 0;
+	font-size: 0.9rem;
+}
+
+ol > li {
+	border: 1px grey;
+	margin-bottom: 2rem;
+}
+
+.btn{
+	display:inline-block;
+	padding:13px;
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin: 5px;
+	cursor:pointer;
+}
+.btn:hover{
+	background-color:whitesmoke;
+}
+
+.visually-hidden {
+	position:absolute;
+	left:-9999px;
+}
+
+/*
+*  Inline-listor
+*/
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul > li {
+	float:left;
+	display:block;
+}
+
+/* SPECIFIKA STILAR
+---------------------------------------------------------
+---------------------------------------------------------
+*/
+
+
+/* 2. Aria-expanded */
+
+button[aria-expanded='true'] {
+	background-color: steelblue;
+}
+
+button[aria-expanded='true']:hover {
+	background-color: lightsteelblue;
+}
+
+.label-example{
+	font-family: FontAwesome;
+   	content: "\f004";
+}
+
+/* 5. Aria-haspopup */
+
+.tabpanel {
+  margin: 20px;
+  padding: 0;
+}
+.tablist {
+  margin: 0 0px;
+  padding: 0;
+  list-style: none;
+}
+
+.tab {
+  margin: .2em 1px 0 0;
+  padding: 10px;
+  height: 1em;
+  font-weight: bold;
+ 
+
+  border: 1px solid black;
+	background:#dddddd;
+	border-top-left-radius:.5em;
+	border-top-right-radius:.5em;
+ 
+  float: left;
+  display: inline; /* IE float bug fix */
+}
+
+.panel {
+  clear: both;
+  display: block;
+  margin: 0 0 0 0;
+  padding: 10px;
+  width: 300px;
+  background:#f2f2f2;
+	border-bottom-left-radius:.5em;
+	border-bottom-right-radius:.5em;
+  
+}
+
+ul.controlList {
+  list-style-type: none;
+}
+
+li[aria-selected='true'] {
+  color: black;
+  background-color: #fff;
+  border-bottom: 1px solid white;
+}
+
+div[aria-hidden='true'] {
+   display: none;
+}
+div[aria-hidden='false'] {
+   display:block;
+}
+
+.focus {
+  margin-top: 0;
+  height: 1.2em;
+}
+
+.hidden {display:none!important;}
+
+/* 9. Simple dropdowns */
+
+		[aria-label^="example"] ul {
+			background: #1928cf;
+		}
+
+		[aria-label^="example"] ul:after {
+			content: '\0020';
+			display: block;
+			clear: both;
+		}
+
+		[aria-label^="example"] li {
+			float: left;
+			vertical-align: top;
+			list-style: none;
+		}
+
+		[aria-label^="example"] li + li a {
+			border-left: 1px solid;
+		}
+
+		[aria-label^="example"] a {
+			color: #fff;
+			display: block;
+			padding: 0.5em;
+		}
+
+		[aria-label^="example"] a:hover, [aria-label^="example"] a:focus {
+			background: #222;
+		}
+
+		[aria-haspopup="true"] {
+			position: relative;
+		}
+
+		[aria-haspopup="true"] span {
+			font-size: 0.85em;
+			padding-left: 0.25em;
+		}
+
+		ul[aria-hidden="true"] {
+			display: none;
+		}
+
+		[aria-haspopup="true"] + ul[aria-hidden="false"] {
+			margin-top: 0;
+			display: block;
+			position: absolute;
+			min-width: 200px;
+		}
+
+		[aria-haspopup="true"] + ul li {
+			float: none;
+		}
+
+
+/* 6. Aria-pressed */
+
+button[aria-pressed='true'] {
+	background-color: steelblue;
+}
+
+/* 11. Aria-live */
+
+.livearea {
+	margin-top: 2rem;
+	display:block;
+	width: 100%;
+	margin:auto;
+	background-color: lightcoral;
+	font-size: 2rem;
+	padding:1rem;
+}
+
+#polite-area {
+	background-color: lightblue;
+}
+
+#assertive-area {
+	background-color: lightcoral;
+}
+
+#off-area {
+	background-color: lightgrey;
+}
