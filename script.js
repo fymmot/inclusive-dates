@@ -75,9 +75,9 @@ $('[aria-haspopup]').parents('li').mouseleave(function() {
 function myToggle() {
 	var x = $(".toggle");
 	if (x.attr("aria-pressed")=="false"){
-		x.attr("aria-pressed", "true");//.html("Knapp PÅ");
+		x.attr("aria-pressed", "true").html("Slå av");
 	} else
-		x.attr("aria-pressed", "false");//.html("Knapp AV")
+		x.attr("aria-pressed", "false").html("Slå på")
 }
 
 /**
@@ -167,13 +167,14 @@ function nollstall() {
 
 function busyClick() {
 	var x = $("#busy-area");
-	x.removeClass("klar hidden");
-	x.html("Sidan laddar, vänta...")//.attr('aria-busy', 'true');
+	x.removeClass("hidden").attr('aria-busy', 'true').html("Jag är upptagen, vänta...<br>(den här texten ska inte läsas upp)</br>");
+	
 	
 	setTimeout(function(){
-        x.html("Färdig!").attr('aria-busy', 'false').addClass("klar");
+        x.html("Nu är jag klar!").attr('aria-busy', 'false').addClass("klar");
         nollstall();
     }, 10000);
+
 }
 
 

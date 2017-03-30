@@ -26,8 +26,8 @@
 	<li>
 		<h2>Aria-expanded (med och utan aria-controls)</h2>
 
-		<button class="btn" onClick="myFunction()" id="b1" aria-expanded="false">Knapp</button>
-		<button class="btn" onClick="myFunction()" id="b2" aria-expanded="false" aria-controls="new-area">Knapp med aria-controls</button><br>
+		<button class="btn" onClick="myFunction()" id="b1" aria-expanded="false">Bara <code class="language-html">aria-expanded</code></button>
+		<button class="btn" onClick="myFunction()" id="b2" aria-expanded="false" aria-controls="new-area">Både <code class="language-html">aria-expanded</code> och <code class="language-html">aria-controls</code></button><br>
 		<div id="new-area" style="display:none">
 			<p>Nytt område som fälls ut</p>
 		</div>
@@ -43,12 +43,16 @@
 		<fieldset>
 		<legend id="rubrik">Faktureringsadress</legend>
 		
-		<label for="namn-input" id="namn-label">Namn</label>
-		<input id="namn-input" type="text" aria-labelledby="rubrik namn-label"/>
+		<label id="namn-label">Namn
+		<input type="text" aria-labelledby="rubrik namn-label"/>
+		</label>
+		
 		
 
-	    <label for="adress-input" id="adress-label">Gatuddress</label>
-	    <input id="adress-input" type="text" aria-labelledby="rubrik adress-label"/>
+	    <label id="adress-label">Gatuddress
+	    	<input type="text" aria-labelledby="rubrik adress-label"/>
+	    </label>
+	    
 	    </fieldset>
 	</li>
 	
@@ -84,7 +88,7 @@
     <li>
 	    <h2>Aria-pressed</h2>
 	    <p>Knappen ska meddela om den är tryck eller inte tryckt.</p>
-	    <button class="btn toggle" onClick="myToggle()" aria-pressed="false">Toggleknapp</button><br>
+	    <button role="button" class="btn toggle" onClick="myToggle()" aria-pressed="false">Slå på</button><br>
 	</li>
 	
 
@@ -111,10 +115,11 @@
 	<li><h2>Aria-required och aria-invalid</h2>
 	
 	<p>Fältet <strong>Namn</strong> har attributen <code class="language-html">aria-required="true"</code> samt <code class="language-html">aria-invalid="true"</code>.</p>
-	<p>Skärmläsaren ska meddela att fältet krävs och att det har felaktig data.</p> 
+	<p>Fältet <strong>E-post</strong> har attributen <code class="language-html">aria-required="false"</code> samt <code class="language-html">aria-invalid="false"</code>.</p>
+	<p>Skärmläsaren ska meddela att fältet <strong>namn</strong> krävs och att det har felaktig data.</p> 
 	
 	<label>Namn
-		<p class="error">Mata in ett giltigt namn!</p>
+		<span class="error"><i aria-hidden="true" class="fa fa-warning"></i> Mata in ett giltigt namn!</span>
 		<input name="name" id="name" aria-required="true" aria-invalid="true"/>
  	</label>
  	<label>E-post (frivilligt)
@@ -125,7 +130,7 @@
 
     <li><h2>Role=button</h2>
 
-    <div class="btn" role="button">DIV med role=button</div>
+    <div class="btn" role="button">DIV med <code class="language-html">role="button"</code></div>
     <div class="btn" role="button" tabindex="0">DIV med <code class="language-html">role="button"</code> och <code class="language-html">tabindex=0</code></div>
     <button class="btn">Vanlig button</button>
 
@@ -153,7 +158,8 @@
 
     <button onclick="busyClick()" class="btn">Testa mig!</button>
     
-    <div id="busy-area" class="livearea" aria-live="assertive" aria-busy="false">
+    <div id="busy-area" class="hidden livearea" aria-live="assertive" aria-busy="false">
+    	<img id="spinner" alt href="default.gif" aria-hidden="true" class="hidden">
     </div>
 
     </li>

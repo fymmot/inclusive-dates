@@ -19,8 +19,8 @@ fieldset {
 }
 
 input {
-	padding: 5px;
-	font-size: 13px;
+	padding: 0.4rem;
+	font-size: 0.9rem;
 	display: block;
     margin-bottom: 1rem;
 }
@@ -29,10 +29,13 @@ label {
 	font-weight: bold;
 }
 label > .error {
-	color:red;
+	display: block;
+	padding: 0.5rem;
+	background-color: lightcoral;
 	font-weight: normal;
-	margin: 0 0 0.5rem 0;
+	margin: 0.3rem 0 0.5rem 0;
 	font-size: 0.9rem;
+	max-width: 170px;
 }
 
 ol > li {
