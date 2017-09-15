@@ -10,20 +10,15 @@
 </head>
 <body>
 	<h1>Testdokument för Wai-aria</h1>
-	<ol>
-	<li>
+	
 	<h2>Aria-hidden</h2>
 		<button class="btn">Synlig knapp</button>
 		<button class="btn" aria-hidden="true">Knapp dold med aria-hidden</button>
 		<button class="btn" aria-hidden="true" tabindex=-1>Knapp dold med aria-hidden och tabindex=-1</button>
-	</li>
 	
-	<li>
-	<h2>Aria-label</h2>
+		<h2>Aria-label</h2>
 		<button class="btn" aria-label="En knapp"><i class="fa fa-camera-retro fa-2x"></i></button>
-	</li>
 	
-	<li>
 		<h2>Aria-expanded (med och utan aria-controls)</h2>
 
 		<button class="btn" onClick="myFunction()" id="b1" aria-expanded="false">Bara <code class="language-html">aria-expanded</code></button>
@@ -32,11 +27,7 @@
 			<p>Nytt område som fälls ut</p>
 		</div>
 
-	</li>
-	
-
-	<li>
-		<h2>Aria-labelledby (formulärsobjekt med flera etiketter)</h2>
+	<h2>Aria-labelledby (formulärsobjekt med flera etiketter)</h2>
 		<p>Både rubriken och ledtexten ska läsas upp.</p>
 		<p>Exempel: "Faktureringsadress namn, redigera text"</p>
 		
@@ -54,18 +45,10 @@
 	    </label>
 	    
 	    </fieldset>
-	</li>
-	
-
-    <li>
 	    <h2>Aria-describedby</h2>
 	    	<p>Knappen har en dold beskrivning som ska läsas upp av skärmläsaren efter en kort paus.</p>
 			<button class="btn" aria-describedby="beskrivning">Min knapp</button><br>
 			<span id="beskrivning" style="display:none">Min beskrivning</span>
-	</li>
-	
-
-	<li>
 	<h2>Aria-haspopup (FUNKAR EJ)</h2>
 	
 	<nav role="navigation" aria-label="example with dropdowns">
@@ -83,16 +66,10 @@
 		<li><a href="#">Contact</a></li>
 	</ul>
 	</nav>
-	</li>
-	
-    <li>
-	    <h2>Aria-pressed</h2>
+	   <h2>Aria-pressed</h2>
 	    <p>Knappen ska meddela om den är tryck eller inte tryckt.</p>
 	    <button role="button" class="btn toggle" onClick="myToggle()" aria-pressed="false">Slå på</button><br>
-	</li>
-	
-
-	<li><h2>Aria-selected</h2>
+	<h2>Aria-selected</h2>
 	<p>Skärmläsaren ska meddela vilken tabb som är aktiv</p>
 	<p>Exempel från <a href="http://accessibility.athena-ict.com/aria/examples/tabpanel2.shtml">Athena ICT Accessibility (extern länk)</a>
 		<ul class="tablist" role="tablist">
@@ -109,10 +86,10 @@
 	  		<h3 tabindex="0">Features</h3>
 			List of product features....
 		</div>
-	</li>
+	
 	
 
-	<li><h2>Aria-required och aria-invalid</h2>
+	<h2>Aria-required och aria-invalid</h2>
 	
 	<p>Fältet <strong>Namn</strong> har attributen <code class="language-html">aria-required="true"</code> samt <code class="language-html">aria-invalid="true"</code>.</p>
 	<p>Fältet <strong>E-post</strong> har attributen <code class="language-html">aria-required="false"</code> samt <code class="language-html">aria-invalid="false"</code>.</p>
@@ -126,17 +103,13 @@
 	 	<input name="email" id="email" aria-required="false" aria-invalid="false"/>
      </label>
     
-    </li>
-
-    <li><h2>Role=button</h2>
+    <h2>Role=button</h2>
 
     <div class="btn" role="button">DIV med <code class="language-html">role="button"</code></div>
     <div class="btn" role="button" tabindex="0">DIV med <code class="language-html">role="button"</code> och <code class="language-html">tabindex=0</code></div>
     <button class="btn">Vanlig button</button>
 
-    </li>
-
-    <li><h2>Aria-live</h2>
+    <h2>Aria-live</h2>
 
     <button onclick="politeClick()" class="btn">Polite</button>
     <button onclick="assertiveClick()" class="btn">Assertive</button>
@@ -152,9 +125,7 @@
     </div>
 
 
-    </li>
-
-    <li><h2>Aria-live med aria-busy</h2>
+    <h2>Aria-live med aria-busy</h2>
 
     <button onclick="busyClick()" class="btn">Testa mig!</button>
     
@@ -162,8 +133,32 @@
     	<img id="spinner" alt href="default.gif" aria-hidden="true" class="hidden">
     </div>
 
-    </li>
+    <h2>Role="heading" and aria-level</h2>
 
+    <p>Role=heading och aria-level ska läsas upp precis likadant som vanliga rubriker (h1, h2 osv). Aria-level går upp till nivå nio.</p>    
+
+    <h3>H3-rubrik</h3>
+    <h4>H4-rubrik</h4>
+    <h5>H5-rubrik</h5>
+    <h6>H6-rubrik</h6>
+
+    <div class="h3" role="heading" aria-level="3">Aria-rubrik 3</div>
+    <div class="h4" role="heading" aria-level="4">Aria-rubrik 4</div>
+    <div class="h5" role="heading" aria-level="5">Aria-rubrik 5</div> 
+    <div class="h6" role="heading" aria-level="6">Aria-rubrik 6</div>
+    <div class="h6" role="heading" aria-level="9">Aria-rubrik 9</div>
+    <div class="h6" role="heading" aria-level="10">Aria-rubrik 10</div>
+
+
+
+
+
+
+
+
+
+
+    
 
 
 
