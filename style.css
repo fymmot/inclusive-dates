@@ -88,6 +88,14 @@ ul > li {
 	display:block;
 }
 
+label {
+	display:inline-block;
+}
+
+input[type="checkbox"]{
+	display:inline-block;
+}
+
 /* SPECIFIKA STILAR
 ---------------------------------------------------------
 ---------------------------------------------------------
