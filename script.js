@@ -177,6 +177,12 @@ function busyClick() {
 
 }
 
+$("[aria-expanded='false'"]).click(function(){
+	this.attr('aria-expanded', function(_, attr) { return !(attr == 'true') })
+})
+
+
+
 
 
 

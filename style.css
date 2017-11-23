@@ -73,6 +73,14 @@ h2 {
 	left:-9999px;
 }
 
+*[aria-expanded="false"] + .expandable{
+  display:none;
+}
+
+*[aria-expanded="true"] + .expandable{
+  display:block;
+}
+
 /*
 *  Inline-listor
 */
