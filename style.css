@@ -321,3 +321,23 @@ button[aria-pressed='true'] {
     margin-bottom: 19px;
 
  }
+
+ .visibility-hidden{
+ 	visibility:hidden;
+ }
+
+ .opacity-hidden{
+ 	opacity:0;
+ }
+
+ label > img {
+ 	width:30px;
+ 	height:30px;
+ 	margin-top:20px;
+ 	z-index:10;
+ }
+
+.relative-position{
+	position:relative;
+
+}
