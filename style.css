@@ -6,7 +6,7 @@ body {
 	max-width: 900px;
 	margin: auto;
 	font-size: 100%;
-	font-family: 'Arial';
+	font-family: 'Open sans', 'Helvetica', sans-serif;
 }
 
 button {
@@ -16,6 +16,12 @@ button {
 fieldset {
 	display:inline-block;
 	padding: 0.5rem 1rem 0 1rem;
+	border:none;
+}
+
+fieldset > span {
+	font-size: 1rem;
+	/*font-weight:bold;*/
 }
 
 input {
@@ -38,6 +44,11 @@ label > .error {
 	max-width: 170px;
 }
 
+section {
+	border-top:6px solid #c3c3c3;
+	margin-top: 3rem;
+}
+
 ol > li {
 	border: 1px grey;
 	margin-bottom: 2rem;
@@ -49,11 +60,18 @@ ol {
 
 h1 {
 	margin-top: 2rem;
+	font-size: 4rem;
 }
 
 h2 {
-	margin-top: 4.5rem;
+	/*margin-top: 4.5rem;*/
 }
+
+h3 {
+	font-weight:400;
+}
+
+
 
 .btn{
 	display:inline-block;
@@ -110,7 +128,7 @@ input[type="checkbox"]{
 */
 
 
-/* 2. Aria-expanded */
+/* 2. Aria-expanded 
 
 button[aria-expanded='true'] {
 	background-color: steelblue;
@@ -119,6 +137,8 @@ button[aria-expanded='true'] {
 button[aria-expanded='true']:hover {
 	background-color: lightsteelblue;
 }
+*/
+
 
 .label-example{
 	font-family: FontAwesome;
@@ -322,6 +342,148 @@ button[aria-pressed='true'] {
 
  }
 
+ /*
+ 
+SJ-semantik
+
+  */
+ 
+ .sj-table{
+ 	width:100%;
+	background-color:#f4f4ee;
+	padding:1rem;
+	font-size: 18px;
+ }
+ .sj-row{
+ 	width:100%;
+ 	background-color:#fff;
+ 	/*min-height:80px;*/
+ 	display:table;
+ 	width:100%;
+ 	margin-bottom:0.2rem;
+ }
+ .sj-text-outer{
+ 	padding-left:20px;
+ 	padding-right:20px;
+ 	vertical-align: middle;
+ 	padding-top:2px;
+ 	position:relative;
+ 	/*cursor:pointer;*/
+ 	display:table-cell;
+ 	height:66px;
+ 	width:65%;
+ }
+
+ .sj-text-inner{
+ 	display:table;
+ 	width:100%;
+ 	font-size:18px;
+
+ }
+
+ .sj-text-time {
+ 	display:table-cell;
+ 	font-weight:bold;
+ 	width:30px;
+ }
+  .sj-text-duration {
+ 	display:table-cell;
+ 	width:30px;
+ 	padding-left:5px;
+ }
+ .sj-text-changes {
+ 	display:table-cell;
+ 	width:30px;
+ 	padding-left:5px;
+ }
+ .sj-text-brand {
+ 	display:table-cell;
+ 	width:30px;
+ 	padding-left:5px;
+ }
+ .sj-text-operator {
+ 	display:table-cell;
+ 	width:30px;
+ 	padding-left:5px;
+ 	text-align:right;
+ }
+ .sj-price-outer {
+ 	padding-left:20px;
+ 	padding-right:20px;
+ 	vertical-align: middle;
+ 	padding-top:2px;
+ 	position:relative;
+ 	/*cursor:pointer;*/
+ 	display:table-cell;
+ 	height:66px;
+ 	width:35%;
+ 	border-left: 1px solid #ebebe3;
+ }
+ .sj-price-inner{
+ 	display:table;
+ 	width:100%;
+ 	font-size: 20px;
+ }
+ .sj-price-lower {
+ 	display:table-cell;
+ }
+  .sj-price-lower>span, .sj-price-higher>span {
+	font-weight:bold;
+  }
+
+  .sj-expanded {
+  	display:block;
+  }
+  .sj-expanded-wrapper{
+  	display:table;
+  	width:100%;
+  	min-height:300px;
+  }
+  .sj-traininfo {
+  	display:table-cell;
+  	width:65%;
+  	padding-left:20px;
+  	padding-right:20px;
+  	background:#fafaf7;
+
+  }
+  .sj-prices {
+  	display:table-cell;
+  	width:35%;
+  	background:white;
+  	padding-left:20px;
+  	padding-right:20px;
+  }
+
+  .sj-pricegrid-row{
+  	display:table-row;
+  	width:100%;
+  }
+.sj-pricegrid-row:nth-child(2){
+	border-bottom: 1px solid black;
+}
+
+.sj-pricegrid-inner:nth-child(2){
+	border-left:1px solid black;
+}
+
+  .sj-pricegrid-outer{
+  	display:table;
+  	width:100%;
+  }
+  .sj-pricegrid-inner{
+  	display:table-cell;
+  	width:50%;
+  	height:88px;
+  	text-align:center;
+  	vertical-align: middle;
+  	cursor:pointer;
+  }
+
+  .sj-pricegrid-inner:hover{
+	background-color:#fafaf7;
+  }
+
  .visibility-hidden{
  	visibility:hidden;
  }
@@ -340,4 +502,63 @@ button[aria-pressed='true'] {
 .relative-position{
 	position:relative;
 
+}
+
+.text-right {
+	text-align: right;
+}
+
+table[role="grid"], table[role="application"] {
+	margin-bottom: 5rem;
+	text-align: center;
+	font-size:1.2rem;
+}
+
+table[role="grid"]:focus{
+	outline:none;
+}
+
+td[role="gridcell"], th[role="columnheader"], td[role="button"]{
+	padding:1.4rem 1rem 1.4rem 1rem;
+	width:40px;
+	height:60px;
+}
+
+td[role="gridcell"]{
+	/*border: 1px solid black;
+	border-radius:50%;*/
+}
+
+td[role="gridcell"]:focus, td[role="button"]:focus{
+	background-color:#7fdbef;
+}
+td[role="gridcell"]:hover, td[role="button"]:hover{
+	background-color:#f5f5f5;
+	cursor: pointer;
+}
+
+
+td[role="gridcell"][aria-pressed="true"], td[role="button"][aria-pressed="true"]{
+	
+	background-color: #2b7ea7;
+	color:white;
+	font-weight: bold;
+}
+td[role="gridcell"][aria-disabled="true"], td[role="button"][aria-disabled="true"]{
+	
+	color: darkgray;
+}
+td[role="gridcell"][aria-disabled="true"]:hover, td[role="button"][aria-disabled="true"]:hover{
+	
+	background:none;
+	cursor:initial;
+}
+
+p#a11y_description {
+	text-align: initial;
+	max-width: 40rem;
+	margin-left: auto;
+	margin-right:auto;
+	padding:2rem;
+	background-color: #f4f4ee;
 }

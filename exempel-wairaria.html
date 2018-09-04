@@ -1,0 +1,388 @@
+<html lang="sv">
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>Wai-aria testdokument</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link href="prism.css" rel="stylesheet">
+		<link rel="stylesheet" href="font-awesome.min.css">
+		<script src="jquery.min.js"></script>
+		<script src="script.js"></script>
+	</head>
+	<body>
+		<h1>Testdokument för Wai-aria</h1>
+		<!--
+		<section>
+						<h2>Aria-hidden</h2>
+						<button class="btn">Synlig knapp</button>
+						<button class="btn" aria-hidden="true">Knapp dold med aria-hidden</button>
+						<button class="btn" aria-hidden="true" tabindex="-1">Knapp dold med aria-hidden och tabindex=-1</button>
+		</section>
+		<section>
+						<h2>Aria-label</h2>
+						<button class="btn" aria-label="En knapp"><i class="fa fa-camera-retro fa-2x"></i></button>
+		</section>
+		<section>
+						<h2>Aria-expanded (med och utan aria-controls)</h2>
+						<button class="btn" onclick="myFunction()" id="b1" aria-expanded="false">Bara <code class=" language-html">aria-expanded</code></button>
+						<button class="btn" onclick="myFunction()" id="b2" aria-expanded="false" aria-controls="new-area">Både <code class=" language-html">aria-expanded</code> och <code class=" language-html">aria-controls</code></button><br>
+						<div id="new-area" style="display:none">
+										<p>Nytt område som fälls ut</p>
+						</div>
+		</section>
+		<section>
+						<h2>Aria-labelledby (formulärsobjekt med flera etiketter)</h2>
+						<p>Både rubriken och ledtexten ska läsas upp.</p>
+						<p>Exempel: "Faktureringsadress namn, redigera text"</p>
+						
+						<fieldset>
+										<legend id="rubrik">Faktureringsadress</legend>
+										
+										<label id="namn-label">Namn
+														<input type="text" aria-labelledby="rubrik namn-label">
+										</label>
+										
+										
+										<label id="adress-label">Gatuddress
+														<input type="text" aria-labelledby="rubrik adress-label">
+										</label>
+										
+						</fieldset>
+		</section>
+		<section>
+						<h2>Aria-describedby</h2>
+						<p>Knappen har en dold beskrivning som ska läsas upp av skärmläsaren efter en kort paus.</p>
+						<button class="btn" aria-describedby="beskrivning">Min knapp</button><br>
+						<span id="beskrivning" style="display:none">Min beskrivning</span>
+		</section>
+		<section>
+						<h2>Aria-pressed</h2>
+						<p>Knappen ska meddela om den är tryck eller inte tryckt.</p>
+						<button role="button" class="btn toggle" onclick="myToggle()" aria-pressed="false">Slå på</button><br>
+		</section>
+		<section>
+						<h2>Aria-selected</h2>
+						<p>Skärmläsaren ska meddela vilken tabb som är aktiv</p>
+						<p>Exempel från <a href="http://accessibility.athena-ict.com/aria/examples/tabpanel2.shtml">Athena ICT Accessibility (extern länk)</a>
+		</p><ul class="tablist" role="tablist">
+		<li id="tab1" class="tab" aria-controls="panel1" aria-selected="false" role="tab" tabindex="0">Prices</li>
+		<li id="tab2" class="tab" aria-controls="panel2" role="tab" aria-selected="true" tabindex="0">Features </li>
+	</ul>
+	<div id="panel1" class="panel hidden" aria-labelledby="tab1" role="tabpanel" aria-hidden="true">
+		<h3 tabindex="0">Prices</h3>
+		List of prices
+	</div>
+	<div id="panel2" class="panel" aria-labelledby="tab2" role="tabpanel" aria-hidden="false">
+		<h3 tabindex="0">Features</h3>
+		List of product features....
+	</div>
+</section>
+<section>
+	<h2>Aria-required och aria-invalid</h2>
+	<p>Fältet <strong>Namn</strong> har attributen <code class=" language-html">aria-required="true"</code> samt <code class=" language-html">aria-invalid="true"</code>.</p>
+	<p>Fältet <strong>E-post</strong> har attributen <code class=" language-html">aria-required="false"</code> samt <code class=" language-html">aria-invalid="false"</code>.</p>
+	<p>Skärmläsaren ska meddela att fältet <strong>namn</strong> krävs och att det har felaktig data.</p>
+	<label>Namn
+		<span class="error"><i aria-hidden="true" class="fa fa-warning"></i> Mata in ett giltigt namn!</span>
+		<input name="name" id="name" aria-required="true" aria-invalid="true">
+	</label>
+	<label>E-post (frivilligt)
+		<input name="email" id="email" aria-required="false" aria-invalid="false">
+	</label>
+</section>
+<section>
+	<h2>Role=button</h2>
+	<div class="btn" role="button">DIV med <code class=" language-html">role="button"</code></div>
+	<div class="btn" role="button" tabindex="0">DIV med <code class=" language-html">role="button"</code> och <code class=" language-html">tabindex=0</code></div>
+	<button class="btn">Vanlig button</button>
+</section>
+<section>
+	<h2>Aria-live</h2>
+	<button onclick="politeClick()" class="btn">Polite</button>
+	<button onclick="assertiveClick()" class="btn">Assertive</button>
+	<button onclick="offClick()" class="btn">Off</button>
+	<div id="polite-area" class="livearea hidden" aria-live="polite">
+	</div>
+	<div id="assertive-area" class="livearea hidden" aria-live="assertive">
+	</div>
+	<div id="off-area" class="livearea hidden" aria-live="off">
+	</div>
+</section>
+<section>
+	<h2>Aria-live med aria-busy</h2>
+	<button onclick="busyClick()" class="btn">Testa mig!</button>
+	<div id="busy-area" class="hidden livearea" aria-live="assertive" aria-busy="false">
+		<img id="spinner" alt="" href="default.gif" aria-hidden="true" class="hidden">
+	</div>
+</section>
+<section>
+	<h2>Role="heading" and aria-level</h2>
+	<p>Role=heading och aria-level ska läsas upp precis likadant som vanliga rubriker (h1, h2 osv). Aria-level går upp till nivå nio.</p>
+	<h3>H3-rubrik</h3>
+	<h4>H4-rubrik</h4>
+	<h5>H5-rubrik</h5>
+	<h6>H6-rubrik</h6>
+	<div class="h3" role="heading" aria-level="3">Aria-rubrik 3</div>
+	<div class="h4" role="heading" aria-level="4">Aria-rubrik 4</div>
+	<div class="h5" role="heading" aria-level="5">Aria-rubrik 5</div>
+	<div class="h6" role="heading" aria-level="6">Aria-rubrik 6</div>
+	<div class="h6" role="heading" aria-level="9">Aria-rubrik 9</div>
+	<div class="h6" role="heading" aria-level="10">Aria-rubrik 10</div>
+</section>
+<section>
+	<h2>Länk inuti label</h2>
+	<input type="checkbox" id="check1"><label for="check1">Jag godkänner <a href="http://www.tommyfeldt.se/">villkoren</a></label>
+</section>
+<section>
+	<h2>Expandable med css</h2>
+	<button class="btn" aria-expanded="false">Min knapp</button>
+	<div class="expandable">Mitt område</div>
+</section>
+<section>
+	<h2>Input required attribute</h2>
+	<h3>Aria-required, aria-invalid=true</h3>
+	<label>Namn
+		<input type="text" aria-required="true" aria-invalid="true">
+	</label>
+	<h3>Required</h3>
+	<label>E-post
+		<input name="email" id="email" required="">
+	</label>
+</section>
+<section>
+	<h2>Gömma kryssruta</h2>
+	<h3>Visibility:hidden</h3>
+	<label class="relative-position">
+		Kryssa mig
+		<input class="visibility-hidden" type="checkbox">
+		<img aria-hidden="true" src="checkbox.png">
+	</label>
+	<h3>Opacity</h3>
+	<label style="position:relative;">
+		Kryssa mig
+		<input class="opacity-hidden" type="checkbox" style="position:absolute;top:50%;width:30px;height:30px;">
+		<img aria-hidden="true" src="checkbox.png">
+	</label>
+</section>-->
+<!--
+<section>
+	<h2>SJ tidtabell (hopfälld)</h2>
+	<div class="sj-table">
+		<div class="sj-row" tabindex="0" role="button" aria-label="Avgångstid 12:03 Ankomsttid 14:50 Inga byten" aria-expanded="false" aria-haspopup="dialog">
+			<div class="sj-text-outer">
+				<div class="sj-text-inner">
+					<span class="sj-text-time">12:03 - 14:50</span>
+					<span class="sj-text-duration">Restid 2:47 h</span>
+					<span class="sj-text-changes">Ett byte</span>
+					<span class="sj-text-brand"></span>
+					<span class="sj-text-operator">SJ+1</span>
+				</div>
+			</div>
+			<div class="sj-price-outer">
+				<div class="sj-price-inner">
+					<span class="sj-price-lower">
+						fr.
+						<span>508:-</span>
+					</span>
+					<span class="sj-price-higher">
+						fr.
+						<span>748:-</span>
+					</span>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<h2>SJ tidtabell (expanderad)</h2>
+	<div class="sj-table">
+		<div class="sj-row" tabindex="0" role="button" aria-label="Avgångstid 12:03 Ankomsttid 14:50 Inga byten" aria-expanded="false" aria-haspopup="dialog">
+			<div class="sj-text-outer">
+				<div class="sj-text-inner">
+					<span class="sj-text-time">12:03 - 14:50</span>
+					<span class="sj-text-duration">Restid 2:47 h</span>
+					<span class="sj-text-changes">Ett byte</span>
+					<span class="sj-text-brand"></span>
+					<span class="sj-text-operator">SJ+1</span>
+				</div>
+			</div>
+			<div class="sj-price-outer">
+				<div class="sj-price-inner text-right">
+
+					<button>Stäng</button>	
+				</div>
+			</div>
+		</div>
+		<div class="sj-expanded">
+			<div class="sj-expanded-wrapper">
+				<div class="sj-traininfo">
+				<strong>Stockholm C - Göteborg C</strong>
+				</div>
+				<div class="sj-prices">
+					<div class="sj-pricegrid-outer">
+						<div class="sj-pricegrid-row">
+							<div class="sj-pricegrid-inner">
+								120:-
+							</div>
+							<div class="sj-pricegrid-inner">
+								120:-
+							</div>
+						</div>
+						<div class="sj-pricegrid-row">
+							<div class="sj-pricegrid-inner">
+								120:-
+							</div>
+							<div class="sj-pricegrid-inner">
+								120:-
+							</div>
+						</div>
+						<div class="sj-pricegrid-row">
+							<div class="sj-pricegrid-inner">
+								120:-
+							</div>
+							<div class="sj-pricegrid-inner">
+								120:-
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+	</div>
+
+</section>
+-->
+<!--
+<section lang="sv">
+<h2>Datepicker</h2>
+<button class="btn" id="datepicker-btn" aria-expanded="false">Wednesday Sep 3rd, 2018</button>
+<table id="datepicker-grid" class="hidden" tabindex="-1" role="grid" aria-label="Väl datum för din utresa">
+	<tr role="row">
+		<th role="columnheader" aria-disabled="true">Mon</th>
+		<th role="columnheader" aria-disabled="true">Tue</th>
+		<th role="columnheader" aria-disabled="true">Wed</th>
+		<th role="columnheader" aria-disabled="true">Thu</th>
+		<th role="columnheader" aria-disabled="true">Fri</th>
+		<th role="columnheader" aria-disabled="true">Sat</th>
+		<th role="columnheader" aria-disabled="true">Sun</th>
+	</tr>
+	<tr role="row">
+		<td id="grid1" role="gridcell" aria-label="Monday, September 1st" aria-disabled="true">1</td>
+		<td id="grid2" role="gridcell" aria-label="Tuesday, September 2nd" aria-disabled="true">2</td>
+		<td id="grid3" role="gridcell" aria-label="Wednesday, September 3rd">3</td>
+		<td id="grid4" role="gridcell" aria-label="Thursday, September 4th">4</td>
+		<td id="grid5" role="gridcell" aria-label="Friday, September 5th">5</td>
+		<td id="grid6" role="gridcell" aria-label="Saturday, September 6th">6</td>
+		<td id="grid7" role="gridcell" aria-label="Sunday, September 7th">7</td>
+	</tr>
+	<tr role="row">
+		<td id="grid8" role="gridcell" aria-label="Monday, September 8th">8</td>
+		<td id="grid9"role="gridcell" aria-label="Tuesday, September 9th">9</td>
+		<td id="grid10"role="gridcell" aria-label="Wednesday, September 10th">10</td>
+		<td id="grid11"role="gridcell" aria-label="Thursday, September 11th">11</td>
+		<td id="grid12"role="gridcell" aria-label="Friday, September 12th">12</td>
+		<td id="grid13"role="gridcell" aria-label="Saturday, September 13th">13</td>
+		<td id="grid14"role="gridcell" aria-label="Sunday, September 14th">14</td>
+	</tr>
+
+</table>
+
+</section>
+-->
+
+<section lang="sv" style="text-align:center">
+	<h2>Tillgänglig kalender</h2>
+	<h3 >Onsdag 26 augusti</h3>
+
+	
+	<label>
+		Välj avgångstid
+		<select>
+			<option>13:00</option>
+			<option>13:30</option>
+			<option>13:40</option>
+		</select>
+	</label>
+	<br>
+
+	<fieldset>
+		<legend class="visually-hidden">Välj månad</legend>
+		<button aria-label="Föregående månad"><</button>
+		<span>September</span>
+		<button aria-lavbel="Nästa månad">></button>
+	</fieldset>
+
+
+
+    
+    
+                    <table class="picker__table" id="P1973332106_table" role="application" aria-label="Välj utresedag" aria-controls="P1973332106" aria-readonly="true" style="margin-left:auto; margin-right:auto;">
+                        <thead>
+                            <tr role="presentation">
+                                <th role="presentation" class="picker__weekday" scope="col" title="Måndag">Mån</th>
+                                <th role="presentation" class="picker__weekday" scope="col" title="Tisdag">Tis</th>
+                                <th role="presentation" class="picker__weekday" scope="col" title="Onsdag">Ons</th>
+                                <th role="presentation" class="picker__weekday" scope="col" title="Torsdag">Tor</th>
+                                <th role="presentation" class="picker__weekday" scope="col" title="Fredag">Fre</th>
+                                <th role="presentation" class="picker__weekday" scope="col" title="Lördag">Lör</th>
+                                <th role="presentation" class="picker__weekday" scope="col" title="Söndag">Sön</th>
+                            </tr>
+                        </thead>
+                        <tbody">
+                            
+                            <tr role="presentation">
+                                <td role="button" tabindex="-1" aria-disabled="true" aria-label="Måndag, 24 augusti, 2018">
+                                   24
+                                </td>
+                                <td role="button" tabindex="-1" aria-disabled="true" aria-label="Tisdag, 25 augusti, 2018">
+                                   
+                                   25
+                                </td>
+                                <td aria-pressed="true" aria-describedby="a11y_description" tabindex="0" role="button" aria-label="Idag, Onsdag, 26 augusti, 2018">
+                                    26
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Torsdag, 27 augusti, 2018">
+                                    27
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Fredag, 28 augusti, 2018">
+                                    28
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Lördag, 29 augusti, 2018">
+                                    
+                                    29
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Söndag, 30 augusti, 2018">
+                                   30
+                                </td>
+                            </tr>
+                            <tr role="presentation">
+                                <td tabindex="-1" role="button">
+                                   1
+                                </td>
+                                <td tabindex="-1" role="button">
+                                   2
+                                </td>
+                                <td tabindex="-1" role="button">
+                                    3
+                                </td>
+                                <td tabindex="-1" role="button">
+                                   4
+                                </td>
+                                <td tabindex="-1" role="button">
+                                    5
+                                </td>
+                                <td tabindex="-1" role="button">
+                                    6
+                                </td>
+                                <td tabindex="-1" role="button">
+                                    7
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+               
+<p id="a11y_description">Använd vänster och höger pil för att bläddra mellan dagarna. Pil upp och pil ner ändrar vecka. Välj dag med returtangenten eller mellanslag</p>
+
+	</section>
+<script src="prism.js"></script>
+</body></html>

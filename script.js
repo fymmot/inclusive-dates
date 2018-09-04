@@ -177,10 +177,112 @@ function busyClick() {
 
 }
 
-$("[aria-expanded='false'"]).click(function(){
-	this.attr('aria-expanded', function(_, attr) { return !(attr == 'true') })
-})
+/*
+	Aria-activedescendant datepikcer
+*/
+$(document).ready(function(){
+	$("#datepicker-btn").click(function(){
+		$(this).attr('aria-expanded', 'true');
+	    $("#datepicker-grid").removeClass("hidden").attr('aria-activedescendant', 'grid3').focus();
+	    $("#grid3").addClass("active").attr("aria-selected", "true");
 
+	});
+	$('td[id^="grid"]').click(function(){
+		if ($(this).attr('aria-disabled') == 'true'){
+			//Do nothing
+		} else{
+			$('td[id^="grid"]').removeAttr("aria-pressed").removeClass("active");
+			$(this).attr("aria-selected", "true").addClass("active");
+			$("#datepicker-grid").attr('aria-activedescendant', this.id);
+	}
+
+	});
+});
+
+/*
+Rolling tabindex datepicker 
+*/
+
+
+$(document).ready(function(){
+
+	/*Variables and selectors*/
+	var ALL_ACTIVE_DATEPICKER_DAYS = $('table.picker__table > tbody > tr > td[role="button"][aria-disabled!="true"]')
+	
+	var RIGHT_KEY = 39;
+	var LEFT_KEY = 37;
+	var SPACE_KEY = 32;
+
+
+	// Add click listener to each button
+
+	ALL_ACTIVE_DATEPICKER_DAYS.click(function(){
+		
+		//Remove active states and tabindices
+		ALL_ACTIVE_DATEPICKER_DAYS.removeAttr("aria-pressed").removeClass("active").attr("tabindex", "-1");
+
+		//Set the clicked button as active
+		$(this)
+			.attr('aria-pressed', 'true')
+			.attr('tabindex', '0')
+			.addClass("active");
+	});
+	
+	// Add keylistener to table to move between the days and select using space and enter
+
+	$("#P1973332106_table").keydown(function( event ) {
+
+		//Find the cell currently in focus
+		var current_cell = $("#P1973332106_table td[role='button']:focus");
+		
+		//Create a list of all focusable days
+		var myMap = ALL_ACTIVE_DATEPICKER_DAYS.map( function( index, element ) {
+		    return this;
+		}).get();
+
+		//Listen for keystrokes
+		switch (event.which){
+
+			case RIGHT_KEY:
+				event.preventDefault();
+
+				ALL_ACTIVE_DATEPICKER_DAYS
+					.attr("tabindex", "-1");
+
+				var nextCell = current_cell.next();
+
+				if (current_cell)
+
+				if (!nextCell.attr('aria-disabled')){
+					nextCell.attr("tabindex", "0").focus();
+				}
+
+
+		   		break;
+
+		   	case LEFT_KEY:
+				event.preventDefault();
+
+				ALL_ACTIVE_DATEPICKER_DAYS
+					.attr("tabindex", "-1");
+
+				var previousCell = current_cell.prev();
+					if (!previousCell.attr('aria-disabled')){
+						previousCell.attr("tabindex", "0").focus();
+					}
+
+				
+		   		break;
+
+		   	case SPACE_KEY:
+				event.preventDefault();
+				ALL_ACTIVE_DATEPICKER_DAYS.removeAttr("aria-pressed");	
+				current_cell.attr("aria-pressed", "true");
+				break;
+		}
+});
+
+});
 
 
 
