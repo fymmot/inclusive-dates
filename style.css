@@ -56,6 +56,7 @@ label > .error {
 section {
 	border-top:6px solid #c3c3c3;
 	margin-top: 3rem;
+	padding-top: 3rem;
 }
 
 ol > li {
@@ -527,11 +528,6 @@ th[role="columnheader"], td[role="button"]{
 	padding:1.4rem 1rem 1.4rem 1rem;
 	width:40px;
 	height:60px;
-}
-
-td[role="gridcell"]{
-	/*border: 1px solid black;
-	border-radius:50%;*/
 }
 
 td[role="button"]:focus{

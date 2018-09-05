@@ -17,15 +17,14 @@ $(document).ready(function(){
 	var SPACE_KEY = 32;
 	var RETURN_KEY = 13;
 
-
-	//Number of rows or columns
-	//var GRID_ROWS = $('table.picker__table > tbody').children().length;
-	//var GRID_COLS = $('table.picker__table > tbody > tr').first().children().length;
-
 	var current_cell;
 
-
-	// Add click listener to each interactibe button
+	/**
+	 * @param  {}
+	 * @return {}
+	 *
+	 * Register click listener for date buttons
+	 */
 	ALL_ACTIVE_DATEPICKER_DAYS.click(function(){
 		
 		//Remove active states and set negative tabindex to all elements
@@ -38,13 +37,18 @@ $(document).ready(function(){
 			.addClass("active");
 	});
 
-	//MAke sure that the active day is the first to receive focus when the user returns to the table
+	/**
+	 * Manage tabindex for when the user leaves the table
+	 */
 	$("#P1973332106_table").focusout(function(){
 		ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
 		$("td[role='button'][aria-pressed='true']").attr("tabindex", "0");
 	});
 	
-	// Add keylistener to table to move between the days and select using space and enter
+	/**
+	 *
+	 * Add keylistener to table to move between the days and select using space and enter
+	 */
 	$("#P1973332106_table").keydown(function( event ) {
 
 		//Find the cell currently in focus
@@ -92,12 +96,15 @@ $(document).ready(function(){
 				break;
 		}
 	});
-
+	/**
+	 * Clean up buttons, reset tabindex
+	 */
 	function cleanup(){
 		ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
 	}
-
-
+	/**
+	 * Go to next active date
+	 */
 	function nextDay(){
 		var a = ALL_ACTIVE_DATEPICKER_DAYS;
 		var idx = a.index(current_cell);
@@ -114,6 +121,9 @@ $(document).ready(function(){
 			.attr("aria-describedby", "a11y_description")
 			.focus();
 	}
+	/**
+	 * Go to previous active date
+	 */
 	function previousDay(){
 		var a = ALL_ACTIVE_DATEPICKER_DAYS;
 		var idx = a.index(current_cell);
@@ -130,7 +140,9 @@ $(document).ready(function(){
 			.attr("aria-describedby", "a11y_description")
 			.focus();
 	}
-
+	/**
+	 * Go to next week (+7 days)
+	 */
 	function nextWeek(){
 		var a = ALL_ACTIVE_DATEPICKER_DAYS;
 		var idx = a.index(current_cell);
@@ -144,7 +156,9 @@ $(document).ready(function(){
 			.attr("aria-describedby", "a11y_description")
 			.focus();
 	}
-
+	/**
+	 * Go to previous week (-7 days)
+	 */
 	function previousWeek(){
 		var a = ALL_ACTIVE_DATEPICKER_DAYS;
 		var idx = a.index(current_cell);
@@ -261,12 +275,6 @@ $(document).ready(function(){
 			.focus();
 
 	}*/
-$("#testbtn").click(function(){
-	var idx = ALL_ACTIVE_DATEPICKER_DAYS.index($("#tomorrow"));
-	var nextElement = ALL_ACTIVE_DATEPICKER_DAYS[idx + 1];
-
-	nextElement.focus();
-})
 
 
 });
