@@ -546,7 +546,7 @@ td[role="button"]:focus:hover{
 td[role="button"][aria-pressed="true"]:focus:hover{
 	/*background-color:#7fdbef;*/
 	cursor: pointer;
-	color: black;
+	/*color: black;*/
 }
 td[role="button"][aria-pressed="true"]:hover{
 	background-color: #2b7ea7;
@@ -576,10 +576,14 @@ td[role="button"][aria-disabled="true"]:hover{
 }
 
 p#a11y_description {
+	display:none;
 	text-align: initial;
 	max-width: 40rem;
 	margin-left: auto;
 	margin-right:auto;
 	padding:2rem;
 	background-color: #f4f4ee;
+}
+html[data-whatinput="keyboard"] p#a11y_description {
+	display:block;
 }

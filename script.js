@@ -19,13 +19,13 @@ $(document).ready(function(){
 
 
 	//Number of rows or columns
-	var GRID_ROWS = $('table.picker__table > tbody').children().length;
-	var GRID_COLS = $('table.picker__table > tbody > tr').first().children().length;
+	//var GRID_ROWS = $('table.picker__table > tbody').children().length;
+	//var GRID_COLS = $('table.picker__table > tbody > tr').first().children().length;
 
 	var current_cell;
 
 
-	// Add click listener to each button
+	// Add click listener to each interactibe button
 	ALL_ACTIVE_DATEPICKER_DAYS.click(function(){
 		
 		//Remove active states and set negative tabindex to all elements
@@ -56,23 +56,23 @@ $(document).ready(function(){
 
 			case RIGHT_KEY:
 				event.preventDefault();
-				setFocusToCell("right");
+				nextDay();
 		   		break;
 
 		   	case LEFT_KEY:
 				event.preventDefault();
-				setFocusToCell("left");
+				previousDay();
 		   		break;
 
 		   	case UP_KEY:
 				event.preventDefault();
-				setFocusToCell("up");
+				previousWeek();
 
 				break;
 
 		   	case DOWN_KEY:
 				event.preventDefault();
-				setFocusToCell("down");
+				nextWeek();
 
 		   		break;
 
@@ -93,7 +93,72 @@ $(document).ready(function(){
 		}
 	});
 
-	//Function to set focus to the next cell in a specified direction
+	function cleanup(){
+		ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
+	}
+
+
+	function nextDay(){
+		var a = ALL_ACTIVE_DATEPICKER_DAYS;
+		var idx = a.index(current_cell);
+		
+		if (a.index(current_cell) >= a.length-1){
+			var nextElement = $(a[0])
+		} else 
+			var nextElement = $(a[idx + 1]);
+
+		cleanup();
+		
+		nextElement
+			.attr("tabindex", "0")
+			.attr("aria-describedby", "a11y_description")
+			.focus();
+	}
+	function previousDay(){
+		var a = ALL_ACTIVE_DATEPICKER_DAYS;
+		var idx = a.index(current_cell);
+		
+		if (a.index(current_cell) == 0){
+			var nextElement = $(a[a.length-1])
+		} else
+			var nextElement = $(a[idx -1]);
+
+		cleanup();
+
+		nextElement
+			.attr("tabindex", "0")
+			.attr("aria-describedby", "a11y_description")
+			.focus();
+	}
+
+	function nextWeek(){
+		var a = ALL_ACTIVE_DATEPICKER_DAYS;
+		var idx = a.index(current_cell);
+		
+		var nextElement = $(a[idx + 7]);
+
+		cleanup();
+		
+		nextElement
+			.attr("tabindex", "0")
+			.attr("aria-describedby", "a11y_description")
+			.focus();
+	}
+
+	function previousWeek(){
+		var a = ALL_ACTIVE_DATEPICKER_DAYS;
+		var idx = a.index(current_cell);
+		
+		var nextElement = $(a[idx - 7]);
+
+		cleanup();
+		
+		nextElement
+			.attr("tabindex", "0")
+			.attr("aria-describedby", "a11y_description")
+			.focus();
+	}
+	/*Function to set focus to the next cell in a specified direction
 
 	function setFocusToCell(direction){
 		//Cleanup
@@ -195,7 +260,14 @@ $(document).ready(function(){
 			.attr("aria-describedby", "a11y_description") //Transfer help text to new button
 			.focus();
 
-	}
+	}*/
+$("#testbtn").click(function(){
+	var idx = ALL_ACTIVE_DATEPICKER_DAYS.index($("#tomorrow"));
+	var nextElement = ALL_ACTIVE_DATEPICKER_DAYS[idx + 1];
+
+	nextElement.focus();
+})
+
 
 });
 

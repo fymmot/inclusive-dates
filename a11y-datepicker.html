@@ -37,7 +37,7 @@
 		<button aria-label="Next month">></button>
 	</fieldset>
          <table class="picker__table" id="P1973332106_table" role="application" aria-label="Choose departure date" style="margin-left:auto; margin-right:auto;">
-                        <thead>
+                        <thead aria-hidden="true">
                             <tr role="presentation">
                                 <th role="presentation" scope="col" title="Monday">Mon</th>
                                 <th role="presentation" scope="col" title="Tuesday">Tue</th>
@@ -61,7 +61,7 @@
                                 <td aria-pressed="true" aria-describedby="a11y_description" tabindex="0" role="button" aria-label="Today, Wednesday, 29 August, 2018">
                                     29
                                 </td>
-                                <td tabindex="-1" role="button" aria-label="Tomorrow, Thursday, 30 August, 2018">
+                                <td id="tomorrow" tabindex="-1" role="button" aria-label="Tomorrow, Thursday, 30 August, 2018">
                                     30
                                 </td>
                                 <td tabindex="-1" role="button" aria-label="Friday, 31 August, 2018">
@@ -180,7 +180,7 @@
 <p id="a11y_description">
 Use the left and right arrow keys to browse days. Up and down arrows move between weeks. Select a day using return key or spacebar.</p>
 
-
+<button class="btn" id="testbtn">Next element!</button>
 
 	</section>
 <script src="prism.js"></script>
