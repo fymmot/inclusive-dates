@@ -1,4 +1,4 @@
-<html lang="sv">
+<html lang="en">
 	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		
 		<title>Wai-aria testdokument</title>
@@ -12,16 +12,16 @@
 		<script src="script.js"></script>
 	</head>
 	<body>
-		<h1>Testdokument för Wai-aria</h1>
+		<h1>Accessible datepicker example</h1>
 		
 
-<section lang="sv" style="text-align:center">
-	<h2>Tillgänglig kalender</h2>
-	<!--<h3 >Onsdag 26 augusti</h3>-->
+<section style="text-align:center">
+	
+	<!--<h3 >Wednesday 26 August</h3>-->
 
 	
 	<label>
-		Välj avgångstid
+		Choose departure time
 		<select>
 			<option>13:00</option>
 			<option>13:30</option>
@@ -31,82 +31,156 @@
 	<br>
 
 	<fieldset>
-		<legend class="visually-hidden">Välj månad</legend>
-		<button aria-label="Föregående månad"><</button>
+		<legend class="visually-hidden">Choose month</legend>
+		<button aria-label="Previous month"><</button>
 		<span>September</span>
-		<button aria-label="Nästa månad">></button>
+		<button aria-label="Next month">></button>
 	</fieldset>
-
-
-
-    
-    
-                    <table class="picker__table" id="P1973332106_table" role="application" aria-label="Välj utresedag" style="margin-left:auto; margin-right:auto;">
+         <table class="picker__table" id="P1973332106_table" role="application" aria-label="Choose departure date" style="margin-left:auto; margin-right:auto;">
                         <thead>
                             <tr role="presentation">
-                                <th role="presentation" class="picker__weekday" scope="col" title="Måndag">Mån</th>
-                                <th role="presentation" class="picker__weekday" scope="col" title="Tisdag">Tis</th>
-                                <th role="presentation" class="picker__weekday" scope="col" title="Onsdag">Ons</th>
-                                <th role="presentation" class="picker__weekday" scope="col" title="Torsdag">Tor</th>
-                                <th role="presentation" class="picker__weekday" scope="col" title="Fredag">Fre</th>
-                                <th role="presentation" class="picker__weekday" scope="col" title="Lördag">Lör</th>
-                                <th role="presentation" class="picker__weekday" scope="col" title="Söndag">Sön</th>
+                                <th role="presentation" scope="col" title="Monday">Mon</th>
+                                <th role="presentation" scope="col" title="Tuesday">Tue</th>
+                                <th role="presentation" scope="col" title="Wednesday">Wed</th>
+                                <th role="presentation" scope="col" title="Thursday">Thu</th>
+                                <th role="presentation" scope="col" title="Friday">Fri</th>
+                                <th role="presentation" scope="col" title="Saturday">Sat</th>
+                                <th role="presentation" scope="col" title="Sunday">Sun</th>
                             </tr>
                         </thead>
                         <tbody">
                             
                             <tr role="presentation">
-                                <td role="button" tabindex="-1" aria-disabled="true" aria-label="Måndag, 24 augusti, 2018">
-                                   24
+                                <td role="button" aria-disabled="true" aria-label="Monday, 27 August, 2018">
+                                   27
                                 </td>
-                                <td role="button" tabindex="-1" aria-disabled="true" aria-label="Tisdag, 25 augusti, 2018">
+                                <td role="button" aria-disabled="true" aria-label="Yesterday, Tuesday, 28 August, 2018">
                                    
-                                   25
+                                   28
                                 </td>
-                                <td aria-pressed="true" aria-describedby="a11y_description" tabindex="0" role="button" aria-label="Idag, Onsdag, 26 augusti, 2018">
-                                    26
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Torsdag, 27 augusti, 2018">
-                                    27
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Fredag, 28 augusti, 2018">
-                                    28
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Lördag, 29 augusti, 2018">
-                                    
+                                <td aria-pressed="true" aria-describedby="a11y_description" tabindex="0" role="button" aria-label="Today, Wednesday, 29 August, 2018">
                                     29
                                 </td>
-                                <td tabindex="-1" role="button" aria-label="Söndag, 30 augusti, 2018">
-                                   30
+                                <td tabindex="-1" role="button" aria-label="Tomorrow, Thursday, 30 August, 2018">
+                                    30
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Friday, 31 August, 2018">
+                                    31
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Saturday, 1 september, 2018">
+                                    
+                                    1
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Sunday, 2 september, 2018">
+                                   2
                                 </td>
                             </tr>
                             <tr role="presentation">
-                                <td tabindex="-1" role="button">
-                                   1
+                                <td role="button" tabindex="-1" aria-label="Monday, 3 september, 2018">
+                                   3
                                 </td>
-                                <td tabindex="-1" role="button">
-                                   2
-                                </td>
-                                <td tabindex="-1" role="button">
-                                    3
-                                </td>
-                                <td tabindex="-1" role="button">
+                                <td role="button" tabindex="-1" aria-label="Tuesday, 4 september, 2018">
+                                   
                                    4
                                 </td>
-                                <td tabindex="-1" role="button">
+                                <td tabindex="-1" role="button" aria-label="Wednesday, 5 september, 2018">
                                     5
                                 </td>
-                                <td tabindex="-1" role="button">
+                                <td tabindex="-1" role="button" aria-label="Thursday, 6 september, 2018">
                                     6
                                 </td>
-                                <td tabindex="-1" role="button">
+                                <td tabindex="-1" role="button" aria-label="Friday, 7 september, 2018">
                                     7
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Saturday, 8 september, 2018">
+                                    
+                                    8
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Sunday, 9 september, 2018">
+                                   9
+                                </td>
+                            </tr>
+                            <tr role="presentation">
+                                <td role="button" tabindex="-1" aria-label="Monday, 10 september, 2018">
+                                   10
+                                </td>
+                                <td role="button" tabindex="-1" aria-label="Tuesday, 11 september, 2018">
+                                   
+                                   11
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Wednesday, 12 september, 2018">
+                                    12
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Thursday, 13 september, 2018">
+                                    13
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Friday, 14 september, 2018">
+                                    14
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Saturday, 15 september, 2018">
+                                    
+                                    15
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Sunday, 16 september, 2018">
+                                   16
+                                </td>
+                            </tr>
+                           <tr role="presentation">
+                                <td role="button" tabindex="-1" aria-label="Monday, 17 september, 2018">
+                                   17
+                                </td>
+                                <td role="button" tabindex="-1" aria-label="Tuesday, 18 september, 2018">
+                                   
+                                   18
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Wednesday, 19 september, 2018">
+                                    19
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Thursday, 20 september, 2018">
+                                    20
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Friday, 21 september, 2018">
+                                    21
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Saturday, 22 september, 2018">
+                                    
+                                    22
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Sunday, 23 september, 2018">
+                                   23
+                                </td>
+                            </tr>
+                            <tr role="presentation">
+                                <td role="button" tabindex="-1" aria-label="Monday, 24 september, 2018">
+                                   24
+                                </td>
+                                <td role="button" tabindex="-1" aria-label="Tuesday, 25 september, 2018">
+                                   
+                                   25
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Wednesday, 26 september, 2018">
+                                   26
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Thursday, 27 september, 2018">
+                                   27
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Friday, 28 september, 2018">
+                                   28
+                                </td>
+                                <td tabindex="-1" role="button" aria-label="Saturday, 29 september, 2018">
+                                    
+                                   29
+                                <td tabindex="-1" role="button" aria-label="Sunday, 30 september, 2018">
+                                   30
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                
-<p id="a11y_description">Använd vänster och höger pil för att bläddra mellan dagarna. Pil upp och pil ner ändrar vecka. Välj dag med returtangenten eller mellanslag</p>
+<p id="a11y_description">
+Use the left and right arrow keys to browse days. Up and down arrows keys change weeks. Select using return key or spacebar.</p>
+
+
 
 	</section>
 <script src="prism.js"></script>

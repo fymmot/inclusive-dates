@@ -517,17 +517,13 @@ SJ-semantik
 	text-align: right;
 }
 
-table[role="grid"], table[role="application"] {
+table[role="application"] {
 	margin-bottom: 5rem;
 	text-align: center;
 	font-size:1.2rem;
 }
 
-table[role="grid"]:focus{
-	outline:none;
-}
-
-td[role="gridcell"], th[role="columnheader"], td[role="button"]{
+th[role="columnheader"], td[role="button"]{
 	padding:1.4rem 1rem 1.4rem 1rem;
 	width:40px;
 	height:60px;
@@ -538,7 +534,7 @@ td[role="gridcell"]{
 	border-radius:50%;*/
 }
 
-td[role="gridcell"]:focus, td[role="button"]:focus{
+td[role="button"]:focus{
 	background-color:#7fdbef;
 }
 
@@ -547,24 +543,34 @@ td[role="button"]:focus:hover{
 	cursor: pointer;
 }
 
-td[role="gridcell"]:hover, td[role="button"]:hover{
+td[role="button"][aria-pressed="true"]:focus:hover{
+	/*background-color:#7fdbef;*/
+	cursor: pointer;
+	color: black;
+}
+td[role="button"][aria-pressed="true"]:hover{
+	background-color: #2b7ea7;
+	cursor: pointer;
+	color:white;
+}
+
+td[role="button"]:hover{
 	background-color:#f5f5f5;
 	cursor: pointer;
 }
 
 
-td[role="gridcell"][aria-pressed="true"], td[role="button"][aria-pressed="true"]{
+td[role="button"][aria-pressed="true"]{
 	
 	background-color: #2b7ea7;
 	color:white;
 	font-weight: bold;
 }
-td[role="gridcell"][aria-disabled="true"], td[role="button"][aria-disabled="true"]{
+td[role="button"][aria-disabled="true"]{
 	
 	color: darkgray;
 }
-td[role="gridcell"][aria-disabled="true"]:hover, td[role="button"][aria-disabled="true"]:hover{
-	
+td[role="button"][aria-disabled="true"]:hover{
 	background:none;
 	cursor:initial;
 }
