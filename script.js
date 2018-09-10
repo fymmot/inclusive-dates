@@ -231,6 +231,8 @@ $(document).ready(function(){
 			.attr("tabindex", "0")
 			.attr("aria-describedby", "a11y_description")
 			.focus();
+		updateInfo(nextElement);
+
 	}
 	/**
 	 * Go to previous week (-7 days)
@@ -247,6 +249,8 @@ $(document).ready(function(){
 			.attr("tabindex", "0")
 			.attr("aria-describedby", "a11y_description")
 			.focus();
+		updateInfo(nextElement);
+
 	}
 
 	function setSelected(cell){
