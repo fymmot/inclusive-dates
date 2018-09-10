@@ -10,12 +10,12 @@
   outline: none;
 }
 
-*/
+
 body {
 	max-width: 900px;
 	margin: auto;
 	font-size: 100%;
-	font-family: 'Open sans', 'Helvetica', sans-serif;
+	font-family: 'Open Sans', 'Helvetica', sans-serif;
 }
 
 button {
@@ -70,7 +70,7 @@ ol {
 
 h1 {
 	margin-top: 2rem;
-	font-size: 4rem;
+	font-size: 2.8rem;
 }
 
 h2 {
@@ -276,9 +276,9 @@ div[aria-hidden='false'] {
 		}
 
 
-/* 6. Aria-pressed */
+/* 6. Aria-current */
 
-button[aria-pressed='true'] {
+button[aria-current='true'] {
 	background-color: steelblue;
 }
 
@@ -519,15 +519,21 @@ SJ-semantik
 }
 
 table[role="application"] {
-	margin-bottom: 5rem;
+	margin-bottom: 2rem;
+	margin-top: 2rem;
 	text-align: center;
 	font-size:1.2rem;
+	background-color:#f5f5f5;
+	padding:0.5rem;
 }
 
 th[role="columnheader"], td[role="button"]{
 	padding:1.4rem 1rem 1.4rem 1rem;
 	width:40px;
 	height:60px;
+}
+td[role="button"]{
+	background-color: #fefefe;
 }
 
 td[role="button"]:focus{
@@ -539,12 +545,16 @@ td[role="button"]:focus:hover{
 	cursor: pointer;
 }
 
-td[role="button"][aria-pressed="true"]:focus:hover{
+td[role="button"].active:focus{
+
+}
+
+td[role="button"].active:focus:hover{
 	/*background-color:#7fdbef;*/
 	cursor: pointer;
 	/*color: black;*/
 }
-td[role="button"][aria-pressed="true"]:hover{
+td[role="button"].active:hover{
 	background-color: #2b7ea7;
 	cursor: pointer;
 	color:white;
@@ -556,15 +566,18 @@ td[role="button"]:hover{
 }
 
 
-td[role="button"][aria-pressed="true"]{
+td[role="button"].active{
 	
 	background-color: #2b7ea7;
 	color:white;
 	font-weight: bold;
+	border-radius:50%;
 }
 td[role="button"][aria-disabled="true"]{
 	
 	color: darkgray;
+	background:0;
+
 }
 td[role="button"][aria-disabled="true"]:hover{
 	background:none;
@@ -580,6 +593,16 @@ p#a11y_description {
 	padding:2rem;
 	background-color: #f4f4ee;
 }
-html[data-whatinput="keyboard"] p#a11y_description {
-	display:block;
+
+
+
+span#screen-reader-role {
+	font-weight: bold;
 }
+
+span#screen-reader-text {
+	font-weight: lighter;
+}
+/*html[data-whatinput="keyboard"] p#a11y_description {
+	display:block;
+}*/
