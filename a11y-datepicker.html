@@ -1,191 +1,49 @@
 <html lang="en">
-	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		
-		<title>Accessible datepicker example | Tommy Feldt</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<link href="prism.css" rel="stylesheet">
-		<link rel="stylesheet" href="font-awesome.min.css">
-		<script src="jquery.min.js"></script>
-		<script src="what-input.min.js"></script>
+    <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>Accessible datepicker example | Tommy Feldt</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="prism.css" rel="stylesheet">
+        <link rel="stylesheet" href="font-awesome.min.css">
+        <script src="jquery.min.js"></script>
+        <script src="what-input.min.js"></script>
+        
+        <script src="script.js"></script>
+    </head>
+    <body style="text-align:center">
+        <h1>Accessible datepicker example</h1>
+        
+        <section>
+            <fieldset>
+                <legend class="visually-hidden">Choose month</legend>
+                <!--<button aria-label="Previous month"><</button>-->
+                <span style="font-size:1.7rem; ">September</span>
+                <!--<button aria-label="Next month">></button>-->
+            </fieldset>
+            <table class="picker__table" id="P1973332106_table" role="application" aria-label="Choose departure date" style="margin-left:auto; margin-right:auto;">
+                <thead aria-hidden="true">
+                    <tr role="presentation">
+                        <th role="presentation" scope="col"><abbr title="Monday">Mon</abbr></th>
+                        <th role="presentation" scope="col"><abbr title="Tuesday">Tue</abbr></th>
+                        <th role="presentation" scope="col"><abbr title="Wednesday">Wed</abbr></th>
+                        <th role="presentation" scope="col"><abbr title="Thursday">Thu</abbr></th>
+                        <th role="presentation" scope="col"><abbr title="Friday">Fri</abbr></th>
+                        <th role="presentation" scope="col"><abbr title="Saturday">Sat</abbr></th>
+                        <th role="presentation" scope="col"><abbr title="Sunday">Sun</abbr></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Content to be loaded here -->
+                </tbody>
+            </table>
+            <p>
+                Text read by JAWS:
+            </p>
 
-		
-		<script src="script.js"></script>
-	</head>
-	<body style="text-align:center">
-		<h1>Accessible datepicker example</h1>
-		
+            <div style="font-size:1.3rem" id="screen-reader-text"></div>
 
-<section>
-	
-	<!--<h3 >Wednesday 26 August</h3>-->
-
-	<!--
-	<label>
-		Choose departure time
-		<select>
-			<option>13:00</option>
-			<option>13:30</option>
-			<option>13:40</option>
-		</select>
-	</label>
-	<br>
--->
-
-	<fieldset>
-		<legend class="visually-hidden">Choose month</legend>
-		<button aria-label="Previous month"><</button>
-		<span>September</span>
-		<button aria-label="Next month">></button>
-	</fieldset>
-         <table class="picker__table" id="P1973332106_table" role="application" aria-label="Choose departure date" style="margin-left:auto; margin-right:auto;">
-                        <thead aria-hidden="true">
-                            <tr role="presentation">
-                                <th role="presentation" scope="col" title="Monday">Mon</th>
-                                <th role="presentation" scope="col" title="Tuesday">Tue</th>
-                                <th role="presentation" scope="col" title="Wednesday">Wed</th>
-                                <th role="presentation" scope="col" title="Thursday">Thu</th>
-                                <th role="presentation" scope="col" title="Friday">Fri</th>
-                                <th role="presentation" scope="col" title="Saturday">Sat</th>
-                                <th role="presentation" scope="col" title="Sunday">Sun</th>
-                            </tr>
-                        </thead>
-                        <tbody">
-                            
-                            <tr role="presentation">
-                                <td data-month="September" data-day="27" data-weekday="Monday" role="button" aria-disabled="true">
-                                   27
-                                </td>
-                                <td role="button" aria-disabled="true" aria-label="Tuesday, 28 August, 2018">
-                                   
-                                   28
-                                </td>
-                                <td role="button" aria-disabled="true" aria-label="Wednesday, 29 August, 2018">
-                                    29
-                                </td>
-                                <td id="tomorrow" aria-disabled="true" tabindex="-1" role="button" aria-label="Thursday, 30 August, 2018">
-                                    30
-                                </td>
-                                <td aria-disabled="true" tabindex="-1" role="button" aria-label="Yesterday Friday, 31 August, 2018">
-                                    31
-                                </td>
-                                <td aria-current="date" aria-describedby="a11y_description" tabindex="0" role="button" class="active" aria-label="Today Saturday, 1 september, 2018">
-                                    
-                                    1
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Tomorrow Sunday, 2 september, 2018">
-                                   2
-                                </td>
-                            </tr>
-                            <tr role="presentation">
-                                <td role="button" tabindex="-1" aria-label="Monday, 3 september, 2018">
-                                   3
-                                </td>
-                                <td role="button" tabindex="-1" aria-label="Tuesday, 4 september, 2018">
-                                   
-                                   4
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Wednesday, 5 september, 2018">
-                                    5
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Thursday, 6 september, 2018">
-                                    6
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Friday, 7 september, 2018">
-                                    7
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Saturday, 8 september, 2018">
-                                    
-                                    8
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Sunday, 9 september, 2018">
-                                   9
-                                </td>
-                            </tr>
-                            <tr role="presentation">
-                                <td role="button" tabindex="-1" aria-label="Monday, 10 september, 2018">
-                                   10
-                                </td>
-                                <td role="button" tabindex="-1" aria-label="Tuesday, 11 september, 2018">
-                                   
-                                   11
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Wednesday, 12 september, 2018">
-                                    12
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Thursday, 13 september, 2018">
-                                    13
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Friday, 14 september, 2018">
-                                    14
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Saturday, 15 september, 2018">
-                                    
-                                    15
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Sunday, 16 september, 2018">
-                                   16
-                                </td>
-                            </tr>
-                           <tr role="presentation">
-                                <td role="button" tabindex="-1" aria-label="Monday, 17 september, 2018">
-                                   17
-                                </td>
-                                <td role="button" tabindex="-1" aria-label="Tuesday, 18 september, 2018">
-                                   
-                                   18
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Wednesday, 19 september, 2018">
-                                    19
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Thursday, 20 september, 2018">
-                                    20
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Friday, 21 september, 2018">
-                                    21
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Saturday, 22 september, 2018">
-                                    
-                                    22
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Sunday, 23 september, 2018">
-                                   23
-                                </td>
-                            </tr>
-                            <tr role="presentation">
-                                <td role="button" tabindex="-1" aria-label="Monday, 24 september, 2018">
-                                   24
-                                </td>
-                                <td role="button" tabindex="-1" aria-label="Tuesday, 25 september, 2018">
-                                   
-                                   25
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Wednesday, 26 september, 2018">
-                                   26
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Thursday, 27 september, 2018">
-                                   27
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Friday, 28 september, 2018">
-                                   28
-                                </td>
-                                <td tabindex="-1" role="button" aria-label="Saturday, 29 september, 2018">
-                                    
-                                   29
-                                <td tabindex="-1" role="button" aria-label="Sunday, 30 september, 2018">
-                                   30
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <p>
-                        Text read by JAWS:
-                    </p>
-                    <h2 ><span id="screen-reader-text">Saturday 22 september 2018</span>  <span id="screen-reader-role">button</span></h2>
-               
-<p class="visually-hidden" id="a11y_description">
-Use the left and right arrow keys to browse days. Up and down arrows move between weeks. Select a day using return key or spacebar.</p>
-
-	</section>
-<script src="prism.js"></script>
-</body></html>
+            
+            <p class="visually-hidden" id="a11y_description">Use the left and right arrow keys to browse days. Up and down arrows move between weeks. Select a day using return key or spacebar.</p>
+        </section>
+        <script src="prism.js"></script>
+    </body></html>

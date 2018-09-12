@@ -7,8 +7,7 @@ Rolling tabindex datepicker
 $(document).ready(function(){
 
 
-	var $datePicker = $('#calendar'),
-        $calendar = $('#P1973332106_table'),
+	var $calendar = $('#P1973332106_table'),
         days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
         months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         HELPTEXT = 'Use the left and right arrow keys to browse days. Up and down arrows move between weeks. Select a day using return key or spacebar.'
@@ -46,21 +45,23 @@ $(document).ready(function(){
 
     function setUpCalendar(){
 
+    	//Generate an array of days for the specified month
     	generateDays();
 
-    	//Always clear the calendar
+    	//Always clear the calendar of old content
     	clearCalendar();
 
     	var x = 0;
 
 
     	for (var i = 0; i<6; i++){
+
     		//Add rows
     		var $row = $('<tr role="presentation"></tr>');
 			$datePickerGrid.append($row);
-
+			
 			var y = x;
-
+			//Add empty cells in the first row, until the weekday matches
 			for (j = 2; j<=days.length; j++){
 				if (i==0){
 					if (calendarDates[0].weekday != j){
@@ -68,13 +69,12 @@ $(document).ready(function(){
 						$row.append($td);}
 				} 
 			}
-
+			//Add cells to each of the rows. One cell for each day in the calendarDates array.
 			for (y; $row.children().length<7; y++){
 
-				if (y >= calendarDates.length){
+				if (y >= calendarDates.length){ //Break after the last day
 					break;
-					/*var $td = $('<td role="presentation"></td>');
-					$row.append($td);*/
+
 				} else{
 					var $td = $('<td></td>');
 
@@ -87,102 +87,122 @@ $(document).ready(function(){
 						.attr("data-year", calendarDates[y].year)
 						.html(calendarDates[y].day);
 
+					setAriaLabel($td);
 					$row.append($td);
-					setLabel($td);
 				}	
 			}
 			x = x+(y-x);
     	}
 
+    	//Generate list of active datepicker buttons
     	ALL_ACTIVE_DATEPICKER_DAYS = $('table.picker__table > tbody > tr > td[role="button"][aria-disabled!="true"]')
-    	ALL_ACTIVE_DATEPICKER_DAYS.first().addClass("active").attr("tabindex", "0");
+
+    	//Set first day as active
+    	setSelected(ALL_ACTIVE_DATEPICKER_DAYS.first());
+
+		//Make it interactive!    	
+	    registerClickListeners();
+
+	    registerKeyListeners();
 
     }
+    //Let's go!
     setUpCalendar()
 
+
+
 	/**
-	 *
-	 * Register click listener for all date buttons
+	 * Register mouse listeners for each cell in the table
 	 */
-	ALL_ACTIVE_DATEPICKER_DAYS.click(function(){
-		console.log(ALL_ACTIVE_DATEPICKER_DAYS)
+	function registerClickListeners() {
+
+		ALL_ACTIVE_DATEPICKER_DAYS.click(function(){
 		
-		//Remove active states and set negative tabindex to all elements
-		ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
+			//Remove active states and set negative tabindex to all elements
+			cleanup();
 
-		//Set the clicked button as active
-		$(this).attr('tabindex', '0');
+			//Set the clicked button as active
+			$(this).attr('tabindex', '0');
 
-		setSelected($(this));
-	});
-
-	/**
-	 * Manage tabindex for when the user leaves the table
-	 */
-	$("#P1973332106_table").focusout(function(){
-		ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
-		$("td[role='button'].active").attr("tabindex", "0");
-	});
+			//Set it as selected
+			setSelected($(this));
+		});
+	
+	}
 	
 	/**
-	 * Keyboard listeners for table
+	 * Register keypress listeners for the calendar
 	 */
-	$("#P1973332106_table").keydown(function( event ) {
+	function registerKeyListeners(){
 
-		//Find the cell currently in focus
-		current_cell = $("#P1973332106_table td[role='button']:focus");
+		$("#P1973332106_table").keydown(function( event ) {
 
-		//Listen for keystrokes
-		switch (event.which){
+			//Find the cell currently in focus
+			current_cell = $("#P1973332106_table td[role='button']:focus");
 
-			case RIGHT_KEY:
-				event.preventDefault();
-				nextDay(current_cell);
-		   		break;
+			//Listen for keystrokes
+			switch (event.which){
 
-		   	case LEFT_KEY:
-				event.preventDefault();
-				previousDay(current_cell);
-		   		break;
+				case RIGHT_KEY:
+					event.preventDefault();
+					nextDay(current_cell);
+			   		break;
 
-		   	case UP_KEY:
-				event.preventDefault();
-				previousWeek(current_cell);
+			   	case LEFT_KEY:
+					event.preventDefault();
+					previousDay(current_cell);
+			   		break;
 
-				break;
+			   	case UP_KEY:
+					event.preventDefault();
+					previousWeek(current_cell);
 
-		   	case DOWN_KEY:
-				event.preventDefault();
-				nextWeek(current_cell);
+					break;
 
-		   		break;
+			   	case DOWN_KEY:
+					event.preventDefault();
+					nextWeek(current_cell);
 
-		   	//Select cell with spacebar or return key
-		   	case SPACE_KEY:
-				event.preventDefault();
-				setSelected(current_cell);
-				break;
+			   		break;
 
-			case RETURN_KEY:
-				event.preventDefault();
-				setSelected(current_cell);
-				break;
-		}
-	});
+			   	//Select cell with spacebar or return key
+			   	case SPACE_KEY:
+					event.preventDefault();
+					setSelected(current_cell);
+					break;
+
+				case RETURN_KEY:
+					event.preventDefault();
+					setSelected(current_cell);
+					break;
+			}
+		});
+
+		/**
+		 * Manage tabindex for when the user leaves the table
+		 */
+		$("#P1973332106_table").focusout(function(){
+			ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
+			$("td[role='button'].active").attr("tabindex", "0");
+		});
+	}
+
 	/**
 	 * Clean up buttons, reset tabindex
 	 */
 	function cleanup(){
-		ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
+		ALL_ACTIVE_DATEPICKER_DAYS
+			.attr("tabindex", "-1");
+
 	}
 	/**
 	 * Go to next active date
 	 */
-	function nextDay(c){
+	function nextDay(cell){
 		var a = ALL_ACTIVE_DATEPICKER_DAYS;
-		var idx = a.index(c);
+		var idx = a.index(cell);
 		
-		if (a.index(c) >= a.length-1){
+		if (a.index(cell) >= a.length-1){
 			var nextElement = $(a[0])
 		} else 
 			var nextElement = $(a[idx + 1]);
@@ -191,18 +211,18 @@ $(document).ready(function(){
 		
 		nextElement
 			.attr("tabindex", "0")
-			.attr("aria-describedby", "a11y_description")
 			.focus();
-		updateInfo(nextElement);
+		updateA11yDemo(nextElement);
 	}
 	/**
-	 * Go to previous active date
+	 * Move to the previous non-disabled cell in the table
+	 * @param  {[type]} cell The origin cell, as jQuery object
 	 */
-	function previousDay(c){
+	function previousDay(cell){
 		var a = ALL_ACTIVE_DATEPICKER_DAYS;
-		var idx = a.index(c);
+		var idx = a.index(cell);
 		
-		if (a.index(c) == 0){
+		if (a.index(cell) == 0){
 			var nextElement = $(a[a.length-1])
 		} else
 			var nextElement = $(a[idx -1]);
@@ -211,74 +231,100 @@ $(document).ready(function(){
 
 		nextElement
 			.attr("tabindex", "0")
-			.attr("aria-describedby", "a11y_description")
+			//.attr("aria-describedby", "a11y_description")
 			.focus();
-		updateInfo(nextElement);
+		updateA11yDemo(nextElement);
 
 	}
 	/**
-	 * Go to next week (+7 days)
+	 * Move to the next non-disabled cell in the table
+	 * @param  {[type]} cell The origin cell, as jQuery object
 	 */
-	function nextWeek(c){
+	function nextWeek(cell){
 		var a = ALL_ACTIVE_DATEPICKER_DAYS;
-		var idx = a.index(c);
+		var idx = a.index(cell);
+
+		//Check if the move is possible, else return
+		if ($(a[idx + 7]).length)
+			var nextElement = $(a[idx + 7]);
+		else return;
 		
-		var nextElement = $(a[idx + 7]);
+		cleanup();
+		
+		nextElement
+			.attr("tabindex", "0")
+			//.attr("aria-describedby", "a11y_description")
+			.focus();
+		updateA11yDemo(nextElement);
+
+	}
+	/**
+	 * Move one step up in the calendar
+	 * @param  {[type]} cell The origin cell, as jQuery object
+	 */
+	function previousWeek(cell){
+		var a = ALL_ACTIVE_DATEPICKER_DAYS;
+		var idx = a.index(cell);
+		
+		//Check if the move is possible, else return
+		if ($(a[idx - 7]).length)
+			var nextElement = $(a[idx - 7]);
+		else return;
 
 		cleanup();
 		
 		nextElement
 			.attr("tabindex", "0")
-			.attr("aria-describedby", "a11y_description")
+			//.attr("aria-describedby", "a11y_description")
 			.focus();
-		updateInfo(nextElement);
+		updateA11yDemo(nextElement);
 
 	}
 	/**
-	 * Go to previous week (-7 days)
+	 * Mark the provided cell as active in the calendar and update relevant 
+	 * aria attributes and classes.
+	 * @param {[type]} cell The new cell to be made active as jQuery object
 	 */
-	function previousWeek(c){
-		var a = ALL_ACTIVE_DATEPICKER_DAYS;
-		var idx = a.index(current_cell);
-		
-		var nextElement = $(a[idx - 7]);
-
-		cleanup();
-		
-		nextElement
-			.attr("tabindex", "0")
-			.attr("aria-describedby", "a11y_description")
-			.focus();
-		updateInfo(nextElement);
-
-	}
-
 	function setSelected(cell){
 		var $currently_active = $(".active");
-		$currently_active.removeClass("active");
-		
-		setLabel($currently_active);
+		var $newActiveCell = cell;
+		//Clean up previously selected cell
+		$currently_active.removeClass("active").removeAttr("aria-describedby");
+		setAriaLabel($currently_active);
 
-		//setLabel(cell);
-		cell
-			.addClass("active");
+		//Update the new active cell
+		$newActiveCell
+			.addClass("active")
+			.attr("aria-describedby", "a11y_description")
+			.attr("tabindex", "0");
 
-
-		setLabel(cell);
-		updateInfo(cell);
-		cell.focus();
+		setAriaLabel($newActiveCell);
+		updateA11yDemo($newActiveCell);
 	}
+	/**
+	 * Update the visible screen reader demo text with info from the given cell
+	 * @param  {[type]} cell 
+	 */
+	function updateA11yDemo(cell){
+		var a11ySpan = $("#screen-reader-text");
+		var a11yDesc = HELPTEXT;
 
-	function updateInfo(c){
-		var infoDiv = $("#screen-reader-text");
-		var label = c.attr("aria-label");
+		var label = cell.attr("aria-label");
+		var role = "<span id='screen-reader-role'> "+cell.attr('role')+"</span>";
 
-		infoDiv.html(label);
+		if (cell.attr("aria-describedby")){
+			a11ySpan.html( label + role +'<br>'+ a11yDesc );
+
+		} else
+
+			a11ySpan.html( label + role );
+
 	}
-	
-    //createCalendar(getTheDate());
-
-    function setLabel(cell){
+	/**
+	 * Set and update the aria-label for a given cell
+	 * @param {[type]} cell The given cell as jQuery object
+	 */
+    function setAriaLabel(cell){
     	var isActive = (cell.hasClass("active"));
     	var label = days[cell.attr("data-weekday")-1] +" "+ cell.attr("data-day") +" "+ months[(cell.attr("data-month"))-1];
 
@@ -290,8 +336,6 @@ $(document).ready(function(){
     	}
 		cell.attr("aria-label", label);
     }
-    //createCalendar(getTheDate());
-
 
 
 });
