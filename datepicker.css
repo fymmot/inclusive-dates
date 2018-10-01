@@ -57,8 +57,8 @@ label > .error {
 
 section {
 	border-top:6px solid #c3c3c3;
-	margin-top: 3rem;
-	padding-top: 3rem;
+	margin-top: 2rem;
+	padding-top: 1 rem;
 }
 
 ol > li {
@@ -197,16 +197,28 @@ p#a11y_description {
 }
 
 div#screen-reader-text:not(:empty){
-	font-size:1.3rem;
+	font-size:1.1rem;
 	margin: 0 auto;
 	max-width: 35rem;
 	padding: 1rem;
-	background-color: #e6ceff;
+	background-color: #f5f5f5;
+	color: #6f6f6f;
+}
+div#screen-reader-text.focused{
+	font-size:1.3rem;
+	background-color: #7FDBEF;
+	color: #000;
+}
+
+div#screen-reader-text.focused.selected{
+	background-color: #2b7ea7;
+	color: #fff;
+
 }
 
 p#aria-desc-text{
 	font-size: 1rem;
-	font-weight: 200;
+	font-weight: 400;
 }
 
 

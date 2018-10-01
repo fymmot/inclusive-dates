@@ -308,7 +308,7 @@ $(document).ready(function(){
 				ALL_ACTIVE_DATEPICKER_DAYS.first().attr("tabindex", "0");
 				
 			}
-			clearA11yDemo();
+
 		});
 	}
 
@@ -505,7 +505,7 @@ $(document).ready(function(){
 	//
 	
 	function generateA11yDemo(){
-		var ad = $('<h3 style="font-size:1rem; font-weight:400;">Text read by screen reader:</h3><div id="screen-reader-text"></div>');
+		var ad = $('<h3 style="font-size:1rem; font-weight:400;">Text read by screen reader <strong>(demo only)</strong></h3><div id="screen-reader-text">Interact with the calendar to display screen reader text here </div>');
 		$("#datepicker_wrapper").append(ad);
 
 		/**
@@ -515,10 +515,17 @@ $(document).ready(function(){
 			var $focused = $(':focus');
 			updateA11yDemo($focused, true);
 		});
+
+		$calendar.focusout(function(){
+			clearA11yDemo();
+		});
 	}
 	
 	function clearA11yDemo(){
-		$("#screen-reader-text").html("");
+		$("#screen-reader-text")
+			.html("")
+			.removeClass("focused selected");
+
 		//console.log("rensat! " + allySpan);
 	}
 
@@ -527,7 +534,11 @@ $(document).ready(function(){
 	 * @param  {[type]} cell 
 	 */
 	function updateA11yDemo(cell, isFirst){
-		var a11ySpan = $("#screen-reader-text");
+		if (cell.hasClass("active"))
+			var a11ySpan = $("#screen-reader-text").addClass("focused selected");
+		else
+			var a11ySpan = $("#screen-reader-text").addClass("focused");
+
 
 		var label = cell.attr("aria-label");
 		var role = cell.attr('role');
