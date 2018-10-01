@@ -2,7 +2,8 @@
     <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
         <title>Accessible datepicker example | Tommy Feldt</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="datepicker.css">
+        <!--<link rel="stylesheet" type="text/css" href="style.css">-->
         <link href="prism.css" rel="stylesheet">
         <link rel="stylesheet" href="font-awesome.min.css">
         <script src="jquery.min.js"></script>
@@ -11,39 +12,43 @@
         <script src="script.js"></script>
     </head>
     <body style="text-align:center">
-        <h1>Accessible datepicker example</h1>
+        <h1>Accessible calendar</h1>
+        
         
         <section>
-            <fieldset>
-                <legend class="visually-hidden">Choose month</legend>
-                <!--<button aria-label="Previous month"><</button>-->
-                <span style="font-size:1.7rem; ">September</span>
-                <!--<button aria-label="Next month">></button>-->
-            </fieldset>
-            <table class="picker__table" id="P1973332106_table" role="application" aria-label="Choose departure date" style="margin-left:auto; margin-right:auto;">
-                <thead aria-hidden="true">
-                    <tr role="presentation">
-                        <th role="presentation" scope="col"><abbr title="Monday">Mon</abbr></th>
-                        <th role="presentation" scope="col"><abbr title="Tuesday">Tue</abbr></th>
-                        <th role="presentation" scope="col"><abbr title="Wednesday">Wed</abbr></th>
-                        <th role="presentation" scope="col"><abbr title="Thursday">Thu</abbr></th>
-                        <th role="presentation" scope="col"><abbr title="Friday">Fri</abbr></th>
-                        <th role="presentation" scope="col"><abbr title="Saturday">Sat</abbr></th>
-                        <th role="presentation" scope="col"><abbr title="Sunday">Sun</abbr></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Content to be loaded here -->
-                </tbody>
-            </table>
-            <p>
-                Text read by JAWS:
-            </p>
-
-            <div style="font-size:1.3rem" id="screen-reader-text"></div>
-
+            <h2>Live example</h1>
             
-            <p class="visually-hidden" id="a11y_description">Use the left and right arrow keys to browse days. Up and down arrows move between weeks. Select a day using return key or spacebar.</p>
+            <div id="datepicker_wrapper">
+                <div id="input_wrapper">
+                    <label class="date" for="date">Choose month</label>
+                    <input id="date" type="date" class="date" value="2020-02-01">
+                </div>
+                <!-- Datepicker will go here -->
+            </div>
+            
+        </section>
+        <section id="description-section">
+            <h2>Details and features</h2>
+            <h3>Keyboard interaction</h3>
+            <ul>
+                <li>Use <kbd>TAB</kbd> key to enter the calendar. Focus is placed on the day that is selected. If no date is selected, first day in the month gets focus instead.</li>
+                <li><kbd>LEFT ARROW</kbd> and <kbd>RIGHT ARROW</kbd> to move between days.</li>
+                <li>Use <kbd>UP ARROW</kbd> and <kbd>DOWN ARROW</kbd> to move between weeks </li>
+                <li>Select a date using <kbd>SPACE</kbd> or <kbd>RETURN</kbd> keys</li>
+                <li>Leave the calendar with <kbd>TAB</kbd> or <kbd>SHIFT + TAB</kbd></li>
+            </ul>
+            <h3>Screen reader features</h3>
+            <table>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                <tr>
+                    <td>role="application"</td>
+                    <td>Set to the <code><table></code></td>
+                </tr>
+                
+            </table>
         </section>
         <script src="prism.js"></script>
     </body></html>

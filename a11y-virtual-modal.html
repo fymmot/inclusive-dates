@@ -1,0 +1,101 @@
+<html lang="en">
+    <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>Accessible datepicker example | Tommy Feldt</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="prism.css" rel="stylesheet">
+        <link rel="stylesheet" href="font-awesome.min.css">
+        <script src="jquery.min.js"></script>
+        <script src="what-input.min.js"></script>
+        
+        <script src="script.js"></script>
+    </head>
+    <body style="text-align:center">
+        <h1>Accessible datepicker example</h1>
+
+        <section>
+    <h2>SJ tidtabell (hopfälld)</h2>
+    <div class="sj-table">
+        <div class="sj-row" tabindex="0" role="button" aria-label="Avgångstid 12:03 Ankomsttid 14:50 Inga byten" aria-expanded="false" aria-haspopup="dialog">
+            <div class="sj-text-outer">
+                <div class="sj-text-inner">
+                    <span class="sj-text-time">12:03 - 14:50</span>
+                    <span class="sj-text-duration">Restid 2:47 h</span>
+                    <span class="sj-text-changes">Ett byte</span>
+                    <span class="sj-text-brand"></span>
+                    <span class="sj-text-operator">SJ+1</span>
+                </div>
+            </div>
+            <div class="sj-price-outer">
+                <div class="sj-price-inner">
+                    <span class="sj-price-lower">
+                        fr.
+                        <span>508:-</span>
+                    </span>
+                    <span class="sj-price-higher">
+                        fr.
+                        <span>748:-</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <h2>SJ tidtabell (expanderad)</h2>
+    <div class="sj-table">
+        <div class="sj-row" tabindex="0" role="button" aria-label="Avgångstid 12:03 Ankomsttid 14:50 Inga byten" aria-expanded="false" aria-haspopup="dialog">
+            <div class="sj-text-outer">
+                <div class="sj-text-inner">
+                    <span class="sj-text-time">12:03 - 14:50</span>
+                    <span class="sj-text-duration">Restid 2:47 h</span>
+                    <span class="sj-text-changes">Ett byte</span>
+                    <span class="sj-text-brand"></span>
+                    <span class="sj-text-operator">SJ+1</span>
+                </div>
+            </div>
+            <div class="sj-price-outer">
+                <div class="sj-price-inner text-right">
+                    <button>Stäng</button>  
+                </div>
+            </div>
+        </div>
+        <div class="sj-expanded">
+            <div class="sj-expanded-wrapper">
+                <div class="sj-traininfo">
+                <strong>Stockholm C - Göteborg C</strong>
+                </div>
+                <div class="sj-prices">
+                    <div class="sj-pricegrid-outer">
+                        <div class="sj-pricegrid-row">
+                            <div class="sj-pricegrid-inner">
+                                120:-
+                            </div>
+                            <div class="sj-pricegrid-inner">
+                                120:-
+                            </div>
+                        </div>
+                        <div class="sj-pricegrid-row">
+                            <div class="sj-pricegrid-inner">
+                                120:-
+                            </div>
+                            <div class="sj-pricegrid-inner">
+                                120:-
+                            </div>
+                        </div>
+                        <div class="sj-pricegrid-row">
+                            <div class="sj-pricegrid-inner">
+                                120:-
+                            </div>
+                            <div class="sj-pricegrid-inner">
+                                120:-
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+        <script src="prism.js"></script>
+    </body></html>

@@ -1,0 +1,245 @@
+/* suppress focus ring on form controls for mouse users */
+[data-whatintent='mouse'] *:focus {
+  outline: none;
+}
+
+
+body {
+	max-width: 900px;
+	margin: auto;
+	font-size: 100%;
+	font-family: 'Open Sans', 'Helvetica', sans-serif;
+}
+
+p, li{	font-size:1.1rem;
+}
+
+button {
+	font-size: 1rem;
+}
+
+fieldset {
+	display:inline-block;
+	padding: 0.5rem 1rem 0 1rem;
+	border:none;
+}
+
+fieldset > span {
+	font-size: 1rem;
+	/*font-weight:bold;*/
+}
+
+input.date {
+	padding: 0.4rem;
+	font-size: 1.3rem;
+	display: block;
+    margin-top:0.5rem;
+    margin: 0 auto;
+}
+label.date {
+	margin: 0.5rem 0;
+	font-size:1.2rem;
+	display:block;
+}
+
+label {
+	font-weight: bold;
+}
+label > .error {
+	display: block;
+	padding: 0.5rem;
+	background-color: lightcoral;
+	font-weight: normal;
+	margin: 0.3rem 0 0.5rem 0;
+	font-size: 0.9rem;
+	max-width: 170px;
+}
+
+section {
+	border-top:6px solid #c3c3c3;
+	margin-top: 3rem;
+	padding-top: 3rem;
+}
+
+ol > li {
+	border: 1px grey;
+	margin-bottom: 2rem;
+}
+
+ol {
+	margin: 2.5rem 0 10rem 0;
+}
+
+h1 {
+	margin-top: 2rem;
+	font-size: 4rem;
+}
+
+h2 {
+	margin-top: 2rem;
+    font-size: 2.5rem;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+h3 {
+	font-weight:400;
+	font-size: 1.5rem;
+}
+
+
+
+.btn{
+	display:inline-block;
+	padding:13px;
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin: 5px;
+	cursor:pointer;
+}
+.btn:hover{
+	background-color:whitesmoke;
+}
+
+.visually-hidden {
+	position:absolute;
+	left:-9999px;
+}
+
+.hidden {display:none!important;}
+
+
+/*------------------------------------- */
+
+table#datepicker_table {
+	text-align: center;
+	font-size:1.2rem;
+	background-color:#f5f5f5;
+	padding:0.5rem;
+	margin: 1rem auto 2rem auto;
+}
+
+table#datepicker_table td{
+	padding:1.4rem 1rem 1.4rem 1rem;
+	width:40px;
+	height:60px;
+}
+
+table#datepicker_table th {
+	padding: 0.5rem;
+}
+
+table#datepicker_table td{
+	background-color: #fefefe;
+	/*text-align:center;*/
+}
+
+table#datepicker_table td:focus{
+	background-color:#7fdbef;
+}
+
+table#datepicker_table td:focus:hover{
+	background-color:#7fdbef;
+	cursor: pointer;
+}
+
+table#datepicker_table td.active:focus{
+
+}
+
+table#datepicker_table td.active:focus:hover{
+	/*background-color:#7fdbef;*/
+	cursor: pointer;
+	/*color: black;*/
+}
+table#datepicker_table td.active:hover{
+	background-color: #2b7ea7;
+	cursor: pointer;
+	color:white;
+}
+
+table#datepicker_table td:hover{
+	background-color:#f5f5f5;
+	cursor: pointer;
+}
+
+
+table#datepicker_table td.active{
+	
+	background-color: #2b7ea7;
+	color:white;
+	font-weight: bold;
+	border-radius:50%;
+}
+
+table#datepicker_table td.disabled{
+	background:none;
+}
+
+table#datepicker_table td.disabled:hover{
+	background:none;
+	cursor:initial;
+}
+
+p#a11y_description {
+	display:none;
+	text-align: initial;
+	max-width: 40rem;
+	margin-left: auto;
+	margin-right:auto;
+	padding:2rem;
+	background-color: #f4f4ee;
+}
+
+div#screen-reader-text:not(:empty){
+	font-size:1rem;
+	margin: 0 auto;
+	max-width: 35rem;
+	padding: 1rem;
+	background-color: #e6ceff;
+}
+
+p#aria-desc-text{
+	font-size: 1rem;
+	font-weight: 200;
+}
+
+
+span#screen-reader-role {
+	font-weight: bold;
+}
+
+span#screen-reader-text {
+	font-weight: lighter;
+}
+
+section#description-section ul{
+	list-style-type: disc;
+	text-align: initial;
+	max-width:40rem;
+	margin:0 auto;
+
+}
+
+section#description-section ul>li{
+	margin: 0.7rem 0;
+	border-bottom: 3px solid lightblue;
+	padding: 0.3rem 0;
+}
+
+
+kbd{	display: inline-block;
+    padding: .1em .3em;
+    color: #555;
+    vertical-align: middle;
+    background-color: #fcfcfc;
+    border: solid 1px #ccc;
+    border-bottom-color: #bbb;
+    border-radius: .2em;
+    box-shadow: inset 0 -1px 0 #bbb;
+
+}
