@@ -73,7 +73,7 @@ $(document).ready(function(){
 	function generateCalendarTable(){
 		$calendar = $('<table id="datepicker_table"><thead></thead><tbody></tbody></table>');
 		$calendar
-			.attr("role", "grid")
+			.attr("role", "application")
 			.attr("aria-label", "Choose date");
 
 		$('#datepicker_wrapper').append($calendar);
@@ -81,10 +81,8 @@ $(document).ready(function(){
 	}
 
 	function generateCalendarHeader(){
-		
-		var y = parseInt(dateInput.attr("value").slice(0, 4));
-		var m = dateInput.attr("value").slice(5, 7);
-		var fieldset = $('<fieldset><legend class="visually-hidden">Choose month</legend><button aria-label="Previous month"><</button><span id="month-label" role="heading" aria-level="3">' + months[m-1] + ' ' + y + '</span> <button aria-label="Next month">></button> </fieldset>');
+
+		var fieldset = $('<fieldset><legend class="visually-hidden">Choose month</legend><button aria-label="Previous month"><</button><span id="month-label" role="heading" aria-level="3">' + months[+calendarDates[0].month-1] + ' ' + calendarDates[0].year + '</span> <button aria-label="Next month">></button> </fieldset>');
 		$('#datepicker_wrapper').prepend(fieldset);
 
 
