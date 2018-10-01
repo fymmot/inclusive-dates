@@ -58,7 +58,11 @@ label > .error {
 section {
 	border-top:6px solid #c3c3c3;
 	margin-top: 2rem;
-	padding-top: 1 rem;
+	padding-bottom:2rem;
+}
+section:last-child{
+	margin-bottom: 10rem;
+
 }
 
 ol > li {
