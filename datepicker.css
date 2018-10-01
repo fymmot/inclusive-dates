@@ -131,6 +131,7 @@ table#datepicker_table td{
 
 table#datepicker_table th {
 	padding: 0.5rem;
+	font-weight: 400;
 }
 
 table#datepicker_table td{
@@ -196,7 +197,7 @@ p#a11y_description {
 }
 
 div#screen-reader-text:not(:empty){
-	font-size:1rem;
+	font-size:1.3rem;
 	margin: 0 auto;
 	max-width: 35rem;
 	padding: 1rem;

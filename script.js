@@ -30,23 +30,34 @@ $(document).ready(function(){
 	var current_cell;
 
 
+	/**
+	 * Function to generate a list of date objects containing weekday, day, month and year
+	 * @param  {[type]} startDate Starting date in YYYY-MM-DD format (optional)
+	 */
 	function generateDays(startDate){
 
+		/**
+		 * Extend Date object with Helper function to get number of days in the month
+		 */
 		Date.prototype.monthDays = function(){
 		    var d= new Date(this.getFullYear(), this.getMonth()+1, 0);
 		    return d.getDate();
 		}
 
+		/**
+		 * Extend Date object with Helper function to determine the first weekday of a given month
+		 */
 		Date.prototype.firstWeekday = function(){
 			var d= new Date(this.getFullYear(), this.getMonth(), 1);
 		    return d.getDay();
 		}
 
-		// If provided a start date
+		// If a start date was provided
 		if (startDate) {
 			var da = new Date(startDate);
 
 		}
+		//Otherwise use today
 		else {var da = new Date();}
 
 
@@ -55,11 +66,15 @@ $(document).ready(function(){
 	    	var monthString = da.getMonth()+1+"";
 	    	var dayString = i+1+"";
 
+	    	//Add inital 0 in day and month number
 	    	monthString = monthString.padStart(2,'0');
 	    	dayString = dayString.padStart(2,'0');
 
+	    	//Special case for sunday
 	    	if (weekday_check == 0) 
 	    		weekday_check = 7;
+
+	    	//Build Days object
 	    	var d = {
 	    		weekday: weekday_check,
 	    		day: dayString,
@@ -68,6 +83,8 @@ $(document).ready(function(){
 	    	}
 	    	calendarDates.push(d);
 	    }
+
+	    return calendarDates;
 	}
 
 	function generateCalendarTable(){
@@ -82,10 +99,11 @@ $(document).ready(function(){
 
 	function generateCalendarHeader(){
 
+		//Generate Month buttons and heading
 		var fieldset = $('<fieldset><legend class="visually-hidden">Choose month</legend><button aria-label="Previous month"><</button><span id="month-label" role="heading" aria-level="3">' + months[+calendarDates[0].month-1] + ' ' + calendarDates[0].year + '</span> <button aria-label="Next month">></button> </fieldset>');
 		$('#datepicker_wrapper').prepend(fieldset);
 
-
+		//Generate table headings with weekdays
 		var headerRow = "";
 
 		for (i = 0; i<days.length; i++){
@@ -96,14 +114,8 @@ $(document).ready(function(){
 		$calendar.find('thead').append(headerRow);
 	}
 
-	function generateA11yDemo(){
-		var ad = $('<h3>Text read by screen reader:</h3><div id="screen-reader-text"></div>');
-		$("#datepicker_wrapper").append(ad);
-
-	}
-
 	function generateA11yHelp(){
-		var ah = $('<p class="visually-hidden" id="a11y_description">Use the left and right arrow keys to browse days. Up and down arrows move between weeks. Select a day using return key or spacebar.</p>');
+		var ah = $('<p class="visually-hidden" id="a11y_description">' + HELPTEXT + '</p>');
 		$("#datepicker_wrapper").append(ah);
 
 	}
@@ -117,14 +129,13 @@ $(document).ready(function(){
 	}
 
 
-    function setUpCalendar(){
+    function setUpCalendar(startDate){
 
-    	//Get the start date from the date input. Hide the input
-    	initialDate = dateInput.attr("value");
+    	// Hide the <input>
     	$("#input_wrapper").hide();
 
     	//Generate an array of days for the specified month
-    	generateDays(initialDate);
+    	generateDays(startDate);
 
     	//Always clear the calendar of old content
 
@@ -139,7 +150,7 @@ $(document).ready(function(){
     	for (var i = 0; i<6; i++){
 
     		//Add rows
-    		var $row = $('<tr role="row"></tr>');
+    		var $row = $('<tr role="presentation"></tr>');
 			$datePickerGrid.append($row);
 			
 			var y = x;
@@ -157,15 +168,19 @@ $(document).ready(function(){
 			//Add cells to each of the rows. One cell for each day in the calendarDates array.
 			for (y; $row.children().length<7; y++){
 
-				if (y >= calendarDates.length){ //Break after the last day
+				//Check if we've reached the last day
+				if (y >= calendarDates.length){ 
+					// Break on a Sunday
 					if (calendarDates[y%7].weekday == 1){
 						break;
 					}
+					// Otherwise fill the row with empty cells
 					else {
 						var $td = $('<td class="disabled" role="presentation"></td>');
 						$row.append($td);
 					}
 
+				//Fill calendar with days
 				} else{
 					var $td = $('<td></td>');
 
@@ -179,6 +194,7 @@ $(document).ready(function(){
 						.html(+calendarDates[y].day);
 
 					setAriaLabel($td);
+
 					$row.append($td);
 				}	
 			}
@@ -188,7 +204,6 @@ $(document).ready(function(){
 
     	generateA11yDemo();
     	generateA11yHelp();
-
 
     	//Generate list of active datepicker buttons
     	ALL_ACTIVE_DATEPICKER_DAYS = $('table#datepicker_table > tbody > tr > td').not('.disabled');
@@ -200,16 +215,16 @@ $(document).ready(function(){
 
 		//Make it interactive!    	
 	    registerClickListeners();
-
 	    registerKeyListeners();
 
     }
-    //Let's go!
-    setUpCalendar()
 
-	
+    /**
+     * Clear calendar
+     */
     function clearCalendar(){
     	$("#datepicker_wrapper").empty();
+    	return $("#datepicker_wrapper");
     }
 
 	/**
@@ -278,16 +293,7 @@ $(document).ready(function(){
 					break;
 			}
 		});
-		/**
-		 * Manage focusin events. Update demo div
-		 * 
-		 */
-		$calendar.focusin(function(){
-			var $focused = $(':focus');
-			updateA11yDemo($focused);
-		});
 		
-
 		/**
 		 * Manage tabindex for when the user leaves the table
 		 */
@@ -304,6 +310,37 @@ $(document).ready(function(){
 			}
 			clearA11yDemo();
 		});
+	}
+
+	/**
+	 * Set and update the aria-label for a given cell
+	 * @param {jQuery object} cell The given cell
+	 */
+    function setAriaLabel(cell){
+    	var isActive = (cell.hasClass("active"));
+    	var label = days[cell.attr("data-weekday")-1] +" "+ (+cell.attr("data-day")) +" "+ months[(cell.attr("data-month"))-1];
+
+    	if (isActive){
+    		label = "Selected date. " + label;
+    	}
+    	else {
+    		label = label;
+    	}
+		return cell.attr("aria-label", label);
+
+    }
+
+    /**
+ * Move the aria-description to a given cell. Remove from all other cells. 
+ * @param  {[type]} cell the cell that should have the aria-description
+ */
+	function moveA11yDesc(cell){
+		$newCell = cell;
+
+		ALL_ACTIVE_DATEPICKER_DAYS
+			.removeAttr("aria-describedby");
+
+		return $newCell.attr("aria-describedby", "a11y_description");
 	}
 	
 
@@ -358,7 +395,7 @@ $(document).ready(function(){
 		nextElement
 			.attr("tabindex", "0")
 			.focus();
-		updateA11yDemo(nextElement);
+		updateA11yDemo(nextElement, false);
 
 		return nextElement;
 	}
@@ -381,7 +418,7 @@ $(document).ready(function(){
 			.attr("tabindex", "0")
 			//.attr("aria-describedby", "a11y_description")
 			.focus();
-		updateA11yDemo(nextElement);
+		updateA11yDemo(nextElement, false);
 
 		return nextElement;
 
@@ -405,7 +442,7 @@ $(document).ready(function(){
 			.attr("tabindex", "0")
 			//.attr("aria-describedby", "a11y_description")
 			.focus();
-		updateA11yDemo(nextElement);
+		updateA11yDemo(nextElement, false);
 
 		return nextElement;
 
@@ -430,24 +467,12 @@ $(document).ready(function(){
 			//.attr("aria-describedby", "a11y_description")
 			.focus();
 
-		updateA11yDemo(nextElement);
+		updateA11yDemo(nextElement, false);
 
 		return nextElement;
 
 	}
-/**
- * Move the aria-description to a given cell. Remove from all other cells. 
- * @param  {[type]} cell the cell that should have the aria-description
- */
-	function moveA11yDesc(cell){
-		$newCell = cell;
 
-		ALL_ACTIVE_DATEPICKER_DAYS
-			.removeAttr("aria-describedby");
-
-		return $newCell.attr("aria-describedby", "a11y_description");
-
-	}
 	/**
 	 * Mark the provided cell as active in the calendar and update relevant 
 	 * aria attributes and classes.
@@ -467,55 +492,70 @@ $(document).ready(function(){
 
 		moveA11yDesc($newActiveCell);
 		setAriaLabel($newActiveCell);
-		updateA11yDemo($newActiveCell);
+		updateA11yDemo($newActiveCell, false);
 
 		//Update the input field value with the selected day
 		dateInput.attr("value", ""+$newActiveCell.attr("data-year")+"-"+$newActiveCell.attr("data-month")+"-"+$newActiveCell.attr("data-day"));
 
 		return $newActiveCell;
 	}
-	/**
-	 * Update the visible screen reader demo text with info from the given cell
-	 * @param  {[type]} cell 
-	 */
+
+	//
+	//
+	//
+	
+	function generateA11yDemo(){
+		var ad = $('<h3 style="font-size:1rem; font-weight:400;">Text read by screen reader:</h3><div id="screen-reader-text"></div>');
+		$("#datepicker_wrapper").append(ad);
+
+		/**
+		 * Manage focusin events
+		 */
+		$calendar.focusin(function(){
+			var $focused = $(':focus');
+			updateA11yDemo($focused, true);
+		});
+	}
 	
 	function clearA11yDemo(){
 		$("#screen-reader-text").html("");
 		//console.log("rensat! " + allySpan);
 	}
 
-	function updateA11yDemo(cell){
+	/**
+	 * Update the visible screen reader demo text with info from the given cell
+	 * @param  {[type]} cell 
+	 */
+	function updateA11yDemo(cell, isFirst){
 		var a11ySpan = $("#screen-reader-text");
-		var a11yDesc = HELPTEXT;
 
 		var label = cell.attr("aria-label");
-		var role = "<span id='screen-reader-role'> "+cell.attr('role')+"</span>";
+		var role = cell.attr('role');
 
 		if (cell.attr("aria-describedby")){
-			return a11ySpan.html( label + role +'<p id="aria-desc-text">'+ a11yDesc + '</p>');
+			if (isFirst){
+				return a11ySpan.html(label +", "+ role + ". Choose date, application." +'<p id="aria-desc-text">'+ HELPTEXT + '</p>');
+			} else{
+				return a11ySpan.html( label +", "+ role +' <p id="aria-desc-text">'+ HELPTEXT + '</p>');
+			}
 
 		} else
 
-			return a11ySpan.html( label + role );
+			return a11ySpan.html( label +", "+ role );
 
 	}
-	/**
-	 * Set and update the aria-label for a given cell
-	 * @param {jQuery object} cell The given cell
-	 */
-    function setAriaLabel(cell){
-    	var isActive = (cell.hasClass("active"));
-    	var label = days[cell.attr("data-weekday")-1] +" "+ (+cell.attr("data-day")) +" "+ months[(cell.attr("data-month"))-1];
 
-    	if (isActive){
-    		label = "Selected date. " + label;
-    	}
-    	else {
-    		label = label;
-    	}
-		return cell.attr("aria-label", label);
 
-    }
+	
+
+    //Let's go!
+    
+    //Get inital date from <input>
+    initialDate = dateInput.attr("value");
+
+    //Initalize
+    setUpCalendar(initialDate)
+
 
 
 });
