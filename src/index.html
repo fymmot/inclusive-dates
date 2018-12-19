@@ -2,100 +2,112 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Gulp Starter Kit</title>
-
+    <title>Accessible forms - Tommy Feldt A11y</title>
     <!-- build:css -->
     <link rel="stylesheet" type="text/css" href="style.css">
     
-
     <script src="script.js"></script>
     <!-- endbuild -->
-
   </head>
   <body style="max-width: 50rem; margin: 0 auto;">
     <h1>Accessible forms</h1>
     <section>
       <h2>Personal data</h2>
-    <form id="form" autocomplete="on">
-      
-      <div class="form-field">
-      <label for="username">
-        User name
-      </label>
-        <input 
-          type="text" 
-          name="username" 
-          id="username" 
-          autocomplete="username" 
-          required 
-          data-hint-text="Your username is the e-mail address you used to register your account." 
+      <form id="form" autocomplete="on">
+        
+        <div class="form-field">
+          <label for="username">
+            User name
+          </label>
+          <input
+          type="text"
+          name="username"
+          id="username"
+          autocomplete="username"
+          required
+          data-hint-text="Your username is the e-mail address you used to register your account."
           data-parsley-error-message="Please enter your username. It is the e-mail address you used to register your account.">
-      </div>
-      <!--<label>
-        Password
-        <input type="password" name="password" id="pw" autocomplete="current-password">
-      
-      <label>
-        New password
-        <input type="password" name="new-password" id="new-pw" autocomplete="new-password">
-      -->
-
-      <!--<useit-input data-type="text" data->
-      </useit-input>-->
-
-      <div class="form-field">
-      <label for="name">
-        Full name
-      </label>
-        <input type="text" name="name" id="name" required aria-invalid="false" autocomplete="name">
-      </div>
-      
-      <div class="form-field">
-      <label for="pw2">
-        New password
-        </label>
-        <input type="password" name="password2" id="pw2" required aria-invalid="false" autocomplete="new-password">
-        <div class="toggle-pw"><button type="button" class="text-btn">Show password</button></div>
-      </div>
-
-      <div class="form-field">
-      <label for="pw3">
-        Repeat password
-        </label>
-        <input type="password" name="password3" id="pw3" autocomplete="new-password" required>
-      </div>
-      
-      <div class="form-field">
-      <label for="org">
-        Organization
-        </label>
-        <input type="text" name="org" id="org" autocomplete="organization">
-      </div>
-      
-      <div class="form-field">
-      <label for="address">
-        Street address
-      </label>
-      <textarea name="address" id="address" autocomplete="street-address"></textarea>
-    </div>
-      
-      <div class="form-field short">
-      <label for="zip">
-        Postal code
-      </label>
-        <input type="tel" name="zip" id="zip" autocomplete="postal-code" data-mask="000 00">
-      </div>
-      
-    </form>
-    </section>
-
-    <!-- build:js -->
-    <script src="js/plugins.js"></script>
-    <script src="js/script.js"></script>
-    <script src="prism.js"></script>
-
-    <!-- endbuild  -->
-
-
-  </body>
-</html>
+        </div>
+        <!--<label>
+          Password
+          <input type="password" name="password" id="pw" autocomplete="current-password">
+          
+          <label>
+            New password
+            <input type="password" name="new-password" id="new-pw" autocomplete="new-password">
+            -->
+            <!--<useit-input data-type="text" data->
+            </useit-input>-->
+            <div class="form-field">
+              <label for="name">
+                Full name
+              </label>
+              <input
+              type="text"
+              name="name"
+              id="name"
+              required
+              autocomplete="name"
+              data-hint-text="The name your momma gave you.">
+            </div>
+            <div class="form-field">
+              <fieldset>
+                <legend>Do you prefer apples or oranges?
+                </legend>
+                <input type="radio" required name="applesoranges" id="radioapples">
+                <label class="radio" for="radioapples">
+                  Apples
+                </label>
+                
+                <input type="radio" required name="applesoranges" id="radiooranges">
+                <label class="radio" for="radiooranges">
+                  Oranges
+                </label>
+              </fieldset>
+             </div>
+             
+            
+            <div class="form-field">
+              <label for="pw2">
+                New password
+              </label>
+              <input type="password" name="password2" id="pw2" required aria-invalid="false" autocomplete="new-password">
+              <div class="toggle-pw"><button type="button" class="text-btn">Show password</button></div>
+            </div>
+            <div class="form-field">
+              <label for="pw3">
+                Repeat password
+              </label>
+              <input type="password" name="password3" id="pw3" autocomplete="new-password" required>
+            </div>
+            
+            <div class="form-field">
+              <label for="org">
+                Organization
+              </label>
+              <input type="text" name="org" id="org" autocomplete="organization">
+            </div>
+            
+            <div class="form-field">
+              <label for="address">
+                Street address
+              </label>
+              <textarea name="address" id="address" autocomplete="street-address"></textarea>
+            </div>
+            
+            <div class="form-field short">
+              <label for="zip">
+                Postal code
+              </label>
+              <input type="tel" name="zip" id="zip" autocomplete="postal-code" data-mask="000 00">
+            </div>
+            
+          </form>
+        </section>
+        <!-- build:js -->
+        <script src="js/plugins.js"></script>
+        <script src="js/script.js"></script>
+        <script src="prism.js"></script>
+        <!-- endbuild  -->
+      </body>
+    </html>

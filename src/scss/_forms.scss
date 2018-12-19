@@ -39,11 +39,11 @@ button.text-btn{
 	}
 }
 
-input, textarea {
+input[type="text"], input[type="password"], input[type="tel"], textarea {
 	border:none;
 }
 
-input, textarea {
+input[type="text"], input[type="password"], input[type="tel"], textarea {
 	display:block;
 	background-color:#eaeaea;
 	padding: 4px 3px 4px 11px;
@@ -87,7 +87,7 @@ input, textarea {
 		top:0.5rem;
 	}
 
-	& input, & textarea{
+	& input[type="text"], & input[type="password"], & input[type="tel"], & textarea{
 		border: 2px solid #e00751;
 
 		&:focus{
@@ -123,8 +123,58 @@ input, textarea {
 
 fieldset {
 	display:inline-block;
-	padding: 0.5rem 1rem 0 1rem;
+	padding: 0;
+	margin:0;
 	border:none;
+}
+
+input[type="radio"]{
+	position:absolute;
+	opacity: 0;
+
+	& + label{
+		padding: 0.75rem 0.75rem 0.75rem 3rem;
+	    //background-color: #eaeaea;
+	    border-radius: 3px;
+	    border: 1px solid #ccc;
+	    margin-right:1rem;
+	    margin-top:0.25rem;
+	    position:relative;
+
+	    &:before{
+	    	content:"";
+	    	position: absolute;
+	    	height: 30px;
+	    	width: 30px;
+	    	/*background-color: pink;*/
+	    	left: 5px;
+	    	top: 7px;
+	    	border: 1px solid #ccc;
+	    	border-radius:50%;
+	    	
+	    }
+
+	    &:hover:before{
+	    	//background-color:#eaeaea;
+	    	transition: all 0.1s ease-in;
+	    }
+	}
+
+	&:focus + label {
+		outline: 4px solid #5e35b1;
+	    outline-offset: 0.25rem;
+
+	}
+
+	&:checked + label {
+		/*background-color: black;*/
+		/*color: white;*/
+		&:before{
+	    	background-color:#5e35b1;
+	    	border-radius:50%;
+	    	transition: all 0.1s ease-in;
+	    }
+	}
 }
 
 fieldset > span {
@@ -135,7 +185,7 @@ fieldset > span {
 .form-field{
 	display:block;
 	max-width:25rem;
-	margin-bottom:1rem;
+	margin-bottom:2rem;
 	position:relative;
 
 	&.short{
@@ -169,7 +219,7 @@ label.date {
 }
 
 
-label{
+label, legend{
 	font-weight: 600;
     padding-left: 10px;
     cursor: pointer;
@@ -177,7 +227,9 @@ label{
     display: inline-block;
 }
 
-input {
+
+
+input[type="text"], input[type="password"], input[type="tel"]{
 	height: 3.5rem;
 }
 
