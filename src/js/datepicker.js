@@ -100,8 +100,8 @@ $(document).ready(function(){
 	function generateCalendarHeader(){
 
 		//Generate Month buttons and heading
-		var fieldset = $('<fieldset><legend class="visually-hidden">Choose month</legend><button aria-label="Previous month"><</button><span id="month-label" role="heading" aria-level="3">' + months[+calendarDates[0].month-1] + ' ' + calendarDates[0].year + '</span> <button aria-label="Next month">></button> </fieldset>');
-		$('#datepicker_wrapper').prepend(fieldset);
+		var fieldset = $('<fieldset><legend class="visually-hidden">Choose month</legend><button aria-label="Previous month"></button><span id="month-label" role="heading" aria-level="3">' + months[+calendarDates[0].month-1] + ' ' + calendarDates[0].year + '</span> <button aria-label="Next month"></button> </fieldset>');
+		$('#input_wrapper').append(fieldset);
 
 		//Generate table headings with weekdays
 		var headerRow = "";
@@ -132,7 +132,7 @@ $(document).ready(function(){
     function setUpCalendar(startDate){
 
     	// Hide the <input>
-    	$("#input_wrapper").hide();
+    	$("#input_wrapper").addClass("visually-hidd");
 
     	//Generate an array of days for the specified month
     	generateDays(startDate);
@@ -211,9 +211,10 @@ $(document).ready(function(){
     	//Set first day as tabbable
     	var firstDay = ALL_ACTIVE_DATEPICKER_DAYS.first();
 		firstDay.attr("tabindex", "0");
+		//Give it the aria-description
     	moveA11yDesc(firstDay);
 
-		//Make it interactive!    	
+		//Make the calendar interactive!    	
 	    registerClickListeners();
 	    registerKeyListeners();
 
@@ -348,10 +349,7 @@ $(document).ready(function(){
 	 * Clean up buttons, reset tabindex
 	 */
 	function cleanup(){
-		ALL_ACTIVE_DATEPICKER_DAYS
-			.attr("tabindex", "-1");
-
-		return;
+		//return ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
 
 	}
 	function nextMonth(cell){
@@ -395,6 +393,7 @@ $(document).ready(function(){
 		nextElement
 			.attr("tabindex", "0")
 			.focus();
+
 		updateA11yDemo(nextElement, false);
 
 		return nextElement;
@@ -463,13 +462,13 @@ $(document).ready(function(){
 		cleanup();
 		
 		nextElement
-			.attr("tabindex", "0")
+			.attr("tabindex", "0");
 			//.attr("aria-describedby", "a11y_description")
-			.focus();
+			
 
 		updateA11yDemo(nextElement, false);
 
-		return nextElement;
+		return nextElement.focus();
 
 	}
 
@@ -505,7 +504,7 @@ $(document).ready(function(){
 	//
 	
 	function generateA11yDemo(){
-		var ad = $('<h3 style="font-size:1rem; font-weight:400;">Text read by screen reader <strong>(demo only)</strong></h3><div id="screen-reader-text">Interact with the calendar to display screen reader text here </div>');
+		var ad = $('<h3 style="font-size:1rem; font-weight:400;">Text read by screen reader <strong>(demo only)</strong></h3><div id="screen-reader-text">Text will be displayed here when you interact with the calender </div>');
 		$("#datepicker_wrapper").append(ad);
 
 		/**
@@ -526,7 +525,6 @@ $(document).ready(function(){
 			.html("")
 			.removeClass("focused selected");
 
-		//console.log("rensat! " + allySpan);
 	}
 
 	/**
@@ -555,9 +553,6 @@ $(document).ready(function(){
 			return a11ySpan.html( label +", "+ role );
 
 	}
-
-
-	
 
     //Let's go!
     
