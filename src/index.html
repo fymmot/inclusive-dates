@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>Accessible forms - Tommy Feldt A11y</title>
@@ -10,6 +10,7 @@
     <!-- endbuild -->
   </head>
   <body style="max-width: 50rem; margin: 0 auto;">
+    <main>
     <h1>Accessible forms</h1>
     <section>
       <h2>Personal data</h2>
@@ -56,12 +57,50 @@
                 </legend>
                 <input type="radio" required name="applesoranges" id="radioapples">
                 <label class="radio" for="radioapples">
+                  <div class="radio-container">
+                    <div class="radio-outercircle"></div>
+                    <div class="radio-innercircle"></div>
+                  </div>
+
                   Apples
                 </label>
                 
-                <input type="radio" required name="applesoranges" id="radiooranges">
+                <input type="radio" name="applesoranges" id="radiooranges">
                 <label class="radio" for="radiooranges">
+                  <div class="radio-container">
+                    <div class="radio-outercircle"></div>
+                    <div class="radio-innercircle"></div>
+                  </div>
                   Oranges
+                </label>
+              </fieldset>
+             </div>
+
+             <div class="form-field">
+              <fieldset>
+                <legend>Favorite cities
+                </legend>
+                <input type="checkbox" name="favcities" id="stockholm">
+                <label class="checkbox" for="stockholm">
+                  <div class="checkbox-container">
+                    <div class="checkbox-outercircle"></div>
+                    <div class="checkbox-innercircle">
+                      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                    </div>
+                  </div>
+
+                  Stockholm
+                </label>
+                
+                <input type="checkbox" name="favcities" id="newyork">
+                <label class="checkbox" for="newyork">
+                  <div class="checkbox-container">
+                    <div class="checkbox-outercircle"></div>
+                    <div class="checkbox-innercircle">
+                      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                    </div>
+                  </div>
+                  New York
                 </label>
               </fieldset>
              </div>
@@ -71,39 +110,50 @@
               <label for="pw2">
                 New password
               </label>
-              <input type="password" name="password2" id="pw2" required aria-invalid="false" autocomplete="new-password">
-              <div class="toggle-pw"><button type="button" class="text-btn">Show password</button></div>
+              <input 
+              type="password" 
+              name="password2" 
+              id="pw2" 
+              required 
+              autocomplete="new-password">
             </div>
             <div class="form-field">
               <label for="pw3">
                 Repeat password
               </label>
-              <input type="password" name="password3" id="pw3" autocomplete="new-password" required>
+              <input 
+              type="password" 
+              name="password3" 
+              id="pw3" 
+              autocomplete="new-password" 
+              required
+              data-parsley-equalto="pw2">
             </div>
             
             <div class="form-field">
               <label for="org">
-                Organization
+                Organization<span class="optional-span"> (optional)</span>
               </label>
               <input type="text" name="org" id="org" autocomplete="organization">
             </div>
             
             <div class="form-field">
               <label for="address">
-                Street address
+                Street address <span class="optional-span"> (optional)</span>
               </label>
               <textarea name="address" id="address" autocomplete="street-address"></textarea>
             </div>
             
-            <div class="form-field short">
+            <div class="form-field">
               <label for="zip">
-                Postal code
+                Postal code <span class="optional-span"> (optional)</span>
               </label>
-              <input type="tel" name="zip" id="zip" autocomplete="postal-code" data-mask="000 00">
+              <input class="short" type="tel" name="zip" id="zip" autocomplete="postal-code" data-mask="000 00" data-hint-text="The postal code has six digits">
             </div>
             
           </form>
         </section>
+      </main>
         <!-- build:js -->
         <script src="js/plugins.js"></script>
         <script src="js/script.js"></script>

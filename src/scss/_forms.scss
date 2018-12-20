@@ -35,7 +35,7 @@ button.text-btn{
 		outline: 4px solid #5e35b1;
 	    outline-offset: 0.25rem;
 		text-decoration: underline;
-		transition:all 0.1s ease-in;
+		//transition:all 0.1s ease-in;
 	}
 }
 
@@ -76,7 +76,6 @@ input[type="text"], input[type="password"], input[type="tel"], textarea {
 }
 
 .hasError{
-
 	&:before{
 		content:"";
 		position:absolute;
@@ -91,13 +90,13 @@ input[type="text"], input[type="password"], input[type="tel"], textarea {
 		border: 2px solid #e00751;
 
 		&:focus{
-			border-bottom-width: 4px;
+			border-bottom-width: 5px;
 		}
 	}
-	& .error {
+	.error {
 		display: block;
 	}
-	& .helper {
+	.helper {
 		display:none;
 	}
 }
@@ -126,53 +125,132 @@ fieldset {
 	padding: 0;
 	margin:0;
 	border:none;
+	margin-bottom:1rem;
 }
 
-input[type="radio"]{
+.checkbox-container, .radio-container{
+	display: inline-block;
+    position: absolute;
+    top: 25%;
+    height: 25px;
+    width: 25px;
+    //background-color: pink;
+    left: 10px;
+
+    .radio-outercircle{
+		border: 2px solid #767676;
+	    height: 100%;
+	    width: 100%;
+	    border-radius: 50%;
+	    position:relative;
+
+	}
+	.radio-innercircle{
+		/* border: 2px solid; */
+	    height: 100%;
+	    width: 100%;
+	    border-radius: 50%;
+	    transform: scale(.5);
+	    top: 0;
+	    position: absolute;
+	    transition: transform .12s cubic-bezier(.4,0,.6,1) 0ms,border-color .12s cubic-bezier(.4,0,.6,1) 0ms, background-color .12s cubic-bezier(.4,0,.6,1) 0ms;
+	    //background-color: #848484;
+
+	}
+
+    .checkbox-outercircle{
+		border: 2px solid #767676;
+	    height: 100%;
+	    width: 100%;
+	    //background-color: #767676;
+	    //border-radius: 50%;
+	    //
+	    &:before{
+	    	content: "";
+		    position: absolute;
+		    height: 180%;
+		    width: 180%;
+		    border-radius: 50%;
+		    background-color: #eaeaea;
+		    top: -40%;
+		    left: -40%;
+		    z-index: -1;
+		    opacity:0;
+	    }
+
+	}
+	.checkbox-innercircle{
+		/* border: 2px solid; */
+	    height: 100%;
+	    width: 100%;
+	    //border-radius: 50%;
+	    //transform: scale(.5);
+	    top: 0;
+	    position: absolute;
+	    transform: scale(0.8);
+	    //transition: transform .12s cubic-bezier(.4,0,.6,1) 0ms,border-color .12s cubic-bezier(.4,0,.6,1) 0ms, background-color .12s cubic-bezier(.4,0,.6,1) 0ms;
+	    //background-color: #848484;
+	    //
+	    svg {
+	    	fill: transparent;
+
+	    }
+
+	}
+}
+
+input[type="radio"], input[type="checkbox"]{
 	position:absolute;
 	opacity: 0;
+	width:50px;
+	height:50px;
 
 	& + label{
-		padding: 0.75rem 0.75rem 0.75rem 3rem;
+		font-weight: normal;
+		padding: 0.75rem 0.75rem 0.75rem 2.8rem;
 	    //background-color: #eaeaea;
 	    border-radius: 3px;
-	    border: 1px solid #ccc;
+	    //border: 1px solid #767676;
 	    margin-right:1rem;
 	    margin-top:0.25rem;
 	    position:relative;
 
-	    &:before{
-	    	content:"";
-	    	position: absolute;
-	    	height: 30px;
-	    	width: 30px;
-	    	/*background-color: pink;*/
-	    	left: 5px;
-	    	top: 7px;
-	    	border: 1px solid #ccc;
-	    	border-radius:50%;
-	    	
-	    }
-
-	    &:hover:before{
-	    	//background-color:#eaeaea;
-	    	transition: all 0.1s ease-in;
-	    }
 	}
 
 	&:focus + label {
 		outline: 4px solid #5e35b1;
 	    outline-offset: 0.25rem;
+	    //transition: all .12s cubic-bezier(.4,0,.6,1) 0ms
 
 	}
 
 	&:checked + label {
-		/*background-color: black;*/
-		/*color: white;*/
-		&:before{
-	    	background-color:#5e35b1;
-	    	border-radius:50%;
-	    	transition: all 0.1s ease-in;
+		.radio-innercircle{
+	    	background-color: #3d3d3d;
+	    }
+
+	    .checkbox-outercircle {
+	    	background-color:#3d3d3d;
+	    	border-color:#3d3d3d;
+	    }
+	    .checkbox-innercircle svg{
+	    	fill:#fff;
+	    }
+	}
+
+	&:not(:checked):hover + label, &:not(:checked):focus + label {
+		.radio-innercircle {
+	    	background-color: #ccc;
+		}
+
+		.checkbox-innercircle svg {
+			//fill:#fff;
+		}
+	}
+
+	&:not(:checked) + label .checkbox-outercircle:hover, &:not(:checked):focus + label {
+		.checkbox-outercircle:before {
+	    	//opacity:1;
 	    }
 	}
 }
@@ -188,11 +266,13 @@ fieldset > span {
 	margin-bottom:2rem;
 	position:relative;
 
-	&.short{
+}
+
+.short{
 	max-width:10rem;
 
 	}
-}
+
 
 
 input.date {
@@ -227,7 +307,9 @@ label, legend{
     display: inline-block;
 }
 
-
+.optional-span{
+	font-weight: normal;
+}
 
 input[type="text"], input[type="password"], input[type="tel"]{
 	height: 3.5rem;
