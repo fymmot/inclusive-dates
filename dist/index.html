@@ -1,9 +1,62 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Accessible forms - Tommy Feldt A11y</title><link href="css/style.css" rel="stylesheet"></head><body style="max-width: 50rem; margin: 0 auto;"><main><h1>Accessible forms</h1><section><h2>Personal data</h2><form autocomplete="on" id="form"><div class="form-field"><label for="username">User name</label> <input id="username" name="username" type="text" autocomplete="username" required data-hint-text="Your username is the e-mail address you used to register your account." data-parsley-error-message="Please enter your username. It is the e-mail address you used to register your account."></div><!--<label>
-          Password
-          <input type="password" name="password" id="pw" autocomplete="current-password">
-          
-          <label>
-            New password
-            <input type="password" name="new-password" id="new-pw" autocomplete="new-password">
-            --><!--<useit-input data-type="text" data->
-            </useit-input>--><div class="form-field"><label for="name">Full name</label> <input id="name" name="name" type="text" autocomplete="name" required data-hint-text="The name your momma gave you."></div><div class="form-field"><fieldset><legend>Do you prefer apples or oranges?</legend><input id="radioapples" name="applesoranges" type="radio" required> <label for="radioapples" class="radio"><div class="radio-container"><div class="radio-outercircle"></div><div class="radio-innercircle"></div></div>Apples</label> <input id="radiooranges" name="applesoranges" type="radio"> <label for="radiooranges" class="radio"><div class="radio-container"><div class="radio-outercircle"></div><div class="radio-innercircle"></div></div>Oranges</label></fieldset></div><div class="form-field"><fieldset><legend>Favorite cities</legend><input id="stockholm" name="favcities" type="checkbox"> <label for="stockholm" class="checkbox"><div class="checkbox-container"><div class="checkbox-outercircle"></div><div class="checkbox-innercircle"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg></div></div>Stockholm</label> <input id="newyork" name="favcities" type="checkbox"> <label for="newyork" class="checkbox"><div class="checkbox-container"><div class="checkbox-outercircle"></div><div class="checkbox-innercircle"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg></div></div>New York</label></fieldset></div><div class="form-field"><label for="pw2">New password</label> <input id="pw2" name="password2" type="password" autocomplete="new-password" required></div><div class="form-field"><label for="pw3">Repeat password</label> <input id="pw3" name="password3" type="password" autocomplete="new-password" required data-parsley-equalto="pw2"></div><div class="form-field"><label for="org">Organization<span class="optional-span"> (optional)</span></label> <input id="org" name="org" type="text" autocomplete="organization"></div><div class="form-field"><label for="address">Street address <span class="optional-span">(optional)</span></label> <textarea autocomplete="street-address" id="address" name="address"></textarea></div><div class="form-field"><label for="zip">Postal code <span class="optional-span">(optional)</span></label> <input id="zip" name="zip" type="tel" autocomplete="postal-code" data-hint-text="The postal code has six digits" class="short" data-mask="000 00"></div></form></section></main><script src="js/script.js"></script></body></html>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Accessible forms - Tommy Feldt A11y</title><link href="css/style.css" rel="stylesheet"></head><body style="max-width: 50rem; margin: 0 auto;"><main><h1>Accessible forms</h1><section><h2>Personal data</h2><form autocomplete="on" class="private" id="form"><div class="form-field"><fieldset><legend>Business or private customer?</legend><input id="radioapples" name="applesoranges" type="radio" required checked="checked"> <label for="radioapples" class="radio"><div class="radio-container"><div class="radio-outercircle"></div><div class="radio-innercircle"></div></div>Private customer</label> <input id="radiooranges" name="applesoranges" type="radio" required> <label for="radiooranges" class="radio"><div class="radio-container"><div class="radio-outercircle"></div><div class="radio-innercircle"></div></div>Business customer</label></fieldset></div><!--
+        <div class="form-field">
+          <label for="username">
+            User name
+          </label>
+          <input
+          type="text"
+          name="username"
+          id="username"
+          autocomplete="username"
+          required
+          data-hint-text="Your username is the e-mail address you used to register your account."
+          data-parsley-error-message="Please enter your username. It is the e-mail address you used to register your account.">
+        </div>--><div class="form-field form-field__private"><label for="pid">Personal identity number<span class="optional-span"> (optional)</span></label> <input id="pid" name="pid" type="tel" autocomplete="useit-name" data-mask="000000-0000" class="medium" placeholder="YYMMDD-NNNN" data-hint-text="We will use this information to fill in the form for you."></div><div class="form-field"><label for="name">Full name</label> <input id="name" name="name" type="text" autocomplete="name" required></div><div class="form-field"><label for="email">E-mail</label> <input id="email" name="email" type="email" autocomplete="email" required></div><div class="form-field form-field__business"><label for="org">Organization<span class="optional-span"> (optional)</span></label> <input id="org" name="org" type="text" autocomplete="organization"></div><div class="form-field"><label for="address">Street address <span class="optional-span">(optional)</span></label> <textarea autocomplete="street-address" id="address" name="address"></textarea></div><div class="form-field"><label for="zip">Postal code <span class="optional-span">(optional)</span></label> <input id="zip" name="zip" type="tel" autocomplete="postal-code" data-mask="000 00" class="short" data-hint-text="The postal code has six digits"></div><div class="form-field"><label for="pw2">New password</label> <input id="pw2" name="password2" type="password" autocomplete="new-password" required></div><div class="form-field"><label for="pw3">Repeat password</label> <input id="pw3" name="password3" type="password" autocomplete="new-password" required data-parsley-equalto="#pw2"></div><!--
+             <div class="form-field">
+              <fieldset>
+                <legend>Which are your favorite cities?<span class="optional-span"> (optional)</span>
+                </legend>
+                <input type="checkbox" name="favcities" id="stockholm">
+                <label class="checkbox" for="stockholm">
+                  <div class="checkbox-container">
+                    <div class="checkbox-outercircle"></div>
+                    <div class="checkbox-innercircle">
+                      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                    </div>
+                  </div>
+
+                  Stockholm
+                </label>
+                
+                <input type="checkbox" name="favcities" id="newyork">
+                <label class="checkbox" for="newyork">
+                  <div class="checkbox-container">
+                    <div class="checkbox-outercircle"></div>
+                    <div class="checkbox-innercircle">
+                      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                    </div>
+                  </div>
+                  New York
+                </label>
+                <input type="checkbox" name="favcities" id="marrakech">
+                  <label class="checkbox" for="marrakech">
+                    <div class="checkbox-container">
+                      <div class="checkbox-outercircle"></div>
+                      <div class="checkbox-innercircle">
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                      </div>
+                    </div>
+                    Marrakech
+                  </label>
+                  <input type="checkbox" name="favcities" id="nairobi">
+                  <label class="checkbox" for="nairobi">
+                    <div class="checkbox-container">
+                      <div class="checkbox-outercircle"></div>
+                      <div class="checkbox-innercircle">
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                      </div>
+                    </div>
+                    Nairobi
+                  </label>
+              </fieldset>
+             </div>--><div class="form-field"><fieldset><legend>Keep in touch</legend><input id="newsletter" name="newsletter" type="checkbox"> <label for="newsletter" class="checkbox"><div class="checkbox-container"><div class="checkbox-outercircle"></div><div class="checkbox-innercircle"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg></div></div>I want to receive offers and promotions</label></fieldset></div><div class="form-field"><fieldset><legend class="visually-hidden">Terms and conditions?</legend><a href="example.pdf">View terms</a> <input id="terms" name="terms" type="checkbox" required data-hint-text="We wont hurt you, we promise" data-parsley-error-message="You need to accept the terms before you continue."> <label for="terms" class="checkbox"><div class="checkbox-container"><div class="checkbox-outercircle"></div><div class="checkbox-innercircle"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg></div></div>I accept the terms and conditions</label></fieldset></div><h2>Payment</h2><div class="form-field"><label for="card-no">Card number</label> <input id="card-no" name="card-no" type="tel" autocomplete="cc-number" required data-mask="0000 0000 0000 0000"></div><div class="form-field inline"><label for="card-month">Expiration date</label> <input id="card-month" name="card-month" type="tel" autocomplete="cc-month" required data-mask="00 / 00" class="very-short" placeholder="MM / YY"></div><div class="form-field inline"><label for="card-cvc">Security code</label> <input id="card-cvc" name="card-cvc" type="tel" autocomplete="cc-cvc" required data-mask="000" class="very-short" placeholder="XXX"></div></form></section></main><script src="js/script.js"></script></body></html>

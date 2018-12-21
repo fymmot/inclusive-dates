@@ -11109,7 +11109,7 @@ $(document).ready(function(){
 	function setUpHints(){
 		// Set up hint texts and error texts
 		$.each($('.form-field'), function(){
-			var input = $(this).find('input');
+			var input = $(this).find('input, fieldset');
 			var x = input.attr('data-hint-text'); //Get hint text from HTML attribute
 			var y = input.attr('id') + '-hint'; //Find ID for aria-describedby
 			
@@ -11144,14 +11144,17 @@ $(document).ready(function(){
 
 		window.Parsley.on('field:error', function() {
 		  // This global callback will be called for any field that fails validation.
-		  this.$element.attr('aria-invalid', true);
+		  // 
 		  this.$element.parents('.form-field').addClass('hasError');
+		  this.$element.attr('aria-invalid', true);
 
-		  //Set the aria-describedby to the error message ID
 		  if (this.$element.find('.error').length > 0){
 		  	var errorID = 'parsley-id-' + this.$element.attr('data-parsley-id');
-		  	this.$element.attr('aria-describedby', errorID);
-		  }
+
+			  this.$element.attr('aria-describedby', errorID);
+			  
+		}
+		  
 		  	
 		});
 

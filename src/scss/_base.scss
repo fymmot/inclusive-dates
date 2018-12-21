@@ -77,8 +77,11 @@ h3 {
 }
 
 .visually-hidden {
-	position:absolute;
-	left:-9999px;
+	position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
 }
 
 .hidden {display:none!important;}

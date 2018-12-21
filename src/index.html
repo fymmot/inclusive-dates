@@ -14,8 +14,33 @@
     <h1>Accessible forms</h1>
     <section>
       <h2>Personal data</h2>
-      <form id="form" autocomplete="on">
-        
+      <form id="form" autocomplete="on" class="private">
+
+        <div class="form-field">
+              <fieldset>
+                <legend>Business or private customer?
+                </legend>
+                <input type="radio" required checked name="applesoranges" id="radioapples">
+                <label class="radio" for="radioapples">
+                  <div class="radio-container">
+                    <div class="radio-outercircle"></div>
+                    <div class="radio-innercircle"></div>
+                  </div>
+
+                  Private customer
+                </label>
+                
+                <input type="radio" required name="applesoranges" id="radiooranges">
+                <label class="radio" for="radiooranges">
+                  <div class="radio-container">
+                    <div class="radio-outercircle"></div>
+                    <div class="radio-innercircle"></div>
+                  </div>
+                  Business customer
+                </label>
+              </fieldset>
+             </div>
+        <!--
         <div class="form-field">
           <label for="username">
             User name
@@ -28,17 +53,23 @@
           required
           data-hint-text="Your username is the e-mail address you used to register your account."
           data-parsley-error-message="Please enter your username. It is the e-mail address you used to register your account.">
-        </div>
-        <!--<label>
-          Password
-          <input type="password" name="password" id="pw" autocomplete="current-password">
-          
-          <label>
-            New password
-            <input type="password" name="new-password" id="new-pw" autocomplete="new-password">
-            -->
-            <!--<useit-input data-type="text" data->
-            </useit-input>-->
+        </div>-->
+        
+            <div class="form-field__private form-field">
+              <label for="pid">
+                Personal identity number<span class="optional-span"> (optional)</span>
+              </label>
+              <input
+              placeholder="YYMMDD-NNNN"
+              class="medium"
+              type="tel"
+              name="pid"
+              id="pid"
+              autocomplete="useit-name"
+              data-hint-text="We will use this information to fill in the form for you."
+              data-mask="000000-0000">
+            </div>
+
             <div class="form-field">
               <label for="name">
                 Full name
@@ -49,36 +80,64 @@
               id="name"
               required
               autocomplete="name"
-              data-hint-text="The name your momma gave you.">
+              >
+            </div>
+
+            <div class="form-field">
+              <label for="email">
+                E-mail
+              </label>
+              <input type="email" required name="email" id="email" autocomplete="email"></input>
+            </div>
+
+            <div class="form-field__business form-field">
+              <label for="org">
+                Organization<span class="optional-span"> (optional)</span>
+              </label>
+              <input type="text" name="org" id="org" autocomplete="organization">
+            </div>
+
+            <div class="form-field">
+              <label for="address">
+                Street address <span class="optional-span"> (optional)</span>
+              </label>
+              <textarea name="address" id="address" autocomplete="street-address"></textarea>
+            </div>
+            
+            <div class="form-field">
+              <label for="zip">
+                Postal code <span class="optional-span"> (optional)</span>
+              </label>
+              <input class="short" type="tel" name="zip" id="zip" autocomplete="postal-code" data-mask="000 00" data-hint-text="The postal code has six digits">
+            </div>
+            
+            <div class="form-field">
+              <label for="pw2">
+                New password
+              </label>
+              <input 
+              type="password" 
+              name="password2" 
+              id="pw2" 
+              required 
+              autocomplete="new-password">
             </div>
             <div class="form-field">
-              <fieldset>
-                <legend>Do you prefer apples or oranges?
-                </legend>
-                <input type="radio" required name="applesoranges" id="radioapples">
-                <label class="radio" for="radioapples">
-                  <div class="radio-container">
-                    <div class="radio-outercircle"></div>
-                    <div class="radio-innercircle"></div>
-                  </div>
-
-                  Apples
-                </label>
-                
-                <input type="radio" name="applesoranges" id="radiooranges">
-                <label class="radio" for="radiooranges">
-                  <div class="radio-container">
-                    <div class="radio-outercircle"></div>
-                    <div class="radio-innercircle"></div>
-                  </div>
-                  Oranges
-                </label>
-              </fieldset>
-             </div>
-
+              <label for="pw3">
+                Repeat password
+              </label>
+              <input 
+              type="password" 
+              name="password3" 
+              id="pw3" 
+              autocomplete="new-password" 
+              required
+              data-parsley-equalto="#pw2">
+            </div>
+<!--
              <div class="form-field">
               <fieldset>
-                <legend>Favorite cities
+                <legend>Which are your favorite cities?<span class="optional-span"> (optional)</span>
                 </legend>
                 <input type="checkbox" name="favcities" id="stockholm">
                 <label class="checkbox" for="stockholm">
@@ -102,54 +161,113 @@
                   </div>
                   New York
                 </label>
+                <input type="checkbox" name="favcities" id="marrakech">
+                  <label class="checkbox" for="marrakech">
+                    <div class="checkbox-container">
+                      <div class="checkbox-outercircle"></div>
+                      <div class="checkbox-innercircle">
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                      </div>
+                    </div>
+                    Marrakech
+                  </label>
+                  <input type="checkbox" name="favcities" id="nairobi">
+                  <label class="checkbox" for="nairobi">
+                    <div class="checkbox-container">
+                      <div class="checkbox-outercircle"></div>
+                      <div class="checkbox-innercircle">
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                      </div>
+                    </div>
+                    Nairobi
+                  </label>
               </fieldset>
-             </div>
-             
-            
-            <div class="form-field">
-              <label for="pw2">
-                New password
+             </div>-->
+
+              <div class="form-field">
+              <fieldset>
+                <legend>Keep in touch</legend>
+             <input type="checkbox" name="newsletter" id="newsletter">
+              <label class="checkbox" for="newsletter">
+                <div class="checkbox-container">
+                  <div class="checkbox-outercircle"></div>
+                  <div class="checkbox-innercircle">
+                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                  </div>
+                </div>
+                I want to receive offers and promotions
+              </label>
+            </fieldset>
+              </div>
+
+              <div class="form-field">
+              <fieldset>
+                <legend class="visually-hidden">Terms and conditions?</legend>
+              <a href="example.pdf">View terms</a>
+
+             <input type="checkbox" name="terms" id="terms" required data-hint-text="We wont hurt you, we promise" data-parsley-error-message="You need to accept the terms before you continue.">
+              <label class="checkbox" for="terms">
+                <div class="checkbox-container">
+                  <div class="checkbox-outercircle"></div>
+                  <div class="checkbox-innercircle">
+                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                  </div>
+                </div>
+
+                I accept the terms and conditions
+              </label>
+            </fieldset>
+              </div>
+
+
+              <h2>Payment</h2>
+
+              <div class="form-field">
+              <label for="card-no">
+                Card number
               </label>
               <input 
-              type="password" 
-              name="password2" 
-              id="pw2" 
-              required 
-              autocomplete="new-password">
-            </div>
-            <div class="form-field">
-              <label for="pw3">
-                Repeat password
-              </label>
-              <input 
-              type="password" 
-              name="password3" 
-              id="pw3" 
-              autocomplete="new-password" 
+              type="tel" 
+              name="card-no" 
+              id="card-no" 
+              autocomplete="cc-number" 
               required
-              data-parsley-equalto="pw2">
+              data-mask="0000 0000 0000 0000">
+            </div>
+              <div class="form-field inline">
+              <label for="card-month">
+                Expiration date
+              </label>
+              <input 
+              placeholder="MM / YY"
+              class="very-short"
+              type="tel" 
+              name="card-month" 
+              id="card-month" 
+              autocomplete="cc-month" 
+              required
+              data-mask="00 / 00">
+            </div>
+            <div class="form-field inline">
+              <label for="card-cvc">
+                Security code
+              </label>
+              <input 
+              placeholder="XXX"
+              class="very-short"
+              type="tel" 
+              name="card-cvc" 
+              id="card-cvc"
+              autocomplete="cc-cvc" 
+              required
+              data-mask="000">
             </div>
             
-            <div class="form-field">
-              <label for="org">
-                Organization<span class="optional-span"> (optional)</span>
-              </label>
-              <input type="text" name="org" id="org" autocomplete="organization">
-            </div>
             
-            <div class="form-field">
-              <label for="address">
-                Street address <span class="optional-span"> (optional)</span>
-              </label>
-              <textarea name="address" id="address" autocomplete="street-address"></textarea>
-            </div>
             
-            <div class="form-field">
-              <label for="zip">
-                Postal code <span class="optional-span"> (optional)</span>
-              </label>
-              <input class="short" type="tel" name="zip" id="zip" autocomplete="postal-code" data-mask="000 00" data-hint-text="The postal code has six digits">
-            </div>
+            
+            
+            
             
           </form>
         </section>
