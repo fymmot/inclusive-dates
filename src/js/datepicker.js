@@ -88,7 +88,7 @@ $(document).ready(function(){
 	}
 
 	function generateCalendarTable(){
-		$calendar = $('<table id="datepicker_table"><thead></thead><tbody></tbody></table>');
+		$calendar = $('<table id="datepicker_table"><thead role="presentation"></thead><tbody role="presentation"></tbody></table>');
 		$calendar
 			.attr("role", "application")
 			.attr("aria-label", "Choose date");
@@ -132,7 +132,7 @@ $(document).ready(function(){
     function setUpCalendar(startDate){
 
     	// Hide the <input>
-    	$("#input_wrapper").addClass("visually-hidd");
+    	$("#input_wrapper").addClass("hidden");
 
     	//Generate an array of days for the specified month
     	generateDays(startDate);

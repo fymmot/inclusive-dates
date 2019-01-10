@@ -7,7 +7,7 @@ table#datepicker_table {
 	margin: 1rem auto 2rem auto;
 
 	td {
-		padding:1.4rem 1rem 1.4rem 1rem;
+		padding:1.4rem;
 		width:40px;
 		height:60px;
 		background-color: #fefefe;
@@ -29,19 +29,22 @@ table#datepicker_table {
 
 			&:focus:hover{
 			cursor: pointer;
+			background-color: #2b7ea7;
+
+
 			}
 			&:hover{
-				background-color: #2b7ea7;
 				cursor: pointer;
-				color:white;
+				background-color: #2b7ea7;
+
 			}
 		}
 
-		&:focus {
+		&:not(.active):focus {
 			background-color:#7fdbef;
 		}
 
-		&:hover{
+		&:not(.active):hover{
 			background-color:#f5f5f5;
 			cursor: pointer;
 		}

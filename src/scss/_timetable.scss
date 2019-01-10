@@ -18,6 +18,7 @@ SJ-semantik
  	width:100%;
  	background-color:#fff;
  	/*min-height:80px;*/
+
  	display:table;
  	width:100%;
  	margin-bottom:0.2rem;
@@ -121,25 +122,29 @@ SJ-semantik
   }
 
   .sj-pricegrid-row{
-  	display:table-row;
+  	/*display:table-row;*/
+    flex: 0 1 100%;
   	width:100%;
   }
-.sj-pricegrid-row:nth-child(2){
-	border-bottom: 1px solid black;
+.sj-pricegrid-row:nth-child(2), .sj-pricegrid-row:nth-child(3){
+  border-left:1px solid black;
 }
 
-.sj-pricegrid-inner:nth-child(2){
-	border-left:1px solid black;
+.sj-pricegrid-inner:nth-child(2), .sj-pricegrid-inner:nth-child(3){
+    border-bottom: 1px solid black;
+
 }
 
   .sj-pricegrid-outer{
-  	display:table;
+  	display: flex;
+    flex: 0 0 100%;
   	width:100%;
   }
   .sj-pricegrid-inner{
-  	display:table-cell;
-  	width:50%;
-  	height:88px;
+  	/*display:table-cell;
+  	width:50%;*/
+    padding:1rem 0.5rem 1rem 0.5rem;
+  	min-height:88px;
   	text-align:center;
   	vertical-align: middle;
   	cursor:pointer;
