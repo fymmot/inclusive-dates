@@ -17,7 +17,7 @@ var config = {
   dist: 'dist/',
   src: 'src/',
   cssin: 'src/css/**/*.css',
-  jsin: ['node_modules/jquery/dist/jquery.js', 'node_modules/inert-polyfill/inert-polyfill.min.js', 'node_modules/launchy-modal-window/index.js', 'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js', 'node_modules/parsleyjs/dist/parsley.min.js', 'src/js/**/*.js'],
+  jsin: ['node_modules/jquery/dist/jquery.js', 'node_modules/inert-polyfill/inert-polyfill.min.js', 'node_modules/launchy-modal-window/index.js', 'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js', 'node_modules/parsleyjs/dist/parsley.min.js','node_modules/what-input/dist/what-input.min.js', 'src/js/**/*.js'],
   imgin: 'src/img/**/*.{jpg,jpeg,png,gif}',
   htmlin: 'src/*.html',
   scssin: 'src/scss/**/*.scss',
@@ -86,10 +86,8 @@ gulp.task('img', function() {
 });
 */
 gulp.task('img', function() {
-    gulp.src([
-            'src/images/**/*'
-        ])
-        .pipe(gulp.dest('web/dist/images'));
+    gulp.src(config.imgin)
+        .pipe(gulp.dest(config.imgout));
 });
 
 gulp.task('html', function() {

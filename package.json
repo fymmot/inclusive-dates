@@ -32,6 +32,7 @@
     "jquery": "^3.3.1",
     "jquery-mask-plugin": "^1.14.15",
     "launchy-modal-window": "^0.9.2",
-    "parsleyjs": "^2.8.1"
+    "parsleyjs": "^2.8.1",
+    "what-input": "^5.1.3"
   }
 }

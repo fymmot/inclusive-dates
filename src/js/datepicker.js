@@ -107,7 +107,7 @@ $(document).ready(function(){
 		var headerRow = "";
 
 		for (i = 0; i<days.length; i++){
-			var myHeaderDay = '<th scope="col" role="presentation"><abbr title="' + days[i] + '">' + daysShort[i] + '</abbr></th>';
+			var myHeaderDay = '<th scope="col" role="presentation"><abbr aria-hidden="true" title="' + days[i] + '">' + daysShort[i] + '</abbr></th>';
 			headerRow += myHeaderDay;
 		}
 		headerRow = $('<tr role="presentation">' + headerRow + '</tr>');
@@ -138,9 +138,7 @@ $(document).ready(function(){
     	generateDays(startDate);
 
     	//Always clear the calendar of old content
-
     	generateCalendarTable();
-
     	generateCalendarHeader();
 
 
@@ -294,17 +292,30 @@ $(document).ready(function(){
 					break;
 			}
 		});
+
+		$calendar.focusin(function(){
+
+			//Show keyboard icon in bottom left
+			$("html[data-whatintent='keyboard'] .keyboard_prompt").removeClass("hidden");
+
+		});
 		
 		/**
 		 * Manage tabindex for when the user leaves the table
 		 */
 		$calendar.focusout(function(){
+			//Remove the keyboard icon
+			$(".keyboard_prompt").addClass("hidden");
+
+			//Remove tabindices
 			ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
 
+			// Make the selected date focusable 
 			if (ALL_ACTIVE_DATEPICKER_DAYS.hasClass("active")){
 				$(".active").attr("tabindex", "0");
 				
 			}
+			//If nothing is selected, make the first day focusable
 			else {
 				ALL_ACTIVE_DATEPICKER_DAYS.first().attr("tabindex", "0");
 				
@@ -352,6 +363,7 @@ $(document).ready(function(){
 		//return ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
 
 	}
+	/*
 	function nextMonth(cell){
 		var currentMonth = parseInt(cell.attr("data-month"));
 		var currentYear = parseInt(cell.attr("data-year"));
@@ -374,7 +386,7 @@ $(document).ready(function(){
 
 
 
-	}
+	}*/
 
 	/**
 	 * Go to next active date
@@ -522,7 +534,7 @@ $(document).ready(function(){
 	
 	function clearA11yDemo(){
 		$("#screen-reader-text")
-			.html("")
+			.html("Text will be displayed here when you interact with the calender")
 			.removeClass("focused selected");
 
 	}

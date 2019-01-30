@@ -62,6 +62,15 @@ table#datepicker_table {
 	}
 }
 
+[data-whatintent="mouse"] #datepicker_table{
+	td {
+		&:focus{
+			outline:0;
+		}
+	}
+
+}
+
 
 p#a11y_description {
 	display:none;
@@ -120,6 +129,23 @@ section#description-section ul{
 	}
 
 }
+
+.keyboard_prompt{
+	position:fixed;
+	left:0;
+	bottom:0;
+	//display:none;
+
+	img {
+		width:125px;
+	}
+}
+
+/*[data-whatintent="keyboard"] .keyboard_prompt{
+	display:block;
+}*/
+
+
 
 
 kbd{	display: inline-block;

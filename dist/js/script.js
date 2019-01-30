@@ -10427,6 +10427,15 @@ function n(){var t=this,i=window||global;_extends(this,{isNativeEvent:function(e
 var i=[];return this._findRelated().filter(":checked").each(function(){i.push(e(this).val())}),i}}return"SELECT"===this.element.nodeName&&null===this.$element.val()?[]:this.$element.val()},_init:function(){return this.$elements=[this.$element],this}};var P=function(t,i,n){this.element=t,this.$element=e(t);var r=this.$element.data("Parsley");if(r)return"undefined"!=typeof n&&r.parent===window.Parsley&&(r.parent=n,r._resetOptions(r.options)),"object"==typeof i&&_extends(r.options,i),r;if(!this.$element.length)throw new Error("You must bind Parsley on an existing element.");if("undefined"!=typeof n&&"Form"!==n.__class__)throw new Error("Parent instance must be a Form instance");return this.parent=n||window.Parsley,this.init(i)};P.prototype={init:function(e){return this.__class__="Parsley",this.__version__="2.8.1",this.__id__=a.generateID(),this._resetOptions(e),"FORM"===this.element.nodeName||a.checkAttr(this.element,this.options.namespace,"validate")&&!this.$element.is(this.options.inputs)?this.bind("parsleyForm"):this.isMultiple()?this.handleMultiple():this.bind("parsleyField")},isMultiple:function(){var e=a.getType(this.element);return"radio"===e||"checkbox"===e||"SELECT"===this.element.nodeName&&null!==this.element.getAttribute("multiple")},handleMultiple:function(){var t,i,n=this;if(this.options.multiple=this.options.multiple||(t=this.element.getAttribute("name"))||this.element.getAttribute("id"),"SELECT"===this.element.nodeName&&null!==this.element.getAttribute("multiple"))return this.options.multiple=this.options.multiple||this.__id__,this.bind("parsleyFieldMultiple");if(!this.options.multiple)return a.warn("To be bound by Parsley, a radio, a checkbox and a multiple select input must have either a name or a multiple option.",this.$element),this;this.options.multiple=this.options.multiple.replace(/(:|\.|\[|\]|\{|\}|\$)/g,""),t&&e('input[name="'+t+'"]').each(function(e,t){var i=a.getType(t);"radio"!==i&&"checkbox"!==i||t.setAttribute(n.options.namespace+"multiple",n.options.multiple)});for(var r=this._findRelated(),s=0;s<r.length;s++)if(i=e(r.get(s)).data("Parsley"),"undefined"!=typeof i){this.$element.data("FieldMultiple")||i.addElement(this.$element);break}return this.bind("parsleyField",!0),i||this.bind("parsleyFieldMultiple")},bind:function(t,i){var n;switch(t){case"parsleyForm":n=e.extend(new w(this.element,this.domOptions,this.options),new l,window.ParsleyExtend)._bindFields();break;case"parsleyField":n=e.extend(new x(this.element,this.domOptions,this.options,this.parent),new l,window.ParsleyExtend);break;case"parsleyFieldMultiple":n=e.extend(new x(this.element,this.domOptions,this.options,this.parent),new $,new l,window.ParsleyExtend)._init();break;default:throw new Error(t+"is not a supported Parsley type")}return this.options.multiple&&a.setAttr(this.element,this.options.namespace,"multiple",this.options.multiple),"undefined"!=typeof i?(this.$element.data("FieldMultiple",n),n):(this.$element.data("Parsley",n),n._actualizeTriggers(),n._trigger("init"),n)}};var V=e.fn.jquery.split(".");if(parseInt(V[0])<=1&&parseInt(V[1])<8)throw"The loaded version of jQuery is too old. Please upgrade to 1.8.x or better.";V.forEach||a.warn("Parsley requires ES5 to run properly. Please include https://github.com/es-shims/es5-shim");var T=_extends(new l,{element:document,$element:e(document),actualizeOptions:null,_resetOptions:null,Factory:P,version:"2.8.1"});_extends(x.prototype,y.Field,l.prototype),_extends(w.prototype,y.Form,l.prototype),_extends(P.prototype,l.prototype),e.fn.parsley=e.fn.psly=function(t){if(this.length>1){var i=[];return this.each(function(){i.push(e(this).parsley(t))}),i}if(0!=this.length)return new P(this[0],t)},"undefined"==typeof window.ParsleyExtend&&(window.ParsleyExtend={}),T.options=_extends(a.objectCreate(o),window.ParsleyConfig),window.ParsleyConfig=T.options,window.Parsley=window.psly=T,T.Utils=a,window.ParsleyUtils={},e.each(a,function(e,t){"function"==typeof t&&(window.ParsleyUtils[e]=function(){return a.warnOnce("Accessing `window.ParsleyUtils` is deprecated. Use `window.Parsley.Utils` instead."),a[e].apply(a,arguments)})});var O=window.Parsley._validatorRegistry=new p(window.ParsleyConfig.validators,window.ParsleyConfig.i18n);window.ParsleyValidator={},e.each("setLocale addCatalog addMessage addMessages getErrorMessage formatMessage addValidator updateValidator removeValidator hasValidator".split(" "),function(e,t){window.Parsley[t]=function(){return O[t].apply(O,arguments)},window.ParsleyValidator[t]=function(){var e;return a.warnOnce("Accessing the method '"+t+"' through Validator is deprecated. Simply call 'window.Parsley."+t+"(...)'"),(e=window.Parsley)[t].apply(e,arguments)}}),window.Parsley.UI=y,window.ParsleyUI={removeError:function(e,t,i){var n=!0!==i;return a.warnOnce("Accessing UI is deprecated. Call 'removeError' on the instance directly. Please comment in issue 1073 as to your need to call this method."),e.removeError(t,{updateClass:n})},getErrorsMessages:function(e){return a.warnOnce("Accessing UI is deprecated. Call 'getErrorsMessages' on the instance directly."),e.getErrorsMessages()}},e.each("addError updateError".split(" "),function(e,t){window.ParsleyUI[t]=function(e,i,n,r,s){var o=!0!==s;return a.warnOnce("Accessing UI is deprecated. Call '"+t+"' on the instance directly. Please comment in issue 1073 as to your need to call this method."),e[t](i,{message:n,assert:r,updateClass:o})}}),!1!==window.ParsleyConfig.autoBind&&e(function(){e("[data-parsley-validate]").length&&e("[data-parsley-validate]").parsley()});var M=e({}),R=function(){a.warnOnce("Parsley's pubsub module is deprecated; use the 'on' and 'off' methods on parsley instances or window.Parsley")},D="parsley:";e.listen=function(e,n){var r;if(R(),"object"==typeof arguments[1]&&"function"==typeof arguments[2]&&(r=arguments[1],n=arguments[2]),"function"!=typeof n)throw new Error("Wrong parameters");window.Parsley.on(i(e),t(n,r))},e.listenTo=function(e,n,r){if(R(),!(e instanceof x||e instanceof w))throw new Error("Must give Parsley instance");if("string"!=typeof n||"function"!=typeof r)throw new Error("Wrong parameters");e.on(i(n),t(r))},e.unsubscribe=function(e,t){if(R(),"string"!=typeof e||"function"!=typeof t)throw new Error("Wrong arguments");window.Parsley.off(i(e),t.parsleyAdaptedCallback)},e.unsubscribeTo=function(e,t){if(R(),!(e instanceof x||e instanceof w))throw new Error("Must give Parsley instance");e.off(i(t))},e.unsubscribeAll=function(t){R(),window.Parsley.off(i(t)),e("form,input,textarea,select").each(function(){var n=e(this).data("Parsley");n&&n.off(i(t))})},e.emit=function(e,t){var n;R();var r=t instanceof x||t instanceof w,s=Array.prototype.slice.call(arguments,r?2:1);s.unshift(i(e)),r||(t=window.Parsley),(n=t).trigger.apply(n,_toConsumableArray(s))};e.extend(!0,T,{asyncValidators:{"default":{fn:function(e){return e.status>=200&&e.status<300},url:!1},reverse:{fn:function(e){return e.status<200||e.status>=300},url:!1}},addAsyncValidator:function(e,t,i,n){return T.asyncValidators[e]={fn:t,url:i||!1,options:n||{}},this}}),T.addValidator("remote",{requirementType:{"":"string",validator:"string",reverse:"boolean",options:"object"},validateString:function(t,i,n,r){var s,a,o={},l=n.validator||(!0===n.reverse?"reverse":"default");if("undefined"==typeof T.asyncValidators[l])throw new Error("Calling an undefined async validator: `"+l+"`");i=T.asyncValidators[l].url||i,i.indexOf("{value}")>-1?i=i.replace("{value}",encodeURIComponent(t)):o[r.element.getAttribute("name")||r.element.getAttribute("id")]=t;var u=e.extend(!0,n.options||{},T.asyncValidators[l].options);s=e.extend(!0,{},{url:i,data:o,type:"GET"},u),r.trigger("field:ajaxoptions",r,s),a=e.param(s),"undefined"==typeof T._remoteCache&&(T._remoteCache={});var d=T._remoteCache[a]=T._remoteCache[a]||e.ajax(s),h=function(){var t=T.asyncValidators[l].fn.call(r,d,i,n);return t||(t=e.Deferred().reject()),e.when(t)};return d.then(h,h)},priority:-1}),T.on("form:submit",function(){T._remoteCache={}}),l.prototype.addAsyncValidator=function(){return a.warnOnce("Accessing the method `addAsyncValidator` through an instance is deprecated. Simply call `Parsley.addAsyncValidator(...)`"),T.addAsyncValidator.apply(T,arguments)},T.addMessages("en",{defaultMessage:"This value seems to be invalid.",type:{email:"This value should be a valid email.",url:"This value should be a valid url.",number:"This value should be a valid number.",integer:"This value should be a valid integer.",digits:"This value should be digits.",alphanum:"This value should be alphanumeric."},notblank:"This value should not be blank.",required:"This value is required.",pattern:"This value seems to be invalid.",min:"This value should be greater than or equal to %s.",max:"This value should be lower than or equal to %s.",range:"This value should be between %s and %s.",minlength:"This value is too short. It should have %s characters or more.",maxlength:"This value is too long. It should have %s characters or fewer.",length:"This value length is invalid. It should be between %s and %s characters long.",mincheck:"You must select at least %s choices.",maxcheck:"You must select %s choices or fewer.",check:"You must select between %s and %s choices.",equalto:"This value should be the same."}),T.setLocale("en");var I=new n;I.install();var q=T;return q});
 //# sourceMappingURL=parsley.min.js.map
 
+/**
+ * what-input - A global utility for tracking the current input method (mouse, keyboard or touch).
+ * @version v5.1.3
+ * @link https://github.com/ten1seven/what-input
+ * @license MIT
+ */
+!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define("whatInput",[],t):"object"==typeof exports?exports.whatInput=t():e.whatInput=t()}(this,function(){return function(n){var o={};function i(e){if(o[e])return o[e].exports;var t=o[e]={exports:{},id:e,loaded:!1};return n[e].call(t.exports,t,t.exports,i),t.loaded=!0,t.exports}return i.m=n,i.c=o,i.p="",i(0)}([function(e,t){"use strict";e.exports=function(){if("undefined"==typeof document||"undefined"==typeof window)return{ask:function(){return"initial"},element:function(){return null},ignoreKeys:function(){},specificKeys:function(){},registerOnChange:function(){},unRegisterOnChange:function(){}};var t=document.documentElement,n=null,u="initial",a=u;try{window.sessionStorage.getItem("what-input")&&(u=window.sessionStorage.getItem("what-input")),window.sessionStorage.getItem("what-intent")&&(a=window.sessionStorage.getItem("what-intent"))}catch(e){}var o=null,d=["input","select","textarea"],i=[],c=[16,17,18,91,93],w=[],f={keydown:"keyboard",keyup:"keyboard",mousedown:"mouse",mousemove:"mouse",MSPointerDown:"pointer",MSPointerMove:"pointer",pointerdown:"pointer",pointermove:"pointer",touchstart:"touch"},p=!1,r=!1,s={x:null,y:null},l={2:"touch",3:"touch",4:"mouse"},m=!1;try{var e=Object.defineProperty({},"passive",{get:function(){m=!0}});window.addEventListener("test",null,e)}catch(e){}var h=function(){var e=!!m&&{passive:!0};window.PointerEvent?(window.addEventListener("pointerdown",v),window.addEventListener("pointermove",g)):window.MSPointerEvent?(window.addEventListener("MSPointerDown",v),window.addEventListener("MSPointerMove",g)):(window.addEventListener("mousedown",v),window.addEventListener("mousemove",g),"ontouchstart"in window&&(window.addEventListener("touchstart",x,e),window.addEventListener("touchend",v))),window.addEventListener(b(),g,e),window.addEventListener("keydown",x),window.addEventListener("keyup",x),window.addEventListener("focusin",E),window.addEventListener("focusout",L)},v=function(e){if(!p){var t=e.which,n=f[e.type];"pointer"===n&&(n=S(e));var o=!w.length&&-1===c.indexOf(t),i=w.length&&-1!==w.indexOf(t),r="keyboard"===n&&t&&(o||i)||"mouse"===n||"touch"===n;if(u!==n&&r){u=n;try{window.sessionStorage.setItem("what-input",u)}catch(e){}y("input")}if(a!==n&&r){var s=document.activeElement;if(s&&s.nodeName&&-1===d.indexOf(s.nodeName.toLowerCase())){a=n;try{window.sessionStorage.setItem("what-intent",a)}catch(e){}y("intent")}}}},y=function(e){t.setAttribute("data-what"+e,"input"===e?u:a),I(e)},g=function(e){if(O(e),!p&&!r){var t=f[e.type];if("pointer"===t&&(t=S(e)),a!==t){a=t;try{window.sessionStorage.setItem("what-intent",a)}catch(e){}y("intent")}}},E=function(e){e.target.nodeName?(n=e.target.nodeName.toLowerCase(),t.setAttribute("data-whatelement",n),e.target.classList&&e.target.classList.length&&t.setAttribute("data-whatclasses",e.target.classList.toString().replace(" ",","))):L()},L=function(){n=null,t.removeAttribute("data-whatelement"),t.removeAttribute("data-whatclasses")},x=function(e){v(e),window.clearTimeout(o),p=!0,o=window.setTimeout(function(){p=!1},100)},S=function(e){return"number"==typeof e.pointerType?l[e.pointerType]:"pen"===e.pointerType?"touch":e.pointerType},b=function(){return"onwheel"in document.createElement("div")?"wheel":void 0!==document.onmousewheel?"mousewheel":"DOMMouseScroll"},I=function(e){for(var t=0,n=i.length;t<n;t++)i[t].type===e&&i[t].fn.call(void 0,"input"===e?u:a)},O=function(e){s.x!==e.screenX||s.y!==e.screenY?(r=!1,s.x=e.screenX,s.y=e.screenY):r=!0};return"addEventListener"in window&&Array.prototype.indexOf&&(f[b()]="mouse",h(),y("input"),y("intent")),{ask:function(e){return"intent"===e?a:u},element:function(){return n},ignoreKeys:function(e){c=e},specificKeys:function(e){w=e},registerOnChange:function(e,t){i.push({fn:e,type:t||"input"})},unRegisterOnChange:function(e){var t=function(e){for(var t=0,n=i.length;t<n;t++)if(i[t].fn===e)return t}(e);(t||0===t)&&i.splice(t,1)}}}()}])});
+//# sourceMappingURL=maps/what-input.min.js.map
+
 $(document).ready(function(){
 
   const template = document.createElement('template');
@@ -10615,7 +10624,7 @@ $(document).ready(function(){
 		var headerRow = "";
 
 		for (i = 0; i<days.length; i++){
-			var myHeaderDay = '<th scope="col" role="presentation"><abbr title="' + days[i] + '">' + daysShort[i] + '</abbr></th>';
+			var myHeaderDay = '<th scope="col" role="presentation"><abbr aria-hidden="true" title="' + days[i] + '">' + daysShort[i] + '</abbr></th>';
 			headerRow += myHeaderDay;
 		}
 		headerRow = $('<tr role="presentation">' + headerRow + '</tr>');
@@ -10646,9 +10655,7 @@ $(document).ready(function(){
     	generateDays(startDate);
 
     	//Always clear the calendar of old content
-
     	generateCalendarTable();
-
     	generateCalendarHeader();
 
 
@@ -10802,17 +10809,30 @@ $(document).ready(function(){
 					break;
 			}
 		});
+
+		$calendar.focusin(function(){
+
+			//Show keyboard icon in bottom left
+			$("html[data-whatintent='keyboard'] .keyboard_prompt").removeClass("hidden");
+
+		});
 		
 		/**
 		 * Manage tabindex for when the user leaves the table
 		 */
 		$calendar.focusout(function(){
+			//Remove the keyboard icon
+			$(".keyboard_prompt").addClass("hidden");
+
+			//Remove tabindices
 			ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
 
+			// Make the selected date focusable 
 			if (ALL_ACTIVE_DATEPICKER_DAYS.hasClass("active")){
 				$(".active").attr("tabindex", "0");
 				
 			}
+			//If nothing is selected, make the first day focusable
 			else {
 				ALL_ACTIVE_DATEPICKER_DAYS.first().attr("tabindex", "0");
 				
@@ -10860,6 +10880,7 @@ $(document).ready(function(){
 		//return ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
 
 	}
+	/*
 	function nextMonth(cell){
 		var currentMonth = parseInt(cell.attr("data-month"));
 		var currentYear = parseInt(cell.attr("data-year"));
@@ -10882,7 +10903,7 @@ $(document).ready(function(){
 
 
 
-	}
+	}*/
 
 	/**
 	 * Go to next active date
@@ -11030,7 +11051,7 @@ $(document).ready(function(){
 	
 	function clearA11yDemo(){
 		$("#screen-reader-text")
-			.html("")
+			.html("Text will be displayed here when you interact with the calender")
 			.removeClass("focused selected");
 
 	}
@@ -11516,71 +11537,3 @@ $(document).ready(function(){
 
 
 
-/**
- * Selectors for all focusable elements
- * @type {string}
- */
-const FOCUSABLE_ELEMENT_SELECTORS = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, [tabindex="0"], [contenteditable]';
-
-const KEY_CODE_MAP = {
-  TAB: 9
-};
-
-/**
- * A stateless keyboard utility to -
- * - Trap focus,
- * - Focus the correct Element
- * @param config {
- *   el: HTMLElement. The Parent element, within which the focus should be trapped
- *   focusElement: <Optional> HTMLElement. If Not provided, focus is put to the first focusable element
- * }
- * @return {Function} Function. The cleanup function. To undo everything done for handling A11Y
- */
-function loopFocus(config) {
-  if (!config) {
-    throw new Error('Could not initialize focus-trapping - Config Missing');
-  }
-  const el = config.el,
-        escCallback = config.escCallback,
-        focusElement = config.focusElement;
-
-  if (!el) {
-    throw new Error('Could not initialize focus-trapping - Element Missing');
-  }
-  if (escCallback && !(escCallback instanceof Function)) {
-    throw new Error('Could not initialize focus-trapping - `config.escCallback` is not a function');
-  }
-
-  const focusableElements = el.querySelectorAll(FOCUSABLE_ELEMENT_SELECTORS);
-  let keyboardHandler;
-
-  //There can be containers without any focusable element
-  if (focusableElements.length > 0) {
-    const firstFocusableEl = focusableElements[0],
-          lastFocusableEl = focusableElements[focusableElements.length - 1],
-          elementToFocus = focusElement ? focusElement : firstFocusableEl;
-    elementToFocus.focus();
-
-    keyboardHandler = function keyboardHandler(e) {
-      if (e.keyCode === KEY_CODE_MAP.TAB) {
-        //Rotate Focus
-        if (e.shiftKey && document.activeElement === firstFocusableEl) {
-          e.preventDefault();
-          lastFocusableEl.focus();
-        } else if (!e.shiftKey && document.activeElement === lastFocusableEl) {
-          e.preventDefault();
-          firstFocusableEl.focus();
-        }
-      }
-    };
-    el.addEventListener('keydown', keyboardHandler);
-  }
-
-  //The cleanup function. Put future cleanup tasks inside this.
-  return function cleanUp() {
-
-    if (keyboardHandler) {
-      el.removeEventListener('keydown', keyboardHandler);
-    }
-  };
-}
