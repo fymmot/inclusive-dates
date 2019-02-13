@@ -10528,7 +10528,8 @@ $(document).ready(function(){
         days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
         daysShort = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        HELPTEXT = 'Use the left and right arrow keys to browse days. Up and down arrows move between weeks. Select a day using return key or spacebar.',
+        /*HELPTEXT = 'Use the left and right arrow keys to browse days. Up and down arrows move between weeks. Select a day using return key or spacebar.',*/
+        HELPTEXT = '',
         dateInput = $("#date"),
         initialDate;
 
@@ -10605,10 +10606,7 @@ $(document).ready(function(){
 	}
 
 	function generateCalendarTable(){
-		$calendar = $('<table id="datepicker_table"><thead role="presentation"></thead><tbody role="presentation"></tbody></table>');
-		$calendar
-			.attr("role", "application")
-			.attr("aria-label", "Choose date");
+		$calendar = $('<table id="datepicker_table" role="application" aria-label="Choose date"><thead role="presentation"></thead><tbody role="presentation"></tbody></table>');
 
 		$('#datepicker_wrapper').append($calendar);
 		$datePickerGrid = $calendar.find('tbody');
@@ -10617,8 +10615,8 @@ $(document).ready(function(){
 	function generateCalendarHeader(){
 
 		//Generate Month buttons and heading
-		var fieldset = $('<fieldset><legend class="visually-hidden">Choose month</legend><button aria-label="Previous month"></button><span id="month-label" role="heading" aria-level="3">' + months[+calendarDates[0].month-1] + ' ' + calendarDates[0].year + '</span> <button aria-label="Next month"></button> </fieldset>');
-		$('#input_wrapper').append(fieldset);
+		var fieldset = $('<fieldset><legend class="visually-hidden">Choose month</legend><button>Previous month</button><h3 id="month-label">' + months[+calendarDates[0].month-1] + ' ' + calendarDates[0].year + '</h3> <button>Next month</button> </fieldset>');
+		$('#datepicker_wrapper').before(fieldset);
 
 		//Generate table headings with weekdays
 		var headerRow = "";
@@ -10637,11 +10635,16 @@ $(document).ready(function(){
 
 	}
 
+	function generateKeyboardHelp(){
+		var $keyboard_shortcuts = $('<div class="keyboard-shortcuts-link"><a href="#">Show keyboard shortcuts</a></div>');
+		$("#datepicker_wrapper").prepend($keyboard_shortcuts);
+	}
+
 	function updateCalendar(newDate){
 		clearCalendar();
 
 		//setUpCalendar(newDate);
-		console.log("uppdaterar")
+		console.log("uppdaterar");
 
 	}
 
@@ -10657,6 +10660,7 @@ $(document).ready(function(){
     	//Always clear the calendar of old content
     	generateCalendarTable();
     	generateCalendarHeader();
+    	generateKeyboardHelp();
 
 
     	var x = 0;
@@ -10718,7 +10722,7 @@ $(document).ready(function(){
     	}
 
     	generateA11yDemo();
-    	generateA11yHelp();
+    	/*generateA11yHelp();*/
 
     	//Generate list of active datepicker buttons
     	ALL_ACTIVE_DATEPICKER_DAYS = $('table#datepicker_table > tbody > tr > td').not('.disabled');
@@ -10813,7 +10817,7 @@ $(document).ready(function(){
 		$calendar.focusin(function(){
 
 			//Show keyboard icon in bottom left
-			$("html[data-whatintent='keyboard'] .keyboard_prompt").removeClass("hidden");
+			//$("html[data-whatintent='keyboard'] .keyboard_prompt").removeClass("hidden");
 
 		});
 		
@@ -10822,7 +10826,7 @@ $(document).ready(function(){
 		 */
 		$calendar.focusout(function(){
 			//Remove the keyboard icon
-			$(".keyboard_prompt").addClass("hidden");
+			//$(".keyboard_prompt").addClass("hidden");
 
 			//Remove tabindices
 			ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
@@ -11018,7 +11022,7 @@ $(document).ready(function(){
 			.addClass("active")
 			.attr("tabindex", "0");
 
-		moveA11yDesc($newActiveCell);
+		/*moveA11yDesc($newActiveCell);*/
 		setAriaLabel($newActiveCell);
 		updateA11yDemo($newActiveCell, false);
 

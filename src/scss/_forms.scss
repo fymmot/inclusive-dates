@@ -123,12 +123,13 @@ input[type="text"], input[type="password"], input[type="tel"], & input[type="ema
     font-weight: 600;
 }
 
-fieldset {
+fieldset {/*
 	display:inline-block;
 	padding: 0;
 	margin:0;
 	border:none;
-	margin-bottom:1rem;
+	//margin-bottom:1rem;*/
+	max-width:28rem;
 }
 
 

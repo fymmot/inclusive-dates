@@ -67,7 +67,7 @@
           data-parsley-error-message="Please enter your username. It is the e-mail address you used to register your account.">
         </div>-->
         
-            <div class="form-field__private form-field">
+            <!--<div class="form-field__private form-field">
               <label for="pid">
                 Personal identity number<span class="optional-span"> (optional)</span>
               </label>
@@ -81,9 +81,57 @@
               data-hint-text="We will use this information to fill in the form for you."
               data-mask="000000-0000">
             </div>
+          -->
+
+            <fieldset>
+              <legend>Person #1</legend>
+            <div class="form-field">
+              <label for="name1">
+                Full name
+              </label>
+              <input
+              type="text"
+              name="name1"
+              id="name1"
+              required
+              autocomplete="person1 name"
+              >
+            </div>
 
             <div class="form-field">
-              <label for="name">
+              <label for="email1">
+                E-mail
+              </label>
+              <input type="email" required name="email1" id="email1" autocomplete="person1 email"></input>
+            </div>
+
+            <div class="form-field__business form-field">
+              <label for="org1">
+                Organization<span class="optional-span"> (optional)</span>
+              </label>
+              <input type="text" name="org1" id="org1" autocomplete="person1 organization">
+            </div>
+
+            <div class="form-field">
+              <label for="address1">
+                Street address <span class="optional-span"> (optional)</span>
+              </label>
+              <textarea name="address1" id="address1" autocomplete="person1 street-address"></textarea>
+            </div>
+            
+            <div class="form-field">
+              <label for="zip1">
+                Postal code <span class="optional-span"> (optional)</span>
+              </label>
+              <input class="short" type="tel" name="zip1" id="zip1" autocomplete="person1 postal-code" data-mask="000 00" data-hint-text="The postal code has six digits">
+            </div>
+
+         </fieldset>
+
+          <fieldset>
+              <legend>Person #2</legend>
+            <div class="form-field">
+              <label for="name2">
                 Full name
               </label>
               <input
@@ -91,61 +139,65 @@
               name="name"
               id="name"
               required
-              autocomplete="name"
+              autocomplete="person2 name"
               >
             </div>
 
             <div class="form-field">
-              <label for="email">
+              <label for="email2">
                 E-mail
               </label>
-              <input type="email" required name="email" id="email" autocomplete="email"></input>
+              <input type="email" required name="email2" id="email2" autocomplete="person2 email"></input>
             </div>
 
             <div class="form-field__business form-field">
-              <label for="org">
+              <label for="org2">
                 Organization<span class="optional-span"> (optional)</span>
               </label>
-              <input type="text" name="org" id="org" autocomplete="organization">
+              <input type="text" name="org2" id="org2" autocomplete="person2 organization">
             </div>
 
             <div class="form-field">
-              <label for="address">
+              <label for="address2">
                 Street address <span class="optional-span"> (optional)</span>
               </label>
-              <textarea name="address" id="address" autocomplete="street-address"></textarea>
+              <textarea name="address2" id="address2" autocomplete="person2 street-address"></textarea>
             </div>
             
             <div class="form-field">
-              <label for="zip">
+              <label for="zip2">
                 Postal code <span class="optional-span"> (optional)</span>
               </label>
-              <input class="short" type="tel" name="zip" id="zip" autocomplete="postal-code" data-mask="000 00" data-hint-text="The postal code has six digits">
+              <input class="short" type="tel" name="zip2" id="zip2" autocomplete="person2 postal-code" data-mask="000 00" data-hint-text="The postal code has six digits">
             </div>
-            
+
             <div class="form-field">
-              <label for="pw2">
+              <label for="p2-password1">
                 New password
               </label>
               <input 
               type="password" 
-              name="password2" 
-              id="pw2" 
+              name="p2-password1" 
+              id="p2-password1" 
               required 
-              autocomplete="new-password">
+              autocomplete="person2 new-password">
             </div>
             <div class="form-field">
-              <label for="pw3">
+              <label for="p2-password2">
                 Repeat password
               </label>
               <input 
               type="password" 
-              name="password3" 
-              id="pw3" 
-              autocomplete="new-password" 
+              name="p2-password2" 
+              id="p2-password2" 
+              autocomplete="person2 new-password" 
               required
-              data-parsley-equalto="#pw2">
+              data-parsley-equalto="#p2-password1">
             </div>
+
+          </fieldset>
+            
+            
 <!--
              <div class="form-field">
               <fieldset>
@@ -214,7 +266,7 @@
 
               <div class="form-field">
               <fieldset>
-                <legend class="visually-hidden">Terms and conditions?</legend>
+                <legend>Terms and conditions</legend>
               <a href="example.pdf">View terms</a>
 
              <input type="checkbox" name="terms" id="terms" required data-hint-text="We wont hurt you, we promise" data-parsley-error-message="You need to accept the terms before you continue.">
@@ -231,8 +283,9 @@
             </fieldset>
               </div>
 
+              <h2 id="payment-heading">Payment</h2>
+              <fieldset aria-labelledby="payment-heading">
 
-              <h2>Payment</h2>
 
               <div class="form-field">
               <label for="card-no">
@@ -274,6 +327,7 @@
               required
               data-mask="000">
             </div>
+          </fieldset>
             
             
             
