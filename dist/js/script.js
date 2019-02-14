@@ -10615,8 +10615,9 @@ $(document).ready(function(){
 	function generateCalendarHeader(){
 
 		//Generate Month buttons and heading
+		/*
 		var fieldset = $('<fieldset><legend class="visually-hidden">Choose month</legend><button>Previous month</button><h3 id="month-label">' + months[+calendarDates[0].month-1] + ' ' + calendarDates[0].year + '</h3> <button>Next month</button> </fieldset>');
-		$('#datepicker_wrapper').before(fieldset);
+		$('#datepicker_wrapper').before(fieldset);*/
 
 		//Generate table headings with weekdays
 		var headerRow = "";
