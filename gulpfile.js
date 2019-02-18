@@ -12,12 +12,24 @@ var htmlReplace = require('gulp-html-replace');
 var htmlMin = require('gulp-htmlmin');
 var del = require('del');
 var sequence = require('run-sequence');
+var axe = require('gulp-axe-webdriver');
+var changed = require('gulp-changed');
 
 var config = {
   dist: 'dist/',
   src: 'src/',
   cssin: 'src/css/**/*.css',
-  jsin: ['node_modules/jquery/dist/jquery.js', 'node_modules/inert-polyfill/inert-polyfill.min.js', 'node_modules/launchy-modal-window/index.js', 'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js', 'node_modules/parsleyjs/dist/parsley.min.js','node_modules/what-input/dist/what-input.min.js', 'src/js/**/*.js'],
+  jsin: [
+    'node_modules/jquery/dist/jquery.js',
+    'node_modules/inert-polyfill/inert-polyfill.min.js', 
+    'node_modules/foundation-sites/dist/js/foundation.js',
+    'node_modules/launchy-modal-window/index.js',
+    'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
+    'node_modules/parsleyjs/dist/parsley.min.js',
+    'node_modules/what-input/dist/what-input.min.js',
+    'node_modules/prismjs/prism.js',
+    'src/js/**/*.js'
+    ],
   imgin: 'src/img/**/*.{jpg,jpeg,png,gif}',
   htmlin: 'src/*.html',
   scssin: 'src/scss/**/*.scss',
@@ -42,7 +54,7 @@ gulp.task('serve', ['sass'], function() {
   });
 
   gulp.watch([config.htmlin], function(){
-    sequence('html', 'reload');
+    sequence('html', 'reload', 'axe');
   });
   gulp.watch([config.jsin], function(){
     sequence('js', 'reload');
@@ -102,6 +114,16 @@ gulp.task('html', function() {
       collapseWhitespace: true
     }))
     .pipe(gulp.dest(config.dist))
+
+});
+
+gulp.task('axe', function() {
+
+  var options = {
+    saveOutputIn: '',
+    urls: [config.htmlout+'*.html']
+  };
+  return axe(options);
 });
 
 gulp.task('clean', function() {
@@ -109,7 +131,7 @@ gulp.task('clean', function() {
 });
 
 gulp.task('build', function() {
-  sequence('clean', ['html', 'js', 'css', 'img']);
+  sequence('clean', ['html', 'js', 'css', 'img'], 'axe');
 });
 
 gulp.task('default', function(){
