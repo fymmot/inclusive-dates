@@ -97,13 +97,4 @@ $(document).ready(function(){
 	setUpRequired();
 	initiateValidation();
 
-	
-
-	
-
-
-
-
-
-
 });

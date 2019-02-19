@@ -10369,6 +10369,13229 @@ h(0>f?!0:!1);if(g!=(c||document).activeElement)return;var d=document.createTreeW
 b.styleSheet.cssText=a:b.appendChild(document.createTextNode(a));document.body.appendChild(b)})("/*[inert]*/*[inert]{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;pointer-events:none}");var n=function(a){return null};window.ShadowRoot&&(n=function(a){for(;a&&a!==document.documentElement;){if(a instanceof window.ShadowRoot)return a;a=a.parentNode}return null});var f=0;document.addEventListener("keydown",function(a){f=9===a.keyCode?a.shiftKey?-1:1:0});document.addEventListener("mousedown",
 function(a){f=0});var c=null;document.body.addEventListener("focus",function(a){var b=e(a);a=b==a.target?null:n(b);if(a!=c){if(c){if(!(c instanceof window.ShadowRoot))throw Error("not shadow root: "+c);c.removeEventListener("focusin",l,!0)}a&&a.addEventListener("focusin",l,!0);c=a}m(b)},!0);document.addEventListener("click",function(a){var b=e(a);k(b)&&(a.preventDefault(),a.stopPropagation())},!0)}));
 
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("jquery"));
+	else if(typeof define === 'function' && define.amd)
+		define(["jquery"], factory);
+	else {
+		var a = typeof exports === 'object' ? factory(require("jquery")) : factory(root["jQuery"]);
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(window, function(__WEBPACK_EXTERNAL_MODULE_jquery__) {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./js/entries/foundation.js":
+/*!**********************************!*\
+  !*** ./js/entries/foundation.js ***!
+  \**********************************/
+/*! exports provided: Foundation, CoreUtils, Box, onImagesLoaded, Keyboard, MediaQuery, Motion, Nest, Timer, Touch, Triggers, Abide, Accordion, AccordionMenu, Drilldown, Dropdown, DropdownMenu, Equalizer, Interchange, Magellan, OffCanvas, Orbit, ResponsiveMenu, ResponsiveToggle, Reveal, Slider, SmoothScroll, Sticky, Tabs, Toggler, Tooltip, ResponsiveAccordionTabs, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../foundation.core */ "./js/foundation.core.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Foundation", function() { return _foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"]; });
+
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "CoreUtils", function() { return _foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__; });
+/* harmony import */ var _foundation_util_box__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../foundation.util.box */ "./js/foundation.util.box.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Box", function() { return _foundation_util_box__WEBPACK_IMPORTED_MODULE_3__["Box"]; });
+
+/* harmony import */ var _foundation_util_imageLoader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../foundation.util.imageLoader */ "./js/foundation.util.imageLoader.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "onImagesLoaded", function() { return _foundation_util_imageLoader__WEBPACK_IMPORTED_MODULE_4__["onImagesLoaded"]; });
+
+/* harmony import */ var _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../foundation.util.keyboard */ "./js/foundation.util.keyboard.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Keyboard", function() { return _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_5__["Keyboard"]; });
+
+/* harmony import */ var _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../foundation.util.mediaQuery */ "./js/foundation.util.mediaQuery.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MediaQuery", function() { return _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_6__["MediaQuery"]; });
+
+/* harmony import */ var _foundation_util_motion__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../foundation.util.motion */ "./js/foundation.util.motion.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Motion", function() { return _foundation_util_motion__WEBPACK_IMPORTED_MODULE_7__["Motion"]; });
+
+/* harmony import */ var _foundation_util_nest__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../foundation.util.nest */ "./js/foundation.util.nest.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Nest", function() { return _foundation_util_nest__WEBPACK_IMPORTED_MODULE_8__["Nest"]; });
+
+/* harmony import */ var _foundation_util_timer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../foundation.util.timer */ "./js/foundation.util.timer.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Timer", function() { return _foundation_util_timer__WEBPACK_IMPORTED_MODULE_9__["Timer"]; });
+
+/* harmony import */ var _foundation_util_touch__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../foundation.util.touch */ "./js/foundation.util.touch.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Touch", function() { return _foundation_util_touch__WEBPACK_IMPORTED_MODULE_10__["Touch"]; });
+
+/* harmony import */ var _foundation_util_triggers__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../foundation.util.triggers */ "./js/foundation.util.triggers.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Triggers", function() { return _foundation_util_triggers__WEBPACK_IMPORTED_MODULE_11__["Triggers"]; });
+
+/* harmony import */ var _foundation_abide__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../foundation.abide */ "./js/foundation.abide.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Abide", function() { return _foundation_abide__WEBPACK_IMPORTED_MODULE_12__["Abide"]; });
+
+/* harmony import */ var _foundation_accordion__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../foundation.accordion */ "./js/foundation.accordion.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Accordion", function() { return _foundation_accordion__WEBPACK_IMPORTED_MODULE_13__["Accordion"]; });
+
+/* harmony import */ var _foundation_accordionMenu__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../foundation.accordionMenu */ "./js/foundation.accordionMenu.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AccordionMenu", function() { return _foundation_accordionMenu__WEBPACK_IMPORTED_MODULE_14__["AccordionMenu"]; });
+
+/* harmony import */ var _foundation_drilldown__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../foundation.drilldown */ "./js/foundation.drilldown.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Drilldown", function() { return _foundation_drilldown__WEBPACK_IMPORTED_MODULE_15__["Drilldown"]; });
+
+/* harmony import */ var _foundation_dropdown__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../foundation.dropdown */ "./js/foundation.dropdown.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Dropdown", function() { return _foundation_dropdown__WEBPACK_IMPORTED_MODULE_16__["Dropdown"]; });
+
+/* harmony import */ var _foundation_dropdownMenu__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../foundation.dropdownMenu */ "./js/foundation.dropdownMenu.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DropdownMenu", function() { return _foundation_dropdownMenu__WEBPACK_IMPORTED_MODULE_17__["DropdownMenu"]; });
+
+/* harmony import */ var _foundation_equalizer__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../foundation.equalizer */ "./js/foundation.equalizer.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Equalizer", function() { return _foundation_equalizer__WEBPACK_IMPORTED_MODULE_18__["Equalizer"]; });
+
+/* harmony import */ var _foundation_interchange__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../foundation.interchange */ "./js/foundation.interchange.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Interchange", function() { return _foundation_interchange__WEBPACK_IMPORTED_MODULE_19__["Interchange"]; });
+
+/* harmony import */ var _foundation_magellan__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../foundation.magellan */ "./js/foundation.magellan.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Magellan", function() { return _foundation_magellan__WEBPACK_IMPORTED_MODULE_20__["Magellan"]; });
+
+/* harmony import */ var _foundation_offcanvas__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../foundation.offcanvas */ "./js/foundation.offcanvas.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OffCanvas", function() { return _foundation_offcanvas__WEBPACK_IMPORTED_MODULE_21__["OffCanvas"]; });
+
+/* harmony import */ var _foundation_orbit__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../foundation.orbit */ "./js/foundation.orbit.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Orbit", function() { return _foundation_orbit__WEBPACK_IMPORTED_MODULE_22__["Orbit"]; });
+
+/* harmony import */ var _foundation_responsiveMenu__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../foundation.responsiveMenu */ "./js/foundation.responsiveMenu.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ResponsiveMenu", function() { return _foundation_responsiveMenu__WEBPACK_IMPORTED_MODULE_23__["ResponsiveMenu"]; });
+
+/* harmony import */ var _foundation_responsiveToggle__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../foundation.responsiveToggle */ "./js/foundation.responsiveToggle.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ResponsiveToggle", function() { return _foundation_responsiveToggle__WEBPACK_IMPORTED_MODULE_24__["ResponsiveToggle"]; });
+
+/* harmony import */ var _foundation_reveal__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../foundation.reveal */ "./js/foundation.reveal.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reveal", function() { return _foundation_reveal__WEBPACK_IMPORTED_MODULE_25__["Reveal"]; });
+
+/* harmony import */ var _foundation_slider__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../foundation.slider */ "./js/foundation.slider.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Slider", function() { return _foundation_slider__WEBPACK_IMPORTED_MODULE_26__["Slider"]; });
+
+/* harmony import */ var _foundation_smoothScroll__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ../foundation.smoothScroll */ "./js/foundation.smoothScroll.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SmoothScroll", function() { return _foundation_smoothScroll__WEBPACK_IMPORTED_MODULE_27__["SmoothScroll"]; });
+
+/* harmony import */ var _foundation_sticky__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ../foundation.sticky */ "./js/foundation.sticky.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Sticky", function() { return _foundation_sticky__WEBPACK_IMPORTED_MODULE_28__["Sticky"]; });
+
+/* harmony import */ var _foundation_tabs__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../foundation.tabs */ "./js/foundation.tabs.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Tabs", function() { return _foundation_tabs__WEBPACK_IMPORTED_MODULE_29__["Tabs"]; });
+
+/* harmony import */ var _foundation_toggler__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../foundation.toggler */ "./js/foundation.toggler.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Toggler", function() { return _foundation_toggler__WEBPACK_IMPORTED_MODULE_30__["Toggler"]; });
+
+/* harmony import */ var _foundation_tooltip__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ../foundation.tooltip */ "./js/foundation.tooltip.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Tooltip", function() { return _foundation_tooltip__WEBPACK_IMPORTED_MODULE_31__["Tooltip"]; });
+
+/* harmony import */ var _foundation_responsiveAccordionTabs__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../foundation.responsiveAccordionTabs */ "./js/foundation.responsiveAccordionTabs.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ResponsiveAccordionTabs", function() { return _foundation_responsiveAccordionTabs__WEBPACK_IMPORTED_MODULE_32__["ResponsiveAccordionTabs"]; });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].addToJquery(jquery__WEBPACK_IMPORTED_MODULE_0___default.a); // Add Foundation Utils to Foundation global namespace for backwards
+// compatibility.
+
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].rtl = _foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__["rtl"];
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].GetYoDigits = _foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__["GetYoDigits"];
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].transitionend = _foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__["transitionend"];
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].RegExpEscape = _foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__["RegExpEscape"];
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].onLoad = _foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__["onLoad"];
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].Box = _foundation_util_box__WEBPACK_IMPORTED_MODULE_3__["Box"];
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].onImagesLoaded = _foundation_util_imageLoader__WEBPACK_IMPORTED_MODULE_4__["onImagesLoaded"];
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].Keyboard = _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_5__["Keyboard"];
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].MediaQuery = _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_6__["MediaQuery"];
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].Motion = _foundation_util_motion__WEBPACK_IMPORTED_MODULE_7__["Motion"];
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].Move = _foundation_util_motion__WEBPACK_IMPORTED_MODULE_7__["Move"];
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].Nest = _foundation_util_nest__WEBPACK_IMPORTED_MODULE_8__["Nest"];
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].Timer = _foundation_util_timer__WEBPACK_IMPORTED_MODULE_9__["Timer"]; // Touch and Triggers previously were almost purely sede effect driven,
+// so no need to add it to Foundation, just init them.
+
+_foundation_util_touch__WEBPACK_IMPORTED_MODULE_10__["Touch"].init(jquery__WEBPACK_IMPORTED_MODULE_0___default.a);
+_foundation_util_triggers__WEBPACK_IMPORTED_MODULE_11__["Triggers"].init(jquery__WEBPACK_IMPORTED_MODULE_0___default.a, _foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"]);
+
+_foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_6__["MediaQuery"]._init();
+
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_abide__WEBPACK_IMPORTED_MODULE_12__["Abide"], 'Abide');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_accordion__WEBPACK_IMPORTED_MODULE_13__["Accordion"], 'Accordion');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_accordionMenu__WEBPACK_IMPORTED_MODULE_14__["AccordionMenu"], 'AccordionMenu');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_drilldown__WEBPACK_IMPORTED_MODULE_15__["Drilldown"], 'Drilldown');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_dropdown__WEBPACK_IMPORTED_MODULE_16__["Dropdown"], 'Dropdown');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_dropdownMenu__WEBPACK_IMPORTED_MODULE_17__["DropdownMenu"], 'DropdownMenu');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_equalizer__WEBPACK_IMPORTED_MODULE_18__["Equalizer"], 'Equalizer');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_interchange__WEBPACK_IMPORTED_MODULE_19__["Interchange"], 'Interchange');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_magellan__WEBPACK_IMPORTED_MODULE_20__["Magellan"], 'Magellan');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_offcanvas__WEBPACK_IMPORTED_MODULE_21__["OffCanvas"], 'OffCanvas');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_orbit__WEBPACK_IMPORTED_MODULE_22__["Orbit"], 'Orbit');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_responsiveMenu__WEBPACK_IMPORTED_MODULE_23__["ResponsiveMenu"], 'ResponsiveMenu');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_responsiveToggle__WEBPACK_IMPORTED_MODULE_24__["ResponsiveToggle"], 'ResponsiveToggle');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_reveal__WEBPACK_IMPORTED_MODULE_25__["Reveal"], 'Reveal');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_slider__WEBPACK_IMPORTED_MODULE_26__["Slider"], 'Slider');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_smoothScroll__WEBPACK_IMPORTED_MODULE_27__["SmoothScroll"], 'SmoothScroll');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_sticky__WEBPACK_IMPORTED_MODULE_28__["Sticky"], 'Sticky');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_tabs__WEBPACK_IMPORTED_MODULE_29__["Tabs"], 'Tabs');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_toggler__WEBPACK_IMPORTED_MODULE_30__["Toggler"], 'Toggler');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_tooltip__WEBPACK_IMPORTED_MODULE_31__["Tooltip"], 'Tooltip');
+_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].plugin(_foundation_responsiveAccordionTabs__WEBPACK_IMPORTED_MODULE_32__["ResponsiveAccordionTabs"], 'ResponsiveAccordionTabs');
+
+/* harmony default export */ __webpack_exports__["default"] = (_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"]);
+
+/***/ }),
+
+/***/ "./js/foundation.abide.js":
+/*!********************************!*\
+  !*** ./js/foundation.abide.js ***!
+  \********************************/
+/*! exports provided: Abide */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Abide", function() { return Abide; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+/**
+ * Abide module.
+ * @module foundation.abide
+ */
+
+var Abide =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(Abide, _Plugin);
+
+  function Abide() {
+    _classCallCheck(this, Abide);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Abide).apply(this, arguments));
+  }
+
+  _createClass(Abide, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of Abide.
+     * @class
+     * @name Abide
+     * @fires Abide#init
+     * @param {Object} element - jQuery object to add the trigger to.
+     * @param {Object} options - Overrides to the default plugin settings.
+     */
+    value: function _setup(element) {
+      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend(true, {}, Abide.defaults, this.$element.data(), options);
+      this.className = 'Abide'; // ie9 back compat
+
+      this._init();
+    }
+    /**
+     * Initializes the Abide plugin and calls functions to get Abide functioning on load.
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      var _this2 = this;
+
+      this.$inputs = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.merge( // Consider as input to validate:
+      this.$element.find('input').not('[type=submit]'), // * all input fields expect submit
+      this.$element.find('textarea, select') // * all textareas and select fields
+      );
+      var $globalErrors = this.$element.find('[data-abide-error]'); // Add a11y attributes to all fields
+
+      if (this.options.a11yAttributes) {
+        this.$inputs.each(function (i, input) {
+          return _this2.addA11yAttributes(jquery__WEBPACK_IMPORTED_MODULE_0___default()(input));
+        });
+        $globalErrors.each(function (i, error) {
+          return _this2.addGlobalErrorA11yAttributes(jquery__WEBPACK_IMPORTED_MODULE_0___default()(error));
+        });
+      }
+
+      this._events();
+    }
+    /**
+     * Initializes events for Abide.
+     * @private
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      var _this3 = this;
+
+      this.$element.off('.abide').on('reset.zf.abide', function () {
+        _this3.resetForm();
+      }).on('submit.zf.abide', function () {
+        return _this3.validateForm();
+      });
+
+      if (this.options.validateOn === 'fieldChange') {
+        this.$inputs.off('change.zf.abide').on('change.zf.abide', function (e) {
+          _this3.validateInput(jquery__WEBPACK_IMPORTED_MODULE_0___default()(e.target));
+        });
+      }
+
+      if (this.options.liveValidate) {
+        this.$inputs.off('input.zf.abide').on('input.zf.abide', function (e) {
+          _this3.validateInput(jquery__WEBPACK_IMPORTED_MODULE_0___default()(e.target));
+        });
+      }
+
+      if (this.options.validateOnBlur) {
+        this.$inputs.off('blur.zf.abide').on('blur.zf.abide', function (e) {
+          _this3.validateInput(jquery__WEBPACK_IMPORTED_MODULE_0___default()(e.target));
+        });
+      }
+    }
+    /**
+     * Calls necessary functions to update Abide upon DOM change
+     * @private
+     */
+
+  }, {
+    key: "_reflow",
+    value: function _reflow() {
+      this._init();
+    }
+    /**
+     * Checks whether or not a form element has the required attribute and if it's checked or not
+     * @param {Object} element - jQuery object to check for required attribute
+     * @returns {Boolean} Boolean value depends on whether or not attribute is checked or empty
+     */
+
+  }, {
+    key: "requiredCheck",
+    value: function requiredCheck($el) {
+      if (!$el.attr('required')) return true;
+      var isGood = true;
+
+      switch ($el[0].type) {
+        case 'checkbox':
+          isGood = $el[0].checked;
+          break;
+
+        case 'select':
+        case 'select-one':
+        case 'select-multiple':
+          var opt = $el.find('option:selected');
+          if (!opt.length || !opt.val()) isGood = false;
+          break;
+
+        default:
+          if (!$el.val() || !$el.val().length) isGood = false;
+      }
+
+      return isGood;
+    }
+    /**
+     * Get:
+     * - Based on $el, the first element(s) corresponding to `formErrorSelector` in this order:
+     *   1. The element's direct sibling('s).
+     *   2. The element's parent's children.
+     * - Element(s) with the attribute `[data-form-error-for]` set with the element's id.
+     *
+     * This allows for multiple form errors per input, though if none are found, no form errors will be shown.
+     *
+     * @param {Object} $el - jQuery object to use as reference to find the form error selector.
+     * @returns {Object} jQuery object with the selector.
+     */
+
+  }, {
+    key: "findFormError",
+    value: function findFormError($el) {
+      var id = $el[0].id;
+      var $error = $el.siblings(this.options.formErrorSelector);
+
+      if (!$error.length) {
+        $error = $el.parent().find(this.options.formErrorSelector);
+      }
+
+      if (id) {
+        $error = $error.add(this.$element.find("[data-form-error-for=\"".concat(id, "\"]")));
+      }
+
+      return $error;
+    }
+    /**
+     * Get the first element in this order:
+     * 2. The <label> with the attribute `[for="someInputId"]`
+     * 3. The `.closest()` <label>
+     *
+     * @param {Object} $el - jQuery object to check for required attribute
+     * @returns {Boolean} Boolean value depends on whether or not attribute is checked or empty
+     */
+
+  }, {
+    key: "findLabel",
+    value: function findLabel($el) {
+      var id = $el[0].id;
+      var $label = this.$element.find("label[for=\"".concat(id, "\"]"));
+
+      if (!$label.length) {
+        return $el.closest('label');
+      }
+
+      return $label;
+    }
+    /**
+     * Get the set of labels associated with a set of radio els in this order
+     * 2. The <label> with the attribute `[for="someInputId"]`
+     * 3. The `.closest()` <label>
+     *
+     * @param {Object} $el - jQuery object to check for required attribute
+     * @returns {Boolean} Boolean value depends on whether or not attribute is checked or empty
+     */
+
+  }, {
+    key: "findRadioLabels",
+    value: function findRadioLabels($els) {
+      var _this4 = this;
+
+      var labels = $els.map(function (i, el) {
+        var id = el.id;
+
+        var $label = _this4.$element.find("label[for=\"".concat(id, "\"]"));
+
+        if (!$label.length) {
+          $label = jquery__WEBPACK_IMPORTED_MODULE_0___default()(el).closest('label');
+        }
+
+        return $label[0];
+      });
+      return jquery__WEBPACK_IMPORTED_MODULE_0___default()(labels);
+    }
+    /**
+     * Adds the CSS error class as specified by the Abide settings to the label, input, and the form
+     * @param {Object} $el - jQuery object to add the class to
+     */
+
+  }, {
+    key: "addErrorClasses",
+    value: function addErrorClasses($el) {
+      var $label = this.findLabel($el);
+      var $formError = this.findFormError($el);
+
+      if ($label.length) {
+        $label.addClass(this.options.labelErrorClass);
+      }
+
+      if ($formError.length) {
+        $formError.addClass(this.options.formErrorClass);
+      }
+
+      $el.addClass(this.options.inputErrorClass).attr({
+        'data-invalid': '',
+        'aria-invalid': true
+      });
+    }
+    /**
+     * Adds [for] and [role=alert] attributes to all form error targetting $el,
+     * and [aria-describedby] attribute to $el toward the first form error.
+     * @param {Object} $el - jQuery object
+     */
+
+  }, {
+    key: "addA11yAttributes",
+    value: function addA11yAttributes($el) {
+      var $errors = this.findFormError($el);
+      var $labels = $errors.filter('label');
+      var $error = $errors.first();
+      if (!$errors.length) return; // Set [aria-describedby] on the input toward the first form error if it is not set
+
+      if (typeof $el.attr('aria-describedby') === 'undefined') {
+        // Get the first error ID or create one
+        var errorId = $error.attr('id');
+
+        if (typeof errorId === 'undefined') {
+          errorId = Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__["GetYoDigits"])(6, 'abide-error');
+          $error.attr('id', errorId);
+        }
+
+        ;
+        $el.attr('aria-describedby', errorId);
+      }
+
+      if ($labels.filter('[for]').length < $labels.length) {
+        // Get the input ID or create one
+        var elemId = $el.attr('id');
+
+        if (typeof elemId === 'undefined') {
+          elemId = Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__["GetYoDigits"])(6, 'abide-input');
+          $el.attr('id', elemId);
+        }
+
+        ; // For each label targeting $el, set [for] if it is not set.
+
+        $labels.each(function (i, label) {
+          var $label = jquery__WEBPACK_IMPORTED_MODULE_0___default()(label);
+          if (typeof $label.attr('for') === 'undefined') $label.attr('for', elemId);
+        });
+      } // For each error targeting $el, set [role=alert] if it is not set.
+
+
+      $errors.each(function (i, label) {
+        var $label = jquery__WEBPACK_IMPORTED_MODULE_0___default()(label);
+        if (typeof $label.attr('role') === 'undefined') $label.attr('role', 'alert');
+      }).end();
+    }
+    /**
+     * Adds [aria-live] attribute to the given global form error $el.
+     * @param {Object} $el - jQuery object to add the attribute to
+     */
+
+  }, {
+    key: "addGlobalErrorA11yAttributes",
+    value: function addGlobalErrorA11yAttributes($el) {
+      if (typeof $el.attr('aria-live') === 'undefined') $el.attr('aria-live', this.options.a11yErrorLevel);
+    }
+    /**
+     * Remove CSS error classes etc from an entire radio button group
+     * @param {String} groupName - A string that specifies the name of a radio button group
+     *
+     */
+
+  }, {
+    key: "removeRadioErrorClasses",
+    value: function removeRadioErrorClasses(groupName) {
+      var $els = this.$element.find(":radio[name=\"".concat(groupName, "\"]"));
+      var $labels = this.findRadioLabels($els);
+      var $formErrors = this.findFormError($els);
+
+      if ($labels.length) {
+        $labels.removeClass(this.options.labelErrorClass);
+      }
+
+      if ($formErrors.length) {
+        $formErrors.removeClass(this.options.formErrorClass);
+      }
+
+      $els.removeClass(this.options.inputErrorClass).attr({
+        'data-invalid': null,
+        'aria-invalid': null
+      });
+    }
+    /**
+     * Removes CSS error class as specified by the Abide settings from the label, input, and the form
+     * @param {Object} $el - jQuery object to remove the class from
+     */
+
+  }, {
+    key: "removeErrorClasses",
+    value: function removeErrorClasses($el) {
+      // radios need to clear all of the els
+      if ($el[0].type == 'radio') {
+        return this.removeRadioErrorClasses($el.attr('name'));
+      }
+
+      var $label = this.findLabel($el);
+      var $formError = this.findFormError($el);
+
+      if ($label.length) {
+        $label.removeClass(this.options.labelErrorClass);
+      }
+
+      if ($formError.length) {
+        $formError.removeClass(this.options.formErrorClass);
+      }
+
+      $el.removeClass(this.options.inputErrorClass).attr({
+        'data-invalid': null,
+        'aria-invalid': null
+      });
+    }
+    /**
+     * Goes through a form to find inputs and proceeds to validate them in ways specific to their type.
+     * Ignores inputs with data-abide-ignore, type="hidden" or disabled attributes set
+     * @fires Abide#invalid
+     * @fires Abide#valid
+     * @param {Object} element - jQuery object to validate, should be an HTML input
+     * @returns {Boolean} goodToGo - If the input is valid or not.
+     */
+
+  }, {
+    key: "validateInput",
+    value: function validateInput($el) {
+      var clearRequire = this.requiredCheck($el),
+          validated = false,
+          customValidator = true,
+          validator = $el.attr('data-validator'),
+          equalTo = true; // don't validate ignored inputs or hidden inputs or disabled inputs
+
+      if ($el.is('[data-abide-ignore]') || $el.is('[type="hidden"]') || $el.is('[disabled]')) {
+        return true;
+      }
+
+      switch ($el[0].type) {
+        case 'radio':
+          validated = this.validateRadio($el.attr('name'));
+          break;
+
+        case 'checkbox':
+          validated = clearRequire;
+          break;
+
+        case 'select':
+        case 'select-one':
+        case 'select-multiple':
+          validated = clearRequire;
+          break;
+
+        default:
+          validated = this.validateText($el);
+      }
+
+      if (validator) {
+        customValidator = this.matchValidation($el, validator, $el.attr('required'));
+      }
+
+      if ($el.attr('data-equalto')) {
+        equalTo = this.options.validators.equalTo($el);
+      }
+
+      var goodToGo = [clearRequire, validated, customValidator, equalTo].indexOf(false) === -1;
+      var message = (goodToGo ? 'valid' : 'invalid') + '.zf.abide';
+
+      if (goodToGo) {
+        // Re-validate inputs that depend on this one with equalto
+        var dependentElements = this.$element.find("[data-equalto=\"".concat($el.attr('id'), "\"]"));
+
+        if (dependentElements.length) {
+          var _this = this;
+
+          dependentElements.each(function () {
+            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val()) {
+              _this.validateInput(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+            }
+          });
+        }
+      }
+
+      this[goodToGo ? 'removeErrorClasses' : 'addErrorClasses']($el);
+      /**
+       * Fires when the input is done checking for validation. Event trigger is either `valid.zf.abide` or `invalid.zf.abide`
+       * Trigger includes the DOM element of the input.
+       * @event Abide#valid
+       * @event Abide#invalid
+       */
+
+      $el.trigger(message, [$el]);
+      return goodToGo;
+    }
+    /**
+     * Goes through a form and if there are any invalid inputs, it will display the form error element
+     * @returns {Boolean} noError - true if no errors were detected...
+     * @fires Abide#formvalid
+     * @fires Abide#forminvalid
+     */
+
+  }, {
+    key: "validateForm",
+    value: function validateForm() {
+      var _this5 = this;
+
+      var acc = [];
+
+      var _this = this;
+
+      this.$inputs.each(function () {
+        acc.push(_this.validateInput(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this)));
+      });
+      var noError = acc.indexOf(false) === -1;
+      this.$element.find('[data-abide-error]').each(function (i, elem) {
+        var $elem = jquery__WEBPACK_IMPORTED_MODULE_0___default()(elem); // Ensure a11y attributes are set
+
+        if (_this5.options.a11yAttributes) _this5.addGlobalErrorA11yAttributes($elem); // Show or hide the error
+
+        $elem.css('display', noError ? 'none' : 'block');
+      });
+      /**
+       * Fires when the form is finished validating. Event trigger is either `formvalid.zf.abide` or `forminvalid.zf.abide`.
+       * Trigger includes the element of the form.
+       * @event Abide#formvalid
+       * @event Abide#forminvalid
+       */
+
+      this.$element.trigger((noError ? 'formvalid' : 'forminvalid') + '.zf.abide', [this.$element]);
+      return noError;
+    }
+    /**
+     * Determines whether or a not a text input is valid based on the pattern specified in the attribute. If no matching pattern is found, returns true.
+     * @param {Object} $el - jQuery object to validate, should be a text input HTML element
+     * @param {String} pattern - string value of one of the RegEx patterns in Abide.options.patterns
+     * @returns {Boolean} Boolean value depends on whether or not the input value matches the pattern specified
+     */
+
+  }, {
+    key: "validateText",
+    value: function validateText($el, pattern) {
+      // A pattern can be passed to this function, or it will be infered from the input's "pattern" attribute, or it's "type" attribute
+      pattern = pattern || $el.attr('pattern') || $el.attr('type');
+      var inputText = $el.val();
+      var valid = false;
+
+      if (inputText.length) {
+        // If the pattern attribute on the element is in Abide's list of patterns, then test that regexp
+        if (this.options.patterns.hasOwnProperty(pattern)) {
+          valid = this.options.patterns[pattern].test(inputText);
+        } // If the pattern name isn't also the type attribute of the field, then test it as a regexp
+        else if (pattern !== $el.attr('type')) {
+            valid = new RegExp(pattern).test(inputText);
+          } else {
+            valid = true;
+          }
+      } // An empty field is valid if it's not required
+      else if (!$el.prop('required')) {
+          valid = true;
+        }
+
+      return valid;
+    }
+    /**
+     * Determines whether or a not a radio input is valid based on whether or not it is required and selected. Although the function targets a single `<input>`, it validates by checking the `required` and `checked` properties of all radio buttons in its group.
+     * @param {String} groupName - A string that specifies the name of a radio button group
+     * @returns {Boolean} Boolean value depends on whether or not at least one radio input has been selected (if it's required)
+     */
+
+  }, {
+    key: "validateRadio",
+    value: function validateRadio(groupName) {
+      // If at least one radio in the group has the `required` attribute, the group is considered required
+      // Per W3C spec, all radio buttons in a group should have `required`, but we're being nice
+      var $group = this.$element.find(":radio[name=\"".concat(groupName, "\"]"));
+      var valid = false,
+          required = false; // For the group to be required, at least one radio needs to be required
+
+      $group.each(function (i, e) {
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(e).attr('required')) {
+          required = true;
+        }
+      });
+      if (!required) valid = true;
+
+      if (!valid) {
+        // For the group to be valid, at least one radio needs to be checked
+        $group.each(function (i, e) {
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(e).prop('checked')) {
+            valid = true;
+          }
+        });
+      }
+
+      ;
+      return valid;
+    }
+    /**
+     * Determines if a selected input passes a custom validation function. Multiple validations can be used, if passed to the element with `data-validator="foo bar baz"` in a space separated listed.
+     * @param {Object} $el - jQuery input element.
+     * @param {String} validators - a string of function names matching functions in the Abide.options.validators object.
+     * @param {Boolean} required - self explanatory?
+     * @returns {Boolean} - true if validations passed.
+     */
+
+  }, {
+    key: "matchValidation",
+    value: function matchValidation($el, validators, required) {
+      var _this6 = this;
+
+      required = required ? true : false;
+      var clear = validators.split(' ').map(function (v) {
+        return _this6.options.validators[v]($el, required, $el.parent());
+      });
+      return clear.indexOf(false) === -1;
+    }
+    /**
+     * Resets form inputs and styles
+     * @fires Abide#formreset
+     */
+
+  }, {
+    key: "resetForm",
+    value: function resetForm() {
+      var $form = this.$element,
+          opts = this.options;
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".".concat(opts.labelErrorClass), $form).not('small').removeClass(opts.labelErrorClass);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".".concat(opts.inputErrorClass), $form).not('small').removeClass(opts.inputErrorClass);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("".concat(opts.formErrorSelector, ".").concat(opts.formErrorClass)).removeClass(opts.formErrorClass);
+      $form.find('[data-abide-error]').css('display', 'none');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(':input', $form).not(':button, :submit, :reset, :hidden, :radio, :checkbox, [data-abide-ignore]').val('').attr({
+        'data-invalid': null,
+        'aria-invalid': null
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(':input:radio', $form).not('[data-abide-ignore]').prop('checked', false).attr({
+        'data-invalid': null,
+        'aria-invalid': null
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(':input:checkbox', $form).not('[data-abide-ignore]').prop('checked', false).attr({
+        'data-invalid': null,
+        'aria-invalid': null
+      });
+      /**
+       * Fires when the form has been reset.
+       * @event Abide#formreset
+       */
+
+      $form.trigger('formreset.zf.abide', [$form]);
+    }
+    /**
+     * Destroys an instance of Abide.
+     * Removes error styles and classes from elements, without resetting their values.
+     */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      var _this = this;
+
+      this.$element.off('.abide').find('[data-abide-error]').css('display', 'none');
+      this.$inputs.off('.abide').each(function () {
+        _this.removeErrorClasses(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+      });
+    }
+  }]);
+
+  return Abide;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_1__["Plugin"]);
+/**
+ * Default settings for plugin
+ */
+
+
+Abide.defaults = {
+  /**
+   * The default event to validate inputs. Checkboxes and radios validate immediately.
+   * Remove or change this value for manual validation.
+   * @option
+   * @type {?string}
+   * @default 'fieldChange'
+   */
+  validateOn: 'fieldChange',
+
+  /**
+   * Class to be applied to input labels on failed validation.
+   * @option
+   * @type {string}
+   * @default 'is-invalid-label'
+   */
+  labelErrorClass: 'is-invalid-label',
+
+  /**
+   * Class to be applied to inputs on failed validation.
+   * @option
+   * @type {string}
+   * @default 'is-invalid-input'
+   */
+  inputErrorClass: 'is-invalid-input',
+
+  /**
+   * Class selector to use to target Form Errors for show/hide.
+   * @option
+   * @type {string}
+   * @default '.form-error'
+   */
+  formErrorSelector: '.form-error',
+
+  /**
+   * Class added to Form Errors on failed validation.
+   * @option
+   * @type {string}
+   * @default 'is-visible'
+   */
+  formErrorClass: 'is-visible',
+
+  /**
+   * If true, automatically insert when possible:
+   * - `[aria-describedby]` on fields
+   * - `[role=alert]` on form errors and `[for]` on form error labels
+   * - `[aria-live]` on global errors `[data-abide-error]` (see option `a11yErrorLevel`).
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  a11yAttributes: true,
+
+  /**
+   * [aria-live] attribute value to be applied on global errors `[data-abide-error]`.
+   * Options are: 'assertive', 'polite' and 'off'/null
+   * @option
+   * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions
+   * @type {string}
+   * @default 'assertive'
+   */
+  a11yErrorLevel: 'assertive',
+
+  /**
+   * Set to true to validate text inputs on any value change.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  liveValidate: false,
+
+  /**
+   * Set to true to validate inputs on blur.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  validateOnBlur: false,
+  patterns: {
+    alpha: /^[a-zA-Z]+$/,
+    alpha_numeric: /^[a-zA-Z0-9]+$/,
+    integer: /^[-+]?\d+$/,
+    number: /^[-+]?\d*(?:[\.\,]\d+)?$/,
+    // amex, visa, diners
+    card: /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|(?:222[1-9]|2[3-6][0-9]{2}|27[0-1][0-9]|2720)[0-9]{12}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/,
+    cvv: /^([0-9]){3,4}$/,
+    // http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#valid-e-mail-address
+    email: /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/,
+    // From CommonRegexJS (@talyssonoc)
+    // https://github.com/talyssonoc/CommonRegexJS/blob/e2901b9f57222bc14069dc8f0598d5f412555411/lib/commonregex.js#L76
+    // For more restrictive URL Regexs, see https://mathiasbynens.be/demo/url-regex.
+    url: /^((?:(https?|ftps?|file|ssh|sftp):\/\/|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\((?:[^\s()<>]+|(?:\([^\s()<>]+\)))*\))+(?:\((?:[^\s()<>]+|(?:\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?\xab\xbb\u201c\u201d\u2018\u2019]))$/,
+    // abc.de
+    domain: /^([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,8}$/,
+    datetime: /^([0-2][0-9]{3})\-([0-1][0-9])\-([0-3][0-9])T([0-5][0-9])\:([0-5][0-9])\:([0-5][0-9])(Z|([\-\+]([0-1][0-9])\:00))$/,
+    // YYYY-MM-DD
+    date: /(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))$/,
+    // HH:MM:SS
+    time: /^(0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}$/,
+    dateISO: /^\d{4}[\/\-]\d{1,2}[\/\-]\d{1,2}$/,
+    // MM/DD/YYYY
+    month_day_year: /^(0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])[- \/.]\d{4}$/,
+    // DD/MM/YYYY
+    day_month_year: /^(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.]\d{4}$/,
+    // #FFF or #FFFFFF
+    color: /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/,
+    // Domain || URL
+    website: {
+      test: function test(text) {
+        return Abide.defaults.patterns['domain'].test(text) || Abide.defaults.patterns['url'].test(text);
+      }
+    }
+  },
+
+  /**
+   * Optional validation functions to be used. `equalTo` being the only default included function.
+   * Functions should return only a boolean if the input is valid or not. Functions are given the following arguments:
+   * el : The jQuery element to validate.
+   * required : Boolean value of the required attribute be present or not.
+   * parent : The direct parent of the input.
+   * @option
+   */
+  validators: {
+    equalTo: function equalTo(el, required, parent) {
+      return jquery__WEBPACK_IMPORTED_MODULE_0___default()("#".concat(el.attr('data-equalto'))).val() === el.val();
+    }
+  }
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.accordion.js":
+/*!************************************!*\
+  !*** ./js/foundation.accordion.js ***!
+  \************************************/
+/*! exports provided: Accordion */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Accordion", function() { return Accordion; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.util.keyboard */ "./js/foundation.util.keyboard.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+/**
+ * Accordion module.
+ * @module foundation.accordion
+ * @requires foundation.util.keyboard
+ */
+
+var Accordion =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(Accordion, _Plugin);
+
+  function Accordion() {
+    _classCallCheck(this, Accordion);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Accordion).apply(this, arguments));
+  }
+
+  _createClass(Accordion, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of an accordion.
+     * @class
+     * @name Accordion
+     * @fires Accordion#init
+     * @param {jQuery} element - jQuery object to make into an accordion.
+     * @param {Object} options - a plain object with settings to override the default options.
+     */
+    value: function _setup(element, options) {
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, Accordion.defaults, this.$element.data(), options);
+      this.className = 'Accordion'; // ie9 back compat
+
+      this._init();
+
+      _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__["Keyboard"].register('Accordion', {
+        'ENTER': 'toggle',
+        'SPACE': 'toggle',
+        'ARROW_DOWN': 'next',
+        'ARROW_UP': 'previous'
+      });
+    }
+    /**
+     * Initializes the accordion by animating the preset active pane(s).
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      var _this2 = this;
+
+      this._isInitializing = true;
+      this.$element.attr('role', 'tablist');
+      this.$tabs = this.$element.children('[data-accordion-item]');
+      this.$tabs.each(function (idx, el) {
+        var $el = jquery__WEBPACK_IMPORTED_MODULE_0___default()(el),
+            $content = $el.children('[data-tab-content]'),
+            id = $content[0].id || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["GetYoDigits"])(6, 'accordion'),
+            linkId = el.id ? "".concat(el.id, "-label") : "".concat(id, "-label");
+        $el.find('a:first').attr({
+          'aria-controls': id,
+          'role': 'tab',
+          'id': linkId,
+          'aria-expanded': false,
+          'aria-selected': false
+        });
+        $content.attr({
+          'role': 'tabpanel',
+          'aria-labelledby': linkId,
+          'aria-hidden': true,
+          'id': id
+        });
+      });
+      var $initActive = this.$element.find('.is-active').children('[data-tab-content]');
+
+      if ($initActive.length) {
+        // Save up the initial hash to return to it later when going back in history
+        this._initialAnchor = $initActive.prev('a').attr('href');
+
+        this._openSingleTab($initActive);
+      }
+
+      this._checkDeepLink = function () {
+        var anchor = window.location.hash;
+
+        if (!anchor.length) {
+          // If we are still initializing and there is no anchor, then there is nothing to do
+          if (_this2._isInitializing) return; // Otherwise, move to the initial anchor
+
+          if (_this2._initialAnchor) anchor = _this2._initialAnchor;
+        }
+
+        var $anchor = anchor && jquery__WEBPACK_IMPORTED_MODULE_0___default()(anchor);
+
+        var $link = anchor && _this2.$element.find("[href$=\"".concat(anchor, "\"]")); // Whether the anchor element that has been found is part of this element
+
+
+        var isOwnAnchor = !!($anchor.length && $link.length); // If there is an anchor for the hash, open it (if not already active)
+
+        if ($anchor && $link && $link.length) {
+          if (!$link.parent('[data-accordion-item]').hasClass('is-active')) {
+            _this2._openSingleTab($anchor);
+          }
+
+          ;
+        } // Otherwise, close everything
+        else {
+            _this2._closeAllTabs();
+          }
+
+        if (isOwnAnchor) {
+          // Roll up a little to show the titles
+          if (_this2.options.deepLinkSmudge) {
+            Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["onLoad"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(window), function () {
+              var offset = _this2.$element.offset();
+
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('html, body').animate({
+                scrollTop: offset.top
+              }, _this2.options.deepLinkSmudgeDelay);
+            });
+          }
+          /**
+           * Fires when the plugin has deeplinked at pageload
+           * @event Accordion#deeplink
+           */
+
+
+          _this2.$element.trigger('deeplink.zf.accordion', [$link, $anchor]);
+        }
+      }; //use browser to open a tab, if it exists in this tabset
+
+
+      if (this.options.deepLink) {
+        this._checkDeepLink();
+      }
+
+      this._events();
+
+      this._isInitializing = false;
+    }
+    /**
+     * Adds event handlers for items within the accordion.
+     * @private
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      var _this = this;
+
+      this.$tabs.each(function () {
+        var $elem = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+        var $tabContent = $elem.children('[data-tab-content]');
+
+        if ($tabContent.length) {
+          $elem.children('a').off('click.zf.accordion keydown.zf.accordion').on('click.zf.accordion', function (e) {
+            e.preventDefault();
+
+            _this.toggle($tabContent);
+          }).on('keydown.zf.accordion', function (e) {
+            _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__["Keyboard"].handleKey(e, 'Accordion', {
+              toggle: function toggle() {
+                _this.toggle($tabContent);
+              },
+              next: function next() {
+                var $a = $elem.next().find('a').focus();
+
+                if (!_this.options.multiExpand) {
+                  $a.trigger('click.zf.accordion');
+                }
+              },
+              previous: function previous() {
+                var $a = $elem.prev().find('a').focus();
+
+                if (!_this.options.multiExpand) {
+                  $a.trigger('click.zf.accordion');
+                }
+              },
+              handled: function handled() {
+                e.preventDefault();
+                e.stopPropagation();
+              }
+            });
+          });
+        }
+      });
+
+      if (this.options.deepLink) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on('hashchange', this._checkDeepLink);
+      }
+    }
+    /**
+     * Toggles the selected content pane's open/close state.
+     * @param {jQuery} $target - jQuery object of the pane to toggle (`.accordion-content`).
+     * @function
+     */
+
+  }, {
+    key: "toggle",
+    value: function toggle($target) {
+      if ($target.closest('[data-accordion]').is('[disabled]')) {
+        console.info('Cannot toggle an accordion that is disabled.');
+        return;
+      }
+
+      if ($target.parent().hasClass('is-active')) {
+        this.up($target);
+      } else {
+        this.down($target);
+      } //either replace or update browser history
+
+
+      if (this.options.deepLink) {
+        var anchor = $target.prev('a').attr('href');
+
+        if (this.options.updateHistory) {
+          history.pushState({}, '', anchor);
+        } else {
+          history.replaceState({}, '', anchor);
+        }
+      }
+    }
+    /**
+     * Opens the accordion tab defined by `$target`.
+     * @param {jQuery} $target - Accordion pane to open (`.accordion-content`).
+     * @fires Accordion#down
+     * @function
+     */
+
+  }, {
+    key: "down",
+    value: function down($target) {
+      if ($target.closest('[data-accordion]').is('[disabled]')) {
+        console.info('Cannot call down on an accordion that is disabled.');
+        return;
+      }
+
+      if (this.options.multiExpand) this._openTab($target);else this._openSingleTab($target);
+    }
+    /**
+     * Closes the tab defined by `$target`.
+     * It may be ignored if the Accordion options don't allow it.
+     *
+     * @param {jQuery} $target - Accordion tab to close (`.accordion-content`).
+     * @fires Accordion#up
+     * @function
+     */
+
+  }, {
+    key: "up",
+    value: function up($target) {
+      if (this.$element.is('[disabled]')) {
+        console.info('Cannot call up on an accordion that is disabled.');
+        return;
+      } // Don't close the item if it is already closed
+
+
+      var $targetItem = $target.parent();
+      if (!$targetItem.hasClass('is-active')) return; // Don't close the item if there is no other active item (unless with `allowAllClosed`)
+
+      var $othersItems = $targetItem.siblings();
+      if (!this.options.allowAllClosed && !$othersItems.hasClass('is-active')) return;
+
+      this._closeTab($target);
+    }
+    /**
+     * Make the tab defined by `$target` the only opened tab, closing all others tabs.
+     * @param {jQuery} $target - Accordion tab to open (`.accordion-content`).
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_openSingleTab",
+    value: function _openSingleTab($target) {
+      // Close all the others active tabs.
+      var $activeContents = this.$element.children('.is-active').children('[data-tab-content]');
+
+      if ($activeContents.length) {
+        this._closeTab($activeContents.not($target));
+      } // Then open the target.
+
+
+      this._openTab($target);
+    }
+    /**
+     * Opens the tab defined by `$target`.
+     * @param {jQuery} $target - Accordion tab to open (`.accordion-content`).
+     * @fires Accordion#down
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_openTab",
+    value: function _openTab($target) {
+      var _this3 = this;
+
+      var $targetItem = $target.parent();
+      var targetContentId = $target.attr('aria-labelledby');
+      $target.attr('aria-hidden', false);
+      $targetItem.addClass('is-active');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#".concat(targetContentId)).attr({
+        'aria-expanded': true,
+        'aria-selected': true
+      });
+      $target.slideDown(this.options.slideSpeed, function () {
+        /**
+         * Fires when the tab is done opening.
+         * @event Accordion#down
+         */
+        _this3.$element.trigger('down.zf.accordion', [$target]);
+      });
+    }
+    /**
+     * Closes the tab defined by `$target`.
+     * @param {jQuery} $target - Accordion tab to close (`.accordion-content`).
+     * @fires Accordion#up
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_closeTab",
+    value: function _closeTab($target) {
+      var _this4 = this;
+
+      var $targetItem = $target.parent();
+      var targetContentId = $target.attr('aria-labelledby');
+      $target.attr('aria-hidden', true);
+      $targetItem.removeClass('is-active');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#".concat(targetContentId)).attr({
+        'aria-expanded': false,
+        'aria-selected': false
+      });
+      $target.slideUp(this.options.slideSpeed, function () {
+        /**
+         * Fires when the tab is done collapsing up.
+         * @event Accordion#up
+         */
+        _this4.$element.trigger('up.zf.accordion', [$target]);
+      });
+    }
+    /**
+     * Closes all active tabs
+     * @fires Accordion#up
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_closeAllTabs",
+    value: function _closeAllTabs() {
+      var $activeTabs = this.$element.children('.is-active').children('[data-tab-content]');
+
+      if ($activeTabs.length) {
+        this._closeTab($activeTabs);
+      }
+    }
+    /**
+     * Destroys an instance of an accordion.
+     * @fires Accordion#destroyed
+     * @function
+     */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      this.$element.find('[data-tab-content]').stop(true).slideUp(0).css('display', '');
+      this.$element.find('a').off('.zf.accordion');
+
+      if (this.options.deepLink) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off('hashchange', this._checkDeepLink);
+      }
+    }
+  }]);
+
+  return Accordion;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_3__["Plugin"]);
+
+Accordion.defaults = {
+  /**
+   * Amount of time to animate the opening of an accordion pane.
+   * @option
+   * @type {number}
+   * @default 250
+   */
+  slideSpeed: 250,
+
+  /**
+   * Allow the accordion to have multiple open panes.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  multiExpand: false,
+
+  /**
+   * Allow the accordion to close all panes.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  allowAllClosed: false,
+
+  /**
+   * Link the location hash to the open pane.
+   * Set the location hash when the opened pane changes, and open and scroll to the corresponding pane when the location changes.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  deepLink: false,
+
+  /**
+   * If `deepLink` is enabled, adjust the deep link scroll to make sure the top of the accordion panel is visible
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  deepLinkSmudge: false,
+
+  /**
+   * If `deepLinkSmudge` is enabled, animation time (ms) for the deep link adjustment
+   * @option
+   * @type {number}
+   * @default 300
+   */
+  deepLinkSmudgeDelay: 300,
+
+  /**
+   * If `deepLink` is enabled, update the browser history with the open accordion
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  updateHistory: false
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.accordionMenu.js":
+/*!****************************************!*\
+  !*** ./js/foundation.accordionMenu.js ***!
+  \****************************************/
+/*! exports provided: AccordionMenu */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AccordionMenu", function() { return AccordionMenu; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.util.keyboard */ "./js/foundation.util.keyboard.js");
+/* harmony import */ var _foundation_util_nest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.util.nest */ "./js/foundation.util.nest.js");
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+/**
+ * AccordionMenu module.
+ * @module foundation.accordionMenu
+ * @requires foundation.util.keyboard
+ * @requires foundation.util.nest
+ */
+
+var AccordionMenu =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(AccordionMenu, _Plugin);
+
+  function AccordionMenu() {
+    _classCallCheck(this, AccordionMenu);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(AccordionMenu).apply(this, arguments));
+  }
+
+  _createClass(AccordionMenu, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of an accordion menu.
+     * @class
+     * @name AccordionMenu
+     * @fires AccordionMenu#init
+     * @param {jQuery} element - jQuery object to make into an accordion menu.
+     * @param {Object} options - Overrides to the default plugin settings.
+     */
+    value: function _setup(element, options) {
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, AccordionMenu.defaults, this.$element.data(), options);
+      this.className = 'AccordionMenu'; // ie9 back compat
+
+      this._init();
+
+      _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__["Keyboard"].register('AccordionMenu', {
+        'ENTER': 'toggle',
+        'SPACE': 'toggle',
+        'ARROW_RIGHT': 'open',
+        'ARROW_UP': 'up',
+        'ARROW_DOWN': 'down',
+        'ARROW_LEFT': 'close',
+        'ESCAPE': 'closeAll'
+      });
+    }
+    /**
+     * Initializes the accordion menu by hiding all nested menus.
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      _foundation_util_nest__WEBPACK_IMPORTED_MODULE_2__["Nest"].Feather(this.$element, 'accordion');
+
+      var _this = this;
+
+      this.$element.find('[data-submenu]').not('.is-active').slideUp(0); //.find('a').css('padding-left', '1rem');
+
+      this.$element.attr({
+        'role': 'tree',
+        'aria-multiselectable': this.options.multiOpen
+      });
+      this.$menuLinks = this.$element.find('.is-accordion-submenu-parent');
+      this.$menuLinks.each(function () {
+        var linkId = this.id || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__["GetYoDigits"])(6, 'acc-menu-link'),
+            $elem = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
+            $sub = $elem.children('[data-submenu]'),
+            subId = $sub[0].id || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__["GetYoDigits"])(6, 'acc-menu'),
+            isActive = $sub.hasClass('is-active');
+
+        if (_this.options.parentLink) {
+          var $anchor = $elem.children('a');
+          $anchor.clone().prependTo($sub).wrap('<li data-is-parent-link class="is-submenu-parent-item is-submenu-item is-accordion-submenu-item"></li>');
+        }
+
+        if (_this.options.submenuToggle) {
+          $elem.addClass('has-submenu-toggle');
+          $elem.children('a').after('<button id="' + linkId + '" class="submenu-toggle" aria-controls="' + subId + '" aria-expanded="' + isActive + '" title="' + _this.options.submenuToggleText + '"><span class="submenu-toggle-text">' + _this.options.submenuToggleText + '</span></button>');
+        } else {
+          $elem.attr({
+            'aria-controls': subId,
+            'aria-expanded': isActive,
+            'id': linkId
+          });
+        }
+
+        $sub.attr({
+          'aria-labelledby': linkId,
+          'aria-hidden': !isActive,
+          'role': 'group',
+          'id': subId
+        });
+      });
+      this.$element.find('li').attr({
+        'role': 'treeitem'
+      });
+      var initPanes = this.$element.find('.is-active');
+
+      if (initPanes.length) {
+        var _this = this;
+
+        initPanes.each(function () {
+          _this.down(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+        });
+      }
+
+      this._events();
+    }
+    /**
+     * Adds event handlers for items within the menu.
+     * @private
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      var _this = this;
+
+      this.$element.find('li').each(function () {
+        var $submenu = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).children('[data-submenu]');
+
+        if ($submenu.length) {
+          if (_this.options.submenuToggle) {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).children('.submenu-toggle').off('click.zf.accordionMenu').on('click.zf.accordionMenu', function (e) {
+              _this.toggle($submenu);
+            });
+          } else {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).children('a').off('click.zf.accordionMenu').on('click.zf.accordionMenu', function (e) {
+              e.preventDefault();
+
+              _this.toggle($submenu);
+            });
+          }
+        }
+      }).on('keydown.zf.accordionmenu', function (e) {
+        var $element = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
+            $elements = $element.parent('ul').children('li'),
+            $prevElement,
+            $nextElement,
+            $target = $element.children('[data-submenu]');
+        $elements.each(function (i) {
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).is($element)) {
+            $prevElement = $elements.eq(Math.max(0, i - 1)).find('a').first();
+            $nextElement = $elements.eq(Math.min(i + 1, $elements.length - 1)).find('a').first();
+
+            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).children('[data-submenu]:visible').length) {
+              // has open sub menu
+              $nextElement = $element.find('li:first-child').find('a').first();
+            }
+
+            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).is(':first-child')) {
+              // is first element of sub menu
+              $prevElement = $element.parents('li').first().find('a').first();
+            } else if ($prevElement.parents('li').first().children('[data-submenu]:visible').length) {
+              // if previous element has open sub menu
+              $prevElement = $prevElement.parents('li').find('li:last-child').find('a').first();
+            }
+
+            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).is(':last-child')) {
+              // is last element of sub menu
+              $nextElement = $element.parents('li').first().next('li').find('a').first();
+            }
+
+            return;
+          }
+        });
+        _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__["Keyboard"].handleKey(e, 'AccordionMenu', {
+          open: function open() {
+            if ($target.is(':hidden')) {
+              _this.down($target);
+
+              $target.find('li').first().find('a').first().focus();
+            }
+          },
+          close: function close() {
+            if ($target.length && !$target.is(':hidden')) {
+              // close active sub of this item
+              _this.up($target);
+            } else if ($element.parent('[data-submenu]').length) {
+              // close currently open sub
+              _this.up($element.parent('[data-submenu]'));
+
+              $element.parents('li').first().find('a').first().focus();
+            }
+          },
+          up: function up() {
+            $prevElement.focus();
+            return true;
+          },
+          down: function down() {
+            $nextElement.focus();
+            return true;
+          },
+          toggle: function toggle() {
+            if (_this.options.submenuToggle) {
+              return false;
+            }
+
+            if ($element.children('[data-submenu]').length) {
+              _this.toggle($element.children('[data-submenu]'));
+
+              return true;
+            }
+          },
+          closeAll: function closeAll() {
+            _this.hideAll();
+          },
+          handled: function handled(preventDefault) {
+            if (preventDefault) {
+              e.preventDefault();
+            }
+
+            e.stopImmediatePropagation();
+          }
+        });
+      }); //.attr('tabindex', 0);
+    }
+    /**
+     * Closes all panes of the menu.
+     * @function
+     */
+
+  }, {
+    key: "hideAll",
+    value: function hideAll() {
+      this.up(this.$element.find('[data-submenu]'));
+    }
+    /**
+     * Opens all panes of the menu.
+     * @function
+     */
+
+  }, {
+    key: "showAll",
+    value: function showAll() {
+      this.down(this.$element.find('[data-submenu]'));
+    }
+    /**
+     * Toggles the open/close state of a submenu.
+     * @function
+     * @param {jQuery} $target - the submenu to toggle
+     */
+
+  }, {
+    key: "toggle",
+    value: function toggle($target) {
+      if (!$target.is(':animated')) {
+        if (!$target.is(':hidden')) {
+          this.up($target);
+        } else {
+          this.down($target);
+        }
+      }
+    }
+    /**
+     * Opens the sub-menu defined by `$target`.
+     * @param {jQuery} $target - Sub-menu to open.
+     * @fires AccordionMenu#down
+     */
+
+  }, {
+    key: "down",
+    value: function down($target) {
+      var _this2 = this;
+
+      // If having multiple submenus active is disabled, close all the submenus
+      // that are not parents or children of the targeted submenu.
+      if (!this.options.multiOpen) {
+        // The "branch" of the targetted submenu, from the component root to
+        // the active submenus nested in it.
+        var $targetBranch = $target.parentsUntil(this.$element).add($target).add($target.find('.is-active')); // All the active submenus that are not in the branch.
+
+        var $othersActiveSubmenus = this.$element.find('.is-active').not($targetBranch);
+        this.up($othersActiveSubmenus);
+      }
+
+      $target.addClass('is-active').attr({
+        'aria-hidden': false
+      });
+
+      if (this.options.submenuToggle) {
+        $target.prev('.submenu-toggle').attr({
+          'aria-expanded': true
+        });
+      } else {
+        $target.parent('.is-accordion-submenu-parent').attr({
+          'aria-expanded': true
+        });
+      }
+
+      $target.slideDown(this.options.slideSpeed, function () {
+        /**
+         * Fires when the menu is done opening.
+         * @event AccordionMenu#down
+         */
+        _this2.$element.trigger('down.zf.accordionMenu', [$target]);
+      });
+    }
+    /**
+     * Closes the sub-menu defined by `$target`. All sub-menus inside the target will be closed as well.
+     * @param {jQuery} $target - Sub-menu to close.
+     * @fires AccordionMenu#up
+     */
+
+  }, {
+    key: "up",
+    value: function up($target) {
+      var _this3 = this;
+
+      var $submenus = $target.find('[data-submenu]');
+      var $allmenus = $target.add($submenus);
+      $submenus.slideUp(0);
+      $allmenus.removeClass('is-active').attr('aria-hidden', true);
+
+      if (this.options.submenuToggle) {
+        $allmenus.prev('.submenu-toggle').attr('aria-expanded', false);
+      } else {
+        $allmenus.parent('.is-accordion-submenu-parent').attr('aria-expanded', false);
+      }
+
+      $target.slideUp(this.options.slideSpeed, function () {
+        /**
+         * Fires when the menu is done collapsing up.
+         * @event AccordionMenu#up
+         */
+        _this3.$element.trigger('up.zf.accordionMenu', [$target]);
+      });
+    }
+    /**
+     * Destroys an instance of accordion menu.
+     * @fires AccordionMenu#destroyed
+     */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      this.$element.find('[data-submenu]').slideDown(0).css('display', '');
+      this.$element.find('a').off('click.zf.accordionMenu');
+      this.$element.find('[data-is-parent-link]').detach();
+
+      if (this.options.submenuToggle) {
+        this.$element.find('.has-submenu-toggle').removeClass('has-submenu-toggle');
+        this.$element.find('.submenu-toggle').remove();
+      }
+
+      _foundation_util_nest__WEBPACK_IMPORTED_MODULE_2__["Nest"].Burn(this.$element, 'accordion');
+    }
+  }]);
+
+  return AccordionMenu;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_4__["Plugin"]);
+
+AccordionMenu.defaults = {
+  /**
+   * Adds the parent link to the submenu.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  parentLink: false,
+
+  /**
+   * Amount of time to animate the opening of a submenu in ms.
+   * @option
+   * @type {number}
+   * @default 250
+   */
+  slideSpeed: 250,
+
+  /**
+   * Adds a separate submenu toggle button. This allows the parent item to have a link.
+   * @option
+   * @example true
+   */
+  submenuToggle: false,
+
+  /**
+   * The text used for the submenu toggle if enabled. This is used for screen readers only.
+   * @option
+   * @example true
+   */
+  submenuToggleText: 'Toggle menu',
+
+  /**
+   * Allow the menu to have multiple open panes.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  multiOpen: true
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.core.js":
+/*!*******************************!*\
+  !*** ./js/foundation.core.js ***!
+  \*******************************/
+/*! exports provided: Foundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Foundation", function() { return Foundation; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.util.mediaQuery */ "./js/foundation.util.mediaQuery.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+
+
+var FOUNDATION_VERSION = '6.5.3'; // Global Foundation object
+// This is attached to the window, or used as a module for AMD/Browserify
+
+var Foundation = {
+  version: FOUNDATION_VERSION,
+
+  /**
+   * Stores initialized plugins.
+   */
+  _plugins: {},
+
+  /**
+   * Stores generated unique ids for plugin instances
+   */
+  _uuids: [],
+
+  /**
+   * Defines a Foundation plugin, adding it to the `Foundation` namespace and the list of plugins to initialize when reflowing.
+   * @param {Object} plugin - The constructor of the plugin.
+   */
+  plugin: function plugin(_plugin, name) {
+    // Object key to use when adding to global Foundation object
+    // Examples: Foundation.Reveal, Foundation.OffCanvas
+    var className = name || functionName(_plugin); // Object key to use when storing the plugin, also used to create the identifying data attribute for the plugin
+    // Examples: data-reveal, data-off-canvas
+
+    var attrName = hyphenate(className); // Add to the Foundation object and the plugins list (for reflowing)
+
+    this._plugins[attrName] = this[className] = _plugin;
+  },
+
+  /**
+   * @function
+   * Populates the _uuids array with pointers to each individual plugin instance.
+   * Adds the `zfPlugin` data-attribute to programmatically created plugins to allow use of $(selector).foundation(method) calls.
+   * Also fires the initialization event for each plugin, consolidating repetitive code.
+   * @param {Object} plugin - an instance of a plugin, usually `this` in context.
+   * @param {String} name - the name of the plugin, passed as a camelCased string.
+   * @fires Plugin#init
+   */
+  registerPlugin: function registerPlugin(plugin, name) {
+    var pluginName = name ? hyphenate(name) : functionName(plugin.constructor).toLowerCase();
+    plugin.uuid = Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["GetYoDigits"])(6, pluginName);
+
+    if (!plugin.$element.attr("data-".concat(pluginName))) {
+      plugin.$element.attr("data-".concat(pluginName), plugin.uuid);
+    }
+
+    if (!plugin.$element.data('zfPlugin')) {
+      plugin.$element.data('zfPlugin', plugin);
+    }
+    /**
+     * Fires when the plugin has initialized.
+     * @event Plugin#init
+     */
+
+
+    plugin.$element.trigger("init.zf.".concat(pluginName));
+
+    this._uuids.push(plugin.uuid);
+
+    return;
+  },
+
+  /**
+   * @function
+   * Removes the plugins uuid from the _uuids array.
+   * Removes the zfPlugin data attribute, as well as the data-plugin-name attribute.
+   * Also fires the destroyed event for the plugin, consolidating repetitive code.
+   * @param {Object} plugin - an instance of a plugin, usually `this` in context.
+   * @fires Plugin#destroyed
+   */
+  unregisterPlugin: function unregisterPlugin(plugin) {
+    var pluginName = hyphenate(functionName(plugin.$element.data('zfPlugin').constructor));
+
+    this._uuids.splice(this._uuids.indexOf(plugin.uuid), 1);
+
+    plugin.$element.removeAttr("data-".concat(pluginName)).removeData('zfPlugin')
+    /**
+     * Fires when the plugin has been destroyed.
+     * @event Plugin#destroyed
+     */
+    .trigger("destroyed.zf.".concat(pluginName));
+
+    for (var prop in plugin) {
+      plugin[prop] = null; //clean up script to prep for garbage collection.
+    }
+
+    return;
+  },
+
+  /**
+   * @function
+   * Causes one or more active plugins to re-initialize, resetting event listeners, recalculating positions, etc.
+   * @param {String} plugins - optional string of an individual plugin key, attained by calling `$(element).data('pluginName')`, or string of a plugin class i.e. `'dropdown'`
+   * @default If no argument is passed, reflow all currently active plugins.
+   */
+  reInit: function reInit(plugins) {
+    var isJQ = plugins instanceof jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
+
+    try {
+      if (isJQ) {
+        plugins.each(function () {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('zfPlugin')._init();
+        });
+      } else {
+        var type = _typeof(plugins),
+            _this = this,
+            fns = {
+          'object': function object(plgs) {
+            plgs.forEach(function (p) {
+              p = hyphenate(p);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('[data-' + p + ']').foundation('_init');
+            });
+          },
+          'string': function string() {
+            plugins = hyphenate(plugins);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('[data-' + plugins + ']').foundation('_init');
+          },
+          'undefined': function undefined() {
+            this['object'](Object.keys(_this._plugins));
+          }
+        };
+
+        fns[type](plugins);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      return plugins;
+    }
+  },
+
+  /**
+   * Initialize plugins on any elements within `elem` (and `elem` itself) that aren't already initialized.
+   * @param {Object} elem - jQuery object containing the element to check inside. Also checks the element itself, unless it's the `document` object.
+   * @param {String|Array} plugins - A list of plugins to initialize. Leave this out to initialize everything.
+   */
+  reflow: function reflow(elem, plugins) {
+    // If plugins is undefined, just grab everything
+    if (typeof plugins === 'undefined') {
+      plugins = Object.keys(this._plugins);
+    } // If plugins is a string, convert it to an array with one item
+    else if (typeof plugins === 'string') {
+        plugins = [plugins];
+      }
+
+    var _this = this; // Iterate through each plugin
+
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.each(plugins, function (i, name) {
+      // Get the current plugin
+      var plugin = _this._plugins[name]; // Localize the search to all elements inside elem, as well as elem itself, unless elem === document
+
+      var $elem = jquery__WEBPACK_IMPORTED_MODULE_0___default()(elem).find('[data-' + name + ']').addBack('[data-' + name + ']'); // For each plugin found, initialize it
+
+      $elem.each(function () {
+        var $el = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
+            opts = {}; // Don't double-dip on plugins
+
+        if ($el.data('zfPlugin')) {
+          console.warn("Tried to initialize " + name + " on an element that already has a Foundation plugin.");
+          return;
+        }
+
+        if ($el.attr('data-options')) {
+          var thing = $el.attr('data-options').split(';').forEach(function (e, i) {
+            var opt = e.split(':').map(function (el) {
+              return el.trim();
+            });
+            if (opt[0]) opts[opt[0]] = parseValue(opt[1]);
+          });
+        }
+
+        try {
+          $el.data('zfPlugin', new plugin(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this), opts));
+        } catch (er) {
+          console.error(er);
+        } finally {
+          return;
+        }
+      });
+    });
+  },
+  getFnName: functionName,
+  addToJquery: function addToJquery($) {
+    // TODO: consider not making this a jQuery function
+    // TODO: need way to reflow vs. re-initialize
+
+    /**
+     * The Foundation jQuery method.
+     * @param {String|Array} method - An action to perform on the current jQuery object.
+     */
+    var foundation = function foundation(method) {
+      var type = _typeof(method),
+          $noJS = $('.no-js');
+
+      if ($noJS.length) {
+        $noJS.removeClass('no-js');
+      }
+
+      if (type === 'undefined') {
+        //needs to initialize the Foundation object, or an individual plugin.
+        _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_2__["MediaQuery"]._init();
+
+        Foundation.reflow(this);
+      } else if (type === 'string') {
+        //an individual method to invoke on a plugin or group of plugins
+        var args = Array.prototype.slice.call(arguments, 1); //collect all the arguments, if necessary
+
+        var plugClass = this.data('zfPlugin'); //determine the class of plugin
+
+        if (typeof plugClass !== 'undefined' && typeof plugClass[method] !== 'undefined') {
+          //make sure both the class and method exist
+          if (this.length === 1) {
+            //if there's only one, call it directly.
+            plugClass[method].apply(plugClass, args);
+          } else {
+            this.each(function (i, el) {
+              //otherwise loop through the jQuery collection and invoke the method on each
+              plugClass[method].apply($(el).data('zfPlugin'), args);
+            });
+          }
+        } else {
+          //error for no class or no method
+          throw new ReferenceError("We're sorry, '" + method + "' is not an available method for " + (plugClass ? functionName(plugClass) : 'this element') + '.');
+        }
+      } else {
+        //error for invalid argument type
+        throw new TypeError("We're sorry, ".concat(type, " is not a valid parameter. You must use a string representing the method you wish to invoke."));
+      }
+
+      return this;
+    };
+
+    $.fn.foundation = foundation;
+    return $;
+  }
+};
+Foundation.util = {
+  /**
+   * Function for applying a debounce effect to a function call.
+   * @function
+   * @param {Function} func - Function to be called at end of timeout.
+   * @param {Number} delay - Time in ms to delay the call of `func`.
+   * @returns function
+   */
+  throttle: function throttle(func, delay) {
+    var timer = null;
+    return function () {
+      var context = this,
+          args = arguments;
+
+      if (timer === null) {
+        timer = setTimeout(function () {
+          func.apply(context, args);
+          timer = null;
+        }, delay);
+      }
+    };
+  }
+};
+window.Foundation = Foundation; // Polyfill for requestAnimationFrame
+
+(function () {
+  if (!Date.now || !window.Date.now) window.Date.now = Date.now = function () {
+    return new Date().getTime();
+  };
+  var vendors = ['webkit', 'moz'];
+
+  for (var i = 0; i < vendors.length && !window.requestAnimationFrame; ++i) {
+    var vp = vendors[i];
+    window.requestAnimationFrame = window[vp + 'RequestAnimationFrame'];
+    window.cancelAnimationFrame = window[vp + 'CancelAnimationFrame'] || window[vp + 'CancelRequestAnimationFrame'];
+  }
+
+  if (/iP(ad|hone|od).*OS 6/.test(window.navigator.userAgent) || !window.requestAnimationFrame || !window.cancelAnimationFrame) {
+    var lastTime = 0;
+
+    window.requestAnimationFrame = function (callback) {
+      var now = Date.now();
+      var nextTime = Math.max(lastTime + 16, now);
+      return setTimeout(function () {
+        callback(lastTime = nextTime);
+      }, nextTime - now);
+    };
+
+    window.cancelAnimationFrame = clearTimeout;
+  }
+  /**
+   * Polyfill for performance.now, required by rAF
+   */
+
+
+  if (!window.performance || !window.performance.now) {
+    window.performance = {
+      start: Date.now(),
+      now: function now() {
+        return Date.now() - this.start;
+      }
+    };
+  }
+})();
+
+if (!Function.prototype.bind) {
+  Function.prototype.bind = function (oThis) {
+    if (typeof this !== 'function') {
+      // closest thing possible to the ECMAScript 5
+      // internal IsCallable function
+      throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
+    }
+
+    var aArgs = Array.prototype.slice.call(arguments, 1),
+        fToBind = this,
+        fNOP = function fNOP() {},
+        fBound = function fBound() {
+      return fToBind.apply(this instanceof fNOP ? this : oThis, aArgs.concat(Array.prototype.slice.call(arguments)));
+    };
+
+    if (this.prototype) {
+      // native functions don't have a prototype
+      fNOP.prototype = this.prototype;
+    }
+
+    fBound.prototype = new fNOP();
+    return fBound;
+  };
+} // Polyfill to get the name of a function in IE9
+
+
+function functionName(fn) {
+  if (typeof Function.prototype.name === 'undefined') {
+    var funcNameRegex = /function\s([^(]{1,})\(/;
+    var results = funcNameRegex.exec(fn.toString());
+    return results && results.length > 1 ? results[1].trim() : "";
+  } else if (typeof fn.prototype === 'undefined') {
+    return fn.constructor.name;
+  } else {
+    return fn.prototype.constructor.name;
+  }
+}
+
+function parseValue(str) {
+  if ('true' === str) return true;else if ('false' === str) return false;else if (!isNaN(str * 1)) return parseFloat(str);
+  return str;
+} // Convert PascalCase to kebab-case
+// Thank you: http://stackoverflow.com/a/8955580
+
+
+function hyphenate(str) {
+  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+
+
+/***/ }),
+
+/***/ "./js/foundation.core.plugin.js":
+/*!**************************************!*\
+  !*** ./js/foundation.core.plugin.js ***!
+  \**************************************/
+/*! exports provided: Plugin */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Plugin", function() { return Plugin; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+ // Abstract class for providing lifecycle hooks. Expect plugins to define AT LEAST
+// {function} _setup (replaces previous constructor),
+// {function} _destroy (replaces previous destroy)
+
+var Plugin =
+/*#__PURE__*/
+function () {
+  function Plugin(element, options) {
+    _classCallCheck(this, Plugin);
+
+    this._setup(element, options);
+
+    var pluginName = getPluginName(this);
+    this.uuid = Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["GetYoDigits"])(6, pluginName);
+
+    if (!this.$element.attr("data-".concat(pluginName))) {
+      this.$element.attr("data-".concat(pluginName), this.uuid);
+    }
+
+    if (!this.$element.data('zfPlugin')) {
+      this.$element.data('zfPlugin', this);
+    }
+    /**
+     * Fires when the plugin has initialized.
+     * @event Plugin#init
+     */
+
+
+    this.$element.trigger("init.zf.".concat(pluginName));
+  }
+
+  _createClass(Plugin, [{
+    key: "destroy",
+    value: function destroy() {
+      this._destroy();
+
+      var pluginName = getPluginName(this);
+      this.$element.removeAttr("data-".concat(pluginName)).removeData('zfPlugin')
+      /**
+       * Fires when the plugin has been destroyed.
+       * @event Plugin#destroyed
+       */
+      .trigger("destroyed.zf.".concat(pluginName));
+
+      for (var prop in this) {
+        this[prop] = null; //clean up script to prep for garbage collection.
+      }
+    }
+  }]);
+
+  return Plugin;
+}(); // Convert PascalCase to kebab-case
+// Thank you: http://stackoverflow.com/a/8955580
+
+
+function hyphenate(str) {
+  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+function getPluginName(obj) {
+  if (typeof obj.constructor.name !== 'undefined') {
+    return hyphenate(obj.constructor.name);
+  } else {
+    return hyphenate(obj.className);
+  }
+}
+
+
+
+/***/ }),
+
+/***/ "./js/foundation.core.utils.js":
+/*!*************************************!*\
+  !*** ./js/foundation.core.utils.js ***!
+  \*************************************/
+/*! exports provided: rtl, GetYoDigits, RegExpEscape, transitionend, onLoad, ignoreMousedisappear */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rtl", function() { return rtl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetYoDigits", function() { return GetYoDigits; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegExpEscape", function() { return RegExpEscape; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "transitionend", function() { return transitionend; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onLoad", function() { return onLoad; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ignoreMousedisappear", function() { return ignoreMousedisappear; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+
+ // Core Foundation Utilities, utilized in a number of places.
+
+/**
+ * Returns a boolean for RTL support
+ */
+
+function rtl() {
+  return jquery__WEBPACK_IMPORTED_MODULE_0___default()('html').attr('dir') === 'rtl';
+}
+/**
+ * returns a random base-36 uid with namespacing
+ * @function
+ * @param {Number} length - number of random base-36 digits desired. Increase for more random strings.
+ * @param {String} namespace - name of plugin to be incorporated in uid, optional.
+ * @default {String} '' - if no plugin name is provided, nothing is appended to the uid.
+ * @returns {String} - unique id
+ */
+
+
+function GetYoDigits(length, namespace) {
+  length = length || 6;
+  return Math.round(Math.pow(36, length + 1) - Math.random() * Math.pow(36, length)).toString(36).slice(1) + (namespace ? "-".concat(namespace) : '');
+}
+/**
+ * Escape a string so it can be used as a regexp pattern
+ * @function
+ * @see https://stackoverflow.com/a/9310752/4317384
+ *
+ * @param {String} str - string to escape.
+ * @returns {String} - escaped string
+ */
+
+
+function RegExpEscape(str) {
+  return str.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}
+
+function transitionend($elem) {
+  var transitions = {
+    'transition': 'transitionend',
+    'WebkitTransition': 'webkitTransitionEnd',
+    'MozTransition': 'transitionend',
+    'OTransition': 'otransitionend'
+  };
+  var elem = document.createElement('div'),
+      end;
+
+  for (var t in transitions) {
+    if (typeof elem.style[t] !== 'undefined') {
+      end = transitions[t];
+    }
+  }
+
+  if (end) {
+    return end;
+  } else {
+    end = setTimeout(function () {
+      $elem.triggerHandler('transitionend', [$elem]);
+    }, 1);
+    return 'transitionend';
+  }
+}
+/**
+ * Return an event type to listen for window load.
+ *
+ * If `$elem` is passed, an event will be triggered on `$elem`. If window is already loaded, the event will still be triggered.
+ * If `handler` is passed, attach it to the event on `$elem`.
+ * Calling `onLoad` without handler allows you to get the event type that will be triggered before attaching the handler by yourself.
+ * @function
+ *
+ * @param {Object} [] $elem - jQuery element on which the event will be triggered if passed.
+ * @param {Function} [] handler - function to attach to the event.
+ * @returns {String} - event type that should or will be triggered.
+ */
+
+
+function onLoad($elem, handler) {
+  var didLoad = document.readyState === 'complete';
+  var eventType = (didLoad ? '_didLoad' : 'load') + '.zf.util.onLoad';
+
+  var cb = function cb() {
+    return $elem.triggerHandler(eventType);
+  };
+
+  if ($elem) {
+    if (handler) $elem.one(eventType, handler);
+    if (didLoad) setTimeout(cb);else jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).one('load', cb);
+  }
+
+  return eventType;
+}
+/**
+ * Retuns an handler for the `mouseleave` that ignore disappeared mouses.
+ *
+ * If the mouse "disappeared" from the document (like when going on a browser UI element, See https://git.io/zf-11410),
+ * the event is ignored.
+ * - If the `ignoreLeaveWindow` is `true`, the event is ignored when the user actually left the window
+ *   (like by switching to an other window with [Alt]+[Tab]).
+ * - If the `ignoreReappear` is `true`, the event will be ignored when the mouse will reappear later on the document
+ *   outside of the element it left.
+ *
+ * @function
+ *
+ * @param {Function} [] handler - handler for the filtered `mouseleave` event to watch.
+ * @param {Object} [] options - object of options:
+ * - {Boolean} [false] ignoreLeaveWindow - also ignore when the user switched windows.
+ * - {Boolean} [false] ignoreReappear - also ignore when the mouse reappeared outside of the element it left.
+ * @returns {Function} - filtered handler to use to listen on the `mouseleave` event.
+ */
+
+
+function ignoreMousedisappear(handler) {
+  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+      _ref$ignoreLeaveWindo = _ref.ignoreLeaveWindow,
+      ignoreLeaveWindow = _ref$ignoreLeaveWindo === void 0 ? false : _ref$ignoreLeaveWindo,
+      _ref$ignoreReappear = _ref.ignoreReappear,
+      ignoreReappear = _ref$ignoreReappear === void 0 ? false : _ref$ignoreReappear;
+
+  return function leaveEventHandler(eLeave) {
+    for (var _len = arguments.length, rest = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      rest[_key - 1] = arguments[_key];
+    }
+
+    var callback = handler.bind.apply(handler, [this, eLeave].concat(rest)); // The mouse left: call the given callback if the mouse entered elsewhere
+
+    if (eLeave.relatedTarget !== null) {
+      return callback();
+    } // Otherwise, check if the mouse actually left the window.
+    // In firefox if the user switched between windows, the window sill have the focus by the time
+    // the event is triggered. We have to debounce the event to test this case.
+
+
+    setTimeout(function leaveEventDebouncer() {
+      if (!ignoreLeaveWindow && document.hasFocus && !document.hasFocus()) {
+        return callback();
+      } // Otherwise, wait for the mouse to reeapear outside of the element,
+
+
+      if (!ignoreReappear) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).one('mouseenter', function reenterEventHandler(eReenter) {
+          if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(eLeave.currentTarget).has(eReenter.target).length) {
+            // Fill where the mouse finally entered.
+            eLeave.relatedTarget = eReenter.target;
+            callback();
+          }
+        });
+      }
+    }, 0);
+  };
+}
+
+
+
+/***/ }),
+
+/***/ "./js/foundation.drilldown.js":
+/*!************************************!*\
+  !*** ./js/foundation.drilldown.js ***!
+  \************************************/
+/*! exports provided: Drilldown */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Drilldown", function() { return Drilldown; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.util.keyboard */ "./js/foundation.util.keyboard.js");
+/* harmony import */ var _foundation_util_nest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.util.nest */ "./js/foundation.util.nest.js");
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_util_box__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation.util.box */ "./js/foundation.util.box.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+/**
+ * Drilldown module.
+ * @module foundation.drilldown
+ * @requires foundation.util.keyboard
+ * @requires foundation.util.nest
+ * @requires foundation.util.box
+ */
+
+var Drilldown =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(Drilldown, _Plugin);
+
+  function Drilldown() {
+    _classCallCheck(this, Drilldown);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Drilldown).apply(this, arguments));
+  }
+
+  _createClass(Drilldown, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of a drilldown menu.
+     * @class
+     * @name Drilldown
+     * @param {jQuery} element - jQuery object to make into an accordion menu.
+     * @param {Object} options - Overrides to the default plugin settings.
+     */
+    value: function _setup(element, options) {
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, Drilldown.defaults, this.$element.data(), options);
+      this.className = 'Drilldown'; // ie9 back compat
+
+      this._init();
+
+      _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__["Keyboard"].register('Drilldown', {
+        'ENTER': 'open',
+        'SPACE': 'open',
+        'ARROW_RIGHT': 'next',
+        'ARROW_UP': 'up',
+        'ARROW_DOWN': 'down',
+        'ARROW_LEFT': 'previous',
+        'ESCAPE': 'close',
+        'TAB': 'down',
+        'SHIFT_TAB': 'up'
+      });
+    }
+    /**
+     * Initializes the drilldown by creating jQuery collections of elements
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      _foundation_util_nest__WEBPACK_IMPORTED_MODULE_2__["Nest"].Feather(this.$element, 'drilldown');
+
+      if (this.options.autoApplyClass) {
+        this.$element.addClass('drilldown');
+      }
+
+      this.$element.attr({
+        'role': 'tree',
+        'aria-multiselectable': false
+      });
+      this.$submenuAnchors = this.$element.find('li.is-drilldown-submenu-parent').children('a');
+      this.$submenus = this.$submenuAnchors.parent('li').children('[data-submenu]').attr('role', 'group');
+      this.$menuItems = this.$element.find('li').not('.js-drilldown-back').attr('role', 'treeitem').find('a'); // Set the main menu as current by default (unless a submenu is selected)
+      // Used to set the wrapper height when the drilldown is closed/reopened from any (sub)menu
+
+      this.$currentMenu = this.$element;
+      this.$element.attr('data-mutate', this.$element.attr('data-drilldown') || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__["GetYoDigits"])(6, 'drilldown'));
+
+      this._prepareMenu();
+
+      this._registerEvents();
+
+      this._keyboardEvents();
+    }
+    /**
+     * prepares drilldown menu by setting attributes to links and elements
+     * sets a min height to prevent content jumping
+     * wraps the element if not already wrapped
+     * @private
+     * @function
+     */
+
+  }, {
+    key: "_prepareMenu",
+    value: function _prepareMenu() {
+      var _this = this; // if(!this.options.holdOpen){
+      //   this._menuLinkEvents();
+      // }
+
+
+      this.$submenuAnchors.each(function () {
+        var $link = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+        var $sub = $link.parent();
+
+        if (_this.options.parentLink) {
+          $link.clone().prependTo($sub.children('[data-submenu]')).wrap('<li data-is-parent-link class="is-submenu-parent-item is-submenu-item is-drilldown-submenu-item" role="menuitem"></li>');
+        }
+
+        $link.data('savedHref', $link.attr('href')).removeAttr('href').attr('tabindex', 0);
+        $link.children('[data-submenu]').attr({
+          'aria-hidden': true,
+          'tabindex': 0,
+          'role': 'group'
+        });
+
+        _this._events($link);
+      });
+      this.$submenus.each(function () {
+        var $menu = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
+            $back = $menu.find('.js-drilldown-back');
+
+        if (!$back.length) {
+          switch (_this.options.backButtonPosition) {
+            case "bottom":
+              $menu.append(_this.options.backButton);
+              break;
+
+            case "top":
+              $menu.prepend(_this.options.backButton);
+              break;
+
+            default:
+              console.error("Unsupported backButtonPosition value '" + _this.options.backButtonPosition + "'");
+          }
+        }
+
+        _this._back($menu);
+      });
+      this.$submenus.addClass('invisible');
+
+      if (!this.options.autoHeight) {
+        this.$submenus.addClass('drilldown-submenu-cover-previous');
+      } // create a wrapper on element if it doesn't exist.
+
+
+      if (!this.$element.parent().hasClass('is-drilldown')) {
+        this.$wrapper = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.options.wrapper).addClass('is-drilldown');
+        if (this.options.animateHeight) this.$wrapper.addClass('animate-height');
+        this.$element.wrap(this.$wrapper);
+      } // set wrapper
+
+
+      this.$wrapper = this.$element.parent();
+      this.$wrapper.css(this._getMaxDims());
+    }
+  }, {
+    key: "_resize",
+    value: function _resize() {
+      this.$wrapper.css({
+        'max-width': 'none',
+        'min-height': 'none'
+      }); // _getMaxDims has side effects (boo) but calling it should update all other necessary heights & widths
+
+      this.$wrapper.css(this._getMaxDims());
+    }
+    /**
+     * Adds event handlers to elements in the menu.
+     * @function
+     * @private
+     * @param {jQuery} $elem - the current menu item to add handlers to.
+     */
+
+  }, {
+    key: "_events",
+    value: function _events($elem) {
+      var _this = this;
+
+      $elem.off('click.zf.drilldown').on('click.zf.drilldown', function (e) {
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(e.target).parentsUntil('ul', 'li').hasClass('is-drilldown-submenu-parent')) {
+          e.stopImmediatePropagation();
+          e.preventDefault();
+        } // if(e.target !== e.currentTarget.firstElementChild){
+        //   return false;
+        // }
+
+
+        _this._show($elem.parent('li'));
+
+        if (_this.options.closeOnClick) {
+          var $body = jquery__WEBPACK_IMPORTED_MODULE_0___default()('body');
+          $body.off('.zf.drilldown').on('click.zf.drilldown', function (e) {
+            if (e.target === _this.$element[0] || jquery__WEBPACK_IMPORTED_MODULE_0___default.a.contains(_this.$element[0], e.target)) {
+              return;
+            }
+
+            e.preventDefault();
+
+            _this._hideAll();
+
+            $body.off('.zf.drilldown');
+          });
+        }
+      });
+    }
+    /**
+     * Adds event handlers to the menu element.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_registerEvents",
+    value: function _registerEvents() {
+      if (this.options.scrollTop) {
+        this._bindHandler = this._scrollTop.bind(this);
+        this.$element.on('open.zf.drilldown hide.zf.drilldown closed.zf.drilldown', this._bindHandler);
+      }
+
+      this.$element.on('mutateme.zf.trigger', this._resize.bind(this));
+    }
+    /**
+     * Scroll to Top of Element or data-scroll-top-element
+     * @function
+     * @fires Drilldown#scrollme
+     */
+
+  }, {
+    key: "_scrollTop",
+    value: function _scrollTop() {
+      var _this = this;
+
+      var $scrollTopElement = _this.options.scrollTopElement != '' ? jquery__WEBPACK_IMPORTED_MODULE_0___default()(_this.options.scrollTopElement) : _this.$element,
+          scrollPos = parseInt($scrollTopElement.offset().top + _this.options.scrollTopOffset, 10);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('html, body').stop(true).animate({
+        scrollTop: scrollPos
+      }, _this.options.animationDuration, _this.options.animationEasing, function () {
+        /**
+          * Fires after the menu has scrolled
+          * @event Drilldown#scrollme
+          */
+        if (this === jquery__WEBPACK_IMPORTED_MODULE_0___default()('html')[0]) _this.$element.trigger('scrollme.zf.drilldown');
+      });
+    }
+    /**
+     * Adds keydown event listener to `li`'s in the menu.
+     * @private
+     */
+
+  }, {
+    key: "_keyboardEvents",
+    value: function _keyboardEvents() {
+      var _this = this;
+
+      this.$menuItems.add(this.$element.find('.js-drilldown-back > a, .is-submenu-parent-item > a')).on('keydown.zf.drilldown', function (e) {
+        var $element = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
+            $elements = $element.parent('li').parent('ul').children('li').children('a'),
+            $prevElement,
+            $nextElement;
+        $elements.each(function (i) {
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).is($element)) {
+            $prevElement = $elements.eq(Math.max(0, i - 1));
+            $nextElement = $elements.eq(Math.min(i + 1, $elements.length - 1));
+            return;
+          }
+        });
+        _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__["Keyboard"].handleKey(e, 'Drilldown', {
+          next: function next() {
+            if ($element.is(_this.$submenuAnchors)) {
+              _this._show($element.parent('li'));
+
+              $element.parent('li').one(Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__["transitionend"])($element), function () {
+                $element.parent('li').find('ul li a').not('.js-drilldown-back a').first().focus();
+              });
+              return true;
+            }
+          },
+          previous: function previous() {
+            _this._hide($element.parent('li').parent('ul'));
+
+            $element.parent('li').parent('ul').one(Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__["transitionend"])($element), function () {
+              setTimeout(function () {
+                $element.parent('li').parent('ul').parent('li').children('a').first().focus();
+              }, 1);
+            });
+            return true;
+          },
+          up: function up() {
+            $prevElement.focus(); // Don't tap focus on first element in root ul
+
+            return !$element.is(_this.$element.find('> li:first-child > a'));
+          },
+          down: function down() {
+            $nextElement.focus(); // Don't tap focus on last element in root ul
+
+            return !$element.is(_this.$element.find('> li:last-child > a'));
+          },
+          close: function close() {
+            // Don't close on element in root ul
+            if (!$element.is(_this.$element.find('> li > a'))) {
+              _this._hide($element.parent().parent());
+
+              $element.parent().parent().siblings('a').focus();
+            }
+          },
+          open: function open() {
+            if (_this.options.parentLink && $element.attr('href')) {
+              // Link with href
+              return false;
+            } else if (!$element.is(_this.$menuItems)) {
+              // not menu item means back button
+              _this._hide($element.parent('li').parent('ul'));
+
+              $element.parent('li').parent('ul').one(Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__["transitionend"])($element), function () {
+                setTimeout(function () {
+                  $element.parent('li').parent('ul').parent('li').children('a').first().focus();
+                }, 1);
+              });
+              return true;
+            } else if ($element.is(_this.$submenuAnchors)) {
+              // Sub menu item
+              _this._show($element.parent('li'));
+
+              $element.parent('li').one(Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__["transitionend"])($element), function () {
+                $element.parent('li').find('ul li a').not('.js-drilldown-back a').first().focus();
+              });
+              return true;
+            }
+          },
+          handled: function handled(preventDefault) {
+            if (preventDefault) {
+              e.preventDefault();
+            }
+
+            e.stopImmediatePropagation();
+          }
+        });
+      }); // end keyboardAccess
+    }
+    /**
+     * Closes all open elements, and returns to root menu.
+     * @function
+     * @fires Drilldown#closed
+     */
+
+  }, {
+    key: "_hideAll",
+    value: function _hideAll() {
+      var $elem = this.$element.find('.is-drilldown-submenu.is-active').addClass('is-closing');
+      if (this.options.autoHeight) this.$wrapper.css({
+        height: $elem.parent().closest('ul').data('calcHeight')
+      });
+      $elem.one(Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__["transitionend"])($elem), function (e) {
+        $elem.removeClass('is-active is-closing');
+      });
+      /**
+       * Fires when the menu is fully closed.
+       * @event Drilldown#closed
+       */
+
+      this.$element.trigger('closed.zf.drilldown');
+    }
+    /**
+     * Adds event listener for each `back` button, and closes open menus.
+     * @function
+     * @fires Drilldown#back
+     * @param {jQuery} $elem - the current sub-menu to add `back` event.
+     */
+
+  }, {
+    key: "_back",
+    value: function _back($elem) {
+      var _this = this;
+
+      $elem.off('click.zf.drilldown');
+      $elem.children('.js-drilldown-back').on('click.zf.drilldown', function (e) {
+        e.stopImmediatePropagation(); // console.log('mouseup on back');
+
+        _this._hide($elem); // If there is a parent submenu, call show
+
+
+        var parentSubMenu = $elem.parent('li').parent('ul').parent('li');
+
+        if (parentSubMenu.length) {
+          _this._show(parentSubMenu);
+        }
+      });
+    }
+    /**
+     * Adds event listener to menu items w/o submenus to close open menus on click.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_menuLinkEvents",
+    value: function _menuLinkEvents() {
+      var _this = this;
+
+      this.$menuItems.not('.is-drilldown-submenu-parent').off('click.zf.drilldown').on('click.zf.drilldown', function (e) {
+        // e.stopImmediatePropagation();
+        setTimeout(function () {
+          _this._hideAll();
+        }, 0);
+      });
+    }
+    /**
+     * Sets the CSS classes for submenu to show it.
+     * @function
+     * @private
+     * @param {jQuery} $elem - the target submenu (`ul` tag)
+     * @param {boolean} trigger - trigger drilldown event
+     */
+
+  }, {
+    key: "_setShowSubMenuClasses",
+    value: function _setShowSubMenuClasses($elem, trigger) {
+      $elem.addClass('is-active').removeClass('invisible').attr('aria-hidden', false);
+      $elem.parent('li').attr('aria-expanded', true);
+
+      if (trigger === true) {
+        this.$element.trigger('open.zf.drilldown', [$elem]);
+      }
+    }
+    /**
+     * Sets the CSS classes for submenu to hide it.
+     * @function
+     * @private
+     * @param {jQuery} $elem - the target submenu (`ul` tag)
+     * @param {boolean} trigger - trigger drilldown event
+     */
+
+  }, {
+    key: "_setHideSubMenuClasses",
+    value: function _setHideSubMenuClasses($elem, trigger) {
+      $elem.removeClass('is-active').addClass('invisible').attr('aria-hidden', true);
+      $elem.parent('li').attr('aria-expanded', false);
+
+      if (trigger === true) {
+        $elem.trigger('hide.zf.drilldown', [$elem]);
+      }
+    }
+    /**
+     * Opens a specific drilldown (sub)menu no matter which (sub)menu in it is currently visible.
+     * Compared to _show() this lets you jump into any submenu without clicking through every submenu on the way to it.
+     * @function
+     * @fires Drilldown#open
+     * @param {jQuery} $elem - the target (sub)menu (`ul` tag)
+     * @param {boolean} autoFocus - if true the first link in the target (sub)menu gets auto focused
+     */
+
+  }, {
+    key: "_showMenu",
+    value: function _showMenu($elem, autoFocus) {
+      var _this = this; // Reset drilldown
+
+
+      var $expandedSubmenus = this.$element.find('li[aria-expanded="true"] > ul[data-submenu]');
+      $expandedSubmenus.each(function (index) {
+        _this._setHideSubMenuClasses(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+      }); // Save the menu as the currently displayed one.
+
+      this.$currentMenu = $elem; // If target menu is root, focus first link & exit
+
+      if ($elem.is('[data-drilldown]')) {
+        if (autoFocus === true) $elem.find('li[role="treeitem"] > a').first().focus();
+        if (this.options.autoHeight) this.$wrapper.css('height', $elem.data('calcHeight'));
+        return;
+      } // Find all submenus on way to root incl. the element itself
+
+
+      var $submenus = $elem.children().first().parentsUntil('[data-drilldown]', '[data-submenu]'); // Open target menu and all submenus on its way to root
+
+      $submenus.each(function (index) {
+        // Update height of first child (target menu) if autoHeight option true
+        if (index === 0 && _this.options.autoHeight) {
+          _this.$wrapper.css('height', jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('calcHeight'));
+        }
+
+        var isLastChild = index == $submenus.length - 1; // Add transitionsend listener to last child (root due to reverse order) to open target menu's first link
+        // Last child makes sure the event gets always triggered even if going through several menus
+
+        if (isLastChild === true) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).one(Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__["transitionend"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this)), function () {
+            if (autoFocus === true) {
+              $elem.find('li[role="treeitem"] > a').first().focus();
+            }
+          });
+        }
+
+        _this._setShowSubMenuClasses(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this), isLastChild);
+      });
+    }
+    /**
+     * Opens a submenu.
+     * @function
+     * @fires Drilldown#open
+     * @param {jQuery} $elem - the current element with a submenu to open, i.e. the `li` tag.
+     */
+
+  }, {
+    key: "_show",
+    value: function _show($elem) {
+      var $submenu = $elem.children('[data-submenu]');
+      $elem.attr('aria-expanded', true);
+      this.$currentMenu = $submenu;
+      $submenu.addClass('is-active').removeClass('invisible').attr('aria-hidden', false);
+
+      if (this.options.autoHeight) {
+        this.$wrapper.css({
+          height: $submenu.data('calcHeight')
+        });
+      }
+      /**
+       * Fires when the submenu has opened.
+       * @event Drilldown#open
+       */
+
+
+      this.$element.trigger('open.zf.drilldown', [$elem]);
+    }
+    /**
+     * Hides a submenu
+     * @function
+     * @fires Drilldown#hide
+     * @param {jQuery} $elem - the current sub-menu to hide, i.e. the `ul` tag.
+     */
+
+  }, {
+    key: "_hide",
+    value: function _hide($elem) {
+      if (this.options.autoHeight) this.$wrapper.css({
+        height: $elem.parent().closest('ul').data('calcHeight')
+      });
+
+      var _this = this;
+
+      $elem.parent('li').attr('aria-expanded', false);
+      $elem.attr('aria-hidden', true);
+      $elem.addClass('is-closing').one(Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__["transitionend"])($elem), function () {
+        $elem.removeClass('is-active is-closing');
+        $elem.blur().addClass('invisible');
+      });
+      /**
+       * Fires when the submenu has closed.
+       * @event Drilldown#hide
+       */
+
+      $elem.trigger('hide.zf.drilldown', [$elem]);
+    }
+    /**
+     * Iterates through the nested menus to calculate the min-height, and max-width for the menu.
+     * Prevents content jumping.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_getMaxDims",
+    value: function _getMaxDims() {
+      var maxHeight = 0,
+          result = {},
+          _this = this; // Recalculate menu heights and total max height
+
+
+      this.$submenus.add(this.$element).each(function () {
+        var numOfElems = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).children('li').length;
+        var height = _foundation_util_box__WEBPACK_IMPORTED_MODULE_4__["Box"].GetDimensions(this).height;
+        maxHeight = height > maxHeight ? height : maxHeight;
+
+        if (_this.options.autoHeight) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('calcHeight', height);
+        }
+      });
+      if (this.options.autoHeight) result['height'] = this.$currentMenu.data('calcHeight');else result['min-height'] = "".concat(maxHeight, "px");
+      result['max-width'] = "".concat(this.$element[0].getBoundingClientRect().width, "px");
+      return result;
+    }
+    /**
+     * Destroys the Drilldown Menu
+     * @function
+     */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      if (this.options.scrollTop) this.$element.off('.zf.drilldown', this._bindHandler);
+
+      this._hideAll();
+
+      this.$element.off('mutateme.zf.trigger');
+      _foundation_util_nest__WEBPACK_IMPORTED_MODULE_2__["Nest"].Burn(this.$element, 'drilldown');
+      this.$element.unwrap().find('.js-drilldown-back, .is-submenu-parent-item').remove().end().find('.is-active, .is-closing, .is-drilldown-submenu').removeClass('is-active is-closing is-drilldown-submenu').end().find('[data-submenu]').removeAttr('aria-hidden tabindex role');
+      this.$submenuAnchors.each(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).off('.zf.drilldown');
+      });
+      this.$element.find('[data-is-parent-link]').detach();
+      this.$submenus.removeClass('drilldown-submenu-cover-previous invisible');
+      this.$element.find('a').each(function () {
+        var $link = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+        $link.removeAttr('tabindex');
+
+        if ($link.data('savedHref')) {
+          $link.attr('href', $link.data('savedHref')).removeData('savedHref');
+        } else {
+          return;
+        }
+      });
+    }
+  }]);
+
+  return Drilldown;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_5__["Plugin"]);
+
+Drilldown.defaults = {
+  /**
+   * Drilldowns depend on styles in order to function properly; in the default build of Foundation these are
+   * on the `drilldown` class. This option auto-applies this class to the drilldown upon initialization.
+   * @option
+   * @type {boolian}
+   * @default true
+   */
+  autoApplyClass: true,
+
+  /**
+   * Markup used for JS generated back button. Prepended  or appended (see backButtonPosition) to submenu lists and deleted on `destroy` method, 'js-drilldown-back' class required. Remove the backslash (`\`) if copy and pasting.
+   * @option
+   * @type {string}
+   * @default '<li class="js-drilldown-back"><a tabindex="0">Back</a></li>'
+   */
+  backButton: '<li class="js-drilldown-back"><a tabindex="0">Back</a></li>',
+
+  /**
+   * Position the back button either at the top or bottom of drilldown submenus. Can be `'left'` or `'bottom'`.
+   * @option
+   * @type {string}
+   * @default top
+   */
+  backButtonPosition: 'top',
+
+  /**
+   * Markup used to wrap drilldown menu. Use a class name for independent styling; the JS applied class: `is-drilldown` is required. Remove the backslash (`\`) if copy and pasting.
+   * @option
+   * @type {string}
+   * @default '<div></div>'
+   */
+  wrapper: '<div></div>',
+
+  /**
+   * Adds the parent link to the submenu.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  parentLink: false,
+
+  /**
+   * Allow the menu to return to root list on body click.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  closeOnClick: false,
+
+  /**
+   * Allow the menu to auto adjust height.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  autoHeight: false,
+
+  /**
+   * Animate the auto adjust height.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  animateHeight: false,
+
+  /**
+   * Scroll to the top of the menu after opening a submenu or navigating back using the menu back button
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  scrollTop: false,
+
+  /**
+   * String jquery selector (for example 'body') of element to take offset().top from, if empty string the drilldown menu offset().top is taken
+   * @option
+   * @type {string}
+   * @default ''
+   */
+  scrollTopElement: '',
+
+  /**
+   * ScrollTop offset
+   * @option
+   * @type {number}
+   * @default 0
+   */
+  scrollTopOffset: 0,
+
+  /**
+   * Scroll animation duration
+   * @option
+   * @type {number}
+   * @default 500
+   */
+  animationDuration: 500,
+
+  /**
+   * Scroll animation easing. Can be `'swing'` or `'linear'`.
+   * @option
+   * @type {string}
+   * @see {@link https://api.jquery.com/animate|JQuery animate}
+   * @default 'swing'
+   */
+  animationEasing: 'swing' // holdOpen: false
+
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.dropdown.js":
+/*!***********************************!*\
+  !*** ./js/foundation.dropdown.js ***!
+  \***********************************/
+/*! exports provided: Dropdown */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Dropdown", function() { return Dropdown; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.util.keyboard */ "./js/foundation.util.keyboard.js");
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_positionable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.positionable */ "./js/foundation.positionable.js");
+/* harmony import */ var _foundation_util_triggers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation.util.triggers */ "./js/foundation.util.triggers.js");
+/* harmony import */ var _foundation_util_touch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./foundation.util.touch */ "./js/foundation.util.touch.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+/**
+ * Dropdown module.
+ * @module foundation.dropdown
+ * @requires foundation.util.keyboard
+ * @requires foundation.util.box
+ * @requires foundation.util.triggers
+ */
+
+var Dropdown =
+/*#__PURE__*/
+function (_Positionable) {
+  _inherits(Dropdown, _Positionable);
+
+  function Dropdown() {
+    _classCallCheck(this, Dropdown);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Dropdown).apply(this, arguments));
+  }
+
+  _createClass(Dropdown, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of a dropdown.
+     * @class
+     * @name Dropdown
+     * @param {jQuery} element - jQuery object to make into a dropdown.
+     *        Object should be of the dropdown panel, rather than its anchor.
+     * @param {Object} options - Overrides to the default plugin settings.
+     */
+    value: function _setup(element, options) {
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, Dropdown.defaults, this.$element.data(), options);
+      this.className = 'Dropdown'; // ie9 back compat
+      // Triggers init is idempotent, just need to make sure it is initialized
+
+      _foundation_util_triggers__WEBPACK_IMPORTED_MODULE_4__["Triggers"].init(jquery__WEBPACK_IMPORTED_MODULE_0___default.a);
+
+      this._init();
+
+      _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__["Keyboard"].register('Dropdown', {
+        'ENTER': 'toggle',
+        'SPACE': 'toggle',
+        'ESCAPE': 'close'
+      });
+    }
+    /**
+     * Initializes the plugin by setting/checking options and attributes, adding helper variables, and saving the anchor.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      var $id = this.$element.attr('id');
+      this.$anchors = jquery__WEBPACK_IMPORTED_MODULE_0___default()("[data-toggle=\"".concat($id, "\"]")).length ? jquery__WEBPACK_IMPORTED_MODULE_0___default()("[data-toggle=\"".concat($id, "\"]")) : jquery__WEBPACK_IMPORTED_MODULE_0___default()("[data-open=\"".concat($id, "\"]"));
+      this.$anchors.attr({
+        'aria-controls': $id,
+        'data-is-focus': false,
+        'data-yeti-box': $id,
+        'aria-haspopup': true,
+        'aria-expanded': false
+      });
+
+      this._setCurrentAnchor(this.$anchors.first());
+
+      if (this.options.parentClass) {
+        this.$parent = this.$element.parents('.' + this.options.parentClass);
+      } else {
+        this.$parent = null;
+      } // Set [aria-labelledby] on the Dropdown if it is not set
+
+
+      if (typeof this.$element.attr('aria-labelledby') === 'undefined') {
+        // Get the anchor ID or create one
+        if (typeof this.$currentAnchor.attr('id') === 'undefined') {
+          this.$currentAnchor.attr('id', Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__["GetYoDigits"])(6, 'dd-anchor'));
+        }
+
+        ;
+        this.$element.attr('aria-labelledby', this.$currentAnchor.attr('id'));
+      }
+
+      this.$element.attr({
+        'aria-hidden': 'true',
+        'data-yeti-box': $id,
+        'data-resize': $id
+      });
+
+      _get(_getPrototypeOf(Dropdown.prototype), "_init", this).call(this);
+
+      this._events();
+    }
+  }, {
+    key: "_getDefaultPosition",
+    value: function _getDefaultPosition() {
+      // handle legacy classnames
+      var position = this.$element[0].className.match(/(top|left|right|bottom)/g);
+
+      if (position) {
+        return position[0];
+      } else {
+        return 'bottom';
+      }
+    }
+  }, {
+    key: "_getDefaultAlignment",
+    value: function _getDefaultAlignment() {
+      // handle legacy float approach
+      var horizontalPosition = /float-(\S+)/.exec(this.$currentAnchor.attr('class'));
+
+      if (horizontalPosition) {
+        return horizontalPosition[1];
+      }
+
+      return _get(_getPrototypeOf(Dropdown.prototype), "_getDefaultAlignment", this).call(this);
+    }
+    /**
+     * Sets the position and orientation of the dropdown pane, checks for collisions if allow-overlap is not true.
+     * Recursively calls itself if a collision is detected, with a new position class.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_setPosition",
+    value: function _setPosition() {
+      this.$element.removeClass("has-position-".concat(this.position, " has-alignment-").concat(this.alignment));
+
+      _get(_getPrototypeOf(Dropdown.prototype), "_setPosition", this).call(this, this.$currentAnchor, this.$element, this.$parent);
+
+      this.$element.addClass("has-position-".concat(this.position, " has-alignment-").concat(this.alignment));
+    }
+    /**
+     * Make it a current anchor.
+     * Current anchor as the reference for the position of Dropdown panes.
+     * @param {HTML} el - DOM element of the anchor.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_setCurrentAnchor",
+    value: function _setCurrentAnchor(el) {
+      this.$currentAnchor = jquery__WEBPACK_IMPORTED_MODULE_0___default()(el);
+    }
+    /**
+     * Adds event listeners to the element utilizing the triggers utility library.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      var _this = this;
+
+      this.$element.on({
+        'open.zf.trigger': this.open.bind(this),
+        'close.zf.trigger': this.close.bind(this),
+        'toggle.zf.trigger': this.toggle.bind(this),
+        'resizeme.zf.trigger': this._setPosition.bind(this)
+      });
+      this.$anchors.off('click.zf.trigger').on('click.zf.trigger', function () {
+        _this._setCurrentAnchor(this);
+      });
+
+      if (this.options.hover) {
+        this.$anchors.off('mouseenter.zf.dropdown mouseleave.zf.dropdown').on('mouseenter.zf.dropdown', function () {
+          _this._setCurrentAnchor(this);
+
+          var bodyData = jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').data();
+
+          if (typeof bodyData.whatinput === 'undefined' || bodyData.whatinput === 'mouse') {
+            clearTimeout(_this.timeout);
+            _this.timeout = setTimeout(function () {
+              _this.open();
+
+              _this.$anchors.data('hover', true);
+            }, _this.options.hoverDelay);
+          }
+        }).on('mouseleave.zf.dropdown', Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__["ignoreMousedisappear"])(function () {
+          clearTimeout(_this.timeout);
+          _this.timeout = setTimeout(function () {
+            _this.close();
+
+            _this.$anchors.data('hover', false);
+          }, _this.options.hoverDelay);
+        }));
+
+        if (this.options.hoverPane) {
+          this.$element.off('mouseenter.zf.dropdown mouseleave.zf.dropdown').on('mouseenter.zf.dropdown', function () {
+            clearTimeout(_this.timeout);
+          }).on('mouseleave.zf.dropdown', Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__["ignoreMousedisappear"])(function () {
+            clearTimeout(_this.timeout);
+            _this.timeout = setTimeout(function () {
+              _this.close();
+
+              _this.$anchors.data('hover', false);
+            }, _this.options.hoverDelay);
+          }));
+        }
+      }
+
+      this.$anchors.add(this.$element).on('keydown.zf.dropdown', function (e) {
+        var $target = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
+            visibleFocusableElements = _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__["Keyboard"].findFocusable(_this.$element);
+        _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__["Keyboard"].handleKey(e, 'Dropdown', {
+          open: function open() {
+            if ($target.is(_this.$anchors) && !$target.is('input, textarea')) {
+              _this.open();
+
+              _this.$element.attr('tabindex', -1).focus();
+
+              e.preventDefault();
+            }
+          },
+          close: function close() {
+            _this.close();
+
+            _this.$anchors.focus();
+          }
+        });
+      });
+    }
+    /**
+     * Adds an event handler to the body to close any dropdowns on a click.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_addBodyHandler",
+    value: function _addBodyHandler() {
+      var $body = jquery__WEBPACK_IMPORTED_MODULE_0___default()(document.body).not(this.$element),
+          _this = this;
+
+      $body.off('click.zf.dropdown').on('click.zf.dropdown', function (e) {
+        if (_this.$anchors.is(e.target) || _this.$anchors.find(e.target).length) {
+          return;
+        }
+
+        if (_this.$element.is(e.target) || _this.$element.find(e.target).length) {
+          return;
+        }
+
+        _this.close();
+
+        $body.off('click.zf.dropdown');
+      });
+    }
+    /**
+     * Opens the dropdown pane, and fires a bubbling event to close other dropdowns.
+     * @function
+     * @fires Dropdown#closeme
+     * @fires Dropdown#show
+     */
+
+  }, {
+    key: "open",
+    value: function open() {
+      // var _this = this;
+
+      /**
+       * Fires to close other open dropdowns, typically when dropdown is opening
+       * @event Dropdown#closeme
+       */
+      this.$element.trigger('closeme.zf.dropdown', this.$element.attr('id'));
+      this.$anchors.addClass('hover').attr({
+        'aria-expanded': true
+      }); // this.$element/*.show()*/;
+
+      this.$element.addClass('is-opening');
+
+      this._setPosition();
+
+      this.$element.removeClass('is-opening').addClass('is-open').attr({
+        'aria-hidden': false
+      });
+
+      if (this.options.autoFocus) {
+        var $focusable = _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__["Keyboard"].findFocusable(this.$element);
+
+        if ($focusable.length) {
+          $focusable.eq(0).focus();
+        }
+      }
+
+      if (this.options.closeOnClick) {
+        this._addBodyHandler();
+      }
+
+      if (this.options.trapFocus) {
+        _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__["Keyboard"].trapFocus(this.$element);
+      }
+      /**
+       * Fires once the dropdown is visible.
+       * @event Dropdown#show
+       */
+
+
+      this.$element.trigger('show.zf.dropdown', [this.$element]);
+    }
+    /**
+     * Closes the open dropdown pane.
+     * @function
+     * @fires Dropdown#hide
+     */
+
+  }, {
+    key: "close",
+    value: function close() {
+      if (!this.$element.hasClass('is-open')) {
+        return false;
+      }
+
+      this.$element.removeClass('is-open').attr({
+        'aria-hidden': true
+      });
+      this.$anchors.removeClass('hover').attr('aria-expanded', false);
+      /**
+       * Fires once the dropdown is no longer visible.
+       * @event Dropdown#hide
+       */
+
+      this.$element.trigger('hide.zf.dropdown', [this.$element]);
+
+      if (this.options.trapFocus) {
+        _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__["Keyboard"].releaseFocus(this.$element);
+      }
+    }
+    /**
+     * Toggles the dropdown pane's visibility.
+     * @function
+     */
+
+  }, {
+    key: "toggle",
+    value: function toggle() {
+      if (this.$element.hasClass('is-open')) {
+        if (this.$anchors.data('hover')) return;
+        this.close();
+      } else {
+        this.open();
+      }
+    }
+    /**
+     * Destroys the dropdown.
+     * @function
+     */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      this.$element.off('.zf.trigger').hide();
+      this.$anchors.off('.zf.dropdown');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(document.body).off('click.zf.dropdown');
+    }
+  }]);
+
+  return Dropdown;
+}(_foundation_positionable__WEBPACK_IMPORTED_MODULE_3__["Positionable"]);
+
+Dropdown.defaults = {
+  /**
+   * Class that designates bounding container of Dropdown (default: window)
+   * @option
+   * @type {?string}
+   * @default null
+   */
+  parentClass: null,
+
+  /**
+   * Amount of time to delay opening a submenu on hover event.
+   * @option
+   * @type {number}
+   * @default 250
+   */
+  hoverDelay: 250,
+
+  /**
+   * Allow submenus to open on hover events
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  hover: false,
+
+  /**
+   * Don't close dropdown when hovering over dropdown pane
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  hoverPane: false,
+
+  /**
+   * Number of pixels between the dropdown pane and the triggering element on open.
+   * @option
+   * @type {number}
+   * @default 0
+   */
+  vOffset: 0,
+
+  /**
+   * Number of pixels between the dropdown pane and the triggering element on open.
+   * @option
+   * @type {number}
+   * @default 0
+   */
+  hOffset: 0,
+
+  /**
+   * Position of dropdown. Can be left, right, bottom, top, or auto.
+   * @option
+   * @type {string}
+   * @default 'auto'
+   */
+  position: 'auto',
+
+  /**
+   * Alignment of dropdown relative to anchor. Can be left, right, bottom, top, center, or auto.
+   * @option
+   * @type {string}
+   * @default 'auto'
+   */
+  alignment: 'auto',
+
+  /**
+   * Allow overlap of container/window. If false, dropdown will first try to position as defined by data-position and data-alignment, but reposition if it would cause an overflow.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  allowOverlap: false,
+
+  /**
+   * Allow overlap of only the bottom of the container. This is the most common
+   * behavior for dropdowns, allowing the dropdown to extend the bottom of the
+   * screen but not otherwise influence or break out of the container.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  allowBottomOverlap: true,
+
+  /**
+   * Allow the plugin to trap focus to the dropdown pane if opened with keyboard commands.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  trapFocus: false,
+
+  /**
+   * Allow the plugin to set focus to the first focusable element within the pane, regardless of method of opening.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  autoFocus: false,
+
+  /**
+   * Allows a click on the body to close the dropdown.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  closeOnClick: false
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.dropdownMenu.js":
+/*!***************************************!*\
+  !*** ./js/foundation.dropdownMenu.js ***!
+  \***************************************/
+/*! exports provided: DropdownMenu */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DropdownMenu", function() { return DropdownMenu; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.util.keyboard */ "./js/foundation.util.keyboard.js");
+/* harmony import */ var _foundation_util_nest__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation.util.nest */ "./js/foundation.util.nest.js");
+/* harmony import */ var _foundation_util_box__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./foundation.util.box */ "./js/foundation.util.box.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+/**
+ * DropdownMenu module.
+ * @module foundation.dropdown-menu
+ * @requires foundation.util.keyboard
+ * @requires foundation.util.box
+ * @requires foundation.util.nest
+ */
+
+var DropdownMenu =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(DropdownMenu, _Plugin);
+
+  function DropdownMenu() {
+    _classCallCheck(this, DropdownMenu);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(DropdownMenu).apply(this, arguments));
+  }
+
+  _createClass(DropdownMenu, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of DropdownMenu.
+     * @class
+     * @name DropdownMenu
+     * @fires DropdownMenu#init
+     * @param {jQuery} element - jQuery object to make into a dropdown menu.
+     * @param {Object} options - Overrides to the default plugin settings.
+     */
+    value: function _setup(element, options) {
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, DropdownMenu.defaults, this.$element.data(), options);
+      this.className = 'DropdownMenu'; // ie9 back compat
+
+      this._init();
+
+      _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_3__["Keyboard"].register('DropdownMenu', {
+        'ENTER': 'open',
+        'SPACE': 'open',
+        'ARROW_RIGHT': 'next',
+        'ARROW_UP': 'up',
+        'ARROW_DOWN': 'down',
+        'ARROW_LEFT': 'previous',
+        'ESCAPE': 'close'
+      });
+    }
+    /**
+     * Initializes the plugin, and calls _prepareMenu
+     * @private
+     * @function
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      _foundation_util_nest__WEBPACK_IMPORTED_MODULE_4__["Nest"].Feather(this.$element, 'dropdown');
+      var subs = this.$element.find('li.is-dropdown-submenu-parent');
+      this.$element.children('.is-dropdown-submenu-parent').children('.is-dropdown-submenu').addClass('first-sub');
+      this.$menuItems = this.$element.find('[role="menuitem"]');
+      this.$tabs = this.$element.children('[role="menuitem"]');
+      this.$tabs.find('ul.is-dropdown-submenu').addClass(this.options.verticalClass);
+
+      if (this.options.alignment === 'auto') {
+        if (this.$element.hasClass(this.options.rightClass) || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__["rtl"])() || this.$element.parents('.top-bar-right').is('*')) {
+          this.options.alignment = 'right';
+          subs.addClass('opens-left');
+        } else {
+          this.options.alignment = 'left';
+          subs.addClass('opens-right');
+        }
+      } else {
+        if (this.options.alignment === 'right') {
+          subs.addClass('opens-left');
+        } else {
+          subs.addClass('opens-right');
+        }
+      }
+
+      this.changed = false;
+
+      this._events();
+    }
+  }, {
+    key: "_isVertical",
+    value: function _isVertical() {
+      return this.$tabs.css('display') === 'block' || this.$element.css('flex-direction') === 'column';
+    }
+  }, {
+    key: "_isRtl",
+    value: function _isRtl() {
+      return this.$element.hasClass('align-right') || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__["rtl"])() && !this.$element.hasClass('align-left');
+    }
+    /**
+     * Adds event listeners to elements within the menu
+     * @private
+     * @function
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      var _this = this,
+          hasTouch = 'ontouchstart' in window || typeof window.ontouchstart !== 'undefined',
+          parClass = 'is-dropdown-submenu-parent'; // used for onClick and in the keyboard handlers
+
+
+      var handleClickFn = function handleClickFn(e) {
+        var $elem = jquery__WEBPACK_IMPORTED_MODULE_0___default()(e.target).parentsUntil('ul', ".".concat(parClass)),
+            hasSub = $elem.hasClass(parClass),
+            hasClicked = $elem.attr('data-is-click') === 'true',
+            $sub = $elem.children('.is-dropdown-submenu');
+
+        if (hasSub) {
+          if (hasClicked) {
+            if (!_this.options.closeOnClick || !_this.options.clickOpen && !hasTouch || _this.options.forceFollow && hasTouch) {
+              return;
+            } else {
+              e.stopImmediatePropagation();
+              e.preventDefault();
+
+              _this._hide($elem);
+            }
+          } else {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            _this._show($sub);
+
+            $elem.add($elem.parentsUntil(_this.$element, ".".concat(parClass))).attr('data-is-click', true);
+          }
+        }
+      };
+
+      if (this.options.clickOpen || hasTouch) {
+        this.$menuItems.on('click.zf.dropdownmenu touchstart.zf.dropdownmenu', handleClickFn);
+      } // Handle Leaf element Clicks
+
+
+      if (_this.options.closeOnClickInside) {
+        this.$menuItems.on('click.zf.dropdownmenu', function (e) {
+          var $elem = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
+              hasSub = $elem.hasClass(parClass);
+
+          if (!hasSub) {
+            _this._hide();
+          }
+        });
+      }
+
+      if (!this.options.disableHover) {
+        this.$menuItems.on('mouseenter.zf.dropdownmenu', function (e) {
+          var $elem = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
+              hasSub = $elem.hasClass(parClass);
+
+          if (hasSub) {
+            clearTimeout($elem.data('_delay'));
+            $elem.data('_delay', setTimeout(function () {
+              _this._show($elem.children('.is-dropdown-submenu'));
+            }, _this.options.hoverDelay));
+          }
+        }).on('mouseleave.zf.dropdownMenu', Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__["ignoreMousedisappear"])(function (e) {
+          var $elem = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
+              hasSub = $elem.hasClass(parClass);
+
+          if (hasSub && _this.options.autoclose) {
+            if ($elem.attr('data-is-click') === 'true' && _this.options.clickOpen) {
+              return false;
+            }
+
+            clearTimeout($elem.data('_delay'));
+            $elem.data('_delay', setTimeout(function () {
+              _this._hide($elem);
+            }, _this.options.closingTime));
+          }
+        }));
+      }
+
+      this.$menuItems.on('keydown.zf.dropdownmenu', function (e) {
+        var $element = jquery__WEBPACK_IMPORTED_MODULE_0___default()(e.target).parentsUntil('ul', '[role="menuitem"]'),
+            isTab = _this.$tabs.index($element) > -1,
+            $elements = isTab ? _this.$tabs : $element.siblings('li').add($element),
+            $prevElement,
+            $nextElement;
+        $elements.each(function (i) {
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).is($element)) {
+            $prevElement = $elements.eq(i - 1);
+            $nextElement = $elements.eq(i + 1);
+            return;
+          }
+        });
+
+        var nextSibling = function nextSibling() {
+          $nextElement.children('a:first').focus();
+          e.preventDefault();
+        },
+            prevSibling = function prevSibling() {
+          $prevElement.children('a:first').focus();
+          e.preventDefault();
+        },
+            openSub = function openSub() {
+          var $sub = $element.children('ul.is-dropdown-submenu');
+
+          if ($sub.length) {
+            _this._show($sub);
+
+            $element.find('li > a:first').focus();
+            e.preventDefault();
+          } else {
+            return;
+          }
+        },
+            closeSub = function closeSub() {
+          //if ($element.is(':first-child')) {
+          var close = $element.parent('ul').parent('li');
+          close.children('a:first').focus();
+
+          _this._hide(close);
+
+          e.preventDefault(); //}
+        };
+
+        var functions = {
+          open: openSub,
+          close: function close() {
+            _this._hide(_this.$element);
+
+            _this.$menuItems.eq(0).children('a').focus(); // focus to first element
+
+
+            e.preventDefault();
+          },
+          handled: function handled() {
+            e.stopImmediatePropagation();
+          }
+        };
+
+        if (isTab) {
+          if (_this._isVertical()) {
+            // vertical menu
+            if (_this._isRtl()) {
+              // right aligned
+              jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend(functions, {
+                down: nextSibling,
+                up: prevSibling,
+                next: closeSub,
+                previous: openSub
+              });
+            } else {
+              // left aligned
+              jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend(functions, {
+                down: nextSibling,
+                up: prevSibling,
+                next: openSub,
+                previous: closeSub
+              });
+            }
+          } else {
+            // horizontal menu
+            if (_this._isRtl()) {
+              // right aligned
+              jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend(functions, {
+                next: prevSibling,
+                previous: nextSibling,
+                down: openSub,
+                up: closeSub
+              });
+            } else {
+              // left aligned
+              jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend(functions, {
+                next: nextSibling,
+                previous: prevSibling,
+                down: openSub,
+                up: closeSub
+              });
+            }
+          }
+        } else {
+          // not tabs -> one sub
+          if (_this._isRtl()) {
+            // right aligned
+            jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend(functions, {
+              next: closeSub,
+              previous: openSub,
+              down: nextSibling,
+              up: prevSibling
+            });
+          } else {
+            // left aligned
+            jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend(functions, {
+              next: openSub,
+              previous: closeSub,
+              down: nextSibling,
+              up: prevSibling
+            });
+          }
+        }
+
+        _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_3__["Keyboard"].handleKey(e, 'DropdownMenu', functions);
+      });
+    }
+    /**
+     * Adds an event handler to the body to close any dropdowns on a click.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_addBodyHandler",
+    value: function _addBodyHandler() {
+      var $body = jquery__WEBPACK_IMPORTED_MODULE_0___default()(document.body),
+          _this = this;
+
+      $body.off('mouseup.zf.dropdownmenu touchend.zf.dropdownmenu').on('mouseup.zf.dropdownmenu touchend.zf.dropdownmenu', function (e) {
+        var $link = _this.$element.find(e.target);
+
+        if ($link.length) {
+          return;
+        }
+
+        _this._hide();
+
+        $body.off('mouseup.zf.dropdownmenu touchend.zf.dropdownmenu');
+      });
+    }
+    /**
+     * Opens a dropdown pane, and checks for collisions first.
+     * @param {jQuery} $sub - ul element that is a submenu to show
+     * @function
+     * @private
+     * @fires Dropdownmenu#show
+     */
+
+  }, {
+    key: "_show",
+    value: function _show($sub) {
+      var idx = this.$tabs.index(this.$tabs.filter(function (i, el) {
+        return jquery__WEBPACK_IMPORTED_MODULE_0___default()(el).find($sub).length > 0;
+      }));
+      var $sibs = $sub.parent('li.is-dropdown-submenu-parent').siblings('li.is-dropdown-submenu-parent');
+
+      this._hide($sibs, idx);
+
+      $sub.css('visibility', 'hidden').addClass('js-dropdown-active').parent('li.is-dropdown-submenu-parent').addClass('is-active');
+      var clear = _foundation_util_box__WEBPACK_IMPORTED_MODULE_5__["Box"].ImNotTouchingYou($sub, null, true);
+
+      if (!clear) {
+        var oldClass = this.options.alignment === 'left' ? '-right' : '-left',
+            $parentLi = $sub.parent('.is-dropdown-submenu-parent');
+        $parentLi.removeClass("opens".concat(oldClass)).addClass("opens-".concat(this.options.alignment));
+        clear = _foundation_util_box__WEBPACK_IMPORTED_MODULE_5__["Box"].ImNotTouchingYou($sub, null, true);
+
+        if (!clear) {
+          $parentLi.removeClass("opens-".concat(this.options.alignment)).addClass('opens-inner');
+        }
+
+        this.changed = true;
+      }
+
+      $sub.css('visibility', '');
+
+      if (this.options.closeOnClick) {
+        this._addBodyHandler();
+      }
+      /**
+       * Fires when the new dropdown pane is visible.
+       * @event Dropdownmenu#show
+       */
+
+
+      this.$element.trigger('show.zf.dropdownmenu', [$sub]);
+    }
+    /**
+     * Hides a single, currently open dropdown pane, if passed a parameter, otherwise, hides everything.
+     * @function
+     * @param {jQuery} $elem - element with a submenu to hide
+     * @param {Number} idx - index of the $tabs collection to hide
+     * @private
+     */
+
+  }, {
+    key: "_hide",
+    value: function _hide($elem, idx) {
+      var $toClose;
+
+      if ($elem && $elem.length) {
+        $toClose = $elem;
+      } else if (typeof idx !== 'undefined') {
+        $toClose = this.$tabs.not(function (i, el) {
+          return i === idx;
+        });
+      } else {
+        $toClose = this.$element;
+      }
+
+      var somethingToClose = $toClose.hasClass('is-active') || $toClose.find('.is-active').length > 0;
+
+      if (somethingToClose) {
+        $toClose.find('li.is-active').add($toClose).attr({
+          'data-is-click': false
+        }).removeClass('is-active');
+        $toClose.find('ul.js-dropdown-active').removeClass('js-dropdown-active');
+
+        if (this.changed || $toClose.find('opens-inner').length) {
+          var oldClass = this.options.alignment === 'left' ? 'right' : 'left';
+          $toClose.find('li.is-dropdown-submenu-parent').add($toClose).removeClass("opens-inner opens-".concat(this.options.alignment)).addClass("opens-".concat(oldClass));
+          this.changed = false;
+        }
+        /**
+         * Fires when the open menus are closed.
+         * @event Dropdownmenu#hide
+         */
+
+
+        this.$element.trigger('hide.zf.dropdownmenu', [$toClose]);
+      }
+    }
+    /**
+     * Destroys the plugin.
+     * @function
+     */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      this.$menuItems.off('.zf.dropdownmenu').removeAttr('data-is-click').removeClass('is-right-arrow is-left-arrow is-down-arrow opens-right opens-left opens-inner');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(document.body).off('.zf.dropdownmenu');
+      _foundation_util_nest__WEBPACK_IMPORTED_MODULE_4__["Nest"].Burn(this.$element, 'dropdown');
+    }
+  }]);
+
+  return DropdownMenu;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_1__["Plugin"]);
+/**
+ * Default settings for plugin
+ */
+
+
+DropdownMenu.defaults = {
+  /**
+   * Disallows hover events from opening submenus
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  disableHover: false,
+
+  /**
+   * Allow a submenu to automatically close on a mouseleave event, if not clicked open.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  autoclose: true,
+
+  /**
+   * Amount of time to delay opening a submenu on hover event.
+   * @option
+   * @type {number}
+   * @default 50
+   */
+  hoverDelay: 50,
+
+  /**
+   * Allow a submenu to open/remain open on parent click event. Allows cursor to move away from menu.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  clickOpen: false,
+
+  /**
+   * Amount of time to delay closing a submenu on a mouseleave event.
+   * @option
+   * @type {number}
+   * @default 500
+   */
+  closingTime: 500,
+
+  /**
+   * Position of the menu relative to what direction the submenus should open. Handled by JS. Can be `'auto'`, `'left'` or `'right'`.
+   * @option
+   * @type {string}
+   * @default 'auto'
+   */
+  alignment: 'auto',
+
+  /**
+   * Allow clicks on the body to close any open submenus.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  closeOnClick: true,
+
+  /**
+   * Allow clicks on leaf anchor links to close any open submenus.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  closeOnClickInside: true,
+
+  /**
+   * Class applied to vertical oriented menus, Foundation default is `vertical`. Update this if using your own class.
+   * @option
+   * @type {string}
+   * @default 'vertical'
+   */
+  verticalClass: 'vertical',
+
+  /**
+   * Class applied to right-side oriented menus, Foundation default is `align-right`. Update this if using your own class.
+   * @option
+   * @type {string}
+   * @default 'align-right'
+   */
+  rightClass: 'align-right',
+
+  /**
+   * Boolean to force overide the clicking of links to perform default action, on second touch event for mobile.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  forceFollow: true
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.equalizer.js":
+/*!************************************!*\
+  !*** ./js/foundation.equalizer.js ***!
+  \************************************/
+/*! exports provided: Equalizer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Equalizer", function() { return Equalizer; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.util.mediaQuery */ "./js/foundation.util.mediaQuery.js");
+/* harmony import */ var _foundation_util_imageLoader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.util.imageLoader */ "./js/foundation.util.imageLoader.js");
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+/**
+ * Equalizer module.
+ * @module foundation.equalizer
+ * @requires foundation.util.mediaQuery
+ * @requires foundation.util.imageLoader if equalizer contains images
+ */
+
+var Equalizer =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(Equalizer, _Plugin);
+
+  function Equalizer() {
+    _classCallCheck(this, Equalizer);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Equalizer).apply(this, arguments));
+  }
+
+  _createClass(Equalizer, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of Equalizer.
+     * @class
+     * @name Equalizer
+     * @fires Equalizer#init
+     * @param {Object} element - jQuery object to add the trigger to.
+     * @param {Object} options - Overrides to the default plugin settings.
+     */
+    value: function _setup(element, options) {
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, Equalizer.defaults, this.$element.data(), options);
+      this.className = 'Equalizer'; // ie9 back compat
+
+      this._init();
+    }
+    /**
+     * Initializes the Equalizer plugin and calls functions to get equalizer functioning on load.
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      var eqId = this.$element.attr('data-equalizer') || '';
+      var $watched = this.$element.find("[data-equalizer-watch=\"".concat(eqId, "\"]"));
+
+      _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__["MediaQuery"]._init();
+
+      this.$watched = $watched.length ? $watched : this.$element.find('[data-equalizer-watch]');
+      this.$element.attr('data-resize', eqId || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__["GetYoDigits"])(6, 'eq'));
+      this.$element.attr('data-mutate', eqId || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__["GetYoDigits"])(6, 'eq'));
+      this.hasNested = this.$element.find('[data-equalizer]').length > 0;
+      this.isNested = this.$element.parentsUntil(document.body, '[data-equalizer]').length > 0;
+      this.isOn = false;
+      this._bindHandler = {
+        onResizeMeBound: this._onResizeMe.bind(this),
+        onPostEqualizedBound: this._onPostEqualized.bind(this)
+      };
+      var imgs = this.$element.find('img');
+      var tooSmall;
+
+      if (this.options.equalizeOn) {
+        tooSmall = this._checkMQ();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on('changed.zf.mediaquery', this._checkMQ.bind(this));
+      } else {
+        this._events();
+      }
+
+      if (typeof tooSmall !== 'undefined' && tooSmall === false || typeof tooSmall === 'undefined') {
+        if (imgs.length) {
+          Object(_foundation_util_imageLoader__WEBPACK_IMPORTED_MODULE_2__["onImagesLoaded"])(imgs, this._reflow.bind(this));
+        } else {
+          this._reflow();
+        }
+      }
+    }
+    /**
+     * Removes event listeners if the breakpoint is too small.
+     * @private
+     */
+
+  }, {
+    key: "_pauseEvents",
+    value: function _pauseEvents() {
+      this.isOn = false;
+      this.$element.off({
+        '.zf.equalizer': this._bindHandler.onPostEqualizedBound,
+        'resizeme.zf.trigger': this._bindHandler.onResizeMeBound,
+        'mutateme.zf.trigger': this._bindHandler.onResizeMeBound
+      });
+    }
+    /**
+     * function to handle $elements resizeme.zf.trigger, with bound this on _bindHandler.onResizeMeBound
+     * @private
+     */
+
+  }, {
+    key: "_onResizeMe",
+    value: function _onResizeMe(e) {
+      this._reflow();
+    }
+    /**
+     * function to handle $elements postequalized.zf.equalizer, with bound this on _bindHandler.onPostEqualizedBound
+     * @private
+     */
+
+  }, {
+    key: "_onPostEqualized",
+    value: function _onPostEqualized(e) {
+      if (e.target !== this.$element[0]) {
+        this._reflow();
+      }
+    }
+    /**
+     * Initializes events for Equalizer.
+     * @private
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      var _this = this;
+
+      this._pauseEvents();
+
+      if (this.hasNested) {
+        this.$element.on('postequalized.zf.equalizer', this._bindHandler.onPostEqualizedBound);
+      } else {
+        this.$element.on('resizeme.zf.trigger', this._bindHandler.onResizeMeBound);
+        this.$element.on('mutateme.zf.trigger', this._bindHandler.onResizeMeBound);
+      }
+
+      this.isOn = true;
+    }
+    /**
+     * Checks the current breakpoint to the minimum required size.
+     * @private
+     */
+
+  }, {
+    key: "_checkMQ",
+    value: function _checkMQ() {
+      var tooSmall = !_foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__["MediaQuery"].is(this.options.equalizeOn);
+
+      if (tooSmall) {
+        if (this.isOn) {
+          this._pauseEvents();
+
+          this.$watched.css('height', 'auto');
+        }
+      } else {
+        if (!this.isOn) {
+          this._events();
+        }
+      }
+
+      return tooSmall;
+    }
+    /**
+     * A noop version for the plugin
+     * @private
+     */
+
+  }, {
+    key: "_killswitch",
+    value: function _killswitch() {
+      return;
+    }
+    /**
+     * Calls necessary functions to update Equalizer upon DOM change
+     * @private
+     */
+
+  }, {
+    key: "_reflow",
+    value: function _reflow() {
+      if (!this.options.equalizeOnStack) {
+        if (this._isStacked()) {
+          this.$watched.css('height', 'auto');
+          return false;
+        }
+      }
+
+      if (this.options.equalizeByRow) {
+        this.getHeightsByRow(this.applyHeightByRow.bind(this));
+      } else {
+        this.getHeights(this.applyHeight.bind(this));
+      }
+    }
+    /**
+     * Manually determines if the first 2 elements are *NOT* stacked.
+     * @private
+     */
+
+  }, {
+    key: "_isStacked",
+    value: function _isStacked() {
+      if (!this.$watched[0] || !this.$watched[1]) {
+        return true;
+      }
+
+      return this.$watched[0].getBoundingClientRect().top !== this.$watched[1].getBoundingClientRect().top;
+    }
+    /**
+     * Finds the outer heights of children contained within an Equalizer parent and returns them in an array
+     * @param {Function} cb - A non-optional callback to return the heights array to.
+     * @returns {Array} heights - An array of heights of children within Equalizer container
+     */
+
+  }, {
+    key: "getHeights",
+    value: function getHeights(cb) {
+      var heights = [];
+
+      for (var i = 0, len = this.$watched.length; i < len; i++) {
+        this.$watched[i].style.height = 'auto';
+        heights.push(this.$watched[i].offsetHeight);
+      }
+
+      cb(heights);
+    }
+    /**
+     * Finds the outer heights of children contained within an Equalizer parent and returns them in an array
+     * @param {Function} cb - A non-optional callback to return the heights array to.
+     * @returns {Array} groups - An array of heights of children within Equalizer container grouped by row with element,height and max as last child
+     */
+
+  }, {
+    key: "getHeightsByRow",
+    value: function getHeightsByRow(cb) {
+      var lastElTopOffset = this.$watched.length ? this.$watched.first().offset().top : 0,
+          groups = [],
+          group = 0; //group by Row
+
+      groups[group] = [];
+
+      for (var i = 0, len = this.$watched.length; i < len; i++) {
+        this.$watched[i].style.height = 'auto'; //maybe could use this.$watched[i].offsetTop
+
+        var elOffsetTop = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.$watched[i]).offset().top;
+
+        if (elOffsetTop != lastElTopOffset) {
+          group++;
+          groups[group] = [];
+          lastElTopOffset = elOffsetTop;
+        }
+
+        groups[group].push([this.$watched[i], this.$watched[i].offsetHeight]);
+      }
+
+      for (var j = 0, ln = groups.length; j < ln; j++) {
+        var heights = jquery__WEBPACK_IMPORTED_MODULE_0___default()(groups[j]).map(function () {
+          return this[1];
+        }).get();
+        var max = Math.max.apply(null, heights);
+        groups[j].push(max);
+      }
+
+      cb(groups);
+    }
+    /**
+     * Changes the CSS height property of each child in an Equalizer parent to match the tallest
+     * @param {array} heights - An array of heights of children within Equalizer container
+     * @fires Equalizer#preequalized
+     * @fires Equalizer#postequalized
+     */
+
+  }, {
+    key: "applyHeight",
+    value: function applyHeight(heights) {
+      var max = Math.max.apply(null, heights);
+      /**
+       * Fires before the heights are applied
+       * @event Equalizer#preequalized
+       */
+
+      this.$element.trigger('preequalized.zf.equalizer');
+      this.$watched.css('height', max);
+      /**
+       * Fires when the heights have been applied
+       * @event Equalizer#postequalized
+       */
+
+      this.$element.trigger('postequalized.zf.equalizer');
+    }
+    /**
+     * Changes the CSS height property of each child in an Equalizer parent to match the tallest by row
+     * @param {array} groups - An array of heights of children within Equalizer container grouped by row with element,height and max as last child
+     * @fires Equalizer#preequalized
+     * @fires Equalizer#preequalizedrow
+     * @fires Equalizer#postequalizedrow
+     * @fires Equalizer#postequalized
+     */
+
+  }, {
+    key: "applyHeightByRow",
+    value: function applyHeightByRow(groups) {
+      /**
+       * Fires before the heights are applied
+       */
+      this.$element.trigger('preequalized.zf.equalizer');
+
+      for (var i = 0, len = groups.length; i < len; i++) {
+        var groupsILength = groups[i].length,
+            max = groups[i][groupsILength - 1];
+
+        if (groupsILength <= 2) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(groups[i][0][0]).css({
+            'height': 'auto'
+          });
+          continue;
+        }
+        /**
+          * Fires before the heights per row are applied
+          * @event Equalizer#preequalizedrow
+          */
+
+
+        this.$element.trigger('preequalizedrow.zf.equalizer');
+
+        for (var j = 0, lenJ = groupsILength - 1; j < lenJ; j++) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(groups[i][j][0]).css({
+            'height': max
+          });
+        }
+        /**
+          * Fires when the heights per row have been applied
+          * @event Equalizer#postequalizedrow
+          */
+
+
+        this.$element.trigger('postequalizedrow.zf.equalizer');
+      }
+      /**
+       * Fires when the heights have been applied
+       */
+
+
+      this.$element.trigger('postequalized.zf.equalizer');
+    }
+    /**
+     * Destroys an instance of Equalizer.
+     * @function
+     */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      this._pauseEvents();
+
+      this.$watched.css('height', 'auto');
+    }
+  }]);
+
+  return Equalizer;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_4__["Plugin"]);
+/**
+ * Default settings for plugin
+ */
+
+
+Equalizer.defaults = {
+  /**
+   * Enable height equalization when stacked on smaller screens.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  equalizeOnStack: false,
+
+  /**
+   * Enable height equalization row by row.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  equalizeByRow: false,
+
+  /**
+   * String representing the minimum breakpoint size the plugin should equalize heights on.
+   * @option
+   * @type {string}
+   * @default ''
+   */
+  equalizeOn: ''
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.interchange.js":
+/*!**************************************!*\
+  !*** ./js/foundation.interchange.js ***!
+  \**************************************/
+/*! exports provided: Interchange */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Interchange", function() { return Interchange; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.util.mediaQuery */ "./js/foundation.util.mediaQuery.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+/**
+ * Interchange module.
+ * @module foundation.interchange
+ * @requires foundation.util.mediaQuery
+ */
+
+var Interchange =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(Interchange, _Plugin);
+
+  function Interchange() {
+    _classCallCheck(this, Interchange);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Interchange).apply(this, arguments));
+  }
+
+  _createClass(Interchange, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of Interchange.
+     * @class
+     * @name Interchange
+     * @fires Interchange#init
+     * @param {Object} element - jQuery object to add the trigger to.
+     * @param {Object} options - Overrides to the default plugin settings.
+     */
+    value: function _setup(element, options) {
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, Interchange.defaults, options);
+      this.rules = [];
+      this.currentPath = '';
+      this.className = 'Interchange'; // ie9 back compat
+
+      this._init();
+
+      this._events();
+    }
+    /**
+     * Initializes the Interchange plugin and calls functions to get interchange functioning on load.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__["MediaQuery"]._init();
+
+      var id = this.$element[0].id || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__["GetYoDigits"])(6, 'interchange');
+      this.$element.attr({
+        'data-resize': id,
+        'id': id
+      });
+
+      this._addBreakpoints();
+
+      this._generateRules();
+
+      this._reflow();
+    }
+    /**
+     * Initializes events for Interchange.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      var _this2 = this;
+
+      this.$element.off('resizeme.zf.trigger').on('resizeme.zf.trigger', function () {
+        return _this2._reflow();
+      });
+    }
+    /**
+     * Calls necessary functions to update Interchange upon DOM change
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_reflow",
+    value: function _reflow() {
+      var match; // Iterate through each rule, but only save the last match
+
+      for (var i in this.rules) {
+        if (this.rules.hasOwnProperty(i)) {
+          var rule = this.rules[i];
+
+          if (window.matchMedia(rule.query).matches) {
+            match = rule;
+          }
+        }
+      }
+
+      if (match) {
+        this.replace(match.path);
+      }
+    }
+    /**
+     * Gets the Foundation breakpoints and adds them to the Interchange.SPECIAL_QUERIES object.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_addBreakpoints",
+    value: function _addBreakpoints() {
+      for (var i in _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__["MediaQuery"].queries) {
+        if (_foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__["MediaQuery"].queries.hasOwnProperty(i)) {
+          var query = _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__["MediaQuery"].queries[i];
+          Interchange.SPECIAL_QUERIES[query.name] = query.value;
+        }
+      }
+    }
+    /**
+     * Checks the Interchange element for the provided media query + content pairings
+     * @function
+     * @private
+     * @param {Object} element - jQuery object that is an Interchange instance
+     * @returns {Array} scenarios - Array of objects that have 'mq' and 'path' keys with corresponding keys
+     */
+
+  }, {
+    key: "_generateRules",
+    value: function _generateRules(element) {
+      var rulesList = [];
+      var rules;
+
+      if (this.options.rules) {
+        rules = this.options.rules;
+      } else {
+        rules = this.$element.data('interchange');
+      }
+
+      rules = typeof rules === 'string' ? rules.match(/\[.*?, .*?\]/g) : rules;
+
+      for (var i in rules) {
+        if (rules.hasOwnProperty(i)) {
+          var rule = rules[i].slice(1, -1).split(', ');
+          var path = rule.slice(0, -1).join('');
+          var query = rule[rule.length - 1];
+
+          if (Interchange.SPECIAL_QUERIES[query]) {
+            query = Interchange.SPECIAL_QUERIES[query];
+          }
+
+          rulesList.push({
+            path: path,
+            query: query
+          });
+        }
+      }
+
+      this.rules = rulesList;
+    }
+    /**
+     * Update the `src` property of an image, or change the HTML of a container, to the specified path.
+     * @function
+     * @param {String} path - Path to the image or HTML partial.
+     * @fires Interchange#replaced
+     */
+
+  }, {
+    key: "replace",
+    value: function replace(path) {
+      if (this.currentPath === path) return;
+
+      var _this = this,
+          trigger = 'replaced.zf.interchange'; // Replacing images
+
+
+      if (this.$element[0].nodeName === 'IMG') {
+        this.$element.attr('src', path).on('load', function () {
+          _this.currentPath = path;
+        }).trigger(trigger);
+      } // Replacing background images
+      else if (path.match(/\.(gif|jpg|jpeg|png|svg|tiff)([?#].*)?/i)) {
+          path = path.replace(/\(/g, '%28').replace(/\)/g, '%29');
+          this.$element.css({
+            'background-image': 'url(' + path + ')'
+          }).trigger(trigger);
+        } // Replacing HTML
+        else {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default.a.get(path, function (response) {
+              _this.$element.html(response).trigger(trigger);
+
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(response).foundation();
+              _this.currentPath = path;
+            });
+          }
+      /**
+       * Fires when content in an Interchange element is done being loaded.
+       * @event Interchange#replaced
+       */
+      // this.$element.trigger('replaced.zf.interchange');
+
+    }
+    /**
+     * Destroys an instance of interchange.
+     * @function
+     */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      this.$element.off('resizeme.zf.trigger');
+    }
+  }]);
+
+  return Interchange;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_2__["Plugin"]);
+/**
+ * Default settings for plugin
+ */
+
+
+Interchange.defaults = {
+  /**
+   * Rules to be applied to Interchange elements. Set with the `data-interchange` array notation.
+   * @option
+   * @type {?array}
+   * @default null
+   */
+  rules: null
+};
+Interchange.SPECIAL_QUERIES = {
+  'landscape': 'screen and (orientation: landscape)',
+  'portrait': 'screen and (orientation: portrait)',
+  'retina': 'only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx)'
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.magellan.js":
+/*!***********************************!*\
+  !*** ./js/foundation.magellan.js ***!
+  \***********************************/
+/*! exports provided: Magellan */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Magellan", function() { return Magellan; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+/* harmony import */ var _foundation_smoothScroll__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.smoothScroll */ "./js/foundation.smoothScroll.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+/**
+ * Magellan module.
+ * @module foundation.magellan
+ * @requires foundation.smoothScroll
+ */
+
+var Magellan =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(Magellan, _Plugin);
+
+  function Magellan() {
+    _classCallCheck(this, Magellan);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Magellan).apply(this, arguments));
+  }
+
+  _createClass(Magellan, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of Magellan.
+     * @class
+     * @name Magellan
+     * @fires Magellan#init
+     * @param {Object} element - jQuery object to add the trigger to.
+     * @param {Object} options - Overrides to the default plugin settings.
+     */
+    value: function _setup(element, options) {
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, Magellan.defaults, this.$element.data(), options);
+      this.className = 'Magellan'; // ie9 back compat
+
+      this._init();
+
+      this.calcPoints();
+    }
+    /**
+     * Initializes the Magellan plugin and calls functions to get equalizer functioning on load.
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      var id = this.$element[0].id || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["GetYoDigits"])(6, 'magellan');
+
+      var _this = this;
+
+      this.$targets = jquery__WEBPACK_IMPORTED_MODULE_0___default()('[data-magellan-target]');
+      this.$links = this.$element.find('a');
+      this.$element.attr({
+        'data-resize': id,
+        'data-scroll': id,
+        'id': id
+      });
+      this.$active = jquery__WEBPACK_IMPORTED_MODULE_0___default()();
+      this.scrollPos = parseInt(window.pageYOffset, 10);
+
+      this._events();
+    }
+    /**
+     * Calculates an array of pixel values that are the demarcation lines between locations on the page.
+     * Can be invoked if new elements are added or the size of a location changes.
+     * @function
+     */
+
+  }, {
+    key: "calcPoints",
+    value: function calcPoints() {
+      var _this = this,
+          body = document.body,
+          html = document.documentElement;
+
+      this.points = [];
+      this.winHeight = Math.round(Math.max(window.innerHeight, html.clientHeight));
+      this.docHeight = Math.round(Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight));
+      this.$targets.each(function () {
+        var $tar = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
+            pt = Math.round($tar.offset().top - _this.options.threshold);
+        $tar.targetPoint = pt;
+
+        _this.points.push(pt);
+      });
+    }
+    /**
+     * Initializes events for Magellan.
+     * @private
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      var _this = this,
+          $body = jquery__WEBPACK_IMPORTED_MODULE_0___default()('html, body'),
+          opts = {
+        duration: _this.options.animationDuration,
+        easing: _this.options.animationEasing
+      };
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).one('load', function () {
+        if (_this.options.deepLinking) {
+          if (location.hash) {
+            _this.scrollToLoc(location.hash);
+          }
+        }
+
+        _this.calcPoints();
+
+        _this._updateActive();
+      });
+      _this.onLoadListener = Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["onLoad"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(window), function () {
+        _this.$element.on({
+          'resizeme.zf.trigger': _this.reflow.bind(_this),
+          'scrollme.zf.trigger': _this._updateActive.bind(_this)
+        }).on('click.zf.magellan', 'a[href^="#"]', function (e) {
+          e.preventDefault();
+          var arrival = this.getAttribute('href');
+
+          _this.scrollToLoc(arrival);
+        });
+      });
+
+      this._deepLinkScroll = function (e) {
+        if (_this.options.deepLinking) {
+          _this.scrollToLoc(window.location.hash);
+        }
+      };
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on('hashchange', this._deepLinkScroll);
+    }
+    /**
+     * Function to scroll to a given location on the page.
+     * @param {String} loc - a properly formatted jQuery id selector. Example: '#foo'
+     * @function
+     */
+
+  }, {
+    key: "scrollToLoc",
+    value: function scrollToLoc(loc) {
+      this._inTransition = true;
+
+      var _this = this;
+
+      var options = {
+        animationEasing: this.options.animationEasing,
+        animationDuration: this.options.animationDuration,
+        threshold: this.options.threshold,
+        offset: this.options.offset
+      };
+      _foundation_smoothScroll__WEBPACK_IMPORTED_MODULE_3__["SmoothScroll"].scrollToLoc(loc, options, function () {
+        _this._inTransition = false;
+      });
+    }
+    /**
+     * Calls necessary functions to update Magellan upon DOM change
+     * @function
+     */
+
+  }, {
+    key: "reflow",
+    value: function reflow() {
+      this.calcPoints();
+
+      this._updateActive();
+    }
+    /**
+     * Updates the visibility of an active location link, and updates the url hash for the page, if deepLinking enabled.
+     * @private
+     * @function
+     * @fires Magellan#update
+     */
+
+  }, {
+    key: "_updateActive",
+    value: function _updateActive()
+    /*evt, elem, scrollPos*/
+    {
+      var _this2 = this;
+
+      if (this._inTransition) return;
+      var newScrollPos = parseInt(window.pageYOffset, 10);
+      var isScrollingUp = this.scrollPos > newScrollPos;
+      this.scrollPos = newScrollPos;
+      var activeIdx; // Before the first point: no link
+
+      if (newScrollPos < this.points[0]) {}
+      /* do nothing */
+      // At the bottom of the page: last link
+      else if (newScrollPos + this.winHeight === this.docHeight) {
+          activeIdx = this.points.length - 1;
+        } // Otherwhise, use the last visible link
+        else {
+            var visibleLinks = this.points.filter(function (p, i) {
+              return p - _this2.options.offset - (isScrollingUp ? _this2.options.threshold : 0) <= newScrollPos;
+            });
+            activeIdx = visibleLinks.length ? visibleLinks.length - 1 : 0;
+          } // Get the new active link
+
+
+      var $oldActive = this.$active;
+      var activeHash = '';
+
+      if (typeof activeIdx !== 'undefined') {
+        this.$active = this.$links.filter('[href="#' + this.$targets.eq(activeIdx).data('magellan-target') + '"]');
+        if (this.$active.length) activeHash = this.$active[0].getAttribute('href');
+      } else {
+        this.$active = jquery__WEBPACK_IMPORTED_MODULE_0___default()();
+      }
+
+      var isNewActive = !(!this.$active.length && !$oldActive.length) && !this.$active.is($oldActive);
+      var isNewHash = activeHash !== window.location.hash; // Update the active link element
+
+      if (isNewActive) {
+        $oldActive.removeClass(this.options.activeClass);
+        this.$active.addClass(this.options.activeClass);
+      } // Update the hash (it may have changed with the same active link)
+
+
+      if (this.options.deepLinking && isNewHash) {
+        if (window.history.pushState) {
+          // Set or remove the hash (see: https://stackoverflow.com/a/5298684/4317384
+          var url = activeHash ? activeHash : window.location.pathname + window.location.search;
+          window.history.pushState(null, null, url);
+        } else {
+          window.location.hash = activeHash;
+        }
+      }
+
+      if (isNewActive) {
+        /**
+         * Fires when magellan is finished updating to the new active element.
+         * @event Magellan#update
+         */
+        this.$element.trigger('update.zf.magellan', [this.$active]);
+      }
+    }
+    /**
+     * Destroys an instance of Magellan and resets the url of the window.
+     * @function
+     */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      this.$element.off('.zf.trigger .zf.magellan').find(".".concat(this.options.activeClass)).removeClass(this.options.activeClass);
+
+      if (this.options.deepLinking) {
+        var hash = this.$active[0].getAttribute('href');
+        window.location.hash.replace(hash, '');
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off('hashchange', this._deepLinkScroll);
+      if (this.onLoadListener) jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off(this.onLoadListener);
+    }
+  }]);
+
+  return Magellan;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_2__["Plugin"]);
+/**
+ * Default settings for plugin
+ */
+
+
+Magellan.defaults = {
+  /**
+   * Amount of time, in ms, the animated scrolling should take between locations.
+   * @option
+   * @type {number}
+   * @default 500
+   */
+  animationDuration: 500,
+
+  /**
+   * Animation style to use when scrolling between locations. Can be `'swing'` or `'linear'`.
+   * @option
+   * @type {string}
+   * @default 'linear'
+   * @see {@link https://api.jquery.com/animate|Jquery animate}
+   */
+  animationEasing: 'linear',
+
+  /**
+   * Number of pixels to use as a marker for location changes.
+   * @option
+   * @type {number}
+   * @default 50
+   */
+  threshold: 50,
+
+  /**
+   * Class applied to the active locations link on the magellan container.
+   * @option
+   * @type {string}
+   * @default 'is-active'
+   */
+  activeClass: 'is-active',
+
+  /**
+   * Allows the script to manipulate the url of the current page, and if supported, alter the history.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  deepLinking: false,
+
+  /**
+   * Number of pixels to offset the scroll of the page on item click if using a sticky nav bar.
+   * @option
+   * @type {number}
+   * @default 0
+   */
+  offset: 0
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.offcanvas.js":
+/*!************************************!*\
+  !*** ./js/foundation.offcanvas.js ***!
+  \************************************/
+/*! exports provided: OffCanvas */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OffCanvas", function() { return OffCanvas; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.util.keyboard */ "./js/foundation.util.keyboard.js");
+/* harmony import */ var _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.util.mediaQuery */ "./js/foundation.util.mediaQuery.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+/* harmony import */ var _foundation_util_triggers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./foundation.util.triggers */ "./js/foundation.util.triggers.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+/**
+ * OffCanvas module.
+ * @module foundation.offcanvas
+ * @requires foundation.util.keyboard
+ * @requires foundation.util.mediaQuery
+ * @requires foundation.util.triggers
+ */
+
+var OffCanvas =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(OffCanvas, _Plugin);
+
+  function OffCanvas() {
+    _classCallCheck(this, OffCanvas);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(OffCanvas).apply(this, arguments));
+  }
+
+  _createClass(OffCanvas, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of an off-canvas wrapper.
+     * @class
+     * @name OffCanvas
+     * @fires OffCanvas#init
+     * @param {Object} element - jQuery object to initialize.
+     * @param {Object} options - Overrides to the default plugin settings.
+     */
+    value: function _setup(element, options) {
+      var _this2 = this;
+
+      this.className = 'OffCanvas'; // ie9 back compat
+
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, OffCanvas.defaults, this.$element.data(), options);
+      this.contentClasses = {
+        base: [],
+        reveal: []
+      };
+      this.$lastTrigger = jquery__WEBPACK_IMPORTED_MODULE_0___default()();
+      this.$triggers = jquery__WEBPACK_IMPORTED_MODULE_0___default()();
+      this.position = 'left';
+      this.$content = jquery__WEBPACK_IMPORTED_MODULE_0___default()();
+      this.nested = !!this.options.nested; // Defines the CSS transition/position classes of the off-canvas content container.
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(['push', 'overlap']).each(function (index, val) {
+        _this2.contentClasses.base.push('has-transition-' + val);
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(['left', 'right', 'top', 'bottom']).each(function (index, val) {
+        _this2.contentClasses.base.push('has-position-' + val);
+
+        _this2.contentClasses.reveal.push('has-reveal-' + val);
+      }); // Triggers init is idempotent, just need to make sure it is initialized
+
+      _foundation_util_triggers__WEBPACK_IMPORTED_MODULE_5__["Triggers"].init(jquery__WEBPACK_IMPORTED_MODULE_0___default.a);
+
+      _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_3__["MediaQuery"]._init();
+
+      this._init();
+
+      this._events();
+
+      _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__["Keyboard"].register('OffCanvas', {
+        'ESCAPE': 'close'
+      });
+    }
+    /**
+     * Initializes the off-canvas wrapper by adding the exit overlay (if needed).
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      var id = this.$element.attr('id');
+      this.$element.attr('aria-hidden', 'true'); // Find off-canvas content, either by ID (if specified), by siblings or by closest selector (fallback)
+
+      if (this.options.contentId) {
+        this.$content = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#' + this.options.contentId);
+      } else if (this.$element.siblings('[data-off-canvas-content]').length) {
+        this.$content = this.$element.siblings('[data-off-canvas-content]').first();
+      } else {
+        this.$content = this.$element.closest('[data-off-canvas-content]').first();
+      }
+
+      if (!this.options.contentId) {
+        // Assume that the off-canvas element is nested if it isn't a sibling of the content
+        this.nested = this.$element.siblings('[data-off-canvas-content]').length === 0;
+      } else if (this.options.contentId && this.options.nested === null) {
+        // Warning if using content ID without setting the nested option
+        // Once the element is nested it is required to work properly in this case
+        console.warn('Remember to use the nested option if using the content ID option!');
+      }
+
+      if (this.nested === true) {
+        // Force transition overlap if nested
+        this.options.transition = 'overlap'; // Remove appropriate classes if already assigned in markup
+
+        this.$element.removeClass('is-transition-push');
+      }
+
+      this.$element.addClass("is-transition-".concat(this.options.transition, " is-closed")); // Find triggers that affect this element and add aria-expanded to them
+
+      this.$triggers = jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).find('[data-open="' + id + '"], [data-close="' + id + '"], [data-toggle="' + id + '"]').attr('aria-expanded', 'false').attr('aria-controls', id); // Get position by checking for related CSS class
+
+      this.position = this.$element.is('.position-left, .position-top, .position-right, .position-bottom') ? this.$element.attr('class').match(/position\-(left|top|right|bottom)/)[1] : this.position; // Add an overlay over the content if necessary
+
+      if (this.options.contentOverlay === true) {
+        var overlay = document.createElement('div');
+        var overlayPosition = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.$element).css("position") === 'fixed' ? 'is-overlay-fixed' : 'is-overlay-absolute';
+        overlay.setAttribute('class', 'js-off-canvas-overlay ' + overlayPosition);
+        this.$overlay = jquery__WEBPACK_IMPORTED_MODULE_0___default()(overlay);
+
+        if (overlayPosition === 'is-overlay-fixed') {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.$overlay).insertAfter(this.$element);
+        } else {
+          this.$content.append(this.$overlay);
+        }
+      } // Get the revealOn option from the class.
+
+
+      var revealOnRegExp = new RegExp(Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["RegExpEscape"])(this.options.revealClass) + '([^\\s]+)', 'g');
+      var revealOnClass = revealOnRegExp.exec(this.$element[0].className);
+
+      if (revealOnClass) {
+        this.options.isRevealed = true;
+        this.options.revealOn = this.options.revealOn || revealOnClass[1];
+      } // Ensure the `reveal-on-*` class is set.
+
+
+      if (this.options.isRevealed === true && this.options.revealOn) {
+        this.$element.first().addClass("".concat(this.options.revealClass).concat(this.options.revealOn));
+
+        this._setMQChecker();
+      }
+
+      if (this.options.transitionTime) {
+        this.$element.css('transition-duration', this.options.transitionTime);
+      } // Initally remove all transition/position CSS classes from off-canvas content container.
+
+
+      this._removeContentClasses();
+    }
+    /**
+     * Adds event handlers to the off-canvas wrapper and the exit overlay.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      this.$element.off('.zf.trigger .zf.offcanvas').on({
+        'open.zf.trigger': this.open.bind(this),
+        'close.zf.trigger': this.close.bind(this),
+        'toggle.zf.trigger': this.toggle.bind(this),
+        'keydown.zf.offcanvas': this._handleKeyboard.bind(this)
+      });
+
+      if (this.options.closeOnClick === true) {
+        var $target = this.options.contentOverlay ? this.$overlay : this.$content;
+        $target.on({
+          'click.zf.offcanvas': this.close.bind(this)
+        });
+      }
+    }
+    /**
+     * Applies event listener for elements that will reveal at certain breakpoints.
+     * @private
+     */
+
+  }, {
+    key: "_setMQChecker",
+    value: function _setMQChecker() {
+      var _this = this;
+
+      this.onLoadListener = Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["onLoad"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(window), function () {
+        if (_foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_3__["MediaQuery"].atLeast(_this.options.revealOn)) {
+          _this.reveal(true);
+        }
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on('changed.zf.mediaquery', function () {
+        if (_foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_3__["MediaQuery"].atLeast(_this.options.revealOn)) {
+          _this.reveal(true);
+        } else {
+          _this.reveal(false);
+        }
+      });
+    }
+    /**
+     * Removes the CSS transition/position classes of the off-canvas content container.
+     * Removing the classes is important when another off-canvas gets opened that uses the same content container.
+     * @param {Boolean} hasReveal - true if related off-canvas element is revealed.
+     * @private
+     */
+
+  }, {
+    key: "_removeContentClasses",
+    value: function _removeContentClasses(hasReveal) {
+      if (typeof hasReveal !== 'boolean') {
+        this.$content.removeClass(this.contentClasses.base.join(' '));
+      } else if (hasReveal === false) {
+        this.$content.removeClass("has-reveal-".concat(this.position));
+      }
+    }
+    /**
+     * Adds the CSS transition/position classes of the off-canvas content container, based on the opening off-canvas element.
+     * Beforehand any transition/position class gets removed.
+     * @param {Boolean} hasReveal - true if related off-canvas element is revealed.
+     * @private
+     */
+
+  }, {
+    key: "_addContentClasses",
+    value: function _addContentClasses(hasReveal) {
+      this._removeContentClasses(hasReveal);
+
+      if (typeof hasReveal !== 'boolean') {
+        this.$content.addClass("has-transition-".concat(this.options.transition, " has-position-").concat(this.position));
+      } else if (hasReveal === true) {
+        this.$content.addClass("has-reveal-".concat(this.position));
+      }
+    }
+    /**
+     * Handles the revealing/hiding the off-canvas at breakpoints, not the same as open.
+     * @param {Boolean} isRevealed - true if element should be revealed.
+     * @function
+     */
+
+  }, {
+    key: "reveal",
+    value: function reveal(isRevealed) {
+      if (isRevealed) {
+        this.close();
+        this.isRevealed = true;
+        this.$element.attr('aria-hidden', 'false');
+        this.$element.off('open.zf.trigger toggle.zf.trigger');
+        this.$element.removeClass('is-closed');
+      } else {
+        this.isRevealed = false;
+        this.$element.attr('aria-hidden', 'true');
+        this.$element.off('open.zf.trigger toggle.zf.trigger').on({
+          'open.zf.trigger': this.open.bind(this),
+          'toggle.zf.trigger': this.toggle.bind(this)
+        });
+        this.$element.addClass('is-closed');
+      }
+
+      this._addContentClasses(isRevealed);
+    }
+    /**
+     * Stops scrolling of the body when offcanvas is open on mobile Safari and other troublesome browsers.
+     * @private
+     */
+
+  }, {
+    key: "_stopScrolling",
+    value: function _stopScrolling(event) {
+      return false;
+    } // Taken and adapted from http://stackoverflow.com/questions/16889447/prevent-full-page-scrolling-ios
+    // Only really works for y, not sure how to extend to x or if we need to.
+
+  }, {
+    key: "_recordScrollable",
+    value: function _recordScrollable(event) {
+      var elem = this; // called from event handler context with this as elem
+      // If the element is scrollable (content overflows), then...
+
+      if (elem.scrollHeight !== elem.clientHeight) {
+        // If we're at the top, scroll down one pixel to allow scrolling up
+        if (elem.scrollTop === 0) {
+          elem.scrollTop = 1;
+        } // If we're at the bottom, scroll up one pixel to allow scrolling down
+
+
+        if (elem.scrollTop === elem.scrollHeight - elem.clientHeight) {
+          elem.scrollTop = elem.scrollHeight - elem.clientHeight - 1;
+        }
+      }
+
+      elem.allowUp = elem.scrollTop > 0;
+      elem.allowDown = elem.scrollTop < elem.scrollHeight - elem.clientHeight;
+      elem.lastY = event.originalEvent.pageY;
+    }
+  }, {
+    key: "_stopScrollPropagation",
+    value: function _stopScrollPropagation(event) {
+      var elem = this; // called from event handler context with this as elem
+
+      var up = event.pageY < elem.lastY;
+      var down = !up;
+      elem.lastY = event.pageY;
+
+      if (up && elem.allowUp || down && elem.allowDown) {
+        event.stopPropagation();
+      } else {
+        event.preventDefault();
+      }
+    }
+    /**
+     * Opens the off-canvas menu.
+     * @function
+     * @param {Object} event - Event object passed from listener.
+     * @param {jQuery} trigger - element that triggered the off-canvas to open.
+     * @fires Offcanvas#opened
+     * @todo also trigger 'open' event?
+     */
+
+  }, {
+    key: "open",
+    value: function open(event, trigger) {
+      if (this.$element.hasClass('is-open') || this.isRevealed) {
+        return;
+      }
+
+      var _this = this;
+
+      if (trigger) {
+        this.$lastTrigger = trigger;
+      }
+
+      if (this.options.forceTo === 'top') {
+        window.scrollTo(0, 0);
+      } else if (this.options.forceTo === 'bottom') {
+        window.scrollTo(0, document.body.scrollHeight);
+      }
+
+      if (this.options.transitionTime && this.options.transition !== 'overlap') {
+        this.$element.siblings('[data-off-canvas-content]').css('transition-duration', this.options.transitionTime);
+      } else {
+        this.$element.siblings('[data-off-canvas-content]').css('transition-duration', '');
+      }
+
+      this.$element.addClass('is-open').removeClass('is-closed');
+      this.$triggers.attr('aria-expanded', 'true');
+      this.$element.attr('aria-hidden', 'false');
+      this.$content.addClass('is-open-' + this.position); // If `contentScroll` is set to false, add class and disable scrolling on touch devices.
+
+      if (this.options.contentScroll === false) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').addClass('is-off-canvas-open').on('touchmove', this._stopScrolling);
+        this.$element.on('touchstart', this._recordScrollable);
+        this.$element.on('touchmove', this._stopScrollPropagation);
+      }
+
+      if (this.options.contentOverlay === true) {
+        this.$overlay.addClass('is-visible');
+      }
+
+      if (this.options.closeOnClick === true && this.options.contentOverlay === true) {
+        this.$overlay.addClass('is-closable');
+      }
+
+      if (this.options.autoFocus === true) {
+        this.$element.one(Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["transitionend"])(this.$element), function () {
+          if (!_this.$element.hasClass('is-open')) {
+            return; // exit if prematurely closed
+          }
+
+          var canvasFocus = _this.$element.find('[data-autofocus]');
+
+          if (canvasFocus.length) {
+            canvasFocus.eq(0).focus();
+          } else {
+            _this.$element.find('a, button').eq(0).focus();
+          }
+        });
+      }
+
+      if (this.options.trapFocus === true) {
+        this.$content.attr('tabindex', '-1');
+        _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__["Keyboard"].trapFocus(this.$element);
+      }
+
+      this._addContentClasses();
+      /**
+       * Fires when the off-canvas menu opens.
+       * @event Offcanvas#opened
+       */
+
+
+      this.$element.trigger('opened.zf.offcanvas');
+    }
+    /**
+     * Closes the off-canvas menu.
+     * @function
+     * @param {Function} cb - optional cb to fire after closure.
+     * @fires Offcanvas#closed
+     */
+
+  }, {
+    key: "close",
+    value: function close(cb) {
+      if (!this.$element.hasClass('is-open') || this.isRevealed) {
+        return;
+      }
+
+      var _this = this;
+
+      this.$element.removeClass('is-open');
+      this.$element.attr('aria-hidden', 'true')
+      /**
+       * Fires when the off-canvas menu opens.
+       * @event Offcanvas#closed
+       */
+      .trigger('closed.zf.offcanvas');
+      this.$content.removeClass('is-open-left is-open-top is-open-right is-open-bottom'); // If `contentScroll` is set to false, remove class and re-enable scrolling on touch devices.
+
+      if (this.options.contentScroll === false) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').removeClass('is-off-canvas-open').off('touchmove', this._stopScrolling);
+        this.$element.off('touchstart', this._recordScrollable);
+        this.$element.off('touchmove', this._stopScrollPropagation);
+      }
+
+      if (this.options.contentOverlay === true) {
+        this.$overlay.removeClass('is-visible');
+      }
+
+      if (this.options.closeOnClick === true && this.options.contentOverlay === true) {
+        this.$overlay.removeClass('is-closable');
+      }
+
+      this.$triggers.attr('aria-expanded', 'false');
+
+      if (this.options.trapFocus === true) {
+        this.$content.removeAttr('tabindex');
+        _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__["Keyboard"].releaseFocus(this.$element);
+      } // Listen to transitionEnd and add class when done.
+
+
+      this.$element.one(Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["transitionend"])(this.$element), function (e) {
+        _this.$element.addClass('is-closed');
+
+        _this._removeContentClasses();
+      });
+    }
+    /**
+     * Toggles the off-canvas menu open or closed.
+     * @function
+     * @param {Object} event - Event object passed from listener.
+     * @param {jQuery} trigger - element that triggered the off-canvas to open.
+     */
+
+  }, {
+    key: "toggle",
+    value: function toggle(event, trigger) {
+      if (this.$element.hasClass('is-open')) {
+        this.close(event, trigger);
+      } else {
+        this.open(event, trigger);
+      }
+    }
+    /**
+     * Handles keyboard input when detected. When the escape key is pressed, the off-canvas menu closes, and focus is restored to the element that opened the menu.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_handleKeyboard",
+    value: function _handleKeyboard(e) {
+      var _this3 = this;
+
+      _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__["Keyboard"].handleKey(e, 'OffCanvas', {
+        close: function close() {
+          _this3.close();
+
+          _this3.$lastTrigger.focus();
+
+          return true;
+        },
+        handled: function handled() {
+          e.stopPropagation();
+          e.preventDefault();
+        }
+      });
+    }
+    /**
+     * Destroys the offcanvas plugin.
+     * @function
+     */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      this.close();
+      this.$element.off('.zf.trigger .zf.offcanvas');
+      this.$overlay.off('.zf.offcanvas');
+      if (this.onLoadListener) jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off(this.onLoadListener);
+    }
+  }]);
+
+  return OffCanvas;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_4__["Plugin"]);
+
+OffCanvas.defaults = {
+  /**
+   * Allow the user to click outside of the menu to close it.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  closeOnClick: true,
+
+  /**
+   * Adds an overlay on top of `[data-off-canvas-content]`.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  contentOverlay: true,
+
+  /**
+   * Target an off-canvas content container by ID that may be placed anywhere. If null the closest content container will be taken.
+   * @option
+   * @type {?string}
+   * @default null
+   */
+  contentId: null,
+
+  /**
+   * Define the off-canvas element is nested in an off-canvas content. This is required when using the contentId option for a nested element.
+   * @option
+   * @type {boolean}
+   * @default null
+   */
+  nested: null,
+
+  /**
+   * Enable/disable scrolling of the main content when an off canvas panel is open.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  contentScroll: true,
+
+  /**
+   * Amount of time in ms the open and close transition requires. If none selected, pulls from body style.
+   * @option
+   * @type {number}
+   * @default null
+   */
+  transitionTime: null,
+
+  /**
+   * Type of transition for the offcanvas menu. Options are 'push', 'detached' or 'slide'.
+   * @option
+   * @type {string}
+   * @default push
+   */
+  transition: 'push',
+
+  /**
+   * Force the page to scroll to top or bottom on open.
+   * @option
+   * @type {?string}
+   * @default null
+   */
+  forceTo: null,
+
+  /**
+   * Allow the offcanvas to remain open for certain breakpoints.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  isRevealed: false,
+
+  /**
+   * Breakpoint at which to reveal. JS will use a RegExp to target standard classes, if changing classnames, pass your class with the `revealClass` option.
+   * @option
+   * @type {?string}
+   * @default null
+   */
+  revealOn: null,
+
+  /**
+   * Force focus to the offcanvas on open. If true, will focus the opening trigger on close.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  autoFocus: true,
+
+  /**
+   * Class used to force an offcanvas to remain open. Foundation defaults for this are `reveal-for-large` & `reveal-for-medium`.
+   * @option
+   * @type {string}
+   * @default reveal-for-
+   * @todo improve the regex testing for this.
+   */
+  revealClass: 'reveal-for-',
+
+  /**
+   * Triggers optional focus trapping when opening an offcanvas. Sets tabindex of [data-off-canvas-content] to -1 for accessibility purposes.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  trapFocus: false
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.orbit.js":
+/*!********************************!*\
+  !*** ./js/foundation.orbit.js ***!
+  \********************************/
+/*! exports provided: Orbit */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Orbit", function() { return Orbit; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.util.keyboard */ "./js/foundation.util.keyboard.js");
+/* harmony import */ var _foundation_util_motion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.util.motion */ "./js/foundation.util.motion.js");
+/* harmony import */ var _foundation_util_timer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.util.timer */ "./js/foundation.util.timer.js");
+/* harmony import */ var _foundation_util_imageLoader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation.util.imageLoader */ "./js/foundation.util.imageLoader.js");
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+/* harmony import */ var _foundation_util_touch__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./foundation.util.touch */ "./js/foundation.util.touch.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+
+
+/**
+ * Orbit module.
+ * @module foundation.orbit
+ * @requires foundation.util.keyboard
+ * @requires foundation.util.motion
+ * @requires foundation.util.timer
+ * @requires foundation.util.imageLoader
+ * @requires foundation.util.touch
+ */
+
+var Orbit =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(Orbit, _Plugin);
+
+  function Orbit() {
+    _classCallCheck(this, Orbit);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Orbit).apply(this, arguments));
+  }
+
+  _createClass(Orbit, [{
+    key: "_setup",
+
+    /**
+    * Creates a new instance of an orbit carousel.
+    * @class
+    * @name Orbit
+    * @param {jQuery} element - jQuery object to make into an Orbit Carousel.
+    * @param {Object} options - Overrides to the default plugin settings.
+    */
+    value: function _setup(element, options) {
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, Orbit.defaults, this.$element.data(), options);
+      this.className = 'Orbit'; // ie9 back compat
+
+      _foundation_util_touch__WEBPACK_IMPORTED_MODULE_7__["Touch"].init(jquery__WEBPACK_IMPORTED_MODULE_0___default.a); // Touch init is idempotent, we just need to make sure it's initialied.
+
+      this._init();
+
+      _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__["Keyboard"].register('Orbit', {
+        'ltr': {
+          'ARROW_RIGHT': 'next',
+          'ARROW_LEFT': 'previous'
+        },
+        'rtl': {
+          'ARROW_LEFT': 'next',
+          'ARROW_RIGHT': 'previous'
+        }
+      });
+    }
+    /**
+    * Initializes the plugin by creating jQuery collections, setting attributes, and starting the animation.
+    * @function
+    * @private
+    */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      // @TODO: consider discussion on PR #9278 about DOM pollution by changeSlide
+      this._reset();
+
+      this.$wrapper = this.$element.find(".".concat(this.options.containerClass));
+      this.$slides = this.$element.find(".".concat(this.options.slideClass));
+      var $images = this.$element.find('img'),
+          initActive = this.$slides.filter('.is-active'),
+          id = this.$element[0].id || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_5__["GetYoDigits"])(6, 'orbit');
+      this.$element.attr({
+        'data-resize': id,
+        'id': id
+      });
+
+      if (!initActive.length) {
+        this.$slides.eq(0).addClass('is-active');
+      }
+
+      if (!this.options.useMUI) {
+        this.$slides.addClass('no-motionui');
+      }
+
+      if ($images.length) {
+        Object(_foundation_util_imageLoader__WEBPACK_IMPORTED_MODULE_4__["onImagesLoaded"])($images, this._prepareForOrbit.bind(this));
+      } else {
+        this._prepareForOrbit(); //hehe
+
+      }
+
+      if (this.options.bullets) {
+        this._loadBullets();
+      }
+
+      this._events();
+
+      if (this.options.autoPlay && this.$slides.length > 1) {
+        this.geoSync();
+      }
+
+      if (this.options.accessible) {
+        // allow wrapper to be focusable to enable arrow navigation
+        this.$wrapper.attr('tabindex', 0);
+      }
+    }
+    /**
+    * Creates a jQuery collection of bullets, if they are being used.
+    * @function
+    * @private
+    */
+
+  }, {
+    key: "_loadBullets",
+    value: function _loadBullets() {
+      this.$bullets = this.$element.find(".".concat(this.options.boxOfBullets)).find('button');
+    }
+    /**
+    * Sets a `timer` object on the orbit, and starts the counter for the next slide.
+    * @function
+    */
+
+  }, {
+    key: "geoSync",
+    value: function geoSync() {
+      var _this = this;
+
+      this.timer = new _foundation_util_timer__WEBPACK_IMPORTED_MODULE_3__["Timer"](this.$element, {
+        duration: this.options.timerDelay,
+        infinite: false
+      }, function () {
+        _this.changeSlide(true);
+      });
+      this.timer.start();
+    }
+    /**
+    * Sets wrapper and slide heights for the orbit.
+    * @function
+    * @private
+    */
+
+  }, {
+    key: "_prepareForOrbit",
+    value: function _prepareForOrbit() {
+      var _this = this;
+
+      this._setWrapperHeight();
+    }
+    /**
+    * Calulates the height of each slide in the collection, and uses the tallest one for the wrapper height.
+    * @function
+    * @private
+    * @param {Function} cb - a callback function to fire when complete.
+    */
+
+  }, {
+    key: "_setWrapperHeight",
+    value: function _setWrapperHeight(cb) {
+      //rewrite this to `for` loop
+      var max = 0,
+          temp,
+          counter = 0,
+          _this = this;
+
+      this.$slides.each(function () {
+        temp = this.getBoundingClientRect().height;
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('data-slide', counter); // hide all slides but the active one
+
+        if (!/mui/g.test(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this)[0].className) && _this.$slides.filter('.is-active')[0] !== _this.$slides.eq(counter)[0]) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).css({
+            'display': 'none'
+          });
+        }
+
+        max = temp > max ? temp : max;
+        counter++;
+      });
+
+      if (counter === this.$slides.length) {
+        this.$wrapper.css({
+          'height': max
+        }); //only change the wrapper height property once.
+
+        if (cb) {
+          cb(max);
+        } //fire callback with max height dimension.
+
+      }
+    }
+    /**
+    * Sets the max-height of each slide.
+    * @function
+    * @private
+    */
+
+  }, {
+    key: "_setSlideHeight",
+    value: function _setSlideHeight(height) {
+      this.$slides.each(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).css('max-height', height);
+      });
+    }
+    /**
+    * Adds event listeners to basically everything within the element.
+    * @function
+    * @private
+    */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      var _this = this; //***************************************
+      //**Now using custom event - thanks to:**
+      //**      Yohai Ararat of Toronto      **
+      //***************************************
+      //
+
+
+      this.$element.off('.resizeme.zf.trigger').on({
+        'resizeme.zf.trigger': this._prepareForOrbit.bind(this)
+      });
+
+      if (this.$slides.length > 1) {
+        if (this.options.swipe) {
+          this.$slides.off('swipeleft.zf.orbit swiperight.zf.orbit').on('swipeleft.zf.orbit', function (e) {
+            e.preventDefault();
+
+            _this.changeSlide(true);
+          }).on('swiperight.zf.orbit', function (e) {
+            e.preventDefault();
+
+            _this.changeSlide(false);
+          });
+        } //***************************************
+
+
+        if (this.options.autoPlay) {
+          this.$slides.on('click.zf.orbit', function () {
+            _this.$element.data('clickedOn', _this.$element.data('clickedOn') ? false : true);
+
+            _this.timer[_this.$element.data('clickedOn') ? 'pause' : 'start']();
+          });
+
+          if (this.options.pauseOnHover) {
+            this.$element.on('mouseenter.zf.orbit', function () {
+              _this.timer.pause();
+            }).on('mouseleave.zf.orbit', function () {
+              if (!_this.$element.data('clickedOn')) {
+                _this.timer.start();
+              }
+            });
+          }
+        }
+
+        if (this.options.navButtons) {
+          var $controls = this.$element.find(".".concat(this.options.nextClass, ", .").concat(this.options.prevClass));
+          $controls.attr('tabindex', 0) //also need to handle enter/return and spacebar key presses
+          .on('click.zf.orbit touchend.zf.orbit', function (e) {
+            e.preventDefault();
+
+            _this.changeSlide(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass(_this.options.nextClass));
+          });
+        }
+
+        if (this.options.bullets) {
+          this.$bullets.on('click.zf.orbit touchend.zf.orbit', function () {
+            if (/is-active/g.test(this.className)) {
+              return false;
+            } //if this is active, kick out of function.
+
+
+            var idx = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('slide'),
+                ltr = idx > _this.$slides.filter('.is-active').data('slide'),
+                $slide = _this.$slides.eq(idx);
+
+            _this.changeSlide(ltr, $slide, idx);
+          });
+        }
+
+        if (this.options.accessible) {
+          this.$wrapper.add(this.$bullets).on('keydown.zf.orbit', function (e) {
+            // handle keyboard event with keyboard util
+            _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__["Keyboard"].handleKey(e, 'Orbit', {
+              next: function next() {
+                _this.changeSlide(true);
+              },
+              previous: function previous() {
+                _this.changeSlide(false);
+              },
+              handled: function handled() {
+                // if bullet is focused, make sure focus moves
+                if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(e.target).is(_this.$bullets)) {
+                  _this.$bullets.filter('.is-active').focus();
+                }
+              }
+            });
+          });
+        }
+      }
+    }
+    /**
+     * Resets Orbit so it can be reinitialized
+     */
+
+  }, {
+    key: "_reset",
+    value: function _reset() {
+      // Don't do anything if there are no slides (first run)
+      if (typeof this.$slides == 'undefined') {
+        return;
+      }
+
+      if (this.$slides.length > 1) {
+        // Remove old events
+        this.$element.off('.zf.orbit').find('*').off('.zf.orbit'); // Restart timer if autoPlay is enabled
+
+        if (this.options.autoPlay) {
+          this.timer.restart();
+        } // Reset all sliddes
+
+
+        this.$slides.each(function (el) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(el).removeClass('is-active is-active is-in').removeAttr('aria-live').hide();
+        }); // Show the first slide
+
+        this.$slides.first().addClass('is-active').show(); // Triggers when the slide has finished animating
+
+        this.$element.trigger('slidechange.zf.orbit', [this.$slides.first()]); // Select first bullet if bullets are present
+
+        if (this.options.bullets) {
+          this._updateBullets(0);
+        }
+      }
+    }
+    /**
+    * Changes the current slide to a new one.
+    * @function
+    * @param {Boolean} isLTR - if true the slide moves from right to left, if false the slide moves from left to right.
+    * @param {jQuery} chosenSlide - the jQuery element of the slide to show next, if one is selected.
+    * @param {Number} idx - the index of the new slide in its collection, if one chosen.
+    * @fires Orbit#slidechange
+    */
+
+  }, {
+    key: "changeSlide",
+    value: function changeSlide(isLTR, chosenSlide, idx) {
+      if (!this.$slides) {
+        return;
+      } // Don't freak out if we're in the middle of cleanup
+
+
+      var $curSlide = this.$slides.filter('.is-active').eq(0);
+
+      if (/mui/g.test($curSlide[0].className)) {
+        return false;
+      } //if the slide is currently animating, kick out of the function
+
+
+      var $firstSlide = this.$slides.first(),
+          $lastSlide = this.$slides.last(),
+          dirIn = isLTR ? 'Right' : 'Left',
+          dirOut = isLTR ? 'Left' : 'Right',
+          _this = this,
+          $newSlide;
+
+      if (!chosenSlide) {
+        //most of the time, this will be auto played or clicked from the navButtons.
+        $newSlide = isLTR ? //if wrapping enabled, check to see if there is a `next` or `prev` sibling, if not, select the first or last slide to fill in. if wrapping not enabled, attempt to select `next` or `prev`, if there's nothing there, the function will kick out on next step. CRAZY NESTED TERNARIES!!!!!
+        this.options.infiniteWrap ? $curSlide.next(".".concat(this.options.slideClass)).length ? $curSlide.next(".".concat(this.options.slideClass)) : $firstSlide : $curSlide.next(".".concat(this.options.slideClass)) : //pick next slide if moving left to right
+        this.options.infiniteWrap ? $curSlide.prev(".".concat(this.options.slideClass)).length ? $curSlide.prev(".".concat(this.options.slideClass)) : $lastSlide : $curSlide.prev(".".concat(this.options.slideClass)); //pick prev slide if moving right to left
+      } else {
+        $newSlide = chosenSlide;
+      }
+
+      if ($newSlide.length) {
+        /**
+        * Triggers before the next slide starts animating in and only if a next slide has been found.
+        * @event Orbit#beforeslidechange
+        */
+        this.$element.trigger('beforeslidechange.zf.orbit', [$curSlide, $newSlide]);
+
+        if (this.options.bullets) {
+          idx = idx || this.$slides.index($newSlide); //grab index to update bullets
+
+          this._updateBullets(idx);
+        }
+
+        if (this.options.useMUI && !this.$element.is(':hidden')) {
+          _foundation_util_motion__WEBPACK_IMPORTED_MODULE_2__["Motion"].animateIn($newSlide.addClass('is-active'), this.options["animInFrom".concat(dirIn)], function () {
+            $newSlide.css({
+              'display': 'block'
+            }).attr('aria-live', 'polite');
+          });
+          _foundation_util_motion__WEBPACK_IMPORTED_MODULE_2__["Motion"].animateOut($curSlide.removeClass('is-active'), this.options["animOutTo".concat(dirOut)], function () {
+            $curSlide.removeAttr('aria-live');
+
+            if (_this.options.autoPlay && !_this.timer.isPaused) {
+              _this.timer.restart();
+            } //do stuff?
+
+          });
+        } else {
+          $curSlide.removeClass('is-active is-in').removeAttr('aria-live').hide();
+          $newSlide.addClass('is-active is-in').attr('aria-live', 'polite').show();
+
+          if (this.options.autoPlay && !this.timer.isPaused) {
+            this.timer.restart();
+          }
+        }
+        /**
+        * Triggers when the slide has finished animating in.
+        * @event Orbit#slidechange
+        */
+
+
+        this.$element.trigger('slidechange.zf.orbit', [$newSlide]);
+      }
+    }
+    /**
+    * Updates the active state of the bullets, if displayed.
+    * @function
+    * @private
+    * @param {Number} idx - the index of the current slide.
+    */
+
+  }, {
+    key: "_updateBullets",
+    value: function _updateBullets(idx) {
+      var $oldBullet = this.$element.find(".".concat(this.options.boxOfBullets)).find('.is-active').removeClass('is-active').blur(),
+          span = $oldBullet.find('span:last').detach(),
+          $newBullet = this.$bullets.eq(idx).addClass('is-active').append(span);
+    }
+    /**
+    * Destroys the carousel and hides the element.
+    * @function
+    */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      this.$element.off('.zf.orbit').find('*').off('.zf.orbit').end().hide();
+    }
+  }]);
+
+  return Orbit;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_6__["Plugin"]);
+
+Orbit.defaults = {
+  /**
+  * Tells the JS to look for and loadBullets.
+  * @option
+   * @type {boolean}
+  * @default true
+  */
+  bullets: true,
+
+  /**
+  * Tells the JS to apply event listeners to nav buttons
+  * @option
+   * @type {boolean}
+  * @default true
+  */
+  navButtons: true,
+
+  /**
+  * motion-ui animation class to apply
+  * @option
+   * @type {string}
+  * @default 'slide-in-right'
+  */
+  animInFromRight: 'slide-in-right',
+
+  /**
+  * motion-ui animation class to apply
+  * @option
+   * @type {string}
+  * @default 'slide-out-right'
+  */
+  animOutToRight: 'slide-out-right',
+
+  /**
+  * motion-ui animation class to apply
+  * @option
+   * @type {string}
+  * @default 'slide-in-left'
+  *
+  */
+  animInFromLeft: 'slide-in-left',
+
+  /**
+  * motion-ui animation class to apply
+  * @option
+   * @type {string}
+  * @default 'slide-out-left'
+  */
+  animOutToLeft: 'slide-out-left',
+
+  /**
+  * Allows Orbit to automatically animate on page load.
+  * @option
+   * @type {boolean}
+  * @default true
+  */
+  autoPlay: true,
+
+  /**
+  * Amount of time, in ms, between slide transitions
+  * @option
+   * @type {number}
+  * @default 5000
+  */
+  timerDelay: 5000,
+
+  /**
+  * Allows Orbit to infinitely loop through the slides
+  * @option
+   * @type {boolean}
+  * @default true
+  */
+  infiniteWrap: true,
+
+  /**
+  * Allows the Orbit slides to bind to swipe events for mobile, requires an additional util library
+  * @option
+   * @type {boolean}
+  * @default true
+  */
+  swipe: true,
+
+  /**
+  * Allows the timing function to pause animation on hover.
+  * @option
+   * @type {boolean}
+  * @default true
+  */
+  pauseOnHover: true,
+
+  /**
+  * Allows Orbit to bind keyboard events to the slider, to animate frames with arrow keys
+  * @option
+   * @type {boolean}
+  * @default true
+  */
+  accessible: true,
+
+  /**
+  * Class applied to the container of Orbit
+  * @option
+   * @type {string}
+  * @default 'orbit-container'
+  */
+  containerClass: 'orbit-container',
+
+  /**
+  * Class applied to individual slides.
+  * @option
+   * @type {string}
+  * @default 'orbit-slide'
+  */
+  slideClass: 'orbit-slide',
+
+  /**
+  * Class applied to the bullet container. You're welcome.
+  * @option
+   * @type {string}
+  * @default 'orbit-bullets'
+  */
+  boxOfBullets: 'orbit-bullets',
+
+  /**
+  * Class applied to the `next` navigation button.
+  * @option
+   * @type {string}
+  * @default 'orbit-next'
+  */
+  nextClass: 'orbit-next',
+
+  /**
+  * Class applied to the `previous` navigation button.
+  * @option
+   * @type {string}
+  * @default 'orbit-previous'
+  */
+  prevClass: 'orbit-previous',
+
+  /**
+  * Boolean to flag the js to use motion ui classes or not. Default to true for backwards compatibility.
+  * @option
+   * @type {boolean}
+  * @default true
+  */
+  useMUI: true
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.positionable.js":
+/*!***************************************!*\
+  !*** ./js/foundation.positionable.js ***!
+  \***************************************/
+/*! exports provided: Positionable */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Positionable", function() { return Positionable; });
+/* harmony import */ var _foundation_util_box__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./foundation.util.box */ "./js/foundation.util.box.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var POSITIONS = ['left', 'right', 'top', 'bottom'];
+var VERTICAL_ALIGNMENTS = ['top', 'bottom', 'center'];
+var HORIZONTAL_ALIGNMENTS = ['left', 'right', 'center'];
+var ALIGNMENTS = {
+  'left': VERTICAL_ALIGNMENTS,
+  'right': VERTICAL_ALIGNMENTS,
+  'top': HORIZONTAL_ALIGNMENTS,
+  'bottom': HORIZONTAL_ALIGNMENTS
+};
+
+function nextItem(item, array) {
+  var currentIdx = array.indexOf(item);
+
+  if (currentIdx === array.length - 1) {
+    return array[0];
+  } else {
+    return array[currentIdx + 1];
+  }
+}
+
+var Positionable =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(Positionable, _Plugin);
+
+  function Positionable() {
+    _classCallCheck(this, Positionable);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Positionable).apply(this, arguments));
+  }
+
+  _createClass(Positionable, [{
+    key: "_init",
+
+    /**
+     * Abstract class encapsulating the tether-like explicit positioning logic
+     * including repositioning based on overlap.
+     * Expects classes to define defaults for vOffset, hOffset, position,
+     * alignment, allowOverlap, and allowBottomOverlap. They can do this by
+     * extending the defaults, or (for now recommended due to the way docs are
+     * generated) by explicitly declaring them.
+     *
+     **/
+    value: function _init() {
+      this.triedPositions = {};
+      this.position = this.options.position === 'auto' ? this._getDefaultPosition() : this.options.position;
+      this.alignment = this.options.alignment === 'auto' ? this._getDefaultAlignment() : this.options.alignment;
+      this.originalPosition = this.position;
+      this.originalAlignment = this.alignment;
+    }
+  }, {
+    key: "_getDefaultPosition",
+    value: function _getDefaultPosition() {
+      return 'bottom';
+    }
+  }, {
+    key: "_getDefaultAlignment",
+    value: function _getDefaultAlignment() {
+      switch (this.position) {
+        case 'bottom':
+        case 'top':
+          return Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__["rtl"])() ? 'right' : 'left';
+
+        case 'left':
+        case 'right':
+          return 'bottom';
+      }
+    }
+    /**
+     * Adjusts the positionable possible positions by iterating through alignments
+     * and positions.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_reposition",
+    value: function _reposition() {
+      if (this._alignmentsExhausted(this.position)) {
+        this.position = nextItem(this.position, POSITIONS);
+        this.alignment = ALIGNMENTS[this.position][0];
+      } else {
+        this._realign();
+      }
+    }
+    /**
+     * Adjusts the dropdown pane possible positions by iterating through alignments
+     * on the current position.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_realign",
+    value: function _realign() {
+      this._addTriedPosition(this.position, this.alignment);
+
+      this.alignment = nextItem(this.alignment, ALIGNMENTS[this.position]);
+    }
+  }, {
+    key: "_addTriedPosition",
+    value: function _addTriedPosition(position, alignment) {
+      this.triedPositions[position] = this.triedPositions[position] || [];
+      this.triedPositions[position].push(alignment);
+    }
+  }, {
+    key: "_positionsExhausted",
+    value: function _positionsExhausted() {
+      var isExhausted = true;
+
+      for (var i = 0; i < POSITIONS.length; i++) {
+        isExhausted = isExhausted && this._alignmentsExhausted(POSITIONS[i]);
+      }
+
+      return isExhausted;
+    }
+  }, {
+    key: "_alignmentsExhausted",
+    value: function _alignmentsExhausted(position) {
+      return this.triedPositions[position] && this.triedPositions[position].length == ALIGNMENTS[position].length;
+    } // When we're trying to center, we don't want to apply offset that's going to
+    // take us just off center, so wrap around to return 0 for the appropriate
+    // offset in those alignments.  TODO: Figure out if we want to make this
+    // configurable behavior... it feels more intuitive, especially for tooltips, but
+    // it's possible someone might actually want to start from center and then nudge
+    // slightly off.
+
+  }, {
+    key: "_getVOffset",
+    value: function _getVOffset() {
+      return this.options.vOffset;
+    }
+  }, {
+    key: "_getHOffset",
+    value: function _getHOffset() {
+      return this.options.hOffset;
+    }
+  }, {
+    key: "_setPosition",
+    value: function _setPosition($anchor, $element, $parent) {
+      if ($anchor.attr('aria-expanded') === 'false') {
+        return false;
+      }
+
+      var $eleDims = _foundation_util_box__WEBPACK_IMPORTED_MODULE_0__["Box"].GetDimensions($element),
+          $anchorDims = _foundation_util_box__WEBPACK_IMPORTED_MODULE_0__["Box"].GetDimensions($anchor);
+
+      if (!this.options.allowOverlap) {
+        // restore original position & alignment before checking overlap
+        this.position = this.originalPosition;
+        this.alignment = this.originalAlignment;
+      }
+
+      $element.offset(_foundation_util_box__WEBPACK_IMPORTED_MODULE_0__["Box"].GetExplicitOffsets($element, $anchor, this.position, this.alignment, this._getVOffset(), this._getHOffset()));
+
+      if (!this.options.allowOverlap) {
+        var overlaps = {};
+        var minOverlap = 100000000; // default coordinates to how we start, in case we can't figure out better
+
+        var minCoordinates = {
+          position: this.position,
+          alignment: this.alignment
+        };
+
+        while (!this._positionsExhausted()) {
+          var overlap = _foundation_util_box__WEBPACK_IMPORTED_MODULE_0__["Box"].OverlapArea($element, $parent, false, false, this.options.allowBottomOverlap);
+
+          if (overlap === 0) {
+            return;
+          }
+
+          if (overlap < minOverlap) {
+            minOverlap = overlap;
+            minCoordinates = {
+              position: this.position,
+              alignment: this.alignment
+            };
+          }
+
+          this._reposition();
+
+          $element.offset(_foundation_util_box__WEBPACK_IMPORTED_MODULE_0__["Box"].GetExplicitOffsets($element, $anchor, this.position, this.alignment, this._getVOffset(), this._getHOffset()));
+        } // If we get through the entire loop, there was no non-overlapping
+        // position available. Pick the version with least overlap.
+
+
+        this.position = minCoordinates.position;
+        this.alignment = minCoordinates.alignment;
+        $element.offset(_foundation_util_box__WEBPACK_IMPORTED_MODULE_0__["Box"].GetExplicitOffsets($element, $anchor, this.position, this.alignment, this._getVOffset(), this._getHOffset()));
+      }
+    }
+  }]);
+
+  return Positionable;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_1__["Plugin"]);
+
+Positionable.defaults = {
+  /**
+   * Position of positionable relative to anchor. Can be left, right, bottom, top, or auto.
+   * @option
+   * @type {string}
+   * @default 'auto'
+   */
+  position: 'auto',
+
+  /**
+   * Alignment of positionable relative to anchor. Can be left, right, bottom, top, center, or auto.
+   * @option
+   * @type {string}
+   * @default 'auto'
+   */
+  alignment: 'auto',
+
+  /**
+   * Allow overlap of container/window. If false, dropdown positionable first
+   * try to position as defined by data-position and data-alignment, but
+   * reposition if it would cause an overflow.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  allowOverlap: false,
+
+  /**
+   * Allow overlap of only the bottom of the container. This is the most common
+   * behavior for dropdowns, allowing the dropdown to extend the bottom of the
+   * screen but not otherwise influence or break out of the container.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  allowBottomOverlap: true,
+
+  /**
+   * Number of pixels the positionable should be separated vertically from anchor
+   * @option
+   * @type {number}
+   * @default 0
+   */
+  vOffset: 0,
+
+  /**
+   * Number of pixels the positionable should be separated horizontally from anchor
+   * @option
+   * @type {number}
+   * @default 0
+   */
+  hOffset: 0
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.responsiveAccordionTabs.js":
+/*!**************************************************!*\
+  !*** ./js/foundation.responsiveAccordionTabs.js ***!
+  \**************************************************/
+/*! exports provided: ResponsiveAccordionTabs */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResponsiveAccordionTabs", function() { return ResponsiveAccordionTabs; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.util.mediaQuery */ "./js/foundation.util.mediaQuery.js");
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+/* harmony import */ var _foundation_accordion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation.accordion */ "./js/foundation.accordion.js");
+/* harmony import */ var _foundation_tabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./foundation.tabs */ "./js/foundation.tabs.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+ // The plugin matches the plugin classes with these plugin instances.
+
+var MenuPlugins = {
+  tabs: {
+    cssClass: 'tabs',
+    plugin: _foundation_tabs__WEBPACK_IMPORTED_MODULE_5__["Tabs"]
+  },
+  accordion: {
+    cssClass: 'accordion',
+    plugin: _foundation_accordion__WEBPACK_IMPORTED_MODULE_4__["Accordion"]
+  }
+};
+/**
+ * ResponsiveAccordionTabs module.
+ * @module foundation.responsiveAccordionTabs
+ * @requires foundation.util.motion
+ * @requires foundation.accordion
+ * @requires foundation.tabs
+ */
+
+var ResponsiveAccordionTabs =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(ResponsiveAccordionTabs, _Plugin);
+
+  function ResponsiveAccordionTabs() {
+    _classCallCheck(this, ResponsiveAccordionTabs);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ResponsiveAccordionTabs).apply(this, arguments));
+  }
+
+  _createClass(ResponsiveAccordionTabs, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of a responsive accordion tabs.
+     * @class
+     * @name ResponsiveAccordionTabs
+     * @fires ResponsiveAccordionTabs#init
+     * @param {jQuery} element - jQuery object to make into Responsive Accordion Tabs.
+     * @param {Object} options - Overrides to the default plugin settings.
+     */
+    value: function _setup(element, options) {
+      this.$element = jquery__WEBPACK_IMPORTED_MODULE_0___default()(element);
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, this.$element.data(), options);
+      this.rules = this.$element.data('responsive-accordion-tabs');
+      this.currentMq = null;
+      this.currentPlugin = null;
+      this.className = 'ResponsiveAccordionTabs'; // ie9 back compat
+
+      if (!this.$element.attr('id')) {
+        this.$element.attr('id', Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__["GetYoDigits"])(6, 'responsiveaccordiontabs'));
+      }
+
+      ;
+
+      this._init();
+
+      this._events();
+    }
+    /**
+     * Initializes the Menu by parsing the classes from the 'data-responsive-accordion-tabs' attribute on the element.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__["MediaQuery"]._init(); // The first time an Interchange plugin is initialized, this.rules is converted from a string of "classes" to an object of rules
+
+
+      if (typeof this.rules === 'string') {
+        var rulesTree = {}; // Parse rules from "classes" pulled from data attribute
+
+        var rules = this.rules.split(' '); // Iterate through every rule found
+
+        for (var i = 0; i < rules.length; i++) {
+          var rule = rules[i].split('-');
+          var ruleSize = rule.length > 1 ? rule[0] : 'small';
+          var rulePlugin = rule.length > 1 ? rule[1] : rule[0];
+
+          if (MenuPlugins[rulePlugin] !== null) {
+            rulesTree[ruleSize] = MenuPlugins[rulePlugin];
+          }
+        }
+
+        this.rules = rulesTree;
+      }
+
+      this._getAllOptions();
+
+      if (!jquery__WEBPACK_IMPORTED_MODULE_0___default.a.isEmptyObject(this.rules)) {
+        this._checkMediaQueries();
+      }
+    }
+  }, {
+    key: "_getAllOptions",
+    value: function _getAllOptions() {
+      //get all defaults and options
+      var _this = this;
+
+      _this.allOptions = {};
+
+      for (var key in MenuPlugins) {
+        if (MenuPlugins.hasOwnProperty(key)) {
+          var obj = MenuPlugins[key];
+
+          try {
+            var dummyPlugin = jquery__WEBPACK_IMPORTED_MODULE_0___default()('<ul></ul>');
+            var tmpPlugin = new obj.plugin(dummyPlugin, _this.options);
+
+            for (var keyKey in tmpPlugin.options) {
+              if (tmpPlugin.options.hasOwnProperty(keyKey) && keyKey !== 'zfPlugin') {
+                var objObj = tmpPlugin.options[keyKey];
+                _this.allOptions[keyKey] = objObj;
+              }
+            }
+
+            tmpPlugin.destroy();
+          } catch (e) {}
+        }
+      }
+    }
+    /**
+     * Initializes events for the Menu.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      this._changedZfMediaQueryHandler = this._checkMediaQueries.bind(this);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on('changed.zf.mediaquery', this._changedZfMediaQueryHandler);
+    }
+    /**
+     * Checks the current screen width against available media queries. If the media query has changed, and the plugin needed has changed, the plugins will swap out.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_checkMediaQueries",
+    value: function _checkMediaQueries() {
+      var matchedMq,
+          _this = this; // Iterate through each rule and find the last matching rule
+
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default.a.each(this.rules, function (key) {
+        if (_foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__["MediaQuery"].atLeast(key)) {
+          matchedMq = key;
+        }
+      }); // No match? No dice
+
+      if (!matchedMq) return; // Plugin already initialized? We good
+
+      if (this.currentPlugin instanceof this.rules[matchedMq].plugin) return; // Remove existing plugin-specific CSS classes
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default.a.each(MenuPlugins, function (key, value) {
+        _this.$element.removeClass(value.cssClass);
+      }); // Add the CSS class for the new plugin
+
+      this.$element.addClass(this.rules[matchedMq].cssClass); // Create an instance of the new plugin
+
+      if (this.currentPlugin) {
+        //don't know why but on nested elements data zfPlugin get's lost
+        if (!this.currentPlugin.$element.data('zfPlugin') && this.storezfData) this.currentPlugin.$element.data('zfPlugin', this.storezfData);
+        this.currentPlugin.destroy();
+      }
+
+      this._handleMarkup(this.rules[matchedMq].cssClass);
+
+      this.currentPlugin = new this.rules[matchedMq].plugin(this.$element, {});
+      this.storezfData = this.currentPlugin.$element.data('zfPlugin');
+    }
+  }, {
+    key: "_handleMarkup",
+    value: function _handleMarkup(toSet) {
+      var _this = this,
+          fromString = 'accordion';
+
+      var $panels = jquery__WEBPACK_IMPORTED_MODULE_0___default()('[data-tabs-content=' + this.$element.attr('id') + ']');
+      if ($panels.length) fromString = 'tabs';
+
+      if (fromString === toSet) {
+        return;
+      }
+
+      ;
+      var tabsTitle = _this.allOptions.linkClass ? _this.allOptions.linkClass : 'tabs-title';
+      var tabsPanel = _this.allOptions.panelClass ? _this.allOptions.panelClass : 'tabs-panel';
+      this.$element.removeAttr('role');
+      var $liHeads = this.$element.children('.' + tabsTitle + ',[data-accordion-item]').removeClass(tabsTitle).removeClass('accordion-item').removeAttr('data-accordion-item');
+      var $liHeadsA = $liHeads.children('a').removeClass('accordion-title');
+
+      if (fromString === 'tabs') {
+        $panels = $panels.children('.' + tabsPanel).removeClass(tabsPanel).removeAttr('role').removeAttr('aria-hidden').removeAttr('aria-labelledby');
+        $panels.children('a').removeAttr('role').removeAttr('aria-controls').removeAttr('aria-selected');
+      } else {
+        $panels = $liHeads.children('[data-tab-content]').removeClass('accordion-content');
+      }
+
+      ;
+      $panels.css({
+        display: '',
+        visibility: ''
+      });
+      $liHeads.css({
+        display: '',
+        visibility: ''
+      });
+
+      if (toSet === 'accordion') {
+        $panels.each(function (key, value) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(value).appendTo($liHeads.get(key)).addClass('accordion-content').attr('data-tab-content', '').removeClass('is-active').css({
+            height: ''
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('[data-tabs-content=' + _this.$element.attr('id') + ']').after('<div id="tabs-placeholder-' + _this.$element.attr('id') + '"></div>').detach();
+          $liHeads.addClass('accordion-item').attr('data-accordion-item', '');
+          $liHeadsA.addClass('accordion-title');
+        });
+      } else if (toSet === 'tabs') {
+        var $tabsContent = jquery__WEBPACK_IMPORTED_MODULE_0___default()('[data-tabs-content=' + _this.$element.attr('id') + ']');
+        var $placeholder = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabs-placeholder-' + _this.$element.attr('id'));
+
+        if ($placeholder.length) {
+          $tabsContent = jquery__WEBPACK_IMPORTED_MODULE_0___default()('<div class="tabs-content"></div>').insertAfter($placeholder).attr('data-tabs-content', _this.$element.attr('id'));
+          $placeholder.remove();
+        } else {
+          $tabsContent = jquery__WEBPACK_IMPORTED_MODULE_0___default()('<div class="tabs-content"></div>').insertAfter(_this.$element).attr('data-tabs-content', _this.$element.attr('id'));
+        }
+
+        ;
+        $panels.each(function (key, value) {
+          var tempValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(value).appendTo($tabsContent).addClass(tabsPanel);
+          var hash = $liHeadsA.get(key).hash.slice(1);
+          var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(value).attr('id') || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__["GetYoDigits"])(6, 'accordion');
+
+          if (hash !== id) {
+            if (hash !== '') {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(value).attr('id', hash);
+            } else {
+              hash = id;
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(value).attr('id', hash);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()($liHeadsA.get(key)).attr('href', jquery__WEBPACK_IMPORTED_MODULE_0___default()($liHeadsA.get(key)).attr('href').replace('#', '') + '#' + hash);
+            }
+
+            ;
+          }
+
+          ;
+          var isActive = jquery__WEBPACK_IMPORTED_MODULE_0___default()($liHeads.get(key)).hasClass('is-active');
+
+          if (isActive) {
+            tempValue.addClass('is-active');
+          }
+
+          ;
+        });
+        $liHeads.addClass(tabsTitle);
+      }
+
+      ;
+    }
+    /**
+     * Destroys the instance of the current plugin on this element, as well as the window resize handler that switches the plugins out.
+     * @function
+     */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      if (this.currentPlugin) this.currentPlugin.destroy();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off('changed.zf.mediaquery', this._changedZfMediaQueryHandler);
+    }
+  }]);
+
+  return ResponsiveAccordionTabs;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_3__["Plugin"]);
+
+ResponsiveAccordionTabs.defaults = {};
+
+
+/***/ }),
+
+/***/ "./js/foundation.responsiveMenu.js":
+/*!*****************************************!*\
+  !*** ./js/foundation.responsiveMenu.js ***!
+  \*****************************************/
+/*! exports provided: ResponsiveMenu */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResponsiveMenu", function() { return ResponsiveMenu; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.util.mediaQuery */ "./js/foundation.util.mediaQuery.js");
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+/* harmony import */ var _foundation_dropdownMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation.dropdownMenu */ "./js/foundation.dropdownMenu.js");
+/* harmony import */ var _foundation_drilldown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./foundation.drilldown */ "./js/foundation.drilldown.js");
+/* harmony import */ var _foundation_accordionMenu__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./foundation.accordionMenu */ "./js/foundation.accordionMenu.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+
+var MenuPlugins = {
+  dropdown: {
+    cssClass: 'dropdown',
+    plugin: _foundation_dropdownMenu__WEBPACK_IMPORTED_MODULE_4__["DropdownMenu"]
+  },
+  drilldown: {
+    cssClass: 'drilldown',
+    plugin: _foundation_drilldown__WEBPACK_IMPORTED_MODULE_5__["Drilldown"]
+  },
+  accordion: {
+    cssClass: 'accordion-menu',
+    plugin: _foundation_accordionMenu__WEBPACK_IMPORTED_MODULE_6__["AccordionMenu"]
+  }
+}; // import "foundation.util.triggers.js";
+
+/**
+ * ResponsiveMenu module.
+ * @module foundation.responsiveMenu
+ * @requires foundation.util.triggers
+ * @requires foundation.util.mediaQuery
+ */
+
+var ResponsiveMenu =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(ResponsiveMenu, _Plugin);
+
+  function ResponsiveMenu() {
+    _classCallCheck(this, ResponsiveMenu);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ResponsiveMenu).apply(this, arguments));
+  }
+
+  _createClass(ResponsiveMenu, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of a responsive menu.
+     * @class
+     * @name ResponsiveMenu
+     * @fires ResponsiveMenu#init
+     * @param {jQuery} element - jQuery object to make into a dropdown menu.
+     * @param {Object} options - Overrides to the default plugin settings.
+     */
+    value: function _setup(element, options) {
+      this.$element = jquery__WEBPACK_IMPORTED_MODULE_0___default()(element);
+      this.rules = this.$element.data('responsive-menu');
+      this.currentMq = null;
+      this.currentPlugin = null;
+      this.className = 'ResponsiveMenu'; // ie9 back compat
+
+      this._init();
+
+      this._events();
+    }
+    /**
+     * Initializes the Menu by parsing the classes from the 'data-ResponsiveMenu' attribute on the element.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__["MediaQuery"]._init(); // The first time an Interchange plugin is initialized, this.rules is converted from a string of "classes" to an object of rules
+
+
+      if (typeof this.rules === 'string') {
+        var rulesTree = {}; // Parse rules from "classes" pulled from data attribute
+
+        var rules = this.rules.split(' '); // Iterate through every rule found
+
+        for (var i = 0; i < rules.length; i++) {
+          var rule = rules[i].split('-');
+          var ruleSize = rule.length > 1 ? rule[0] : 'small';
+          var rulePlugin = rule.length > 1 ? rule[1] : rule[0];
+
+          if (MenuPlugins[rulePlugin] !== null) {
+            rulesTree[ruleSize] = MenuPlugins[rulePlugin];
+          }
+        }
+
+        this.rules = rulesTree;
+      }
+
+      if (!jquery__WEBPACK_IMPORTED_MODULE_0___default.a.isEmptyObject(this.rules)) {
+        this._checkMediaQueries();
+      } // Add data-mutate since children may need it.
+
+
+      this.$element.attr('data-mutate', this.$element.attr('data-mutate') || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_2__["GetYoDigits"])(6, 'responsive-menu'));
+    }
+    /**
+     * Initializes events for the Menu.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      var _this = this;
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on('changed.zf.mediaquery', function () {
+        _this._checkMediaQueries();
+      }); // $(window).on('resize.zf.ResponsiveMenu', function() {
+      //   _this._checkMediaQueries();
+      // });
+    }
+    /**
+     * Checks the current screen width against available media queries. If the media query has changed, and the plugin needed has changed, the plugins will swap out.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_checkMediaQueries",
+    value: function _checkMediaQueries() {
+      var matchedMq,
+          _this = this; // Iterate through each rule and find the last matching rule
+
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default.a.each(this.rules, function (key) {
+        if (_foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__["MediaQuery"].atLeast(key)) {
+          matchedMq = key;
+        }
+      }); // No match? No dice
+
+      if (!matchedMq) return; // Plugin already initialized? We good
+
+      if (this.currentPlugin instanceof this.rules[matchedMq].plugin) return; // Remove existing plugin-specific CSS classes
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default.a.each(MenuPlugins, function (key, value) {
+        _this.$element.removeClass(value.cssClass);
+      }); // Add the CSS class for the new plugin
+
+      this.$element.addClass(this.rules[matchedMq].cssClass); // Create an instance of the new plugin
+
+      if (this.currentPlugin) this.currentPlugin.destroy();
+      this.currentPlugin = new this.rules[matchedMq].plugin(this.$element, {});
+    }
+    /**
+     * Destroys the instance of the current plugin on this element, as well as the window resize handler that switches the plugins out.
+     * @function
+     */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      this.currentPlugin.destroy();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off('.zf.ResponsiveMenu');
+    }
+  }]);
+
+  return ResponsiveMenu;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_3__["Plugin"]);
+
+ResponsiveMenu.defaults = {};
+
+
+/***/ }),
+
+/***/ "./js/foundation.responsiveToggle.js":
+/*!*******************************************!*\
+  !*** ./js/foundation.responsiveToggle.js ***!
+  \*******************************************/
+/*! exports provided: ResponsiveToggle */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResponsiveToggle", function() { return ResponsiveToggle; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.util.mediaQuery */ "./js/foundation.util.mediaQuery.js");
+/* harmony import */ var _foundation_util_motion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.util.motion */ "./js/foundation.util.motion.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+/**
+ * ResponsiveToggle module.
+ * @module foundation.responsiveToggle
+ * @requires foundation.util.mediaQuery
+ * @requires foundation.util.motion
+ */
+
+var ResponsiveToggle =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(ResponsiveToggle, _Plugin);
+
+  function ResponsiveToggle() {
+    _classCallCheck(this, ResponsiveToggle);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ResponsiveToggle).apply(this, arguments));
+  }
+
+  _createClass(ResponsiveToggle, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of Tab Bar.
+     * @class
+     * @name ResponsiveToggle
+     * @fires ResponsiveToggle#init
+     * @param {jQuery} element - jQuery object to attach tab bar functionality to.
+     * @param {Object} options - Overrides to the default plugin settings.
+     */
+    value: function _setup(element, options) {
+      this.$element = jquery__WEBPACK_IMPORTED_MODULE_0___default()(element);
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, ResponsiveToggle.defaults, this.$element.data(), options);
+      this.className = 'ResponsiveToggle'; // ie9 back compat
+
+      this._init();
+
+      this._events();
+    }
+    /**
+     * Initializes the tab bar by finding the target element, toggling element, and running update().
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__["MediaQuery"]._init();
+
+      var targetID = this.$element.data('responsive-toggle');
+
+      if (!targetID) {
+        console.error('Your tab bar needs an ID of a Menu as the value of data-tab-bar.');
+      }
+
+      this.$targetMenu = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#".concat(targetID));
+      this.$toggler = this.$element.find('[data-toggle]').filter(function () {
+        var target = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('toggle');
+        return target === targetID || target === "";
+      });
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, this.options, this.$targetMenu.data()); // If they were set, parse the animation classes
+
+      if (this.options.animate) {
+        var input = this.options.animate.split(' ');
+        this.animationIn = input[0];
+        this.animationOut = input[1] || null;
+      }
+
+      this._update();
+    }
+    /**
+     * Adds necessary event handlers for the tab bar to work.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      var _this = this;
+
+      this._updateMqHandler = this._update.bind(this);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on('changed.zf.mediaquery', this._updateMqHandler);
+      this.$toggler.on('click.zf.responsiveToggle', this.toggleMenu.bind(this));
+    }
+    /**
+     * Checks the current media query to determine if the tab bar should be visible or hidden.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_update",
+    value: function _update() {
+      // Mobile
+      if (!_foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__["MediaQuery"].atLeast(this.options.hideFor)) {
+        this.$element.show();
+        this.$targetMenu.hide();
+      } // Desktop
+      else {
+          this.$element.hide();
+          this.$targetMenu.show();
+        }
+    }
+    /**
+     * Toggles the element attached to the tab bar. The toggle only happens if the screen is small enough to allow it.
+     * @function
+     * @fires ResponsiveToggle#toggled
+     */
+
+  }, {
+    key: "toggleMenu",
+    value: function toggleMenu() {
+      var _this2 = this;
+
+      if (!_foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_1__["MediaQuery"].atLeast(this.options.hideFor)) {
+        /**
+         * Fires when the element attached to the tab bar toggles.
+         * @event ResponsiveToggle#toggled
+         */
+        if (this.options.animate) {
+          if (this.$targetMenu.is(':hidden')) {
+            _foundation_util_motion__WEBPACK_IMPORTED_MODULE_2__["Motion"].animateIn(this.$targetMenu, this.animationIn, function () {
+              _this2.$element.trigger('toggled.zf.responsiveToggle');
+
+              _this2.$targetMenu.find('[data-mutate]').triggerHandler('mutateme.zf.trigger');
+            });
+          } else {
+            _foundation_util_motion__WEBPACK_IMPORTED_MODULE_2__["Motion"].animateOut(this.$targetMenu, this.animationOut, function () {
+              _this2.$element.trigger('toggled.zf.responsiveToggle');
+            });
+          }
+        } else {
+          this.$targetMenu.toggle(0);
+          this.$targetMenu.find('[data-mutate]').trigger('mutateme.zf.trigger');
+          this.$element.trigger('toggled.zf.responsiveToggle');
+        }
+      }
+    }
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      this.$element.off('.zf.responsiveToggle');
+      this.$toggler.off('.zf.responsiveToggle');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off('changed.zf.mediaquery', this._updateMqHandler);
+    }
+  }]);
+
+  return ResponsiveToggle;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_3__["Plugin"]);
+
+ResponsiveToggle.defaults = {
+  /**
+   * The breakpoint after which the menu is always shown, and the tab bar is hidden.
+   * @option
+   * @type {string}
+   * @default 'medium'
+   */
+  hideFor: 'medium',
+
+  /**
+   * To decide if the toggle should be animated or not.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  animate: false
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.reveal.js":
+/*!*********************************!*\
+  !*** ./js/foundation.reveal.js ***!
+  \*********************************/
+/*! exports provided: Reveal */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reveal", function() { return Reveal; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.util.keyboard */ "./js/foundation.util.keyboard.js");
+/* harmony import */ var _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.util.mediaQuery */ "./js/foundation.util.mediaQuery.js");
+/* harmony import */ var _foundation_util_motion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation.util.motion */ "./js/foundation.util.motion.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+/* harmony import */ var _foundation_util_triggers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./foundation.util.triggers */ "./js/foundation.util.triggers.js");
+/* harmony import */ var _foundation_util_touch__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./foundation.util.touch */ "./js/foundation.util.touch.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+
+
+/**
+ * Reveal module.
+ * @module foundation.reveal
+ * @requires foundation.util.keyboard
+ * @requires foundation.util.triggers
+ * @requires foundation.util.mediaQuery
+ * @requires foundation.util.motion if using animations
+ */
+
+var Reveal =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(Reveal, _Plugin);
+
+  function Reveal() {
+    _classCallCheck(this, Reveal);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Reveal).apply(this, arguments));
+  }
+
+  _createClass(Reveal, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of Reveal.
+     * @class
+     * @name Reveal
+     * @param {jQuery} element - jQuery object to use for the modal.
+     * @param {Object} options - optional parameters.
+     */
+    value: function _setup(element, options) {
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, Reveal.defaults, this.$element.data(), options);
+      this.className = 'Reveal'; // ie9 back compat
+
+      this._init(); // Triggers init is idempotent, just need to make sure it is initialized
+
+
+      _foundation_util_triggers__WEBPACK_IMPORTED_MODULE_6__["Triggers"].init(jquery__WEBPACK_IMPORTED_MODULE_0___default.a);
+      _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__["Keyboard"].register('Reveal', {
+        'ESCAPE': 'close'
+      });
+    }
+    /**
+     * Initializes the modal by adding the overlay and close buttons, (if selected).
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      var _this2 = this;
+
+      _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_3__["MediaQuery"]._init();
+
+      this.id = this.$element.attr('id');
+      this.isActive = false;
+      this.cached = {
+        mq: _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_3__["MediaQuery"].current
+      };
+      this.$anchor = jquery__WEBPACK_IMPORTED_MODULE_0___default()("[data-open=\"".concat(this.id, "\"]")).length ? jquery__WEBPACK_IMPORTED_MODULE_0___default()("[data-open=\"".concat(this.id, "\"]")) : jquery__WEBPACK_IMPORTED_MODULE_0___default()("[data-toggle=\"".concat(this.id, "\"]"));
+      this.$anchor.attr({
+        'aria-controls': this.id,
+        'aria-haspopup': true,
+        'tabindex': 0
+      });
+
+      if (this.options.fullScreen || this.$element.hasClass('full')) {
+        this.options.fullScreen = true;
+        this.options.overlay = false;
+      }
+
+      if (this.options.overlay && !this.$overlay) {
+        this.$overlay = this._makeOverlay(this.id);
+      }
+
+      this.$element.attr({
+        'role': 'dialog',
+        'aria-hidden': true,
+        'data-yeti-box': this.id,
+        'data-resize': this.id
+      });
+
+      if (this.$overlay) {
+        this.$element.detach().appendTo(this.$overlay);
+      } else {
+        this.$element.detach().appendTo(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.options.appendTo));
+        this.$element.addClass('without-overlay');
+      }
+
+      this._events();
+
+      if (this.options.deepLink && window.location.hash === "#".concat(this.id)) {
+        this.onLoadListener = Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["onLoad"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(window), function () {
+          return _this2.open();
+        });
+      }
+    }
+    /**
+     * Creates an overlay div to display behind the modal.
+     * @private
+     */
+
+  }, {
+    key: "_makeOverlay",
+    value: function _makeOverlay() {
+      var additionalOverlayClasses = '';
+
+      if (this.options.additionalOverlayClasses) {
+        additionalOverlayClasses = ' ' + this.options.additionalOverlayClasses;
+      }
+
+      return jquery__WEBPACK_IMPORTED_MODULE_0___default()('<div></div>').addClass('reveal-overlay' + additionalOverlayClasses).appendTo(this.options.appendTo);
+    }
+    /**
+     * Updates position of modal
+     * TODO:  Figure out if we actually need to cache these values or if it doesn't matter
+     * @private
+     */
+
+  }, {
+    key: "_updatePosition",
+    value: function _updatePosition() {
+      var width = this.$element.outerWidth();
+      var outerWidth = jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).width();
+      var height = this.$element.outerHeight();
+      var outerHeight = jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).height();
+      var left,
+          top = null;
+
+      if (this.options.hOffset === 'auto') {
+        left = parseInt((outerWidth - width) / 2, 10);
+      } else {
+        left = parseInt(this.options.hOffset, 10);
+      }
+
+      if (this.options.vOffset === 'auto') {
+        if (height > outerHeight) {
+          top = parseInt(Math.min(100, outerHeight / 10), 10);
+        } else {
+          top = parseInt((outerHeight - height) / 4, 10);
+        }
+      } else if (this.options.vOffset !== null) {
+        top = parseInt(this.options.vOffset, 10);
+      }
+
+      if (top !== null) {
+        this.$element.css({
+          top: top + 'px'
+        });
+      } // only worry about left if we don't have an overlay or we have a horizontal offset,
+      // otherwise we're perfectly in the middle
+
+
+      if (!this.$overlay || this.options.hOffset !== 'auto') {
+        this.$element.css({
+          left: left + 'px'
+        });
+        this.$element.css({
+          margin: '0px'
+        });
+      }
+    }
+    /**
+     * Adds event handlers for the modal.
+     * @private
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      var _this3 = this;
+
+      var _this = this;
+
+      this.$element.on({
+        'open.zf.trigger': this.open.bind(this),
+        'close.zf.trigger': function closeZfTrigger(event, $element) {
+          if (event.target === _this.$element[0] || jquery__WEBPACK_IMPORTED_MODULE_0___default()(event.target).parents('[data-closable]')[0] === $element) {
+            // only close reveal when it's explicitly called
+            return _this3.close.apply(_this3);
+          }
+        },
+        'toggle.zf.trigger': this.toggle.bind(this),
+        'resizeme.zf.trigger': function resizemeZfTrigger() {
+          _this._updatePosition();
+        }
+      });
+
+      if (this.options.closeOnClick && this.options.overlay) {
+        this.$overlay.off('.zf.reveal').on('click.zf.reveal', function (e) {
+          if (e.target === _this.$element[0] || jquery__WEBPACK_IMPORTED_MODULE_0___default.a.contains(_this.$element[0], e.target) || !jquery__WEBPACK_IMPORTED_MODULE_0___default.a.contains(document, e.target)) {
+            return;
+          }
+
+          _this.close();
+        });
+      }
+
+      if (this.options.deepLink) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on("hashchange.zf.reveal:".concat(this.id), this._handleState.bind(this));
+      }
+    }
+    /**
+     * Handles modal methods on back/forward button clicks or any other event that triggers hashchange.
+     * @private
+     */
+
+  }, {
+    key: "_handleState",
+    value: function _handleState(e) {
+      if (window.location.hash === '#' + this.id && !this.isActive) {
+        this.open();
+      } else {
+        this.close();
+      }
+    }
+    /**
+    * Disables the scroll when Reveal is shown to prevent the background from shifting
+    * @param {number} scrollTop - Scroll to visually apply, window current scroll by default
+    */
+
+  }, {
+    key: "_disableScroll",
+    value: function _disableScroll(scrollTop) {
+      scrollTop = scrollTop || jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).scrollTop();
+
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).height() > jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).height()) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("html").css("top", -scrollTop);
+      }
+    }
+    /**
+    * Reenables the scroll when Reveal closes
+    * @param {number} scrollTop - Scroll to restore, html "top" property by default (as set by `_disableScroll`)
+    */
+
+  }, {
+    key: "_enableScroll",
+    value: function _enableScroll(scrollTop) {
+      scrollTop = scrollTop || parseInt(jquery__WEBPACK_IMPORTED_MODULE_0___default()("html").css("top"));
+
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).height() > jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).height()) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()("html").css("top", "");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).scrollTop(-scrollTop);
+      }
+    }
+    /**
+     * Opens the modal controlled by `this.$anchor`, and closes all others by default.
+     * @function
+     * @fires Reveal#closeme
+     * @fires Reveal#open
+     */
+
+  }, {
+    key: "open",
+    value: function open() {
+      var _this4 = this;
+
+      // either update or replace browser history
+      var hash = "#".concat(this.id);
+
+      if (this.options.deepLink && window.location.hash !== hash) {
+        if (window.history.pushState) {
+          if (this.options.updateHistory) {
+            window.history.pushState({}, '', hash);
+          } else {
+            window.history.replaceState({}, '', hash);
+          }
+        } else {
+          window.location.hash = hash;
+        }
+      } // Remember anchor that opened it to set focus back later, have general anchors as fallback
+
+
+      this.$activeAnchor = jquery__WEBPACK_IMPORTED_MODULE_0___default()(document.activeElement).is(this.$anchor) ? jquery__WEBPACK_IMPORTED_MODULE_0___default()(document.activeElement) : this.$anchor;
+      this.isActive = true; // Make elements invisible, but remove display: none so we can get size and positioning
+
+      this.$element.css({
+        'visibility': 'hidden'
+      }).show().scrollTop(0);
+
+      if (this.options.overlay) {
+        this.$overlay.css({
+          'visibility': 'hidden'
+        }).show();
+      }
+
+      this._updatePosition();
+
+      this.$element.hide().css({
+        'visibility': ''
+      });
+
+      if (this.$overlay) {
+        this.$overlay.css({
+          'visibility': ''
+        }).hide();
+
+        if (this.$element.hasClass('fast')) {
+          this.$overlay.addClass('fast');
+        } else if (this.$element.hasClass('slow')) {
+          this.$overlay.addClass('slow');
+        }
+      }
+
+      if (!this.options.multipleOpened) {
+        /**
+         * Fires immediately before the modal opens.
+         * Closes any other modals that are currently open
+         * @event Reveal#closeme
+         */
+        this.$element.trigger('closeme.zf.reveal', this.id);
+      }
+
+      this._disableScroll();
+
+      var _this = this; // Motion UI method of reveal
+
+
+      if (this.options.animationIn) {
+        var afterAnimation = function afterAnimation() {
+          _this.$element.attr({
+            'aria-hidden': false,
+            'tabindex': -1
+          }).focus();
+
+          _this._addGlobalClasses();
+
+          _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__["Keyboard"].trapFocus(_this.$element);
+        };
+
+        if (this.options.overlay) {
+          _foundation_util_motion__WEBPACK_IMPORTED_MODULE_4__["Motion"].animateIn(this.$overlay, 'fade-in');
+        }
+
+        _foundation_util_motion__WEBPACK_IMPORTED_MODULE_4__["Motion"].animateIn(this.$element, this.options.animationIn, function () {
+          if (_this4.$element) {
+            // protect against object having been removed
+            _this4.focusableElements = _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__["Keyboard"].findFocusable(_this4.$element);
+            afterAnimation();
+          }
+        });
+      } // jQuery method of reveal
+      else {
+          if (this.options.overlay) {
+            this.$overlay.show(0);
+          }
+
+          this.$element.show(this.options.showDelay);
+        } // handle accessibility
+
+
+      this.$element.attr({
+        'aria-hidden': false,
+        'tabindex': -1
+      }).focus();
+      _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__["Keyboard"].trapFocus(this.$element);
+
+      this._addGlobalClasses();
+
+      this._addGlobalListeners();
+      /**
+       * Fires when the modal has successfully opened.
+       * @event Reveal#open
+       */
+
+
+      this.$element.trigger('open.zf.reveal');
+    }
+    /**
+     * Adds classes and listeners on document required by open modals.
+     *
+     * The following classes are added and updated:
+     * - `.is-reveal-open` - Prevents the scroll on document
+     * - `.zf-has-scroll`  - Displays a disabled scrollbar on document if required like if the
+     *                       scroll was not disabled. This prevent a "shift" of the page content due
+     *                       the scrollbar disappearing when the modal opens.
+     *
+     * @private
+     */
+
+  }, {
+    key: "_addGlobalClasses",
+    value: function _addGlobalClasses() {
+      var updateScrollbarClass = function updateScrollbarClass() {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('html').toggleClass('zf-has-scroll', !!(jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).height() > jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).height()));
+      };
+
+      this.$element.on('resizeme.zf.trigger.revealScrollbarListener', function () {
+        return updateScrollbarClass();
+      });
+      updateScrollbarClass();
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('html').addClass('is-reveal-open');
+    }
+    /**
+     * Removes classes and listeners on document that were required by open modals.
+     * @private
+     */
+
+  }, {
+    key: "_removeGlobalClasses",
+    value: function _removeGlobalClasses() {
+      this.$element.off('resizeme.zf.trigger.revealScrollbarListener');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('html').removeClass('is-reveal-open');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('html').removeClass('zf-has-scroll');
+    }
+    /**
+     * Adds extra event handlers for the body and window if necessary.
+     * @private
+     */
+
+  }, {
+    key: "_addGlobalListeners",
+    value: function _addGlobalListeners() {
+      var _this = this;
+
+      if (!this.$element) {
+        return;
+      } // If we're in the middle of cleanup, don't freak out
+
+
+      this.focusableElements = _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__["Keyboard"].findFocusable(this.$element);
+
+      if (!this.options.overlay && this.options.closeOnClick && !this.options.fullScreen) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').on('click.zf.reveal', function (e) {
+          if (e.target === _this.$element[0] || jquery__WEBPACK_IMPORTED_MODULE_0___default.a.contains(_this.$element[0], e.target) || !jquery__WEBPACK_IMPORTED_MODULE_0___default.a.contains(document, e.target)) {
+            return;
+          }
+
+          _this.close();
+        });
+      }
+
+      if (this.options.closeOnEsc) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on('keydown.zf.reveal', function (e) {
+          _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__["Keyboard"].handleKey(e, 'Reveal', {
+            close: function close() {
+              if (_this.options.closeOnEsc) {
+                _this.close();
+              }
+            }
+          });
+        });
+      }
+    }
+    /**
+     * Closes the modal.
+     * @function
+     * @fires Reveal#closed
+     */
+
+  }, {
+    key: "close",
+    value: function close() {
+      if (!this.isActive || !this.$element.is(':visible')) {
+        return false;
+      }
+
+      var _this = this; // Motion UI method of hiding
+
+
+      if (this.options.animationOut) {
+        if (this.options.overlay) {
+          _foundation_util_motion__WEBPACK_IMPORTED_MODULE_4__["Motion"].animateOut(this.$overlay, 'fade-out');
+        }
+
+        _foundation_util_motion__WEBPACK_IMPORTED_MODULE_4__["Motion"].animateOut(this.$element, this.options.animationOut, finishUp);
+      } // jQuery method of hiding
+      else {
+          this.$element.hide(this.options.hideDelay);
+
+          if (this.options.overlay) {
+            this.$overlay.hide(0, finishUp);
+          } else {
+            finishUp();
+          }
+        } // Conditionals to remove extra event listeners added on open
+
+
+      if (this.options.closeOnEsc) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off('keydown.zf.reveal');
+      }
+
+      if (!this.options.overlay && this.options.closeOnClick) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').off('click.zf.reveal');
+      }
+
+      this.$element.off('keydown.zf.reveal');
+
+      function finishUp() {
+        // Get the current top before the modal is closed and restore the scroll after.
+        // TODO: use component properties instead of HTML properties
+        // See https://github.com/zurb/foundation-sites/pull/10786
+        var scrollTop = parseInt(jquery__WEBPACK_IMPORTED_MODULE_0___default()("html").css("top"));
+
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('.reveal:visible').length === 0) {
+          _this._removeGlobalClasses(); // also remove .is-reveal-open from the html element when there is no opened reveal
+
+        }
+
+        _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__["Keyboard"].releaseFocus(_this.$element);
+
+        _this.$element.attr('aria-hidden', true);
+
+        _this._enableScroll(scrollTop);
+        /**
+        * Fires when the modal is done closing.
+        * @event Reveal#closed
+        */
+
+
+        _this.$element.trigger('closed.zf.reveal');
+      }
+      /**
+      * Resets the modal content
+      * This prevents a running video to keep going in the background
+      */
+
+
+      if (this.options.resetOnClose) {
+        this.$element.html(this.$element.html());
+      }
+
+      this.isActive = false; // If deepLink and we did not switched to an other modal...
+
+      if (_this.options.deepLink && window.location.hash === "#".concat(this.id)) {
+        // Remove the history hash
+        if (window.history.replaceState) {
+          var urlWithoutHash = window.location.pathname + window.location.search;
+
+          if (this.options.updateHistory) {
+            window.history.pushState({}, '', urlWithoutHash); // remove the hash
+          } else {
+            window.history.replaceState('', document.title, urlWithoutHash);
+          }
+        } else {
+          window.location.hash = '';
+        }
+      }
+
+      this.$activeAnchor.focus();
+    }
+    /**
+     * Toggles the open/closed state of a modal.
+     * @function
+     */
+
+  }, {
+    key: "toggle",
+    value: function toggle() {
+      if (this.isActive) {
+        this.close();
+      } else {
+        this.open();
+      }
+    }
+  }, {
+    key: "_destroy",
+
+    /**
+     * Destroys an instance of a modal.
+     * @function
+     */
+    value: function _destroy() {
+      if (this.options.overlay) {
+        this.$element.appendTo(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.options.appendTo)); // move $element outside of $overlay to prevent error unregisterPlugin()
+
+        this.$overlay.hide().off().remove();
+      }
+
+      this.$element.hide().off();
+      this.$anchor.off('.zf');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off(".zf.reveal:".concat(this.id));
+      if (this.onLoadListener) jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off(this.onLoadListener);
+
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('.reveal:visible').length === 0) {
+        this._removeGlobalClasses(); // also remove .is-reveal-open from the html element when there is no opened reveal
+
+      }
+    }
+  }]);
+
+  return Reveal;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_5__["Plugin"]);
+
+Reveal.defaults = {
+  /**
+   * Motion-UI class to use for animated elements. If none used, defaults to simple show/hide.
+   * @option
+   * @type {string}
+   * @default ''
+   */
+  animationIn: '',
+
+  /**
+   * Motion-UI class to use for animated elements. If none used, defaults to simple show/hide.
+   * @option
+   * @type {string}
+   * @default ''
+   */
+  animationOut: '',
+
+  /**
+   * Time, in ms, to delay the opening of a modal after a click if no animation used.
+   * @option
+   * @type {number}
+   * @default 0
+   */
+  showDelay: 0,
+
+  /**
+   * Time, in ms, to delay the closing of a modal after a click if no animation used.
+   * @option
+   * @type {number}
+   * @default 0
+   */
+  hideDelay: 0,
+
+  /**
+   * Allows a click on the body/overlay to close the modal.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  closeOnClick: true,
+
+  /**
+   * Allows the modal to close if the user presses the `ESCAPE` key.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  closeOnEsc: true,
+
+  /**
+   * If true, allows multiple modals to be displayed at once.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  multipleOpened: false,
+
+  /**
+   * Distance, in pixels, the modal should push down from the top of the screen.
+   * @option
+   * @type {number|string}
+   * @default auto
+   */
+  vOffset: 'auto',
+
+  /**
+   * Distance, in pixels, the modal should push in from the side of the screen.
+   * @option
+   * @type {number|string}
+   * @default auto
+   */
+  hOffset: 'auto',
+
+  /**
+   * Allows the modal to be fullscreen, completely blocking out the rest of the view. JS checks for this as well.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  fullScreen: false,
+
+  /**
+   * Allows the modal to generate an overlay div, which will cover the view when modal opens.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  overlay: true,
+
+  /**
+   * Allows the modal to remove and reinject markup on close. Should be true if using video elements w/o using provider's api, otherwise, videos will continue to play in the background.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  resetOnClose: false,
+
+  /**
+   * Link the location hash to the modal.
+   * Set the location hash when the modal is opened/closed, and open/close the modal when the location changes.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  deepLink: false,
+
+  /**
+   * If `deepLink` is enabled, update the browser history with the open modal
+   * @option
+   * @default false
+   */
+  updateHistory: false,
+
+  /**
+  * Allows the modal to append to custom div.
+  * @option
+  * @type {string}
+  * @default "body"
+  */
+  appendTo: "body",
+
+  /**
+   * Allows adding additional class names to the reveal overlay.
+   * @option
+   * @type {string}
+   * @default ''
+   */
+  additionalOverlayClasses: ''
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.slider.js":
+/*!*********************************!*\
+  !*** ./js/foundation.slider.js ***!
+  \*********************************/
+/*! exports provided: Slider */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Slider", function() { return Slider; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.util.keyboard */ "./js/foundation.util.keyboard.js");
+/* harmony import */ var _foundation_util_motion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.util.motion */ "./js/foundation.util.motion.js");
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+/* harmony import */ var _foundation_util_touch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./foundation.util.touch */ "./js/foundation.util.touch.js");
+/* harmony import */ var _foundation_util_triggers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./foundation.util.triggers */ "./js/foundation.util.triggers.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+
+/**
+ * Slider module.
+ * @module foundation.slider
+ * @requires foundation.util.motion
+ * @requires foundation.util.triggers
+ * @requires foundation.util.keyboard
+ * @requires foundation.util.touch
+ */
+
+var Slider =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(Slider, _Plugin);
+
+  function Slider() {
+    _classCallCheck(this, Slider);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Slider).apply(this, arguments));
+  }
+
+  _createClass(Slider, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of a slider control.
+     * @class
+     * @name Slider
+     * @param {jQuery} element - jQuery object to make into a slider control.
+     * @param {Object} options - Overrides to the default plugin settings.
+     */
+    value: function _setup(element, options) {
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, Slider.defaults, this.$element.data(), options);
+      this.className = 'Slider'; // ie9 back compat
+      // Touch and Triggers inits are idempotent, we just need to make sure it's initialied.
+
+      _foundation_util_touch__WEBPACK_IMPORTED_MODULE_5__["Touch"].init(jquery__WEBPACK_IMPORTED_MODULE_0___default.a);
+      _foundation_util_triggers__WEBPACK_IMPORTED_MODULE_6__["Triggers"].init(jquery__WEBPACK_IMPORTED_MODULE_0___default.a);
+
+      this._init();
+
+      _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__["Keyboard"].register('Slider', {
+        'ltr': {
+          'ARROW_RIGHT': 'increase',
+          'ARROW_UP': 'increase',
+          'ARROW_DOWN': 'decrease',
+          'ARROW_LEFT': 'decrease',
+          'SHIFT_ARROW_RIGHT': 'increase_fast',
+          'SHIFT_ARROW_UP': 'increase_fast',
+          'SHIFT_ARROW_DOWN': 'decrease_fast',
+          'SHIFT_ARROW_LEFT': 'decrease_fast',
+          'HOME': 'min',
+          'END': 'max'
+        },
+        'rtl': {
+          'ARROW_LEFT': 'increase',
+          'ARROW_RIGHT': 'decrease',
+          'SHIFT_ARROW_LEFT': 'increase_fast',
+          'SHIFT_ARROW_RIGHT': 'decrease_fast'
+        }
+      });
+    }
+    /**
+     * Initilizes the plugin by reading/setting attributes, creating collections and setting the initial position of the handle(s).
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      this.inputs = this.$element.find('input');
+      this.handles = this.$element.find('[data-slider-handle]');
+      this.$handle = this.handles.eq(0);
+      this.$input = this.inputs.length ? this.inputs.eq(0) : jquery__WEBPACK_IMPORTED_MODULE_0___default()("#".concat(this.$handle.attr('aria-controls')));
+      this.$fill = this.$element.find('[data-slider-fill]').css(this.options.vertical ? 'height' : 'width', 0);
+
+      var isDbl = false,
+          _this = this;
+
+      if (this.options.disabled || this.$element.hasClass(this.options.disabledClass)) {
+        this.options.disabled = true;
+        this.$element.addClass(this.options.disabledClass);
+      }
+
+      if (!this.inputs.length) {
+        this.inputs = jquery__WEBPACK_IMPORTED_MODULE_0___default()().add(this.$input);
+        this.options.binding = true;
+      }
+
+      this._setInitAttr(0);
+
+      if (this.handles[1]) {
+        this.options.doubleSided = true;
+        this.$handle2 = this.handles.eq(1);
+        this.$input2 = this.inputs.length > 1 ? this.inputs.eq(1) : jquery__WEBPACK_IMPORTED_MODULE_0___default()("#".concat(this.$handle2.attr('aria-controls')));
+
+        if (!this.inputs[1]) {
+          this.inputs = this.inputs.add(this.$input2);
+        }
+
+        isDbl = true; // this.$handle.triggerHandler('click.zf.slider');
+
+        this._setInitAttr(1);
+      } // Set handle positions
+
+
+      this.setHandles();
+
+      this._events();
+    }
+  }, {
+    key: "setHandles",
+    value: function setHandles() {
+      var _this2 = this;
+
+      if (this.handles[1]) {
+        this._setHandlePos(this.$handle, this.inputs.eq(0).val(), true, function () {
+          _this2._setHandlePos(_this2.$handle2, _this2.inputs.eq(1).val(), true);
+        });
+      } else {
+        this._setHandlePos(this.$handle, this.inputs.eq(0).val(), true);
+      }
+    }
+  }, {
+    key: "_reflow",
+    value: function _reflow() {
+      this.setHandles();
+    }
+    /**
+    * @function
+    * @private
+    * @param {Number} value - floating point (the value) to be transformed using to a relative position on the slider (the inverse of _value)
+    */
+
+  }, {
+    key: "_pctOfBar",
+    value: function _pctOfBar(value) {
+      var pctOfBar = percent(value - this.options.start, this.options.end - this.options.start);
+
+      switch (this.options.positionValueFunction) {
+        case "pow":
+          pctOfBar = this._logTransform(pctOfBar);
+          break;
+
+        case "log":
+          pctOfBar = this._powTransform(pctOfBar);
+          break;
+      }
+
+      return pctOfBar.toFixed(2);
+    }
+    /**
+    * @function
+    * @private
+    * @param {Number} pctOfBar - floating point, the relative position of the slider (typically between 0-1) to be transformed to a value
+    */
+
+  }, {
+    key: "_value",
+    value: function _value(pctOfBar) {
+      switch (this.options.positionValueFunction) {
+        case "pow":
+          pctOfBar = this._powTransform(pctOfBar);
+          break;
+
+        case "log":
+          pctOfBar = this._logTransform(pctOfBar);
+          break;
+      }
+
+      var value = (this.options.end - this.options.start) * pctOfBar + parseFloat(this.options.start);
+      return value;
+    }
+    /**
+    * @function
+    * @private
+    * @param {Number} value - floating point (typically between 0-1) to be transformed using the log function
+    */
+
+  }, {
+    key: "_logTransform",
+    value: function _logTransform(value) {
+      return baseLog(this.options.nonLinearBase, value * (this.options.nonLinearBase - 1) + 1);
+    }
+    /**
+    * @function
+    * @private
+    * @param {Number} value - floating point (typically between 0-1) to be transformed using the power function
+    */
+
+  }, {
+    key: "_powTransform",
+    value: function _powTransform(value) {
+      return (Math.pow(this.options.nonLinearBase, value) - 1) / (this.options.nonLinearBase - 1);
+    }
+    /**
+     * Sets the position of the selected handle and fill bar.
+     * @function
+     * @private
+     * @param {jQuery} $hndl - the selected handle to move.
+     * @param {Number} location - floating point between the start and end values of the slider bar.
+     * @param {Function} cb - callback function to fire on completion.
+     * @fires Slider#moved
+     * @fires Slider#changed
+     */
+
+  }, {
+    key: "_setHandlePos",
+    value: function _setHandlePos($hndl, location, noInvert, cb) {
+      // don't move if the slider has been disabled since its initialization
+      if (this.$element.hasClass(this.options.disabledClass)) {
+        return;
+      } //might need to alter that slightly for bars that will have odd number selections.
+
+
+      location = parseFloat(location); //on input change events, convert string to number...grumble.
+      // prevent slider from running out of bounds, if value exceeds the limits set through options, override the value to min/max
+
+      if (location < this.options.start) {
+        location = this.options.start;
+      } else if (location > this.options.end) {
+        location = this.options.end;
+      }
+
+      var isDbl = this.options.doubleSided; //this is for single-handled vertical sliders, it adjusts the value to account for the slider being "upside-down"
+      //for click and drag events, it's weird due to the scale(-1, 1) css property
+
+      if (this.options.vertical && !noInvert) {
+        location = this.options.end - location;
+      }
+
+      if (isDbl) {
+        //this block is to prevent 2 handles from crossing eachother. Could/should be improved.
+        if (this.handles.index($hndl) === 0) {
+          var h2Val = parseFloat(this.$handle2.attr('aria-valuenow'));
+          location = location >= h2Val ? h2Val - this.options.step : location;
+        } else {
+          var h1Val = parseFloat(this.$handle.attr('aria-valuenow'));
+          location = location <= h1Val ? h1Val + this.options.step : location;
+        }
+      }
+
+      var _this = this,
+          vert = this.options.vertical,
+          hOrW = vert ? 'height' : 'width',
+          lOrT = vert ? 'top' : 'left',
+          handleDim = $hndl[0].getBoundingClientRect()[hOrW],
+          elemDim = this.$element[0].getBoundingClientRect()[hOrW],
+          //percentage of bar min/max value based on click or drag point
+      pctOfBar = this._pctOfBar(location),
+          //number of actual pixels to shift the handle, based on the percentage obtained above
+      pxToMove = (elemDim - handleDim) * pctOfBar,
+          //percentage of bar to shift the handle
+      movement = (percent(pxToMove, elemDim) * 100).toFixed(this.options.decimal); //fixing the decimal value for the location number, is passed to other methods as a fixed floating-point value
+
+
+      location = parseFloat(location.toFixed(this.options.decimal)); // declare empty object for css adjustments, only used with 2 handled-sliders
+
+      var css = {};
+
+      this._setValues($hndl, location); // TODO update to calculate based on values set to respective inputs??
+
+
+      if (isDbl) {
+        var isLeftHndl = this.handles.index($hndl) === 0,
+            //empty variable, will be used for min-height/width for fill bar
+        dim,
+            //percentage w/h of the handle compared to the slider bar
+        handlePct = ~~(percent(handleDim, elemDim) * 100); //if left handle, the math is slightly different than if it's the right handle, and the left/top property needs to be changed for the fill bar
+
+        if (isLeftHndl) {
+          //left or top percentage value to apply to the fill bar.
+          css[lOrT] = "".concat(movement, "%"); //calculate the new min-height/width for the fill bar.
+
+          dim = parseFloat(this.$handle2[0].style[lOrT]) - movement + handlePct; //this callback is necessary to prevent errors and allow the proper placement and initialization of a 2-handled slider
+          //plus, it means we don't care if 'dim' isNaN on init, it won't be in the future.
+
+          if (cb && typeof cb === 'function') {
+            cb();
+          } //this is only needed for the initialization of 2 handled sliders
+
+        } else {
+          //just caching the value of the left/bottom handle's left/top property
+          var handlePos = parseFloat(this.$handle[0].style[lOrT]); //calculate the new min-height/width for the fill bar. Use isNaN to prevent false positives for numbers <= 0
+          //based on the percentage of movement of the handle being manipulated, less the opposing handle's left/top position, plus the percentage w/h of the handle itself
+
+          dim = movement - (isNaN(handlePos) ? (this.options.initialStart - this.options.start) / ((this.options.end - this.options.start) / 100) : handlePos) + handlePct;
+        } // assign the min-height/width to our css object
+
+
+        css["min-".concat(hOrW)] = "".concat(dim, "%");
+      }
+
+      this.$element.one('finished.zf.animate', function () {
+        /**
+         * Fires when the handle is done moving.
+         * @event Slider#moved
+         */
+        _this.$element.trigger('moved.zf.slider', [$hndl]);
+      }); //because we don't know exactly how the handle will be moved, check the amount of time it should take to move.
+
+      var moveTime = this.$element.data('dragging') ? 1000 / 60 : this.options.moveTime;
+      Object(_foundation_util_motion__WEBPACK_IMPORTED_MODULE_2__["Move"])(moveTime, $hndl, function () {
+        // adjusting the left/top property of the handle, based on the percentage calculated above
+        // if movement isNaN, that is because the slider is hidden and we cannot determine handle width,
+        // fall back to next best guess.
+        if (isNaN(movement)) {
+          $hndl.css(lOrT, "".concat(pctOfBar * 100, "%"));
+        } else {
+          $hndl.css(lOrT, "".concat(movement, "%"));
+        }
+
+        if (!_this.options.doubleSided) {
+          //if single-handled, a simple method to expand the fill bar
+          _this.$fill.css(hOrW, "".concat(pctOfBar * 100, "%"));
+        } else {
+          //otherwise, use the css object we created above
+          _this.$fill.css(css);
+        }
+      });
+      /**
+       * Fires when the value has not been change for a given time.
+       * @event Slider#changed
+       */
+
+      clearTimeout(_this.timeout);
+      _this.timeout = setTimeout(function () {
+        _this.$element.trigger('changed.zf.slider', [$hndl]);
+      }, _this.options.changedDelay);
+    }
+    /**
+     * Sets the initial attribute for the slider element.
+     * @function
+     * @private
+     * @param {Number} idx - index of the current handle/input to use.
+     */
+
+  }, {
+    key: "_setInitAttr",
+    value: function _setInitAttr(idx) {
+      var initVal = idx === 0 ? this.options.initialStart : this.options.initialEnd;
+      var id = this.inputs.eq(idx).attr('id') || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__["GetYoDigits"])(6, 'slider');
+      this.inputs.eq(idx).attr({
+        'id': id,
+        'max': this.options.end,
+        'min': this.options.start,
+        'step': this.options.step
+      });
+      this.inputs.eq(idx).val(initVal);
+      this.handles.eq(idx).attr({
+        'role': 'slider',
+        'aria-controls': id,
+        'aria-valuemax': this.options.end,
+        'aria-valuemin': this.options.start,
+        'aria-valuenow': initVal,
+        'aria-orientation': this.options.vertical ? 'vertical' : 'horizontal',
+        'tabindex': 0
+      });
+    }
+    /**
+     * Sets the input and `aria-valuenow` values for the slider element.
+     * @function
+     * @private
+     * @param {jQuery} $handle - the currently selected handle.
+     * @param {Number} val - floating point of the new value.
+     */
+
+  }, {
+    key: "_setValues",
+    value: function _setValues($handle, val) {
+      var idx = this.options.doubleSided ? this.handles.index($handle) : 0;
+      this.inputs.eq(idx).val(val);
+      $handle.attr('aria-valuenow', val);
+    }
+    /**
+     * Handles events on the slider element.
+     * Calculates the new location of the current handle.
+     * If there are two handles and the bar was clicked, it determines which handle to move.
+     * @function
+     * @private
+     * @param {Object} e - the `event` object passed from the listener.
+     * @param {jQuery} $handle - the current handle to calculate for, if selected.
+     * @param {Number} val - floating point number for the new value of the slider.
+     * TODO clean this up, there's a lot of repeated code between this and the _setHandlePos fn.
+     */
+
+  }, {
+    key: "_handleEvent",
+    value: function _handleEvent(e, $handle, val) {
+      var value, hasVal;
+
+      if (!val) {
+        //click or drag events
+        e.preventDefault();
+
+        var _this = this,
+            vertical = this.options.vertical,
+            param = vertical ? 'height' : 'width',
+            direction = vertical ? 'top' : 'left',
+            eventOffset = vertical ? e.pageY : e.pageX,
+            halfOfHandle = this.$handle[0].getBoundingClientRect()[param] / 2,
+            barDim = this.$element[0].getBoundingClientRect()[param],
+            windowScroll = vertical ? jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).scrollTop() : jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).scrollLeft();
+
+        var elemOffset = this.$element.offset()[direction]; // touch events emulated by the touch util give position relative to screen, add window.scroll to event coordinates...
+        // best way to guess this is simulated is if clientY == pageY
+
+        if (e.clientY === e.pageY) {
+          eventOffset = eventOffset + windowScroll;
+        }
+
+        var eventFromBar = eventOffset - elemOffset;
+        var barXY;
+
+        if (eventFromBar < 0) {
+          barXY = 0;
+        } else if (eventFromBar > barDim) {
+          barXY = barDim;
+        } else {
+          barXY = eventFromBar;
+        }
+
+        var offsetPct = percent(barXY, barDim);
+        value = this._value(offsetPct); // turn everything around for RTL, yay math!
+
+        if (Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__["rtl"])() && !this.options.vertical) {
+          value = this.options.end - value;
+        }
+
+        value = _this._adjustValue(null, value); //boolean flag for the setHandlePos fn, specifically for vertical sliders
+
+        hasVal = false;
+
+        if (!$handle) {
+          //figure out which handle it is, pass it to the next function.
+          var firstHndlPos = absPosition(this.$handle, direction, barXY, param),
+              secndHndlPos = absPosition(this.$handle2, direction, barXY, param);
+          $handle = firstHndlPos <= secndHndlPos ? this.$handle : this.$handle2;
+        }
+      } else {
+        //change event on input
+        value = this._adjustValue(null, val);
+        hasVal = true;
+      }
+
+      this._setHandlePos($handle, value, hasVal);
+    }
+    /**
+     * Adjustes value for handle in regard to step value. returns adjusted value
+     * @function
+     * @private
+     * @param {jQuery} $handle - the selected handle.
+     * @param {Number} value - value to adjust. used if $handle is falsy
+     */
+
+  }, {
+    key: "_adjustValue",
+    value: function _adjustValue($handle, value) {
+      var val,
+          step = this.options.step,
+          div = parseFloat(step / 2),
+          left,
+          prev_val,
+          next_val;
+
+      if (!!$handle) {
+        val = parseFloat($handle.attr('aria-valuenow'));
+      } else {
+        val = value;
+      }
+
+      if (val >= 0) {
+        left = val % step;
+      } else {
+        left = step + val % step;
+      }
+
+      prev_val = val - left;
+      next_val = prev_val + step;
+
+      if (left === 0) {
+        return val;
+      }
+
+      val = val >= prev_val + div ? next_val : prev_val;
+      return val;
+    }
+    /**
+     * Adds event listeners to the slider elements.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      this._eventsForHandle(this.$handle);
+
+      if (this.handles[1]) {
+        this._eventsForHandle(this.$handle2);
+      }
+    }
+    /**
+     * Adds event listeners a particular handle
+     * @function
+     * @private
+     * @param {jQuery} $handle - the current handle to apply listeners to.
+     */
+
+  }, {
+    key: "_eventsForHandle",
+    value: function _eventsForHandle($handle) {
+      var _this = this,
+          curHandle,
+          timer;
+
+      var handleChangeEvent = function handleChangeEvent(e) {
+        var idx = _this.inputs.index(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+
+        _this._handleEvent(e, _this.handles.eq(idx), jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val());
+      }; // IE only triggers the change event when the input loses focus which strictly follows the HTML specification
+      // listen for the enter key and trigger a change
+      // @see https://html.spec.whatwg.org/multipage/input.html#common-input-element-events
+
+
+      this.inputs.off('keyup.zf.slider').on('keyup.zf.slider', function (e) {
+        if (e.keyCode == 13) handleChangeEvent.call(this, e);
+      });
+      this.inputs.off('change.zf.slider').on('change.zf.slider', handleChangeEvent);
+
+      if (this.options.clickSelect) {
+        this.$element.off('click.zf.slider').on('click.zf.slider', function (e) {
+          if (_this.$element.data('dragging')) {
+            return false;
+          }
+
+          if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(e.target).is('[data-slider-handle]')) {
+            if (_this.options.doubleSided) {
+              _this._handleEvent(e);
+            } else {
+              _this._handleEvent(e, _this.$handle);
+            }
+          }
+        });
+      }
+
+      if (this.options.draggable) {
+        this.handles.addTouch();
+        var $body = jquery__WEBPACK_IMPORTED_MODULE_0___default()('body');
+        $handle.off('mousedown.zf.slider').on('mousedown.zf.slider', function (e) {
+          $handle.addClass('is-dragging');
+
+          _this.$fill.addClass('is-dragging'); //
+
+
+          _this.$element.data('dragging', true);
+
+          curHandle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(e.currentTarget);
+          $body.on('mousemove.zf.slider', function (e) {
+            e.preventDefault();
+
+            _this._handleEvent(e, curHandle);
+          }).on('mouseup.zf.slider', function (e) {
+            _this._handleEvent(e, curHandle);
+
+            $handle.removeClass('is-dragging');
+
+            _this.$fill.removeClass('is-dragging');
+
+            _this.$element.data('dragging', false);
+
+            $body.off('mousemove.zf.slider mouseup.zf.slider');
+          });
+        }) // prevent events triggered by touch
+        .on('selectstart.zf.slider touchmove.zf.slider', function (e) {
+          e.preventDefault();
+        });
+      }
+
+      $handle.off('keydown.zf.slider').on('keydown.zf.slider', function (e) {
+        var _$handle = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
+            idx = _this.options.doubleSided ? _this.handles.index(_$handle) : 0,
+            oldValue = parseFloat(_this.inputs.eq(idx).val()),
+            newValue; // handle keyboard event with keyboard util
+
+
+        _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_1__["Keyboard"].handleKey(e, 'Slider', {
+          decrease: function decrease() {
+            newValue = oldValue - _this.options.step;
+          },
+          increase: function increase() {
+            newValue = oldValue + _this.options.step;
+          },
+          decrease_fast: function decrease_fast() {
+            newValue = oldValue - _this.options.step * 10;
+          },
+          increase_fast: function increase_fast() {
+            newValue = oldValue + _this.options.step * 10;
+          },
+          min: function min() {
+            newValue = _this.options.start;
+          },
+          max: function max() {
+            newValue = _this.options.end;
+          },
+          handled: function handled() {
+            // only set handle pos when event was handled specially
+            e.preventDefault();
+
+            _this._setHandlePos(_$handle, newValue, true);
+          }
+        });
+        /*if (newValue) { // if pressed key has special function, update value
+          e.preventDefault();
+          _this._setHandlePos(_$handle, newValue);
+        }*/
+      });
+    }
+    /**
+     * Destroys the slider plugin.
+     */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      this.handles.off('.zf.slider');
+      this.inputs.off('.zf.slider');
+      this.$element.off('.zf.slider');
+      clearTimeout(this.timeout);
+    }
+  }]);
+
+  return Slider;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_4__["Plugin"]);
+
+Slider.defaults = {
+  /**
+   * Minimum value for the slider scale.
+   * @option
+   * @type {number}
+   * @default 0
+   */
+  start: 0,
+
+  /**
+   * Maximum value for the slider scale.
+   * @option
+   * @type {number}
+   * @default 100
+   */
+  end: 100,
+
+  /**
+   * Minimum value change per change event.
+   * @option
+   * @type {number}
+   * @default 1
+   */
+  step: 1,
+
+  /**
+   * Value at which the handle/input *(left handle/first input)* should be set to on initialization.
+   * @option
+   * @type {number}
+   * @default 0
+   */
+  initialStart: 0,
+
+  /**
+   * Value at which the right handle/second input should be set to on initialization.
+   * @option
+   * @type {number}
+   * @default 100
+   */
+  initialEnd: 100,
+
+  /**
+   * Allows the input to be located outside the container and visible. Set to by the JS
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  binding: false,
+
+  /**
+   * Allows the user to click/tap on the slider bar to select a value.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  clickSelect: true,
+
+  /**
+   * Set to true and use the `vertical` class to change alignment to vertical.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  vertical: false,
+
+  /**
+   * Allows the user to drag the slider handle(s) to select a value.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  draggable: true,
+
+  /**
+   * Disables the slider and prevents event listeners from being applied. Double checked by JS with `disabledClass`.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  disabled: false,
+
+  /**
+   * Allows the use of two handles. Double checked by the JS. Changes some logic handling.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  doubleSided: false,
+
+  /**
+   * Potential future feature.
+   */
+  // steps: 100,
+
+  /**
+   * Number of decimal places the plugin should go to for floating point precision.
+   * @option
+   * @type {number}
+   * @default 2
+   */
+  decimal: 2,
+
+  /**
+   * Time delay for dragged elements.
+   */
+  // dragDelay: 0,
+
+  /**
+   * Time, in ms, to animate the movement of a slider handle if user clicks/taps on the bar. Needs to be manually set if updating the transition time in the Sass settings.
+   * @option
+   * @type {number}
+   * @default 200
+   */
+  moveTime: 200,
+  //update this if changing the transition time in the sass
+
+  /**
+   * Class applied to disabled sliders.
+   * @option
+   * @type {string}
+   * @default 'disabled'
+   */
+  disabledClass: 'disabled',
+
+  /**
+   * Will invert the default layout for a vertical<span data-tooltip title="who would do this???"> </span>slider.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  invertVertical: false,
+
+  /**
+   * Milliseconds before the `changed.zf-slider` event is triggered after value change.
+   * @option
+   * @type {number}
+   * @default 500
+   */
+  changedDelay: 500,
+
+  /**
+  * Basevalue for non-linear sliders
+  * @option
+  * @type {number}
+  * @default 5
+  */
+  nonLinearBase: 5,
+
+  /**
+  * Basevalue for non-linear sliders, possible values are: `'linear'`, `'pow'` & `'log'`. Pow and Log use the nonLinearBase setting.
+  * @option
+  * @type {string}
+  * @default 'linear'
+  */
+  positionValueFunction: 'linear'
+};
+
+function percent(frac, num) {
+  return frac / num;
+}
+
+function absPosition($handle, dir, clickPos, param) {
+  return Math.abs($handle.position()[dir] + $handle[param]() / 2 - clickPos);
+}
+
+function baseLog(base, value) {
+  return Math.log(value) / Math.log(base);
+}
+
+
+
+/***/ }),
+
+/***/ "./js/foundation.smoothScroll.js":
+/*!***************************************!*\
+  !*** ./js/foundation.smoothScroll.js ***!
+  \***************************************/
+/*! exports provided: SmoothScroll */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SmoothScroll", function() { return SmoothScroll; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+/**
+ * SmoothScroll module.
+ * @module foundation.smooth-scroll
+ */
+
+var SmoothScroll =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(SmoothScroll, _Plugin);
+
+  function SmoothScroll() {
+    _classCallCheck(this, SmoothScroll);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(SmoothScroll).apply(this, arguments));
+  }
+
+  _createClass(SmoothScroll, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of SmoothScroll.
+     * @class
+     * @name SmoothScroll
+     * @fires SmoothScroll#init
+     * @param {Object} element - jQuery object to add the trigger to.
+     * @param {Object} options - Overrides to the default plugin settings.
+     */
+    value: function _setup(element, options) {
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, SmoothScroll.defaults, this.$element.data(), options);
+      this.className = 'SmoothScroll'; // ie9 back compat
+
+      this._init();
+    }
+    /**
+     * Initialize the SmoothScroll plugin
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      var id = this.$element[0].id || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["GetYoDigits"])(6, 'smooth-scroll');
+      this.$element.attr({
+        id: id
+      });
+
+      this._events();
+    }
+    /**
+     * Initializes events for SmoothScroll.
+     * @private
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      this._linkClickListener = this._handleLinkClick.bind(this);
+      this.$element.on('click.zf.smoothScroll', this._linkClickListener);
+      this.$element.on('click.zf.smoothScroll', 'a[href^="#"]', this._linkClickListener);
+    }
+    /**
+     * Handle the given event to smoothly scroll to the anchor pointed by the event target.
+     * @param {*} e - event
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_handleLinkClick",
+    value: function _handleLinkClick(e) {
+      var _this = this;
+
+      // Follow the link if it does not point to an anchor.
+      if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(e.currentTarget).is('a[href^="#"]')) return;
+      var arrival = e.currentTarget.getAttribute('href');
+      this._inTransition = true;
+      SmoothScroll.scrollToLoc(arrival, this.options, function () {
+        _this._inTransition = false;
+      });
+      e.preventDefault();
+    }
+  }, {
+    key: "_destroy",
+
+    /**
+     * Destroys the SmoothScroll instance.
+     * @function
+     */
+    value: function _destroy() {
+      this.$element.off('click.zf.smoothScroll', this._linkClickListener);
+      this.$element.off('click.zf.smoothScroll', 'a[href^="#"]', this._linkClickListener);
+    }
+  }], [{
+    key: "scrollToLoc",
+
+    /**
+     * Function to scroll to a given location on the page.
+     * @param {String} loc - A properly formatted jQuery id selector. Example: '#foo'
+     * @param {Object} options - The options to use.
+     * @param {Function} callback - The callback function.
+     * @static
+     * @function
+     */
+    value: function scrollToLoc(loc) {
+      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : SmoothScroll.defaults;
+      var callback = arguments.length > 2 ? arguments[2] : undefined;
+      var $loc = jquery__WEBPACK_IMPORTED_MODULE_0___default()(loc); // Do nothing if target does not exist to prevent errors
+
+      if (!$loc.length) return false;
+      var scrollPos = Math.round($loc.offset().top - options.threshold / 2 - options.offset);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('html, body').stop(true).animate({
+        scrollTop: scrollPos
+      }, options.animationDuration, options.animationEasing, function () {
+        if (typeof callback === 'function') {
+          callback();
+        }
+      });
+    }
+  }]);
+
+  return SmoothScroll;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_2__["Plugin"]);
+/**
+ * Default settings for plugin.
+ */
+
+
+SmoothScroll.defaults = {
+  /**
+   * Amount of time, in ms, the animated scrolling should take between locations.
+   * @option
+   * @type {number}
+   * @default 500
+   */
+  animationDuration: 500,
+
+  /**
+   * Animation style to use when scrolling between locations. Can be `'swing'` or `'linear'`.
+   * @option
+   * @type {string}
+   * @default 'linear'
+   * @see {@link https://api.jquery.com/animate|Jquery animate}
+   */
+  animationEasing: 'linear',
+
+  /**
+   * Number of pixels to use as a marker for location changes.
+   * @option
+   * @type {number}
+   * @default 50
+   */
+  threshold: 50,
+
+  /**
+   * Number of pixels to offset the scroll of the page on item click if using a sticky nav bar.
+   * @option
+   * @type {number}
+   * @default 0
+   */
+  offset: 0
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.sticky.js":
+/*!*********************************!*\
+  !*** ./js/foundation.sticky.js ***!
+  \*********************************/
+/*! exports provided: Sticky */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Sticky", function() { return Sticky; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.util.mediaQuery */ "./js/foundation.util.mediaQuery.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+/* harmony import */ var _foundation_util_triggers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation.util.triggers */ "./js/foundation.util.triggers.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+/**
+ * Sticky module.
+ * @module foundation.sticky
+ * @requires foundation.util.triggers
+ * @requires foundation.util.mediaQuery
+ */
+
+var Sticky =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(Sticky, _Plugin);
+
+  function Sticky() {
+    _classCallCheck(this, Sticky);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Sticky).apply(this, arguments));
+  }
+
+  _createClass(Sticky, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of a sticky thing.
+     * @class
+     * @name Sticky
+     * @param {jQuery} element - jQuery object to make sticky.
+     * @param {Object} options - options object passed when creating the element programmatically.
+     */
+    value: function _setup(element, options) {
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, Sticky.defaults, this.$element.data(), options);
+      this.className = 'Sticky'; // ie9 back compat
+      // Triggers init is idempotent, just need to make sure it is initialized
+
+      _foundation_util_triggers__WEBPACK_IMPORTED_MODULE_4__["Triggers"].init(jquery__WEBPACK_IMPORTED_MODULE_0___default.a);
+
+      this._init();
+    }
+    /**
+     * Initializes the sticky element by adding classes, getting/setting dimensions, breakpoints and attributes
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_2__["MediaQuery"]._init();
+
+      var $parent = this.$element.parent('[data-sticky-container]'),
+          id = this.$element[0].id || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["GetYoDigits"])(6, 'sticky'),
+          _this = this;
+
+      if ($parent.length) {
+        this.$container = $parent;
+      } else {
+        this.wasWrapped = true;
+        this.$element.wrap(this.options.container);
+        this.$container = this.$element.parent();
+      }
+
+      this.$container.addClass(this.options.containerClass);
+      this.$element.addClass(this.options.stickyClass).attr({
+        'data-resize': id,
+        'data-mutate': id
+      });
+
+      if (this.options.anchor !== '') {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('#' + _this.options.anchor).attr({
+          'data-mutate': id
+        });
+      }
+
+      this.scrollCount = this.options.checkEvery;
+      this.isStuck = false;
+      this.onLoadListener = Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["onLoad"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(window), function () {
+        //We calculate the container height to have correct values for anchor points offset calculation.
+        _this.containerHeight = _this.$element.css("display") == "none" ? 0 : _this.$element[0].getBoundingClientRect().height;
+
+        _this.$container.css('height', _this.containerHeight);
+
+        _this.elemHeight = _this.containerHeight;
+
+        if (_this.options.anchor !== '') {
+          _this.$anchor = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#' + _this.options.anchor);
+        } else {
+          _this._parsePoints();
+        }
+
+        _this._setSizes(function () {
+          var scroll = window.pageYOffset;
+
+          _this._calc(false, scroll); //Unstick the element will ensure that proper classes are set.
+
+
+          if (!_this.isStuck) {
+            _this._removeSticky(scroll >= _this.topPoint ? false : true);
+          }
+        });
+
+        _this._events(id.split('-').reverse().join('-'));
+      });
+    }
+    /**
+     * If using multiple elements as anchors, calculates the top and bottom pixel values the sticky thing should stick and unstick on.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_parsePoints",
+    value: function _parsePoints() {
+      var top = this.options.topAnchor == "" ? 1 : this.options.topAnchor,
+          btm = this.options.btmAnchor == "" ? document.documentElement.scrollHeight : this.options.btmAnchor,
+          pts = [top, btm],
+          breaks = {};
+
+      for (var i = 0, len = pts.length; i < len && pts[i]; i++) {
+        var pt;
+
+        if (typeof pts[i] === 'number') {
+          pt = pts[i];
+        } else {
+          var place = pts[i].split(':'),
+              anchor = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#".concat(place[0]));
+          pt = anchor.offset().top;
+
+          if (place[1] && place[1].toLowerCase() === 'bottom') {
+            pt += anchor[0].getBoundingClientRect().height;
+          }
+        }
+
+        breaks[i] = pt;
+      }
+
+      this.points = breaks;
+      return;
+    }
+    /**
+     * Adds event handlers for the scrolling element.
+     * @private
+     * @param {String} id - pseudo-random id for unique scroll event listener.
+     */
+
+  }, {
+    key: "_events",
+    value: function _events(id) {
+      var _this = this,
+          scrollListener = this.scrollListener = "scroll.zf.".concat(id);
+
+      if (this.isOn) {
+        return;
+      }
+
+      if (this.canStick) {
+        this.isOn = true;
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off(scrollListener).on(scrollListener, function (e) {
+          if (_this.scrollCount === 0) {
+            _this.scrollCount = _this.options.checkEvery;
+
+            _this._setSizes(function () {
+              _this._calc(false, window.pageYOffset);
+            });
+          } else {
+            _this.scrollCount--;
+
+            _this._calc(false, window.pageYOffset);
+          }
+        });
+      }
+
+      this.$element.off('resizeme.zf.trigger').on('resizeme.zf.trigger', function (e, el) {
+        _this._eventsHandler(id);
+      });
+      this.$element.on('mutateme.zf.trigger', function (e, el) {
+        _this._eventsHandler(id);
+      });
+
+      if (this.$anchor) {
+        this.$anchor.on('mutateme.zf.trigger', function (e, el) {
+          _this._eventsHandler(id);
+        });
+      }
+    }
+    /**
+     * Handler for events.
+     * @private
+     * @param {String} id - pseudo-random id for unique scroll event listener.
+     */
+
+  }, {
+    key: "_eventsHandler",
+    value: function _eventsHandler(id) {
+      var _this = this,
+          scrollListener = this.scrollListener = "scroll.zf.".concat(id);
+
+      _this._setSizes(function () {
+        _this._calc(false);
+
+        if (_this.canStick) {
+          if (!_this.isOn) {
+            _this._events(id);
+          }
+        } else if (_this.isOn) {
+          _this._pauseListeners(scrollListener);
+        }
+      });
+    }
+    /**
+     * Removes event handlers for scroll and change events on anchor.
+     * @fires Sticky#pause
+     * @param {String} scrollListener - unique, namespaced scroll listener attached to `window`
+     */
+
+  }, {
+    key: "_pauseListeners",
+    value: function _pauseListeners(scrollListener) {
+      this.isOn = false;
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off(scrollListener);
+      /**
+       * Fires when the plugin is paused due to resize event shrinking the view.
+       * @event Sticky#pause
+       * @private
+       */
+
+      this.$element.trigger('pause.zf.sticky');
+    }
+    /**
+     * Called on every `scroll` event and on `_init`
+     * fires functions based on booleans and cached values
+     * @param {Boolean} checkSizes - true if plugin should recalculate sizes and breakpoints.
+     * @param {Number} scroll - current scroll position passed from scroll event cb function. If not passed, defaults to `window.pageYOffset`.
+     */
+
+  }, {
+    key: "_calc",
+    value: function _calc(checkSizes, scroll) {
+      if (checkSizes) {
+        this._setSizes();
+      }
+
+      if (!this.canStick) {
+        if (this.isStuck) {
+          this._removeSticky(true);
+        }
+
+        return false;
+      }
+
+      if (!scroll) {
+        scroll = window.pageYOffset;
+      }
+
+      if (scroll >= this.topPoint) {
+        if (scroll <= this.bottomPoint) {
+          if (!this.isStuck) {
+            this._setSticky();
+          }
+        } else {
+          if (this.isStuck) {
+            this._removeSticky(false);
+          }
+        }
+      } else {
+        if (this.isStuck) {
+          this._removeSticky(true);
+        }
+      }
+    }
+    /**
+     * Causes the $element to become stuck.
+     * Adds `position: fixed;`, and helper classes.
+     * @fires Sticky#stuckto
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_setSticky",
+    value: function _setSticky() {
+      var _this = this,
+          stickTo = this.options.stickTo,
+          mrgn = stickTo === 'top' ? 'marginTop' : 'marginBottom',
+          notStuckTo = stickTo === 'top' ? 'bottom' : 'top',
+          css = {};
+
+      css[mrgn] = "".concat(this.options[mrgn], "em");
+      css[stickTo] = 0;
+      css[notStuckTo] = 'auto';
+      this.isStuck = true;
+      this.$element.removeClass("is-anchored is-at-".concat(notStuckTo)).addClass("is-stuck is-at-".concat(stickTo)).css(css)
+      /**
+       * Fires when the $element has become `position: fixed;`
+       * Namespaced to `top` or `bottom`, e.g. `sticky.zf.stuckto:top`
+       * @event Sticky#stuckto
+       */
+      .trigger("sticky.zf.stuckto:".concat(stickTo));
+      this.$element.on("transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd", function () {
+        _this._setSizes();
+      });
+    }
+    /**
+     * Causes the $element to become unstuck.
+     * Removes `position: fixed;`, and helper classes.
+     * Adds other helper classes.
+     * @param {Boolean} isTop - tells the function if the $element should anchor to the top or bottom of its $anchor element.
+     * @fires Sticky#unstuckfrom
+     * @private
+     */
+
+  }, {
+    key: "_removeSticky",
+    value: function _removeSticky(isTop) {
+      var stickTo = this.options.stickTo,
+          stickToTop = stickTo === 'top',
+          css = {},
+          anchorPt = (this.points ? this.points[1] - this.points[0] : this.anchorHeight) - this.elemHeight,
+          mrgn = stickToTop ? 'marginTop' : 'marginBottom',
+          notStuckTo = stickToTop ? 'bottom' : 'top',
+          topOrBottom = isTop ? 'top' : 'bottom';
+      css[mrgn] = 0;
+      css['bottom'] = 'auto';
+
+      if (isTop) {
+        css['top'] = 0;
+      } else {
+        css['top'] = anchorPt;
+      }
+
+      this.isStuck = false;
+      this.$element.removeClass("is-stuck is-at-".concat(stickTo)).addClass("is-anchored is-at-".concat(topOrBottom)).css(css)
+      /**
+       * Fires when the $element has become anchored.
+       * Namespaced to `top` or `bottom`, e.g. `sticky.zf.unstuckfrom:bottom`
+       * @event Sticky#unstuckfrom
+       */
+      .trigger("sticky.zf.unstuckfrom:".concat(topOrBottom));
+    }
+    /**
+     * Sets the $element and $container sizes for plugin.
+     * Calls `_setBreakPoints`.
+     * @param {Function} cb - optional callback function to fire on completion of `_setBreakPoints`.
+     * @private
+     */
+
+  }, {
+    key: "_setSizes",
+    value: function _setSizes(cb) {
+      this.canStick = _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_2__["MediaQuery"].is(this.options.stickyOn);
+
+      if (!this.canStick) {
+        if (cb && typeof cb === 'function') {
+          cb();
+        }
+      }
+
+      var _this = this,
+          newElemWidth = this.$container[0].getBoundingClientRect().width,
+          comp = window.getComputedStyle(this.$container[0]),
+          pdngl = parseInt(comp['padding-left'], 10),
+          pdngr = parseInt(comp['padding-right'], 10);
+
+      if (this.$anchor && this.$anchor.length) {
+        this.anchorHeight = this.$anchor[0].getBoundingClientRect().height;
+      } else {
+        this._parsePoints();
+      }
+
+      this.$element.css({
+        'max-width': "".concat(newElemWidth - pdngl - pdngr, "px")
+      });
+      var newContainerHeight = this.$element[0].getBoundingClientRect().height || this.containerHeight;
+
+      if (this.$element.css("display") == "none") {
+        newContainerHeight = 0;
+      }
+
+      this.containerHeight = newContainerHeight;
+      this.$container.css({
+        height: newContainerHeight
+      });
+      this.elemHeight = newContainerHeight;
+
+      if (!this.isStuck) {
+        if (this.$element.hasClass('is-at-bottom')) {
+          var anchorPt = (this.points ? this.points[1] - this.$container.offset().top : this.anchorHeight) - this.elemHeight;
+          this.$element.css('top', anchorPt);
+        }
+      }
+
+      this._setBreakPoints(newContainerHeight, function () {
+        if (cb && typeof cb === 'function') {
+          cb();
+        }
+      });
+    }
+    /**
+     * Sets the upper and lower breakpoints for the element to become sticky/unsticky.
+     * @param {Number} elemHeight - px value for sticky.$element height, calculated by `_setSizes`.
+     * @param {Function} cb - optional callback function to be called on completion.
+     * @private
+     */
+
+  }, {
+    key: "_setBreakPoints",
+    value: function _setBreakPoints(elemHeight, cb) {
+      if (!this.canStick) {
+        if (cb && typeof cb === 'function') {
+          cb();
+        } else {
+          return false;
+        }
+      }
+
+      var mTop = emCalc(this.options.marginTop),
+          mBtm = emCalc(this.options.marginBottom),
+          topPoint = this.points ? this.points[0] : this.$anchor.offset().top,
+          bottomPoint = this.points ? this.points[1] : topPoint + this.anchorHeight,
+          // topPoint = this.$anchor.offset().top || this.points[0],
+      // bottomPoint = topPoint + this.anchorHeight || this.points[1],
+      winHeight = window.innerHeight;
+
+      if (this.options.stickTo === 'top') {
+        topPoint -= mTop;
+        bottomPoint -= elemHeight + mTop;
+      } else if (this.options.stickTo === 'bottom') {
+        topPoint -= winHeight - (elemHeight + mBtm);
+        bottomPoint -= winHeight - mBtm;
+      } else {//this would be the stickTo: both option... tricky
+      }
+
+      this.topPoint = topPoint;
+      this.bottomPoint = bottomPoint;
+
+      if (cb && typeof cb === 'function') {
+        cb();
+      }
+    }
+    /**
+     * Destroys the current sticky element.
+     * Resets the element to the top position first.
+     * Removes event listeners, JS-added css properties and classes, and unwraps the $element if the JS added the $container.
+     * @function
+     */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      this._removeSticky(true);
+
+      this.$element.removeClass("".concat(this.options.stickyClass, " is-anchored is-at-top")).css({
+        height: '',
+        top: '',
+        bottom: '',
+        'max-width': ''
+      }).off('resizeme.zf.trigger').off('mutateme.zf.trigger');
+
+      if (this.$anchor && this.$anchor.length) {
+        this.$anchor.off('change.zf.sticky');
+      }
+
+      if (this.scrollListener) jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off(this.scrollListener);
+      if (this.onLoadListener) jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off(this.onLoadListener);
+
+      if (this.wasWrapped) {
+        this.$element.unwrap();
+      } else {
+        this.$container.removeClass(this.options.containerClass).css({
+          height: ''
+        });
+      }
+    }
+  }]);
+
+  return Sticky;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_3__["Plugin"]);
+
+Sticky.defaults = {
+  /**
+   * Customizable container template. Add your own classes for styling and sizing.
+   * @option
+   * @type {string}
+   * @default '&lt;div data-sticky-container&gt;&lt;/div&gt;'
+   */
+  container: '<div data-sticky-container></div>',
+
+  /**
+   * Location in the view the element sticks to. Can be `'top'` or `'bottom'`.
+   * @option
+   * @type {string}
+   * @default 'top'
+   */
+  stickTo: 'top',
+
+  /**
+   * If anchored to a single element, the id of that element.
+   * @option
+   * @type {string}
+   * @default ''
+   */
+  anchor: '',
+
+  /**
+   * If using more than one element as anchor points, the id of the top anchor.
+   * @option
+   * @type {string}
+   * @default ''
+   */
+  topAnchor: '',
+
+  /**
+   * If using more than one element as anchor points, the id of the bottom anchor.
+   * @option
+   * @type {string}
+   * @default ''
+   */
+  btmAnchor: '',
+
+  /**
+   * Margin, in `em`'s to apply to the top of the element when it becomes sticky.
+   * @option
+   * @type {number}
+   * @default 1
+   */
+  marginTop: 1,
+
+  /**
+   * Margin, in `em`'s to apply to the bottom of the element when it becomes sticky.
+   * @option
+   * @type {number}
+   * @default 1
+   */
+  marginBottom: 1,
+
+  /**
+   * Breakpoint string that is the minimum screen size an element should become sticky.
+   * @option
+   * @type {string}
+   * @default 'medium'
+   */
+  stickyOn: 'medium',
+
+  /**
+   * Class applied to sticky element, and removed on destruction. Foundation defaults to `sticky`.
+   * @option
+   * @type {string}
+   * @default 'sticky'
+   */
+  stickyClass: 'sticky',
+
+  /**
+   * Class applied to sticky container. Foundation defaults to `sticky-container`.
+   * @option
+   * @type {string}
+   * @default 'sticky-container'
+   */
+  containerClass: 'sticky-container',
+
+  /**
+   * Number of scroll events between the plugin's recalculating sticky points. Setting it to `0` will cause it to recalc every scroll event, setting it to `-1` will prevent recalc on scroll.
+   * @option
+   * @type {number}
+   * @default -1
+   */
+  checkEvery: -1
+};
+/**
+ * Helper function to calculate em values
+ * @param Number {em} - number of em's to calculate into pixels
+ */
+
+function emCalc(em) {
+  return parseInt(window.getComputedStyle(document.body, null).fontSize, 10) * em;
+}
+
+
+
+/***/ }),
+
+/***/ "./js/foundation.tabs.js":
+/*!*******************************!*\
+  !*** ./js/foundation.tabs.js ***!
+  \*******************************/
+/*! exports provided: Tabs */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tabs", function() { return Tabs; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.util.keyboard */ "./js/foundation.util.keyboard.js");
+/* harmony import */ var _foundation_util_imageLoader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.util.imageLoader */ "./js/foundation.util.imageLoader.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+/**
+ * Tabs module.
+ * @module foundation.tabs
+ * @requires foundation.util.keyboard
+ * @requires foundation.util.imageLoader if tabs contain images
+ */
+
+var Tabs =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(Tabs, _Plugin);
+
+  function Tabs() {
+    _classCallCheck(this, Tabs);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Tabs).apply(this, arguments));
+  }
+
+  _createClass(Tabs, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of tabs.
+     * @class
+     * @name Tabs
+     * @fires Tabs#init
+     * @param {jQuery} element - jQuery object to make into tabs.
+     * @param {Object} options - Overrides to the default plugin settings.
+     */
+    value: function _setup(element, options) {
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, Tabs.defaults, this.$element.data(), options);
+      this.className = 'Tabs'; // ie9 back compat
+
+      this._init();
+
+      _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__["Keyboard"].register('Tabs', {
+        'ENTER': 'open',
+        'SPACE': 'open',
+        'ARROW_RIGHT': 'next',
+        'ARROW_UP': 'previous',
+        'ARROW_DOWN': 'next',
+        'ARROW_LEFT': 'previous' // 'TAB': 'next',
+        // 'SHIFT_TAB': 'previous'
+
+      });
+    }
+    /**
+     * Initializes the tabs by showing and focusing (if autoFocus=true) the preset active tab.
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      var _this2 = this;
+
+      var _this = this;
+
+      this._isInitializing = true;
+      this.$element.attr({
+        'role': 'tablist'
+      });
+      this.$tabTitles = this.$element.find(".".concat(this.options.linkClass));
+      this.$tabContent = jquery__WEBPACK_IMPORTED_MODULE_0___default()("[data-tabs-content=\"".concat(this.$element[0].id, "\"]"));
+      this.$tabTitles.each(function () {
+        var $elem = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
+            $link = $elem.find('a'),
+            isActive = $elem.hasClass("".concat(_this.options.linkActiveClass)),
+            hash = $link.attr('data-tabs-target') || $link[0].hash.slice(1),
+            linkId = $link[0].id ? $link[0].id : "".concat(hash, "-label"),
+            $tabContent = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#".concat(hash));
+        $elem.attr({
+          'role': 'presentation'
+        });
+        $link.attr({
+          'role': 'tab',
+          'aria-controls': hash,
+          'aria-selected': isActive,
+          'id': linkId,
+          'tabindex': isActive ? '0' : '-1'
+        });
+        $tabContent.attr({
+          'role': 'tabpanel',
+          'aria-labelledby': linkId
+        }); // Save up the initial hash to return to it later when going back in history
+
+        if (isActive) {
+          _this._initialAnchor = "#".concat(hash);
+        }
+
+        if (!isActive) {
+          $tabContent.attr('aria-hidden', 'true');
+        }
+
+        if (isActive && _this.options.autoFocus) {
+          _this.onLoadListener = Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["onLoad"])(jquery__WEBPACK_IMPORTED_MODULE_0___default()(window), function () {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('html, body').animate({
+              scrollTop: $elem.offset().top
+            }, _this.options.deepLinkSmudgeDelay, function () {
+              $link.focus();
+            });
+          });
+        }
+      });
+
+      if (this.options.matchHeight) {
+        var $images = this.$tabContent.find('img');
+
+        if ($images.length) {
+          Object(_foundation_util_imageLoader__WEBPACK_IMPORTED_MODULE_3__["onImagesLoaded"])($images, this._setHeight.bind(this));
+        } else {
+          this._setHeight();
+        }
+      } // Current context-bound function to open tabs on page load or history hashchange
+
+
+      this._checkDeepLink = function () {
+        var anchor = window.location.hash;
+
+        if (!anchor.length) {
+          // If we are still initializing and there is no anchor, then there is nothing to do
+          if (_this2._isInitializing) return; // Otherwise, move to the initial anchor
+
+          if (_this2._initialAnchor) anchor = _this2._initialAnchor;
+        }
+
+        var $anchor = anchor && jquery__WEBPACK_IMPORTED_MODULE_0___default()(anchor);
+
+        var $link = anchor && _this2.$element.find('[href$="' + anchor + '"]'); // Whether the anchor element that has been found is part of this element
+
+
+        var isOwnAnchor = !!($anchor.length && $link.length); // If there is an anchor for the hash, select it
+
+        if ($anchor && $anchor.length && $link && $link.length) {
+          _this2.selectTab($anchor, true);
+        } // Otherwise, collapse everything
+        else {
+            _this2._collapse();
+          }
+
+        if (isOwnAnchor) {
+          // Roll up a little to show the titles
+          if (_this2.options.deepLinkSmudge) {
+            var offset = _this2.$element.offset();
+
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('html, body').animate({
+              scrollTop: offset.top
+            }, _this2.options.deepLinkSmudgeDelay);
+          }
+          /**
+           * Fires when the plugin has deeplinked at pageload
+           * @event Tabs#deeplink
+           */
+
+
+          _this2.$element.trigger('deeplink.zf.tabs', [$link, $anchor]);
+        }
+      }; //use browser to open a tab, if it exists in this tabset
+
+
+      if (this.options.deepLink) {
+        this._checkDeepLink();
+      }
+
+      this._events();
+
+      this._isInitializing = false;
+    }
+    /**
+     * Adds event handlers for items within the tabs.
+     * @private
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      this._addKeyHandler();
+
+      this._addClickHandler();
+
+      this._setHeightMqHandler = null;
+
+      if (this.options.matchHeight) {
+        this._setHeightMqHandler = this._setHeight.bind(this);
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on('changed.zf.mediaquery', this._setHeightMqHandler);
+      }
+
+      if (this.options.deepLink) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on('hashchange', this._checkDeepLink);
+      }
+    }
+    /**
+     * Adds click handlers for items within the tabs.
+     * @private
+     */
+
+  }, {
+    key: "_addClickHandler",
+    value: function _addClickHandler() {
+      var _this = this;
+
+      this.$element.off('click.zf.tabs').on('click.zf.tabs', ".".concat(this.options.linkClass), function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        _this._handleTabChange(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+      });
+    }
+    /**
+     * Adds keyboard event handlers for items within the tabs.
+     * @private
+     */
+
+  }, {
+    key: "_addKeyHandler",
+    value: function _addKeyHandler() {
+      var _this = this;
+
+      this.$tabTitles.off('keydown.zf.tabs').on('keydown.zf.tabs', function (e) {
+        if (e.which === 9) return;
+        var $element = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
+            $elements = $element.parent('ul').children('li'),
+            $prevElement,
+            $nextElement;
+        $elements.each(function (i) {
+          if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).is($element)) {
+            if (_this.options.wrapOnKeys) {
+              $prevElement = i === 0 ? $elements.last() : $elements.eq(i - 1);
+              $nextElement = i === $elements.length - 1 ? $elements.first() : $elements.eq(i + 1);
+            } else {
+              $prevElement = $elements.eq(Math.max(0, i - 1));
+              $nextElement = $elements.eq(Math.min(i + 1, $elements.length - 1));
+            }
+
+            return;
+          }
+        }); // handle keyboard event with keyboard util
+
+        _foundation_util_keyboard__WEBPACK_IMPORTED_MODULE_2__["Keyboard"].handleKey(e, 'Tabs', {
+          open: function open() {
+            $element.find('[role="tab"]').focus();
+
+            _this._handleTabChange($element);
+          },
+          previous: function previous() {
+            $prevElement.find('[role="tab"]').focus();
+
+            _this._handleTabChange($prevElement);
+          },
+          next: function next() {
+            $nextElement.find('[role="tab"]').focus();
+
+            _this._handleTabChange($nextElement);
+          },
+          handled: function handled() {
+            e.stopPropagation();
+            e.preventDefault();
+          }
+        });
+      });
+    }
+    /**
+     * Opens the tab `$targetContent` defined by `$target`. Collapses active tab.
+     * @param {jQuery} $target - Tab to open.
+     * @param {boolean} historyHandled - browser has already handled a history update
+     * @fires Tabs#change
+     * @function
+     */
+
+  }, {
+    key: "_handleTabChange",
+    value: function _handleTabChange($target, historyHandled) {
+      // With `activeCollapse`, if the target is the active Tab, collapse it.
+      if ($target.hasClass("".concat(this.options.linkActiveClass))) {
+        if (this.options.activeCollapse) {
+          this._collapse();
+        }
+
+        return;
+      }
+
+      var $oldTab = this.$element.find(".".concat(this.options.linkClass, ".").concat(this.options.linkActiveClass)),
+          $tabLink = $target.find('[role="tab"]'),
+          target = $tabLink.attr('data-tabs-target'),
+          anchor = target && target.length ? "#".concat(target) : $tabLink[0].hash,
+          $targetContent = this.$tabContent.find(anchor); //close old tab
+
+      this._collapseTab($oldTab); //open new tab
+
+
+      this._openTab($target); //either replace or update browser history
+
+
+      if (this.options.deepLink && !historyHandled) {
+        if (this.options.updateHistory) {
+          history.pushState({}, '', anchor);
+        } else {
+          history.replaceState({}, '', anchor);
+        }
+      }
+      /**
+       * Fires when the plugin has successfully changed tabs.
+       * @event Tabs#change
+       */
+
+
+      this.$element.trigger('change.zf.tabs', [$target, $targetContent]); //fire to children a mutation event
+
+      $targetContent.find("[data-mutate]").trigger("mutateme.zf.trigger");
+    }
+    /**
+     * Opens the tab `$targetContent` defined by `$target`.
+     * @param {jQuery} $target - Tab to open.
+     * @function
+     */
+
+  }, {
+    key: "_openTab",
+    value: function _openTab($target) {
+      var $tabLink = $target.find('[role="tab"]'),
+          hash = $tabLink.attr('data-tabs-target') || $tabLink[0].hash.slice(1),
+          $targetContent = this.$tabContent.find("#".concat(hash));
+      $target.addClass("".concat(this.options.linkActiveClass));
+      $tabLink.attr({
+        'aria-selected': 'true',
+        'tabindex': '0'
+      });
+      $targetContent.addClass("".concat(this.options.panelActiveClass)).removeAttr('aria-hidden');
+    }
+    /**
+     * Collapses `$targetContent` defined by `$target`.
+     * @param {jQuery} $target - Tab to collapse.
+     * @function
+     */
+
+  }, {
+    key: "_collapseTab",
+    value: function _collapseTab($target) {
+      var $target_anchor = $target.removeClass("".concat(this.options.linkActiveClass)).find('[role="tab"]').attr({
+        'aria-selected': 'false',
+        'tabindex': -1
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("#".concat($target_anchor.attr('aria-controls'))).removeClass("".concat(this.options.panelActiveClass)).attr({
+        'aria-hidden': 'true'
+      });
+    }
+    /**
+     * Collapses the active Tab.
+     * @fires Tabs#collapse
+     * @function
+     */
+
+  }, {
+    key: "_collapse",
+    value: function _collapse() {
+      var $activeTab = this.$element.find(".".concat(this.options.linkClass, ".").concat(this.options.linkActiveClass));
+
+      if ($activeTab.length) {
+        this._collapseTab($activeTab);
+        /**
+        * Fires when the plugin has successfully collapsed tabs.
+        * @event Tabs#collapse
+        */
+
+
+        this.$element.trigger('collapse.zf.tabs', [$activeTab]);
+      }
+    }
+    /**
+     * Public method for selecting a content pane to display.
+     * @param {jQuery | String} elem - jQuery object or string of the id of the pane to display.
+     * @param {boolean} historyHandled - browser has already handled a history update
+     * @function
+     */
+
+  }, {
+    key: "selectTab",
+    value: function selectTab(elem, historyHandled) {
+      var idStr;
+
+      if (_typeof(elem) === 'object') {
+        idStr = elem[0].id;
+      } else {
+        idStr = elem;
+      }
+
+      if (idStr.indexOf('#') < 0) {
+        idStr = "#".concat(idStr);
+      }
+
+      var $target = this.$tabTitles.has("[href$=\"".concat(idStr, "\"]"));
+
+      this._handleTabChange($target, historyHandled);
+    }
+  }, {
+    key: "_setHeight",
+
+    /**
+     * Sets the height of each panel to the height of the tallest panel.
+     * If enabled in options, gets called on media query change.
+     * If loading content via external source, can be called directly or with _reflow.
+     * If enabled with `data-match-height="true"`, tabs sets to equal height
+     * @function
+     * @private
+     */
+    value: function _setHeight() {
+      var max = 0,
+          _this = this; // Lock down the `this` value for the root tabs object
+
+
+      this.$tabContent.find(".".concat(this.options.panelClass)).css('height', '').each(function () {
+        var panel = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
+            isActive = panel.hasClass("".concat(_this.options.panelActiveClass)); // get the options from the parent instead of trying to get them from the child
+
+        if (!isActive) {
+          panel.css({
+            'visibility': 'hidden',
+            'display': 'block'
+          });
+        }
+
+        var temp = this.getBoundingClientRect().height;
+
+        if (!isActive) {
+          panel.css({
+            'visibility': '',
+            'display': ''
+          });
+        }
+
+        max = temp > max ? temp : max;
+      }).css('height', "".concat(max, "px"));
+    }
+    /**
+     * Destroys an instance of tabs.
+     * @fires Tabs#destroyed
+     */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      this.$element.find(".".concat(this.options.linkClass)).off('.zf.tabs').hide().end().find(".".concat(this.options.panelClass)).hide();
+
+      if (this.options.matchHeight) {
+        if (this._setHeightMqHandler != null) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off('changed.zf.mediaquery', this._setHeightMqHandler);
+        }
+      }
+
+      if (this.options.deepLink) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off('hashchange', this._checkDeepLink);
+      }
+
+      if (this.onLoadListener) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off(this.onLoadListener);
+      }
+    }
+  }]);
+
+  return Tabs;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_4__["Plugin"]);
+
+Tabs.defaults = {
+  /**
+   * Link the location hash to the active pane.
+   * Set the location hash when the active pane changes, and open the corresponding pane when the location changes.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  deepLink: false,
+
+  /**
+   * If `deepLink` is enabled, adjust the deep link scroll to make sure the top of the tab panel is visible
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  deepLinkSmudge: false,
+
+  /**
+   * If `deepLinkSmudge` is enabled, animation time (ms) for the deep link adjustment
+   * @option
+   * @type {number}
+   * @default 300
+   */
+  deepLinkSmudgeDelay: 300,
+
+  /**
+   * If `deepLink` is enabled, update the browser history with the open tab
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  updateHistory: false,
+
+  /**
+   * Allows the window to scroll to content of active pane on load.
+   * Not recommended if more than one tab panel per page.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  autoFocus: false,
+
+  /**
+   * Allows keyboard input to 'wrap' around the tab links.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  wrapOnKeys: true,
+
+  /**
+   * Allows the tab content panes to match heights if set to true.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  matchHeight: false,
+
+  /**
+   * Allows active tabs to collapse when clicked.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  activeCollapse: false,
+
+  /**
+   * Class applied to `li`'s in tab link list.
+   * @option
+   * @type {string}
+   * @default 'tabs-title'
+   */
+  linkClass: 'tabs-title',
+
+  /**
+   * Class applied to the active `li` in tab link list.
+   * @option
+   * @type {string}
+   * @default 'is-active'
+   */
+  linkActiveClass: 'is-active',
+
+  /**
+   * Class applied to the content containers.
+   * @option
+   * @type {string}
+   * @default 'tabs-panel'
+   */
+  panelClass: 'tabs-panel',
+
+  /**
+   * Class applied to the active content container.
+   * @option
+   * @type {string}
+   * @default 'is-active'
+   */
+  panelActiveClass: 'is-active'
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.toggler.js":
+/*!**********************************!*\
+  !*** ./js/foundation.toggler.js ***!
+  \**********************************/
+/*! exports provided: Toggler */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Toggler", function() { return Toggler; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_util_motion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.util.motion */ "./js/foundation.util.motion.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.core.plugin */ "./js/foundation.core.plugin.js");
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_util_triggers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation.util.triggers */ "./js/foundation.util.triggers.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+/**
+ * Toggler module.
+ * @module foundation.toggler
+ * @requires foundation.util.motion
+ * @requires foundation.util.triggers
+ */
+
+var Toggler =
+/*#__PURE__*/
+function (_Plugin) {
+  _inherits(Toggler, _Plugin);
+
+  function Toggler() {
+    _classCallCheck(this, Toggler);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Toggler).apply(this, arguments));
+  }
+
+  _createClass(Toggler, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of Toggler.
+     * @class
+     * @name Toggler
+     * @fires Toggler#init
+     * @param {Object} element - jQuery object to add the trigger to.
+     * @param {Object} options - Overrides to the default plugin settings.
+     */
+    value: function _setup(element, options) {
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, Toggler.defaults, element.data(), options);
+      this.className = '';
+      this.className = 'Toggler'; // ie9 back compat
+      // Triggers init is idempotent, just need to make sure it is initialized
+
+      _foundation_util_triggers__WEBPACK_IMPORTED_MODULE_4__["Triggers"].init(jquery__WEBPACK_IMPORTED_MODULE_0___default.a);
+
+      this._init();
+
+      this._events();
+    }
+    /**
+     * Initializes the Toggler plugin by parsing the toggle class from data-toggler, or animation classes from data-animate.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      var input; // Parse animation classes if they were set
+
+      if (this.options.animate) {
+        input = this.options.animate.split(' ');
+        this.animationIn = input[0];
+        this.animationOut = input[1] || null;
+      } // Otherwise, parse toggle class
+      else {
+          input = this.$element.data('toggler'); // Allow for a . at the beginning of the string
+
+          this.className = input[0] === '.' ? input.slice(1) : input;
+        } // Add ARIA attributes to triggers:
+
+
+      var id = this.$element[0].id,
+          $triggers = jquery__WEBPACK_IMPORTED_MODULE_0___default()("[data-open~=\"".concat(id, "\"], [data-close~=\"").concat(id, "\"], [data-toggle~=\"").concat(id, "\"]")); // - aria-expanded: according to the element visibility.
+
+      $triggers.attr('aria-expanded', !this.$element.is(':hidden')); // - aria-controls: adding the element id to it if not already in it.
+
+      $triggers.each(function (index, trigger) {
+        var $trigger = jquery__WEBPACK_IMPORTED_MODULE_0___default()(trigger);
+        var controls = $trigger.attr('aria-controls') || '';
+        var containsId = new RegExp("\\b".concat(Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_3__["RegExpEscape"])(id), "\\b")).test(controls);
+        if (!containsId) $trigger.attr('aria-controls', controls ? "".concat(controls, " ").concat(id) : id);
+      });
+    }
+    /**
+     * Initializes events for the toggle trigger.
+     * @function
+     * @private
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      this.$element.off('toggle.zf.trigger').on('toggle.zf.trigger', this.toggle.bind(this));
+    }
+    /**
+     * Toggles the target class on the target element. An event is fired from the original trigger depending on if the resultant state was "on" or "off".
+     * @function
+     * @fires Toggler#on
+     * @fires Toggler#off
+     */
+
+  }, {
+    key: "toggle",
+    value: function toggle() {
+      this[this.options.animate ? '_toggleAnimate' : '_toggleClass']();
+    }
+  }, {
+    key: "_toggleClass",
+    value: function _toggleClass() {
+      this.$element.toggleClass(this.className);
+      var isOn = this.$element.hasClass(this.className);
+
+      if (isOn) {
+        /**
+         * Fires if the target element has the class after a toggle.
+         * @event Toggler#on
+         */
+        this.$element.trigger('on.zf.toggler');
+      } else {
+        /**
+         * Fires if the target element does not have the class after a toggle.
+         * @event Toggler#off
+         */
+        this.$element.trigger('off.zf.toggler');
+      }
+
+      this._updateARIA(isOn);
+
+      this.$element.find('[data-mutate]').trigger('mutateme.zf.trigger');
+    }
+  }, {
+    key: "_toggleAnimate",
+    value: function _toggleAnimate() {
+      var _this = this;
+
+      if (this.$element.is(':hidden')) {
+        _foundation_util_motion__WEBPACK_IMPORTED_MODULE_1__["Motion"].animateIn(this.$element, this.animationIn, function () {
+          _this._updateARIA(true);
+
+          this.trigger('on.zf.toggler');
+          this.find('[data-mutate]').trigger('mutateme.zf.trigger');
+        });
+      } else {
+        _foundation_util_motion__WEBPACK_IMPORTED_MODULE_1__["Motion"].animateOut(this.$element, this.animationOut, function () {
+          _this._updateARIA(false);
+
+          this.trigger('off.zf.toggler');
+          this.find('[data-mutate]').trigger('mutateme.zf.trigger');
+        });
+      }
+    }
+  }, {
+    key: "_updateARIA",
+    value: function _updateARIA(isOn) {
+      var id = this.$element[0].id;
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()("[data-open=\"".concat(id, "\"], [data-close=\"").concat(id, "\"], [data-toggle=\"").concat(id, "\"]")).attr({
+        'aria-expanded': isOn ? true : false
+      });
+    }
+    /**
+     * Destroys the instance of Toggler on the element.
+     * @function
+     */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      this.$element.off('.zf.toggler');
+    }
+  }]);
+
+  return Toggler;
+}(_foundation_core_plugin__WEBPACK_IMPORTED_MODULE_2__["Plugin"]);
+
+Toggler.defaults = {
+  /**
+   * Tells the plugin if the element should animated when toggled.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  animate: false
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.tooltip.js":
+/*!**********************************!*\
+  !*** ./js/foundation.tooltip.js ***!
+  \**********************************/
+/*! exports provided: Tooltip */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tooltip", function() { return Tooltip; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.util.mediaQuery */ "./js/foundation.util.mediaQuery.js");
+/* harmony import */ var _foundation_util_triggers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation.util.triggers */ "./js/foundation.util.triggers.js");
+/* harmony import */ var _foundation_positionable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation.positionable */ "./js/foundation.positionable.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+/**
+ * Tooltip module.
+ * @module foundation.tooltip
+ * @requires foundation.util.box
+ * @requires foundation.util.mediaQuery
+ * @requires foundation.util.triggers
+ */
+
+var Tooltip =
+/*#__PURE__*/
+function (_Positionable) {
+  _inherits(Tooltip, _Positionable);
+
+  function Tooltip() {
+    _classCallCheck(this, Tooltip);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Tooltip).apply(this, arguments));
+  }
+
+  _createClass(Tooltip, [{
+    key: "_setup",
+
+    /**
+     * Creates a new instance of a Tooltip.
+     * @class
+     * @name Tooltip
+     * @fires Tooltip#init
+     * @param {jQuery} element - jQuery object to attach a tooltip to.
+     * @param {Object} options - object to extend the default configuration.
+     */
+    value: function _setup(element, options) {
+      this.$element = element;
+      this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, Tooltip.defaults, this.$element.data(), options);
+      this.className = 'Tooltip'; // ie9 back compat
+
+      this.isActive = false;
+      this.isClick = false; // Triggers init is idempotent, just need to make sure it is initialized
+
+      _foundation_util_triggers__WEBPACK_IMPORTED_MODULE_3__["Triggers"].init(jquery__WEBPACK_IMPORTED_MODULE_0___default.a);
+
+      this._init();
+    }
+    /**
+     * Initializes the tooltip by setting the creating the tip element, adding it's text, setting private variables and setting attributes on the anchor.
+     * @private
+     */
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_2__["MediaQuery"]._init();
+
+      var elemId = this.$element.attr('aria-describedby') || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["GetYoDigits"])(6, 'tooltip');
+      this.options.tipText = this.options.tipText || this.$element.attr('title');
+      this.template = this.options.template ? jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.options.template) : this._buildTemplate(elemId);
+
+      if (this.options.allowHtml) {
+        this.template.appendTo(document.body).html(this.options.tipText).hide();
+      } else {
+        this.template.appendTo(document.body).text(this.options.tipText).hide();
+      }
+
+      this.$element.attr({
+        'title': '',
+        'aria-describedby': elemId,
+        'data-yeti-box': elemId,
+        'data-toggle': elemId,
+        'data-resize': elemId
+      }).addClass(this.options.triggerClass);
+
+      _get(_getPrototypeOf(Tooltip.prototype), "_init", this).call(this);
+
+      this._events();
+    }
+  }, {
+    key: "_getDefaultPosition",
+    value: function _getDefaultPosition() {
+      // handle legacy classnames
+      var position = this.$element[0].className.match(/\b(top|left|right|bottom)\b/g);
+      return position ? position[0] : 'top';
+    }
+  }, {
+    key: "_getDefaultAlignment",
+    value: function _getDefaultAlignment() {
+      return 'center';
+    }
+  }, {
+    key: "_getHOffset",
+    value: function _getHOffset() {
+      if (this.position === 'left' || this.position === 'right') {
+        return this.options.hOffset + this.options.tooltipWidth;
+      } else {
+        return this.options.hOffset;
+      }
+    }
+  }, {
+    key: "_getVOffset",
+    value: function _getVOffset() {
+      if (this.position === 'top' || this.position === 'bottom') {
+        return this.options.vOffset + this.options.tooltipHeight;
+      } else {
+        return this.options.vOffset;
+      }
+    }
+    /**
+     * builds the tooltip element, adds attributes, and returns the template.
+     * @private
+     */
+
+  }, {
+    key: "_buildTemplate",
+    value: function _buildTemplate(id) {
+      var templateClasses = "".concat(this.options.tooltipClass, " ").concat(this.options.templateClasses).trim();
+      var $template = jquery__WEBPACK_IMPORTED_MODULE_0___default()('<div></div>').addClass(templateClasses).attr({
+        'role': 'tooltip',
+        'aria-hidden': true,
+        'data-is-active': false,
+        'data-is-focus': false,
+        'id': id
+      });
+      return $template;
+    }
+    /**
+     * sets the position class of an element and recursively calls itself until there are no more possible positions to attempt, or the tooltip element is no longer colliding.
+     * if the tooltip is larger than the screen width, default to full width - any user selected margin
+     * @private
+     */
+
+  }, {
+    key: "_setPosition",
+    value: function _setPosition() {
+      _get(_getPrototypeOf(Tooltip.prototype), "_setPosition", this).call(this, this.$element, this.template);
+    }
+    /**
+     * reveals the tooltip, and fires an event to close any other open tooltips on the page
+     * @fires Tooltip#closeme
+     * @fires Tooltip#show
+     * @function
+     */
+
+  }, {
+    key: "show",
+    value: function show() {
+      if (this.options.showOn !== 'all' && !_foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_2__["MediaQuery"].is(this.options.showOn)) {
+        // console.error('The screen is too small to display this tooltip');
+        return false;
+      }
+
+      var _this = this;
+
+      this.template.css('visibility', 'hidden').show();
+
+      this._setPosition();
+
+      this.template.removeClass('top bottom left right').addClass(this.position);
+      this.template.removeClass('align-top align-bottom align-left align-right align-center').addClass('align-' + this.alignment);
+      /**
+       * Fires to close all other open tooltips on the page
+       * @event Closeme#tooltip
+       */
+
+      this.$element.trigger('closeme.zf.tooltip', this.template.attr('id'));
+      this.template.attr({
+        'data-is-active': true,
+        'aria-hidden': false
+      });
+      _this.isActive = true; // console.log(this.template);
+
+      this.template.stop().hide().css('visibility', '').fadeIn(this.options.fadeInDuration, function () {//maybe do stuff?
+      });
+      /**
+       * Fires when the tooltip is shown
+       * @event Tooltip#show
+       */
+
+      this.$element.trigger('show.zf.tooltip');
+    }
+    /**
+     * Hides the current tooltip, and resets the positioning class if it was changed due to collision
+     * @fires Tooltip#hide
+     * @function
+     */
+
+  }, {
+    key: "hide",
+    value: function hide() {
+      // console.log('hiding', this.$element.data('yeti-box'));
+      var _this = this;
+
+      this.template.stop().attr({
+        'aria-hidden': true,
+        'data-is-active': false
+      }).fadeOut(this.options.fadeOutDuration, function () {
+        _this.isActive = false;
+        _this.isClick = false;
+      });
+      /**
+       * fires when the tooltip is hidden
+       * @event Tooltip#hide
+       */
+
+      this.$element.trigger('hide.zf.tooltip');
+    }
+    /**
+     * adds event listeners for the tooltip and its anchor
+     * TODO combine some of the listeners like focus and mouseenter, etc.
+     * @private
+     */
+
+  }, {
+    key: "_events",
+    value: function _events() {
+      var _this = this;
+
+      var $template = this.template;
+      var isFocus = false;
+
+      if (!this.options.disableHover) {
+        this.$element.on('mouseenter.zf.tooltip', function (e) {
+          if (!_this.isActive) {
+            _this.timeout = setTimeout(function () {
+              _this.show();
+            }, _this.options.hoverDelay);
+          }
+        }).on('mouseleave.zf.tooltip', Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["ignoreMousedisappear"])(function (e) {
+          clearTimeout(_this.timeout);
+
+          if (!isFocus || _this.isClick && !_this.options.clickOpen) {
+            _this.hide();
+          }
+        }));
+      }
+
+      if (this.options.clickOpen) {
+        this.$element.on('mousedown.zf.tooltip', function (e) {
+          e.stopImmediatePropagation();
+
+          if (_this.isClick) {//_this.hide();
+            // _this.isClick = false;
+          } else {
+            _this.isClick = true;
+
+            if ((_this.options.disableHover || !_this.$element.attr('tabindex')) && !_this.isActive) {
+              _this.show();
+            }
+          }
+        });
+      } else {
+        this.$element.on('mousedown.zf.tooltip', function (e) {
+          e.stopImmediatePropagation();
+          _this.isClick = true;
+        });
+      }
+
+      if (!this.options.disableForTouch) {
+        this.$element.on('tap.zf.tooltip touchend.zf.tooltip', function (e) {
+          _this.isActive ? _this.hide() : _this.show();
+        });
+      }
+
+      this.$element.on({
+        // 'toggle.zf.trigger': this.toggle.bind(this),
+        // 'close.zf.trigger': this.hide.bind(this)
+        'close.zf.trigger': this.hide.bind(this)
+      });
+      this.$element.on('focus.zf.tooltip', function (e) {
+        isFocus = true;
+
+        if (_this.isClick) {
+          // If we're not showing open on clicks, we need to pretend a click-launched focus isn't
+          // a real focus, otherwise on hover and come back we get bad behavior
+          if (!_this.options.clickOpen) {
+            isFocus = false;
+          }
+
+          return false;
+        } else {
+          _this.show();
+        }
+      }).on('focusout.zf.tooltip', function (e) {
+        isFocus = false;
+        _this.isClick = false;
+
+        _this.hide();
+      }).on('resizeme.zf.trigger', function () {
+        if (_this.isActive) {
+          _this._setPosition();
+        }
+      });
+    }
+    /**
+     * adds a toggle method, in addition to the static show() & hide() functions
+     * @function
+     */
+
+  }, {
+    key: "toggle",
+    value: function toggle() {
+      if (this.isActive) {
+        this.hide();
+      } else {
+        this.show();
+      }
+    }
+    /**
+     * Destroys an instance of tooltip, removes template element from the view.
+     * @function
+     */
+
+  }, {
+    key: "_destroy",
+    value: function _destroy() {
+      this.$element.attr('title', this.template.text()).off('.zf.trigger .zf.tooltip').removeClass(this.options.triggerClass).removeClass('top right left bottom').removeAttr('aria-describedby data-disable-hover data-resize data-toggle data-tooltip data-yeti-box');
+      this.template.remove();
+    }
+  }]);
+
+  return Tooltip;
+}(_foundation_positionable__WEBPACK_IMPORTED_MODULE_4__["Positionable"]);
+
+Tooltip.defaults = {
+  disableForTouch: false,
+
+  /**
+   * Time, in ms, before a tooltip should open on hover.
+   * @option
+   * @type {number}
+   * @default 200
+   */
+  hoverDelay: 200,
+
+  /**
+   * Time, in ms, a tooltip should take to fade into view.
+   * @option
+   * @type {number}
+   * @default 150
+   */
+  fadeInDuration: 150,
+
+  /**
+   * Time, in ms, a tooltip should take to fade out of view.
+   * @option
+   * @type {number}
+   * @default 150
+   */
+  fadeOutDuration: 150,
+
+  /**
+   * Disables hover events from opening the tooltip if set to true
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  disableHover: false,
+
+  /**
+   * Optional addtional classes to apply to the tooltip template on init.
+   * @option
+   * @type {string}
+   * @default ''
+   */
+  templateClasses: '',
+
+  /**
+   * Non-optional class added to tooltip templates. Foundation default is 'tooltip'.
+   * @option
+   * @type {string}
+   * @default 'tooltip'
+   */
+  tooltipClass: 'tooltip',
+
+  /**
+   * Class applied to the tooltip anchor element.
+   * @option
+   * @type {string}
+   * @default 'has-tip'
+   */
+  triggerClass: 'has-tip',
+
+  /**
+   * Minimum breakpoint size at which to open the tooltip.
+   * @option
+   * @type {string}
+   * @default 'small'
+   */
+  showOn: 'small',
+
+  /**
+   * Custom template to be used to generate markup for tooltip.
+   * @option
+   * @type {string}
+   * @default ''
+   */
+  template: '',
+
+  /**
+   * Text displayed in the tooltip template on open.
+   * @option
+   * @type {string}
+   * @default ''
+   */
+  tipText: '',
+  touchCloseText: 'Tap to close.',
+
+  /**
+   * Allows the tooltip to remain open if triggered with a click or touch event.
+   * @option
+   * @type {boolean}
+   * @default true
+   */
+  clickOpen: true,
+
+  /**
+   * Position of tooltip. Can be left, right, bottom, top, or auto.
+   * @option
+   * @type {string}
+   * @default 'auto'
+   */
+  position: 'auto',
+
+  /**
+   * Alignment of tooltip relative to anchor. Can be left, right, bottom, top, center, or auto.
+   * @option
+   * @type {string}
+   * @default 'auto'
+   */
+  alignment: 'auto',
+
+  /**
+   * Allow overlap of container/window. If false, tooltip will first try to
+   * position as defined by data-position and data-alignment, but reposition if
+   * it would cause an overflow.  @option
+   * @type {boolean}
+   * @default false
+   */
+  allowOverlap: false,
+
+  /**
+   * Allow overlap of only the bottom of the container. This is the most common
+   * behavior for dropdowns, allowing the dropdown to extend the bottom of the
+   * screen but not otherwise influence or break out of the container.
+   * Less common for tooltips.
+   * @option
+   * @type {boolean}
+   * @default false
+   */
+  allowBottomOverlap: false,
+
+  /**
+   * Distance, in pixels, the template should push away from the anchor on the Y axis.
+   * @option
+   * @type {number}
+   * @default 0
+   */
+  vOffset: 0,
+
+  /**
+   * Distance, in pixels, the template should push away from the anchor on the X axis
+   * @option
+   * @type {number}
+   * @default 0
+   */
+  hOffset: 0,
+
+  /**
+   * Distance, in pixels, the template spacing auto-adjust for a vertical tooltip
+   * @option
+   * @type {number}
+   * @default 14
+   */
+  tooltipHeight: 14,
+
+  /**
+   * Distance, in pixels, the template spacing auto-adjust for a horizontal tooltip
+   * @option
+   * @type {number}
+   * @default 12
+   */
+  tooltipWidth: 12,
+
+  /**
+  * Allow HTML in tooltip. Warning: If you are loading user-generated content into tooltips,
+  * allowing HTML may open yourself up to XSS attacks.
+  * @option
+  * @type {boolean}
+  * @default false
+  */
+  allowHtml: false
+};
+/**
+ * TODO utilize resize event trigger
+ */
+
+
+
+/***/ }),
+
+/***/ "./js/foundation.util.box.js":
+/*!***********************************!*\
+  !*** ./js/foundation.util.box.js ***!
+  \***********************************/
+/*! exports provided: Box */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Box", function() { return Box; });
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+
+
+
+var Box = {
+  ImNotTouchingYou: ImNotTouchingYou,
+  OverlapArea: OverlapArea,
+  GetDimensions: GetDimensions,
+  GetOffsets: GetOffsets,
+  GetExplicitOffsets: GetExplicitOffsets
+  /**
+   * Compares the dimensions of an element to a container and determines collision events with container.
+   * @function
+   * @param {jQuery} element - jQuery object to test for collisions.
+   * @param {jQuery} parent - jQuery object to use as bounding container.
+   * @param {Boolean} lrOnly - set to true to check left and right values only.
+   * @param {Boolean} tbOnly - set to true to check top and bottom values only.
+   * @default if no parent object passed, detects collisions with `window`.
+   * @returns {Boolean} - true if collision free, false if a collision in any direction.
+   */
+
+};
+
+function ImNotTouchingYou(element, parent, lrOnly, tbOnly, ignoreBottom) {
+  return OverlapArea(element, parent, lrOnly, tbOnly, ignoreBottom) === 0;
+}
+
+;
+
+function OverlapArea(element, parent, lrOnly, tbOnly, ignoreBottom) {
+  var eleDims = GetDimensions(element),
+      topOver,
+      bottomOver,
+      leftOver,
+      rightOver;
+
+  if (parent) {
+    var parDims = GetDimensions(parent);
+    bottomOver = parDims.height + parDims.offset.top - (eleDims.offset.top + eleDims.height);
+    topOver = eleDims.offset.top - parDims.offset.top;
+    leftOver = eleDims.offset.left - parDims.offset.left;
+    rightOver = parDims.width + parDims.offset.left - (eleDims.offset.left + eleDims.width);
+  } else {
+    bottomOver = eleDims.windowDims.height + eleDims.windowDims.offset.top - (eleDims.offset.top + eleDims.height);
+    topOver = eleDims.offset.top - eleDims.windowDims.offset.top;
+    leftOver = eleDims.offset.left - eleDims.windowDims.offset.left;
+    rightOver = eleDims.windowDims.width - (eleDims.offset.left + eleDims.width);
+  }
+
+  bottomOver = ignoreBottom ? 0 : Math.min(bottomOver, 0);
+  topOver = Math.min(topOver, 0);
+  leftOver = Math.min(leftOver, 0);
+  rightOver = Math.min(rightOver, 0);
+
+  if (lrOnly) {
+    return leftOver + rightOver;
+  }
+
+  if (tbOnly) {
+    return topOver + bottomOver;
+  } // use sum of squares b/c we care about overlap area.
+
+
+  return Math.sqrt(topOver * topOver + bottomOver * bottomOver + leftOver * leftOver + rightOver * rightOver);
+}
+/**
+ * Uses native methods to return an object of dimension values.
+ * @function
+ * @param {jQuery || HTML} element - jQuery object or DOM element for which to get the dimensions. Can be any element other that document or window.
+ * @returns {Object} - nested object of integer pixel values
+ * TODO - if element is window, return only those values.
+ */
+
+
+function GetDimensions(elem) {
+  elem = elem.length ? elem[0] : elem;
+
+  if (elem === window || elem === document) {
+    throw new Error("I'm sorry, Dave. I'm afraid I can't do that.");
+  }
+
+  var rect = elem.getBoundingClientRect(),
+      parRect = elem.parentNode.getBoundingClientRect(),
+      winRect = document.body.getBoundingClientRect(),
+      winY = window.pageYOffset,
+      winX = window.pageXOffset;
+  return {
+    width: rect.width,
+    height: rect.height,
+    offset: {
+      top: rect.top + winY,
+      left: rect.left + winX
+    },
+    parentDims: {
+      width: parRect.width,
+      height: parRect.height,
+      offset: {
+        top: parRect.top + winY,
+        left: parRect.left + winX
+      }
+    },
+    windowDims: {
+      width: winRect.width,
+      height: winRect.height,
+      offset: {
+        top: winY,
+        left: winX
+      }
+    }
+  };
+}
+/**
+ * Returns an object of top and left integer pixel values for dynamically rendered elements,
+ * such as: Tooltip, Reveal, and Dropdown. Maintained for backwards compatibility, and where
+ * you don't know alignment, but generally from
+ * 6.4 forward you should use GetExplicitOffsets, as GetOffsets conflates position and alignment.
+ * @function
+ * @param {jQuery} element - jQuery object for the element being positioned.
+ * @param {jQuery} anchor - jQuery object for the element's anchor point.
+ * @param {String} position - a string relating to the desired position of the element, relative to it's anchor
+ * @param {Number} vOffset - integer pixel value of desired vertical separation between anchor and element.
+ * @param {Number} hOffset - integer pixel value of desired horizontal separation between anchor and element.
+ * @param {Boolean} isOverflow - if a collision event is detected, sets to true to default the element to full width - any desired offset.
+ * TODO alter/rewrite to work with `em` values as well/instead of pixels
+ */
+
+
+function GetOffsets(element, anchor, position, vOffset, hOffset, isOverflow) {
+  console.log("NOTE: GetOffsets is deprecated in favor of GetExplicitOffsets and will be removed in 6.5");
+
+  switch (position) {
+    case 'top':
+      return Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_0__["rtl"])() ? GetExplicitOffsets(element, anchor, 'top', 'left', vOffset, hOffset, isOverflow) : GetExplicitOffsets(element, anchor, 'top', 'right', vOffset, hOffset, isOverflow);
+
+    case 'bottom':
+      return Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_0__["rtl"])() ? GetExplicitOffsets(element, anchor, 'bottom', 'left', vOffset, hOffset, isOverflow) : GetExplicitOffsets(element, anchor, 'bottom', 'right', vOffset, hOffset, isOverflow);
+
+    case 'center top':
+      return GetExplicitOffsets(element, anchor, 'top', 'center', vOffset, hOffset, isOverflow);
+
+    case 'center bottom':
+      return GetExplicitOffsets(element, anchor, 'bottom', 'center', vOffset, hOffset, isOverflow);
+
+    case 'center left':
+      return GetExplicitOffsets(element, anchor, 'left', 'center', vOffset, hOffset, isOverflow);
+
+    case 'center right':
+      return GetExplicitOffsets(element, anchor, 'right', 'center', vOffset, hOffset, isOverflow);
+
+    case 'left bottom':
+      return GetExplicitOffsets(element, anchor, 'bottom', 'left', vOffset, hOffset, isOverflow);
+
+    case 'right bottom':
+      return GetExplicitOffsets(element, anchor, 'bottom', 'right', vOffset, hOffset, isOverflow);
+    // Backwards compatibility... this along with the reveal and reveal full
+    // classes are the only ones that didn't reference anchor
+
+    case 'center':
+      return {
+        left: $eleDims.windowDims.offset.left + $eleDims.windowDims.width / 2 - $eleDims.width / 2 + hOffset,
+        top: $eleDims.windowDims.offset.top + $eleDims.windowDims.height / 2 - ($eleDims.height / 2 + vOffset)
+      };
+
+    case 'reveal':
+      return {
+        left: ($eleDims.windowDims.width - $eleDims.width) / 2 + hOffset,
+        top: $eleDims.windowDims.offset.top + vOffset
+      };
+
+    case 'reveal full':
+      return {
+        left: $eleDims.windowDims.offset.left,
+        top: $eleDims.windowDims.offset.top
+      };
+      break;
+
+    default:
+      return {
+        left: Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_0__["rtl"])() ? $anchorDims.offset.left - $eleDims.width + $anchorDims.width - hOffset : $anchorDims.offset.left + hOffset,
+        top: $anchorDims.offset.top + $anchorDims.height + vOffset
+      };
+  }
+}
+
+function GetExplicitOffsets(element, anchor, position, alignment, vOffset, hOffset, isOverflow) {
+  var $eleDims = GetDimensions(element),
+      $anchorDims = anchor ? GetDimensions(anchor) : null;
+  var topVal, leftVal; // set position related attribute
+
+  switch (position) {
+    case 'top':
+      topVal = $anchorDims.offset.top - ($eleDims.height + vOffset);
+      break;
+
+    case 'bottom':
+      topVal = $anchorDims.offset.top + $anchorDims.height + vOffset;
+      break;
+
+    case 'left':
+      leftVal = $anchorDims.offset.left - ($eleDims.width + hOffset);
+      break;
+
+    case 'right':
+      leftVal = $anchorDims.offset.left + $anchorDims.width + hOffset;
+      break;
+  } // set alignment related attribute
+
+
+  switch (position) {
+    case 'top':
+    case 'bottom':
+      switch (alignment) {
+        case 'left':
+          leftVal = $anchorDims.offset.left + hOffset;
+          break;
+
+        case 'right':
+          leftVal = $anchorDims.offset.left - $eleDims.width + $anchorDims.width - hOffset;
+          break;
+
+        case 'center':
+          leftVal = isOverflow ? hOffset : $anchorDims.offset.left + $anchorDims.width / 2 - $eleDims.width / 2 + hOffset;
+          break;
+      }
+
+      break;
+
+    case 'right':
+    case 'left':
+      switch (alignment) {
+        case 'bottom':
+          topVal = $anchorDims.offset.top - vOffset + $anchorDims.height - $eleDims.height;
+          break;
+
+        case 'top':
+          topVal = $anchorDims.offset.top + vOffset;
+          break;
+
+        case 'center':
+          topVal = $anchorDims.offset.top + vOffset + $anchorDims.height / 2 - $eleDims.height / 2;
+          break;
+      }
+
+      break;
+  }
+
+  return {
+    top: topVal,
+    left: leftVal
+  };
+}
+
+
+
+/***/ }),
+
+/***/ "./js/foundation.util.imageLoader.js":
+/*!*******************************************!*\
+  !*** ./js/foundation.util.imageLoader.js ***!
+  \*******************************************/
+/*! exports provided: onImagesLoaded */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onImagesLoaded", function() { return onImagesLoaded; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+
+
+/**
+ * Runs a callback function when images are fully loaded.
+ * @param {Object} images - Image(s) to check if loaded.
+ * @param {Func} callback - Function to execute when image is fully loaded.
+ */
+
+function onImagesLoaded(images, callback) {
+  var self = this,
+      unloaded = images.length;
+
+  if (unloaded === 0) {
+    callback();
+  }
+
+  images.each(function () {
+    // Check if image is loaded
+    if (this.complete && typeof this.naturalWidth !== 'undefined') {
+      singleImageLoaded();
+    } else {
+      // If the above check failed, simulate loading on detached element.
+      var image = new Image(); // Still count image as loaded if it finalizes with an error.
+
+      var events = "load.zf.images error.zf.images";
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(image).one(events, function me(event) {
+        // Unbind the event listeners. We're using 'one' but only one of the two events will have fired.
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).off(events, me);
+        singleImageLoaded();
+      });
+      image.src = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('src');
+    }
+  });
+
+  function singleImageLoaded() {
+    unloaded--;
+
+    if (unloaded === 0) {
+      callback();
+    }
+  }
+}
+
+
+
+/***/ }),
+
+/***/ "./js/foundation.util.keyboard.js":
+/*!****************************************!*\
+  !*** ./js/foundation.util.keyboard.js ***!
+  \****************************************/
+/*! exports provided: Keyboard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Keyboard", function() { return Keyboard; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/*******************************************
+ *                                         *
+ * This util was created by Marius Olbertz *
+ * Please thank Marius on GitHub /owlbertz *
+ * or the web http://www.mariusolbertz.de/ *
+ *                                         *
+ ******************************************/
+
+
+
+
+var keyCodes = {
+  9: 'TAB',
+  13: 'ENTER',
+  27: 'ESCAPE',
+  32: 'SPACE',
+  35: 'END',
+  36: 'HOME',
+  37: 'ARROW_LEFT',
+  38: 'ARROW_UP',
+  39: 'ARROW_RIGHT',
+  40: 'ARROW_DOWN'
+};
+var commands = {}; // Functions pulled out to be referenceable from internals
+
+function findFocusable($element) {
+  if (!$element) {
+    return false;
+  }
+
+  return $element.find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]').filter(function () {
+    if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).is(':visible') || jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('tabindex') < 0) {
+      return false;
+    } //only have visible elements and those that have a tabindex greater or equal 0
+
+
+    return true;
+  });
+}
+
+function parseKey(event) {
+  var key = keyCodes[event.which || event.keyCode] || String.fromCharCode(event.which).toUpperCase(); // Remove un-printable characters, e.g. for `fromCharCode` calls for CTRL only events
+
+  key = key.replace(/\W+/, '');
+  if (event.shiftKey) key = "SHIFT_".concat(key);
+  if (event.ctrlKey) key = "CTRL_".concat(key);
+  if (event.altKey) key = "ALT_".concat(key); // Remove trailing underscore, in case only modifiers were used (e.g. only `CTRL_ALT`)
+
+  key = key.replace(/_$/, '');
+  return key;
+}
+
+var Keyboard = {
+  keys: getKeyCodes(keyCodes),
+
+  /**
+   * Parses the (keyboard) event and returns a String that represents its key
+   * Can be used like Foundation.parseKey(event) === Foundation.keys.SPACE
+   * @param {Event} event - the event generated by the event handler
+   * @return String key - String that represents the key pressed
+   */
+  parseKey: parseKey,
+
+  /**
+   * Handles the given (keyboard) event
+   * @param {Event} event - the event generated by the event handler
+   * @param {String} component - Foundation component's name, e.g. Slider or Reveal
+   * @param {Objects} functions - collection of functions that are to be executed
+   */
+  handleKey: function handleKey(event, component, functions) {
+    var commandList = commands[component],
+        keyCode = this.parseKey(event),
+        cmds,
+        command,
+        fn;
+    if (!commandList) return console.warn('Component not defined!');
+
+    if (typeof commandList.ltr === 'undefined') {
+      // this component does not differentiate between ltr and rtl
+      cmds = commandList; // use plain list
+    } else {
+      // merge ltr and rtl: if document is rtl, rtl overwrites ltr and vice versa
+      if (Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["rtl"])()) cmds = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, commandList.ltr, commandList.rtl);else cmds = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, commandList.rtl, commandList.ltr);
+    }
+
+    command = cmds[keyCode];
+    fn = functions[command];
+
+    if (fn && typeof fn === 'function') {
+      // execute function  if exists
+      var returnValue = fn.apply();
+
+      if (functions.handled || typeof functions.handled === 'function') {
+        // execute function when event was handled
+        functions.handled(returnValue);
+      }
+    } else {
+      if (functions.unhandled || typeof functions.unhandled === 'function') {
+        // execute function when event was not handled
+        functions.unhandled();
+      }
+    }
+  },
+
+  /**
+   * Finds all focusable elements within the given `$element`
+   * @param {jQuery} $element - jQuery object to search within
+   * @return {jQuery} $focusable - all focusable elements within `$element`
+   */
+  findFocusable: findFocusable,
+
+  /**
+   * Returns the component name name
+   * @param {Object} component - Foundation component, e.g. Slider or Reveal
+   * @return String componentName
+   */
+  register: function register(componentName, cmds) {
+    commands[componentName] = cmds;
+  },
+  // TODO9438: These references to Keyboard need to not require global. Will 'this' work in this context?
+  //
+
+  /**
+   * Traps the focus in the given element.
+   * @param  {jQuery} $element  jQuery object to trap the foucs into.
+   */
+  trapFocus: function trapFocus($element) {
+    var $focusable = findFocusable($element),
+        $firstFocusable = $focusable.eq(0),
+        $lastFocusable = $focusable.eq(-1);
+    $element.on('keydown.zf.trapfocus', function (event) {
+      if (event.target === $lastFocusable[0] && parseKey(event) === 'TAB') {
+        event.preventDefault();
+        $firstFocusable.focus();
+      } else if (event.target === $firstFocusable[0] && parseKey(event) === 'SHIFT_TAB') {
+        event.preventDefault();
+        $lastFocusable.focus();
+      }
+    });
+  },
+
+  /**
+   * Releases the trapped focus from the given element.
+   * @param  {jQuery} $element  jQuery object to release the focus for.
+   */
+  releaseFocus: function releaseFocus($element) {
+    $element.off('keydown.zf.trapfocus');
+  }
+};
+/*
+ * Constants for easier comparing.
+ * Can be used like Foundation.parseKey(event) === Foundation.keys.SPACE
+ */
+
+function getKeyCodes(kcs) {
+  var k = {};
+
+  for (var kc in kcs) {
+    k[kcs[kc]] = kcs[kc];
+  }
+
+  return k;
+}
+
+
+
+/***/ }),
+
+/***/ "./js/foundation.util.mediaQuery.js":
+/*!******************************************!*\
+  !*** ./js/foundation.util.mediaQuery.js ***!
+  \******************************************/
+/*! exports provided: MediaQuery */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MediaQuery", function() { return MediaQuery; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+ // Default set of media queries
+
+var defaultQueries = {
+  'default': 'only screen',
+  landscape: 'only screen and (orientation: landscape)',
+  portrait: 'only screen and (orientation: portrait)',
+  retina: 'only screen and (-webkit-min-device-pixel-ratio: 2),' + 'only screen and (min--moz-device-pixel-ratio: 2),' + 'only screen and (-o-min-device-pixel-ratio: 2/1),' + 'only screen and (min-device-pixel-ratio: 2),' + 'only screen and (min-resolution: 192dpi),' + 'only screen and (min-resolution: 2dppx)'
+}; // matchMedia() polyfill - Test a CSS media type/query in JS.
+// Authors & copyright(c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas, David Knight. MIT license
+
+/* eslint-disable */
+
+window.matchMedia || (window.matchMedia = function () {
+  "use strict"; // For browsers that support matchMedium api such as IE 9 and webkit
+
+  var styleMedia = window.styleMedia || window.media; // For those that don't support matchMedium
+
+  if (!styleMedia) {
+    var style = document.createElement('style'),
+        script = document.getElementsByTagName('script')[0],
+        info = null;
+    style.type = 'text/css';
+    style.id = 'matchmediajs-test';
+
+    if (!script) {
+      document.head.appendChild(style);
+    } else {
+      script.parentNode.insertBefore(style, script);
+    } // 'style.currentStyle' is used by IE <= 8 and 'window.getComputedStyle' for all other browsers
+
+
+    info = 'getComputedStyle' in window && window.getComputedStyle(style, null) || style.currentStyle;
+    styleMedia = {
+      matchMedium: function matchMedium(media) {
+        var text = '@media ' + media + '{ #matchmediajs-test { width: 1px; } }'; // 'style.styleSheet' is used by IE <= 8 and 'style.textContent' for all other browsers
+
+        if (style.styleSheet) {
+          style.styleSheet.cssText = text;
+        } else {
+          style.textContent = text;
+        } // Test if media query is true or false
+
+
+        return info.width === '1px';
+      }
+    };
+  }
+
+  return function (media) {
+    return {
+      matches: styleMedia.matchMedium(media || 'all'),
+      media: media || 'all'
+    };
+  };
+}());
+/* eslint-enable */
+
+var MediaQuery = {
+  queries: [],
+  current: '',
+
+  /**
+   * Initializes the media query helper, by extracting the breakpoint list from the CSS and activating the breakpoint watcher.
+   * @function
+   * @private
+   */
+  _init: function _init() {
+    var self = this;
+    var $meta = jquery__WEBPACK_IMPORTED_MODULE_0___default()('meta.foundation-mq');
+
+    if (!$meta.length) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('<meta class="foundation-mq">').appendTo(document.head);
+    }
+
+    var extractedStyles = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.foundation-mq').css('font-family');
+    var namedQueries;
+    namedQueries = parseStyleToObject(extractedStyles);
+
+    for (var key in namedQueries) {
+      if (namedQueries.hasOwnProperty(key)) {
+        self.queries.push({
+          name: key,
+          value: "only screen and (min-width: ".concat(namedQueries[key], ")")
+        });
+      }
+    }
+
+    this.current = this._getCurrentSize();
+
+    this._watcher();
+  },
+
+  /**
+   * Checks if the screen is at least as wide as a breakpoint.
+   * @function
+   * @param {String} size - Name of the breakpoint to check.
+   * @returns {Boolean} `true` if the breakpoint matches, `false` if it's smaller.
+   */
+  atLeast: function atLeast(size) {
+    var query = this.get(size);
+
+    if (query) {
+      return window.matchMedia(query).matches;
+    }
+
+    return false;
+  },
+
+  /**
+   * Checks if the screen matches to a breakpoint.
+   * @function
+   * @param {String} size - Name of the breakpoint to check, either 'small only' or 'small'. Omitting 'only' falls back to using atLeast() method.
+   * @returns {Boolean} `true` if the breakpoint matches, `false` if it does not.
+   */
+  is: function is(size) {
+    size = size.trim().split(' ');
+
+    if (size.length > 1 && size[1] === 'only') {
+      if (size[0] === this._getCurrentSize()) return true;
+    } else {
+      return this.atLeast(size[0]);
+    }
+
+    return false;
+  },
+
+  /**
+   * Gets the media query of a breakpoint.
+   * @function
+   * @param {String} size - Name of the breakpoint to get.
+   * @returns {String|null} - The media query of the breakpoint, or `null` if the breakpoint doesn't exist.
+   */
+  get: function get(size) {
+    for (var i in this.queries) {
+      if (this.queries.hasOwnProperty(i)) {
+        var query = this.queries[i];
+        if (size === query.name) return query.value;
+      }
+    }
+
+    return null;
+  },
+
+  /**
+   * Gets the current breakpoint name by testing every breakpoint and returning the last one to match (the biggest one).
+   * @function
+   * @private
+   * @returns {String} Name of the current breakpoint.
+   */
+  _getCurrentSize: function _getCurrentSize() {
+    var matched;
+
+    for (var i = 0; i < this.queries.length; i++) {
+      var query = this.queries[i];
+
+      if (window.matchMedia(query.value).matches) {
+        matched = query;
+      }
+    }
+
+    if (_typeof(matched) === 'object') {
+      return matched.name;
+    } else {
+      return matched;
+    }
+  },
+
+  /**
+   * Activates the breakpoint watcher, which fires an event on the window whenever the breakpoint changes.
+   * @function
+   * @private
+   */
+  _watcher: function _watcher() {
+    var _this = this;
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off('resize.zf.mediaquery').on('resize.zf.mediaquery', function () {
+      var newSize = _this._getCurrentSize(),
+          currentSize = _this.current;
+
+      if (newSize !== currentSize) {
+        // Change the current media query
+        _this.current = newSize; // Broadcast the media query change on the window
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).trigger('changed.zf.mediaquery', [newSize, currentSize]);
+      }
+    });
+  }
+}; // Thank you: https://github.com/sindresorhus/query-string
+
+function parseStyleToObject(str) {
+  var styleObject = {};
+
+  if (typeof str !== 'string') {
+    return styleObject;
+  }
+
+  str = str.trim().slice(1, -1); // browsers re-quote string style values
+
+  if (!str) {
+    return styleObject;
+  }
+
+  styleObject = str.split('&').reduce(function (ret, param) {
+    var parts = param.replace(/\+/g, ' ').split('=');
+    var key = parts[0];
+    var val = parts[1];
+    key = decodeURIComponent(key); // missing `=` should be `null`:
+    // http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+
+    val = typeof val === 'undefined' ? null : decodeURIComponent(val);
+
+    if (!ret.hasOwnProperty(key)) {
+      ret[key] = val;
+    } else if (Array.isArray(ret[key])) {
+      ret[key].push(val);
+    } else {
+      ret[key] = [ret[key], val];
+    }
+
+    return ret;
+  }, {});
+  return styleObject;
+}
+
+
+
+/***/ }),
+
+/***/ "./js/foundation.util.motion.js":
+/*!**************************************!*\
+  !*** ./js/foundation.util.motion.js ***!
+  \**************************************/
+/*! exports provided: Move, Motion */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Move", function() { return Move; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Motion", function() { return Motion; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+
+
+
+
+/**
+ * Motion module.
+ * @module foundation.motion
+ */
+
+var initClasses = ['mui-enter', 'mui-leave'];
+var activeClasses = ['mui-enter-active', 'mui-leave-active'];
+var Motion = {
+  animateIn: function animateIn(element, animation, cb) {
+    animate(true, element, animation, cb);
+  },
+  animateOut: function animateOut(element, animation, cb) {
+    animate(false, element, animation, cb);
+  }
+};
+
+function Move(duration, elem, fn) {
+  var anim,
+      prog,
+      start = null; // console.log('called');
+
+  if (duration === 0) {
+    fn.apply(elem);
+    elem.trigger('finished.zf.animate', [elem]).triggerHandler('finished.zf.animate', [elem]);
+    return;
+  }
+
+  function move(ts) {
+    if (!start) start = ts; // console.log(start, ts);
+
+    prog = ts - start;
+    fn.apply(elem);
+
+    if (prog < duration) {
+      anim = window.requestAnimationFrame(move, elem);
+    } else {
+      window.cancelAnimationFrame(anim);
+      elem.trigger('finished.zf.animate', [elem]).triggerHandler('finished.zf.animate', [elem]);
+    }
+  }
+
+  anim = window.requestAnimationFrame(move);
+}
+/**
+ * Animates an element in or out using a CSS transition class.
+ * @function
+ * @private
+ * @param {Boolean} isIn - Defines if the animation is in or out.
+ * @param {Object} element - jQuery or HTML object to animate.
+ * @param {String} animation - CSS class to use.
+ * @param {Function} cb - Callback to run when animation is finished.
+ */
+
+
+function animate(isIn, element, animation, cb) {
+  element = jquery__WEBPACK_IMPORTED_MODULE_0___default()(element).eq(0);
+  if (!element.length) return;
+  var initClass = isIn ? initClasses[0] : initClasses[1];
+  var activeClass = isIn ? activeClasses[0] : activeClasses[1]; // Set up the animation
+
+  reset();
+  element.addClass(animation).css('transition', 'none');
+  requestAnimationFrame(function () {
+    element.addClass(initClass);
+    if (isIn) element.show();
+  }); // Start the animation
+
+  requestAnimationFrame(function () {
+    element[0].offsetWidth;
+    element.css('transition', '').addClass(activeClass);
+  }); // Clean up the animation when it finishes
+
+  element.one(Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["transitionend"])(element), finish); // Hides the element (for out animations), resets the element, and runs a callback
+
+  function finish() {
+    if (!isIn) element.hide();
+    reset();
+    if (cb) cb.apply(element);
+  } // Resets transitions and removes motion-specific classes
+
+
+  function reset() {
+    element[0].style.transitionDuration = 0;
+    element.removeClass("".concat(initClass, " ").concat(activeClass, " ").concat(animation));
+  }
+}
+
+
+
+/***/ }),
+
+/***/ "./js/foundation.util.nest.js":
+/*!************************************!*\
+  !*** ./js/foundation.util.nest.js ***!
+  \************************************/
+/*! exports provided: Nest */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Nest", function() { return Nest; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+
+
+var Nest = {
+  Feather: function Feather(menu) {
+    var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'zf';
+    menu.attr('role', 'menubar');
+    var items = menu.find('li').attr({
+      'role': 'menuitem'
+    }),
+        subMenuClass = "is-".concat(type, "-submenu"),
+        subItemClass = "".concat(subMenuClass, "-item"),
+        hasSubClass = "is-".concat(type, "-submenu-parent"),
+        applyAria = type !== 'accordion'; // Accordions handle their own ARIA attriutes.
+
+    items.each(function () {
+      var $item = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
+          $sub = $item.children('ul');
+
+      if ($sub.length) {
+        $item.addClass(hasSubClass);
+
+        if (applyAria) {
+          $item.attr({
+            'aria-haspopup': true,
+            'aria-label': $item.children('a:first').text()
+          }); // Note:  Drilldowns behave differently in how they hide, and so need
+          // additional attributes.  We should look if this possibly over-generalized
+          // utility (Nest) is appropriate when we rework menus in 6.4
+
+          if (type === 'drilldown') {
+            $item.attr({
+              'aria-expanded': false
+            });
+          }
+        }
+
+        $sub.addClass("submenu ".concat(subMenuClass)).attr({
+          'data-submenu': '',
+          'role': 'menubar'
+        });
+
+        if (type === 'drilldown') {
+          $sub.attr({
+            'aria-hidden': true
+          });
+        }
+      }
+
+      if ($item.parent('[data-submenu]').length) {
+        $item.addClass("is-submenu-item ".concat(subItemClass));
+      }
+    });
+    return;
+  },
+  Burn: function Burn(menu, type) {
+    var //items = menu.find('li'),
+    subMenuClass = "is-".concat(type, "-submenu"),
+        subItemClass = "".concat(subMenuClass, "-item"),
+        hasSubClass = "is-".concat(type, "-submenu-parent");
+    menu.find('>li, > li > ul, .menu, .menu > li, [data-submenu] > li').removeClass("".concat(subMenuClass, " ").concat(subItemClass, " ").concat(hasSubClass, " is-submenu-item submenu is-active")).removeAttr('data-submenu').css('display', '');
+  }
+};
+
+
+/***/ }),
+
+/***/ "./js/foundation.util.timer.js":
+/*!*************************************!*\
+  !*** ./js/foundation.util.timer.js ***!
+  \*************************************/
+/*! exports provided: Timer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Timer", function() { return Timer; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+
+
+
+function Timer(elem, options, cb) {
+  var _this = this,
+      duration = options.duration,
+      //options is an object for easily adding features later.
+  nameSpace = Object.keys(elem.data())[0] || 'timer',
+      remain = -1,
+      start,
+      timer;
+
+  this.isPaused = false;
+
+  this.restart = function () {
+    remain = -1;
+    clearTimeout(timer);
+    this.start();
+  };
+
+  this.start = function () {
+    this.isPaused = false; // if(!elem.data('paused')){ return false; }//maybe implement this sanity check if used for other things.
+
+    clearTimeout(timer);
+    remain = remain <= 0 ? duration : remain;
+    elem.data('paused', false);
+    start = Date.now();
+    timer = setTimeout(function () {
+      if (options.infinite) {
+        _this.restart(); //rerun the timer.
+
+      }
+
+      if (cb && typeof cb === 'function') {
+        cb();
+      }
+    }, remain);
+    elem.trigger("timerstart.zf.".concat(nameSpace));
+  };
+
+  this.pause = function () {
+    this.isPaused = true; //if(elem.data('paused')){ return false; }//maybe implement this sanity check if used for other things.
+
+    clearTimeout(timer);
+    elem.data('paused', true);
+    var end = Date.now();
+    remain = remain - (end - start);
+    elem.trigger("timerpaused.zf.".concat(nameSpace));
+  };
+}
+
+
+
+/***/ }),
+
+/***/ "./js/foundation.util.touch.js":
+/*!*************************************!*\
+  !*** ./js/foundation.util.touch.js ***!
+  \*************************************/
+/*! exports provided: Touch */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Touch", function() { return Touch; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+//**************************************************
+//**Work inspired by multiple jquery swipe plugins**
+//**Done by Yohai Ararat ***************************
+//**************************************************
+
+var Touch = {};
+var startPosX,
+    startPosY,
+    startTime,
+    elapsedTime,
+    startEvent,
+    isMoving = false,
+    didMoved = false;
+
+function onTouchEnd(e) {
+  this.removeEventListener('touchmove', onTouchMove);
+  this.removeEventListener('touchend', onTouchEnd); // If the touch did not move, consider it as a "tap"
+
+  if (!didMoved) {
+    var tapEvent = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.Event('tap', startEvent || e);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).trigger(tapEvent);
+  }
+
+  startEvent = null;
+  isMoving = false;
+  didMoved = false;
+}
+
+function onTouchMove(e) {
+  if (jquery__WEBPACK_IMPORTED_MODULE_0___default.a.spotSwipe.preventDefault) {
+    e.preventDefault();
+  }
+
+  if (isMoving) {
+    var x = e.touches[0].pageX;
+    var y = e.touches[0].pageY;
+    var dx = startPosX - x;
+    var dy = startPosY - y;
+    var dir;
+    didMoved = true;
+    elapsedTime = new Date().getTime() - startTime;
+
+    if (Math.abs(dx) >= jquery__WEBPACK_IMPORTED_MODULE_0___default.a.spotSwipe.moveThreshold && elapsedTime <= jquery__WEBPACK_IMPORTED_MODULE_0___default.a.spotSwipe.timeThreshold) {
+      dir = dx > 0 ? 'left' : 'right';
+    } // else if(Math.abs(dy) >= $.spotSwipe.moveThreshold && elapsedTime <= $.spotSwipe.timeThreshold) {
+    //   dir = dy > 0 ? 'down' : 'up';
+    // }
+
+
+    if (dir) {
+      e.preventDefault();
+      onTouchEnd.apply(this, arguments);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).trigger(jquery__WEBPACK_IMPORTED_MODULE_0___default.a.Event('swipe', e), dir).trigger(jquery__WEBPACK_IMPORTED_MODULE_0___default.a.Event("swipe".concat(dir), e));
+    }
+  }
+}
+
+function onTouchStart(e) {
+  if (e.touches.length == 1) {
+    startPosX = e.touches[0].pageX;
+    startPosY = e.touches[0].pageY;
+    startEvent = e;
+    isMoving = true;
+    didMoved = false;
+    startTime = new Date().getTime();
+    this.addEventListener('touchmove', onTouchMove, false);
+    this.addEventListener('touchend', onTouchEnd, false);
+  }
+}
+
+function init() {
+  this.addEventListener && this.addEventListener('touchstart', onTouchStart, false);
+}
+
+function teardown() {
+  this.removeEventListener('touchstart', onTouchStart);
+}
+
+var SpotSwipe =
+/*#__PURE__*/
+function () {
+  function SpotSwipe($) {
+    _classCallCheck(this, SpotSwipe);
+
+    this.version = '1.0.0';
+    this.enabled = 'ontouchstart' in document.documentElement;
+    this.preventDefault = false;
+    this.moveThreshold = 75;
+    this.timeThreshold = 200;
+    this.$ = $;
+
+    this._init();
+  }
+
+  _createClass(SpotSwipe, [{
+    key: "_init",
+    value: function _init() {
+      var $ = this.$;
+      $.event.special.swipe = {
+        setup: init
+      };
+      $.event.special.tap = {
+        setup: init
+      };
+      $.each(['left', 'up', 'down', 'right'], function () {
+        $.event.special["swipe".concat(this)] = {
+          setup: function setup() {
+            $(this).on('swipe', $.noop);
+          }
+        };
+      });
+    }
+  }]);
+
+  return SpotSwipe;
+}();
+/****************************************************
+ * As far as I can tell, both setupSpotSwipe and    *
+ * setupTouchHandler should be idempotent,          *
+ * because they directly replace functions &        *
+ * values, and do not add event handlers directly.  *
+ ****************************************************/
+
+
+Touch.setupSpotSwipe = function ($) {
+  $.spotSwipe = new SpotSwipe($);
+};
+/****************************************************
+ * Method for adding pseudo drag events to elements *
+ ***************************************************/
+
+
+Touch.setupTouchHandler = function ($) {
+  $.fn.addTouch = function () {
+    this.each(function (i, el) {
+      $(el).bind('touchstart touchmove touchend touchcancel', function (event) {
+        //we pass the original event object because the jQuery event
+        //object is normalized to w3c specs and does not provide the TouchList
+        handleTouch(event);
+      });
+    });
+
+    var handleTouch = function handleTouch(event) {
+      var touches = event.changedTouches,
+          first = touches[0],
+          eventTypes = {
+        touchstart: 'mousedown',
+        touchmove: 'mousemove',
+        touchend: 'mouseup'
+      },
+          type = eventTypes[event.type],
+          simulatedEvent;
+
+      if ('MouseEvent' in window && typeof window.MouseEvent === 'function') {
+        simulatedEvent = new window.MouseEvent(type, {
+          'bubbles': true,
+          'cancelable': true,
+          'screenX': first.screenX,
+          'screenY': first.screenY,
+          'clientX': first.clientX,
+          'clientY': first.clientY
+        });
+      } else {
+        simulatedEvent = document.createEvent('MouseEvent');
+        simulatedEvent.initMouseEvent(type, true, true, window, 1, first.screenX, first.screenY, first.clientX, first.clientY, false, false, false, false, 0
+        /*left*/
+        , null);
+      }
+
+      first.target.dispatchEvent(simulatedEvent);
+    };
+  };
+};
+
+Touch.init = function ($) {
+  if (typeof $.spotSwipe === 'undefined') {
+    Touch.setupSpotSwipe($);
+    Touch.setupTouchHandler($);
+  }
+};
+
+
+
+/***/ }),
+
+/***/ "./js/foundation.util.triggers.js":
+/*!****************************************!*\
+  !*** ./js/foundation.util.triggers.js ***!
+  \****************************************/
+/*! exports provided: Triggers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Triggers", function() { return Triggers; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.core.utils */ "./js/foundation.core.utils.js");
+/* harmony import */ var _foundation_util_motion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.util.motion */ "./js/foundation.util.motion.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+
+
+
+var MutationObserver = function () {
+  var prefixes = ['WebKit', 'Moz', 'O', 'Ms', ''];
+
+  for (var i = 0; i < prefixes.length; i++) {
+    if ("".concat(prefixes[i], "MutationObserver") in window) {
+      return window["".concat(prefixes[i], "MutationObserver")];
+    }
+  }
+
+  return false;
+}();
+
+var triggers = function triggers(el, type) {
+  el.data(type).split(' ').forEach(function (id) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#".concat(id))[type === 'close' ? 'trigger' : 'triggerHandler']("".concat(type, ".zf.trigger"), [el]);
+  });
+};
+
+var Triggers = {
+  Listeners: {
+    Basic: {},
+    Global: {}
+  },
+  Initializers: {}
+};
+Triggers.Listeners.Basic = {
+  openListener: function openListener() {
+    triggers(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this), 'open');
+  },
+  closeListener: function closeListener() {
+    var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('close');
+
+    if (id) {
+      triggers(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this), 'close');
+    } else {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).trigger('close.zf.trigger');
+    }
+  },
+  toggleListener: function toggleListener() {
+    var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('toggle');
+
+    if (id) {
+      triggers(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this), 'toggle');
+    } else {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).trigger('toggle.zf.trigger');
+    }
+  },
+  closeableListener: function closeableListener(e) {
+    e.stopPropagation();
+    var animation = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('closable');
+
+    if (animation !== '') {
+      _foundation_util_motion__WEBPACK_IMPORTED_MODULE_2__["Motion"].animateOut(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this), animation, function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).trigger('closed.zf');
+      });
+    } else {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).fadeOut().trigger('closed.zf');
+    }
+  },
+  toggleFocusListener: function toggleFocusListener() {
+    var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('toggle-focus');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#".concat(id)).triggerHandler('toggle.zf.trigger', [jquery__WEBPACK_IMPORTED_MODULE_0___default()(this)]);
+  }
+}; // Elements with [data-open] will reveal a plugin that supports it when clicked.
+
+Triggers.Initializers.addOpenListener = function ($elem) {
+  $elem.off('click.zf.trigger', Triggers.Listeners.Basic.openListener);
+  $elem.on('click.zf.trigger', '[data-open]', Triggers.Listeners.Basic.openListener);
+}; // Elements with [data-close] will close a plugin that supports it when clicked.
+// If used without a value on [data-close], the event will bubble, allowing it to close a parent component.
+
+
+Triggers.Initializers.addCloseListener = function ($elem) {
+  $elem.off('click.zf.trigger', Triggers.Listeners.Basic.closeListener);
+  $elem.on('click.zf.trigger', '[data-close]', Triggers.Listeners.Basic.closeListener);
+}; // Elements with [data-toggle] will toggle a plugin that supports it when clicked.
+
+
+Triggers.Initializers.addToggleListener = function ($elem) {
+  $elem.off('click.zf.trigger', Triggers.Listeners.Basic.toggleListener);
+  $elem.on('click.zf.trigger', '[data-toggle]', Triggers.Listeners.Basic.toggleListener);
+}; // Elements with [data-closable] will respond to close.zf.trigger events.
+
+
+Triggers.Initializers.addCloseableListener = function ($elem) {
+  $elem.off('close.zf.trigger', Triggers.Listeners.Basic.closeableListener);
+  $elem.on('close.zf.trigger', '[data-closeable], [data-closable]', Triggers.Listeners.Basic.closeableListener);
+}; // Elements with [data-toggle-focus] will respond to coming in and out of focus
+
+
+Triggers.Initializers.addToggleFocusListener = function ($elem) {
+  $elem.off('focus.zf.trigger blur.zf.trigger', Triggers.Listeners.Basic.toggleFocusListener);
+  $elem.on('focus.zf.trigger blur.zf.trigger', '[data-toggle-focus]', Triggers.Listeners.Basic.toggleFocusListener);
+}; // More Global/complex listeners and triggers
+
+
+Triggers.Listeners.Global = {
+  resizeListener: function resizeListener($nodes) {
+    if (!MutationObserver) {
+      //fallback for IE 9
+      $nodes.each(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).triggerHandler('resizeme.zf.trigger');
+      });
+    } //trigger all listening elements and signal a resize event
+
+
+    $nodes.attr('data-events', "resize");
+  },
+  scrollListener: function scrollListener($nodes) {
+    if (!MutationObserver) {
+      //fallback for IE 9
+      $nodes.each(function () {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).triggerHandler('scrollme.zf.trigger');
+      });
+    } //trigger all listening elements and signal a scroll event
+
+
+    $nodes.attr('data-events', "scroll");
+  },
+  closeMeListener: function closeMeListener(e, pluginId) {
+    var plugin = e.namespace.split('.')[0];
+    var plugins = jquery__WEBPACK_IMPORTED_MODULE_0___default()("[data-".concat(plugin, "]")).not("[data-yeti-box=\"".concat(pluginId, "\"]"));
+    plugins.each(function () {
+      var _this = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+
+      _this.triggerHandler('close.zf.trigger', [_this]);
+    });
+  } // Global, parses whole document.
+
+};
+
+Triggers.Initializers.addClosemeListener = function (pluginName) {
+  var yetiBoxes = jquery__WEBPACK_IMPORTED_MODULE_0___default()('[data-yeti-box]'),
+      plugNames = ['dropdown', 'tooltip', 'reveal'];
+
+  if (pluginName) {
+    if (typeof pluginName === 'string') {
+      plugNames.push(pluginName);
+    } else if (_typeof(pluginName) === 'object' && typeof pluginName[0] === 'string') {
+      plugNames = plugNames.concat(pluginName);
+    } else {
+      console.error('Plugin names must be strings');
+    }
+  }
+
+  if (yetiBoxes.length) {
+    var listeners = plugNames.map(function (name) {
+      return "closeme.zf.".concat(name);
+    }).join(' ');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off(listeners).on(listeners, Triggers.Listeners.Global.closeMeListener);
+  }
+};
+
+function debounceGlobalListener(debounce, trigger, listener) {
+  var timer,
+      args = Array.prototype.slice.call(arguments, 3);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off(trigger).on(trigger, function (e) {
+    if (timer) {
+      clearTimeout(timer);
+    }
+
+    timer = setTimeout(function () {
+      listener.apply(null, args);
+    }, debounce || 10); //default time to emit scroll event
+  });
+}
+
+Triggers.Initializers.addResizeListener = function (debounce) {
+  var $nodes = jquery__WEBPACK_IMPORTED_MODULE_0___default()('[data-resize]');
+
+  if ($nodes.length) {
+    debounceGlobalListener(debounce, 'resize.zf.trigger', Triggers.Listeners.Global.resizeListener, $nodes);
+  }
+};
+
+Triggers.Initializers.addScrollListener = function (debounce) {
+  var $nodes = jquery__WEBPACK_IMPORTED_MODULE_0___default()('[data-scroll]');
+
+  if ($nodes.length) {
+    debounceGlobalListener(debounce, 'scroll.zf.trigger', Triggers.Listeners.Global.scrollListener, $nodes);
+  }
+};
+
+Triggers.Initializers.addMutationEventsListener = function ($elem) {
+  if (!MutationObserver) {
+    return false;
+  }
+
+  var $nodes = $elem.find('[data-resize], [data-scroll], [data-mutate]'); //element callback
+
+  var listeningElementsMutation = function listeningElementsMutation(mutationRecordsList) {
+    var $target = jquery__WEBPACK_IMPORTED_MODULE_0___default()(mutationRecordsList[0].target); //trigger the event handler for the element depending on type
+
+    switch (mutationRecordsList[0].type) {
+      case "attributes":
+        if ($target.attr("data-events") === "scroll" && mutationRecordsList[0].attributeName === "data-events") {
+          $target.triggerHandler('scrollme.zf.trigger', [$target, window.pageYOffset]);
+        }
+
+        if ($target.attr("data-events") === "resize" && mutationRecordsList[0].attributeName === "data-events") {
+          $target.triggerHandler('resizeme.zf.trigger', [$target]);
+        }
+
+        if (mutationRecordsList[0].attributeName === "style") {
+          $target.closest("[data-mutate]").attr("data-events", "mutate");
+          $target.closest("[data-mutate]").triggerHandler('mutateme.zf.trigger', [$target.closest("[data-mutate]")]);
+        }
+
+        break;
+
+      case "childList":
+        $target.closest("[data-mutate]").attr("data-events", "mutate");
+        $target.closest("[data-mutate]").triggerHandler('mutateme.zf.trigger', [$target.closest("[data-mutate]")]);
+        break;
+
+      default:
+        return false;
+      //nothing
+    }
+  };
+
+  if ($nodes.length) {
+    //for each element that needs to listen for resizing, scrolling, or mutation add a single observer
+    for (var i = 0; i <= $nodes.length - 1; i++) {
+      var elementObserver = new MutationObserver(listeningElementsMutation);
+      elementObserver.observe($nodes[i], {
+        attributes: true,
+        childList: true,
+        characterData: false,
+        subtree: true,
+        attributeFilter: ["data-events", "style"]
+      });
+    }
+  }
+};
+
+Triggers.Initializers.addSimpleListeners = function () {
+  var $document = jquery__WEBPACK_IMPORTED_MODULE_0___default()(document);
+  Triggers.Initializers.addOpenListener($document);
+  Triggers.Initializers.addCloseListener($document);
+  Triggers.Initializers.addToggleListener($document);
+  Triggers.Initializers.addCloseableListener($document);
+  Triggers.Initializers.addToggleFocusListener($document);
+};
+
+Triggers.Initializers.addGlobalListeners = function () {
+  var $document = jquery__WEBPACK_IMPORTED_MODULE_0___default()(document);
+  Triggers.Initializers.addMutationEventsListener($document);
+  Triggers.Initializers.addResizeListener();
+  Triggers.Initializers.addScrollListener();
+  Triggers.Initializers.addClosemeListener();
+};
+
+Triggers.init = function ($, Foundation) {
+  Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["onLoad"])($(window), function () {
+    if ($.triggersInitialized !== true) {
+      Triggers.Initializers.addSimpleListeners();
+      Triggers.Initializers.addGlobalListeners();
+      $.triggersInitialized = true;
+    }
+  });
+
+  if (Foundation) {
+    Foundation.Triggers = Triggers; // Legacy included to be backwards compatible for now.
+
+    Foundation.IHearYou = Triggers.Initializers.addGlobalListeners;
+  }
+};
+
+
+
+/***/ }),
+
+/***/ 0:
+/*!****************************************!*\
+  !*** multi ./js/entries/foundation.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! /Users/ncoden/Documents/Documents/Projects/Programmation/Web/2016/Foundation/foundation-sites/js/entries/foundation.js */"./js/entries/foundation.js");
+
+
+/***/ }),
+
+/***/ "jquery":
+/*!********************************************************************************************!*\
+  !*** external {"root":["jQuery"],"amd":"jquery","commonjs":"jquery","commonjs2":"jquery"} ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_jquery__;
+
+/***/ })
+
+/******/ });
+});
+//# sourceMappingURL=foundation.js.map
 var Launchy=function(t){function e(o){if(n[o])return n[o].exports;var i=n[o]={i:o,l:!1,exports:{}};return t[o].call(i.exports,i,i.exports,e),i.l=!0,i.exports}var n={};return e.m=t,e.c=n,e.d=function(t,n,o){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:o})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=0)}([function(t,e,n){"use strict";function o(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0}),e.Launchy=void 0;var i=function(){function t(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}return function(e,n,o){return n&&t(e.prototype,n),o&&t(e,o),e}}();/**
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * Launchy! 🚀 — An Accessible Modal Window
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *
@@ -10436,6 +23659,888 @@ var i=[];return this._findRelated().filter(":checked").each(function(){i.push(e(
 !function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define("whatInput",[],t):"object"==typeof exports?exports.whatInput=t():e.whatInput=t()}(this,function(){return function(n){var o={};function i(e){if(o[e])return o[e].exports;var t=o[e]={exports:{},id:e,loaded:!1};return n[e].call(t.exports,t,t.exports,i),t.loaded=!0,t.exports}return i.m=n,i.c=o,i.p="",i(0)}([function(e,t){"use strict";e.exports=function(){if("undefined"==typeof document||"undefined"==typeof window)return{ask:function(){return"initial"},element:function(){return null},ignoreKeys:function(){},specificKeys:function(){},registerOnChange:function(){},unRegisterOnChange:function(){}};var t=document.documentElement,n=null,u="initial",a=u;try{window.sessionStorage.getItem("what-input")&&(u=window.sessionStorage.getItem("what-input")),window.sessionStorage.getItem("what-intent")&&(a=window.sessionStorage.getItem("what-intent"))}catch(e){}var o=null,d=["input","select","textarea"],i=[],c=[16,17,18,91,93],w=[],f={keydown:"keyboard",keyup:"keyboard",mousedown:"mouse",mousemove:"mouse",MSPointerDown:"pointer",MSPointerMove:"pointer",pointerdown:"pointer",pointermove:"pointer",touchstart:"touch"},p=!1,r=!1,s={x:null,y:null},l={2:"touch",3:"touch",4:"mouse"},m=!1;try{var e=Object.defineProperty({},"passive",{get:function(){m=!0}});window.addEventListener("test",null,e)}catch(e){}var h=function(){var e=!!m&&{passive:!0};window.PointerEvent?(window.addEventListener("pointerdown",v),window.addEventListener("pointermove",g)):window.MSPointerEvent?(window.addEventListener("MSPointerDown",v),window.addEventListener("MSPointerMove",g)):(window.addEventListener("mousedown",v),window.addEventListener("mousemove",g),"ontouchstart"in window&&(window.addEventListener("touchstart",x,e),window.addEventListener("touchend",v))),window.addEventListener(b(),g,e),window.addEventListener("keydown",x),window.addEventListener("keyup",x),window.addEventListener("focusin",E),window.addEventListener("focusout",L)},v=function(e){if(!p){var t=e.which,n=f[e.type];"pointer"===n&&(n=S(e));var o=!w.length&&-1===c.indexOf(t),i=w.length&&-1!==w.indexOf(t),r="keyboard"===n&&t&&(o||i)||"mouse"===n||"touch"===n;if(u!==n&&r){u=n;try{window.sessionStorage.setItem("what-input",u)}catch(e){}y("input")}if(a!==n&&r){var s=document.activeElement;if(s&&s.nodeName&&-1===d.indexOf(s.nodeName.toLowerCase())){a=n;try{window.sessionStorage.setItem("what-intent",a)}catch(e){}y("intent")}}}},y=function(e){t.setAttribute("data-what"+e,"input"===e?u:a),I(e)},g=function(e){if(O(e),!p&&!r){var t=f[e.type];if("pointer"===t&&(t=S(e)),a!==t){a=t;try{window.sessionStorage.setItem("what-intent",a)}catch(e){}y("intent")}}},E=function(e){e.target.nodeName?(n=e.target.nodeName.toLowerCase(),t.setAttribute("data-whatelement",n),e.target.classList&&e.target.classList.length&&t.setAttribute("data-whatclasses",e.target.classList.toString().replace(" ",","))):L()},L=function(){n=null,t.removeAttribute("data-whatelement"),t.removeAttribute("data-whatclasses")},x=function(e){v(e),window.clearTimeout(o),p=!0,o=window.setTimeout(function(){p=!1},100)},S=function(e){return"number"==typeof e.pointerType?l[e.pointerType]:"pen"===e.pointerType?"touch":e.pointerType},b=function(){return"onwheel"in document.createElement("div")?"wheel":void 0!==document.onmousewheel?"mousewheel":"DOMMouseScroll"},I=function(e){for(var t=0,n=i.length;t<n;t++)i[t].type===e&&i[t].fn.call(void 0,"input"===e?u:a)},O=function(e){s.x!==e.screenX||s.y!==e.screenY?(r=!1,s.x=e.screenX,s.y=e.screenY):r=!0};return"addEventListener"in window&&Array.prototype.indexOf&&(f[b()]="mouse",h(),y("input"),y("intent")),{ask:function(e){return"intent"===e?a:u},element:function(){return n},ignoreKeys:function(e){c=e},specificKeys:function(e){w=e},registerOnChange:function(e,t){i.push({fn:e,type:t||"input"})},unRegisterOnChange:function(e){var t=function(e){for(var t=0,n=i.length;t<n;t++)if(i[t].fn===e)return t}(e);(t||0===t)&&i.splice(t,1)}}}()}])});
 //# sourceMappingURL=maps/what-input.min.js.map
 
+
+/* **********************************************
+     Begin prism-core.js
+********************************************** */
+
+var _self = (typeof window !== 'undefined')
+	? window   // if in browser
+	: (
+		(typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope)
+		? self // if in worker
+		: {}   // if in node js
+	);
+
+/**
+ * Prism: Lightweight, robust, elegant syntax highlighting
+ * MIT license http://www.opensource.org/licenses/mit-license.php/
+ * @author Lea Verou http://lea.verou.me
+ */
+
+var Prism = (function(){
+
+// Private helper vars
+var lang = /\blang(?:uage)?-([\w-]+)\b/i;
+var uniqueId = 0;
+
+var _ = _self.Prism = {
+	manual: _self.Prism && _self.Prism.manual,
+	disableWorkerMessageHandler: _self.Prism && _self.Prism.disableWorkerMessageHandler,
+	util: {
+		encode: function (tokens) {
+			if (tokens instanceof Token) {
+				return new Token(tokens.type, _.util.encode(tokens.content), tokens.alias);
+			} else if (_.util.type(tokens) === 'Array') {
+				return tokens.map(_.util.encode);
+			} else {
+				return tokens.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
+			}
+		},
+
+		type: function (o) {
+			return Object.prototype.toString.call(o).match(/\[object (\w+)\]/)[1];
+		},
+
+		objId: function (obj) {
+			if (!obj['__id']) {
+				Object.defineProperty(obj, '__id', { value: ++uniqueId });
+			}
+			return obj['__id'];
+		},
+
+		// Deep clone a language definition (e.g. to extend it)
+		clone: function (o, visited) {
+			var type = _.util.type(o);
+			visited = visited || {};
+
+			switch (type) {
+				case 'Object':
+					if (visited[_.util.objId(o)]) {
+						return visited[_.util.objId(o)];
+					}
+					var clone = {};
+					visited[_.util.objId(o)] = clone;
+
+					for (var key in o) {
+						if (o.hasOwnProperty(key)) {
+							clone[key] = _.util.clone(o[key], visited);
+						}
+					}
+
+					return clone;
+
+				case 'Array':
+					if (visited[_.util.objId(o)]) {
+						return visited[_.util.objId(o)];
+					}
+					var clone = [];
+					visited[_.util.objId(o)] = clone;
+
+					o.forEach(function (v, i) {
+						clone[i] = _.util.clone(v, visited);
+					});
+
+					return clone;
+			}
+
+			return o;
+		}
+	},
+
+	languages: {
+		extend: function (id, redef) {
+			var lang = _.util.clone(_.languages[id]);
+
+			for (var key in redef) {
+				lang[key] = redef[key];
+			}
+
+			return lang;
+		},
+
+		/**
+		 * Insert a token before another token in a language literal
+		 * As this needs to recreate the object (we cannot actually insert before keys in object literals),
+		 * we cannot just provide an object, we need anobject and a key.
+		 * @param inside The key (or language id) of the parent
+		 * @param before The key to insert before. If not provided, the function appends instead.
+		 * @param insert Object with the key/value pairs to insert
+		 * @param root The object that contains `inside`. If equal to Prism.languages, it can be omitted.
+		 */
+		insertBefore: function (inside, before, insert, root) {
+			root = root || _.languages;
+			var grammar = root[inside];
+
+			if (arguments.length == 2) {
+				insert = arguments[1];
+
+				for (var newToken in insert) {
+					if (insert.hasOwnProperty(newToken)) {
+						grammar[newToken] = insert[newToken];
+					}
+				}
+
+				return grammar;
+			}
+
+			var ret = {};
+
+			for (var token in grammar) {
+
+				if (grammar.hasOwnProperty(token)) {
+
+					if (token == before) {
+
+						for (var newToken in insert) {
+
+							if (insert.hasOwnProperty(newToken)) {
+								ret[newToken] = insert[newToken];
+							}
+						}
+					}
+
+					ret[token] = grammar[token];
+				}
+			}
+
+			// Update references in other language definitions
+			_.languages.DFS(_.languages, function(key, value) {
+				if (value === root[inside] && key != inside) {
+					this[key] = ret;
+				}
+			});
+
+			return root[inside] = ret;
+		},
+
+		// Traverse a language definition with Depth First Search
+		DFS: function(o, callback, type, visited) {
+			visited = visited || {};
+			for (var i in o) {
+				if (o.hasOwnProperty(i)) {
+					callback.call(o, i, o[i], type || i);
+
+					if (_.util.type(o[i]) === 'Object' && !visited[_.util.objId(o[i])]) {
+						visited[_.util.objId(o[i])] = true;
+						_.languages.DFS(o[i], callback, null, visited);
+					}
+					else if (_.util.type(o[i]) === 'Array' && !visited[_.util.objId(o[i])]) {
+						visited[_.util.objId(o[i])] = true;
+						_.languages.DFS(o[i], callback, i, visited);
+					}
+				}
+			}
+		}
+	},
+	plugins: {},
+
+	highlightAll: function(async, callback) {
+		_.highlightAllUnder(document, async, callback);
+	},
+
+	highlightAllUnder: function(container, async, callback) {
+		var env = {
+			callback: callback,
+			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
+		};
+
+		_.hooks.run("before-highlightall", env);
+
+		var elements = env.elements || container.querySelectorAll(env.selector);
+
+		for (var i=0, element; element = elements[i++];) {
+			_.highlightElement(element, async === true, env.callback);
+		}
+	},
+
+	highlightElement: function(element, async, callback) {
+		// Find language
+		var language, grammar, parent = element;
+
+		while (parent && !lang.test(parent.className)) {
+			parent = parent.parentNode;
+		}
+
+		if (parent) {
+			language = (parent.className.match(lang) || [,''])[1].toLowerCase();
+			grammar = _.languages[language];
+		}
+
+		// Set language on the element, if not present
+		element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
+
+		if (element.parentNode) {
+			// Set language on the parent, for styling
+			parent = element.parentNode;
+
+			if (/pre/i.test(parent.nodeName)) {
+				parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
+			}
+		}
+
+		var code = element.textContent;
+
+		var env = {
+			element: element,
+			language: language,
+			grammar: grammar,
+			code: code
+		};
+
+		_.hooks.run('before-sanity-check', env);
+
+		if (!env.code || !env.grammar) {
+			if (env.code) {
+				_.hooks.run('before-highlight', env);
+				env.element.textContent = env.code;
+				_.hooks.run('after-highlight', env);
+			}
+			_.hooks.run('complete', env);
+			return;
+		}
+
+		_.hooks.run('before-highlight', env);
+
+		if (async && _self.Worker) {
+			var worker = new Worker(_.filename);
+
+			worker.onmessage = function(evt) {
+				env.highlightedCode = evt.data;
+
+				_.hooks.run('before-insert', env);
+
+				env.element.innerHTML = env.highlightedCode;
+
+				callback && callback.call(env.element);
+				_.hooks.run('after-highlight', env);
+				_.hooks.run('complete', env);
+			};
+
+			worker.postMessage(JSON.stringify({
+				language: env.language,
+				code: env.code,
+				immediateClose: true
+			}));
+		}
+		else {
+			env.highlightedCode = _.highlight(env.code, env.grammar, env.language);
+
+			_.hooks.run('before-insert', env);
+
+			env.element.innerHTML = env.highlightedCode;
+
+			callback && callback.call(element);
+
+			_.hooks.run('after-highlight', env);
+			_.hooks.run('complete', env);
+		}
+	},
+
+	highlight: function (text, grammar, language) {
+		var env = {
+			code: text,
+			grammar: grammar,
+			language: language
+		};
+		_.hooks.run('before-tokenize', env);
+		env.tokens = _.tokenize(env.code, env.grammar);
+		_.hooks.run('after-tokenize', env);
+		return Token.stringify(_.util.encode(env.tokens), env.language);
+	},
+
+	matchGrammar: function (text, strarr, grammar, index, startPos, oneshot, target) {
+		var Token = _.Token;
+
+		for (var token in grammar) {
+			if(!grammar.hasOwnProperty(token) || !grammar[token]) {
+				continue;
+			}
+
+			if (token == target) {
+				return;
+			}
+
+			var patterns = grammar[token];
+			patterns = (_.util.type(patterns) === "Array") ? patterns : [patterns];
+
+			for (var j = 0; j < patterns.length; ++j) {
+				var pattern = patterns[j],
+					inside = pattern.inside,
+					lookbehind = !!pattern.lookbehind,
+					greedy = !!pattern.greedy,
+					lookbehindLength = 0,
+					alias = pattern.alias;
+
+				if (greedy && !pattern.pattern.global) {
+					// Without the global flag, lastIndex won't work
+					var flags = pattern.pattern.toString().match(/[imuy]*$/)[0];
+					pattern.pattern = RegExp(pattern.pattern.source, flags + "g");
+				}
+
+				pattern = pattern.pattern || pattern;
+
+				// Don’t cache length as it changes during the loop
+				for (var i = index, pos = startPos; i < strarr.length; pos += strarr[i].length, ++i) {
+
+					var str = strarr[i];
+
+					if (strarr.length > text.length) {
+						// Something went terribly wrong, ABORT, ABORT!
+						return;
+					}
+
+					if (str instanceof Token) {
+						continue;
+					}
+
+					if (greedy && i != strarr.length - 1) {
+						pattern.lastIndex = pos;
+						var match = pattern.exec(text);
+						if (!match) {
+							break;
+						}
+
+						var from = match.index + (lookbehind ? match[1].length : 0),
+						    to = match.index + match[0].length,
+						    k = i,
+						    p = pos;
+
+						for (var len = strarr.length; k < len && (p < to || (!strarr[k].type && !strarr[k - 1].greedy)); ++k) {
+							p += strarr[k].length;
+							// Move the index i to the element in strarr that is closest to from
+							if (from >= p) {
+								++i;
+								pos = p;
+							}
+						}
+
+						// If strarr[i] is a Token, then the match starts inside another Token, which is invalid
+						if (strarr[i] instanceof Token) {
+							continue;
+						}
+
+						// Number of tokens to delete and replace with the new match
+						delNum = k - i;
+						str = text.slice(pos, p);
+						match.index -= pos;
+					} else {
+						pattern.lastIndex = 0;
+
+						var match = pattern.exec(str),
+							delNum = 1;
+					}
+
+					if (!match) {
+						if (oneshot) {
+							break;
+						}
+
+						continue;
+					}
+
+					if(lookbehind) {
+						lookbehindLength = match[1] ? match[1].length : 0;
+					}
+
+					var from = match.index + lookbehindLength,
+					    match = match[0].slice(lookbehindLength),
+					    to = from + match.length,
+					    before = str.slice(0, from),
+					    after = str.slice(to);
+
+					var args = [i, delNum];
+
+					if (before) {
+						++i;
+						pos += before.length;
+						args.push(before);
+					}
+
+					var wrapped = new Token(token, inside? _.tokenize(match, inside) : match, alias, match, greedy);
+
+					args.push(wrapped);
+
+					if (after) {
+						args.push(after);
+					}
+
+					Array.prototype.splice.apply(strarr, args);
+
+					if (delNum != 1)
+						_.matchGrammar(text, strarr, grammar, i, pos, true, token);
+
+					if (oneshot)
+						break;
+				}
+			}
+		}
+	},
+
+	tokenize: function(text, grammar, language) {
+		var strarr = [text];
+
+		var rest = grammar.rest;
+
+		if (rest) {
+			for (var token in rest) {
+				grammar[token] = rest[token];
+			}
+
+			delete grammar.rest;
+		}
+
+		_.matchGrammar(text, strarr, grammar, 0, 0, false);
+
+		return strarr;
+	},
+
+	hooks: {
+		all: {},
+
+		add: function (name, callback) {
+			var hooks = _.hooks.all;
+
+			hooks[name] = hooks[name] || [];
+
+			hooks[name].push(callback);
+		},
+
+		run: function (name, env) {
+			var callbacks = _.hooks.all[name];
+
+			if (!callbacks || !callbacks.length) {
+				return;
+			}
+
+			for (var i=0, callback; callback = callbacks[i++];) {
+				callback(env);
+			}
+		}
+	}
+};
+
+var Token = _.Token = function(type, content, alias, matchedStr, greedy) {
+	this.type = type;
+	this.content = content;
+	this.alias = alias;
+	// Copy of the full string this token was created from
+	this.length = (matchedStr || "").length|0;
+	this.greedy = !!greedy;
+};
+
+Token.stringify = function(o, language, parent) {
+	if (typeof o == 'string') {
+		return o;
+	}
+
+	if (_.util.type(o) === 'Array') {
+		return o.map(function(element) {
+			return Token.stringify(element, language, o);
+		}).join('');
+	}
+
+	var env = {
+		type: o.type,
+		content: Token.stringify(o.content, language, parent),
+		tag: 'span',
+		classes: ['token', o.type],
+		attributes: {},
+		language: language,
+		parent: parent
+	};
+
+	if (o.alias) {
+		var aliases = _.util.type(o.alias) === 'Array' ? o.alias : [o.alias];
+		Array.prototype.push.apply(env.classes, aliases);
+	}
+
+	_.hooks.run('wrap', env);
+
+	var attributes = Object.keys(env.attributes).map(function(name) {
+		return name + '="' + (env.attributes[name] || '').replace(/"/g, '&quot;') + '"';
+	}).join(' ');
+
+	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + (attributes ? ' ' + attributes : '') + '>' + env.content + '</' + env.tag + '>';
+
+};
+
+if (!_self.document) {
+	if (!_self.addEventListener) {
+		// in Node.js
+		return _self.Prism;
+	}
+
+	if (!_.disableWorkerMessageHandler) {
+		// In worker
+		_self.addEventListener('message', function (evt) {
+			var message = JSON.parse(evt.data),
+				lang = message.language,
+				code = message.code,
+				immediateClose = message.immediateClose;
+
+			_self.postMessage(_.highlight(code, _.languages[lang], lang));
+			if (immediateClose) {
+				_self.close();
+			}
+		}, false);
+	}
+
+	return _self.Prism;
+}
+
+//Get current script and highlight
+var script = document.currentScript || [].slice.call(document.getElementsByTagName("script")).pop();
+
+if (script) {
+	_.filename = script.src;
+
+	if (!_.manual && !script.hasAttribute('data-manual')) {
+		if(document.readyState !== "loading") {
+			if (window.requestAnimationFrame) {
+				window.requestAnimationFrame(_.highlightAll);
+			} else {
+				window.setTimeout(_.highlightAll, 16);
+			}
+		}
+		else {
+			document.addEventListener('DOMContentLoaded', _.highlightAll);
+		}
+	}
+}
+
+return _self.Prism;
+
+})();
+
+if (typeof module !== 'undefined' && module.exports) {
+	module.exports = Prism;
+}
+
+// hack for components to work correctly in node.js
+if (typeof global !== 'undefined') {
+	global.Prism = Prism;
+}
+
+
+/* **********************************************
+     Begin prism-markup.js
+********************************************** */
+
+Prism.languages.markup = {
+	'comment': /<!--[\s\S]*?-->/,
+	'prolog': /<\?[\s\S]+?\?>/,
+	'doctype': /<!DOCTYPE[\s\S]+?>/i,
+	'cdata': /<!\[CDATA\[[\s\S]*?]]>/i,
+	'tag': {
+		pattern: /<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i,
+		greedy: true,
+		inside: {
+			'tag': {
+				pattern: /^<\/?[^\s>\/]+/i,
+				inside: {
+					'punctuation': /^<\/?/,
+					'namespace': /^[^\s>\/:]+:/
+				}
+			},
+			'attr-value': {
+				pattern: /=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+)/i,
+				inside: {
+					'punctuation': [
+						/^=/,
+						{
+							pattern: /(^|[^\\])["']/,
+							lookbehind: true
+						}
+					]
+				}
+			},
+			'punctuation': /\/?>/,
+			'attr-name': {
+				pattern: /[^\s>\/]+/,
+				inside: {
+					'namespace': /^[^\s>\/:]+:/
+				}
+			}
+
+		}
+	},
+	'entity': /&#?[\da-z]{1,8};/i
+};
+
+Prism.languages.markup['tag'].inside['attr-value'].inside['entity'] =
+	Prism.languages.markup['entity'];
+
+// Plugin to make entity title show the real entity, idea by Roman Komarov
+Prism.hooks.add('wrap', function(env) {
+
+	if (env.type === 'entity') {
+		env.attributes['title'] = env.content.replace(/&amp;/, '&');
+	}
+});
+
+Prism.languages.xml = Prism.languages.markup;
+Prism.languages.html = Prism.languages.markup;
+Prism.languages.mathml = Prism.languages.markup;
+Prism.languages.svg = Prism.languages.markup;
+
+
+/* **********************************************
+     Begin prism-css.js
+********************************************** */
+
+Prism.languages.css = {
+	'comment': /\/\*[\s\S]*?\*\//,
+	'atrule': {
+		pattern: /@[\w-]+?.*?(?:;|(?=\s*\{))/i,
+		inside: {
+			'rule': /@[\w-]+/
+			// See rest below
+		}
+	},
+	'url': /url\((?:(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1|.*?)\)/i,
+	'selector': /[^{}\s][^{};]*?(?=\s*\{)/,
+	'string': {
+		pattern: /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+		greedy: true
+	},
+	'property': /[-_a-z\xA0-\uFFFF][-\w\xA0-\uFFFF]*(?=\s*:)/i,
+	'important': /\B!important\b/i,
+	'function': /[-a-z0-9]+(?=\()/i,
+	'punctuation': /[(){};:]/
+};
+
+Prism.languages.css['atrule'].inside.rest = Prism.languages.css;
+
+if (Prism.languages.markup) {
+	Prism.languages.insertBefore('markup', 'tag', {
+		'style': {
+			pattern: /(<style[\s\S]*?>)[\s\S]*?(?=<\/style>)/i,
+			lookbehind: true,
+			inside: Prism.languages.css,
+			alias: 'language-css',
+			greedy: true
+		}
+	});
+
+	Prism.languages.insertBefore('inside', 'attr-value', {
+		'style-attr': {
+			pattern: /\s*style=("|')(?:\\[\s\S]|(?!\1)[^\\])*\1/i,
+			inside: {
+				'attr-name': {
+					pattern: /^\s*style/i,
+					inside: Prism.languages.markup.tag.inside
+				},
+				'punctuation': /^\s*=\s*['"]|['"]\s*$/,
+				'attr-value': {
+					pattern: /.+/i,
+					inside: Prism.languages.css
+				}
+			},
+			alias: 'language-css'
+		}
+	}, Prism.languages.markup.tag);
+}
+
+/* **********************************************
+     Begin prism-clike.js
+********************************************** */
+
+Prism.languages.clike = {
+	'comment': [
+		{
+			pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
+			lookbehind: true
+		},
+		{
+			pattern: /(^|[^\\:])\/\/.*/,
+			lookbehind: true,
+			greedy: true
+		}
+	],
+	'string': {
+		pattern: /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+		greedy: true
+	},
+	'class-name': {
+		pattern: /((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[\w.\\]+/i,
+		lookbehind: true,
+		inside: {
+			punctuation: /[.\\]/
+		}
+	},
+	'keyword': /\b(?:if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,
+	'boolean': /\b(?:true|false)\b/,
+	'function': /[a-z0-9_]+(?=\()/i,
+	'number': /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i,
+	'operator': /--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,
+	'punctuation': /[{}[\];(),.:]/
+};
+
+
+/* **********************************************
+     Begin prism-javascript.js
+********************************************** */
+
+Prism.languages.javascript = Prism.languages.extend('clike', {
+	'keyword': /\b(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\b/,
+	'number': /\b(?:0[xX][\dA-Fa-f]+|0[bB][01]+|0[oO][0-7]+|NaN|Infinity)\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][+-]?\d+)?/,
+	// Allow for all non-ASCII characters (See http://stackoverflow.com/a/2008444)
+	'function': /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*\()/i,
+	'operator': /-[-=]?|\+[+=]?|!=?=?|<<?=?|>>?>?=?|=(?:==?|>)?|&[&=]?|\|[|=]?|\*\*?=?|\/=?|~|\^=?|%=?|\?|\.{3}/
+});
+
+Prism.languages.insertBefore('javascript', 'keyword', {
+	'regex': {
+		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s])\s*)\/(\[[^\]\r\n]+]|\\.|[^/\\\[\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})\]]))/,
+		lookbehind: true,
+		greedy: true
+	},
+	// This must be declared before keyword because we use "function" inside the look-forward
+	'function-variable': {
+		pattern: /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*=\s*(?:function\b|(?:\([^()]*\)|[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)\s*=>))/i,
+		alias: 'function'
+	},
+	'constant': /\b[A-Z][A-Z\d_]*\b/
+});
+
+Prism.languages.insertBefore('javascript', 'string', {
+	'template-string': {
+		pattern: /`(?:\\[\s\S]|\${[^}]+}|[^\\`])*`/,
+		greedy: true,
+		inside: {
+			'interpolation': {
+				pattern: /\${[^}]+}/,
+				inside: {
+					'interpolation-punctuation': {
+						pattern: /^\${|}$/,
+						alias: 'punctuation'
+					},
+					rest: null // See below
+				}
+			},
+			'string': /[\s\S]+/
+		}
+	}
+});
+Prism.languages.javascript['template-string'].inside['interpolation'].inside.rest = Prism.languages.javascript;
+
+if (Prism.languages.markup) {
+	Prism.languages.insertBefore('markup', 'tag', {
+		'script': {
+			pattern: /(<script[\s\S]*?>)[\s\S]*?(?=<\/script>)/i,
+			lookbehind: true,
+			inside: Prism.languages.javascript,
+			alias: 'language-javascript',
+			greedy: true
+		}
+	});
+}
+
+Prism.languages.js = Prism.languages.javascript;
+
+
+/* **********************************************
+     Begin prism-file-highlight.js
+********************************************** */
+
+(function () {
+	if (typeof self === 'undefined' || !self.Prism || !self.document || !document.querySelector) {
+		return;
+	}
+
+	self.Prism.fileHighlight = function() {
+
+		var Extensions = {
+			'js': 'javascript',
+			'py': 'python',
+			'rb': 'ruby',
+			'ps1': 'powershell',
+			'psm1': 'powershell',
+			'sh': 'bash',
+			'bat': 'batch',
+			'h': 'c',
+			'tex': 'latex'
+		};
+
+		Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+			var src = pre.getAttribute('data-src');
+
+			var language, parent = pre;
+			var lang = /\blang(?:uage)?-([\w-]+)\b/i;
+			while (parent && !lang.test(parent.className)) {
+				parent = parent.parentNode;
+			}
+
+			if (parent) {
+				language = (pre.className.match(lang) || [, ''])[1];
+			}
+
+			if (!language) {
+				var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+				language = Extensions[extension] || extension;
+			}
+
+			var code = document.createElement('code');
+			code.className = 'language-' + language;
+
+			pre.textContent = '';
+
+			code.textContent = 'Loading…';
+
+			pre.appendChild(code);
+
+			var xhr = new XMLHttpRequest();
+
+			xhr.open('GET', src, true);
+
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState == 4) {
+
+					if (xhr.status < 400 && xhr.responseText) {
+						code.textContent = xhr.responseText;
+
+						Prism.highlightElement(code);
+					}
+					else if (xhr.status >= 400) {
+						code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+					}
+					else {
+						code.textContent = '✖ Error: File does not exist or is empty';
+					}
+				}
+			};
+
+			xhr.send(null);
+		});
+
+		if (Prism.plugins.toolbar) {
+			Prism.plugins.toolbar.registerButton('download-file', function (env) {
+				var pre = env.element.parentNode;
+				if (!pre || !/pre/i.test(pre.nodeName) || !pre.hasAttribute('data-src') || !pre.hasAttribute('data-download-link')) {
+					return;
+				}
+				var src = pre.getAttribute('data-src');
+				var a = document.createElement('a');
+				a.textContent = pre.getAttribute('data-download-link-label') || 'Download';
+				a.setAttribute('download', '');
+				a.href = src;
+				return a;
+			});
+		}
+
+	};
+
+	document.addEventListener('DOMContentLoaded', self.Prism.fileHighlight);
+
+})();
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.focusTrap=f()}})(function(){var define,module,exports;return function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r}()({1:[function(require,module,exports){var tabbable=require("tabbable");var xtend=require("xtend");var activeFocusTraps=function(){var trapQueue=[];return{activateTrap:function(trap){if(trapQueue.length>0){var activeTrap=trapQueue[trapQueue.length-1];if(activeTrap!==trap){activeTrap.pause()}}var trapIndex=trapQueue.indexOf(trap);if(trapIndex===-1){trapQueue.push(trap)}else{trapQueue.splice(trapIndex,1);trapQueue.push(trap)}},deactivateTrap:function(trap){var trapIndex=trapQueue.indexOf(trap);if(trapIndex!==-1){trapQueue.splice(trapIndex,1)}if(trapQueue.length>0){trapQueue[trapQueue.length-1].unpause()}}}}();function focusTrap(element,userOptions){var doc=document;var container=typeof element==="string"?doc.querySelector(element):element;var config=xtend({returnFocusOnDeactivate:true,escapeDeactivates:true},userOptions);var state={firstTabbableNode:null,lastTabbableNode:null,nodeFocusedBeforeActivation:null,mostRecentlyFocusedNode:null,active:false,paused:false};var trap={activate:activate,deactivate:deactivate,pause:pause,unpause:unpause};return trap;function activate(activateOptions){if(state.active)return;updateTabbableNodes();state.active=true;state.paused=false;state.nodeFocusedBeforeActivation=doc.activeElement;var onActivate=activateOptions&&activateOptions.onActivate?activateOptions.onActivate:config.onActivate;if(onActivate){onActivate()}addListeners();return trap}function deactivate(deactivateOptions){if(!state.active)return;removeListeners();state.active=false;state.paused=false;activeFocusTraps.deactivateTrap(trap);var onDeactivate=deactivateOptions&&deactivateOptions.onDeactivate!==undefined?deactivateOptions.onDeactivate:config.onDeactivate;if(onDeactivate){onDeactivate()}var returnFocus=deactivateOptions&&deactivateOptions.returnFocus!==undefined?deactivateOptions.returnFocus:config.returnFocusOnDeactivate;if(returnFocus){delay(function(){tryFocus(state.nodeFocusedBeforeActivation)})}return trap}function pause(){if(state.paused||!state.active)return;state.paused=true;removeListeners()}function unpause(){if(!state.paused||!state.active)return;state.paused=false;addListeners()}function addListeners(){if(!state.active)return;activeFocusTraps.activateTrap(trap);updateTabbableNodes();delay(function(){tryFocus(getInitialFocusNode())});doc.addEventListener("focusin",checkFocusIn,true);doc.addEventListener("mousedown",checkPointerDown,true);doc.addEventListener("touchstart",checkPointerDown,true);doc.addEventListener("click",checkClick,true);doc.addEventListener("keydown",checkKey,true);return trap}function removeListeners(){if(!state.active)return;doc.removeEventListener("focusin",checkFocusIn,true);doc.removeEventListener("mousedown",checkPointerDown,true);doc.removeEventListener("touchstart",checkPointerDown,true);doc.removeEventListener("click",checkClick,true);doc.removeEventListener("keydown",checkKey,true);return trap}function getNodeForOption(optionName){var optionValue=config[optionName];var node=optionValue;if(!optionValue){return null}if(typeof optionValue==="string"){node=doc.querySelector(optionValue);if(!node){throw new Error("`"+optionName+"` refers to no known node")}}if(typeof optionValue==="function"){node=optionValue();if(!node){throw new Error("`"+optionName+"` did not return a node")}}return node}function getInitialFocusNode(){var node;if(getNodeForOption("initialFocus")!==null){node=getNodeForOption("initialFocus")}else if(container.contains(doc.activeElement)){node=doc.activeElement}else{node=state.firstTabbableNode||getNodeForOption("fallbackFocus")}if(!node){throw new Error("You can't have a focus-trap without at least one focusable element")}return node}function checkPointerDown(e){if(container.contains(e.target))return;if(config.clickOutsideDeactivates){deactivate({returnFocus:!tabbable.isFocusable(e.target)})}else{e.preventDefault()}}function checkFocusIn(e){if(container.contains(e.target)||e.target instanceof Document){return}e.stopImmediatePropagation();tryFocus(state.mostRecentlyFocusedNode||getInitialFocusNode())}function checkKey(e){if(config.escapeDeactivates!==false&&isEscapeEvent(e)){e.preventDefault();deactivate();return}if(isTabEvent(e)){checkTab(e);return}}function checkTab(e){updateTabbableNodes();if(e.shiftKey&&e.target===state.firstTabbableNode){e.preventDefault();tryFocus(state.lastTabbableNode);return}if(!e.shiftKey&&e.target===state.lastTabbableNode){e.preventDefault();tryFocus(state.firstTabbableNode);return}}function checkClick(e){if(config.clickOutsideDeactivates)return;if(container.contains(e.target))return;e.preventDefault();e.stopImmediatePropagation()}function updateTabbableNodes(){var tabbableNodes=tabbable(container);state.firstTabbableNode=tabbableNodes[0]||getInitialFocusNode();state.lastTabbableNode=tabbableNodes[tabbableNodes.length-1]||getInitialFocusNode()}function tryFocus(node){if(node===doc.activeElement)return;if(!node||!node.focus){tryFocus(getInitialFocusNode());return}node.focus();state.mostRecentlyFocusedNode=node;if(isSelectableInput(node)){node.select()}}}function isSelectableInput(node){return node.tagName&&node.tagName.toLowerCase()==="input"&&typeof node.select==="function"}function isEscapeEvent(e){return e.key==="Escape"||e.key==="Esc"||e.keyCode===27}function isTabEvent(e){return e.key==="Tab"||e.keyCode===9}function delay(fn){return setTimeout(fn,0)}module.exports=focusTrap},{tabbable:2,xtend:3}],2:[function(require,module,exports){var candidateSelectors=["input","select","textarea","a[href]","button","[tabindex]","audio[controls]","video[controls]",'[contenteditable]:not([contenteditable="false"])'];var candidateSelector=candidateSelectors.join(",");var matches=typeof Element==="undefined"?function(){}:Element.prototype.matches||Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector;function tabbable(el,options){options=options||{};var elementDocument=el.ownerDocument||el;var regularTabbables=[];var orderedTabbables=[];var untouchabilityChecker=new UntouchabilityChecker(elementDocument);var candidates=el.querySelectorAll(candidateSelector);if(options.includeContainer){if(matches.call(el,candidateSelector)){candidates=Array.prototype.slice.apply(candidates);candidates.unshift(el)}}var i,candidate,candidateTabindex;for(i=0;i<candidates.length;i++){candidate=candidates[i];if(!isNodeMatchingSelectorTabbable(candidate,untouchabilityChecker))continue;candidateTabindex=getTabindex(candidate);if(candidateTabindex===0){regularTabbables.push(candidate)}else{orderedTabbables.push({documentOrder:i,tabIndex:candidateTabindex,node:candidate})}}var tabbableNodes=orderedTabbables.sort(sortOrderedTabbables).map(function(a){return a.node}).concat(regularTabbables);return tabbableNodes}tabbable.isTabbable=isTabbable;tabbable.isFocusable=isFocusable;function isNodeMatchingSelectorTabbable(node,untouchabilityChecker){if(!isNodeMatchingSelectorFocusable(node,untouchabilityChecker)||isNonTabbableRadio(node)||getTabindex(node)<0){return false}return true}function isTabbable(node,untouchabilityChecker){if(!node)throw new Error("No node provided");if(matches.call(node,candidateSelector)===false)return false;return isNodeMatchingSelectorTabbable(node,untouchabilityChecker)}function isNodeMatchingSelectorFocusable(node,untouchabilityChecker){untouchabilityChecker=untouchabilityChecker||new UntouchabilityChecker(node.ownerDocument||node);if(node.disabled||isHiddenInput(node)||untouchabilityChecker.isUntouchable(node)){return false}return true}var focusableCandidateSelector=candidateSelectors.concat("iframe").join(",");function isFocusable(node,untouchabilityChecker){if(!node)throw new Error("No node provided");if(matches.call(node,focusableCandidateSelector)===false)return false;return isNodeMatchingSelectorFocusable(node,untouchabilityChecker)}function getTabindex(node){var tabindexAttr=parseInt(node.getAttribute("tabindex"),10);if(!isNaN(tabindexAttr))return tabindexAttr;if(isContentEditable(node))return 0;return node.tabIndex}function sortOrderedTabbables(a,b){return a.tabIndex===b.tabIndex?a.documentOrder-b.documentOrder:a.tabIndex-b.tabIndex}function find(list,predicate){for(var i=0,length=list.length;i<length;i++){if(predicate(list[i]))return list[i]}}function isContentEditable(node){return node.contentEditable==="true"}function isInput(node){return node.tagName==="INPUT"}function isHiddenInput(node){return isInput(node)&&node.type==="hidden"}function isRadio(node){return isInput(node)&&node.type==="radio"}function isNonTabbableRadio(node){return isRadio(node)&&!isTabbableRadio(node)}function getCheckedRadio(nodes){for(var i=0;i<nodes.length;i++){if(nodes[i].checked){return nodes[i]}}}function isTabbableRadio(node){if(!node.name)return true;var radioSet=node.ownerDocument.querySelectorAll('input[type="radio"][name="'+node.name+'"]');var checked=getCheckedRadio(radioSet);return!checked||checked===node}function UntouchabilityChecker(elementDocument){this.doc=elementDocument;this.cache=[]}UntouchabilityChecker.prototype.hasDisplayNone=function hasDisplayNone(node,nodeComputedStyle){if(node.nodeType!==Node.ELEMENT_NODE)return false;var cached=find(this.cache,function(item){return item===node});if(cached)return cached[1];nodeComputedStyle=nodeComputedStyle||this.doc.defaultView.getComputedStyle(node);var result=false;if(nodeComputedStyle.display==="none"){result=true}else if(node.parentNode){result=this.hasDisplayNone(node.parentNode)}this.cache.push([node,result]);return result};UntouchabilityChecker.prototype.isUntouchable=function isUntouchable(node){if(node===this.doc.documentElement)return false;var computedStyle=this.doc.defaultView.getComputedStyle(node);if(this.hasDisplayNone(node,computedStyle))return true;return computedStyle.visibility==="hidden"};module.exports=tabbable},{}],3:[function(require,module,exports){module.exports=extend;var hasOwnProperty=Object.prototype.hasOwnProperty;function extend(){var target={};for(var i=0;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(hasOwnProperty.call(source,key)){target[key]=source[key]}}}return target}},{}]},{},[1])(1)});
+
+/*! ally.js - v1.4.1 - https://allyjs.io/ - MIT License */
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var t;t="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this,t.ally=e()}}(function(){var e;return function t(e,n,r){function i(a,u){if(!n[a]){if(!e[a]){var s="function"==typeof require&&require;if(!u&&s)return s(a,!0);if(o)return o(a,!0);var l=new Error("Cannot find module '"+a+"'");throw l.code="MODULE_NOT_FOUND",l}var c=n[a]={exports:{}};e[a][0].call(c.exports,function(t){var n=e[a][1][t];return i(n?n:t)},c,c.exports,t,e,n,r)}return n[a].exports}for(var o="function"==typeof require&&require,a=0;a<r.length;a++)i(r[a]);return i}({1:[function(e,t){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function r(e){return e&&"object"===("undefined"==typeof e?"undefined":ft(e))&&"default"in e?e["default"]:e}function i(){var e={activeElement:document.activeElement,windowScrollTop:window.scrollTop,windowScrollLeft:window.scrollLeft,bodyScrollTop:document.body.scrollTop,bodyScrollLeft:document.body.scrollLeft},t=document.createElement("iframe");t.setAttribute("style","position:absolute; position:fixed; top:0; left:-2px; width:1px; height:1px; overflow:hidden;"),t.setAttribute("aria-live","off"),t.setAttribute("aria-busy","true"),t.setAttribute("aria-hidden","true"),document.body.appendChild(t);var n=t.contentWindow,r=n.document;r.open(),r.close();var i=r.createElement("div");return r.body.appendChild(i),e.iframe=t,e.wrapper=i,e.window=n,e.document=r,e}function o(e,t){e.wrapper.innerHTML="";var n="string"==typeof t.element?e.document.createElement(t.element):t.element(e.wrapper,e.document),r=t.mutate&&t.mutate(n,e.wrapper,e.document);return r||r===!1||(r=n),!n.parentNode&&e.wrapper.appendChild(n),r&&r.focus&&r.focus(),t.validate?t.validate(n,r,e.document):e.document.activeElement===r}function a(e){e.activeElement===document.body?(document.activeElement&&document.activeElement.blur&&document.activeElement.blur(),Et.is.IE10&&document.body.focus()):e.activeElement&&e.activeElement.focus&&e.activeElement.focus(),document.body.removeChild(e.iframe),window.scrollTop=e.windowScrollTop,window.scrollLeft=e.windowScrollLeft,document.body.scrollTop=e.bodyScrollTop,document.body.scrollLeft=e.bodyScrollLeft}function u(e){var t=void 0;try{t=window.localStorage&&window.localStorage.getItem(e),t=t?JSON.parse(t):{}}catch(n){t={}}return t}function s(e,t){if(document.hasFocus())try{window.localStorage&&window.localStorage.setItem(e,JSON.stringify(t))}catch(n){}else try{window.localStorage&&window.localStorage.removeItem(e)}catch(n){}}function l(){var e=document.createElement("div");return e.innerHTML='<svg><foreignObject width="30" height="30">\n      <input type="text"/>\n  </foreignObject></svg>',e.firstChild.firstChild}function c(e){return'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">'+e+"</svg>"}function d(e){if(!e.focus)try{HTMLElement.prototype.focus.call(e)}catch(t){xn(e)}}function f(e,t,n){return d(t),n.activeElement===t}function m(){var e=Ft(Pn);return Object.keys(_n).forEach(function(t){e[t]=_n[t]()}),e}function b(){zn.warn("trying to focus inert element",this)}function v(e,t){if(t){var n=jn(e);$n({element:e,attribute:"tabindex",temporaryValue:"-1",saveValue:null!==n?n:""})}else $n({element:e,attribute:"tabindex"})}function h(e,t){Zn({element:e,attribute:"controls",remove:t})}function g(e,t){$n({element:e,attribute:"focusable",temporaryValue:t?"false":void 0})}function p(e,t){Zn({element:e,attribute:"xlink:href",remove:t})}function x(e,t){$n({element:e,attribute:"aria-disabled",temporaryValue:t?"true":void 0})}function y(e,t){t?e.focus=b:delete e.focus}function w(e,t){if(t){var n=e.style.pointerEvents||"";e.setAttribute("data-inert-pointer-events",n),e.style.pointerEvents="none"}else{var r=e.getAttribute("data-inert-pointer-events");e.removeAttribute("data-inert-pointer-events"),e.style.pointerEvents=r}}function E(e,t){x(e,t),v(e,t),y(e,t),w(e,t);var n=e.nodeName.toLowerCase();("video"===n||"audio"===n)&&h(e,t),("svg"===n||e.ownerSVGElement)&&(Jn.focusSvgFocusableAttribute?g(e,t):Jn.focusSvgTabindexAttribute||"a"!==n||p(e,t)),t?e.setAttribute("data-ally-disabled","true"):e.removeAttribute("data-ally-disabled")}function S(e){er.some(function(t){return e[t]?(tr=t,!0):!1})}function T(e,t){return tr||S(e),e[tr](t)}function A(e){var t=e.webkitUserModify||"";return Boolean(t&&-1!==t.indexOf("write"))}function O(e){return[e.getPropertyValue("overflow"),e.getPropertyValue("overflow-x"),e.getPropertyValue("overflow-y")].some(function(e){return"auto"===e||"scroll"===e})}function C(e){return e.display.indexOf("flex")>-1}function I(e,t,n,r){return"div"!==t&&"span"!==t?!1:n&&"div"!==n&&"span"!==n&&!O(r)?!1:e.offsetHeight<e.scrollHeight||e.offsetWidth<e.scrollWidth}function L(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.except,r=void 0===n?{flexbox:!1,scrollable:!1,shadow:!1}:n;nr||(nr=Bn());var i=ht({label:"is/focus-relevant",resolveDocument:!0,context:t});if(!r.shadow&&i.shadowRoot)return!0;var o=i.nodeName.toLowerCase();if("input"===o&&"hidden"===i.type)return!1;if("input"===o||"select"===o||"button"===o||"textarea"===o)return!0;if("legend"===o&&nr.focusRedirectLegend)return!0;if("label"===o)return!0;if("area"===o)return!0;if("a"===o&&i.hasAttribute("href"))return!0;if("object"===o&&i.hasAttribute("usemap"))return!1;if("object"===o){var a=i.getAttribute("type");if(!nr.focusObjectSvg&&"image/svg+xml"===a)return!1;if(!nr.focusObjectSwf&&"application/x-shockwave-flash"===a)return!1}if("iframe"===o||"object"===o)return!0;if("embed"===o||"keygen"===o)return!0;if(i.hasAttribute("contenteditable"))return!0;if("audio"===o&&(nr.focusAudioWithoutControls||i.hasAttribute("controls")))return!0;if("video"===o&&(nr.focusVideoWithoutControls||i.hasAttribute("controls")))return!0;if(nr.focusSummary&&"summary"===o)return!0;var u=Hn(i);if("img"===o&&i.hasAttribute("usemap"))return u&&nr.focusImgUsemapTabindex||nr.focusRedirectImgUsemap;if(nr.focusTable&&("table"===o||"td"===o))return!0;if(nr.focusFieldset&&"fieldset"===o)return!0;var s="svg"===o,l=i.ownerSVGElement,c=i.getAttribute("focusable"),d=jn(i);if("use"===o&&null!==d&&!nr.focusSvgUseTabindex)return!1;if("foreignobject"===o)return null!==d&&nr.focusSvgForeignobjectTabindex;if(T(i,"svg a")&&i.hasAttribute("xlink:href"))return!0;if((s||l)&&i.focus&&!nr.focusSvgNegativeTabindexAttribute&&0>d)return!1;if(s)return u||nr.focusSvg||nr.focusSvgInIframe||Boolean(nr.focusSvgFocusableAttribute&&c&&"true"===c);if(l){if(nr.focusSvgTabindexAttribute&&u)return!0;if(nr.focusSvgFocusableAttribute)return"true"===c}if(u)return!0;var f=window.getComputedStyle(i,null);if(A(f))return!0;if(nr.focusImgIsmap&&"img"===o&&i.hasAttribute("ismap")){var m=Yn({context:i}).some(function(e){return"a"===e.nodeName.toLowerCase()&&e.hasAttribute("href")});if(m)return!0}if(!r.scrollable&&nr.focusScrollContainer)if(nr.focusScrollContainerWithoutOverflow){if(I(i,o))return!0}else if(O(f))return!0;if(!r.flexbox&&nr.focusFlexboxContainer&&C(f))return!0;var b=i.parentElement;if(!r.scrollable&&b){var v=b.nodeName.toLowerCase(),h=window.getComputedStyle(b,null);if(nr.focusScrollBody&&I(b,o,v,h))return!0;if(nr.focusChildrenOfFocusableFlexbox&&C(h))return!0}return!1}function N(e,t){if(e.findIndex)return e.findIndex(t);var n=e.length;if(0===n)return-1;for(var r=0;n>r;r++)if(t(e[r],r,e))return r;return-1}function M(e){if(ur||(ur=ar("object, iframe")),void 0!==e._frameElement)return e._frameElement;e._frameElement=null;var t=e.parent.document.querySelectorAll(ur);return[].some.call(t,function(t){var n=ir(t);return n!==e.document?!1:(e._frameElement=t,!0)}),e._frameElement}function k(e){var t=yt(e);if(!t.parent||t.parent===t)return null;try{return t.frameElement||M(t)}catch(n){return null}}function _(e,t){return window.getComputedStyle(e,null).getPropertyValue(t)}function P(e){return e.some(function(e){return"none"===_(e,"display")})}function F(e){var t=N(e,function(e){var t=_(e,"visibility");return"hidden"===t||"collapse"===t});if(-1===t)return!1;var n=N(e,function(e){return"visible"===_(e,"visibility")});return-1===n?!0:n>t?!0:!1}function B(e){var t=1;return"summary"===e[0].nodeName.toLowerCase()&&(t=2),e.slice(t).some(function(e){return"details"===e.nodeName.toLowerCase()&&e.open===!1})}function D(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.except,r=void 0===n?{notRendered:!1,cssDisplay:!1,cssVisibility:!1,detailsElement:!1,browsingContext:!1}:n,i=ht({label:"is/visible",resolveDocument:!0,context:t}),o=i.nodeName.toLowerCase();if(!r.notRendered&&sr.test(o))return!0;var a=Yn({context:i}),u="audio"===o&&!i.hasAttribute("controls");if(!r.cssDisplay&&P(u?a.slice(1):a))return!1;if(!r.cssVisibility&&F(a))return!1;if(!r.detailsElement&&B(a))return!1;if(!r.browsingContext){var s=k(i),l=D.except(r);if(s&&!l(s))return!1}return!0}function R(e,t){var n=t.querySelector('map[name="'+bt(e)+'"]');return n||null}function W(e){var t=e.getAttribute("usemap");if(!t)return null;var n=pt(e);return R(t.slice(1),n)}function H(e){var t=e.parentElement;if(!t.name||"map"!==t.nodeName.toLowerCase())return null;var n=pt(e);return n.querySelector('img[usemap="#'+bt(t.name)+'"]')||null}function j(e){var t=e.nodeName.toLowerCase();return"fieldset"===t&&e.disabled}function q(e){var t=e.nodeName.toLowerCase();return"form"===t&&e.disabled}function G(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.except,r=void 0===n?{onlyFocusableBrowsingContext:!1,visible:!1}:n,i=ht({label:"is/only-tabbable",resolveDocument:!0,context:t});if(!r.visible&&!lr(i))return!1;if(!r.onlyFocusableBrowsingContext&&(Et.is.GECKO||Et.is.TRIDENT||Et.is.EDGE)){var o=k(i);if(o&&jn(o)<0)return!1}var a=i.nodeName.toLowerCase(),u=jn(i);return"label"===a&&Et.is.GECKO?null!==u&&u>=0:Et.is.GECKO&&i.ownerSVGElement&&!i.focus&&"a"===a&&i.hasAttribute("xlink:href")&&Et.is.GECKO?!0:!1}function K(e){var t=e.nodeName.toLowerCase();if("embed"===t||"keygen"===t)return!0;var n=jn(e);if(e.shadowRoot&&null===n)return!0;if("label"===t)return!vr.focusLabelTabindex||null===n;if("legend"===t)return null===n;if(vr.focusSvgFocusableAttribute&&(e.ownerSVGElement||"svg"===t)){var r=e.getAttribute("focusable");return r&&"false"===r}return"img"===t&&e.hasAttribute("usemap")?null===n||!vr.focusImgUsemapTabindex:"area"===t?!dr(e):!1}function V(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.except,r=void 0===n?{disabled:!1,visible:!1,onlyTabbable:!1}:n;vr||(vr=Bn());var i=br.rules.except({onlyFocusableBrowsingContext:!0,visible:r.visible}),o=ht({label:"is/focusable",resolveDocument:!0,context:t}),a=rr.rules({context:o,except:r});if(!a||K(o))return!1;if(!r.disabled&&mr(o))return!1;if(!r.onlyTabbable&&i(o))return!1;if(!r.visible){var u={context:o,except:{}};if(vr.focusInHiddenIframe&&(u.except.browsingContext=!0),vr.focusObjectSvgHidden){var s=o.nodeName.toLowerCase();"object"===s&&(u.except.cssVisibility=!0)}if(!lr.rules(u))return!1}var l=k(o);if(l){var c=l.nodeName.toLowerCase();if(!("object"!==c||vr.focusInZeroDimensionObject||l.offsetWidth&&l.offsetHeight))return!1}var d=o.nodeName.toLowerCase();return"svg"===d&&vr.focusSvgInIframe&&!l&&null===o.getAttribute("tabindex")?!1:!0}function Z(e){var t=function(t){return t.shadowRoot?NodeFilter.FILTER_ACCEPT:e(t)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP};return t.acceptNode=t,t}function $(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.includeContext,r=e.includeOnlyTabbable,i=e.strategy;t||(t=document.documentElement);for(var o=hr.rules.except({onlyTabbable:r}),a=pt(t),u=a.createTreeWalker(t,NodeFilter.SHOW_ELEMENT,"all"===i?gr:Z(o),!1),s=[];u.nextNode();)u.currentNode.shadowRoot?(o(u.currentNode)&&s.push(u.currentNode),s=s.concat($({context:u.currentNode.shadowRoot,includeOnlyTabbable:r,strategy:i}))):s.push(u.currentNode);return n&&("all"===i?rr(t)&&s.unshift(t):o(t)&&s.unshift(t)),s}function U(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.includeContext,r=e.includeOnlyTabbable,i=yr(),o=t.querySelectorAll(i),a=hr.rules.except({onlyTabbable:r}),u=[].filter.call(o,a);return n&&a(t)&&u.unshift(t),u}function X(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.except,r=void 0===n?{flexbox:!1,scrollable:!1,shadow:!1,visible:!1,onlyTabbable:!1}:n;Er||(Er=Bn());var i=ht({label:"is/tabbable",resolveDocument:!0,context:t});if(Et.is.BLINK&&Et.is.ANDROID&&Et.majorVersion>42)return!1;var o=k(i);if(o){if(Et.is.WEBKIT&&Et.is.IOS)return!1;if(jn(o)<0)return!1;if(!r.visible&&(Et.is.BLINK||Et.is.WEBKIT)&&!lr(o))return!1;var a=o.nodeName.toLowerCase();if("object"===a){var u="Chrome"===Et.name&&Et.majorVersion>=54||"Opera"===Et.name&&Et.majorVersion>=41;if(Et.is.WEBKIT||Et.is.BLINK&&!u)return!1}}var s=i.nodeName.toLowerCase(),l=jn(i),c=null===l?null:l>=0;if(Et.is.EDGE&&Et.majorVersion>=14&&o&&i.ownerSVGElement&&0>l)return!0;var d=c!==!1,f=null!==l&&l>=0;if(i.hasAttribute("contenteditable"))return d;if(Sr.test(s)&&c!==!0)return!1;if(Et.is.WEBKIT&&Et.is.IOS){var m="input"===s&&"text"===i.type||"password"===i.type||"select"===s||"textarea"===s||i.hasAttribute("contenteditable");if(!m){var b=window.getComputedStyle(i,null);m=A(b)}if(!m)return!1}if("use"===s&&null!==l&&(Et.is.BLINK||Et.is.WEBKIT&&9===Et.majorVersion))return!0;if(T(i,"svg a")&&i.hasAttribute("xlink:href")){if(d)return!0;if(i.focus&&!Er.focusSvgNegativeTabindexAttribute)return!0}if("svg"===s&&Er.focusSvgInIframe&&d)return!0;if(Et.is.TRIDENT||Et.is.EDGE){if("svg"===s)return Er.focusSvg?!0:i.hasAttribute("focusable")||f;if(i.ownerSVGElement)return Er.focusSvgTabindexAttribute&&f?!0:i.hasAttribute("focusable")}if(void 0===i.tabIndex)return Boolean(r.onlyTabbable);if("audio"===s){if(!i.hasAttribute("controls"))return!1;if(Et.is.BLINK)return!0}if("video"===s)if(i.hasAttribute("controls")){if(Et.is.BLINK||Et.is.GECKO)return!0}else if(Et.is.TRIDENT||Et.is.EDGE)return!1;if("object"===s&&(Et.is.BLINK||Et.is.WEBKIT))return!1;if("iframe"===s)return!1;if(!r.scrollable&&Et.is.GECKO){var v=window.getComputedStyle(i,null);if(O(v))return d}if(Et.is.TRIDENT||Et.is.EDGE){if("area"===s){var h=H(i);if(h&&jn(h)<0)return!1}var g=window.getComputedStyle(i,null);if(A(g))return i.tabIndex>=0;if(!r.flexbox&&C(g))return null!==l?f:Tr(i)&&Ar(i);if(I(i,s))return!1;var p=i.parentElement;if(p){var x=p.nodeName.toLowerCase(),y=window.getComputedStyle(p,null);if(I(p,s,x,y))return!1;if(C(y))return f}}return i.tabIndex>=0}function z(e,t){return e.compareDocumentPosition(t)&Node.DOCUMENT_POSITION_FOLLOWING?-1:1}function J(e,t){return N(e,function(e){return t.compareDocumentPosition(e)&Node.DOCUMENT_POSITION_FOLLOWING})}function Q(e,t,n){var r=[];return t.forEach(function(t){var i=!0,o=e.indexOf(t);-1===o&&(o=J(e,t),i=!1),-1===o&&(o=e.length);var a=vt(n?n(t):t);a.length&&r.push({offset:o,replace:i,elements:a})}),r}function Y(e,t){var n=0;t.sort(function(e,t){return e.offset-t.offset}),t.forEach(function(t){var r=t.replace?1:0,i=[t.offset+n,r].concat(t.elements);e.splice.apply(e,i),n+=t.elements.length-r})}function ee(e){var t=e.nodeName.toLowerCase();return"input"===t||"textarea"===t||"select"===t||"button"===t}function te(e,t){var n=e.getAttribute("for");return n?t.getElementById(n):e.querySelector("input, select, textarea")}function ne(e){var t=e.parentNode,n=wr({context:t,strategy:"strict"});return n.filter(ee)[0]||null}function re(e,t){var n=Cr({context:t.body,strategy:"strict"});if(!n.length)return null;var r=Lr({list:n,elements:[e]}),i=r.indexOf(e);return i===r.length-1?null:r[i+1]}function ie(e,t){if(!Nr.focusRedirectLegend)return null;var n=e.parentNode;return"fieldset"!==n.nodeName.toLowerCase()?null:"tabbable"===Nr.focusRedirectLegend?re(e,t):ne(e,t)}function oe(e){if(!Nr.focusRedirectImgUsemap)return null;var t=W(e);return t&&t.querySelector("area")||null}function ae(e){var t=Yn({context:e}),n=t.slice(1).map(function(e){return{element:e,scrollTop:e.scrollTop,scrollLeft:e.scrollLeft}});return function(){n.forEach(function(e){e.element.scrollTop=e.scrollTop,e.element.scrollLeft=e.scrollLeft})}}function ue(e){if(e.focus)return e.focus(),xt(e)?e:null;var t=yt(e);try{return t.HTMLElement.prototype.focus.call(e),xt(e)?e:null}catch(n){var r=xn(e);return r&&xt(e)?e:null}}function se(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.force;t?this.instances=0:this.instances--,this.instances||(this.disengage(),this._result=null)}function le(){return this.instances?(this.instances++,this._result):(this.instances++,this._result=this.engage()||{},this._result.disengage=se.bind(this),this._result)}function ce(){}function de(){if(document.activeElement){if(document.activeElement!==Wr){var e=new Dr("active-element",{bubbles:!1,cancelable:!1,detail:{focus:document.activeElement,blur:Wr}});document.dispatchEvent(e),Wr=document.activeElement}}else document.body.focus();Hr!==!1&&(Hr=requestAnimationFrame(de))}function fe(){Hr=!0,Wr=document.activeElement,de()}function me(){cancelAnimationFrame(Hr),Hr=!1}function be(){for(var e=[document.activeElement];e[0]&&e[0].shadowRoot;)e.unshift(e[0].shadowRoot.activeElement);return e}function ve(){var e=Gr({context:document.activeElement});return[document.activeElement].concat(e)}function he(){this.context&&(this.context.forEach(this.disengage),this.context=null,this.engage=null,this.disengage=null)}function ge(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context;return this.context=vt(t||document),this.context.forEach(this.engage),{disengage:he.bind(this)}}function pe(){}function xe(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.parent,n=e.element,r=e.includeSelf;if(t)return function(e){return Boolean(r&&e===t||t.compareDocumentPosition(e)&Node.DOCUMENT_POSITION_CONTAINED_BY)};if(n)return function(e){return Boolean(r&&n===e||e.compareDocumentPosition(n)&Node.DOCUMENT_POSITION_CONTAINED_BY)};throw new TypeError("util/compare-position#getParentComparator required either options.parent or options.element")}function ye(e){var t=e.context,n=e.filter,r=function(e){var t=xe({parent:e});return n.some(t)},i=[],o=function(e){return n.some(function(t){return e===t})?NodeFilter.FILTER_REJECT:r(e)?NodeFilter.FILTER_ACCEPT:(i.push(e),NodeFilter.FILTER_REJECT)};o.acceptNode=o;for(var a=pt(t),u=a.createTreeWalker(t,NodeFilter.SHOW_ELEMENT,o,!1);u.nextNode(););return i}function we(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=ht({label:"query/shadow-hosts",resolveDocument:!0,defaultToDocument:!0,context:t}),r=pt(t),i=r.createTreeWalker(n,NodeFilter.SHOW_ELEMENT,mi,!1),o=[];for(n.shadowRoot&&(o.push(n),o=o.concat(we({context:n.shadowRoot})));i.nextNode();)o.push(i.currentNode),o=o.concat(we({context:i.currentNode.shadowRoot}));return o}function Ee(e){return Qn(e,!0)}function Se(e){return Qn(e,!1)}function Te(e){$n({element:e,attribute:"aria-hidden",temporaryValue:"true"})}function Ae(e){$n({element:e,attribute:"aria-hidden"})}function Oe(e,t){var n=e.indexOf(t);if(n>0){var r=e.splice(n,1);return r.concat(e)}return e}function Ce(e,t){return Ii.tabsequenceAreaAtImgPosition&&(e=Ti(e,t)),e=Ci(e)}function Ie(e){var t=e?null:!1;return{altKey:t,ctrlKey:t,metaKey:t,shiftKey:t}}function Le(e){var t=-1!==e.indexOf("*"),n=Ie(t);return e.forEach(function(e){if("*"!==e){var t=!0,r=e.slice(0,1);"?"===r?t=null:"!"===r&&(t=!1),t!==!0&&(e=e.slice(1));var i=Ri[e];if(!i)throw new TypeError('Unknown modifier "'+e+'"');n[i]=t}}),n}function Ne(e){var t=Ni[e]||parseInt(e,10);if(!t||"number"!=typeof t||isNaN(t))throw new TypeError('Unknown key "'+e+'"');return[t].concat(Ni._alias[t]||[])}function Me(e,t){return!Wi.some(function(n){return"boolean"==typeof e[n]&&Boolean(t[n])!==e[n]})}function ke(){Zi=0,$i=0}function _e(e){e.isPrimary!==!1&&Zi++}function Pe(e){return e.isPrimary!==!1?e.touches?void(Zi=e.touches.length):void(window.setImmediate||window.setTimeout)(function(){Zi=Math.max(Zi-1,0)}):void 0}function Fe(e){switch(e.keyCode||e.which){case 16:case 17:case 18:case 91:case 93:return}$i++}function Be(e){switch(e.keyCode||e.which){case 16:case 17:case 18:case 91:case 93:return}(window.setImmediate||window.setTimeout)(function(){$i=Math.max($i-1,0)})}function De(){return{pointer:Boolean(Zi),key:Boolean($i)}}function Re(){Zi=$i=0,window.removeEventListener("blur",ke,!1),document.documentElement.removeEventListener("keydown",Fe,!0),document.documentElement.removeEventListener("keyup",Be,!0),Ui.forEach(function(e){document.documentElement.removeEventListener(e,_e,!0)}),Xi.forEach(function(e){document.documentElement.removeEventListener(e,Pe,!0)})}function We(){return window.addEventListener("blur",ke,!1),document.documentElement.addEventListener("keydown",Fe,!0),document.documentElement.addEventListener("keyup",Be,!0),Ui.forEach(function(e){document.documentElement.addEventListener(e,_e,!0)}),Xi.forEach(function(e){document.documentElement.addEventListener(e,Pe,!0)}),{get:De}}function He(e){return e.hasAttribute("autofocus")}function je(e){return e.tabIndex<=0}function qe(e){var t=e.getAttribute&&e.getAttribute("class")||"";return""===t?[]:t.split(" ")}function Ge(e,t,n){var r=qe(e),i=r.indexOf(t),o=-1!==i,a=void 0!==n?n:!o;a!==o&&(a||r.splice(i,1),a&&r.push(t),e.setAttribute("class",r.join(" ")))}function Ke(e,t){return Ge(e,t,!1)}function Ve(e,t){return Ge(e,t,!0)}function Ze(e){var t="";if(e.type===to||"shadow-focus"===e.type){var n=ro.get();t=ao||n.pointer&&"pointer"||n.key&&"key"||"script"}else"initial"===e.type&&(t="initial");document.documentElement.setAttribute("data-focus-source",t),e.type!==no&&(uo[t]||Ve(document.documentElement,"focus-source-"+t),uo[t]=!0,oo=t)}function $e(){return oo}function Ue(e){return uo[e]}function Xe(e){ao=e}function ze(){ao=!1}function Je(){Ze({type:no}),oo=ao=null,Object.keys(uo).forEach(function(e){Ke(document.documentElement,"focus-source-"+e),uo[e]=!1}),ro.disengage(),io&&io.disengage(),document.removeEventListener("shadow-focus",Ze,!0),document.documentElement.removeEventListener(to,Ze,!0),document.documentElement.removeEventListener(no,Ze,!0),document.documentElement.removeAttribute("data-focus-source")}function Qe(){return io=$r(),document.addEventListener("shadow-focus",Ze,!0),document.documentElement.addEventListener(to,Ze,!0),document.documentElement.addEventListener(no,Ze,!0),ro=zi(),Ze({type:"initial"}),{used:Ue,current:$e,lock:Xe,unlock:ze}}function Ye(e){var t=e||Kr();lo.cssShadowPiercingDeepCombinator||(t=t.slice(-1));var n=[].slice.call(document.querySelectorAll(vo),0),r=t.map(function(e){return Yn({context:e})}).reduce(function(e,t){return t.concat(e)},[]);n.forEach(function(e){-1===r.indexOf(e)&&Ke(e,bo)}),r.forEach(function(e){-1===n.indexOf(e)&&Ve(e,bo)})}function et(){ho=(window.setImmediate||window.setTimeout)(function(){Ye()})}function tt(){(window.clearImmediate||window.clearTimeout)(ho),Ye()}function nt(e){Ye(e.detail.elements)}function rt(){go&&go.disengage(),(window.clearImmediate||window.clearTimeout)(ho),document.removeEventListener(mo,et,!0),document.removeEventListener(fo,tt,!0),document.removeEventListener("shadow-focus",nt,!0),[].forEach.call(document.querySelectorAll(vo),function(e){Ke(e,bo)})}function it(){lo||(lo=Bn(),vo=ar("."+bo)),go=$r(),document.addEventListener(mo,et,!0),document.addEventListener(fo,tt,!0),document.addEventListener("shadow-focus",nt,!0),Ye()}function ot(e,t){var n=Math.max(e.top,t.top),r=Math.max(e.left,t.left),i=Math.max(Math.min(e.right,t.right),r),o=Math.max(Math.min(e.bottom,t.bottom),n);return{top:n,right:i,bottom:o,left:r,width:i-r,height:o-n}}function at(){var e=window.innerWidth||document.documentElement.clientWidth,t=window.innerHeight||document.documentElement.clientHeight;return{top:0,right:e,bottom:t,left:0,width:e,height:t}}function ut(e){var t=e.getBoundingClientRect(),n=e.offsetWidth-e.clientWidth,r=e.offsetHeight-e.clientHeight,i={top:t.top,left:t.left,right:t.right-n,bottom:t.bottom-r,width:t.width-n,height:t.height-r,area:0};return i.area=i.width*i.height,i}function st(e){var t=window.getComputedStyle(e,null),n="visible";return t.getPropertyValue("overflow-x")!==n&&t.getPropertyValue("overflow-y")!==n}function lt(e){return st(e)?e.offsetHeight<e.scrollHeight||e.offsetWidth<e.scrollWidth:!1}function ct(e){var t=Yn({context:e}).slice(1).filter(lt);return t.length?t.reduce(function(e,t){var n=ut(t),r=ot(n,e);return r.area=Math.min(n.area,e.area),r},ut(t[0])):null}var dt=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),ft="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},mt=r(e("platform")),bt=r(e("css.escape")),vt=function(e){if(!e)return[];if(Array.isArray(e))return e;if(void 0!==e.nodeType)return[e];if("string"==typeof e&&(e=document.querySelectorAll(e)),void 0!==e.length)return[].slice.call(e,0);throw new TypeError("unexpected input "+String(e))},ht=function(e){var t=e.context,n=e.label,r=void 0===n?"context-to-element":n,i=e.resolveDocument,o=e.defaultToDocument,a=vt(t)[0];if(i&&a&&a.nodeType===Node.DOCUMENT_NODE&&(a=a.documentElement),!a&&o)return document.documentElement;if(!a)throw new TypeError(r+" requires valid options.context");if(a.nodeType!==Node.ELEMENT_NODE&&a.nodeType!==Node.DOCUMENT_FRAGMENT_NODE)throw new TypeError(r+" requires options.context to be an Element");return a},gt=function(){for(var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=ht({label:"get/shadow-host",context:t}),r=null;n;)r=n,n=n.parentNode;return r.nodeType===r.DOCUMENT_FRAGMENT_NODE&&r.host?r.host:null},pt=function(e){return e?e.nodeType===Node.DOCUMENT_NODE?e:e.ownerDocument||document:document},xt=function(e){var t=ht({label:"is/active-element",resolveDocument:!0,context:e}),n=pt(t);if(n.activeElement===t)return!0;var r=gt({context:t});return r&&r.shadowRoot.activeElement===t?!0:!1},yt=function(e){var t=pt(e);return t.defaultView||window},wt=function(e){var t=ht({label:"element/blur",context:e});if(!xt(t))return null;var n=t.nodeName.toLowerCase();if("body"===n)return null;if(t.blur)return t.blur(),document.activeElement;var r=yt(t);try{r.HTMLElement.prototype.blur.call(t)}catch(i){var o=r.document&&r.document.body;if(!o)return null;var a=o.getAttribute("tabindex");o.setAttribute("tabindex","-1"),o.focus(),a?o.setAttribute("tabindex",a):o.removeAttribute("tabindex")}return r.document.activeElement},Et=JSON.parse(JSON.stringify(mt)),St=Et.os.family||"",Tt="Android"===St,At="Windows"===St.slice(0,7),Ot="OS X"===St,Ct="iOS"===St,It="Blink"===Et.layout,Lt="Gecko"===Et.layout,Nt="Trident"===Et.layout,Mt="EdgeHTML"===Et.layout,kt="WebKit"===Et.layout,_t=parseFloat(Et.version),Pt=Math.floor(_t);Et.majorVersion=Pt,Et.is={ANDROID:Tt,WINDOWS:At,OSX:Ot,IOS:Ct,BLINK:It,GECKO:Lt,TRIDENT:Nt,EDGE:Mt,WEBKIT:kt,IE9:Nt&&9===Pt,IE10:Nt&&10===Pt,IE11:Nt&&11===Pt};var Ft=function(e){var t=i(),n={};return Object.keys(e).map(function(r){n[r]=o(t,e[r])}),a(t),n},Bt="1.4.1",Dt="undefined"!=typeof window&&window.navigator.userAgent||"",Rt="ally-supports-cache",Wt=u(Rt);(Wt.userAgent!==Dt||Wt.version!==Bt)&&(Wt={}),Wt.userAgent=Dt,Wt.version=Bt;var Ht={get:function(){return Wt},set:function(e){Object.keys(e).forEach(function(t){Wt[t]=e[t]}),Wt.time=(new Date).toISOString(),s(Rt,Wt)}},jt=function(){var e=void 0;try{document.querySelector("html >>> :first-child"),e=">>>"}catch(t){try{document.querySelector("html /deep/ :first-child"),e="/deep/"}catch(n){e=""}}return e},qt="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",Gt={element:"div",mutate:function(e){return e.innerHTML='<map name="image-map-tabindex-test"><area shape="rect" coords="63,19,144,45"></map><img usemap="#image-map-tabindex-test" tabindex="-1" alt="" src="'+qt+'">',e.querySelector("area")}},Kt={element:"div",mutate:function(e){return e.innerHTML='<map name="image-map-tabindex-test"><area href="#void" tabindex="-1" shape="rect" coords="63,19,144,45"></map><img usemap="#image-map-tabindex-test" alt="" src="'+qt+'">',!1},validate:function(e,t,n){if(Et.is.GECKO)return!0;var r=e.querySelector("area");return r.focus(),n.activeElement===r}},Vt={element:"div",mutate:function(e){return e.innerHTML='<map name="image-map-area-href-test"><area shape="rect" coords="63,19,144,45"></map><img usemap="#image-map-area-href-test" alt="" src="'+qt+'">',e.querySelector("area")},validate:function(e,t,n){return Et.is.GECKO?!0:n.activeElement===t}},Zt={name:"can-focus-audio-without-controls",element:"audio",mutate:function(e){try{e.setAttribute("src",qt)}catch(t){}}},$t="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ",Ut={element:"div",mutate:function(e){return e.innerHTML='<map name="broken-image-map-test"><area href="#void" shape="rect" coords="63,19,144,45"></map><img usemap="#broken-image-map-test" alt="" src="'+$t+'">',e.querySelector("area")}},Xt={element:"div",mutate:function(e){return e.setAttribute("tabindex","-1"),e.setAttribute("style","display: -webkit-flex; display: -ms-flexbox; display: flex;"),e.innerHTML='<span style="display: block;">hello</span>',e.querySelector("span")}},zt={element:"fieldset",mutate:function(e){e.setAttribute("tabindex",0),e.setAttribute("disabled","disabled")}},Jt={element:"fieldset",mutate:function(e){e.innerHTML="<legend>legend</legend><p>content</p>"}},Qt={element:"span",mutate:function(e){e.setAttribute("style","display: -webkit-flex; display: -ms-flexbox; display: flex;"),e.innerHTML='<span style="display: block;">hello</span>'}},Yt={element:"form",mutate:function(e){e.setAttribute("tabindex",0),e.setAttribute("disabled","disabled")}},en={element:"a",mutate:function(e){return e.href="#void",e.innerHTML='<img ismap src="'+qt+'" alt="">',e.querySelector("img")}},tn={element:"div",mutate:function(e){return e.innerHTML='<map name="image-map-tabindex-test"><area href="#void" shape="rect" coords="63,19,144,45"></map><img usemap="#image-map-tabindex-test" tabindex="-1" alt="" src="'+qt+'">',e.querySelector("img")}},nn={element:function(e,t){var n=t.createElement("iframe");e.appendChild(n);var r=n.contentWindow.document;return r.open(),r.close(),n},mutate:function(e){e.style.visibility="hidden";var t=e.contentWindow.document,n=t.createElement("input");return t.body.appendChild(n),n},validate:function(e){var t=e.contentWindow.document,n=t.querySelector("input");return t.activeElement===n}},rn=!Et.is.WEBKIT,on=function(){return rn},an={element:"div",mutate:function(e){e.setAttribute("tabindex","invalid-value")}},un={element:"label",mutate:function(e){e.setAttribute("tabindex","-1")},validate:function(e,t,n){e.offsetHeight;return e.focus(),n.activeElement===e}},sn="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBpZD0ic3ZnIj48dGV4dCB4PSIxMCIgeT0iMjAiIGlkPSJzdmctbGluay10ZXh0Ij50ZXh0PC90ZXh0Pjwvc3ZnPg==",ln={element:"object",mutate:function(e){e.setAttribute("type","image/svg+xml"),e.setAttribute("data",sn),e.setAttribute("width","200"),e.setAttribute("height","50"),e.style.visibility="hidden"}},cn={name:"can-focus-object-svg",element:"object",mutate:function(e){e.setAttribute("type","image/svg+xml"),e.setAttribute("data",sn),e.setAttribute("width","200"),e.setAttribute("height","50")},validate:function(e,t,n){return Et.is.GECKO?!0:n.activeElement===e}},dn=!Et.is.IE9,fn=function(){return dn},mn={element:"div",mutate:function(e){return e.innerHTML='<map name="focus-redirect-img-usemap"><area href="#void" shape="rect" coords="63,19,144,45"></map><img usemap="#focus-redirect-img-usemap" alt="" src="'+qt+'">',
+e.querySelector("img")},validate:function(e,t,n){var r=e.querySelector("area");return n.activeElement===r}},bn={element:"fieldset",mutate:function(e){return e.innerHTML='<legend>legend</legend><input tabindex="-1"><input tabindex="0">',!1},validate:function(e,t,n){var r=e.querySelector('input[tabindex="-1"]'),i=e.querySelector('input[tabindex="0"]');return e.focus(),e.querySelector("legend").focus(),n.activeElement===r&&"focusable"||n.activeElement===i&&"tabbable"||""}},vn={element:"div",mutate:function(e){return e.setAttribute("style","width: 100px; height: 50px; overflow: auto;"),e.innerHTML='<div style="width: 500px; height: 40px;">scrollable content</div>',e.querySelector("div")}},hn={element:"div",mutate:function(e){e.setAttribute("style","width: 100px; height: 50px;"),e.innerHTML='<div style="width: 500px; height: 40px;">scrollable content</div>'}},gn={element:"div",mutate:function(e){e.setAttribute("style","width: 100px; height: 50px; overflow: auto;"),e.innerHTML='<div style="width: 500px; height: 40px;">scrollable content</div>'}},pn={element:"details",mutate:function(e){return e.innerHTML="<summary>foo</summary><p>content</p>",e.firstElementChild}},xn=function(e){var t=e.ownerSVGElement||"svg"===e.nodeName.toLowerCase();if(!t)return!1;var n=l();e.appendChild(n);var r=n.querySelector("input");return r.focus(),r.disabled=!0,e.removeChild(n),!0},yn={element:"div",mutate:function(e){return e.innerHTML=c('<text focusable="true">a</text>'),e.querySelector("text")},validate:f},wn={element:"div",mutate:function(e){return e.innerHTML=c('<text tabindex="0">a</text>'),e.querySelector("text")},validate:f},En={element:"div",mutate:function(e){return e.innerHTML=c('<text tabindex="-1">a</text>'),e.querySelector("text")},validate:f},Sn={element:"div",mutate:function(e){return e.innerHTML=c(['<g id="ally-test-target"><a xlink:href="#void"><text>link</text></a></g>','<use xlink:href="#ally-test-target" x="0" y="0" tabindex="-1" />'].join("")),e.querySelector("use")},validate:f},Tn={element:"div",mutate:function(e){return e.innerHTML=c('<foreignObject tabindex="-1"><input type="text" /></foreignObject>'),e.querySelector("foreignObject")||e.getElementsByTagName("foreignObject")[0]},validate:f},An=Boolean(Et.is.GECKO&&"undefined"!=typeof SVGElement&&SVGElement.prototype.focus),On=function(){return An},Cn={element:"div",mutate:function(e){return e.innerHTML=c(""),e.firstChild},validate:f},In={element:"div",mutate:function(e){e.setAttribute("tabindex","3x")}},Ln={element:"table",mutate:function(e,t,n){var r=n.createDocumentFragment();r.innerHTML="<tr><td>cell</td></tr>",e.appendChild(r)}},Nn={element:"video",mutate:function(e){try{e.setAttribute("src",qt)}catch(t){}}},Mn=Et.is.GECKO||Et.is.TRIDENT||Et.is.EDGE,kn=function(){return Mn},_n={cssShadowPiercingDeepCombinator:jt,focusInZeroDimensionObject:on,focusObjectSwf:fn,focusSvgInIframe:On,tabsequenceAreaAtImgPosition:kn},Pn={focusAreaImgTabindex:Gt,focusAreaTabindex:Kt,focusAreaWithoutHref:Vt,focusAudioWithoutControls:Zt,focusBrokenImageMap:Ut,focusChildrenOfFocusableFlexbox:Xt,focusFieldsetDisabled:zt,focusFieldset:Jt,focusFlexboxContainer:Qt,focusFormDisabled:Yt,focusImgIsmap:en,focusImgUsemapTabindex:tn,focusInHiddenIframe:nn,focusInvalidTabindex:an,focusLabelTabindex:un,focusObjectSvg:cn,focusObjectSvgHidden:ln,focusRedirectImgUsemap:mn,focusRedirectLegend:bn,focusScrollBody:vn,focusScrollContainerWithoutOverflow:hn,focusScrollContainer:gn,focusSummary:pn,focusSvgFocusableAttribute:yn,focusSvgTabindexAttribute:wn,focusSvgNegativeTabindexAttribute:En,focusSvgUseTabindex:Sn,focusSvgForeignobjectTabindex:Tn,focusSvg:Cn,focusTabindexTrailingCharacters:In,focusTable:Ln,focusVideoWithoutControls:Nn},Fn=null,Bn=function(){return Fn?Fn:(Fn=Ht.get(),Fn.time||(Ht.set(m()),Fn=Ht.get()),Fn)},Dn=void 0,Rn=/^\s*(-|\+)?[0-9]+\s*$/,Wn=/^\s*(-|\+)?[0-9]+.*$/,Hn=function(e){Dn||(Dn=Bn());var t=Dn.focusTabindexTrailingCharacters?Wn:Rn,n=ht({label:"is/valid-tabindex",resolveDocument:!0,context:e}),r=n.hasAttribute("tabindex"),i=n.hasAttribute("tabIndex");if(!r&&!i)return!1;var o=n.ownerSVGElement||"svg"===n.nodeName.toLowerCase();if(o&&!Dn.focusSvgTabindexAttribute)return!1;if(Dn.focusInvalidTabindex)return!0;var a=n.getAttribute(r?"tabindex":"tabIndex");return"-32768"===a?!1:Boolean(a&&t.test(a))},jn=function(e){if(!Hn(e))return null;var t=e.hasAttribute("tabindex"),n=t?"tabindex":"tabIndex",r=parseInt(e.getAttribute(n),10);return isNaN(r)?-1:r},qn=void 0,Gn=void 0,Kn={input:!0,select:!0,textarea:!0,button:!0,fieldset:!0,form:!0},Vn=function(e){qn||(qn=Bn(),qn.focusFieldsetDisabled&&delete Kn.fieldset,qn.focusFormDisabled&&delete Kn.form,Gn=new RegExp("^("+Object.keys(Kn).join("|")+")$"));var t=ht({label:"is/native-disabled-supported",context:e}),n=t.nodeName.toLowerCase();return Boolean(Gn.test(n))},Zn=function(e){var t=e.element,n=e.attribute,r="data-cached-"+n,i=t.getAttribute(r);if(null===i){var o=t.getAttribute(n);if(null===o)return;t.setAttribute(r,o||""),t.removeAttribute(n)}else{var a=t.getAttribute(r);t.removeAttribute(r),t.setAttribute(n,a)}},$n=function(e){var t=e.element,n=e.attribute,r=e.temporaryValue,i=e.saveValue,o="data-cached-"+n;if(void 0!==r){var a=i||t.getAttribute(n);t.setAttribute(o,a||""),t.setAttribute(n,r)}else{var u=t.getAttribute(o);t.removeAttribute(o),""===u?t.removeAttribute(n):t.setAttribute(n,u)}},Un=function(){},Xn={log:Un,debug:Un,info:Un,warn:Un,error:Un},zn="undefined"!=typeof console?console:Xn,Jn=void 0,Qn=function(e,t){Jn||(Jn=Bn());var n=ht({label:"element/disabled",context:e});t=Boolean(t);var r=n.hasAttribute("data-ally-disabled"),i=1===arguments.length;return Vn(n)?i?n.disabled:(n.disabled=t,n):i?r:r===t?n:(E(n,t),n)},Yn=function(){for(var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=[],r=ht({label:"get/parents",context:t});r;)n.push(r),r=r.parentNode,r&&r.nodeType!==Node.ELEMENT_NODE&&(r=null);return n},er=["matches","webkitMatchesSelector","mozMatchesSelector","msMatchesSelector"],tr=null,nr=void 0;L.except=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=function(t){return L({context:t,except:e})};return t.rules=L,t};var rr=L.except({}),ir=function(e){try{return e.contentDocument||e.contentWindow&&e.contentWindow.document||e.getSVGDocument&&e.getSVGDocument()||null}catch(t){return null}},or=void 0,ar=function(e){if("string"!=typeof or){var t=jt();t&&(or=", html "+t+" ")}return or?e+or+e.replace(/\s*,\s*/g,",").split(",").join(or):e},ur=void 0,sr=/^(area)$/;D.except=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=function(t){return D({context:t,except:e})};return t.rules=D,t};var lr=D.except({}),cr=void 0,dr=function(e){cr||(cr=Bn());var t=ht({label:"is/valid-area",context:e}),n=t.nodeName.toLowerCase();if("area"!==n)return!1;var r=t.hasAttribute("tabindex");if(!cr.focusAreaTabindex&&r)return!1;var i=H(t);if(!i||!lr(i))return!1;if(!cr.focusBrokenImageMap&&(!i.complete||!i.naturalHeight||i.offsetWidth<=0||i.offsetHeight<=0))return!1;if(!cr.focusAreaWithoutHref&&!t.href)return cr.focusAreaTabindex&&r||cr.focusAreaImgTabindex&&i.hasAttribute("tabindex");var o=Yn({context:i}).slice(1).some(function(e){var t=e.nodeName.toLowerCase();return"button"===t||"a"===t});return o?!1:!0},fr=void 0,mr=function(e){fr||(fr=Bn());var t=ht({label:"is/disabled",context:e});if(t.hasAttribute("data-ally-disabled"))return!0;if(!Vn(t))return!1;if(t.disabled)return!0;var n=Yn({context:t});return n.some(j)?!0:!fr.focusFormDisabled&&n.some(q)?!0:!1};G.except=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=function(t){return G({context:t,except:e})};return t.rules=G,t};var br=G.except({}),vr=void 0;V.except=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=function(t){return V({context:t,except:e})};return t.rules=V,t};var hr=V.except({}),gr=Z(rr),pr=void 0,xr=void 0,yr=function(){return pr||(pr=Bn()),"string"==typeof xr?xr:(xr=""+(pr.focusTable?"table, td,":"")+(pr.focusFieldset?"fieldset,":"")+"svg a,a[href],area[href],input, select, textarea, button,iframe, object, embed,keygen,"+(pr.focusAudioWithoutControls?"audio,":"audio[controls],")+(pr.focusVideoWithoutControls?"video,":"video[controls],")+(pr.focusSummary?"summary,":"")+"[tabindex],[contenteditable]",xr=ar(xr))},wr=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.includeContext,r=e.includeOnlyTabbable,i=e.strategy,o=void 0===i?"quick":i,a=ht({label:"query/focusable",resolveDocument:!0,defaultToDocument:!0,context:t}),u={context:a,includeContext:n,includeOnlyTabbable:r,strategy:o};if("quick"===o)return U(u);if("strict"===o||"all"===o)return $(u);throw new TypeError('query/focusable requires option.strategy to be one of ["quick", "strict", "all"]')},Er=void 0,Sr=/^(fieldset|table|td|body)$/;X.except=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=function(t){return X({context:t,except:e})};return t.rules=X,t};var Tr=rr.rules.except({flexbox:!0}),Ar=X.except({flexbox:!0}),Or=X.except({}),Cr=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.includeContext,r=e.includeOnlyTabbable,i=e.strategy,o=Or.rules.except({onlyTabbable:r});return wr({context:t,includeContext:n,includeOnlyTabbable:r,strategy:i}).filter(o)},Ir=function(e){return e.sort(z)},Lr=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.list,n=e.elements,r=e.resolveElement,i=t.slice(0),o=vt(n).slice(0);Ir(o);var a=Q(i,o,r);return Y(i,a),i},Nr=void 0,Mr=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.skipFocusable;Nr||(Nr=Bn());var r=ht({label:"get/focus-redirect-target",context:t});if(!n&&hr(r))return null;var i=r.nodeName.toLowerCase(),o=pt(r);return"label"===i?te(r,o):"legend"===i?ie(r,o):"img"===i?oe(r,o):null},kr=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.except,r=ht({label:"get/focus-target",context:t}),i=null,o=function(e){var t=hr.rules({context:e,except:n});return t?(i=e,!0):(i=Mr({context:e,skipFocusable:!0}),Boolean(i))};return o(r)?i:(Yn({context:r}).slice(1).some(o),i)},_r={flexbox:!0,scrollable:!0,onlyTabbable:!0},Pr=function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},n=t.defaultToAncestor,r=t.undoScrolling,i=ht({label:"element/focus",context:e}),o=hr.rules({context:i,except:_r});if(!n&&!o)return null;var a=kr({context:i,except:_r});if(!a)return null;if(xt(a))return a;var u=void 0;r&&(u=ae(a));var s=ue(a);return u&&u(),s},Fr={blur:wt,disabled:Qn,focus:Pr};"undefined"!=typeof window&&function(){for(var e=0,t=["ms","moz","webkit","o"],n="",r="",i=0,o=t.length;o>i;++i)n=window[t[i]+"RequestAnimationFrame"],r=window[t[i]+"CancelAnimationFrame"]||window[t[i]+"CancelRequestAnimationFrame"];"function"!=typeof window.requestAnimationFrame&&(window.requestAnimationFrame=window[n]||function(t){var n=(new Date).getTime(),r=Math.max(0,16-(n-e)),i=window.setTimeout(function(){t(n+r)},r);return e=n+r,i}),"function"!=typeof window.cancelAnimationFrame&&(window.cancelAnimationFrame=window[r]||function(e){clearTimeout(e)})}();var Br="undefined"!=typeof window&&window.CustomEvent||function(){};"function"!=typeof Br&&(Br=function(e,t){var n=document.createEvent("CustomEvent");return!t&&(t={bubbles:!1,cancelable:!1,detail:void 0}),n.initCustomEvent(e,t.bubbles,t.cancelable,t.detail),n},Br.prototype=window.Event.prototype);var Dr=Br,Rr=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.engage,n=e.disengage,r={engage:t||ce,disengage:n||ce,instances:0,_result:null};return le.bind(r)},Wr=void 0,Hr=void 0,jr=Rr({engage:fe,disengage:me}),qr=function(e){var t=ht({label:"is/shadowed",resolveDocument:!0,context:e});return Boolean(gt({context:t}))},Gr=function(){for(var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=[],r=ht({label:"get/shadow-host-parents",context:t});r&&(r=gt({context:r}));)n.push(r);return n},Kr=function(){return null===document.activeElement&&document.body.focus(),qr(document.activeElement)?ve():be()},Vr=void 0,Zr=void 0;"undefined"!=typeof document&&document.documentElement.createShadowRoot?!function(){var e=void 0,t=void 0,n=function(){i(),(window.clearImmediate||window.clearTimeout)(e),e=(window.setImmediate||window.setTimeout)(function(){o()})},r=function(e){e.addEventListener("blur",n,!0),t=e},i=function(){t&&t.removeEventListener("blur",n,!0),t=null},o=function(){var e=Kr();if(1===e.length)return void i();r(e[0]);var t=new CustomEvent("shadow-focus",{bubbles:!1,cancelable:!1,detail:{elements:e,active:e[0],hosts:e.slice(1)}});document.dispatchEvent(t)},a=function(){(window.clearImmediate||window.clearTimeout)(e),o()};Vr=function(){document.addEventListener("focus",a,!0)},Zr=function(){(window.clearImmediate||window.clearTimeout)(e),t&&t.removeEventListener("blur",n,!0),document.removeEventListener("focus",a,!0)}}():Vr=Zr=function(){};var $r=Rr({engage:Vr,disengage:Zr}),Ur={activeElement:jr,shadowFocus:$r},Xr=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.engage,n=e.disengage,r={engage:t||pe,disengage:n||pe,context:null};return ge.bind(r)},zr=void 0,Jr=void 0,Qr=Et.is.TRIDENT&&(Et.is.IE10||Et.is.IE11);Qr?!function(){var e=function(e){var t=kr({context:e.target,except:{flexbox:!0,scrollable:!0}});if(t&&t!==e.target){window.setImmediate(function(){t.focus()});var n=[].map.call(t.children,function(e){var t=e.style.visibility||"",n=e.style.transition||"";return e.style.visibility="hidden",e.style.transition="none",[e,t,n]});window.setImmediate(function(){n.forEach(function(e){e[0].style.visibility=e[1],e[0].style.transition=e[2]})})}};zr=function(t){t.addEventListener("mousedown",e,!0)},Jr=function(t){t.removeEventListener("mousedown",e,!0)}}():zr=function(){};var Yr=Xr({engage:zr,disengage:Jr}),ei=void 0,ti=void 0,ni=Et.is.OSX&&(Et.is.GECKO||Et.is.WEBKIT);ni?!function(){var e=function(e){if(!e.defaultPrevented&&T(e.target,"input, button, button *")){var t=kr({context:e.target});(window.setImmediate||window.setTimeout)(function(){t.focus()})}},t=function(e){if(!e.defaultPrevented&&T(e.target,"label, label *")){var t=kr({context:e.target});t&&t.focus()}};ei=function(n){n.addEventListener("mousedown",e,!1),n.addEventListener("mouseup",t,!1)},ti=function(n){n.removeEventListener("mousedown",e,!1),n.removeEventListener("mouseup",t,!1)}}():ei=function(){};var ri=Xr({engage:ei,disengage:ti}),ii=void 0,oi=void 0,ai=Et.is.WEBKIT;ai?!function(){var e=function(e){var t=kr({context:e.target});!t||t.hasAttribute("tabindex")&&Hn(t)||(t.setAttribute("tabindex",0),(window.setImmediate||window.setTimeout)(function(){t.removeAttribute("tabindex")},0))};ii=function(t){t.addEventListener("mousedown",e,!0),t.addEventListener("touchstart",e,!0)},oi=function(t){t.removeEventListener("mousedown",e,!0),t.removeEventListener("touchstart",e,!0)}}():ii=function(){};var ui=Xr({engage:ii,disengage:oi}),si={pointerFocusChildren:Yr,pointerFocusInput:ri,pointerFocusParent:ui},li=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=pt(t),r=void 0;try{r=n.activeElement}catch(i){}return r&&r.nodeType||(r=n.body||n.documentElement),r},ci=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.filter;if(t=ht({label:"get/insignificant-branches",defaultToDocument:!0,context:t}),n=vt(n),!n.length)throw new TypeError("get/insignificant-branches requires valid options.filter");return ye({context:t,filter:n})},di={activeElement:li,activeElements:Kr,focusRedirectTarget:Mr,focusTarget:kr,insignificantBranches:ci,parents:Yn,shadowHostParents:Gr,shadowHost:gt},fi={activeElement:xt,disabled:mr,focusRelevant:rr,focusable:hr,onlyTabbable:br,shadowed:qr,tabbable:Or,validArea:dr,validTabindex:Hn,visible:lr},mi=function(e){return e.shadowRoot?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP};mi.acceptNode=mi;for(var bi={childList:!0,subtree:!0},vi=function(){function e(){var t=this,r=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},i=r.context,o=r.callback,a=r.config;n(this,e),this.config=a,this.disengage=this.disengage.bind(this),this.clientObserver=new MutationObserver(o),this.hostObserver=new MutationObserver(function(e){return e.forEach(t.handleHostMutation,t)}),this.observeContext(i),this.observeShadowHosts(i)}return dt(e,[{key:"disengage",value:function(){this.clientObserver&&this.clientObserver.disconnect(),this.clientObserver=null,this.hostObserver&&this.hostObserver.disconnect(),this.hostObserver=null}},{key:"observeShadowHosts",value:function(e){var t=this,n=we({context:e});n.forEach(function(e){return t.observeContext(e.shadowRoot)})}},{key:"observeContext",value:function(e){this.clientObserver.observe(e,this.config),this.hostObserver.observe(e,bi)}},{key:"handleHostMutation",value:function(e){if("childList"===e.type){var t=vt(e.addedNodes).filter(function(e){return e.nodeType===Node.ELEMENT_NODE});t.forEach(this.observeShadowHosts,this)}}}]),e}(),hi=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.callback,r=e.config;if("function"!=typeof n)throw new TypeError("observe/shadow-mutations requires options.callback to be a function");if("object"!==("undefined"==typeof r?"undefined":ft(r)))throw new TypeError("observe/shadow-mutations requires options.config to be an object");if(!window.MutationObserver)return{disengage:function(){}};var i=ht({label:"observe/shadow-mutations",resolveDocument:!0,defaultToDocument:!0,context:t}),o=new vi({context:i,callback:n,config:r});return{disengage:o.disengage}},gi={attributes:!0,childList:!0,subtree:!0,attributeFilter:["tabindex","disabled","data-ally-disabled"]},pi=function(){function e(){var t=this,r=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},i=r.context,o=r.filter;n(this,e),this._context=vt(i||document.documentElement)[0],this._filter=vt(o),this._inertElementCache=[],this.disengage=this.disengage.bind(this),this.handleMutation=this.handleMutation.bind(this),this.renderInert=this.renderInert.bind(this),this.filterElements=this.filterElements.bind(this),this.filterParentElements=this.filterParentElements.bind(this);var a=wr({context:this._context,includeContext:!0,strategy:"all"});this.renderInert(a),this.shadowObserver=hi({context:this._context,config:gi,callback:function(e){return e.forEach(t.handleMutation)}})}return dt(e,[{key:"disengage",value:function(){this._context&&(Se(this._context),this._inertElementCache.forEach(function(e){return Se(e)}),this._inertElementCache=null,this._filter=null,this._context=null,this.shadowObserver&&this.shadowObserver.disengage(),this.shadowObserver=null)}},{key:"listQueryFocusable",value:function(e){return e.map(function(e){return wr({context:e,includeContext:!0,strategy:"all"})}).reduce(function(e,t){return e.concat(t)},[])}},{key:"renderInert",value:function(e){var t=this,n=function(e){t._inertElementCache.push(e),Ee(e)};e.filter(this.filterElements).filter(this.filterParentElements).filter(function(e){return!Qn(e)}).forEach(n)}},{key:"filterElements",value:function(e){var t=xe({element:e,includeSelf:!0});return!this._filter.some(t)}},{key:"filterParentElements",value:function(e){var t=xe({parent:e});return!this._filter.some(t)}},{key:"handleMutation",value:function(e){if("childList"===e.type){var t=vt(e.addedNodes).filter(function(e){return e.nodeType===Node.ELEMENT_NODE});if(!t.length)return;var n=this.listQueryFocusable(t);this.renderInert(n)}else"attributes"===e.type&&this.renderInert([e.target])}}]),e}(),xi=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.filter,r=new pi({context:t,filter:n});return{disengage:r.disengage}},yi={attributes:!1,childList:!0,subtree:!0},wi=function(){function e(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},r=t.context,i=t.filter;n(this,e),this._context=vt(r||document.documentElement)[0],this._filter=vt(i),this.disengage=this.disengage.bind(this),this.handleMutation=this.handleMutation.bind(this),this.isInsignificantBranch=this.isInsignificantBranch.bind(this);var o=ci({context:this._context,filter:this._filter});o.forEach(Te),this.startObserver()}return dt(e,[{key:"disengage",value:function(){this._context&&([].forEach.call(this._context.querySelectorAll("[data-cached-aria-hidden]"),Ae),this._context=null,this._filter=null,this._observer&&this._observer.disconnect(),this._observer=null)}},{key:"startObserver",value:function(){var e=this;window.MutationObserver&&(this._observer=new MutationObserver(function(t){return t.forEach(e.handleMutation)}),this._observer.observe(this._context,yi))}},{key:"handleMutation",value:function(e){"childList"===e.type&&vt(e.addedNodes).filter(function(e){return e.nodeType===Node.ELEMENT_NODE}).filter(this.isInsignificantBranch).forEach(Te)}},{key:"isInsignificantBranch",value:function(e){var t=Yn({context:e});if(t.some(function(e){return"true"===e.getAttribute("aria-hidden")}))return!1;var n=xe({element:e});return this._filter.some(n)?!1:!0}}]),e}(),Ei=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.filter,r=new wi({context:t,filter:n});return{disengage:r.disengage}},Si=function(){function e(t){n(this,e),this._document=pt(t),this.maps={}}return dt(e,[{key:"getAreasFor",value:function(e){return this.maps[e]||this.addMapByName(e),this.maps[e]}},{key:"addMapByName",value:function(e){var t=R(e,this._document);t&&(this.maps[t.name]=Cr({context:t}))}},{key:"extractAreasFromList",value:function(e){return e.filter(function(e){var t=e.nodeName.toLowerCase();if("area"!==t)return!0;var n=e.parentNode;return this.maps[n.name]||(this.maps[n.name]=[]),this.maps[n.name].push(e),!1},this)}}]),e}(),Ti=function(e,t){var n=t.querySelectorAll("img[usemap]"),r=new Si(t),i=r.extractAreasFromList(e);return n.length?Lr({list:i,elements:n,resolveElement:function(e){var t=e.getAttribute("usemap").slice(1);return r.getAreasFor(t)}}):i},Ai=function(){function e(t,r){n(this,e),this.context=t,this.sortElements=r,this.hostCounter=1,this.inHost={},this.inDocument=[],this.hosts={},this.elements={}}return dt(e,[{key:"_registerHost",value:function(e){if(!e._sortingId){e._sortingId="shadow-"+this.hostCounter++,this.hosts[e._sortingId]=e;var t=gt({context:e});t?(this._registerHost(t),this._registerHostParent(e,t)):this.inDocument.push(e)}}},{key:"_registerHostParent",value:function(e,t){this.inHost[t._sortingId]||(this.inHost[t._sortingId]=[]),this.inHost[t._sortingId].push(e)}},{key:"_registerElement",value:function(e,t){this.elements[t._sortingId]||(this.elements[t._sortingId]=[]),this.elements[t._sortingId].push(e)}},{key:"extractElements",value:function(e){return e.filter(function(e){var t=gt({context:e});return t?(this._registerHost(t),this._registerElement(e,t),!1):!0},this)}},{key:"sort",value:function(e){var t=this._injectHosts(e);return t=this._replaceHosts(t),this._cleanup(),t}},{key:"_injectHosts",value:function(e){return Object.keys(this.hosts).forEach(function(e){var t=this.elements[e],n=this.inHost[e],r=this.hosts[e].shadowRoot;this.elements[e]=this._merge(t,n,r)},this),this._merge(e,this.inDocument,this.context)}},{key:"_merge",value:function(e,t,n){var r=Lr({list:e,elements:t});return this.sortElements(r,n)}},{key:"_replaceHosts",value:function(e){return Lr({list:e,elements:this.inDocument,resolveElement:this._resolveHostElement.bind(this)})}},{key:"_resolveHostElement",value:function(e){var t=Lr({list:this.elements[e._sortingId],elements:this.inHost[e._sortingId],resolveElement:this._resolveHostElement.bind(this)}),n=jn(e);return null!==n&&n>-1?[e].concat(t):t}},{key:"_cleanup",value:function(){Object.keys(this.hosts).forEach(function(e){delete this.hosts[e]._sortingId},this)}}]),e}(),Oi=function(e,t,n){var r=new Ai(t,n),i=r.extractElements(e);return i.length===e.length?n(e):r.sort(i)},Ci=function(e){var t={},n=[],r=e.filter(function(e){var r=e.tabIndex;return void 0===r&&(r=jn(e)),0>=r||null===r||void 0===r?!0:(t[r]||(t[r]=[],n.push(r)),t[r].push(e),!1)}),i=n.sort().map(function(e){return t[e]}).reduceRight(function(e,t){return t.concat(e)},r);return i},Ii=void 0,Li=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.includeContext,r=e.includeOnlyTabbable,i=e.strategy;Ii||(Ii=Bn());var o=vt(t)[0]||document.documentElement,a=Cr({context:o,includeContext:n,includeOnlyTabbable:r,strategy:i});return a=document.body.createShadowRoot&&Et.is.BLINK?Oi(a,o,Ce):Ce(a,o),n&&(a=Oe(a,o)),a},Ni={tab:9,left:37,up:38,right:39,down:40,pageUp:33,"page-up":33,pageDown:34,"page-down":34,end:35,home:36,enter:13,escape:27,space:32,shift:16,capsLock:20,"caps-lock":20,ctrl:17,alt:18,meta:91,pause:19,insert:45,"delete":46,backspace:8,_alias:{91:[92,93,224]}},Mi=1;26>Mi;Mi++)Ni["f"+Mi]=Mi+111;for(var ki=0;10>ki;ki++){var _i=ki+48,Pi=ki+96;Ni[ki]=_i,Ni["num-"+ki]=Pi,Ni._alias[_i]=[Pi]}for(var Fi=0;26>Fi;Fi++){var Bi=Fi+65,Di=String.fromCharCode(Bi).toLowerCase();Ni[Di]=Bi}var Ri={alt:"altKey",ctrl:"ctrlKey",meta:"metaKey",shift:"shiftKey"},Wi=Object.keys(Ri).map(function(e){return Ri[e]}),Hi=function(e){return e.split(/\s+/).map(function(e){var t=e.split("+"),n=Le(t.slice(0,-1)),r=Ne(t.slice(-1));return{keyCodes:r,modifiers:n,matchModifiers:Me.bind(null,n)}})},ji=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t={},n=vt(e.context)[0]||document.documentElement;delete e.context;var r=vt(e.filter);delete e.filter;var i=Object.keys(e);if(!i.length)throw new TypeError("when/key requires at least one option key");var o=function(e){e.keyCodes.forEach(function(n){t[n]||(t[n]=[]),t[n].push(e)})};i.forEach(function(t){if("function"!=typeof e[t])throw new TypeError('when/key requires option["'+t+'"] to be a function');var n=function(n){return n.callback=e[t],n};Hi(t).map(n).forEach(o)});var a=function(e){if(!e.defaultPrevented){if(r.length){var i=xe({element:e.target,includeSelf:!0});if(r.some(i))return}var o=e.keyCode||e.which;t[o]&&t[o].forEach(function(t){t.matchModifiers(e)&&t.callback.call(n,e,u)})}};n.addEventListener("keydown",a,!1);var u=function(){n.removeEventListener("keydown",a,!1)};return{disengage:u}},qi=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context;return t||(t=document.documentElement),Li(),ji({"?alt+?shift+tab":function(e){e.preventDefault();var n=Li({context:t}),r=e.shiftKey,i=n[0],o=n[n.length-1],a=r?i:o,u=r?o:i;if(xt(a))return void u.focus();var s=void 0,l=n.some(function(e,t){return xt(e)?(s=t,!0):!1});if(!l)return void i.focus();var c=r?-1:1;n[s+c].focus()}})},Gi={disabled:xi,hidden:Ei,tabFocus:qi},Ki={"aria-busy":{"default":"false",values:["true","false"]},"aria-checked":{"default":void 0,values:["true","false","mixed",void 0]},"aria-disabled":{"default":"false",values:["true","false"]},"aria-expanded":{"default":void 0,values:["true","false",void 0]},"aria-grabbed":{"default":void 0,values:["true","false",void 0]},"aria-hidden":{"default":"false",values:["true","false"]},"aria-invalid":{"default":"false",values:["true","false","grammar","spelling"]},"aria-pressed":{"default":void 0,values:["true","false","mixed",void 0]},"aria-selected":{"default":void 0,values:["true","false",void 0]},"aria-atomic":{"default":"false",values:["true","false"]},"aria-autocomplete":{"default":"none",values:["inline","list","both","none"]},"aria-dropeffect":{"default":"none",multiple:!0,values:["copy","move","link","execute","popup","none"]},"aria-haspopup":{"default":"false",values:["true","false"]},"aria-live":{"default":"off",values:["off","polite","assertive"]},"aria-multiline":{"default":"false",values:["true","false"]},"aria-multiselectable":{"default":"false",values:["true","false"]},"aria-orientation":{"default":"horizontal",values:["vertical","horizontal"]},"aria-readonly":{"default":"false",values:["true","false"]},"aria-relevant":{"default":"additions text",multiple:!0,values:["additions","removals","text","all"]},"aria-required":{"default":"false",values:["true","false"]},"aria-sort":{"default":"none",other:!0,values:["ascending","descending","none"]}},Vi={attribute:Ki,keycode:Ni},Zi=0,$i=0,Ui=["touchstart","pointerdown","MSPointerDown","mousedown"],Xi=["touchend","touchcancel","pointerup","MSPointerUp","pointercancel","MSPointerCancel","mouseup"],zi=Rr({engage:We,disengage:Re}),Ji={interactionType:zi,shadowMutations:hi},Qi=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.sequence,r=e.strategy,i=e.ignoreAutofocus,o=e.defaultToContext,a=e.includeOnlyTabbable,u=-1;n||(t=vt(t||document.body)[0],n=Cr({context:t,includeOnlyTabbable:a,strategy:r})),n.length&&!i&&(u=N(n,He)),n.length&&-1===u&&(u=N(n,je));var s=hr.rules.except({onlyTabbable:a});return-1===u&&o&&t&&s(t)?t:n[u]||null},Yi={firstTabbable:Qi,focusable:wr,shadowHosts:we,tabbable:Cr,tabsequence:Li},eo="undefined"!=typeof document&&"onfocusin"in document,to=eo?"focusin":"focus",no=eo?"focusout":"blur",ro=void 0,io=void 0,oo=null,ao=null,uo={pointer:!1,key:!1,script:!1,initial:!1},so=Rr({engage:Qe,disengage:Je}),lo=void 0,co="undefined"!=typeof document&&"onfocusin"in document,fo=co?"focusin":"focus",mo=co?"focusout":"blur",bo="ally-focus-within",vo=void 0,ho=void 0,go=void 0,po=Rr({engage:it,disengage:rt}),xo={focusSource:so,focusWithin:po},yo=function Oo(e){var t=e.getBoundingClientRect(),n=at();n.area=n.width*n.height;var r=n,i=ct(e);if(i){if(!i.width||!i.height)return 0;r=ot(i,n),r.area=i.area}var o=ot(t,r);if(!o.width||!o.height)return 0;var a=t.width*t.height,u=Math.min(a,r.area),Oo=Math.round(o.width)*Math.round(o.height)/u,s=1e4,l=Math.round(Oo*s)/s;return Math.min(l,1)},wo=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.callback,r=e.area;if("function"!=typeof n)throw new TypeError("when/visible-area requires options.callback to be a function");"number"!=typeof r&&(r=1);var i=ht({label:"when/visible-area",context:t}),o=void 0,a=null,u=function(){o&&cancelAnimationFrame(o)},s=function(){return!lr(i)||yo(i)<r||n(i)===!1},l=function(){return s()?void a():void u()};return a=function(){o=requestAnimationFrame(l)},a(),{disengage:u}},Eo=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.context,n=e.callback,r=e.area;if("function"!=typeof n)throw new TypeError("when/focusable requires options.callback to be a function");var i=ht({label:"when/focusable",context:t}),o=function(e){return hr(e)?n(e):!1},a=pt(i),u=wo({context:i,callback:o,area:r}),s=function l(){a.removeEventListener("focus",l,!0),u&&u.disengage()};return a.addEventListener("focus",s,!0),{disengage:s}},So={focusable:Eo,key:ji,visibleArea:wo},To="undefined"!=typeof window&&window.ally,Ao={element:Fr,event:Ur,fix:si,get:di,is:fi,maintain:Gi,map:Vi,observe:Ji,query:Yi,style:xo,when:So,version:Bt,noConflict:function(){return"undefined"!=typeof window&&window.ally===this&&(window.ally=To),this}};t.exports=Ao},{"css.escape":2,platform:3}],2:[function(t,n,r){(function(t){!function(t,i){"object"==typeof r?n.exports=i(t):"function"==typeof e&&e.amd?e([],i.bind(t,t)):i(t)}("undefined"!=typeof t?t:this,function(e){if(e.CSS&&e.CSS.escape)return e.CSS.escape;var t=function(e){if(0==arguments.length)throw new TypeError("`CSS.escape` requires an argument.");for(var t,n=String(e),r=n.length,i=-1,o="",a=n.charCodeAt(0);++i<r;)t=n.charCodeAt(i),o+=0!=t?t>=1&&31>=t||127==t||0==i&&t>=48&&57>=t||1==i&&t>=48&&57>=t&&45==a?"\\"+t.toString(16)+" ":(0!=i||1!=r||45!=t)&&(t>=128||45==t||95==t||t>=48&&57>=t||t>=65&&90>=t||t>=97&&122>=t)?n.charAt(i):"\\"+n.charAt(i):"�";return o};return e.CSS||(e.CSS={}),e.CSS.escape=t,t})}).call(this,"undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{}],3:[function(t,n,r){(function(t){(function(){"use strict";function i(e){return e=String(e),e.charAt(0).toUpperCase()+e.slice(1)}function o(e,t,n){var r={"10.0":"10",6.4:"10 Technical Preview",6.3:"8.1",6.2:"8",6.1:"Server 2008 R2 / 7",
+"6.0":"Server 2008 / Vista",5.2:"Server 2003 / XP 64-bit",5.1:"XP",5.01:"2000 SP1","5.0":"2000","4.0":"NT","4.90":"ME"};return t&&n&&/^Win/i.test(e)&&!/^Windows Phone /i.test(e)&&(r=r[/[\d.]+$/.exec(e)])&&(e="Windows "+r),e=String(e),t&&n&&(e=e.replace(RegExp(t,"i"),n)),e=u(e.replace(/ ce$/i," CE").replace(/\bhpw/i,"web").replace(/\bMacintosh\b/,"Mac OS").replace(/_PowerPC\b/i," OS").replace(/\b(OS X) [^ \d]+/i,"$1").replace(/\bMac (OS X)\b/,"$1").replace(/\/(\d)/," $1").replace(/_/g,".").replace(/(?: BePC|[ .]*fc[ \d.]+)$/i,"").replace(/\bx86\.64\b/gi,"x86_64").replace(/\b(Windows Phone) OS\b/,"$1").replace(/\b(Chrome OS \w+) [\d.]+\b/,"$1").split(" on ")[0])}function a(e,t){var n=-1,r=e?e.length:0;if("number"==typeof r&&r>-1&&w>=r)for(;++n<r;)t(e[n],n,e);else s(e,t)}function u(e){return e=m(e),/^(?:webOS|i(?:OS|P))/.test(e)?e:i(e)}function s(e,t){for(var n in e)A.call(e,n)&&t(e[n],n,e)}function l(e){return null==e?i(e):O.call(e).slice(8,-1)}function c(e,t){var n=null!=e?typeof e[t]:"number";return!/^(?:boolean|number|string|undefined)$/.test(n)&&("object"==n?!!e[t]:!0)}function d(e){return String(e).replace(/([ -])(?!$)/g,"$1?")}function f(e,t){var n=null;return a(e,function(r,i){n=t(n,r,i,e)}),n}function m(e){return String(e).replace(/^ +| +$/g,"")}function b(e){function t(t){return f(t,function(t,n){return t||RegExp("\\b"+(n.pattern||d(n))+"\\b","i").exec(e)&&(n.label||n)})}function n(t){return f(t,function(t,n,r){return t||(n[X]||n[/^[a-z]+(?: +[a-z]+\b)*/i.exec(X)]||RegExp("\\b"+d(r)+"(?:\\b|\\w*\\d)","i").exec(e))&&r})}function r(t){return f(t,function(t,n){return t||RegExp("\\b"+(n.pattern||d(n))+"\\b","i").exec(e)&&(n.label||n)})}function i(t){return f(t,function(t,n){var r=n.pattern||d(n);return!t&&(t=RegExp("\\b"+r+"(?:/[\\d.]+|[ \\w.]*)","i").exec(e))&&(t=o(t,r,n.label||n)),t})}function a(t){return f(t,function(t,n){var r=n.pattern||d(n);return!t&&(t=RegExp("\\b"+r+" *\\d+[.\\w_]*","i").exec(e)||RegExp("\\b"+r+"(?:; *(?:[a-z]+[_-])?[a-z]+\\d+|[^ ();-]*)","i").exec(e))&&((t=String(n.label&&!RegExp(r,"i").test(n.label)?n.label:t).split("/"))[1]&&!/[\d.]+/.test(t[0])&&(t[0]+=" "+t[1]),n=n.label||n,t=u(t[0].replace(RegExp(r,"i"),n).replace(RegExp("; *(?:"+n+"[_-])?","i")," ").replace(RegExp("("+n+")[-_.]?(\\w)","i"),"$1 $2"))),t})}function v(t){return f(t,function(t,n){return t||(RegExp(n+"(?:-[\\d.]+/|(?: for [\\w-]+)?[ /-])([\\d.]+[^ ();/_-]*)","i").exec(e)||0)[1]||null})}function p(){return this.description||""}var x=h,y=e&&"object"==typeof e&&"String"!=l(e);y&&(x=e,e=null);var w=x.navigator||{},T=w.userAgent||"";e||(e=T);var A,C,I=y||S==g,L=y?!!w.likeChrome:/\bChrome\b/.test(e)&&!/internal|\n/i.test(O.toString()),N="Object",M=y?N:"ScriptBridgingProxyObject",k=y?N:"Environment",_=y&&x.java?"JavaPackage":l(x.java),P=y?N:"RuntimeObject",F=/\bJava/.test(_)&&x.java,B=F&&l(x.environment)==k,D=F?"a":"α",R=F?"b":"β",W=x.document||{},H=x.operamini||x.opera,j=E.test(j=y&&H?H["[[Class]]"]:l(H))?j:H=null,q=e,G=[],K=null,V=e==T,Z=V&&H&&"function"==typeof H.version&&H.version(),$=t([{label:"EdgeHTML",pattern:"Edge"},"Trident",{label:"WebKit",pattern:"AppleWebKit"},"iCab","Presto","NetFront","Tasman","KHTML","Gecko"]),U=r(["Adobe AIR","Arora","Avant Browser","Breach","Camino","Epiphany","Fennec","Flock","Galeon","GreenBrowser","iCab","Iceweasel","K-Meleon","Konqueror","Lunascape","Maxthon",{label:"Microsoft Edge",pattern:"Edge"},"Midori","Nook Browser","PaleMoon","PhantomJS","Raven","Rekonq","RockMelt","SeaMonkey",{label:"Silk",pattern:"(?:Cloud9|Silk-Accelerated)"},"Sleipnir","SlimBrowser",{label:"SRWare Iron",pattern:"Iron"},"Sunrise","Swiftfox","WebPositive","Opera Mini",{label:"Opera Mini",pattern:"OPiOS"},"Opera",{label:"Opera",pattern:"OPR"},"Chrome",{label:"Chrome Mobile",pattern:"(?:CriOS|CrMo)"},{label:"Firefox",pattern:"(?:Firefox|Minefield)"},{label:"Firefox for iOS",pattern:"FxiOS"},{label:"IE",pattern:"IEMobile"},{label:"IE",pattern:"MSIE"},"Safari"]),X=a([{label:"BlackBerry",pattern:"BB10"},"BlackBerry",{label:"Galaxy S",pattern:"GT-I9000"},{label:"Galaxy S2",pattern:"GT-I9100"},{label:"Galaxy S3",pattern:"GT-I9300"},{label:"Galaxy S4",pattern:"GT-I9500"},"Google TV","Lumia","iPad","iPod","iPhone","Kindle",{label:"Kindle Fire",pattern:"(?:Cloud9|Silk-Accelerated)"},"Nexus","Nook","PlayBook","PlayStation 3","PlayStation 4","PlayStation Vita","TouchPad","Transformer",{label:"Wii U",pattern:"WiiU"},"Wii","Xbox One",{label:"Xbox 360",pattern:"Xbox"},"Xoom"]),z=n({Apple:{iPad:1,iPhone:1,iPod:1},Archos:{},Amazon:{Kindle:1,"Kindle Fire":1},Asus:{Transformer:1},"Barnes & Noble":{Nook:1},BlackBerry:{PlayBook:1},Google:{"Google TV":1,Nexus:1},HP:{TouchPad:1},HTC:{},LG:{},Microsoft:{Xbox:1,"Xbox One":1},Motorola:{Xoom:1},Nintendo:{"Wii U":1,Wii:1},Nokia:{Lumia:1},Samsung:{"Galaxy S":1,"Galaxy S2":1,"Galaxy S3":1,"Galaxy S4":1},Sony:{"PlayStation 4":1,"PlayStation 3":1,"PlayStation Vita":1}}),J=i(["Windows Phone","Android","CentOS",{label:"Chrome OS",pattern:"CrOS"},"Debian","Fedora","FreeBSD","Gentoo","Haiku","Kubuntu","Linux Mint","OpenBSD","Red Hat","SuSE","Ubuntu","Xubuntu","Cygwin","Symbian OS","hpwOS","webOS ","webOS","Tablet OS","Linux","Mac OS X","Macintosh","Mac","Windows 98;","Windows "]);if($&&($=[$]),z&&!X&&(X=a([z])),(A=/\bGoogle TV\b/.exec(X))&&(X=A[0]),/\bSimulator\b/i.test(e)&&(X=(X?X+" ":"")+"Simulator"),"Opera Mini"==U&&/\bOPiOS\b/.test(e)&&G.push("running in Turbo/Uncompressed mode"),"IE"==U&&/\blike iPhone OS\b/.test(e)?(A=b(e.replace(/like iPhone OS/,"")),z=A.manufacturer,X=A.product):/^iP/.test(X)?(U||(U="Safari"),J="iOS"+((A=/ OS ([\d_]+)/i.exec(e))?" "+A[1].replace(/_/g,"."):"")):"Konqueror"!=U||/buntu/i.test(J)?z&&"Google"!=z&&(/Chrome/.test(U)&&!/\bMobile Safari\b/i.test(e)||/\bVita\b/.test(X))||/\bAndroid\b/.test(J)&&/^Chrome/.test(U)&&/\bVersion\//i.test(e)?(U="Android Browser",J=/\bAndroid\b/.test(J)?J:"Android"):"Silk"==U?(/\bMobi/i.test(e)||(J="Android",G.unshift("desktop mode")),/Accelerated *= *true/i.test(e)&&G.unshift("accelerated")):"PaleMoon"==U&&(A=/\bFirefox\/([\d.]+)\b/.exec(e))?G.push("identifying as Firefox "+A[1]):"Firefox"==U&&(A=/\b(Mobile|Tablet|TV)\b/i.exec(e))?(J||(J="Firefox OS"),X||(X=A[1])):(!U||(A=!/\bMinefield\b/i.test(e)&&/\b(?:Firefox|Safari)\b/.exec(U)))&&(U&&!X&&/[\/,]|^[^(]+?\)/.test(e.slice(e.indexOf(A+"/")+8))&&(U=null),(A=X||z||J)&&(X||z||/\b(?:Android|Symbian OS|Tablet OS|webOS)\b/.test(J))&&(U=/[a-z]+(?: Hat)?/i.exec(/\bAndroid\b/.test(J)?J:A)+" Browser")):J="Kubuntu",Z||(Z=v(["(?:Cloud9|CriOS|CrMo|Edge|FxiOS|IEMobile|Iron|Opera ?Mini|OPiOS|OPR|Raven|Silk(?!/[\\d.]+$))","Version",d(U),"(?:Firefox|Minefield|NetFront)"])),(A="iCab"==$&&parseFloat(Z)>3&&"WebKit"||/\bOpera\b/.test(U)&&(/\bOPR\b/.test(e)?"Blink":"Presto")||/\b(?:Midori|Nook|Safari)\b/i.test(e)&&!/^(?:Trident|EdgeHTML)$/.test($)&&"WebKit"||!$&&/\bMSIE\b/i.test(e)&&("Mac OS"==J?"Tasman":"Trident")||"WebKit"==$&&/\bPlayStation\b(?! Vita\b)/i.test(U)&&"NetFront")&&($=[A]),"IE"==U&&(A=(/; *(?:XBLWP|ZuneWP)(\d+)/i.exec(e)||0)[1])?(U+=" Mobile",J="Windows Phone "+(/\+$/.test(A)?A:A+".x"),G.unshift("desktop mode")):/\bWPDesktop\b/i.test(e)?(U="IE Mobile",J="Windows Phone 8.x",G.unshift("desktop mode"),Z||(Z=(/\brv:([\d.]+)/.exec(e)||0)[1])):"IE"!=U&&"Trident"==$&&(A=/\brv:([\d.]+)/.exec(e))&&(U&&G.push("identifying as "+U+(Z?" "+Z:"")),U="IE",Z=A[1]),V){if(c(x,"global"))if(F&&(A=F.lang.System,q=A.getProperty("os.arch"),J=J||A.getProperty("os.name")+" "+A.getProperty("os.version")),I&&c(x,"system")&&(A=[x.system])[0]){J||(J=A[0].os||null);try{A[1]=x.require("ringo/engine").version,Z=A[1].join("."),U="RingoJS"}catch(Q){A[0].global.system==x.system&&(U="Narwhal")}}else"object"==typeof x.process&&!x.process.browser&&(A=x.process)?(U="Node.js",q=A.arch,J=A.platform,Z=/[\d.]+/.exec(A.version)[0]):B&&(U="Rhino");else l(A=x.runtime)==M?(U="Adobe AIR",J=A.flash.system.Capabilities.os):l(A=x.phantom)==P?(U="PhantomJS",Z=(A=A.version||null)&&A.major+"."+A.minor+"."+A.patch):"number"==typeof W.documentMode&&(A=/\bTrident\/(\d+)/i.exec(e))&&(Z=[Z,W.documentMode],(A=+A[1]+4)!=Z[1]&&(G.push("IE "+Z[1]+" mode"),$&&($[1]=""),Z[1]=A),Z="IE"==U?String(Z[1].toFixed(1)):Z[0]);J=J&&u(J)}Z&&(A=/(?:[ab]|dp|pre|[ab]\d+pre)(?:\d+\+?)?$/i.exec(Z)||/(?:alpha|beta)(?: ?\d)?/i.exec(e+";"+(V&&w.appMinorVersion))||/\bMinefield\b/i.test(e)&&"a")&&(K=/b/i.test(A)?"beta":"alpha",Z=Z.replace(RegExp(A+"\\+?$"),"")+("beta"==K?R:D)+(/\d+\+?/.exec(A)||"")),"Fennec"==U||"Firefox"==U&&/\b(?:Android|Firefox OS)\b/.test(J)?U="Firefox Mobile":"Maxthon"==U&&Z?Z=Z.replace(/\.[\d.]+/,".x"):/\bXbox\b/i.test(X)?(J=null,"Xbox 360"==X&&/\bIEMobile\b/.test(e)&&G.unshift("mobile mode")):!/^(?:Chrome|IE|Opera)$/.test(U)&&(!U||X||/Browser|Mobi/.test(U))||"Windows CE"!=J&&!/Mobi/i.test(e)?"IE"==U&&V&&null===x.external?G.unshift("platform preview"):(/\bBlackBerry\b/.test(X)||/\bBB10\b/.test(e))&&(A=(RegExp(X.replace(/ +/g," *")+"/([.\\d]+)","i").exec(e)||0)[1]||Z)?(A=[A,/BB10/.test(e)],J=(A[1]?(X=null,z="BlackBerry"):"Device Software")+" "+A[0],Z=null):this!=s&&"Wii"!=X&&(V&&H||/Opera/.test(U)&&/\b(?:MSIE|Firefox)\b/i.test(e)||"Firefox"==U&&/\bOS X (?:\d+\.){2,}/.test(J)||"IE"==U&&(J&&!/^Win/.test(J)&&Z>5.5||/\bWindows XP\b/.test(J)&&Z>8||8==Z&&!/\bTrident\b/.test(e)))&&!E.test(A=b.call(s,e.replace(E,"")+";"))&&A.name&&(A="ing as "+A.name+((A=A.version)?" "+A:""),E.test(U)?(/\bIE\b/.test(A)&&"Mac OS"==J&&(J=null),A="identify"+A):(A="mask"+A,U=j?u(j.replace(/([a-z])([A-Z])/g,"$1 $2")):"Opera",/\bIE\b/.test(A)&&(J=null),V||(Z=null)),$=["Presto"],G.push(A)):U+=" Mobile",(A=(/\bAppleWebKit\/([\d.]+\+?)/i.exec(e)||0)[1])&&(A=[parseFloat(A.replace(/\.(\d)$/,".0$1")),A],"Safari"==U&&"+"==A[1].slice(-1)?(U="WebKit Nightly",K="alpha",Z=A[1].slice(0,-1)):(Z==A[1]||Z==(A[2]=(/\bSafari\/([\d.]+\+?)/i.exec(e)||0)[1]))&&(Z=null),A[1]=(/\bChrome\/([\d.]+)/i.exec(e)||0)[1],537.36==A[0]&&537.36==A[2]&&parseFloat(A[1])>=28&&"WebKit"==$&&($=["Blink"]),V&&(L||A[1])?($&&($[1]="like Chrome"),A=A[1]||(A=A[0],530>A?1:532>A?2:532.05>A?3:533>A?4:534.03>A?5:534.07>A?6:534.1>A?7:534.13>A?8:534.16>A?9:534.24>A?10:534.3>A?11:535.01>A?12:535.02>A?"13+":535.07>A?15:535.11>A?16:535.19>A?17:536.05>A?18:536.1>A?19:537.01>A?20:537.11>A?"21+":537.13>A?23:537.18>A?24:537.24>A?25:537.36>A?26:"Blink"!=$?"27":"28")):($&&($[1]="like Safari"),A=A[0],A=400>A?1:500>A?2:526>A?3:533>A?4:534>A?"4+":535>A?5:537>A?6:538>A?7:601>A?8:"8"),$&&($[1]+=" "+(A+="number"==typeof A?".x":/[.+]/.test(A)?"":"+")),"Safari"==U&&(!Z||parseInt(Z)>45)&&(Z=A)),"Opera"==U&&(A=/\bzbov|zvav$/.exec(J))?(U+=" ",G.unshift("desktop mode"),"zvav"==A?(U+="Mini",Z=null):U+="Mobile",J=J.replace(RegExp(" *"+A+"$"),"")):"Safari"==U&&/\bChrome\b/.exec($&&$[1])&&(G.unshift("desktop mode"),U="Chrome Mobile",Z=null,/\bOS X\b/.test(J)?(z="Apple",J="iOS 4.3+"):J=null),Z&&0==Z.indexOf(A=/[\d.]+$/.exec(J))&&e.indexOf("/"+A+"-")>-1&&(J=m(J.replace(A,""))),$&&!/\b(?:Avant|Nook)\b/.test(U)&&(/Browser|Lunascape|Maxthon/.test(U)||"Safari"!=U&&/^iOS/.test(J)&&/\bSafari\b/.test($[1])||/^(?:Adobe|Arora|Breach|Midori|Opera|Phantom|Rekonq|Rock|Sleipnir|Web)/.test(U)&&$[1])&&(A=$[$.length-1])&&G.push(A),G.length&&(G=["("+G.join("; ")+")"]),z&&X&&X.indexOf(z)<0&&G.push("on "+z),X&&G.push((/^on /.test(G[G.length-1])?"":"on ")+X),J&&(A=/ ([\d.+]+)$/.exec(J),C=A&&"/"==J.charAt(J.length-A[0].length-1),J={architecture:32,family:A&&!C?J.replace(A[0],""):J,version:A?A[1]:null,toString:function(){var e=this.version;return this.family+(e&&!C?" "+e:"")+(64==this.architecture?" 64-bit":"")}}),(A=/\b(?:AMD|IA|Win|WOW|x86_|x)64\b/i.exec(q))&&!/\bi686\b/i.test(q)?(J&&(J.architecture=64,J.family=J.family.replace(RegExp(" *"+A),"")),U&&(/\bWOW64\b/i.test(e)||V&&/\w(?:86|32)$/.test(w.cpuClass||w.platform)&&!/\bWin64; x64\b/i.test(e))&&G.unshift("32-bit")):J&&/^OS X/.test(J.family)&&"Chrome"==U&&parseFloat(Z)>=39&&(J.architecture=64),e||(e=null);var Y={};return Y.description=e,Y.layout=$&&$[0],Y.manufacturer=z,Y.name=U,Y.prerelease=K,Y.product=X,Y.ua=e,Y.version=U&&Z,Y.os=J||{architecture:null,family:null,version:null,toString:function(){return"null"}},Y.parse=b,Y.toString=p,Y.version&&G.unshift(Z),Y.name&&G.unshift(U),J&&U&&(J!=String(J).split(" ")[0]||J!=U.split(" ")[0]&&!X)&&G.push(X?"("+J+")":"on "+J),G.length&&(Y.description=G.join(" ")),Y}var v={"function":!0,object:!0},h=v[typeof window]&&window||this,g=h,p=v[typeof r]&&r,x=v[typeof n]&&n&&!n.nodeType&&n,y=p&&x&&"object"==typeof t&&t;!y||y.global!==y&&y.window!==y&&y.self!==y||(h=y);var w=Math.pow(2,53)-1,E=/\bOpera/,S=this,T=Object.prototype,A=T.hasOwnProperty,O=T.toString,C=b();"function"==typeof e&&"object"==typeof e.amd&&e.amd?(h.platform=C,e(function(){return C})):p&&x?s(C,function(e,t){p[t]=e}):h.platform=C}).call(this)}).call(this,"undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{}]},{},[1])(1)});
+//# sourceMappingURL=ally.min.js.map
 $(document).ready(function(){
 
   const template = document.createElement('template');
@@ -10544,6 +24649,10 @@ $(document).ready(function(){
 	var DOWN_KEY = 40;
 	var SPACE_KEY = 32;
 	var RETURN_KEY = 13;
+	var HOME_KEY = 36;
+	var END_KEY = 35;
+	var PAGEUP_KEY = 33;
+	var PAGEDOWN_KEY = 34;
 
 	var current_cell;
 
@@ -10553,6 +24662,36 @@ $(document).ready(function(){
 	 * @param  {[type]} startDate Starting date in YYYY-MM-DD format (optional)
 	 */
 	function generateDays(startDate){
+
+		/**
+		 * Extend Date object with Helper function to check if the date is today or not. Returns a boolean
+		 */
+		Date.prototype.isToday = function(){
+			var d = new Date();
+			var bool = (d.toDateString() === this.toDateString());
+			return bool;
+		}
+
+		Date.prototype.lastDayInMonth = function(){
+			var d = new Date(this.getTime());
+			d.setDate(this.monthDays());
+			console.log(d);
+			return d;
+		}
+
+
+		/**
+		 * Extend Date object with Helper function to check if a date has already passed or not. Returns a boolean.
+		 */
+		Date.prototype.dayHasPassed = function(){
+			var now = new Date();
+			now.setHours(0,0,0,0);
+		  	if (this < now) {
+		    	return true;
+	    	} else {
+		    	return false;
+		  	}
+		}
 
 		/**
 		 * Extend Date object with Helper function to get number of days in the month
@@ -10568,6 +24707,10 @@ $(document).ready(function(){
 		Date.prototype.firstWeekday = function(){
 			var d= new Date(this.getFullYear(), this.getMonth(), 1);
 		    return d.getDay();
+		}
+
+		if (calendarDates.length > 0){
+			calendarDates = [];
 		}
 
 		// If a start date was provided
@@ -10601,7 +24744,6 @@ $(document).ready(function(){
 	    	}
 	    	calendarDates.push(d);
 	    }
-
 	    return calendarDates;
 	}
 
@@ -10615,9 +24757,10 @@ $(document).ready(function(){
 	function generateCalendarHeader(){
 
 		//Generate Month buttons and heading
-		/*
-		var fieldset = $('<fieldset><legend class="visually-hidden">Choose month</legend><button>Previous month</button><h3 id="month-label">' + months[+calendarDates[0].month-1] + ' ' + calendarDates[0].year + '</h3> <button>Next month</button> </fieldset>');
-		$('#datepicker_wrapper').before(fieldset);*/
+		
+		var fieldset = $('<fieldset class="month-nav__wrapper"><legend class="visually-hidden">Choose month</legend><button class="btn month-nav__sides left">Previous</button><h3 id="month-label" class="">' + months[+calendarDates[0].month-1] + ' ' + calendarDates[0].year + '</h3> <button class="btn month-nav__sides right">Next</button> </fieldset>');
+
+		$('#datepicker_wrapper').prepend(fieldset);
 
 		//Generate table headings with weekdays
 		var headerRow = "";
@@ -10637,16 +24780,30 @@ $(document).ready(function(){
 	}
 
 	function generateKeyboardHelp(){
-		var $keyboard_shortcuts = $('<div class="keyboard-shortcuts-link"><a href="#">Show keyboard shortcuts</a></div>');
-		$("#datepicker_wrapper").prepend($keyboard_shortcuts);
+		var idvalues = {
+			dialogID: 'keyboard_shortcuts_modal',
+			openID: 'open-keyboard-shortcuts',
+			closeID: 'closeKbdModal'
+		}
+
+		var $keyboard_shortcuts = $('<div class="keyboard-shortcuts-link"><button id="open-keyboard-shortcuts">Show keyboard shortcuts</button></div>');
+		$("#datepicker_wrapper").find(".month-nav__wrapper").after($keyboard_shortcuts);
+
+		var modalContent = '<h3 id="kbd_modal_heading" tabindex="0">Keyboard shortcuts</h3><ul><li><p><kbd>LEFT</kbd>/ <kbd>RIGHT</kbd> to move day to day.</p></li><li><p><kbd>UP</kbd>/ <kbd>DOWN</kbd> to move week to week.</p></li><li><p><kbd>HOME</kbd> to move to the first day of the month.</p></li><li><p><kbd>END</kbd> to move to the last day of the month.</p></li><li><p><kbd>PAGE UP</kbd> to move to the same day in the previous month.</p></li><li><p><kbd>PAGE DOWN</kbd> to move to the same day in the next month.</p></li><li><p><kbd>SPACE</kbd> to select a date.</p></li></ul>'
+
+		var $kbd_modal = $(
+			'<div id="keyboard_shortcuts_modal" hidden role="dialog" aria-modal="false" aria-labelledby="kbd_modal_heading"><div class="keyboard_modal__inner"> '+ modalContent + '<button id="closeKbdModal" class="btn">OK!</button></div></div>');
+
+		//Add keyboard modal to dom
+		$("#datepicker_wrapper").prepend($kbd_modal);
+
+		initializeKeyboardModal(idvalues.openID, idvalues.dialogID, idvalues.closeID);
 	}
 
 	function updateCalendar(newDate){
 		clearCalendar();
-
-		//setUpCalendar(newDate);
-		console.log("uppdaterar");
-
+		setUpCalendar(newDate);
+		dateInput.attr("value", newDate);
 	}
 
 
@@ -10654,6 +24811,8 @@ $(document).ready(function(){
 
     	// Hide the <input>
     	$("#input_wrapper").addClass("hidden");
+
+    	$("#datepicker_table").remove();
 
     	//Generate an array of days for the specified month
     	generateDays(startDate);
@@ -10664,9 +24823,8 @@ $(document).ready(function(){
     	generateKeyboardHelp();
 
 
+		//Populate cells    	
     	var x = 0;
-
-    	
     	for (var i = 0; i<6; i++){
 
     		//Add rows
@@ -10713,8 +24871,14 @@ $(document).ready(function(){
 						.attr("data-year", calendarDates[y].year)
 						.html(+calendarDates[y].day);
 
+						//Check if date is in the past
+						if (new Date('' + calendarDates[y].year + '-' + calendarDates[y].month + '-' + calendarDates[y].day + '').dayHasPassed()){
+							$td.addClass("disabled").attr('aria-disabled', true);
+						}
+
 					setAriaLabel($td);
 
+					
 					$row.append($td);
 				}	
 			}
@@ -10722,8 +24886,9 @@ $(document).ready(function(){
 			x = x+(y-x);
     	}
 
-    	generateA11yDemo();
-    	/*generateA11yHelp();*/
+    	if (!$("#a11y_demo").length){
+    		generateA11yDemo();
+    	}
 
     	//Generate list of active datepicker buttons
     	ALL_ACTIVE_DATEPICKER_DAYS = $('table#datepicker_table > tbody > tr > td').not('.disabled');
@@ -10731,13 +24896,10 @@ $(document).ready(function(){
     	//Set first day as tabbable
     	var firstDay = ALL_ACTIVE_DATEPICKER_DAYS.first();
 		firstDay.attr("tabindex", "0");
-		//Give it the aria-description
-    	moveA11yDesc(firstDay);
-
+		
 		//Make the calendar interactive!    	
 	    registerClickListeners();
 	    registerKeyListeners();
-
     }
 
     /**
@@ -10745,7 +24907,7 @@ $(document).ready(function(){
      */
     function clearCalendar(){
     	$("#datepicker_wrapper").empty();
-    	return $("#datepicker_wrapper");
+
     }
 
 	/**
@@ -10753,13 +24915,27 @@ $(document).ready(function(){
 	 */
 	function registerClickListeners() {
 
-		ALL_ACTIVE_DATEPICKER_DAYS.click(function(){
-		
+		$(".btn.month-nav__sides.right").click(function(){
+			nextMonth(null, true);
+			console.log($("btn.month-nav__sides.right"));
+			$(".btn.month-nav__sides.right").focus();
+		})
+
+		$(".btn.month-nav__sides.left").click(function(){
+			previousMonth(null, true);
+			$(".btn.month-nav__sides.left").focus();
+		})
+
+		$('td.disabled').mousedown(function(){
+			event.preventDefault();
+		});
+
+		ALL_ACTIVE_DATEPICKER_DAYS.click(function(){		
 			//Remove active states and set negative tabindex to all elements
 			cleanup();
 
 			//Set the clicked button as active
-			$(this).attr('tabindex', '0');
+			//$(this).attr('tabindex', '0');
 
 			//Set it as selected
 			setSelected($(this));
@@ -10793,13 +24969,11 @@ $(document).ready(function(){
 			   	case UP_KEY:
 					event.preventDefault();
 					previousWeek(current_cell);
-
 					break;
 
 			   	case DOWN_KEY:
 					event.preventDefault();
 					nextWeek(current_cell);
-
 			   		break;
 
 			   	//Select cell with spacebar or return key
@@ -10812,35 +24986,44 @@ $(document).ready(function(){
 					event.preventDefault();
 					setSelected(current_cell);
 					break;
+
+				case HOME_KEY:
+					event.preventDefault();
+					firstDayInMonth();
+					break;
+
+				case END_KEY:
+					event.preventDefault();
+					lastDayInMonth();
+					break;
+
+				case PAGEUP_KEY:
+					event.preventDefault();
+					previousMonth(current_cell, false);
+					break;
+
+				case PAGEDOWN_KEY:
+					event.preventDefault();
+					nextMonth(current_cell, false);
+					break;
 			}
-		});
-
-		$calendar.focusin(function(){
-
-			//Show keyboard icon in bottom left
-			//$("html[data-whatintent='keyboard'] .keyboard_prompt").removeClass("hidden");
-
 		});
 		
 		/**
 		 * Manage tabindex for when the user leaves the table
 		 */
 		$calendar.focusout(function(){
-			//Remove the keyboard icon
-			//$(".keyboard_prompt").addClass("hidden");
-
-			//Remove tabindices
+			
+			//Reset tabindices
 			ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
 
 			// Make the selected date focusable 
 			if (ALL_ACTIVE_DATEPICKER_DAYS.hasClass("active")){
 				$(".active").attr("tabindex", "0");
-				
 			}
 			//If nothing is selected, make the first day focusable
 			else {
 				ALL_ACTIVE_DATEPICKER_DAYS.first().attr("tabindex", "0");
-				
 			}
 
 		});
@@ -10853,6 +25036,12 @@ $(document).ready(function(){
     function setAriaLabel(cell){
     	var isActive = (cell.hasClass("active"));
     	var label = days[cell.attr("data-weekday")-1] +" "+ (+cell.attr("data-day")) +" "+ months[(cell.attr("data-month"))-1];
+    	var isToday = new Date('' + cell.attr("data-year") + ' ' + cell.attr("data-month") + ' ' + cell.attr("data-day") + '').isToday();
+
+    
+    	if (isToday){
+    		label = "Today " + label;
+    	}
 
     	if (isActive){
     		label = "Selected date. " + label;
@@ -10861,54 +25050,14 @@ $(document).ready(function(){
     		label = label;
     	}
 		return cell.attr("aria-label", label);
-
     }
-
-    /**
- * Move the aria-description to a given cell. Remove from all other cells. 
- * @param  {[type]} cell the cell that should have the aria-description
- */
-	function moveA11yDesc(cell){
-		$newCell = cell;
-
-		ALL_ACTIVE_DATEPICKER_DAYS
-			.removeAttr("aria-describedby");
-
-		return $newCell.attr("aria-describedby", "a11y_description");
-	}
-	
 
 	/**
 	 * Clean up buttons, reset tabindex
 	 */
 	function cleanup(){
-		//return ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
-
+		return ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
 	}
-	/*
-	function nextMonth(cell){
-		var currentMonth = parseInt(cell.attr("data-month"));
-		var currentYear = parseInt(cell.attr("data-year"));
-		var newMonth, newYear;
-		var newdatestring = "";
-
-
-		if (currentMonth == 12){
-			newMonth = 1;
-			newYear = currentYear+1;
-		}
-		else {
-			newMonth = currentMonth+1;
-			newYear = currentYear;
-		}
-		newdatestring = ""+newYear+"-"+newMonth;
-		console.log(newdatestring);
-		
-		updateCalendar(newdatestring);
-
-
-
-	}*/
 
 	/**
 	 * Go to next active date
@@ -10917,15 +25066,16 @@ $(document).ready(function(){
 		var a = ALL_ACTIVE_DATEPICKER_DAYS;
 		var idx = a.index(cell);
 		
+		var nextElement
 		if (a.index(cell) >= a.length-1){
-			var nextElement = $(a[0])
+			return nextMonth(cell, false);
+
 		} else 
 			var nextElement = $(a[idx + 1]);
 
 		cleanup();
 		
 		nextElement
-			.attr("tabindex", "0")
 			.focus();
 
 		updateA11yDemo(nextElement, false);
@@ -10941,7 +25091,7 @@ $(document).ready(function(){
 		var idx = a.index(cell);
 		
 		if (a.index(cell) == 0){
-			var nextElement = $(a[a.length-1])
+			previousMonth(cell, false);
 		} else
 			var nextElement = $(a[idx -1]);
 
@@ -10998,12 +25148,84 @@ $(document).ready(function(){
 		nextElement
 			.attr("tabindex", "0");
 			//.attr("aria-describedby", "a11y_description")
-			
 
 		updateA11yDemo(nextElement, false);
 
 		return nextElement.focus();
 
+	}
+
+	function nextMonth(cell, button){
+		console.log(button);
+		myDate = new Date(dateInput.attr("value"));
+		var thisMonth = myDate.getMonth();
+		var nextMonth = myDate.setMonth(thisMonth+1);
+
+
+		myDate = myDate.toISOString().slice(0,10);
+
+		updateCalendar(myDate);
+
+		if (button == true){
+			console.log("stannar");
+			return;
+
+		}
+
+		else return ALL_ACTIVE_DATEPICKER_DAYS.first().focus();;
+	}
+
+	function previousMonth(cell, button){
+		myDate = new Date(dateInput.attr("value"));
+		myDate.setMonth(myDate.getMonth()-1);
+
+		if (myDate.lastDayInMonth().dayHasPassed()){
+			return;
+		}
+
+		updateCalendar(myDate.toISOString().slice(0,10));
+
+		if (button){
+			return;
+		}
+
+		else if (cell.attr("data-day") == "01"){
+			return ALL_ACTIVE_DATEPICKER_DAYS.last().focus();
+		}
+
+		else return;
+
+
+
+
+		/*var thisMonth = myDate.getMonth();
+
+		var firstDay = myDate.setDay(1);
+
+
+
+		if (myDate.dayHasPassed())
+			return;
+
+		myDate = myDate.toISOString().slice(0,10);
+
+		updateCalendar(myDate);
+		return ALL_ACTIVE_DATEPICKER_DAYS.first().focus();*/
+	}
+
+
+
+
+	function firstDayInMonth(){
+		var a = ALL_ACTIVE_DATEPICKER_DAYS;
+		console.log(a.first());
+
+		return a.first().focus();
+	}
+
+	function lastDayInMonth(){
+		var a = ALL_ACTIVE_DATEPICKER_DAYS;
+		return a.last().focus();
 	}
 
 	/**
@@ -11015,7 +25237,7 @@ $(document).ready(function(){
 		var $currently_active = $(".active");
 		var $newActiveCell = cell;
 		//Clean up previously selected cell
-		$currently_active.removeClass("active")
+		$currently_active.removeClass("active").attr('tabindex', -1);
 		setAriaLabel($currently_active);
 
 		//Update the new active cell
@@ -11023,7 +25245,6 @@ $(document).ready(function(){
 			.addClass("active")
 			.attr("tabindex", "0");
 
-		/*moveA11yDesc($newActiveCell);*/
 		setAriaLabel($newActiveCell);
 		updateA11yDemo($newActiveCell, false);
 
@@ -11038,16 +25259,8 @@ $(document).ready(function(){
 	//
 	
 	function generateA11yDemo(){
-		var ad = $('<h3 style="font-size:1rem; font-weight:400;">Text read by screen reader <strong>(demo only)</strong></h3><div id="screen-reader-text">Text will be displayed here when you interact with the calender </div>');
-		$("#datepicker_wrapper").append(ad);
-
-		/**
-		 * Manage focusin events
-		 */
-		$calendar.focusin(function(){
-			var $focused = $(':focus');
-			updateA11yDemo($focused, true);
-		});
+		var ad = $('<div id="a11y_demo"><h3 style="font-size:1rem; font-weight:400;">Text read by screen reader <strong>(demo only)</strong></h3><div id="screen-reader-text">Text will be displayed here when you interact with the calender </div></div>');
+		$("#datepicker_wrapper").after(ad);
 
 		$calendar.focusout(function(){
 			clearA11yDemo();
@@ -11065,7 +25278,7 @@ $(document).ready(function(){
 	 * Update the visible screen reader demo text with info from the given cell
 	 * @param  {[type]} cell 
 	 */
-	function updateA11yDemo(cell, isFirst){
+	function updateA11yDemo(cell){
 		if (cell.hasClass("active"))
 			var a11ySpan = $("#screen-reader-text").addClass("focused selected");
 		else
@@ -11075,19 +25288,17 @@ $(document).ready(function(){
 		var label = cell.attr("aria-label");
 		var role = cell.attr('role');
 
-		if (cell.attr("aria-describedby")){
+		/*if (cell.attr("aria-describedby")){
 			if (isFirst){
 				return a11ySpan.html(label +", "+ role + ". Choose date, application." +'<p id="aria-desc-text">'+ HELPTEXT + '</p>');
 			} else{
 				return a11ySpan.html( label +", "+ role +' <p id="aria-desc-text">'+ HELPTEXT + '</p>');
 			}
 
-		} else
-
+		} else*/
 			return a11ySpan.html( label +", "+ role );
 
 	}
-
     //Let's go!
     
     //Get inital date from <input>
@@ -11096,7 +25307,14 @@ $(document).ready(function(){
     //Initalize
     setUpCalendar(initialDate)
 
+      
+	
 
+
+	$("#moredetails").click(function(){
+		$("#details").toggleClass("hidden");
+		$(this).attr("aria-expanded", true);
+	})
 
 });
 
@@ -11105,6 +25323,82 @@ $(document).ready(function(){
 
 
 
+/**
+ * Selectors for all focusable elements
+ * @type {string}
+ */
+const FOCUSABLE_ELEMENT_SELECTORS = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, [tabindex="0"], [contenteditable]';
+
+const KEY_CODE_MAP = {
+  TAB: 9,
+  ESC: 27
+};
+
+/**
+ * A stateless keyboard utility to -
+ * - Trap focus,
+ * - Focus the correct Element
+ * @param config {
+ *   el: HTMLElement. The Parent element, within which the focus should be trapped
+ *   focusElement: <Optional> HTMLElement. If Not provided, focus is put to the first focusable element
+ * }
+ * @return {Function} Function. The cleanup function. To undo everything done for handling A11Y
+ */
+function loopFocus(config) {
+  if (!config) {
+    throw new Error('Could not initialize focus-trapping - Config Missing');
+  }
+  const el = config.el,
+        escCallback = config.escCallback,
+        focusElement = config.focusElement;
+
+  if (!el) {
+    throw new Error('Could not initialize focus-trapping - Element Missing');
+  }
+  if (escCallback && !(escCallback instanceof Function)) {
+    throw new Error('Could not initialize focus-trapping - `config.escCallback` is not a function');
+  }
+
+  const focusableElements = el.querySelectorAll(FOCUSABLE_ELEMENT_SELECTORS);
+  let keyboardHandler;
+  var hiddenhandle;
+
+
+  //There can be containers without any focusable element
+  if (focusableElements.length > 0) {
+    const firstFocusableEl = focusableElements[0],
+          lastFocusableEl = focusableElements[focusableElements.length - 1],
+          elementToFocus = focusElement ? focusElement : firstFocusableEl;
+    elementToFocus.focus();
+
+    keyboardHandler = function keyboardHandler(e) {
+      if (e.keyCode === KEY_CODE_MAP.TAB) {
+        //Rotate Focus
+        if (e.shiftKey && document.activeElement === firstFocusableEl) {
+          e.preventDefault();
+          lastFocusableEl.focus();
+        } else if (!e.shiftKey && document.activeElement === lastFocusableEl) {
+          e.preventDefault();
+          firstFocusableEl.focus();
+        }
+      }
+    };
+    el.addEventListener('keydown', keyboardHandler);
+  }
+
+  hiddenhandle = ally.maintain.hidden({
+    filter: el
+  });
+
+  //The cleanup function. Put future cleanup tasks inside this.
+  return function cleanUp() {
+    alert("Cleaning!")
+    hiddenhandle.disengage();
+    if (keyboardHandler) {
+      el.removeEventListener('keydown', keyboardHandler);
+    }
+  };
+}
 $(document).ready(function(){
 
 	//Show/hide password
@@ -11204,341 +25498,88 @@ $(document).ready(function(){
 	setUpRequired();
 	initiateValidation();
 
-	
-
-	
-
-
-
-
-
-
 });
-console.log('plugins');
+var openButton;
+var dialog;
+var closeButton;
+var keyHandle;
 
-/**
-*	2. Aria-expanded
-**/
-
-function myFunction() {
-  var x = document.getElementById("b1").getAttribute("aria-expanded"); 
-  if (x == "true") {
-  	x = "false";
-  	document.getElementById("new-area").style.display = "none";
-  }
-  else {
-  	x = "true";
-  	document.getElementById("new-area").style.display = "block";
-  }
-  document.getElementById("b1").setAttribute("aria-expanded", x);
-
-  var y = document.getElementById("b2").getAttribute("aria-expanded"); 
-  if (y == "true") {
-  	y = "false";
-  	document.getElementById("new-area").style.display = "none";
-  }
-  else {
-  	y = "true";
-  	document.getElementById("new-area").style.display = "block";
-  }
-  document.getElementById("b2").setAttribute("aria-expanded", x);
-}
-
-/*
-*	5. Aria-haspopup
-*/
-
-$(document).ready(function(){
-console.log("test!");
-
-$('[role="navigation"] ul ul').prev('a')
-  .attr('aria-haspopup', 'true')
-  .append('<span aria-hidden="true"> &#x25be;</span>');
-
-var showSubmenu = function(dropdown) {
-  dropdown.attr('aria-hidden', 'false');
-};
-
-var hideSubmenu = function(dropdown) {
-  dropdown.attr('aria-hidden', 'true');
-};
-
-$('.with-dropdowns > li > a').on('focus', function(e) {
-  hideSubmenu($('[aria-label="submenu"]'));
-});
-
-$('[aria-haspopup]').on('click', function(e) {
-  var submenu = $(this).next();
-  showSubmenu(submenu);
-  //$(submenu).find('li:first-child a').focus();
-  return false;
-});
-
-$('[aria-haspopup]').hover(function() {
-  showSubmenu($(this).next());
-  $(this).off('click');
-});
-
-$('[aria-haspopup]').parents('li').mouseleave(function() {
-  hideSubmenu($(this).find('[aria-label="submenu"]'));
-});
-
-});
-
-/**
-*	6. Aria-pressed
-*
-**/
-
-function myToggle() {
-	var x = $(".toggle");
-	if (x.attr("aria-pressed")=="false"){
-		x.attr("aria-pressed", "true").html("Slå av");
-	} else
-		x.attr("aria-pressed", "false").html("Slå på")
-}
-
-/**
-*	7. Aria-selected
-**/
-
-$(document).ready(function(){
-		  $("li[role='tab']").click(function(){
-			$("li[role='tab']:not(this)").attr("aria-selected","false");
-		 	//$("li[role='tab']").attr("tabindex","-1");
-			$(this).attr("aria-selected","true");
-			//$(this).attr("tabindex","0");
-		  var tabpanid= $(this).attr("aria-controls");
-		   var tabpan = $("#"+tabpanid);
-		$("div[role='tabpanel']:not(tabpan)").attr("aria-hidden","true");
-		$("div[role='tabpanel']:not(tabpan)").addClass("hidden");
-
-		tabpan.removeClass("hidden");
-		//tabpan.className = "panel";
-		tabpan.attr("aria-hidden","false");		
-		  });
-		  
-		  //This adds keyboard accessibility by adding the enter key to the basic click event.
-		  $("li[role='tab']").keydown(function(ev) {
-		if (ev.which ==13) {
-		$(this).click();
-		}
-		}); 
-		 
-		  //This adds keyboard function that pressing an arrow left or arrow right from the tabs toggel the tabs. 
-		   $("li[role='tab']").keydown(function(ev) {
-		if ((ev.which ==39)||(ev.which ==37))  {
-		var selected= $(this).attr("aria-selected");
-		if  (selected =="true"){
-			$("li[aria-selected='false']").attr("aria-selected","true").focus() ;
-			$(this).attr("aria-selected","false");
-
-		  var tabpanid= $("li[aria-selected='true']").attr("aria-controls");
-		   var tabpan = $("#"+tabpanid);
-		$("div[role='tabpanel']:not(tabpan)").attr("aria-hidden","true");
-		$("div[role='tabpanel']:not(tabpan)").addClass("hidden");
-
-		tabpan.attr("aria-hidden","false");
-		tabpan.removeClass("hidden");
-		//tabpan.className = "panel";
+var tabHandle;
+var disabledHandle;
+var hiddenHandle;
+var focusedElementBeforeDialogOpened;
 
 
-		}
-		}
-		}); 
 
-});
+	function openDialog() {
+		// Remember the focused element before we opened the dialog
+		// so we can return focus to it once we close the dialog.
+		focusedElementBeforeDialogOpened = document.activeElement;
+		// Show the dialog and set focus to the first tabbable element
 
-/**
-*	Aria-live
-*
-**/ 
-
-function politeClick() {
-	$(".livearea").addClass("hidden");
-	var x = $("#polite-area");
-	x.removeClass("hidden").html("Nu tryckte du på knappen polite");
-}
-
-function assertiveClick() {
-	$(".livearea").addClass("hidden");
-	var x = $("#assertive-area");
-	x.removeClass("hidden").html("Nu tryckte du på knappen assertive");
-}
-
-function offClick() {
-	$(".livearea").addClass("hidden");
-	var x = $("#off-area");
-	x.removeClass("hidden").html("Nu tryckte du på knappen off");
-}
-
-/**
-*	Aria-live med aria-busy
-*
-**/ 
-
-function nollstall() {
-	setTimeout(function(){
-        $("#busy-area").html("").addClass("hidden").removeClass("klar");
-    }, 10000);
-}
-
-function busyClick() {
-	var x = $("#busy-area");
-	x.removeClass("hidden").attr('aria-busy', 'true').html("Jag är upptagen, vänta...<br>(den här texten ska inte läsas upp)</br>");
-	
-	
-	setTimeout(function(){
-        x.html("Nu är jag klar!").attr('aria-busy', 'false').addClass("klar");
-        nollstall();
-    }, 10000);
-
-}
-
-/*
-	Aria-activedescendant datepikcer
-*/
-$(document).ready(function(){
-	$("#datepicker-btn").click(function(){
-		$(this).attr('aria-expanded', 'true');
-	    $("#datepicker-grid").removeClass("hidden").attr('aria-activedescendant', 'grid3').focus();
-	    $("#grid3").addClass("active").attr("aria-selected", "true");
-
-	});
-	$('td[id^="grid"]').click(function(){
-		if ($(this).attr('aria-disabled') == 'true'){
-			//Do nothing
-		} else{
-			$('td[id^="grid"]').removeAttr("aria-pressed").removeClass("active");
-			$(this).attr("aria-selected", "true").addClass("active");
-			$("#datepicker-grid").attr('aria-activedescendant', this.id);
+		dialog.hidden = false;
+		var element = ally.query.firstTabbable({
+			context: dialog, // context === dialog
+			defaultToContext: true,
+		});
+		element.focus();
+		// Make sure that no element outside of the dialog
+		// can be interacted with while the dialog is visible.
+		// This means we don't have to handle Tab and Shift+Tab,
+		// but can defer that to the browser's internal handling.
+		disabledHandle = ally.maintain.disabled({
+			filter: dialog,
+		});
+		// Make sure that no element outside of the dialog
+		// is exposed via the Accessibility Tree, to prevent
+		// screen readers from navigating to content it shouldn't
+		// be seeing while the dialog is open. See example:
+		// https://marcysutton.com/slides/mobile-a11y-seattlejs/#/36
+		hiddenHandle = ally.maintain.hidden({
+			filter: dialog,
+		});
+		// Make sure that Tab key controlled focus is trapped within
+		// the tabsequence of the dialog and does not reach the
+		// browser's UI, e.g. the location bar.
+		tabHandle = ally.maintain.tabFocus({
+			context: dialog,
+		});
+		// React to enter and escape keys as mandated by ARIA Practices
+		keyHandle = ally.when.key({
+			escape: closeDialogByKey,
+		});
 	}
 
-	});
-});
+	function closeDialogByKey() {
+		setTimeout(closeDialog);
+	}
 
-/*
-Rolling tabindex datepicker 
-*/
+	function closeDialog() {
+		// undo listening to keyboard
+		keyHandle.disengage();
+		// undo trapping Tab key focus
+		tabHandle.disengage();
+		// undo hiding elements outside of the dialog
+		hiddenHandle.disengage();
+		// undo disabling elements outside of the dialog
+		disabledHandle.disengage();
+		// return focus to where it was before we opened the dialog
+		focusedElementBeforeDialogOpened.focus();
+		// hide or remove the dialog
+		dialog.hidden = true;
+	}
+
+	function initializeKeyboardModal(o, d, c) {
+		openButton = document.getElementById(o);
+		dialog = document.getElementById(d);
+		closeButton = document.getElementById(c);
 
 
-$(document).ready(function(){
+		// wire up showing/hiding the dialog
+		openButton.addEventListener('click', openDialog, false);
+		closeButton.addEventListener('click', closeDialog, false);
+	}
 
-	/*Variables and selectors*/
-	var ALL_ACTIVE_DATEPICKER_DAYS = $('table.picker__table > tbody > tr > td[role="button"][aria-disabled!="true"]')
 	
-	var RIGHT_KEY = 39;
-	var LEFT_KEY = 37;
-	var SPACE_KEY = 32;
-
-
-	// Add click listener to each button
-
-	ALL_ACTIVE_DATEPICKER_DAYS.click(function(){
-		
-		//Remove active states and tabindices
-		ALL_ACTIVE_DATEPICKER_DAYS.removeAttr("aria-pressed").removeClass("active").attr("tabindex", "-1");
-
-		//Set the clicked button as active
-		$(this)
-			.attr('aria-pressed', 'true')
-			.attr('tabindex', '0')
-			.addClass("active");
-	});
-	
-	// Add keylistener to table to move between the days and select using space and enter
-
-	$("#P1973332106_table").keydown(function( event ) {
-
-		//Find the cell currently in focus
-		var current_cell = $("#P1973332106_table td[role='button']:focus");
-		
-		//Create a list of all focusable days
-		var myMap = ALL_ACTIVE_DATEPICKER_DAYS.map( function( index, element ) {
-		    return this;
-		}).get();
-
-		//Listen for keystrokes
-		switch (event.which){
-
-			case RIGHT_KEY:
-				event.preventDefault();
-
-				ALL_ACTIVE_DATEPICKER_DAYS
-					.attr("tabindex", "-1");
-
-				var nextCell = current_cell.next();
-
-				if (current_cell)
-
-				if (!nextCell.attr('aria-disabled')){
-					nextCell.attr("tabindex", "0").focus();
-				}
-
-
-		   		break;
-
-		   	case LEFT_KEY:
-				event.preventDefault();
-
-				ALL_ACTIVE_DATEPICKER_DAYS
-					.attr("tabindex", "-1");
-
-				var previousCell = current_cell.prev();
-					if (!previousCell.attr('aria-disabled')){
-						previousCell.attr("tabindex", "0").focus();
-					}
-
-				
-		   		break;
-
-		   	case SPACE_KEY:
-				event.preventDefault();
-				ALL_ACTIVE_DATEPICKER_DAYS.removeAttr("aria-pressed");	
-				current_cell.attr("aria-pressed", "true");
-				break;
-		}
-});
-
-});
-
-
-
-
-
-
-
-$(document).ready(function(){
-	console.log("hej hej");
-	/*
-
-	document.getElementById("modal__btn").addEventListener("click", function(){
-	    //Display overlay
-	    $("#modal-overlay").toggleClass("__is-visible");
-
-	    //Get modal
-	    $("#modal-container")
-	    	//Set modal to visislbe
-	    	.toggleClass("__is-visible")
-	    //Set aria-modal to true;
-	    	.attr("aria-modal", "true")
-
-	    //set focus on first interactive element
-	    	//.find("button, a[href], input").focus();
-	    	.find("#modal-title").focus();
-
-	    //Make background elements inert
-	    $("button:not(.__is-visible button), a[href]:not(.__is-visible a[href]), input")
-			.prop("inert", "true");
-
-
-	});
-*/
-
-});
-
-
-
-
 
 

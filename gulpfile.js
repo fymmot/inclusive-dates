@@ -13,7 +13,6 @@ var htmlMin = require('gulp-htmlmin');
 var del = require('del');
 var sequence = require('run-sequence');
 var axe = require('gulp-axe-webdriver');
-var changed = require('gulp-changed');
 
 var config = {
   dist: 'dist/',
@@ -28,6 +27,7 @@ var config = {
     'node_modules/parsleyjs/dist/parsley.min.js',
     'node_modules/what-input/dist/what-input.min.js',
     'node_modules/prismjs/prism.js',
+    'node_modules/focus-trap/dist/focus-trap.min.js',
     'src/js/**/*.js'
     ],
   imgin: 'src/img/**/*.{jpg,jpeg,png,gif}',
@@ -55,6 +55,8 @@ gulp.task('serve', ['sass'], function() {
 
   gulp.watch([config.htmlin], function(){
     sequence('html', 'reload', 'axe');
+    sequence('html', 'reload');
+
   });
   gulp.watch([config.jsin], function(){
     sequence('js', 'reload');
@@ -113,15 +115,15 @@ gulp.task('html', function() {
       sortClassName: true,
       collapseWhitespace: true
     }))
-    .pipe(gulp.dest(config.dist))
-
+    .pipe(gulp.dest(config.dist));
 });
 
 gulp.task('axe', function() {
 
   var options = {
     saveOutputIn: '',
-    urls: [config.htmlout+'*.html']
+    urls: [config.htmlout+'*.html'],
+    headless: true
   };
   return axe(options);
 });
@@ -132,6 +134,8 @@ gulp.task('clean', function() {
 
 gulp.task('build', function() {
   sequence('clean', ['html', 'js', 'css', 'img'], 'axe');
+  sequence('clean', ['html', 'js', 'css', 'img']);
+
 });
 
 gulp.task('default', function(){

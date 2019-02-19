@@ -8,11 +8,6 @@ body {
 	box-sizing: border-box;
 }
 
-.container {
-	max-width: 960px;
-	margin:auto;
-}
-
 p, li{	font-size:1rem;
 }
 
@@ -44,15 +39,17 @@ h1 {
 	margin-bottom: 0.5rem;
 
 	font-size: 4rem;
+
+	&.h1__main{
+		margin-top: 1rem;
+	}
 }
+
+
 
 h2 {
 	margin-top: 2rem;
     font-size: 2.5rem;
-    -webkit-margin-before: 0.83em;
-    -webkit-margin-after: 0.83em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
     font-weight: bold;
 }
 
@@ -61,7 +58,17 @@ h3 {
 	font-size: 1.5rem;
 }
 
+.main{
+	min-height: 30rem;
+}
 
+.footer{
+	//min-height: 15rem;
+}
+
+.grid-container {
+  //text-align:center;
+}
 
 .btn{
 	display:inline-block;
@@ -88,6 +95,9 @@ h3 {
 
 .mt{
 	margin-top:2rem;
+}
+.mb{
+	margin-bottom: 2rem;
 }
 .pt{
 	padding-top:2rem;

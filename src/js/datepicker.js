@@ -27,6 +27,10 @@ $(document).ready(function(){
 	var DOWN_KEY = 40;
 	var SPACE_KEY = 32;
 	var RETURN_KEY = 13;
+	var HOME_KEY = 36;
+	var END_KEY = 35;
+	var PAGEUP_KEY = 33;
+	var PAGEDOWN_KEY = 34;
 
 	var current_cell;
 
@@ -36,6 +40,36 @@ $(document).ready(function(){
 	 * @param  {[type]} startDate Starting date in YYYY-MM-DD format (optional)
 	 */
 	function generateDays(startDate){
+
+		/**
+		 * Extend Date object with Helper function to check if the date is today or not. Returns a boolean
+		 */
+		Date.prototype.isToday = function(){
+			var d = new Date();
+			var bool = (d.toDateString() === this.toDateString());
+			return bool;
+		}
+
+		Date.prototype.lastDayInMonth = function(){
+			var d = new Date(this.getTime());
+			d.setDate(this.monthDays());
+			console.log(d);
+			return d;
+		}
+
+
+		/**
+		 * Extend Date object with Helper function to check if a date has already passed or not. Returns a boolean.
+		 */
+		Date.prototype.dayHasPassed = function(){
+			var now = new Date();
+			now.setHours(0,0,0,0);
+		  	if (this < now) {
+		    	return true;
+	    	} else {
+		    	return false;
+		  	}
+		}
 
 		/**
 		 * Extend Date object with Helper function to get number of days in the month
@@ -51,6 +85,10 @@ $(document).ready(function(){
 		Date.prototype.firstWeekday = function(){
 			var d= new Date(this.getFullYear(), this.getMonth(), 1);
 		    return d.getDay();
+		}
+
+		if (calendarDates.length > 0){
+			calendarDates = [];
 		}
 
 		// If a start date was provided
@@ -84,7 +122,6 @@ $(document).ready(function(){
 	    	}
 	    	calendarDates.push(d);
 	    }
-
 	    return calendarDates;
 	}
 
@@ -98,9 +135,10 @@ $(document).ready(function(){
 	function generateCalendarHeader(){
 
 		//Generate Month buttons and heading
-		/*
-		var fieldset = $('<fieldset><legend class="visually-hidden">Choose month</legend><button>Previous month</button><h3 id="month-label">' + months[+calendarDates[0].month-1] + ' ' + calendarDates[0].year + '</h3> <button>Next month</button> </fieldset>');
-		$('#datepicker_wrapper').before(fieldset);*/
+		
+		var fieldset = $('<fieldset class="month-nav__wrapper"><legend class="visually-hidden">Choose month</legend><button class="btn month-nav__sides left">Previous</button><h3 id="month-label" class="">' + months[+calendarDates[0].month-1] + ' ' + calendarDates[0].year + '</h3> <button class="btn month-nav__sides right">Next</button> </fieldset>');
+
+		$('#datepicker_wrapper').prepend(fieldset);
 
 		//Generate table headings with weekdays
 		var headerRow = "";
@@ -120,16 +158,30 @@ $(document).ready(function(){
 	}
 
 	function generateKeyboardHelp(){
-		var $keyboard_shortcuts = $('<div class="keyboard-shortcuts-link"><a href="#">Show keyboard shortcuts</a></div>');
-		$("#datepicker_wrapper").prepend($keyboard_shortcuts);
+		var idvalues = {
+			dialogID: 'keyboard_shortcuts_modal',
+			openID: 'open-keyboard-shortcuts',
+			closeID: 'closeKbdModal'
+		}
+
+		var $keyboard_shortcuts = $('<div class="keyboard-shortcuts-link"><button id="open-keyboard-shortcuts">Show keyboard shortcuts</button></div>');
+		$("#datepicker_wrapper").find(".month-nav__wrapper").after($keyboard_shortcuts);
+
+		var modalContent = '<h3 id="kbd_modal_heading" tabindex="0">Keyboard shortcuts</h3><ul><li><p><kbd>LEFT</kbd>/ <kbd>RIGHT</kbd> to move day to day.</p></li><li><p><kbd>UP</kbd>/ <kbd>DOWN</kbd> to move week to week.</p></li><li><p><kbd>HOME</kbd> to move to the first day of the month.</p></li><li><p><kbd>END</kbd> to move to the last day of the month.</p></li><li><p><kbd>PAGE UP</kbd> to move to the same day in the previous month.</p></li><li><p><kbd>PAGE DOWN</kbd> to move to the same day in the next month.</p></li><li><p><kbd>SPACE</kbd> to select a date.</p></li></ul>'
+
+		var $kbd_modal = $(
+			'<div id="keyboard_shortcuts_modal" hidden role="dialog" aria-modal="false" aria-labelledby="kbd_modal_heading"><div class="keyboard_modal__inner"> '+ modalContent + '<button id="closeKbdModal" class="btn">OK!</button></div></div>');
+
+		//Add keyboard modal to dom
+		$("#datepicker_wrapper").prepend($kbd_modal);
+
+		initializeKeyboardModal(idvalues.openID, idvalues.dialogID, idvalues.closeID);
 	}
 
 	function updateCalendar(newDate){
 		clearCalendar();
-
-		//setUpCalendar(newDate);
-		console.log("uppdaterar");
-
+		setUpCalendar(newDate);
+		dateInput.attr("value", newDate);
 	}
 
 
@@ -137,6 +189,8 @@ $(document).ready(function(){
 
     	// Hide the <input>
     	$("#input_wrapper").addClass("hidden");
+
+    	$("#datepicker_table").remove();
 
     	//Generate an array of days for the specified month
     	generateDays(startDate);
@@ -147,9 +201,8 @@ $(document).ready(function(){
     	generateKeyboardHelp();
 
 
+		//Populate cells    	
     	var x = 0;
-
-    	
     	for (var i = 0; i<6; i++){
 
     		//Add rows
@@ -196,8 +249,14 @@ $(document).ready(function(){
 						.attr("data-year", calendarDates[y].year)
 						.html(+calendarDates[y].day);
 
+						//Check if date is in the past
+						if (new Date('' + calendarDates[y].year + '-' + calendarDates[y].month + '-' + calendarDates[y].day + '').dayHasPassed()){
+							$td.addClass("disabled").attr('aria-disabled', true);
+						}
+
 					setAriaLabel($td);
 
+					
 					$row.append($td);
 				}	
 			}
@@ -205,8 +264,9 @@ $(document).ready(function(){
 			x = x+(y-x);
     	}
 
-    	generateA11yDemo();
-    	/*generateA11yHelp();*/
+    	if (!$("#a11y_demo").length){
+    		generateA11yDemo();
+    	}
 
     	//Generate list of active datepicker buttons
     	ALL_ACTIVE_DATEPICKER_DAYS = $('table#datepicker_table > tbody > tr > td').not('.disabled');
@@ -214,13 +274,10 @@ $(document).ready(function(){
     	//Set first day as tabbable
     	var firstDay = ALL_ACTIVE_DATEPICKER_DAYS.first();
 		firstDay.attr("tabindex", "0");
-		//Give it the aria-description
-    	moveA11yDesc(firstDay);
-
+		
 		//Make the calendar interactive!    	
 	    registerClickListeners();
 	    registerKeyListeners();
-
     }
 
     /**
@@ -228,7 +285,7 @@ $(document).ready(function(){
      */
     function clearCalendar(){
     	$("#datepicker_wrapper").empty();
-    	return $("#datepicker_wrapper");
+
     }
 
 	/**
@@ -236,13 +293,27 @@ $(document).ready(function(){
 	 */
 	function registerClickListeners() {
 
-		ALL_ACTIVE_DATEPICKER_DAYS.click(function(){
-		
+		$(".btn.month-nav__sides.right").click(function(){
+			nextMonth(null, true);
+			console.log($("btn.month-nav__sides.right"));
+			$(".btn.month-nav__sides.right").focus();
+		})
+
+		$(".btn.month-nav__sides.left").click(function(){
+			previousMonth(null, true);
+			$(".btn.month-nav__sides.left").focus();
+		})
+
+		$('td.disabled').mousedown(function(){
+			event.preventDefault();
+		});
+
+		ALL_ACTIVE_DATEPICKER_DAYS.click(function(){		
 			//Remove active states and set negative tabindex to all elements
 			cleanup();
 
 			//Set the clicked button as active
-			$(this).attr('tabindex', '0');
+			//$(this).attr('tabindex', '0');
 
 			//Set it as selected
 			setSelected($(this));
@@ -276,13 +347,11 @@ $(document).ready(function(){
 			   	case UP_KEY:
 					event.preventDefault();
 					previousWeek(current_cell);
-
 					break;
 
 			   	case DOWN_KEY:
 					event.preventDefault();
 					nextWeek(current_cell);
-
 			   		break;
 
 			   	//Select cell with spacebar or return key
@@ -295,35 +364,44 @@ $(document).ready(function(){
 					event.preventDefault();
 					setSelected(current_cell);
 					break;
+
+				case HOME_KEY:
+					event.preventDefault();
+					firstDayInMonth();
+					break;
+
+				case END_KEY:
+					event.preventDefault();
+					lastDayInMonth();
+					break;
+
+				case PAGEUP_KEY:
+					event.preventDefault();
+					previousMonth(current_cell, false);
+					break;
+
+				case PAGEDOWN_KEY:
+					event.preventDefault();
+					nextMonth(current_cell, false);
+					break;
 			}
-		});
-
-		$calendar.focusin(function(){
-
-			//Show keyboard icon in bottom left
-			//$("html[data-whatintent='keyboard'] .keyboard_prompt").removeClass("hidden");
-
 		});
 		
 		/**
 		 * Manage tabindex for when the user leaves the table
 		 */
 		$calendar.focusout(function(){
-			//Remove the keyboard icon
-			//$(".keyboard_prompt").addClass("hidden");
-
-			//Remove tabindices
+			
+			//Reset tabindices
 			ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
 
 			// Make the selected date focusable 
 			if (ALL_ACTIVE_DATEPICKER_DAYS.hasClass("active")){
 				$(".active").attr("tabindex", "0");
-				
 			}
 			//If nothing is selected, make the first day focusable
 			else {
 				ALL_ACTIVE_DATEPICKER_DAYS.first().attr("tabindex", "0");
-				
 			}
 
 		});
@@ -336,6 +414,12 @@ $(document).ready(function(){
     function setAriaLabel(cell){
     	var isActive = (cell.hasClass("active"));
     	var label = days[cell.attr("data-weekday")-1] +" "+ (+cell.attr("data-day")) +" "+ months[(cell.attr("data-month"))-1];
+    	var isToday = new Date('' + cell.attr("data-year") + ' ' + cell.attr("data-month") + ' ' + cell.attr("data-day") + '').isToday();
+
+    
+    	if (isToday){
+    		label = "Today " + label;
+    	}
 
     	if (isActive){
     		label = "Selected date. " + label;
@@ -344,54 +428,14 @@ $(document).ready(function(){
     		label = label;
     	}
 		return cell.attr("aria-label", label);
-
     }
-
-    /**
- * Move the aria-description to a given cell. Remove from all other cells. 
- * @param  {[type]} cell the cell that should have the aria-description
- */
-	function moveA11yDesc(cell){
-		$newCell = cell;
-
-		ALL_ACTIVE_DATEPICKER_DAYS
-			.removeAttr("aria-describedby");
-
-		return $newCell.attr("aria-describedby", "a11y_description");
-	}
-	
 
 	/**
 	 * Clean up buttons, reset tabindex
 	 */
 	function cleanup(){
-		//return ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
-
+		return ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
 	}
-	/*
-	function nextMonth(cell){
-		var currentMonth = parseInt(cell.attr("data-month"));
-		var currentYear = parseInt(cell.attr("data-year"));
-		var newMonth, newYear;
-		var newdatestring = "";
-
-
-		if (currentMonth == 12){
-			newMonth = 1;
-			newYear = currentYear+1;
-		}
-		else {
-			newMonth = currentMonth+1;
-			newYear = currentYear;
-		}
-		newdatestring = ""+newYear+"-"+newMonth;
-		console.log(newdatestring);
-		
-		updateCalendar(newdatestring);
-
-
-
-	}*/
 
 	/**
 	 * Go to next active date
@@ -400,15 +444,16 @@ $(document).ready(function(){
 		var a = ALL_ACTIVE_DATEPICKER_DAYS;
 		var idx = a.index(cell);
 		
+		var nextElement
 		if (a.index(cell) >= a.length-1){
-			var nextElement = $(a[0])
+			return nextMonth(cell, false);
+
 		} else 
 			var nextElement = $(a[idx + 1]);
 
 		cleanup();
 		
 		nextElement
-			.attr("tabindex", "0")
 			.focus();
 
 		updateA11yDemo(nextElement, false);
@@ -424,7 +469,7 @@ $(document).ready(function(){
 		var idx = a.index(cell);
 		
 		if (a.index(cell) == 0){
-			var nextElement = $(a[a.length-1])
+			previousMonth(cell, false);
 		} else
 			var nextElement = $(a[idx -1]);
 
@@ -481,12 +526,84 @@ $(document).ready(function(){
 		nextElement
 			.attr("tabindex", "0");
 			//.attr("aria-describedby", "a11y_description")
-			
 
 		updateA11yDemo(nextElement, false);
 
 		return nextElement.focus();
 
+	}
+
+	function nextMonth(cell, button){
+		console.log(button);
+		myDate = new Date(dateInput.attr("value"));
+		var thisMonth = myDate.getMonth();
+		var nextMonth = myDate.setMonth(thisMonth+1);
+
+
+		myDate = myDate.toISOString().slice(0,10);
+
+		updateCalendar(myDate);
+
+		if (button == true){
+			console.log("stannar");
+			return;
+
+		}
+
+		else return ALL_ACTIVE_DATEPICKER_DAYS.first().focus();;
+	}
+
+	function previousMonth(cell, button){
+		myDate = new Date(dateInput.attr("value"));
+		myDate.setMonth(myDate.getMonth()-1);
+
+		if (myDate.lastDayInMonth().dayHasPassed()){
+			return;
+		}
+
+		updateCalendar(myDate.toISOString().slice(0,10));
+
+		if (button){
+			return;
+		}
+
+		else if (cell.attr("data-day") == "01"){
+			return ALL_ACTIVE_DATEPICKER_DAYS.last().focus();
+		}
+
+		else return;
+
+
+
+
+		/*var thisMonth = myDate.getMonth();
+
+		var firstDay = myDate.setDay(1);
+
+
+
+		if (myDate.dayHasPassed())
+			return;
+
+		myDate = myDate.toISOString().slice(0,10);
+
+		updateCalendar(myDate);
+		return ALL_ACTIVE_DATEPICKER_DAYS.first().focus();*/
+	}
+
+
+
+
+	function firstDayInMonth(){
+		var a = ALL_ACTIVE_DATEPICKER_DAYS;
+		console.log(a.first());
+
+		return a.first().focus();
+	}
+
+	function lastDayInMonth(){
+		var a = ALL_ACTIVE_DATEPICKER_DAYS;
+		return a.last().focus();
 	}
 
 	/**
@@ -498,7 +615,7 @@ $(document).ready(function(){
 		var $currently_active = $(".active");
 		var $newActiveCell = cell;
 		//Clean up previously selected cell
-		$currently_active.removeClass("active")
+		$currently_active.removeClass("active").attr('tabindex', -1);
 		setAriaLabel($currently_active);
 
 		//Update the new active cell
@@ -506,7 +623,6 @@ $(document).ready(function(){
 			.addClass("active")
 			.attr("tabindex", "0");
 
-		/*moveA11yDesc($newActiveCell);*/
 		setAriaLabel($newActiveCell);
 		updateA11yDemo($newActiveCell, false);
 
@@ -521,16 +637,8 @@ $(document).ready(function(){
 	//
 	
 	function generateA11yDemo(){
-		var ad = $('<h3 style="font-size:1rem; font-weight:400;">Text read by screen reader <strong>(demo only)</strong></h3><div id="screen-reader-text">Text will be displayed here when you interact with the calender </div>');
-		$("#datepicker_wrapper").append(ad);
-
-		/**
-		 * Manage focusin events
-		 */
-		$calendar.focusin(function(){
-			var $focused = $(':focus');
-			updateA11yDemo($focused, true);
-		});
+		var ad = $('<div id="a11y_demo"><h3 style="font-size:1rem; font-weight:400;">Text read by screen reader <strong>(demo only)</strong></h3><div id="screen-reader-text">Text will be displayed here when you interact with the calender </div></div>');
+		$("#datepicker_wrapper").after(ad);
 
 		$calendar.focusout(function(){
 			clearA11yDemo();
@@ -548,7 +656,7 @@ $(document).ready(function(){
 	 * Update the visible screen reader demo text with info from the given cell
 	 * @param  {[type]} cell 
 	 */
-	function updateA11yDemo(cell, isFirst){
+	function updateA11yDemo(cell){
 		if (cell.hasClass("active"))
 			var a11ySpan = $("#screen-reader-text").addClass("focused selected");
 		else
@@ -558,19 +666,17 @@ $(document).ready(function(){
 		var label = cell.attr("aria-label");
 		var role = cell.attr('role');
 
-		if (cell.attr("aria-describedby")){
+		/*if (cell.attr("aria-describedby")){
 			if (isFirst){
 				return a11ySpan.html(label +", "+ role + ". Choose date, application." +'<p id="aria-desc-text">'+ HELPTEXT + '</p>');
 			} else{
 				return a11ySpan.html( label +", "+ role +' <p id="aria-desc-text">'+ HELPTEXT + '</p>');
 			}
 
-		} else
-
+		} else*/
 			return a11ySpan.html( label +", "+ role );
 
 	}
-
     //Let's go!
     
     //Get inital date from <input>
@@ -579,7 +685,14 @@ $(document).ready(function(){
     //Initalize
     setUpCalendar(initialDate)
 
+      
+	
 
+
+	$("#moredetails").click(function(){
+		$("#details").toggleClass("hidden");
+		$(this).attr("aria-expanded", true);
+	})
 
 });
 
