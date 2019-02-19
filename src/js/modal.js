@@ -11,6 +11,9 @@ var focusedElementBeforeDialogOpened;
 
 
 	function openDialog() {
+		if (openButton.hasAttribute("aria-expanded")){
+			openButton.setAttribute("aria-expanded", true);
+		}
 		// Remember the focused element before we opened the dialog
 		// so we can return focus to it once we close the dialog.
 		focusedElementBeforeDialogOpened = document.activeElement;
@@ -54,6 +57,10 @@ var focusedElementBeforeDialogOpened;
 	}
 
 	function closeDialog() {
+
+		if (openButton.hasAttribute("aria-expanded")){
+			openButton.setAttribute("aria-expanded", false);
+		}
 		// undo listening to keyboard
 		keyHandle.disengage();
 		// undo trapping Tab key focus
