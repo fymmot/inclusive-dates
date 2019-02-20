@@ -24633,26 +24633,30 @@ $(document).ready(function(){
         days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
         daysShort = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        /*HELPTEXT = 'Use the left and right arrow keys to browse days. Up and down arrows move between weeks. Select a day using return key or spacebar.',*/
         HELPTEXT = '',
         dateInput = $("#date"),
         initialDate;
+    var KEYS = {
+			RIGHT_KEY : 39,
+			LEFT_KEY : 37,
+			UP_KEY : 38,
+			DOWN_KEY : 40,
+			SPACE_KEY : 32,
+			RETURN_KEY : 13,
+			HOME_KEY : 36,
+			END_KEY : 35,
+			PAGEUP_KEY : 33,
+			PAGEDOWN_KEY : 34
+		};
+
+
 
     
     var $datePickerGrid;
 	var calendarDates = [];
 	var ALL_ACTIVE_DATEPICKER_DAYS;
 
-	var RIGHT_KEY = 39;
-	var LEFT_KEY = 37;
-	var UP_KEY = 38;
-	var DOWN_KEY = 40;
-	var SPACE_KEY = 32;
-	var RETURN_KEY = 13;
-	var HOME_KEY = 36;
-	var END_KEY = 35;
-	var PAGEUP_KEY = 33;
-	var PAGEDOWN_KEY = 34;
+
 
 	var current_cell;
 
@@ -24675,7 +24679,6 @@ $(document).ready(function(){
 		Date.prototype.lastDayInMonth = function(){
 			var d = new Date(this.getTime());
 			d.setDate(this.monthDays());
-			console.log(d);
 			return d;
 		}
 
@@ -24758,7 +24761,7 @@ $(document).ready(function(){
 
 		//Generate Month buttons and heading
 		
-		var fieldset = $('<fieldset class="month-nav__wrapper"><legend class="visually-hidden">Choose month</legend><button class="btn month-nav__sides left">Previous</button><h3 id="month-label" class="">' + months[+calendarDates[0].month-1] + ' ' + calendarDates[0].year + '</h3> <button class="btn month-nav__sides right">Next</button> </fieldset>');
+		var fieldset = $('<fieldset class="month-nav__wrapper"><legend class="visually-hidden">Choose month</legend><button class="btn month-nav__sides left">Previous<span class="visually-hidden"> month</span></button><h3 id="month-label" class="">' + months[+calendarDates[0].month-1] + ' ' + calendarDates[0].year + '</h3> <button class="btn month-nav__sides right">Next<span class="visually-hidden"> month</span></button> </fieldset>');
 
 		$('#datepicker_wrapper').prepend(fieldset);
 
@@ -24789,7 +24792,7 @@ $(document).ready(function(){
 		var $keyboard_shortcuts = $('<div class="keyboard-shortcuts-link"><button aria-expanded="false" id="open-keyboard-shortcuts">Show keyboard shortcuts</button></div>');
 		$("#datepicker_wrapper").find(".month-nav__wrapper").after($keyboard_shortcuts);
 
-		var modalContent = '<h3 id="kbd_modal_heading" tabindex="0">Keyboard shortcuts</h3><ul><li><p><kbd>LEFT</kbd>/ <kbd>RIGHT</kbd> to move day to day.</p></li><li><p><kbd>UP</kbd>/ <kbd>DOWN</kbd> to move week to week.</p></li><li><p><kbd>HOME</kbd> to move to the first day of the month.</p></li><li><p><kbd>END</kbd> to move to the last day of the month.</p></li><li><p><kbd>PAGE UP</kbd> to move to the same day in the previous month.</p></li><li><p><kbd>PAGE DOWN</kbd> to move to the same day in the next month.</p></li><li><p><kbd>SPACE</kbd> to select a date.</p></li></ul>'
+		var modalContent = '<h3 id="kbd_modal_heading" tabindex="0">Keyboard shortcuts</h3><ul><li><p><kbd>LEFT</kbd>/ <kbd>RIGHT</kbd> to change day.</p></li><li><p><kbd>UP</kbd>/ <kbd>DOWN</kbd> to change week.</p></li><li><p><kbd>HOME</kbd> to move to the first day of the month.</p></li><li><p><kbd>END</kbd> to move to the last day of the month.</p></li><li><p><kbd>PAGE UP</kbd> to move to the same day in the previous month.</p></li><li><p><kbd>PAGE DOWN</kbd> to move to the same day in the next month.</p></li><li><p><kbd>SPACE</kbd> to select a date.</p></li></ul>'
 
 		var $kbd_modal = $(
 			'<div id="keyboard_shortcuts_modal" hidden role="dialog" aria-modal="false" aria-labelledby="kbd_modal_heading"><div class="keyboard_modal__inner"> '+ modalContent + '<button id="closeKbdModal" class="btn">OK!</button></div></div>');
@@ -24885,12 +24888,12 @@ $(document).ready(function(){
 			//Iterate
 			x = x+(y-x);
     	}
-
+    	//Generate a11y demo div, if not already present
     	if (!$("#a11y_demo").length){
     		generateA11yDemo();
     	}
 
-    	//Generate list of active datepicker buttons
+    	//Populate the list of active datepicker buttons
     	ALL_ACTIVE_DATEPICKER_DAYS = $('table#datepicker_table > tbody > tr > td').not('.disabled');
 
     	//Set first day as tabbable
@@ -24907,7 +24910,6 @@ $(document).ready(function(){
      */
     function clearCalendar(){
     	$("#datepicker_wrapper").empty();
-
     }
 
 	/**
@@ -24916,13 +24918,12 @@ $(document).ready(function(){
 	function registerClickListeners() {
 
 		$(".btn.month-nav__sides.right").click(function(){
-			nextMonth(null, true);
-			console.log($("btn.month-nav__sides.right"));
+			nextMonth();
 			$(".btn.month-nav__sides.right").focus();
 		})
 
 		$(".btn.month-nav__sides.left").click(function(){
-			previousMonth(null, true);
+			previousMonth();
 			$(".btn.month-nav__sides.left").focus();
 		})
 
@@ -24933,10 +24934,6 @@ $(document).ready(function(){
 		ALL_ACTIVE_DATEPICKER_DAYS.click(function(){		
 			//Remove active states and set negative tabindex to all elements
 			cleanup();
-
-			//Set the clicked button as active
-			//$(this).attr('tabindex', '0');
-
 			//Set it as selected
 			setSelected($(this));
 		});
@@ -24956,58 +24953,60 @@ $(document).ready(function(){
 			//Listen for keystrokes
 			switch (event.which){
 
-				case RIGHT_KEY:
+				case KEYS.RIGHT_KEY:
 					event.preventDefault();
 					nextDay(current_cell);
 			   		break;
 
-			   	case LEFT_KEY:
+			   	case KEYS.LEFT_KEY:
 					event.preventDefault();
 					previousDay(current_cell);
 			   		break;
 
-			   	case UP_KEY:
+			   	case KEYS.UP_KEY:
 					event.preventDefault();
 					previousWeek(current_cell);
 					break;
 
-			   	case DOWN_KEY:
+			   	case KEYS.DOWN_KEY:
 					event.preventDefault();
 					nextWeek(current_cell);
 			   		break;
 
 			   	//Select cell with spacebar or return key
-			   	case SPACE_KEY:
+			   	case KEYS.SPACE_KEY:
 					event.preventDefault();
 					setSelected(current_cell);
 					break;
 
-				case RETURN_KEY:
+				case KEYS.RETURN_KEY:
 					event.preventDefault();
 					setSelected(current_cell);
 					break;
 
-				case HOME_KEY:
+				case KEYS.HOME_KEY:
 					event.preventDefault();
 					firstDayInMonth();
 					break;
 
-				case END_KEY:
+				case KEYS.END_KEY:
 					event.preventDefault();
 					lastDayInMonth();
 					break;
 
-				case PAGEUP_KEY:
+				case KEYS.PAGEUP_KEY:
 					event.preventDefault();
-					previousMonth(current_cell, false);
+					previousMonth(current_cell);
 					break;
 
-				case PAGEDOWN_KEY:
+				case KEYS.PAGEDOWN_KEY:
 					event.preventDefault();
-					nextMonth(current_cell, false);
+					nextMonth(current_cell);
 					break;
 			}
 		});
+
+
 		
 		/**
 		 * Manage tabindex for when the user leaves the table
@@ -25015,8 +25014,7 @@ $(document).ready(function(){
 		$calendar.focusout(function(){
 			
 			//Reset tabindices
-			ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
-
+			cleanup();
 			// Make the selected date focusable 
 			if (ALL_ACTIVE_DATEPICKER_DAYS.hasClass("active")){
 				$(".active").attr("tabindex", "0");
@@ -25035,7 +25033,9 @@ $(document).ready(function(){
 	 */
     function setAriaLabel(cell){
     	var isActive = (cell.hasClass("active"));
-    	var label = days[cell.attr("data-weekday")-1] +" "+ (+cell.attr("data-day")) +" "+ months[(cell.attr("data-month"))-1];
+    	
+    	var label = days[cell.attr("data-weekday")-1] +" "+ (+cell.attr("data-day")) +" "+ months[(cell.attr("data-month"))-1] + " " + cell.attr("data-year");
+    	
     	var isToday = new Date('' + cell.attr("data-year") + ' ' + cell.attr("data-month") + ' ' + cell.attr("data-day") + '').isToday();
 
     
@@ -25068,19 +25068,18 @@ $(document).ready(function(){
 		
 		var nextElement
 		if (a.index(cell) >= a.length-1){
-			return nextMonth(cell, false);
+			return nextMonth(cell);
 
-		} else 
+		} else {
 			var nextElement = $(a[idx + 1]);
-
-		cleanup();
 		
-		nextElement
-			.focus();
+			nextElement
+				.focus();
 
-		updateA11yDemo(nextElement, false);
+			updateA11yDemo(nextElement, false);
 
-		return nextElement;
+			return nextElement;
+		}	
 	}
 	/**
 	 * Move to the previous non-disabled cell in the table
@@ -25091,11 +25090,9 @@ $(document).ready(function(){
 		var idx = a.index(cell);
 		
 		if (a.index(cell) == 0){
-			previousMonth(cell, false);
+			previousMonth(cell);
 		} else
 			var nextElement = $(a[idx -1]);
-
-		cleanup();
 
 		nextElement
 			.attr("tabindex", "0")
@@ -25118,9 +25115,7 @@ $(document).ready(function(){
 		if ($(a[idx + 7]).length)
 			var nextElement = $(a[idx + 7]);
 		else return;
-		
-		cleanup();
-		
+				
 		nextElement
 			.attr("tabindex", "0")
 			//.attr("aria-describedby", "a11y_description")
@@ -25142,8 +25137,6 @@ $(document).ready(function(){
 		if ($(a[idx - 7]).length)
 			var nextElement = $(a[idx - 7]);
 		else return;
-
-		cleanup();
 		
 		nextElement
 			.attr("tabindex", "0");
@@ -25155,8 +25148,7 @@ $(document).ready(function(){
 
 	}
 
-	function nextMonth(cell, button){
-		console.log(button);
+	function nextMonth(cell){
 		myDate = new Date(dateInput.attr("value"));
 		var thisMonth = myDate.getMonth();
 		var nextMonth = myDate.setMonth(thisMonth+1);
@@ -25165,52 +25157,33 @@ $(document).ready(function(){
 		myDate = myDate.toISOString().slice(0,10);
 
 		updateCalendar(myDate);
+		ALL_ACTIVE_DATEPICKER_DAYS.first().focus();
+		updateA11yDemo(ALL_ACTIVE_DATEPICKER_DAYS.first(), false);
 
-		if (button == true){
-			console.log("stannar");
-			return;
-
-		}
-
-		else return ALL_ACTIVE_DATEPICKER_DAYS.first().focus();;
 	}
 
-	function previousMonth(cell, button){
+	function previousMonth(cell){
 		myDate = new Date(dateInput.attr("value"));
 		myDate.setMonth(myDate.getMonth()-1);
 
+		//Stop if the previous month is non-selectable
 		if (myDate.lastDayInMonth().dayHasPassed()){
 			return;
 		}
 
-		updateCalendar(myDate.toISOString().slice(0,10));
-
-		if (button){
-			return;
-		}
-
-		else if (cell.attr("data-day") == "01"){
+		//If the origin cell is the first in month, set focus to the last in previous month
+		if (cell[0] && cell.is(ALL_ACTIVE_DATEPICKER_DAYS.first())){
+			updateCalendar(myDate.toISOString().slice(0,10));
+			updateA11yDemo(ALL_ACTIVE_DATEPICKER_DAYS.last());
 			return ALL_ACTIVE_DATEPICKER_DAYS.last().focus();
 		}
 
-		else return;
-
-
-
-
-		/*var thisMonth = myDate.getMonth();
-
-		var firstDay = myDate.setDay(1);
-
-
-
-		if (myDate.dayHasPassed())
-			return;
-
-		myDate = myDate.toISOString().slice(0,10);
-
-		updateCalendar(myDate);
-		return ALL_ACTIVE_DATEPICKER_DAYS.first().focus();*/
+		//If not, set focus to the first selectable day
+		else {
+			updateCalendar(myDate.toISOString().slice(0,10));
+			updateA11yDemo(ALL_ACTIVE_DATEPICKER_DAYS.first())
+			return ALL_ACTIVE_DATEPICKER_DAYS.first().focus();
+		}
 	}
 
 
@@ -25262,6 +25235,12 @@ $(document).ready(function(){
 		var ad = $('<div id="a11y_demo"><h3 style="font-size:1rem; font-weight:400;">Text read by screen reader <strong>(demo only)</strong></h3><div id="screen-reader-text">Text will be displayed here when you interact with the calender </div></div>');
 		$("#datepicker_wrapper").after(ad);
 
+		$calendar.focusin(function(){
+			var focusedcell = $(":focus");
+			updateA11yDemo(focusedcell);
+		});
+
+
 		$calendar.focusout(function(){
 			clearA11yDemo();
 		});
@@ -25271,7 +25250,6 @@ $(document).ready(function(){
 		$("#screen-reader-text")
 			.html("Text will be displayed here when you interact with the calender")
 			.removeClass("focused selected");
-
 	}
 
 	/**
@@ -25287,16 +25265,7 @@ $(document).ready(function(){
 
 		var label = cell.attr("aria-label");
 		var role = cell.attr('role');
-
-		/*if (cell.attr("aria-describedby")){
-			if (isFirst){
-				return a11ySpan.html(label +", "+ role + ". Choose date, application." +'<p id="aria-desc-text">'+ HELPTEXT + '</p>');
-			} else{
-				return a11ySpan.html( label +", "+ role +' <p id="aria-desc-text">'+ HELPTEXT + '</p>');
-			}
-
-		} else*/
-			return a11ySpan.html( label +", "+ role );
+		return a11ySpan.html( label +", "+ role );
 
 	}
     //Let's go!
