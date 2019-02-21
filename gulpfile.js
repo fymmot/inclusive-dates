@@ -55,11 +55,11 @@ gulp.task('serve', ['sass'], function() {
 
   gulp.watch([config.htmlin], function(){
     sequence('html', 'reload', 'axe');
-    sequence('html', 'reload');
+    sequence('html', 'reload', 'axe');
 
   });
   gulp.watch([config.jsin], function(){
-    sequence('js', 'reload');
+    sequence('js', 'reload', 'axe');
   });
   gulp.watch([config.scssin], function(){
     sequence('sass', 'css', 'reload');
