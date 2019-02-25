@@ -2,17 +2,10 @@
     <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        
         <title>Accessible datepicker example | Tommy Feldt</title>
             <!-- build:css -->
             <link rel="stylesheet" href="css/style.css">
             <!-- endbuild -->
-        <!--    
-        <link href="prism.css" rel="stylesheet">
-        <link rel="stylesheet" href="font-awesome.min.css">
-        <script src="jquery.min.js"></script>
-        <script src="what-input.min.js"></script>
-    -->
     </head>
     <body>
         <div class="grid-container mt">
@@ -21,7 +14,7 @@
         <nav class="text-left"><a href="index.html">Back to startpage</a></nav>
 
         <h1 class="h1__main">Accessible calendar</h1>
-        
+       
         
         <section>
             <h2>Live example</h2>
@@ -70,10 +63,19 @@
         </section>
     </main>
     </div>
+
             <!-- build:js -->
         <script src="js/script.js"></script>
         <!--<script src="js/datepicker.js"></script>-->
         <!-- endbuild  -->
-         
- <!--<script>hljs.initHighlightingOnLoad();</script>-->
+        <script>
+            $(document).ready(function() {
+                $('#date').patedicker({
+                    demo: false,
+                    popup: false
+                });
+            });
+        </script>
+
+        
     </body></html>

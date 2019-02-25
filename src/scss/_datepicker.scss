@@ -227,7 +227,7 @@ section#description-section ul{
     &:focus-within{
     	/*left:45%;*/
     	left:50%;
-    	top:0;
+    	top:12%;
     	outline: auto;
     	margin-left:auto;
     	margin-right:auto;
@@ -248,19 +248,15 @@ section#description-section ul{
     border: 1px solid #222;
     border-radius: 8px;
     padding-top:2rem;
+    z-index: 50;
+    text-align: initial;
 
-    h3{
+    #kbd_modal_heading{
     	text-align: center;
-
-    }
-
-    p {
-    	text-align: initial;
-
     }
 
     button.close{
-
+    	text-align: center;		
     }
 }
 

@@ -13,6 +13,8 @@ var htmlMin = require('gulp-htmlmin');
 var del = require('del');
 var sequence = require('run-sequence');
 var axe = require('gulp-axe-webdriver');
+var deploy      = require('gulp-gh-pages');
+
 
 var config = {
   dist: 'dist/',
@@ -28,6 +30,9 @@ var config = {
     'node_modules/what-input/dist/what-input.min.js',
     'node_modules/prismjs/prism.js',
     'node_modules/focus-trap/dist/focus-trap.min.js',
+    //'node_modules/bootstrap/dist/js/bootstrap.min.js',
+    //'node_modules/ab-datepicker-master/js/datepicker.js',
+    //'node_modules/ca11y/dist/ca11y.min.js',
     'src/js/**/*.js'
     ],
   imgin: 'src/img/**/*.{jpg,jpeg,png,gif}',
@@ -126,6 +131,14 @@ gulp.task('axe', function() {
     headless: true
   };
   return axe(options);
+});
+
+/**
+ * Push build to gh-pages
+ */
+gulp.task('deploy', function () {
+  return gulp.src(config.dist+"**/*")
+    .pipe(deploy())
 });
 
 gulp.task('clean', function() {
