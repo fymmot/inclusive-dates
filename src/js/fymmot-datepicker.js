@@ -501,7 +501,9 @@ Rolling tabindex datepicker
 
 		var newDay;
 		var myDate = new Date(this.$target.attr("value"));
+
 		myDate.setMonth(myDate.getMonth()+delta);
+
 
 		//If no cell provided
 		if (cell == undefined){
@@ -538,6 +540,11 @@ Rolling tabindex datepicker
 				}
 				else {
 					this.updateCalendar(myDate.toISOString().slice(0,10));
+					newDay = this.ALL_ACTIVE_DATEPICKER_DAYS.first();
+					if (this.options.demo)
+						this.updateA11yDemo(newDay);
+
+					return newDay.focus();
 				}
 		}
 
