@@ -263,6 +263,9 @@ section#description-section ul{
 .keyboard_modal__inner{
 	max-width:80%;
 	margin: 0 auto;
+	ul > li > p{
+		font-size: 0.9rem;
+	}
 }
 
 #moredetails{

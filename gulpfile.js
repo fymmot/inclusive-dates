@@ -146,8 +146,8 @@ gulp.task('clean', function() {
 });
 
 gulp.task('build', function() {
-  sequence('clean', ['html', 'js', 'css', 'img'], 'axe');
-  sequence('clean', ['html', 'js', 'css', 'img']);
+  sequence('clean', ['html', 'js', 'sass', 'css', 'img'], 'axe');
+  sequence('clean', ['html', 'js', 'sass', 'css', 'img']);
 
 });
 

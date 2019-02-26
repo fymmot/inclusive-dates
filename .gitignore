@@ -1,5 +1,8 @@
-node_modules
-dist
-.DS_Store
-.DS_Store?
-.publish
+*
+src/css/style.css
+!src
+!gulpfile.js
+!LICENSE
+!package.lock.json
+!package.json
+!README.md
