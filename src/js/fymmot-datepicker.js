@@ -182,7 +182,7 @@ Rolling tabindex datepicker
 			closeID: 'closeKbdModal'
 		}
 
-		var $keyboard_shortcuts = $('<div class="keyboard-shortcuts-link"><button aria-expanded="false" id="open-keyboard-shortcuts">Show keyboard shortcuts</button></div>');
+		var $keyboard_shortcuts = $('<div class="keyboard-shortcuts-link"><button id="open-keyboard-shortcuts">Show keyboard shortcuts</button></div>');
 		$("#datepicker_wrapper").find(".month-nav__wrapper").after($keyboard_shortcuts);
 
 		var modalContent = '<h3 id="kbd_modal_heading" tabindex="0">Keyboard shortcuts</h3><ul><li><p><kbd>LEFT</kbd>/ <kbd>RIGHT</kbd> to change day.</p></li><li><p><kbd>UP</kbd>/ <kbd>DOWN</kbd> to change week.</p></li><li><p><kbd>HOME</kbd> to move to the first day of the month.</p></li><li><p><kbd>END</kbd> to move to the last day of the month.</p></li><li><p><kbd>PAGE UP</kbd> to move to the same day in the previous month.</p></li><li><p><kbd>PAGE DOWN</kbd> to move to the same day in the next month.</p></li><li><p><kbd>SPACE</kbd> to select a date.</p></li></ul>'
