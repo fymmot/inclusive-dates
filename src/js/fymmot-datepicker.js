@@ -161,7 +161,7 @@ Rolling tabindex datepicker
 
 	Patedicker.prototype.generateCalendarHeader = function(){
 		//Generate Month buttons and heading
-		var calendarHeaderNav = $('<div class="month-nav__wrapper"><button class="btn month-nav__sides left">Previous<span class="visually-hidden"> month</span></button><h3 id="month-label" aria-live="polite" class="">' + this.months[+this.calendarDates[0].month-1] + ' ' + this.calendarDates[0].year + '</h3> <button class="btn month-nav__sides right">Next<span class="visually-hidden"> month</span></button> </div>');
+		var calendarHeaderNav = $('<div class="month-nav__wrapper"><button class="btn month-nav__sides left">Previous<span class="visually-hidden"> month</span></button><h3 id="month-label" aria-live="assertive" class="">' + this.months[+this.calendarDates[0].month-1] + ' ' + this.calendarDates[0].year + '</h3> <button class="btn month-nav__sides right">Next<span class="visually-hidden"> month</span></button> </div>');
 		$('#datepicker_wrapper').prepend(calendarHeaderNav);
 
 		//Generate table headings with weekdays
