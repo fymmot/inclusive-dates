@@ -51,7 +51,7 @@ Rolling tabindex datepicker
 
 
 		//Initialize calendar
-		this.setUpCalendar(this.initialDate);
+		this.updateCalendar(this.initialDate);
 
 	}
 
@@ -116,12 +116,15 @@ Rolling tabindex datepicker
 		}
 
 		// If a start date was provided
-		if (startDate) {
-			var da = new Date(startDate);
+		if (startDate) 
+			var da = new Date(startDate)
+		
+		//Otherwise use today
+		else {
+			console.log("No start date provided")
+			return;
 		}
 
-		//Otherwise use today
-		else {var da = new Date();}
 
 		//Create a list of day objects
 	    for (var i = 0; i<da.monthDays(); i++){
@@ -194,18 +197,39 @@ Rolling tabindex datepicker
 	}
 
 	Patedicker.prototype.updateCalendar = function(newDate){
+		//Check if a startdate has been provided
+		var date;
+		if (newDate.length){
+			date = newDate;
+		}
+		//Otherwise use today
+		else {
+			date = new Date().toISOString().slice(0,10);
+		}
 		this.clearCalendar();
-		this.setUpCalendar(newDate);
-		this.$target.attr("value", newDate);
+		this.$target.attr("value", date);
+		this.setUpCalendar(date);
 	}
 
 	Patedicker.prototype.setUpCalendar = function(startDate){
 
-    	
     	$("#datepicker_table").remove();
 
     	//Generate an array of days for the specified month
-    	this.generateDays(startDate);
+    	var da;
+    	var daString;
+    	
+    	if (startDate){
+    		da = new Date(startDate)
+    
+    	}
+    	else
+    		da = new Date();
+    	
+    	
+    	da.setHours(12);
+    	daString = da.toISOString().slice(0,10);
+    	this.generateDays(daString);
 
     	//Always clear the calendar of old content
     	this.generateCalendarTable();
@@ -468,6 +492,8 @@ Rolling tabindex datepicker
 		var a = this.ALL_ACTIVE_DATEPICKER_DAYS;
 		var idx = a.index(cell);
 		var weekday = cell.attr('data-weekday');
+		var myDate = new Date(this.$target.attr("value"));
+
 
 		//Check if the move is possible, else return
 		if ($(a[idx + delta*7]).length)
@@ -481,6 +507,11 @@ Rolling tabindex datepicker
 		}
 		//If moving into the previous month
 		else if (idx+(delta*7) < a.length){
+			//Check if the move is possible
+			myDate.setMonth(myDate.getMonth()+delta);
+			if (myDate.lastDayInMonth().dayHasPassed()){
+				return;
+			}
 			this.incrementMonth(cell, -1);
 			a = this.ALL_ACTIVE_DATEPICKER_DAYS;
 			var nextElement = a.filter("[data-weekday='" + weekday + "']").last();
@@ -501,6 +532,7 @@ Rolling tabindex datepicker
 
 		var newDay;
 		var myDate = new Date(this.$target.attr("value"));
+		myDate.setHours(12);
 
 		myDate.setMonth(myDate.getMonth()+delta);
 
@@ -521,31 +553,23 @@ Rolling tabindex datepicker
 					return;
 				}
 				//If the origin cell is the first in month, set focus to the last in previous month
-				if (cell[0] && cell.is(this.ALL_ACTIVE_DATEPICKER_DAYS.first())){
-
-					this.updateCalendar(myDate.toISOString().slice(0,10));
-					newDay = this.ALL_ACTIVE_DATEPICKER_DAYS.last();
-					return newDay.focus();
-				}
+				this.updateCalendar(myDate.toISOString().slice(0,10));
+				
+				newDay = this.ALL_ACTIVE_DATEPICKER_DAYS.last();
+				
+				if (this.options.demo)
+					this.updateA11yDemo(newDay);
+				return newDay.focus();
 			case 1:
 				//If the origin cell is the last in month, set focus to the first in previous month
-				if (cell[0] && cell.is(this.ALL_ACTIVE_DATEPICKER_DAYS.last())){
+				this.updateCalendar(myDate.toISOString().slice(0,10));
+				
+				newDay = this.ALL_ACTIVE_DATEPICKER_DAYS.first();
 
-					this.updateCalendar(myDate.toISOString().slice(0,10));
-					newDay = this.ALL_ACTIVE_DATEPICKER_DAYS.first();
-					if (this.options.demo)
-						this.updateA11yDemo(newDay);
+				if (this.options.demo)
+					this.updateA11yDemo(newDay);
 
-					return newDay.focus();
-				}
-				else {
-					this.updateCalendar(myDate.toISOString().slice(0,10));
-					newDay = this.ALL_ACTIVE_DATEPICKER_DAYS.first();
-					if (this.options.demo)
-						this.updateA11yDemo(newDay);
-
-					return newDay.focus();
-				}
+				return newDay.focus();
 		}
 
 	}
@@ -647,11 +671,11 @@ Rolling tabindex datepicker
 
 	var old = $.fn.datepicker
 
-	$.fn.patedicker = function (option, value) {
+	$.fn.patedicker = function (options, value) {
 				var $this   = $(this);
-				var data    = $this.data('ab.datepicker');
+				var data    = $this.data('a11y.datepicker');
 				if (!data){ 
-					$this.data('a11y.datepicker', (data = new Patedicker(this, option)));
+					$this.data('a11y.datepicker', (data = new Patedicker(this, options)));
 				}
 	}
 
