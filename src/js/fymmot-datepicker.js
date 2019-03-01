@@ -593,13 +593,14 @@ Rolling tabindex datepicker
 		var $currently_active = $(".active");
 		var $newActiveCell = cell;
 		//Clean up previously selected cell
-		$currently_active.removeClass("active").attr('tabindex', -1);
+		$currently_active.removeClass("active").attr('tabindex', -1).removeAttr("aria-pressed");
 		this.setAriaLabel($currently_active);
 
 		//Update the new active cell
 		$newActiveCell
 			.addClass("active")
-			.attr("tabindex", "0");
+			.attr("tabindex", "0")
+			.attr("aria-pressed", true)
 
 		this.setAriaLabel($newActiveCell);
 		if (this.options.demo)
@@ -659,7 +660,8 @@ Rolling tabindex datepicker
 
 		var label = cell.attr("aria-label");
 		var role = cell.attr('role');
-		return a11ySpan.html( label +", "+ role );
+		var pressed = cell.attr('aria-pressed') ? ', pressed' : '';
+		return a11ySpan.html( label +", "+ role + pressed);
 
 	}
 
