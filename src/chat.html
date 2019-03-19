@@ -12,7 +12,7 @@
                 <main>
                     <nav class="text-left"><a href="index.html">Back to startpage</a></nav>
                     <h1 class="h1__main">Accessible chat</h1>
-                    <h2 id="chat-heading">Chat with a friendly robot</h2>
+                    <h2 id="chat-heading">Chat with a famous robot</h2>
 
                     <div class="chat-container" role="log" aria-labelledby="chat-heading" aria-live="assertive" tabindex='0' >
                         <ul class="no-bullet">
@@ -64,7 +64,12 @@
                     quote: "Hello, Mr. Anderson",
                     character: "Agent Smith"
                 },
+                {
+                    quote: "I've seen things you people wouldn't believe.<br>Attack ships on fire off the shoulder of Orion.<br>I watched c-beams glitter in the dark near the Tannhäuser Gate.<br>All those moments will be lost in time, like tears in rain.<br>Time to die.",
+                    character: "Roy Batty"
+                },
 
+                
             ]
 
             $("#chat-form").on("submit", function(e){
@@ -72,7 +77,7 @@
                 var textContent = chatInput.val();
 
                 if (textContent.length){
-                    var newMsg = chatList.append("<li class='float-right message message-from-me'><p><strong>Me: </strong>" + textContent + "</p><!--<span class='timestamp'>16:59</span>--></li>");
+                    var newMsg = chatList.append("<li class='float-right message message-from-me'><p><strong>Me: </strong>" + textContent + "</p></li>");
                     var d = $(".chat-container");
                         d.scrollTop(d.prop("scrollHeight"));
                     chatInput.val("");
