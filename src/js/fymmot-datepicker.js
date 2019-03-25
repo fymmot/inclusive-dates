@@ -153,7 +153,7 @@ Rolling tabindex datepicker
 	    
 	}
 	Patedicker.prototype.generateCalendarTable = function(){
-		this.$calendar = $('<table id="datepicker_table" role="application" aria-label="Choose date"><thead role="presentation"></thead><tbody role="presentation"></tbody></table>');
+		this.$calendar = $('<table id="datepicker_table" role="presentation"><thead role="presentation"></thead><tbody role="presentation"></tbody></table>');
 
 		$('#datepicker_wrapper').append(this.$calendar);
 		this.$datePickerGrid = this.$calendar.find('tbody');
