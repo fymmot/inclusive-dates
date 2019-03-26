@@ -44,6 +44,8 @@ Rolling tabindex datepicker
         this.daysShort = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
         this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         this.initialDate = this.$target.attr("value");
+        this.min = new Date (this.$target.attr("min"));
+        this.max = new Date (this.$target.attr("max"));
         this.$datePickerGrid;
 		this.calendarDates = [];
 		this.ALL_ACTIVE_DATEPICKER_DAYS;
@@ -52,6 +54,16 @@ Rolling tabindex datepicker
 
 		//Initialize calendar
 		this.updateCalendar(this.initialDate);
+
+	}
+
+	Patedicker.prototype.dateRangeCheck = function(date) {
+
+		//Check if date is in the past
+		if (date < this.min || date > this.max){
+			return false;
+		}
+		else return true;
 
 	}
 
@@ -292,8 +304,9 @@ Rolling tabindex datepicker
 						.attr("data-year", this.calendarDates[y].year)
 						.html(+this.calendarDates[y].day);
 
-						//Check if date is in the past
-						if (new Date('' + this.calendarDates[y].year + '-' + this.calendarDates[y].month + '-' + this.calendarDates[y].day + '').dayHasPassed()){
+						//Check if date is within range
+						var dt = new Date(this.calendarDates[y].year + '-' + this.calendarDates[y].month + '-' + this.calendarDates[y].day + '');
+						if (!this.dateRangeCheck(dt)){
 							$td.addClass("disabled").attr('aria-disabled', true);
 						}
 
@@ -507,11 +520,6 @@ Rolling tabindex datepicker
 		}
 		//If moving into the previous month
 		else if (idx+(delta*7) < a.length){
-			//Check if the move is possible
-			myDate.setMonth(myDate.getMonth()+delta);
-			if (myDate.lastDayInMonth().dayHasPassed()){
-				return;
-			}
 			this.incrementMonth(cell, -1);
 			a = this.ALL_ACTIVE_DATEPICKER_DAYS;
 			var nextElement = a.filter("[data-weekday='" + weekday + "']").last();
@@ -536,10 +544,13 @@ Rolling tabindex datepicker
 
 		myDate.setMonth(myDate.getMonth()+delta);
 
+		//Check if move is possible
+		if (myDate < this.min || myDate > this.max){
+			return;
+		}
 
-		//If no cell provided
+		//If no cell provided (i.e. I pressed a button)
 		if (cell == undefined){
-			console.log("cell is undefined")
 			this.updateCalendar(myDate.toISOString().slice(0,10));
 			if (this.options.demo)
 				this.clearA11yDemo();
@@ -548,10 +559,6 @@ Rolling tabindex datepicker
 
 		switch (delta){
 			case -1:
-				//Stop if the previous month is non-selectable
-				if (myDate.lastDayInMonth().dayHasPassed()){
-					return;
-				}
 				//If the origin cell is the first in month, set focus to the last in previous month
 				this.updateCalendar(myDate.toISOString().slice(0,10));
 				
