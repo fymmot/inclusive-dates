@@ -48,7 +48,9 @@
                 <li><p>Leave the calendar with <kbd>TAB</kbd> or <kbd>SHIFT + TAB</kbd></p></li>
             </ul>
             <h3 class="mt">Screen reader features</h3><ul>
-                <li class="important"><p><strong>Please note</strong><br><code class="language-html">role='application'</code> is used. This can cause serious problems for screen reader users if not implemented correctly. Proceed with caution!</p></li>
+                <li class="important"><p>
+                    Application/forms mode is <strong>not</strong> triggered automatically for screen readers. Users with NVDA or JAWS need to activate applications/forms mode manually before they can use arrow keys to navigate by week or month. In the default mode, they can find a day by searching for buttons or by navigating through the content with down arrow.
+                </p></li>
                 <li><p>Days are coded as <code class="language-html">&lt;td role&equals;"button"&gt;</code></p></li>
                 <li><p><code class="language-html">aria-label</code> to set human-readable names on calendar days</p>
                     <p><pre><code class="language-html">&lt;td role&equals;'button' aria-label&equals;'Today Wednesday 20 February 2019'&gt;</code></pre></p>
@@ -75,6 +77,16 @@
                     demo: true,
                     popup: false
                 });
+
+                //Click listener for expanding info
+                $("#moredetails").click(function(){
+                    var toggle = !$(this).attr("aria-hidden");
+                    $(this).attr("aria-hidden", toggle);
+
+                    $("#details").toggleClass("hidden");
+                
+                    
+                })
             });
         </script>
 
