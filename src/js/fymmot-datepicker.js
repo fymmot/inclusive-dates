@@ -54,12 +54,23 @@ Rolling tabindex datepicker
 
 		//Initialize calendar
 		this.updateCalendar(this.initialDate);
+	}
+	Patedicker.prototype.findMatchingDayButton = function(dateString) {
+
+		var a = this.ALL_ACTIVE_DATEPICKER_DAYS;
+		var yy = dateString.slice(0,4);
+		var mm = dateString.slice(5,7);
+		var dd = dateString.slice(8,10);
+
+		var dayButton = a.filter("[data-year= '"+ yy +"'][data-month= '"+ mm +"'][data-day= '"+ dd +"']")
+
+		return dayButton;
 
 	}
 
 	Patedicker.prototype.dateRangeCheck = function(date) {
 
-		//Check if date is in the past
+		//Check if date is out of bounds
 		if (date < this.min || date > this.max){
 			return false;
 		}
@@ -122,7 +133,7 @@ Rolling tabindex datepicker
 			var d= new Date(this.getFullYear(), this.getMonth(), 1);
 		    return d.getDay();
 		}
-		//Clear calendardayes
+		//Clear calendardates
 		if (this.calendarDates.length > 0){
 			this.calendarDates = [];
 		}
@@ -231,6 +242,7 @@ Rolling tabindex datepicker
     	var da;
     	var daString;
     	
+    	//Use startdate if applicable, otherwise use today
     	if (startDate){
     		da = new Date(startDate)
     
@@ -329,11 +341,16 @@ Rolling tabindex datepicker
     	this.ALL_ACTIVE_DATEPICKER_DAYS = $('table#datepicker_table > tbody > tr > td').not('.disabled');
 
     	//Set first day as tabbable
-    	var firstDay = this.ALL_ACTIVE_DATEPICKER_DAYS.first();
-		firstDay.attr("tabindex", "0");
+    	if (startDate){
+    		var startbutton = this.findMatchingDayButton(daString);
+    		this.setSelected(startbutton);
+    		startbutton.attr("tabindex", "0");
+    	}
+    	else {
+    		this.ALL_ACTIVE_DATEPICKER_DAYS.first().attr("tabindex", "0");
+    	}
 		
 		//Make the calendar interactive!
-		//console.log(that);
 	    this.registerClickListeners();
 	    this.registerKeyListeners();
     }
@@ -505,7 +522,7 @@ Rolling tabindex datepicker
 		var a = this.ALL_ACTIVE_DATEPICKER_DAYS;
 		var idx = a.index(cell);
 		var weekday = cell.attr('data-weekday');
-		var myDate = new Date(this.$target.attr("value"));
+		var myDate = new Date(this.$target.val());
 
 
 		//Check if the move is possible, else return
@@ -539,14 +556,16 @@ Rolling tabindex datepicker
 	Patedicker.prototype.incrementMonth = function(cell, delta){
 
 		var newDay;
-		var myDate = new Date(this.$target.attr("value"));
+		var myDate = new Date(this.$target.val());
+		//Workaround to avoid problem with incorrect dates
 		myDate.setHours(12);
 
+		//Change to next month
 		myDate.setMonth(myDate.getMonth()+delta);
 
 		//Check if move is possible
 		if (myDate < this.min || myDate > this.max){
-			return;
+			return false;
 		}
 
 		//If no cell provided (i.e. I pressed a button)
@@ -554,7 +573,7 @@ Rolling tabindex datepicker
 			this.updateCalendar(myDate.toISOString().slice(0,10));
 			if (this.options.demo)
 				this.clearA11yDemo();
-			return;
+			return true;
 		}
 
 		switch (delta){
@@ -566,7 +585,8 @@ Rolling tabindex datepicker
 				
 				if (this.options.demo)
 					this.updateA11yDemo(newDay);
-				return newDay.focus();
+				newDay.focus();
+				return true;
 			case 1:
 				//If the origin cell is the last in month, set focus to the first in previous month
 				this.updateCalendar(myDate.toISOString().slice(0,10));
@@ -576,7 +596,9 @@ Rolling tabindex datepicker
 				if (this.options.demo)
 					this.updateA11yDemo(newDay);
 
-				return newDay.focus();
+				newDay.focus();
+
+				return true
 		}
 
 	}
@@ -614,7 +636,7 @@ Rolling tabindex datepicker
 			this.updateA11yDemo($newActiveCell, false);
 
 		//Update the input field value with the selected day
-		this.$target.attr("value", ""+$newActiveCell.attr("data-year")+"-"+$newActiveCell.attr("data-month")+"-"+$newActiveCell.attr("data-day"));
+		this.$target.val(""+$newActiveCell.attr("data-year")+"-"+$newActiveCell.attr("data-month")+"-"+$newActiveCell.attr("data-day"));
 
 		return $newActiveCell;
 	}
