@@ -1,4 +1,19 @@
 
+#input_wrapper {
+	position:relative;
+	max-width: rem-calc(500px);
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    overflow:hidden;
+
+    @include breakpoint(small only) { 
+		max-width: 100%;
+	}
+
+
+}
+
+
 #datepicker_wrapper {
 	position:relative;
 	max-width: rem-calc(500px);

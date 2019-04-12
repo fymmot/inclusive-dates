@@ -69,6 +69,10 @@ html[data-whatintent="mouse"]{
 	}
 }
 
+.form-field.center{
+	margin:0 auto;
+}
+
 .form-field{
 	display:block;
 	max-width:25rem;
@@ -80,6 +84,7 @@ html[data-whatintent="mouse"]{
 	    float: left;
 	    margin-right: 2rem;
 	}
+
 
 	label {
 		padding: 0.5rem 2rem 0.5rem 10px;
@@ -103,7 +108,7 @@ html[data-whatintent="mouse"]{
 	}
 
 	input[type="text"], input[type="password"], input[type="tel"], & input[type="email"] {
-		height: 3.5rem;
+		height: 3.5rem;!important
 		display:inline-block;
 	}
 

@@ -39,6 +39,18 @@ Rolling tabindex datepicker
 			down: 40
 		};
 
+		this.STATE = {
+			calendarState : null,
+			focusedYear : null,
+			focusedMonth : null,
+			focusedDay : null,
+			focusedCell : null,
+			selectedYear : null,
+			selectedMonth : null,
+			selectedDay : null,
+			selectedCell : null
+		};
+
 		this.$calendar;
         this.days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
         this.daysShort = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -264,7 +276,7 @@ Rolling tabindex datepicker
     	// Hide the <input>
     	if (this.options.popup){
     		if (!$("#open-calendar-btn").length){
-    			this.generateButton();
+    			//this.generateButton();
     		}
     	}
     	else {
@@ -476,11 +488,29 @@ Rolling tabindex datepicker
 		});
 
 		this.$target.change(function(){
-			var newValue = that.$target.val();
+
+			if (chrono.parseDate(that.$target.val()) != null){
+				var guessedDate = chrono.parseDate(that.$target.val());
+			}
+			else{
+				console.log("Sorry, we couldnt figure out which date you mean")
+				that.$target.val("")
+
+				return;
+			}
+			var newValue = guessedDate.toISOString().slice(0,10);
+			that.$target.val(newValue);
+
+
+			/*if (!moment(newValue, "YYYY-MM-DD", true).isValid()){
+				console.log("Sorry, not a valid date")
+			}*/
+			
 			if (that.findMatchingDayButton(newValue) != false){
 				that.setSelected(that.findMatchingDayButton(newValue));
 			}
 			else that.updateCalendar(newValue);
+			
 		})
 	}
 
