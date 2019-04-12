@@ -21,7 +21,7 @@
 
             <div id="input_wrapper">
                     <label class="date" for="date">Choose date</label>
-                    <input id="date" type="date" class="date" value="2019-01-23" min="2019-01-21" max="2019-04-29">
+                    <input id="date" type="text" class="date" value="2019-01-23" min="2018-05-21" max="2019-04-29">
                 </div>
             
             <div class="hidden" id="datepicker_wrapper">
@@ -73,9 +73,10 @@
         <!-- endbuild  -->
         <script>
             $(document).ready(function() {
+                //Initiate calendar!
                 $('#date').patedicker({
-                    demo: true,
-                    popup: false
+                    demo: false,
+                    popup: true
                 });
 
                 //Click listener for expanding info
@@ -83,9 +84,7 @@
                     var toggle = !$(this).attr("aria-hidden");
                     $(this).attr("aria-hidden", toggle);
 
-                    $("#details").toggleClass("hidden");
-                
-                    
+                    $("#details").toggleClass("hidden");  
                 })
             });
         </script>

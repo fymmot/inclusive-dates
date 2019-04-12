@@ -49,8 +49,6 @@ Rolling tabindex datepicker
         this.$datePickerGrid;
 		this.calendarDates = [];
 		this.ALL_ACTIVE_DATEPICKER_DAYS;
-		this.current_cell;
-
 
 		//Initialize calendar
 		this.updateCalendar(this.initialDate);
@@ -64,7 +62,12 @@ Rolling tabindex datepicker
 
 		var dayButton = a.filter("[data-year= '"+ yy +"'][data-month= '"+ mm +"'][data-day= '"+ dd +"']")
 
-		return dayButton;
+
+		if (dayButton.length == 1){
+			return dayButton;
+		}
+
+		else return false;
 
 	}
 
@@ -75,16 +78,15 @@ Rolling tabindex datepicker
 			return false;
 		}
 		else return true;
-
 	}
 
 	Patedicker.prototype.generateButton = function(){
-		var btn = $("<button class='btn'>Test</button>");
+		var btn = $("<button id='open-calendar-btn' class='btn'>Open calendar</button>");
 
 		this.$target.after(btn);
 
 		btn.click(function(){
-			that.$calendar.toggleClass("hidden");
+			$("#datepicker_wrapper").toggleClass("hidden");
 		});
 	}
 
@@ -230,7 +232,7 @@ Rolling tabindex datepicker
 			date = new Date().toISOString().slice(0,10);
 		}
 		this.clearCalendar();
-		this.$target.attr("value", date);
+		//this.$target.val(date);
 		this.setUpCalendar(date);
 	}
 
@@ -245,7 +247,6 @@ Rolling tabindex datepicker
     	//Use startdate if applicable, otherwise use today
     	if (startDate){
     		da = new Date(startDate)
-    
     	}
     	else
     		da = new Date();
@@ -262,7 +263,9 @@ Rolling tabindex datepicker
 
     	// Hide the <input>
     	if (this.options.popup){
-    		this.generateButton();
+    		if (!$("#open-calendar-btn").length){
+    			this.generateButton();
+    		}
     	}
     	else {
     		$("#input_wrapper").addClass("hidden");
@@ -340,11 +343,15 @@ Rolling tabindex datepicker
     	//Populate the list of active datepicker buttons
     	this.ALL_ACTIVE_DATEPICKER_DAYS = $('table#datepicker_table > tbody > tr > td').not('.disabled');
 
-    	//Set first day as tabbable
-    	if (startDate){
+    	//TO DO - dont set a date when moving the calendar
+
+    	//Check if chosen date button is part of the current month
+    	var y = new Date(this.$target.val());
+    	var z = new Date(daString);
+    	if (z.getMonth()==y.getMonth()){
     		var startbutton = this.findMatchingDayButton(daString);
     		this.setSelected(startbutton);
-    		startbutton.attr("tabindex", "0");
+    		//startbutton.attr("tabindex", "0");
     	}
     	else {
     		this.ALL_ACTIVE_DATEPICKER_DAYS.first().attr("tabindex", "0");
@@ -353,13 +360,14 @@ Rolling tabindex datepicker
 		//Make the calendar interactive!
 	    this.registerClickListeners();
 	    this.registerKeyListeners();
+
+	    //Track the updated year + month in the State object
+	    this.STATE.calendarState = daString.slice(0, 7);
     }
 	/**
 	 * Register mouse listeners for each cell in the table
 	 */
 	Patedicker.prototype.registerClickListeners = function(){
-
-		var listenerTarget = this.$calendar;
 
 		$(".btn.month-nav__sides.right").click(function(){
 			that.incrementMonth(undefined, 1);
@@ -389,7 +397,8 @@ Rolling tabindex datepicker
 		this.$calendar.keydown(function( event ) {
 
 			//Find the cell currently in focus
-			this.current_cell = $(":focus");
+			that.STATE.focusedCell = $(":focus");
+
 
 			//Listen for keystrokes
 			switch (event.which){
@@ -397,33 +406,33 @@ Rolling tabindex datepicker
 				case that.keys.right:
 					event.preventDefault();
 					//alert("Right key!")
-					that.incrementDay(this.current_cell, 1);
+					that.incrementDay(that.STATE.focusedCell, 1);
 			   		break;
 
 			   	case that.keys.left:
 					event.preventDefault();
-					that.incrementDay(this.current_cell, -1);
+					that.incrementDay(that.STATE.focusedCell, -1);
 			   		break;
 
 			   	case that.keys.up:
 					event.preventDefault();
-					that.incrementWeek(this.current_cell, -1);
+					that.incrementWeek(that.STATE.focusedCell, -1);
 					break;
 
 			   	case that.keys.down:
 					event.preventDefault();
-					that.incrementWeek(this.current_cell, 1);
+					that.incrementWeek(that.STATE.focusedCell, 1);
 			   		break;
 
 			   	//Select cell with spacebar or return key
 			   	case that.keys.space:
 					event.preventDefault();
-					that.setSelected(this.current_cell);
+					that.setSelected(that.STATE.focusedCell);
 					break;
 
 				case that.keys.enter:
 					event.preventDefault();
-					that.setSelected(this.current_cell);
+					that.setSelected(that.STATE.focusedCell);
 					break;
 
 				case that.keys.home:
@@ -438,12 +447,12 @@ Rolling tabindex datepicker
 
 				case that.keys.pageup:
 					event.preventDefault();
-					that.incrementMonth(this.current_cell, -1);
+					that.incrementMonth(that.STATE.focusedCell, -1);
 					break;
 
 				case that.keys.pagedown:
 					event.preventDefault();
-					that.incrementMonth(this.current_cell, 1);
+					that.incrementMonth(that.STATE.focusedCell, 1);
 					break;
 				
 			}
@@ -465,6 +474,14 @@ Rolling tabindex datepicker
 				that.ALL_ACTIVE_DATEPICKER_DAYS.first().attr("tabindex", "0");
 			}
 		});
+
+		this.$target.change(function(){
+			var newValue = that.$target.val();
+			if (that.findMatchingDayButton(newValue) != false){
+				that.setSelected(that.findMatchingDayButton(newValue));
+			}
+			else that.updateCalendar(newValue);
+		})
 	}
 
     Patedicker.prototype.setAriaLabel = function(cell){
@@ -509,8 +526,11 @@ Rolling tabindex datepicker
 
 		//Otherwise move focu one step
 		else{
+
 			var nextElement = $(a[idx + delta]);
-			nextElement.focus();
+			this.STATE.focusedCell = nextElement;
+			this.STATE.focusedCell.focus();
+
 			if (this.options.demo)
 				this.updateA11yDemo(nextElement, false);
 			return nextElement;
@@ -522,29 +542,38 @@ Rolling tabindex datepicker
 		var a = this.ALL_ACTIVE_DATEPICKER_DAYS;
 		var idx = a.index(cell);
 		var weekday = cell.attr('data-weekday');
-		var myDate = new Date(this.$target.val());
 
 
-		//Check if the move is possible, else return
+		//Check if the move is possible
 		if ($(a[idx + delta*7]).length)
 			var nextElement = $(a[idx + delta*7]);
 
 		//If moving into the next month
 		else if (idx+(delta*7) >= a.length){
-			this.incrementMonth(cell, 1);
-			a = this.ALL_ACTIVE_DATEPICKER_DAYS;
-			var nextElement = a.filter("[data-weekday='" + weekday + "']").first();
+			var success = this.incrementMonth(cell, 1);
+			if (success) {
+				a = this.ALL_ACTIVE_DATEPICKER_DAYS;
+				var nextElement = a.filter("[data-weekday='" + weekday + "']").first();
+			}
+			else { //If we have reached end of allowed days
+				return;
+			}
 		}
 		//If moving into the previous month
 		else if (idx+(delta*7) < a.length){
-			this.incrementMonth(cell, -1);
-			a = this.ALL_ACTIVE_DATEPICKER_DAYS;
-			var nextElement = a.filter("[data-weekday='" + weekday + "']").last();
+			var success = this.incrementMonth(cell, -1);
+			if (success) {
+				a = this.ALL_ACTIVE_DATEPICKER_DAYS;
+				var nextElement = a.filter("[data-weekday='" + weekday + "']").last();
+			}
+			else { //If we have reached end of allowed days
+				return;
+			}
 		}
 
+		this.STATE.focusedCell = nextElement;
+		this.STATE.focusedCell.focus();
 
-		nextElement
-			.focus();
 
 		if (this.options.demo)
 			this.updateA11yDemo(nextElement, false);
@@ -555,61 +584,107 @@ Rolling tabindex datepicker
 
 	Patedicker.prototype.incrementMonth = function(cell, delta){
 
-		var newDay;
-		var myDate = new Date(this.$target.val());
-		//Workaround to avoid problem with incorrect dates
-		myDate.setHours(12);
 
-		//Change to next month
-		myDate.setMonth(myDate.getMonth()+delta);
-
-		//Check if move is possible
-		if (myDate < this.min || myDate > this.max){
-			return false;
-		}
 
 		//If no cell provided (i.e. I pressed a button)
 		if (cell == undefined){
-			this.updateCalendar(myDate.toISOString().slice(0,10));
+			var newDate = new Date(this.STATE.calendarState);
+
+			//Set day to first or last of the month depending on where we are going
+			if (delta == -1){
+				newDate.setDate(0);
+			}
+			else if (delta == 1){
+				newDate.setDate(1);
+				newDate.setMonth(newDate.getMonth()+delta);
+			}
+
+			//Check if we are out of bounds
+			if (newDate < this.min || myDate > this.max){
+				console.log("move is not possible!")
+				return false;
+			}
+			//Lets go
+			this.updateCalendar(newDate.toISOString().slice(0,10));
+
+			//Update a11y demo
 			if (this.options.demo)
 				this.clearA11yDemo();
+
 			return true;
 		}
 
-		switch (delta){
-			case -1:
-				//If the origin cell is the first in month, set focus to the last in previous month
-				this.updateCalendar(myDate.toISOString().slice(0,10));
-				
-				newDay = this.ALL_ACTIVE_DATEPICKER_DAYS.last();
-				
-				if (this.options.demo)
-					this.updateA11yDemo(newDay);
-				newDay.focus();
-				return true;
-			case 1:
-				//If the origin cell is the last in month, set focus to the first in previous month
-				this.updateCalendar(myDate.toISOString().slice(0,10));
-				
-				newDay = this.ALL_ACTIVE_DATEPICKER_DAYS.first();
+		else{
 
-				if (this.options.demo)
-					this.updateA11yDemo(newDay);
+			var newDay;
+			//Get origin from the origin cell
+			var myDate = new Date('' + cell.attr("data-year") + '-' + cell.attr("data-month") + '-' + cell.attr("data-day") + '');
 
-				newDay.focus();
+			if (delta == -1){
+				myDate.setDate(0);
+			}
+			else if (delta == 1){
+				myDate.setDate(1);
+				myDate.setMonth(myDate.getMonth()+1);
 
-				return true
+			}
+
+			myDate.setHours(12);
+
+		
+			//Check if move is possible
+			if (myDate < this.min || myDate > this.max){
+				console.log("move is not possible!")
+
+				return false;
+			}
+
+			switch (delta){
+				case -1:
+					//If the origin cell is the first in month, set focus to the last in previous month
+					
+					this.updateCalendar(myDate.toISOString().slice(0,10));
+					
+					newDay = this.ALL_ACTIVE_DATEPICKER_DAYS.last();
+					
+					if (this.options.demo)
+						this.updateA11yDemo(newDay);
+
+					this.STATE.focusedCell = newDay;
+					this.STATE.focusedCell.focus();
+
+					return true;
+				case 1:
+					//If the origin cell is the last in month, set focus to the first in previous month
+					
+					this.updateCalendar(myDate.toISOString().slice(0,10));
+					
+					newDay = this.ALL_ACTIVE_DATEPICKER_DAYS.first();
+
+					if (this.options.demo)
+						this.updateA11yDemo(newDay);
+
+					this.STATE.focusedCell = newDay;
+					this.STATE.focusedCell.focus();
+
+					return true
+			}
+
 		}
 
 	}
 	Patedicker.prototype.firstDayInMonth = function(){
 		var a = this.ALL_ACTIVE_DATEPICKER_DAYS;
-		return a.first().focus();
+		this.STATE.focusedCell = a.first();
+
+		return this.STATE.focusedCell.focus();
 	}
 
 	Patedicker.prototype.lastDayInMonth = function(){
 		var a = this.ALL_ACTIVE_DATEPICKER_DAYS;
-		return a.last().focus();
+		this.STATE.focusedCell = a.last();
+
+		return this.STATE.focusedCell.focus();
 	}
 
 	/**
@@ -619,10 +694,15 @@ Rolling tabindex datepicker
 	 */
 
 	Patedicker.prototype.setSelected = function(cell){
+
 		var $currently_active = $(".active");
 		var $newActiveCell = cell;
 		//Clean up previously selected cell
-		$currently_active.removeClass("active").attr('tabindex', -1).removeAttr("aria-pressed");
+		$currently_active
+			.removeClass("active")
+			.attr('tabindex', -1)
+			.removeAttr("aria-pressed");
+
 		this.setAriaLabel($currently_active);
 
 		//Update the new active cell
@@ -632,6 +712,7 @@ Rolling tabindex datepicker
 			.attr("aria-pressed", true)
 
 		this.setAriaLabel($newActiveCell);
+
 		if (this.options.demo)
 			this.updateA11yDemo($newActiveCell, false);
 
@@ -651,13 +732,19 @@ Rolling tabindex datepicker
 
 
 	Patedicker.prototype.cleanup = function (){
+		this.STATE.focusedCell = null;
+
 		return this.ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
 	}
 
 
 	Patedicker.prototype.generateA11yDemo = function(){
 		var ad = $('<div id="a11y_demo"><h3 style="font-size:1rem; font-weight:400;">Text read by screen reader <strong>(demo only)</strong></h3><div id="screen-reader-text">Text will be displayed here when you interact with the calender </div></div>');
-		$("#datepicker_wrapper").after(ad);
+		/*if (this.options.popup){
+			ad.addClass("hidden");
+		}*/
+
+		$("#datepicker_wrapper").append(ad);
 
 		this.$calendar.focusin(function(){
 			var focusedcell = $(":focus");

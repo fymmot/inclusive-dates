@@ -29,6 +29,7 @@ var config = {
     'node_modules/parsleyjs/dist/parsley.min.js',
     'node_modules/what-input/dist/what-input.min.js',
     'node_modules/prismjs/prism.js',
+    'node_modules/chrono-node/chrono.min.js',
     //'node_modules/focus-trap/dist/focus-trap.min.js',
     //'node_modules/bootstrap/dist/js/bootstrap.min.js',
     //'node_modules/ab-datepicker-master/js/datepicker.js',
