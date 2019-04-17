@@ -10,8 +10,19 @@
 		max-width: 100%;
 	}
 
+	label span {
+		display: block;
+    	font-weight: initial;
+    	font-size: 0.9rem;
 
+	}
+
+	#date-error {
+		background-color: aliceblue;
+	}
 }
+
+
 
 
 #datepicker_wrapper {
@@ -19,6 +30,7 @@
 	max-width: rem-calc(500px);
     margin: 0 auto;
     overflow:hidden;
+    background-color: #f5f5f5;
 
     table{
     	font-size:1.2rem;
@@ -43,6 +55,8 @@
 }
 
 .month-nav__sides {
+
+	min-width:6rem;
 	//position:absolute;
 
 	&.left{
@@ -60,6 +74,10 @@ table#datepicker_table {
 	//margin: 1rem auto 2rem auto;
 	border-collapse: initial;
 
+	thead {
+		background:none;
+	}
+
 	tbody {
 		background:none;
 	}
@@ -68,6 +86,7 @@ table#datepicker_table {
 		padding:1.4rem;
 		height:auto;
 		background-color: #fefefe;
+		//box-shadow: inset 0 -1px 0 0 #757575;
 
 		@include breakpoint(small only) { 
 			height:auto;
@@ -146,7 +165,6 @@ table tbody tr:nth-child(even) {
 			outline:0;
 		}
 	}
-
 }
 
 

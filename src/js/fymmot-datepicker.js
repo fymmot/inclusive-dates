@@ -355,12 +355,10 @@ Rolling tabindex datepicker
     	//Populate the list of active datepicker buttons
     	this.ALL_ACTIVE_DATEPICKER_DAYS = $('table#datepicker_table > tbody > tr > td').not('.disabled');
 
-    	//TO DO - dont set a date when moving the calendar
-
     	//Check if chosen date button is part of the current month
     	var y = new Date(this.$target.val());
     	var z = new Date(daString);
-    	if (z.getMonth()==y.getMonth()){
+    	if (z.getMonth()==y.getMonth() && z.getFullYear()==y.getFullYear() && z.getDate()==y.getDate()){
     		var startbutton = this.findMatchingDayButton(daString);
     		this.setSelected(startbutton);
     		//startbutton.attr("tabindex", "0");
@@ -372,6 +370,9 @@ Rolling tabindex datepicker
 		//Make the calendar interactive!
 	    this.registerClickListeners();
 	    this.registerKeyListeners();
+
+	    //Start listening for input change
+	    this.registerInputListeners();
 
 	    //Track the updated year + month in the State object
 	    this.STATE.calendarState = daString.slice(0, 7);
@@ -402,6 +403,86 @@ Rolling tabindex datepicker
 			that.setSelected($(this));
 		});
 	
+	}
+
+	Patedicker.prototype.registerInputListeners = function(){
+
+		function setInvalid() {
+			console.log("Setting invalid")
+			that.$target.val("")
+					.addClass("error")
+					.attr("aria-describedby", "date-error");
+			$("#date-error").removeClass("hidden");
+			$("#date-hint").addClass("hidden");
+
+			return;
+
+		}
+
+		function setValid() {
+			console.log("Setting valid")
+
+			that.$target.removeClass("error").attr("aria-describedby", "date-hint");
+			$("#date-error").addClass("hidden");
+			$("#date-hint").removeClass("hidden");
+		}
+
+		function checkInput() {
+
+			if (chrono.parseDate(that.$target.val()) == null){
+				return false;
+			}
+
+			else {
+				var guessedDate = chrono.parseDate(that.$target.val());
+
+				var newValue = guessedDate.toISOString().slice(0,10);
+				that.$target.val(newValue);
+
+				//Kolla om dagen finns i visad månad, annars uppdatera kalendern
+				if (that.findMatchingDayButton(newValue) != false){
+					that.setSelected(that.findMatchingDayButton(newValue));
+				}
+				else that.updateCalendar(newValue);
+
+				return true;
+
+			}
+		}
+
+		//user is "finished typing," do something
+		function doneTyping () {
+			console.log("Done typing")
+
+			if (checkInput() == true){
+				setValid();
+			}
+		}
+
+		this.$target.change(function(){
+
+			if (checkInput() == false){
+				setInvalid();
+				this.$target.val("");
+			}
+			else {
+				console.log("test")
+				setValid();
+			}
+
+		})
+
+		//setup before functions
+		var typingTimer;                //timer identifier
+		var doneTypingInterval =2500;  //time in ms (5 seconds)
+
+		//on keyup, start the countdown
+		that.$target.keyup(function(){
+		    clearTimeout(typingTimer);
+		    if (that.$target.val()) {
+		        typingTimer = setTimeout(doneTyping, doneTypingInterval);
+		    }
+		});
 	}
 
 	Patedicker.prototype.registerKeyListeners = function(){
@@ -487,32 +568,41 @@ Rolling tabindex datepicker
 			}
 		});
 
+		
+/*
 		this.$target.change(function(){
+
+			
 
 			if (chrono.parseDate(that.$target.val()) != null){
 				var guessedDate = chrono.parseDate(that.$target.val());
 			}
 			else{
-				console.log("Sorry, we couldnt figure out which date you mean")
 				that.$target.val("")
+					.addClass("error")
+					.attr("aria-describedby", "date-error");
+				$("#date-error").removeClass("hidden");
+				$("#date-hint").addClass("hidden");
 
 				return;
 			}
+
 			var newValue = guessedDate.toISOString().slice(0,10);
 			that.$target.val(newValue);
 
-
-			/*if (!moment(newValue, "YYYY-MM-DD", true).isValid()){
-				console.log("Sorry, not a valid date")
-			}*/
-			
+			//Kolla om dagen finns i visad månad, annars uppdatera kalendern
 			if (that.findMatchingDayButton(newValue) != false){
 				that.setSelected(that.findMatchingDayButton(newValue));
 			}
 			else that.updateCalendar(newValue);
+
 			
-		})
+			
+		})*/
 	}
+
+
+	
 
     Patedicker.prototype.setAriaLabel = function(cell){
     	var isActive = (cell.hasClass("active"));
@@ -620,6 +710,12 @@ Rolling tabindex datepicker
 		if (cell == undefined){
 			var newDate = new Date(this.STATE.calendarState);
 
+			//Check if we are out of bounds
+			if (newDate < this.min || myDate > this.max){
+				console.log("move is not possible!")
+				return false;
+			}
+
 			//Set day to first or last of the month depending on where we are going
 			if (delta == -1){
 				newDate.setDate(0);
@@ -629,11 +725,6 @@ Rolling tabindex datepicker
 				newDate.setMonth(newDate.getMonth()+delta);
 			}
 
-			//Check if we are out of bounds
-			if (newDate < this.min || myDate > this.max){
-				console.log("move is not possible!")
-				return false;
-			}
 			//Lets go
 			this.updateCalendar(newDate.toISOString().slice(0,10));
 
