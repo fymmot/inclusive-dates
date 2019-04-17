@@ -22,12 +22,17 @@
             <div id="input_wrapper">
                 <div class="form-field" style="margin:0 auto">
                     <label class="date" for="date">Enter a date
-                        <span>Try "Next monday", 2018-04-15 or "April fifteenth"</span></label>
-                    <input id="date" type="text" class="date" value="" min="" max="" aria-describedby="date-hint">
-                    <p id="date-hint"></p>
-                    <p id="date-error" class="hidden">Sorry, we couldn't find a matching date<br>Please try again.</p>
-
+                        <!--<span>Try "Next monday", 2018-04-15 or "April fifteenth"</span>--></label>
+                    <input autocomplete="fymmot-date" id="date" type="text" class="date" value="" min="" max="" placeholder='Try "Next monday"'>
+                
                 </div>
+                <div class="chip-set">
+                    <button class="chip">Yesterday</button>
+                    <button class="chip">Tomorrow</button>
+                    <button class="chip">Next week</button>
+                    <button class="chip">In 30 days</button>
+                </div>
+                <p id="date-error" class="hidden">Sorry, we couldn't find a matching date<br>Please try again.</p>
             </div>
             
             <div class="" id="datepicker_wrapper">

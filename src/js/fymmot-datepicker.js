@@ -198,7 +198,7 @@ Rolling tabindex datepicker
 
 	Patedicker.prototype.generateCalendarHeader = function(){
 		//Generate Month buttons and heading
-		var calendarHeaderNav = $('<div class="month-nav__wrapper"><button class="btn month-nav__sides left">Previous<span class="visually-hidden"> month</span></button><h3 id="month-label" aria-live="assertive" class="">' + this.months[+this.calendarDates[0].month-1] + ' ' + this.calendarDates[0].year + '</h3> <button class="btn month-nav__sides right">Next<span class="visually-hidden"> month</span></button> </div>');
+		var calendarHeaderNav = $('<div class="month-nav__wrapper"><button class="btn month-nav__sides left">Previous<span class="visually-hidden"> month</span></button><h3 id="month-label" aria-live="assertive" class="">' + this.months[+this.calendarDates[0].month-1] + ' ' + this.calendarDates[0].year + '</h3> <button class="btn month-nav__sides right">Next<span class="visually-hidden"> month</span></i></button> </div>');
 		$('#datepicker_wrapper').prepend(calendarHeaderNav);
 
 		//Generate table headings with weekdays
@@ -459,9 +459,17 @@ Rolling tabindex datepicker
 			}
 		}
 
+		$("#input_wrapper .chip").click(function(){
+			var chiptext = $(this).html();
+			that.$target.val(chiptext);
+
+			var event = new Event('change');
+			that.$target[0].dispatchEvent(event);
+		})
+
 		this.$target.change(function(){
 
-			if (checkInput() == false){
+			if (checkInput() == false && this.$target.val().length){
 				setInvalid();
 				this.$target.val("");
 			}
