@@ -371,9 +371,16 @@ abbr[title]{
     
 }
 
-.chip-set .chip{
-	margin:4px;
+.chip-set {
+	margin-left:0;
+	list-style: none;
 
+	li{
+		display:inline-block;
+	}
+	.chip{
+	margin:4px;
+	}
 }
 
 
