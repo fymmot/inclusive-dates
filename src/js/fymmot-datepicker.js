@@ -158,7 +158,6 @@ Rolling tabindex datepicker
 		
 		//Otherwise use today
 		else {
-			console.log("No start date provided")
 			return;
 		}
 
@@ -234,6 +233,7 @@ Rolling tabindex datepicker
 	}
 
 	Patedicker.prototype.updateCalendar = function(newDate){
+
 		//Check if a startdate has been provided
 		var date;
 		if (newDate.length){
@@ -243,6 +243,7 @@ Rolling tabindex datepicker
 		else {
 			date = new Date().toISOString().slice(0,10);
 		}
+
 		this.clearCalendar();
 		//this.$target.val(date);
 		this.setUpCalendar(date);
@@ -407,75 +408,102 @@ Rolling tabindex datepicker
 
 	Patedicker.prototype.registerInputListeners = function(){
 
+		//Progressive enhancement: Change placeholder when additional features are available
+		this.$target.attr("placeholder", 'Try "next monday"');
+
+		//Add quick chips
+		if (!$(".chip-set").length){
+			addChips();
+		}
+		
+
+		function addChips(){
+			//Add the chips
+			var chips = '<ul class="chip-set"><li><button class="chip">Yesterday</button></li><li><button class="chip">Tomorrow</button></li><li><button class="chip">Next week</button></li><li><button class="chip">In 30 days</button></li></ul>'
+			$("#date-error").before(chips);
+
+			$("#input_wrapper .chip").click(function(){
+				var chiptext = $(this).html();
+				that.$target.val(chiptext);
+
+				//Trigger change event on input field
+				var event = new Event('change');
+				that.$target[0].dispatchEvent(event);
+				return;
+			})
+
+		}
+
 		function setInvalid() {
-			console.log("Setting invalid")
 			that.$target.val("")
 					.addClass("error")
 					.attr("aria-describedby", "date-error");
-			$("#date-error").removeClass("hidden");
+			$("#date-error").removeClass("hidden").html("Sorry, we couldn't find a matching date<br>Please try again.")
 
 			return;
 
 		}
 
 		function setValid() {
-			console.log("Setting valid")
-
 			that.$target.removeClass("error").removeAttr("aria-describedby");
-			$("#date-error").addClass("hidden");
+			$("#date-error").addClass("hidden").html("");
 		}
 
 		function checkInput() {
 
-			if (chrono.parseDate(that.$target.val()) == null){
+			var guessedDate = chrono.parseDate(that.$target.val());
+
+			if (guessedDate == null){
 				return false;
 			}
 
 			else {
-				var guessedDate = chrono.parseDate(that.$target.val());
-
-				var newValue = guessedDate.toISOString().slice(0,10);
-				that.$target.val(newValue);
-
-				//Kolla om dagen finns i visad månad, annars uppdatera kalendern
-				if (that.findMatchingDayButton(newValue) != false){
-					that.setSelected(that.findMatchingDayButton(newValue));
-				}
-				else that.updateCalendar(newValue);
-
-				return true;
+				return guessedDate;
 
 			}
+		}
+
+		function updateCal(newdate) {
+
+			var newValue = newdate.toISOString().slice(0,10);
+			that.$target.val(newValue);
+
+			//Kolla om dagen finns i visad månad, annars uppdatera kalendern
+			if (that.findMatchingDayButton(newValue) != false){
+				that.setSelected(that.findMatchingDayButton(newValue));
+			}
+			else that.updateCalendar(newValue);
 		}
 
 		//user is "finished typing," do something
 		function doneTyping () {
-			console.log("Done typing")
+			var check = checkInput();
 
-			if (checkInput() == true){
+			if (check != false){
 				setValid();
+				updateCal(check);
+				return;
 			}
 		}
 
-		$("#input_wrapper .chip").click(function(){
-			var chiptext = $(this).html();
-			that.$target.val(chiptext);
-
-			var event = new Event('change');
-			that.$target[0].dispatchEvent(event);
-		})
+		
 
 		this.$target.change(function(){
 
-			if (checkInput() == false && that.$target.val().length){
+
+			var check = checkInput();
+
+			if (check == false){
 				setInvalid();
 				this.$target.val("");
 			}
-			else {
-				console.log("test")
+
+			else if (check != false){
 				setValid();
+				updateCal(check)
 			}
 
+			return;
 		})
 
 		//setup before functions
@@ -718,17 +746,19 @@ Rolling tabindex datepicker
 
 			//Check if we are out of bounds
 			if (newDate < this.min || myDate > this.max){
-				console.log("move is not possible!")
 				return false;
 			}
 
 			//Set day to first or last of the month depending on where we are going
 			if (delta == -1){
 				newDate.setDate(0);
+				newDate.setHours(12) //Fix bug with calendar not moving forward
+
 			}
 			else if (delta == 1){
 				newDate.setDate(1);
 				newDate.setMonth(newDate.getMonth()+delta);
+				newDate.setHours(12) //Fix bug with calendar not moving forward
 			}
 
 			//Lets go
@@ -761,8 +791,6 @@ Rolling tabindex datepicker
 		
 			//Check if move is possible
 			if (myDate < this.min || myDate > this.max){
-				console.log("move is not possible!")
-
 				return false;
 			}
 

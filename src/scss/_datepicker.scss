@@ -189,7 +189,7 @@ table tbody tr:nth-child(even) {
 }
 
 
-[data-whatintent="mouse"] #datepicker_table{
+[data-whatintent="mouse"] #datepicker_table, [data-whatintent="touch"] #datepicker_table,{
 	td {
 		&:focus{
 			outline:0;
@@ -365,7 +365,7 @@ abbr[title]{
     display: block;
     flex-wrap: wrap;
     box-sizing: border-box;
-    overflow-x: scroll;
+    overflow-x: auto;
   	overflow-y: hidden;
   	white-space: nowrap;
     
@@ -404,6 +404,9 @@ abbr[title]{
     cursor: pointer;
     overflow: hidden;
 
+	//box-shadow: 0 0 0 2px #5e35b1;
+
+
     &:focus{
     	box-shadow: 0 0 0 2px #5e35b1;
     	background-color: #e3e3e3;
@@ -413,7 +416,7 @@ abbr[title]{
     }
 }
 
-html[data-whatintent="mouse"] .chip:focus{
+html[data-whatintent="mouse"] .chip:focus, html[data-whatintent="touch"] .chip:focus{
 	box-shadow: none;
 
 }

@@ -49,17 +49,6 @@ button.text-btn{
     width:100%;
 }
 
-.error{
-	display:none;
-	margin-bottom: 1rem;
-    //margin-top: -.5rem;
-    color: #545454;
-    width:100%;
-    padding-left: 10px;
-    padding-bottom:1rem;
-    position: relative;
-    font-weight: 600;
-}
 
 html[data-whatintent="mouse"]{
 	.form-field{
@@ -121,6 +110,7 @@ html[data-whatintent="mouse"]{
 		padding: 4px 3px 4px 11px;
 		margin-bottom: 1rem;
 		margin-top:0.25rem;
+		border: none;
 		border-bottom-style: solid;
 	    border-bottom-color: #959595;
 	    border-bottom-width: 1px;
