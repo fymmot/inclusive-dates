@@ -24,6 +24,7 @@ var config = {
     'node_modules/jquery/dist/jquery.js',
     'node_modules/foundation-sites/dist/js/foundation.js',
     'node_modules/what-input/dist/what-input.min.js',
+    'node_modules//ally.js/ally.min.js',
     'node_modules/chrono-node/chrono.min.js',
     'src/js/**/*.js'
     ],

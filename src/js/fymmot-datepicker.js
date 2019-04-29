@@ -221,10 +221,10 @@ Rolling tabindex datepicker
 		var $keyboard_shortcuts = $('<div class="keyboard-shortcuts-link"><button id="open-keyboard-shortcuts">Show keyboard shortcuts</button></div>');
 		$("#datepicker_wrapper").find(".month-nav__wrapper").after($keyboard_shortcuts);
 
-		var modalContent = '<h3 id="kbd_modal_heading" tabindex="0">Keyboard shortcuts</h3><ul><li><p><kbd>LEFT</kbd>/ <kbd>RIGHT</kbd> to change day.</p></li><li><p><kbd>UP</kbd>/ <kbd>DOWN</kbd> to change week.</p></li><li><p><kbd>HOME</kbd> to move to the first day of the month.</p></li><li><p><kbd>END</kbd> to move to the last day of the month.</p></li><li><p><kbd>PAGE UP</kbd> to move to the same day in the previous month.</p></li><li><p><kbd>PAGE DOWN</kbd> to move to the same day in the next month.</p></li><li><p><kbd>SPACE</kbd> to select a date.</p></li></ul>'
+		var modalContent = '<h3 class="kbd_modal__heading" id="kbd_modal_heading" tabindex="0">Keyboard shortcuts</h3><ul><li><p><kbd>TAB</kbd> into the calendar.</p></li><li><p><kbd>LEFT</kbd>/ <kbd>RIGHT</kbd> to change day.</p></li><li><p><kbd>UP</kbd>/ <kbd>DOWN</kbd> to change week.</p></li><li><p><kbd>HOME</kbd>/ <kbd>END</kbd> for first or last day of the month.</p></li><li><p><kbd>PAGE UP</kbd>/ <kbd>PAGE DOWN</kbd> for the same day in the previous or next month.</p></li><li><p><kbd>SPACE</kbd> to select a date.</p></li></ul><h3 class="kbd_modal__heading">With screen readers</h3><ul><li><p>You need to activate forms mode manually in NVDA and JAWS to make use of the keyboard shortcuts</p></li><li><p>By default, you can browse normally using the down arrow key.</p></li></ul>'
 
 		var $kbd_modal = $(
-			'<div id="keyboard_shortcuts_modal" hidden role="dialog" aria-modal="false" aria-labelledby="kbd_modal_heading"><div class="keyboard_modal__inner"> '+ modalContent + '<button id="closeKbdModal" class="btn">OK!</button></div></div>');
+			'<div id="keyboard_shortcuts_modal" hidden role="dialog" aria-modal="false" aria-labelledby="kbd_modal_heading"><div class="keyboard_modal__inner"> '+ modalContent + '</div><div class="keyboard_modal__bottom"><button id="closeKbdModal" class="button large">Got it!</button></div></div>');
 
 		//Add keyboard modal to dom
 		$("#datepicker_wrapper").prepend($kbd_modal);

@@ -320,7 +320,9 @@ section#description-section ul{
     z-index: 50;
     text-align: initial;
 
-    #kbd_modal_heading{
+    
+
+    .kbd_modal__heading{
     	text-align: center;
     }
 
@@ -332,9 +334,16 @@ section#description-section ul{
 .keyboard_modal__inner{
 	max-width:80%;
 	margin: 0 auto;
+	max-height: 375px;
+	overflow: scroll;
 	ul > li > p{
 		font-size: 0.9rem;
 	}
+}
+.keyboard_modal__bottom{
+	max-width: 80%;
+	margin:0 auto;
+	margin-top:1rem;
 }
 
 #moredetails{
