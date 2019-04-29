@@ -106,7 +106,7 @@ html[data-whatintent="mouse"]{
 
 	input[type="text"], input[type="password"], input[type="tel"], & input[type="email"], textarea {
 		display:block;
-		background-color:#f5f5f5;
+		background-color:#e8e8e8;
 		padding: 4px 3px 4px 11px;
 		margin-bottom: 1rem;
 		margin-top:0.25rem;
@@ -135,6 +135,10 @@ html[data-whatintent="mouse"]{
 				cursor: initial;
 			}
 
+		}
+
+		&::placeholder{
+			color: #696868;
 		}
 	}
 

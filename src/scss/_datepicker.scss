@@ -21,7 +21,7 @@
 		color:black;
 
 		&::placeholder{
-			color:#8b8b8b;
+			color:#696767;
 		}
 	}
 
@@ -123,6 +123,12 @@ table#datepicker_table {
 
 		}
 
+		&.today{
+			text-decoration: underline;
+			text-underline-position: under;
+			//font-weight: bold;
+		}
+
 		&.disabled{
 			background:none;
 			cursor:default!important;
@@ -172,7 +178,7 @@ table#datepicker_table {
 	th {
 		padding: 0.5rem;
 		font-weight: 400;
-		color: #6f6f6f;
+		color: #444;
 		text-align:center;
 	}
 }
@@ -387,7 +393,7 @@ abbr[title]{
 .chip{
     border-radius: 16px;
     background-color: #f2f2f2;
-    color: rgba(0,0,0,.87);
+    color: rgba(0,0,0,1);
     font-size: .875rem;
     line-height: 1.25rem;
     font-weight: 400;
@@ -409,10 +415,14 @@ abbr[title]{
 
     &:focus{
     	box-shadow: 0 0 0 2px #5e35b1;
-    	background-color: #e3e3e3;
+    	background-color: #e2e2e2;
     }
     &:active{
     	background-color: #e3e3e3;
+    }
+    &:hover{
+    	background-color: #e2e2e2;
+
     }
 }
 

@@ -338,6 +338,11 @@ Rolling tabindex datepicker
 							$td.addClass("disabled").attr('aria-disabled', true);
 						}
 
+						//Check if date is today's date
+						if (dt.isToday()){
+							$td.addClass("today");
+						}
+
 					this.setAriaLabel($td);
 
 					
