@@ -24558,8 +24558,11 @@ Rolling tabindex datepicker
 
 	A11ydate.prototype.registerInputListeners = function(){
 
-		//Progressive enhancement: Change placeholder when additional features are available
-		this.$target.attr("placeholder", 'Try "next monday"');
+		//Progressive enhancement: Change placeholder and label when additional features are available
+		this.$target
+			.attr("placeholder", 'Try "next monday"')
+			.attr("type", "text");
+		this.$target.prev("label").html('Write a date (any way you like)');
 
 		//Add quick chips
 		if (!$(".chip-set").length){
