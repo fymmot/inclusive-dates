@@ -18,7 +18,7 @@ Rolling tabindex datepicker
 	'use strict';
 	var that;
 
-	var Patedicker = function (target, options) {
+	var A11ydate = function (target, options) {
 		that = this;
 		this.$target = $(target);
 		this.options = options;
@@ -65,7 +65,7 @@ Rolling tabindex datepicker
 		//Initialize calendar
 		this.updateCalendar(this.initialDate);
 	}
-	Patedicker.prototype.findMatchingDayButton = function(dateString) {
+	A11ydate.prototype.findMatchingDayButton = function(dateString) {
 
 		var a = this.ALL_ACTIVE_DATEPICKER_DAYS;
 		var yy = dateString.slice(0,4);
@@ -83,7 +83,7 @@ Rolling tabindex datepicker
 
 	}
 
-	Patedicker.prototype.dateRangeCheck = function(date) {
+	A11ydate.prototype.dateRangeCheck = function(date) {
 
 		//Check if date is out of bounds
 		if (date < this.min || date > this.max){
@@ -92,7 +92,7 @@ Rolling tabindex datepicker
 		else return true;
 	}
 
-	Patedicker.prototype.generateButton = function(){
+	A11ydate.prototype.generateButton = function(){
 		var btn = $("<button id='open-calendar-btn' class='btn'>Open calendar</button>");
 
 		this.$target.after(btn);
@@ -103,7 +103,7 @@ Rolling tabindex datepicker
 	}
 
 
-	Patedicker.prototype.generateDays = function(startDate){
+	A11ydate.prototype.generateDays = function(startDate){
 
 		/**
 		 * Extend Date object with Helper function to check if the date is today or not. Returns a boolean
@@ -188,14 +188,14 @@ Rolling tabindex datepicker
 	    return this.calendarDates;
 	    
 	}
-	Patedicker.prototype.generateCalendarTable = function(){
+	A11ydate.prototype.generateCalendarTable = function(){
 		this.$calendar = $('<table id="datepicker_table" role="presentation"><thead role="presentation"></thead><tbody role="presentation"></tbody></table>');
 
 		$('#datepicker_wrapper').append(this.$calendar);
 		this.$datePickerGrid = this.$calendar.find('tbody');
 	}
 
-	Patedicker.prototype.generateCalendarHeader = function(){
+	A11ydate.prototype.generateCalendarHeader = function(){
 		//Generate Month buttons and heading
 		var calendarHeaderNav = $('<div class="month-nav__wrapper"><button class="btn month-nav__sides left">Previous<span class="visually-hidden"> month</span></button><h3 id="month-label" aria-live="assertive" class="">' + this.months[+this.calendarDates[0].month-1] + ' ' + this.calendarDates[0].year + '</h3> <button class="btn month-nav__sides right">Next<span class="visually-hidden"> month</span></i></button> </div>');
 		$('#datepicker_wrapper').prepend(calendarHeaderNav);
@@ -211,7 +211,7 @@ Rolling tabindex datepicker
 		this.$calendar.find('thead').append(headerRow);
 	}
 
-	Patedicker.prototype.generateKeyboardHelp = function(){
+	A11ydate.prototype.generateKeyboardHelp = function(){
 		var idvalues = {
 			dialogID: 'keyboard_shortcuts_modal',
 			openID: 'open-keyboard-shortcuts',
@@ -232,7 +232,7 @@ Rolling tabindex datepicker
 		initializeKeyboardModal(idvalues.openID, idvalues.dialogID, idvalues.closeID);
 	}
 
-	Patedicker.prototype.updateCalendar = function(newDate){
+	A11ydate.prototype.updateCalendar = function(newDate){
 
 		//Check if a startdate has been provided
 		var date;
@@ -249,7 +249,7 @@ Rolling tabindex datepicker
 		this.setUpCalendar(date);
 	}
 
-	Patedicker.prototype.setUpCalendar = function(startDate){
+	A11ydate.prototype.setUpCalendar = function(startDate){
 
     	$("#datepicker_table").remove();
 
@@ -386,7 +386,7 @@ Rolling tabindex datepicker
 	/**
 	 * Register mouse listeners for each cell in the table
 	 */
-	Patedicker.prototype.registerClickListeners = function(){
+	A11ydate.prototype.registerClickListeners = function(){
 
 		$(".btn.month-nav__sides.right").click(function(){
 			that.incrementMonth(undefined, 1);
@@ -411,7 +411,7 @@ Rolling tabindex datepicker
 	
 	}
 
-	Patedicker.prototype.registerInputListeners = function(){
+	A11ydate.prototype.registerInputListeners = function(){
 
 		//Progressive enhancement: Change placeholder when additional features are available
 		this.$target.attr("placeholder", 'Try "next monday"');
@@ -524,7 +524,7 @@ Rolling tabindex datepicker
 		});
 	}
 
-	Patedicker.prototype.registerKeyListeners = function(){
+	A11ydate.prototype.registerKeyListeners = function(){
 
 		this.$calendar.keydown(function( event ) {
 
@@ -643,7 +643,7 @@ Rolling tabindex datepicker
 
 	
 
-    Patedicker.prototype.setAriaLabel = function(cell){
+    A11ydate.prototype.setAriaLabel = function(cell){
     	var isActive = (cell.hasClass("active"));
     	
     	var label = this.days[cell.attr("data-weekday")-1] +" "+ (cell.attr("data-day")) +" "+ this.months[(cell.attr("data-month"))-1] + " " + cell.attr("data-year");
@@ -667,7 +667,7 @@ Rolling tabindex datepicker
 	/**
 	 * Go to next or previous day
 	 */
-	Patedicker.prototype.incrementDay = function(cell, delta){
+	A11ydate.prototype.incrementDay = function(cell, delta){
 		var a = this.ALL_ACTIVE_DATEPICKER_DAYS;
 		var idx = a.index(cell);
 		
@@ -697,7 +697,7 @@ Rolling tabindex datepicker
 	}
 	
 
-	Patedicker.prototype.incrementWeek = function(cell, delta){
+	A11ydate.prototype.incrementWeek = function(cell, delta){
 		var a = this.ALL_ACTIVE_DATEPICKER_DAYS;
 		var idx = a.index(cell);
 		var weekday = cell.attr('data-weekday');
@@ -741,7 +741,7 @@ Rolling tabindex datepicker
 
 	}
 
-	Patedicker.prototype.incrementMonth = function(cell, delta){
+	A11ydate.prototype.incrementMonth = function(cell, delta){
 
 
 
@@ -833,14 +833,14 @@ Rolling tabindex datepicker
 		}
 
 	}
-	Patedicker.prototype.firstDayInMonth = function(){
+	A11ydate.prototype.firstDayInMonth = function(){
 		var a = this.ALL_ACTIVE_DATEPICKER_DAYS;
 		this.STATE.focusedCell = a.first();
 
 		return this.STATE.focusedCell.focus();
 	}
 
-	Patedicker.prototype.lastDayInMonth = function(){
+	A11ydate.prototype.lastDayInMonth = function(){
 		var a = this.ALL_ACTIVE_DATEPICKER_DAYS;
 		this.STATE.focusedCell = a.last();
 
@@ -853,7 +853,7 @@ Rolling tabindex datepicker
 	 * @param {[type]} cell The new cell to be made active
 	 */
 
-	Patedicker.prototype.setSelected = function(cell){
+	A11ydate.prototype.setSelected = function(cell){
 
 		var $currently_active = $(".active");
 		var $newActiveCell = cell;
@@ -886,19 +886,19 @@ Rolling tabindex datepicker
     /**
      * Clear calendar
      */
-    Patedicker.prototype.clearCalendar = function(){
+    A11ydate.prototype.clearCalendar = function(){
     	$("#datepicker_wrapper").empty();
     }
 
 
-	Patedicker.prototype.cleanup = function (){
+	A11ydate.prototype.cleanup = function (){
 		this.STATE.focusedCell = null;
 
 		return this.ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
 	}
 
 
-	Patedicker.prototype.generateA11yDemo = function(){
+	A11ydate.prototype.generateA11yDemo = function(){
 		var ad = $('<div id="a11y_demo"><h3 style="font-size:1rem; font-weight:400;">Text read by screen reader <strong>(demo only)</strong></h3><div id="screen-reader-text">Text will be displayed here when you interact with the calender </div></div>');
 		/*if (this.options.popup){
 			ad.addClass("hidden");
@@ -917,7 +917,7 @@ Rolling tabindex datepicker
 		});
 	}
 	
-	Patedicker.prototype.clearA11yDemo = function(){
+	A11ydate.prototype.clearA11yDemo = function(){
 		$("#screen-reader-text")
 			.html("Text will be displayed here when you interact with the calender")
 			.removeClass("focused selected");
@@ -927,7 +927,7 @@ Rolling tabindex datepicker
 	 * Update the visible screen reader demo text with info from the given cell
 	 * @param  {[type]} cell 
 	 */
-	Patedicker.prototype.updateA11yDemo = function(cell){
+	A11ydate.prototype.updateA11yDemo = function(cell){
 		if (cell.hasClass("active"))
 			var a11ySpan = $("#screen-reader-text").addClass("focused selected");
 		else
@@ -947,17 +947,17 @@ Rolling tabindex datepicker
 	// DATEPICKER PLUGIN DEFINITION
 	// ==========================
 
-	var old = $.fn.datepicker
+	var old = $.fn.a11ydate
 
-	$.fn.patedicker = function (options, value) {
+	$.fn.a11ydate = function (options, value) {
 				var $this   = $(this);
 				var data    = $this.data('a11y.datepicker');
 				if (!data){ 
-					$this.data('a11y.datepicker', (data = new Patedicker(this, options)));
+					$this.data('a11y.datepicker', (data = new A11ydate(this, options)));
 				}
 	}
 
-	$.fn.patedicker.Constructor = Patedicker
+	$.fn.a11ydate.Constructor = A11ydate
 
 	// DATEPICKER NO CONFLICT
 	// ====================
