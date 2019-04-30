@@ -1,8 +1,3 @@
-
-/*
-Rolling tabindex datepicker 
-*/
-
 (function(factory){
 	if (typeof define === "function" && define.amd) {
 		define(["jquery"], factory);
@@ -321,10 +316,11 @@ Rolling tabindex datepicker
 
 				//Fill calendar with days
 				} else{
-					var $td = $('<td></td>');
+					var $td = $('<td><button></button></td>');
+					var $button = $td.find("button");
 
-					$td
-						.attr("role", "button")
+					$button
+						//.attr("role", "button")
 						.attr("tabindex", "-1")
 						.attr("data-weekday", this.calendarDates[y].weekday)
 						.attr("data-day", this.calendarDates[y].day)
@@ -340,10 +336,10 @@ Rolling tabindex datepicker
 
 						//Check if date is today's date
 						if (dt.isToday()){
-							$td.addClass("today");
+							$button.addClass("today");
 						}
 
-					this.setAriaLabel($td);
+					this.setAriaLabel($button);
 
 					
 					$row.append($td);
@@ -359,7 +355,8 @@ Rolling tabindex datepicker
     	}
 
     	//Populate the list of active datepicker buttons
-    	this.ALL_ACTIVE_DATEPICKER_DAYS = $('table#datepicker_table > tbody > tr > td').not('.disabled');
+    	this.ALL_ACTIVE_DATEPICKER_DAYS = $('table#datepicker_table > tbody > tr > td > button').not('.disabled');
+    	console.log(this.ALL_ACTIVE_DATEPICKER_DAYS)
 
     	//Check if chosen date button is part of the current month
     	var y = new Date(this.$target.val());
@@ -965,7 +962,7 @@ Rolling tabindex datepicker
 	// DATEPICKER NO CONFLICT
 	// ====================
 
-	$.fn.patedicker.noConflict = function () {
+	$.fn.a11ydate.noConflict = function () {
 		$.fn.datepicker = old
 		return this
 	}

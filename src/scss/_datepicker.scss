@@ -112,10 +112,14 @@ table#datepicker_table {
 	}
 
 	td {
+		padding:0;
+	}
+
+	td > button {
 		padding:1.4rem;
 		height:auto;
 		background-color: #fefefe;
-		//box-shadow: inset 0 -1px 0 0 #757575;
+		width:100%;
 
 		@include breakpoint(small only) { 
 			height:auto;
@@ -189,7 +193,6 @@ table tbody tr:nth-child(even) {
 }
 
 #month-label{
-	//margin:0 auto;
 	display:inline-block;
 	padding-top: 0.8rem;
 }
@@ -204,7 +207,7 @@ table tbody tr:nth-child(even) {
 }
 
 
-p#a11y_description {
+#a11y_description {
 	display:none;
 	text-align: initial;
 	max-width: 40rem;
@@ -214,7 +217,7 @@ p#a11y_description {
 	background-color: #f4f4ee;
 }
 
-div#screen-reader-text:not(:empty){
+#screen-reader-text:not(:empty){
 	font-size:1.1rem;
 	margin: 0 auto;
 	max-width: 35rem;
@@ -234,21 +237,21 @@ div#screen-reader-text:not(:empty){
 
 }
 
-p#aria-desc-text{
+#aria-desc-text{
 	font-size: 1rem;
 	font-weight: 400;
 	transition: all 500ms ease-in;
 }
 
-span#screen-reader-role {
+#screen-reader-role {
 	font-weight: bold;
 }
 
-span#screen-reader-text {
+#screen-reader-text {
 	font-weight: lighter;
 }
 
-section#description-section ul{
+#description-section ul{
 	list-style-type: disc;
 	text-align: initial;
 	max-width:50rem;
@@ -266,25 +269,7 @@ section#description-section ul{
 		padding: .75rem .75rem;
     	margin: 0.5rem 0;
 	}
-
-
 }
-/*
-.keyboard_prompt{
-	position:fixed;
-	left:0;
-	bottom:0;
-	//display:none;
-
-	img {
-		width:125px;
-	}
-}*/
-
-/*[data-whatintent="keyboard"] .keyboard_prompt{
-	display:block;
-}*/
-
 
 .keyboard-shortcuts-link {
     position: absolute;
@@ -437,5 +422,4 @@ abbr[title]{
 
 html[data-whatintent="mouse"] .chip:focus, html[data-whatintent="touch"] .chip:focus{
 	box-shadow: none;
-
 }
