@@ -316,12 +316,13 @@
 
 				//Fill calendar with days
 				} else{
-					var $td = $('<td><button></button></td>');
+					var $td = $('<td role="presentation"><button></button></td>');
 					var $button = $td.find("button");
 
 					$button
 						//.attr("role", "button")
 						.attr("tabindex", "-1")
+						.attr("aria-pressed", false)
 						.attr("data-weekday", this.calendarDates[y].weekday)
 						.attr("data-day", this.calendarDates[y].day)
 						.attr("data-month", this.calendarDates[y].month)
@@ -412,7 +413,7 @@
 
 		//Progressive enhancement: Change placeholder and label when additional features are available
 		this.$target
-			.attr("placeholder", 'Try "next monday"')
+			.attr("placeholder", 'Try "next monday" or "June fifth"')
 			.attr("type", "text");
 		this.$target.prev("label").html('Write a date (any way you like)');
 
@@ -606,38 +607,6 @@
 				that.ALL_ACTIVE_DATEPICKER_DAYS.first().attr("tabindex", "0");
 			}
 		});
-
-		
-/*
-		this.$target.change(function(){
-
-			
-
-			if (chrono.parseDate(that.$target.val()) != null){
-				var guessedDate = chrono.parseDate(that.$target.val());
-			}
-			else{
-				that.$target.val("")
-					.addClass("error")
-					.attr("aria-describedby", "date-error");
-				$("#date-error").removeClass("hidden");
-				$("#date-hint").addClass("hidden");
-
-				return;
-			}
-
-			var newValue = guessedDate.toISOString().slice(0,10);
-			that.$target.val(newValue);
-
-			//Kolla om dagen finns i visad månad, annars uppdatera kalendern
-			if (that.findMatchingDayButton(newValue) != false){
-				that.setSelected(that.findMatchingDayButton(newValue));
-			}
-			else that.updateCalendar(newValue);
-
-			
-			
-		})*/
 	}
 
 
@@ -861,7 +830,7 @@
 		$currently_active
 			.removeClass("active")
 			.attr('tabindex', -1)
-			.removeAttr("aria-pressed");
+			.attr("aria-pressed", false);
 
 		this.setAriaLabel($currently_active);
 
