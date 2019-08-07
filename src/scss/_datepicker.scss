@@ -5,20 +5,38 @@
 
 }
 
-#input_wrapper {
-	position:relative;
-	max-width: rem-calc(500px);
-    margin: 0 auto;
-    margin-bottom: 2rem;
-    overflow:hidden;
+/*#input_wrapper{
+		background-color:pink!important;
+		position:relative;
+		max-width: rem-calc(500px);
+	    margin: 0 auto;
+	    margin-bottom: 2rem;
+	    overflow:hidden;
+	  }*/
 
-    @include breakpoint(small only) { 
+.inclusive-datepicker_input {
+	&__wrapper{
+		position:relative;
+		max-width: rem-calc(500px);
+	    margin: 0 auto;
+	    margin-bottom: 2rem;
+	    overflow:hidden;
+
+	    @include breakpoint(small only) { 
 		max-width: 100%;
-	}
-
-	input#date{
+		}
+	 }
+	&__date[type="text"]{
 		margin-bottom: 0.25rem;
 		color:black;
+		border:1px solid #888;
+		height: 4rem;
+		padding: 6px 4px 5px 15px;
+
+		&:focus{
+			padding: 3px 2px 3px 11px;
+		}
+
 
 		&::placeholder{
 			color:#696767;
@@ -32,7 +50,7 @@
 
 	}
 
-	#date-error {
+	&__date-error {
 		background-color: aliceblue;
 	}
 }
@@ -42,7 +60,7 @@
 
 #datepicker_wrapper {
 	position:relative;
-	max-width: rem-calc(500px);
+	max-width: rem-calc(550px);
     margin: 0 auto;
     overflow:hidden;
     //background-color: #f5f5f5;
@@ -85,6 +103,9 @@
 			box-shadow: 0 0 0 2px #5e35b1;
 			outline:0;
 		}
+		&:focus, &:hover{
+			background-color: #e2e2e2;
+		}
 
 	}
 
@@ -102,6 +123,7 @@ table#datepicker_table {
 	padding:0.5rem;
 	//margin: 1rem auto 2rem auto;
 	border-collapse: initial;
+	border: 1px solid #888;
 
 	thead {
 		background:none;
@@ -155,7 +177,6 @@ table#datepicker_table {
 			cursor: pointer;
 			background-color: #2b7ea7;
 
-
 			}
 			&:hover{
 				cursor: pointer;
@@ -194,7 +215,10 @@ table tbody tr:nth-child(even) {
 
 #month-label{
 	display:inline-block;
-	padding-top: 0.8rem;
+	padding-top: 0.5rem;
+
+	font-size: 2rem;
+	margin-bottom: 1rem;
 }
 
 
@@ -217,13 +241,21 @@ table tbody tr:nth-child(even) {
 	background-color: #f4f4ee;
 }
 
-#screen-reader-text:not(:empty){
+#screen-reader-text{
+
 	font-size:1.1rem;
 	margin: 0 auto;
 	max-width: 35rem;
 	padding: 1rem;
 	background-color: #f5f5f5;
-	color: #6f6f6f;
+	border:1px solid #888;
+	//color: #6f6f6f;
+	//
+	&:not(.focused){
+		border:none;
+	}
+
+	
 
 	&.focused{
 		font-size:1.3rem;
@@ -245,10 +277,6 @@ table tbody tr:nth-child(even) {
 
 #screen-reader-role {
 	font-weight: bold;
-}
-
-#screen-reader-text {
-	font-weight: lighter;
 }
 
 #description-section ul{
@@ -277,6 +305,7 @@ table tbody tr:nth-child(even) {
     padding: 1rem;
     background-color: #222;
     color:white;
+    font-size:1.2rem;
 
     &:focus-within{
     	/*left:45%;*/
@@ -319,16 +348,16 @@ table tbody tr:nth-child(even) {
 .keyboard_modal__inner{
 	max-width:80%;
 	margin: 0 auto;
-	max-height: 375px;
+	max-height: 80%;
 	overflow: scroll;
-	ul > li > p{
-		font-size: 0.9rem;
+	p {
+    font-size:1.1rem;
 	}
 }
 .keyboard_modal__bottom{
 	max-width: 80%;
 	margin:0 auto;
-	margin-top:1rem;
+	margin-top:2rem;
 }
 
 #moredetails{
@@ -368,57 +397,59 @@ abbr[title]{
     overflow-x: auto;
   	overflow-y: hidden;
   	white-space: nowrap;
-    
-}
 
-.chip-set {
 	margin-left:0;
 	list-style: none;
+	margin-top: 1rem;
 
 	li{
 		display:inline-block;
 	}
+
 	.chip{
-	margin:4px;
-	}
+		margin:4px;
+
+		border: 1px solid #888;
+
+	    border-radius: 20px;
+	    background-color: #f2f2f2;
+	    color: rgba(0,0,0,1);
+	    font-size: 1rem;
+	    line-height: 1.25rem;
+	    font-weight: 400;
+	    letter-spacing: .0178571429em;
+	    text-decoration: inherit;
+	    text-transform: inherit;
+	    height: 40px;
+	    display: inline-flex;
+	    position: relative;
+	    align-items: center;
+	    box-sizing: border-box;
+	    padding: 7px 14px;
+	    outline: none;
+	    cursor: pointer;
+	    overflow: hidden;
+
+		//box-shadow: 0 0 0 2px #5e35b1;
+
+
+	    &:focus{
+	    	border-color:transparent;
+	    	box-shadow: 0 0 0 2px #5e35b1;
+	    	background-color: #e2e2e2;
+	    }
+	    &:active{
+	    	background-color: #e3e3e3;
+	    }
+	    &:hover{
+	    	background-color: #e2e2e2;
+
+	    }
+}
 }
 
 
-.chip{
-    border-radius: 16px;
-    background-color: #f2f2f2;
-    color: rgba(0,0,0,1);
-    font-size: .875rem;
-    line-height: 1.25rem;
-    font-weight: 400;
-    letter-spacing: .0178571429em;
-    text-decoration: inherit;
-    text-transform: inherit;
-    height: 32px;
-    display: inline-flex;
-    position: relative;
-    align-items: center;
-    box-sizing: border-box;
-    padding: 7px 12px;
-    outline: none;
-    cursor: pointer;
-    overflow: hidden;
 
-	//box-shadow: 0 0 0 2px #5e35b1;
-
-
-    &:focus{
-    	box-shadow: 0 0 0 2px #5e35b1;
-    	background-color: #e2e2e2;
-    }
-    &:active{
-    	background-color: #e3e3e3;
-    }
-    &:hover{
-    	background-color: #e2e2e2;
-
-    }
-}
 
 html[data-whatintent="mouse"] .chip:focus, html[data-whatintent="touch"] .chip:focus{
 	box-shadow: none;

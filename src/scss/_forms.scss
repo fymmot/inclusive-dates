@@ -52,7 +52,7 @@ button.text-btn{
 
 html[data-whatintent="mouse"]{
 	.form-field{
-		input[type="radio"]:focus+label, input[type="checkbox"]:focus+label{
+		&__input-radio:focus+label, &__input-checkbox:focus+label{
 			outline:none;
 		}
 	}
@@ -75,7 +75,7 @@ html[data-whatintent="mouse"]{
 	}
 
 
-	label {
+	&__label {
 		padding: 0.5rem 2rem 0.5rem 10px;
 		font-weight: 600;
 	    padding-left: 10px;
@@ -87,26 +87,42 @@ html[data-whatintent="mouse"]{
 	    }
 	}
 
-	textarea{
+	&__textarea{
 		height: 5rem;
 	}
 
 	
-	fieldset {
+	&__fieldset {
 			max-width:28rem;
 	}
 
-	input[type="text"], input[type="password"], input[type="tel"], & input[type="email"] {
+	&__input-date {
+	padding: 0.4rem;
+	font-size: 1.3rem;
+	display: block;
+    margin-top:0.5rem;
+    margin: 0 auto;
+	}
+
+	label.date {
+		margin: 0.5rem 0;
+		font-size:1.2rem;
+		display:block;
+	}	
+
+
+
+	&__input-text, &__input-password, &__input-tel, &__input-email, &__input-date {
 		height: 3.5rem;
 		display:inline-block;
 	}
 
-	input[type="text"], input[type="password"], input[type="tel"], & input[type="email"], textarea {
+	&__input-text, &__input-password, &__input-tel, &__input-email, &__input-date, &__textarea {
 	}
 
-	input[type="text"], input[type="password"], input[type="tel"], & input[type="email"], textarea {
+	&__input-text, &__input-password, &__input-tel, & &__input-email, &__textarea, &__input-date {
 		display:block;
-		background-color:#e8e8e8;
+		background-color:#f2f2f2;
 		padding: 4px 3px 4px 11px;
 		margin-bottom: 1rem;
 		margin-top:0.25rem;
@@ -123,14 +139,14 @@ html[data-whatintent="mouse"]{
 	    &:focus{
 			border-color:#5e35b1;
 			transition:all 0.1s ease-in;
-			border: 1px solid #5e35b1;
-			border-bottom-width: 5px;
+			border: 5px solid #5e35b1;
+			//border-bottom-width: 5px;
 			outline:none;
-			padding: 6px 2px 3px 10px;
+			padding: 7px 2px 3px 11px;
 		}
 		&:hover{
 			cursor: pointer;
-			background-color: #f2f2f2;
+			background-color: #f9f9f9;
 			&:focus{
 				cursor: initial;
 			}
@@ -142,7 +158,7 @@ html[data-whatintent="mouse"]{
 		}
 	}
 
-	input[type="radio"], input[type="checkbox"]{
+	&__input-radio, &__input-checkbox{
 		position:absolute;
 		opacity: 0;
 		width:50px;
@@ -330,18 +346,7 @@ form.private{
 
 
 
-input.date {
-	padding: 0.4rem;
-	font-size: 1.3rem;
-	display: block;
-    margin-top:0.5rem;
-    margin: 0 auto;
-}
-label.date {
-	margin: 0.5rem 0;
-	font-size:1.2rem;
-	display:block;
-}
+
 
 .toggle-pw{
 	display:flex;

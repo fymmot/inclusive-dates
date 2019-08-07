@@ -192,7 +192,7 @@
 
 	A11ydate.prototype.generateCalendarHeader = function(){
 		//Generate Month buttons and heading
-		var calendarHeaderNav = $('<div class="month-nav__wrapper"><button class="btn month-nav__sides left">Previous<span class="visually-hidden"> month</span></button><h3 id="month-label" aria-live="assertive" class="">' + this.months[+this.calendarDates[0].month-1] + ' ' + this.calendarDates[0].year + '</h3> <button class="btn month-nav__sides right">Next<span class="visually-hidden"> month</span></i></button> </div>');
+		var calendarHeaderNav = $('<div class="month-nav__wrapper"><button class="btn month-nav__sides left">Previous<span class="visually-hidden"> month</span></button><h2 class="h3" id="month-label" aria-live="assertive" class="">' + this.months[+this.calendarDates[0].month-1] + ' ' + this.calendarDates[0].year + '</h3> <button class="btn month-nav__sides right">Next<span class="visually-hidden"> month</span></i></button> </div>');
 		$('#datepicker_wrapper').prepend(calendarHeaderNav);
 
 		//Generate table headings with weekdays
@@ -216,7 +216,7 @@
 		var $keyboard_shortcuts = $('<div class="keyboard-shortcuts-link"><button id="open-keyboard-shortcuts">Show keyboard shortcuts</button></div>');
 		$("#datepicker_wrapper").find(".month-nav__wrapper").after($keyboard_shortcuts);
 
-		var modalContent = '<h3 class="kbd_modal__heading" id="kbd_modal_heading" tabindex="0">Keyboard shortcuts</h3><ul><li><p><kbd>TAB</kbd> into the calendar.</p></li><li><p><kbd>LEFT</kbd>/ <kbd>RIGHT</kbd> to change day.</p></li><li><p><kbd>UP</kbd>/ <kbd>DOWN</kbd> to change week.</p></li><li><p><kbd>HOME</kbd>/ <kbd>END</kbd> for first or last day of the month.</p></li><li><p><kbd>PAGE UP</kbd>/ <kbd>PAGE DOWN</kbd> for the same day in the previous or next month.</p></li><li><p><kbd>SPACE</kbd> to select a date.</p></li></ul><h3 class="kbd_modal__heading">With screen readers</h3><ul><li><p>You need to activate forms mode manually in NVDA and JAWS to make use of the keyboard shortcuts</p></li><li><p>By default, you can browse normally using the down arrow key.</p></li></ul>'
+		var modalContent = '<h3 class="kbd_modal__heading" id="kbd_modal_heading" tabindex="0">Keyboard shortcuts</h3><ul><li><p><kbd>TAB</kbd> into the calendar.</p></li><li><p><kbd>LEFT</kbd>/ <kbd>RIGHT</kbd> to change day.</p></li><li><p><kbd>UP</kbd>/ <kbd>DOWN</kbd> to change week.</p></li><li><p><kbd>HOME</kbd>/ <kbd>END</kbd> for first or last day of the month.</p></li><li><p><kbd>PAGE UP</kbd>/ <kbd>PAGE DOWN</kbd> for the same day in the previous or next month.</p></li><li><p><kbd>SPACE</kbd> to select a date.</p></li></ul><h3 class="kbd_modal__heading">With screen readers</h3><ul><li><p>By default, you can browse between days in the calendar using the down arrow key, by button list, or by searching for a specific button.</p></li><li><p>You can activate forms mode manually in NVDA and JAWS to make use of the keyboard shortcuts</p></li></ul>'
 
 		var $kbd_modal = $(
 			'<div id="keyboard_shortcuts_modal" hidden role="dialog" aria-modal="false" aria-labelledby="kbd_modal_heading"><div class="keyboard_modal__inner"> '+ modalContent + '</div><div class="keyboard_modal__bottom"><button id="closeKbdModal" class="button large">Got it!</button></div></div>');
@@ -426,7 +426,7 @@
 		function addChips(){
 			//Add the chips
 			var chips = '<ul class="chip-set"><li><button class="chip">Yesterday</button></li><li><button class="chip">Tomorrow</button></li><li><button class="chip">Next week</button></li><li><button class="chip">In 30 days</button></li></ul>'
-			$("#date-error").before(chips);
+			$("#date-error").attr("aria-live", "assertive").before(chips);
 
 			$("#input_wrapper .chip").click(function(){
 				var chiptext = $(this).html();
@@ -845,6 +845,13 @@
 		if (this.options.demo)
 			this.updateA11yDemo($newActiveCell, false);
 
+
+		this.STATE.selectedCell = $newActiveCell;
+		this.STATE.selectedMonth = $newActiveCell.attr("data-month");
+		this.STATE.selectedDay = $newActiveCell.attr("data-day");
+		this.STATE.selectedYear = $newActiveCell.attr("data-year");
+
+
 		//Update the input field value with the selected day
 		this.$target.val(""+$newActiveCell.attr("data-year")+"-"+$newActiveCell.attr("data-month")+"-"+$newActiveCell.attr("data-day"));
 
@@ -904,8 +911,14 @@
 
 
 		var label = cell.attr("aria-label");
-		var role = cell.attr('role');
-		var pressed = cell.attr('aria-pressed') ? ', pressed' : '';
+		var role = 'button';
+		if (cell.attr('aria-pressed') == "true"){
+				var pressed = ", pressed" 
+			} else {
+				var pressed = "";
+			}
+		;
+
 		return a11ySpan.html( label +", "+ role + pressed);
 
 	}

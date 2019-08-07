@@ -2,7 +2,7 @@
     <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <title>Tommy's inclusive datepicker | Tommy Feldt</title>
+        <title>Inclusive datepicker | Tommy Feldt</title>
             <!-- build:css -->
             <link rel="stylesheet" href="css/style.css">
             <!-- endbuild -->
@@ -19,11 +19,11 @@
         
         <section class="align-center">
 
-            <div id="input_wrapper">
+            <div class="inclusive-datepicker_input__wrapper" id="input_wrapper">
                 <div class="form-field" style="margin:0 auto">
-                    <label class="date" for="date">Write a date
+                    <label class="form-field__label date" for="date">Write a date
                         <!--<span>Try "Next monday", 2018-04-15 or "April fifteenth"</span>--></label>
-                    <input autocomplete="off" id="date" type="date" class="date" value="" min="" max="" placeholder='e.g. 2019-05-01'>
+                    <input autocomplete="off" id="date" class="date form-field__input-date inclusive-datepicker_input__date" type="date" value="" min="" max="" placeholder='e.g. 2019-05-01'>
                 
                 </div>
                 <p id="date-error" class="hidden"></p>
@@ -82,7 +82,7 @@
             $(document).ready(function() {
                 //Initiate calendar!
                 $('#date').a11ydate({
-                    demo: false,
+                    demo: true,
                     popup: true
                 });
 
