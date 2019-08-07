@@ -1,5 +1,5 @@
 /*!
- * jQuery JavaScript Library v3.4.0
+ * jQuery JavaScript Library v3.4.1
  * https://jquery.com/
  *
  * Includes Sizzle.js
@@ -9,7 +9,7 @@
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2019-04-10T19:48Z
+ * Date: 2019-05-01T21:04Z
  */
 ( function( global, factory ) {
 
@@ -142,7 +142,7 @@ function toType( obj ) {
 
 
 var
-	version = "3.4.0",
+	version = "3.4.1",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -4498,8 +4498,12 @@ var documentElement = document.documentElement;
 		},
 		composed = { composed: true };
 
+	// Support: IE 9 - 11+, Edge 12 - 18+, iOS 10.0 - 10.2 only
 	// Check attachment across shadow DOM boundaries when possible (gh-3504)
-	if ( documentElement.attachShadow ) {
+	// Support: iOS 10.0-10.2 only
+	// Early iOS 10 versions support `attachShadow` but not `getRootNode`,
+	// leading to errors. We need to check for `getRootNode`.
+	if ( documentElement.getRootNode ) {
 		isAttached = function( elem ) {
 			return jQuery.contains( elem.ownerDocument, elem ) ||
 				elem.getRootNode( composed ) === elem.ownerDocument;
@@ -5359,8 +5363,7 @@ jQuery.event = {
 
 				// Claim the first handler
 				if ( rcheckableType.test( el.type ) &&
-					el.click && nodeName( el, "input" ) &&
-					dataPriv.get( el, "click" ) === undefined ) {
+					el.click && nodeName( el, "input" ) ) {
 
 					// dataPriv.set( el, "click", ... )
 					leverageNative( el, "click", returnTrue );
@@ -5377,8 +5380,7 @@ jQuery.event = {
 
 				// Force setup before triggering a click
 				if ( rcheckableType.test( el.type ) &&
-					el.click && nodeName( el, "input" ) &&
-					dataPriv.get( el, "click" ) === undefined ) {
+					el.click && nodeName( el, "input" ) ) {
 
 					leverageNative( el, "click" );
 				}
@@ -5419,7 +5421,9 @@ function leverageNative( el, type, expectSync ) {
 
 	// Missing expectSync indicates a trigger call, which must force setup through jQuery.event.add
 	if ( !expectSync ) {
-		jQuery.event.add( el, type, returnTrue );
+		if ( dataPriv.get( el, type ) === undefined ) {
+			jQuery.event.add( el, type, returnTrue );
+		}
 		return;
 	}
 
@@ -5434,9 +5438,13 @@ function leverageNative( el, type, expectSync ) {
 			if ( ( event.isTrigger & 1 ) && this[ type ] ) {
 
 				// Interrupt processing of the outer synthetic .trigger()ed event
-				if ( !saved ) {
+				// Saved data should be false in such cases, but might be a leftover capture object
+				// from an async native handler (gh-4350)
+				if ( !saved.length ) {
 
 					// Store arguments for use when handling the inner native event
+					// There will always be at least one argument (an event object), so this array
+					// will not be confused with a leftover capture object.
 					saved = slice.call( arguments );
 					dataPriv.set( this, type, saved );
 
@@ -5449,14 +5457,14 @@ function leverageNative( el, type, expectSync ) {
 					if ( saved !== result || notAsync ) {
 						dataPriv.set( this, type, false );
 					} else {
-						result = undefined;
+						result = {};
 					}
 					if ( saved !== result ) {
 
 						// Cancel the outer synthetic event
 						event.stopImmediatePropagation();
 						event.preventDefault();
-						return result;
+						return result.value;
 					}
 
 				// If this is an inner synthetic event for an event with a bubbling surrogate
@@ -5471,17 +5479,19 @@ function leverageNative( el, type, expectSync ) {
 
 			// If this is a native event triggered above, everything is now in order
 			// Fire an inner synthetic event with the original arguments
-			} else if ( saved ) {
+			} else if ( saved.length ) {
 
 				// ...and capture the result
-				dataPriv.set( this, type, jQuery.event.trigger(
+				dataPriv.set( this, type, {
+					value: jQuery.event.trigger(
 
-					// Support: IE <=9 - 11+
-					// Extend with the prototype to reset the above stopImmediatePropagation()
-					jQuery.extend( saved.shift(), jQuery.Event.prototype ),
-					saved,
-					this
-				) );
+						// Support: IE <=9 - 11+
+						// Extend with the prototype to reset the above stopImmediatePropagation()
+						jQuery.extend( saved[ 0 ], jQuery.Event.prototype ),
+						saved.slice( 1 ),
+						this
+					)
+				} );
 
 				// Abort handling of the native event
 				event.stopImmediatePropagation();
@@ -23812,11 +23822,11 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_jquery__;
 //# sourceMappingURL=foundation.js.map
 /**
  * what-input - A global utility for tracking the current input method (mouse, keyboard or touch).
- * @version v5.2.1
+ * @version v5.2.3
  * @link https://github.com/ten1seven/what-input
  * @license MIT
  */
-!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define("whatInput",[],t):"object"==typeof exports?exports.whatInput=t():e.whatInput=t()}(this,function(){return function(n){var o={};function i(e){if(o[e])return o[e].exports;var t=o[e]={exports:{},id:e,loaded:!1};return n[e].call(t.exports,t,t.exports,i),t.loaded=!0,t.exports}return i.m=n,i.c=o,i.p="",i(0)}([function(e,t){"use strict";e.exports=function(){if("undefined"==typeof document||"undefined"==typeof window)return{ask:function(){return"initial"},element:function(){return null},ignoreKeys:function(){},specificKeys:function(){},registerOnChange:function(){},unRegisterOnChange:function(){}};var t=document.documentElement,n=null,a="initial",u=a,o=Date.now();try{window.sessionStorage.getItem("what-input")&&(a=window.sessionStorage.getItem("what-input")),window.sessionStorage.getItem("what-intent")&&(u=window.sessionStorage.getItem("what-intent"))}catch(e){}var d=["button","input","select","textarea"],i=[],c=[16,17,18,91,93],w=[],p={keydown:"keyboard",keyup:"keyboard",mousedown:"mouse",mousemove:"mouse",MSPointerDown:"pointer",MSPointerMove:"pointer",pointerdown:"pointer",pointermove:"pointer",touchstart:"touch",touchend:"touch"},r=!1,s={x:null,y:null},f={2:"touch",3:"touch",4:"mouse"},l=!1;try{var e=Object.defineProperty({},"passive",{get:function(){l=!0}});window.addEventListener("test",null,e)}catch(e){}var h=function(){var e=!!l&&{passive:!0};window.PointerEvent?(window.addEventListener("pointerdown",m),window.addEventListener("pointermove",y)):window.MSPointerEvent?(window.addEventListener("MSPointerDown",m),window.addEventListener("MSPointerMove",y)):(window.addEventListener("mousedown",m),window.addEventListener("mousemove",y),"ontouchstart"in window&&(window.addEventListener("touchstart",m,e),window.addEventListener("touchend",m))),window.addEventListener(b(),y,e),window.addEventListener("keydown",m),window.addEventListener("keyup",m),window.addEventListener("focusin",g),window.addEventListener("focusout",E)},m=function(e){var t=e.which,n=p[e.type];"pointer"===n&&(n=L(e));var o=!w.length&&-1===c.indexOf(t),i=w.length&&-1!==w.indexOf(t),r="keyboard"===n&&t&&(o||i)||"mouse"===n||"touch"===n;if(x(n)&&(r=!1),r&&a!==n){a=n;try{window.sessionStorage.setItem("what-input",a)}catch(e){}v("input")}if(r&&u!==n){var s=document.activeElement;if(s&&s.nodeName&&-1===d.indexOf(s.nodeName.toLowerCase())||"button"===s.nodeName.toLowerCase()&&!k(s,"form")){u=n;try{window.sessionStorage.setItem("what-intent",u)}catch(e){}v("intent")}}},v=function(e){t.setAttribute("data-what"+e,"input"===e?a:u),S(e)},y=function(e){var t=p[e.type];if("pointer"===t&&(t=L(e)),M(e),!r&&!x(t)&&u!==t){u=t;try{window.sessionStorage.setItem("what-intent",u)}catch(e){}v("intent")}},g=function(e){e.target.nodeName?(n=e.target.nodeName.toLowerCase(),t.setAttribute("data-whatelement",n),e.target.classList&&e.target.classList.length&&t.setAttribute("data-whatclasses",e.target.classList.toString().replace(" ",","))):E()},E=function(){n=null,t.removeAttribute("data-whatelement"),t.removeAttribute("data-whatclasses")},L=function(e){return"number"==typeof e.pointerType?f[e.pointerType]:"pen"===e.pointerType?"touch":e.pointerType},x=function(e){var t=Date.now(),n="mouse"===e&&"touch"===a&&t-o<200;return o=t,n},b=function(){return"onwheel"in document.createElement("div")?"wheel":void 0!==document.onmousewheel?"mousewheel":"DOMMouseScroll"},S=function(e){for(var t=0,n=i.length;t<n;t++)i[t].type===e&&i[t].fn.call(void 0,"input"===e?a:u)},M=function(e){s.x!==e.screenX||s.y!==e.screenY?(r=!1,s.x=e.screenX,s.y=e.screenY):r=!0},k=function(e,t){var n=window.Element.prototype;if(n.matches||(n.matches=n.msMatchesSelector||n.webkitMatchesSelector),n.closest)return e.closest(t);do{if(e.matches(t))return e;e=e.parentElement||e.parentNode}while(null!==e&&1===e.nodeType);return null};return"addEventListener"in window&&Array.prototype.indexOf&&(p[b()]="mouse",h(),v("input"),v("intent")),{ask:function(e){return"intent"===e?u:a},element:function(){return n},ignoreKeys:function(e){c=e},specificKeys:function(e){w=e},registerOnChange:function(e,t){i.push({fn:e,type:t||"input"})},unRegisterOnChange:function(e){var t=function(e){for(var t=0,n=i.length;t<n;t++)if(i[t].fn===e)return t}(e);(t||0===t)&&i.splice(t,1)}}}()}])});
+!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define("whatInput",[],t):"object"==typeof exports?exports.whatInput=t():e.whatInput=t()}(this,function(){return i={},n.m=o=[function(e,t){"use strict";e.exports=function(){if("undefined"==typeof document||"undefined"==typeof window)return{ask:function(){return"initial"},element:function(){return null},ignoreKeys:function(){},specificKeys:function(){},registerOnChange:function(){},unRegisterOnChange:function(){}};var t=document.documentElement,n=null,a="initial",u=a,o=Date.now();try{window.sessionStorage.getItem("what-input")&&(a=window.sessionStorage.getItem("what-input")),window.sessionStorage.getItem("what-intent")&&(u=window.sessionStorage.getItem("what-intent"))}catch(e){}var d=["button","input","select","textarea"],i=[],c=[16,17,18,91,93],w=[],p={keydown:"keyboard",keyup:"keyboard",mousedown:"mouse",mousemove:"mouse",MSPointerDown:"pointer",MSPointerMove:"pointer",pointerdown:"pointer",pointermove:"pointer",touchstart:"touch",touchend:"touch"},r=!1,s={x:null,y:null},f={2:"touch",3:"touch",4:"mouse"},l=!1;try{var e=Object.defineProperty({},"passive",{get:function(){l=!0}});window.addEventListener("test",null,e)}catch(e){}var h=function(){var e=!!l&&{passive:!0};window.PointerEvent?(window.addEventListener("pointerdown",m),window.addEventListener("pointermove",y)):window.MSPointerEvent?(window.addEventListener("MSPointerDown",m),window.addEventListener("MSPointerMove",y)):(window.addEventListener("mousedown",m),window.addEventListener("mousemove",y),"ontouchstart"in window&&(window.addEventListener("touchstart",m,e),window.addEventListener("touchend",m))),window.addEventListener(S(),y,e),window.addEventListener("keydown",m),window.addEventListener("keyup",m),window.addEventListener("focusin",g),window.addEventListener("focusout",E)},m=function(e){var t=e.which,n=p[e.type];"pointer"===n&&(n=L(e));var o=!w.length&&-1===c.indexOf(t),i=w.length&&-1!==w.indexOf(t),r="keyboard"===n&&t&&(o||i)||"mouse"===n||"touch"===n;if(x(n)&&(r=!1),r&&a!==n){a=n;try{window.sessionStorage.setItem("what-input",a)}catch(e){}v("input")}if(r&&u!==n){var s=document.activeElement;if(s&&s.nodeName&&(-1===d.indexOf(s.nodeName.toLowerCase())||"button"===s.nodeName.toLowerCase()&&!O(s,"form"))){u=n;try{window.sessionStorage.setItem("what-intent",u)}catch(e){}v("intent")}}},v=function(e){t.setAttribute("data-what"+e,"input"===e?a:u),b(e)},y=function(e){var t=p[e.type];if("pointer"===t&&(t=L(e)),M(e),(!r&&!x(t)||r&&"wheel"===e.type||"mousewheel"===e.type||"DOMMouseScroll"===e.type)&&u!==t){u=t;try{window.sessionStorage.setItem("what-intent",u)}catch(e){}v("intent")}},g=function(e){e.target.nodeName?(n=e.target.nodeName.toLowerCase(),t.setAttribute("data-whatelement",n),e.target.classList&&e.target.classList.length&&t.setAttribute("data-whatclasses",e.target.classList.toString().replace(" ",","))):E()},E=function(){n=null,t.removeAttribute("data-whatelement"),t.removeAttribute("data-whatclasses")},L=function(e){return"number"==typeof e.pointerType?f[e.pointerType]:"pen"===e.pointerType?"touch":e.pointerType},x=function(e){var t=Date.now(),n="mouse"===e&&"touch"===a&&t-o<200;return o=t,n},S=function(){return"onwheel"in document.createElement("div")?"wheel":void 0!==document.onmousewheel?"mousewheel":"DOMMouseScroll"},b=function(e){for(var t=0,n=i.length;t<n;t++)i[t].type===e&&i[t].fn.call(void 0,"input"===e?a:u)},M=function(e){s.x!==e.screenX||s.y!==e.screenY?(r=!1,s.x=e.screenX,s.y=e.screenY):r=!0},O=function(e,t){var n=window.Element.prototype;if(n.matches||(n.matches=n.msMatchesSelector||n.webkitMatchesSelector),n.closest)return e.closest(t);do{if(e.matches(t))return e;e=e.parentElement||e.parentNode}while(null!==e&&1===e.nodeType);return null};return"addEventListener"in window&&Array.prototype.indexOf&&(p[S()]="mouse",h(),v("input"),v("intent")),{ask:function(e){return"intent"===e?u:a},element:function(){return n},ignoreKeys:function(e){c=e},specificKeys:function(e){w=e},registerOnChange:function(e,t){i.push({fn:e,type:t||"input"})},unRegisterOnChange:function(e){var t=function(e){for(var t=0,n=i.length;t<n;t++)if(i[t].fn===e)return t}(e);!t&&0!==t||i.splice(t,1)}}}()}],n.c=i,n.p="",n(0);function n(e){if(i[e])return i[e].exports;var t=i[e]={exports:{},id:e,loaded:!1};return o[e].call(t.exports,t,t.exports,n),t.loaded=!0,t.exports}var o,i});
 //# sourceMappingURL=maps/what-input.min.js.map
 
 /*! ally.js - v1.4.1 - https://allyjs.io/ - MIT License */
@@ -24048,111 +24058,6 @@ function loopFocus(config) {
     }
   };
 }
-$(document).ready(function(){
-
-	//Show/hide password
-	//
-	function setUpPasswordVisibilityBtn(){
-		$.each($('.form-field input[type="password"]'), function(){
-			//Create a button and add it to all password fields
-			var x = $('<div class="toggle-pw"><button type="button" class="text-btn">Show password</button></div>');
-			$(this).after(x); 
-
-
-			var pwbutton = x.find("button");
-			var x = $(this);
-
-			//Register click listeners for password buttons
-			pwbutton.click(function(){
-				if (x.attr("type") === "password") {
-				    x.attr("type", "text");
-				    pwbutton.text("Hide password");
-
-				  } else {
-				    x.attr("type", "password");
-				    pwbutton.text("Show password");
-				  }
-			});
-		});
-	}
-	function setUpHints(){
-		// Set up hint texts and error texts
-		$.each($('.form-field'), function(){
-			var input = $(this).find('input, fieldset');
-			var x = input.attr('data-hint-text'); //Get hint text from HTML attribute
-			var y = input.attr('id') + '-hint'; //Find ID for aria-describedby
-			
-			if (x !== undefined){ 
-				$(this).append('<div class="helper" id="' + y + '">' + x + '</div>');
-				input.attr('aria-describedby', y);
-			}
-
-
-		});
-	}
-
-	function setUpRequired(){
-		$.each($('.form-field').find('input, select, textarea'), function(){
-			if ($(this).attr('required') == 'required') //Fix screen reader bug with required attribute
-				$(this).attr('aria-invalid', false);
-				//Add visible text to optional fields
-				//$(this).prev('label, fieldset').append('<span class="optional-span"> (optional)</span>');
-
-		});
-
-	}
-
-	function initiateValidation(){
-		//Initiate form validation
-		$('#form').parsley({
-			uiEnabled: true,
-			trigger: 'blur',
-			errorsWrapper: '<div></div>',
-	  		errorTemplate: '<div class="error"></div>'
-		});
-
-		window.Parsley.on('field:error', function() {
-		  // This global callback will be called for any field that fails validation.
-		  // 
-		  this.$element.parents('.form-field').addClass('hasError');
-		  this.$element.attr('aria-invalid', true);
-
-		  if (this.$element.find('.error').length > 0){
-		  	var errorID = 'parsley-id-' + this.$element.attr('data-parsley-id');
-
-			  this.$element.attr('aria-describedby', errorID);
-			  
-		}
-		  
-		  	
-		});
-
-		window.Parsley.on('field:success', function() {
-		  // This global callback will be called for any field that passes validation.
-		  this.$element.attr('aria-invalid', false);
-		  this.$element.parents('.form-field').removeClass('hasError');
-
-		  //Set the aria-describedby back to the hint id
-		  if (this.$element.attr('data-hint-text') !== undefined){
-		  	var hintID = this.$element.attr('id') + '-hint';
-		  	this.$element.attr('aria-describedby', hintID);
-			}
-		});
-
-	}
-	
-	// Lets go!
-	setUpPasswordVisibilityBtn();
-	setUpHints();
-	setUpRequired();
-	initiateValidation();
-
-});
-
-/*
-Rolling tabindex datepicker 
-*/
-
 (function(factory){
 	if (typeof define === "function" && define.amd) {
 		define(["jquery"], factory);
@@ -24347,7 +24252,7 @@ Rolling tabindex datepicker
 
 	A11ydate.prototype.generateCalendarHeader = function(){
 		//Generate Month buttons and heading
-		var calendarHeaderNav = $('<div class="month-nav__wrapper"><button class="btn month-nav__sides left">Previous<span class="visually-hidden"> month</span></button><h3 id="month-label" aria-live="assertive" class="">' + this.months[+this.calendarDates[0].month-1] + ' ' + this.calendarDates[0].year + '</h3> <button class="btn month-nav__sides right">Next<span class="visually-hidden"> month</span></i></button> </div>');
+		var calendarHeaderNav = $('<div class="month-nav__wrapper"><button class="btn month-nav__sides left">Previous<span class="visually-hidden"> month</span></button><h2 class="h3" id="month-label" aria-live="assertive" class="">' + this.months[+this.calendarDates[0].month-1] + ' ' + this.calendarDates[0].year + '</h3> <button class="btn month-nav__sides right">Next<span class="visually-hidden"> month</span></i></button> </div>');
 		$('#datepicker_wrapper').prepend(calendarHeaderNav);
 
 		//Generate table headings with weekdays
@@ -24368,10 +24273,10 @@ Rolling tabindex datepicker
 			closeID: 'closeKbdModal'
 		}
 
-		var $keyboard_shortcuts = $('<div class="keyboard-shortcuts-link"><button id="open-keyboard-shortcuts">Show keyboard shortcuts</button></div>');
+		var $keyboard_shortcuts = $('<div class="keyboard-shortcuts-link"><button id="open-keyboard-shortcuts">Show instructions</button></div>');
 		$("#datepicker_wrapper").find(".month-nav__wrapper").after($keyboard_shortcuts);
 
-		var modalContent = '<h3 class="kbd_modal__heading" id="kbd_modal_heading" tabindex="0">Keyboard shortcuts</h3><ul><li><p><kbd>TAB</kbd> into the calendar.</p></li><li><p><kbd>LEFT</kbd>/ <kbd>RIGHT</kbd> to change day.</p></li><li><p><kbd>UP</kbd>/ <kbd>DOWN</kbd> to change week.</p></li><li><p><kbd>HOME</kbd>/ <kbd>END</kbd> for first or last day of the month.</p></li><li><p><kbd>PAGE UP</kbd>/ <kbd>PAGE DOWN</kbd> for the same day in the previous or next month.</p></li><li><p><kbd>SPACE</kbd> to select a date.</p></li></ul><h3 class="kbd_modal__heading">With screen readers</h3><ul><li><p>You need to activate forms mode manually in NVDA and JAWS to make use of the keyboard shortcuts</p></li><li><p>By default, you can browse normally using the down arrow key.</p></li></ul>'
+		var modalContent = '<h3 class="kbd_modal__heading" id="kbd_modal_heading" tabindex="0">Keyboard shortcuts</h3><ul><li><p><kbd>TAB</kbd> into the calendar.</p></li><li><p><kbd>LEFT</kbd>/ <kbd>RIGHT</kbd> to change day.</p></li><li><p><kbd>UP</kbd>/ <kbd>DOWN</kbd> to change week.</p></li><li><p><kbd>HOME</kbd>/ <kbd>END</kbd> for first or last day of the month.</p></li><li><p><kbd>PAGE UP</kbd>/ <kbd>PAGE DOWN</kbd> for the same day in the previous or next month.</p></li><li><p><kbd>SPACE</kbd> to select a date.</p></li></ul><h3 class="kbd_modal__heading">With screen readers</h3><ul><li><p>By default, you can browse between days in the calendar using the down arrow key, by button list, or by searching for a specific button.</p></li><li><p>If you want to use keyboard shortcuts, you can activate forms mode manually in NVDA and JAWS to make use of the keyboard shortcuts</p></li></ul>'
 
 		var $kbd_modal = $(
 			'<div id="keyboard_shortcuts_modal" hidden role="dialog" aria-modal="false" aria-labelledby="kbd_modal_heading"><div class="keyboard_modal__inner"> '+ modalContent + '</div><div class="keyboard_modal__bottom"><button id="closeKbdModal" class="button large">Got it!</button></div></div>');
@@ -24471,11 +24376,13 @@ Rolling tabindex datepicker
 
 				//Fill calendar with days
 				} else{
-					var $td = $('<td></td>');
+					var $td = $('<td role="presentation"><button></button></td>');
+					var $button = $td.find("button");
 
-					$td
-						.attr("role", "button")
+					$button
+						//.attr("role", "button")
 						.attr("tabindex", "-1")
+						.attr("aria-pressed", false)
 						.attr("data-weekday", this.calendarDates[y].weekday)
 						.attr("data-day", this.calendarDates[y].day)
 						.attr("data-month", this.calendarDates[y].month)
@@ -24490,10 +24397,10 @@ Rolling tabindex datepicker
 
 						//Check if date is today's date
 						if (dt.isToday()){
-							$td.addClass("today");
+							$button.addClass("today");
 						}
 
-					this.setAriaLabel($td);
+					this.setAriaLabel($button);
 
 					
 					$row.append($td);
@@ -24509,7 +24416,8 @@ Rolling tabindex datepicker
     	}
 
     	//Populate the list of active datepicker buttons
-    	this.ALL_ACTIVE_DATEPICKER_DAYS = $('table#datepicker_table > tbody > tr > td').not('.disabled');
+    	this.ALL_ACTIVE_DATEPICKER_DAYS = $('table#datepicker_table > tbody > tr > td > button').not('.disabled');
+    	console.log(this.ALL_ACTIVE_DATEPICKER_DAYS)
 
     	//Check if chosen date button is part of the current month
     	var y = new Date(this.$target.val());
@@ -24565,7 +24473,7 @@ Rolling tabindex datepicker
 
 		//Progressive enhancement: Change placeholder and label when additional features are available
 		this.$target
-			.attr("placeholder", 'Try "next monday"')
+			.attr("placeholder", 'Try "next monday" or "June fifth"')
 			.attr("type", "text");
 		this.$target.prev("label").html('Write a date (any way you like)');
 
@@ -24578,7 +24486,7 @@ Rolling tabindex datepicker
 		function addChips(){
 			//Add the chips
 			var chips = '<ul class="chip-set"><li><button class="chip">Yesterday</button></li><li><button class="chip">Tomorrow</button></li><li><button class="chip">Next week</button></li><li><button class="chip">In 30 days</button></li></ul>'
-			$("#date-error").before(chips);
+			$("#date-error").attr("aria-live", "assertive").before(chips);
 
 			$("#input_wrapper .chip").click(function(){
 				var chiptext = $(this).html();
@@ -24759,38 +24667,6 @@ Rolling tabindex datepicker
 				that.ALL_ACTIVE_DATEPICKER_DAYS.first().attr("tabindex", "0");
 			}
 		});
-
-		
-/*
-		this.$target.change(function(){
-
-			
-
-			if (chrono.parseDate(that.$target.val()) != null){
-				var guessedDate = chrono.parseDate(that.$target.val());
-			}
-			else{
-				that.$target.val("")
-					.addClass("error")
-					.attr("aria-describedby", "date-error");
-				$("#date-error").removeClass("hidden");
-				$("#date-hint").addClass("hidden");
-
-				return;
-			}
-
-			var newValue = guessedDate.toISOString().slice(0,10);
-			that.$target.val(newValue);
-
-			//Kolla om dagen finns i visad månad, annars uppdatera kalendern
-			if (that.findMatchingDayButton(newValue) != false){
-				that.setSelected(that.findMatchingDayButton(newValue));
-			}
-			else that.updateCalendar(newValue);
-
-			
-			
-		})*/
 	}
 
 
@@ -25014,7 +24890,7 @@ Rolling tabindex datepicker
 		$currently_active
 			.removeClass("active")
 			.attr('tabindex', -1)
-			.removeAttr("aria-pressed");
+			.attr("aria-pressed", false);
 
 		this.setAriaLabel($currently_active);
 
@@ -25028,6 +24904,13 @@ Rolling tabindex datepicker
 
 		if (this.options.demo)
 			this.updateA11yDemo($newActiveCell, false);
+
+
+		this.STATE.selectedCell = $newActiveCell;
+		this.STATE.selectedMonth = $newActiveCell.attr("data-month");
+		this.STATE.selectedDay = $newActiveCell.attr("data-day");
+		this.STATE.selectedYear = $newActiveCell.attr("data-year");
+
 
 		//Update the input field value with the selected day
 		this.$target.val(""+$newActiveCell.attr("data-year")+"-"+$newActiveCell.attr("data-month")+"-"+$newActiveCell.attr("data-day"));
@@ -25088,8 +24971,14 @@ Rolling tabindex datepicker
 
 
 		var label = cell.attr("aria-label");
-		var role = cell.attr('role');
-		var pressed = cell.attr('aria-pressed') ? ', pressed' : '';
+		var role = 'button';
+		if (cell.attr('aria-pressed') == "true"){
+				var pressed = ", pressed" 
+			} else {
+				var pressed = "";
+			}
+		;
+
 		return a11ySpan.html( label +", "+ role + pressed);
 
 	}
@@ -25115,7 +25004,7 @@ Rolling tabindex datepicker
 	// DATEPICKER NO CONFLICT
 	// ====================
 
-	$.fn.patedicker.noConflict = function () {
+	$.fn.a11ydate.noConflict = function () {
 		$.fn.datepicker = old
 		return this
 	}
