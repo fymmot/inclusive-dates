@@ -2,17 +2,7 @@
 *:focus{
 	box-shadow: 0 0 0 2px #5e35b1;
 	outline:0;
-}
 
-.js-focus-visible *:focus:not(.focus-visible) {
-  outline: none;
-  box-shadow: none;
-}
-
-.js-focus-visible .chip-set .chip:focus:not(.focus-visible){
-    border-color: inherit;
-    box-shadow: none;
-    //background-color: inherit;
 }
 
 /*#input_wrapper{
@@ -97,13 +87,13 @@
 	width:100%;
 }
 
-button.month-nav__sides {
+.month-nav__sides {
 
 	min-width:6rem;
 	//position:absolute;
 	//
 	
-	&__btn {
+	&.btn {
 		border:none;
 		background: none;
 		text-decoration: underline;
@@ -113,21 +103,18 @@ button.month-nav__sides {
 			box-shadow: 0 0 0 2px #5e35b1;
 			outline:0;
 		}
-		&.focus-visible:focus, &:active, &:hover{
+		&:focus, &:hover{
 			background-color: #e2e2e2;
-		}
-
-		&.left{
-		float:left;
-
-		}
-		&.right{
-			float:right;
 		}
 
 	}
 
-	
+	&.left{
+		float:left;
+	}
+	&.right{
+		float:right;
+	}
 }
 
 table#datepicker_table {
@@ -203,7 +190,7 @@ table#datepicker_table {
 		}
 
 		&:not(.active):not(.disabled):hover{
-			background-color:#e2e2e2;
+			background-color:#f5f5f5;
 			cursor: pointer;
 		}
 
@@ -235,13 +222,13 @@ table tbody tr:nth-child(even) {
 }
 
 
-/*[data-whatintent="mouse"] #datepicker_table, [data-whatintent="touch"] #datepicker_table,{
+[data-whatintent="mouse"] #datepicker_table, [data-whatintent="touch"] #datepicker_table,{
 	td {
 		&:focus{
 			outline:0;
 		}
 	}
-}*/
+}
 
 
 #a11y_description {
@@ -453,9 +440,6 @@ abbr[title]{
 	    }
 	    &:active{
 	    	background-color: #e3e3e3;
-	    	border: 1px solid #888;
-
-
 	    }
 	    &:hover{
 	    	background-color: #e2e2e2;
@@ -469,5 +453,4 @@ abbr[title]{
 
 html[data-whatintent="mouse"] .chip:focus, html[data-whatintent="touch"] .chip:focus{
 	box-shadow: none;
-	border:inherit;
 }
