@@ -10,7 +10,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "gulp"
+    "HTML",
+    "accessibility",
+    "datepicker",
+    "inclusive design",
+    "calendar",
+    "jquery",
+    "screen reader",
+    "keyboard"
   ],
   "author": "Tommy Feldt",
   "devDependencies": {

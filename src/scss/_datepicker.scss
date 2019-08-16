@@ -99,11 +99,9 @@
 
 button.month-nav__sides {
 
-	min-width:6rem;
-	//position:absolute;
-	//
 	
 	&__btn {
+		width:90px;
 		border:none;
 		background: none;
 		text-decoration: underline;
@@ -230,7 +228,7 @@ table tbody tr:nth-child(even) {
 	display:inline-block;
 	padding-top: 0.5rem;
 
-	font-size: 2rem;
+	font-size: 1.6rem;
 	margin-bottom: 1rem;
 }
 

@@ -272,9 +272,8 @@
 
     	// Hide the <input>
     	if (this.options.popup){
-    		if (!$("#open-calendar-btn").length){
-    			//this.generateButton();
-    		}
+    		/*if (!$("#open-calendar-btn").length){
+    		}*/
     	}
     	else {
     		$("#input_wrapper").addClass("hidden");
@@ -333,7 +332,7 @@
 						//Check if date is within range
 						var dt = new Date(this.calendarDates[y].year + '-' + this.calendarDates[y].month + '-' + this.calendarDates[y].day + '');
 						if (!this.dateRangeCheck(dt)){
-							$td.addClass("disabled").attr('aria-disabled', true);
+							$td.find("button").addClass("disabled").attr('disabled', 'disabled');
 						}
 
 						//Check if date is today's date
@@ -358,7 +357,6 @@
 
     	//Populate the list of active datepicker buttons
     	this.ALL_ACTIVE_DATEPICKER_DAYS = $('table#datepicker_table > tbody > tr > td > button').not('.disabled');
-    	console.log(this.ALL_ACTIVE_DATEPICKER_DAYS)
 
     	//Check if chosen date button is part of the current month
     	var y = new Date(this.$target.val());
@@ -461,6 +459,10 @@
 			var guessedDate = chrono.parseDate(that.$target.val());
 
 			if (guessedDate == null){
+				return false;
+			}
+			//
+			if (guessedDate > that.max || guessedDate < that.min){
 				return false;
 			}
 
@@ -713,16 +715,9 @@
 
 	A11ydate.prototype.incrementMonth = function(cell, delta){
 
-
-
 		//If no cell provided (i.e. I pressed a button)
 		if (cell == undefined){
-			var newDate = new Date(this.STATE.calendarState);
-
-			//Check if we are out of bounds
-			if (newDate < this.min || myDate > this.max){
-				return false;
-			}
+			var newDate = new Date(this.STATE.calendarState);			
 
 			//Set day to first or last of the month depending on where we are going
 			if (delta == -1){
@@ -734,6 +729,11 @@
 				newDate.setDate(1);
 				newDate.setMonth(newDate.getMonth()+delta);
 				newDate.setHours(12) //Fix bug with calendar not moving forward
+			}
+
+			//Check if new date is out of bounds!
+			if (newDate>that.max || newDate<that.min){
+				return false;
 			}
 
 			//Lets go
@@ -762,7 +762,6 @@
 			}
 
 			myDate.setHours(12);
-
 		
 			//Check if move is possible
 			if (myDate < this.min || myDate > this.max){
