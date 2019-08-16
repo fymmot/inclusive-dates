@@ -432,7 +432,7 @@
 				that.$target.val(chiptext);
 
 				//Trigger change event on input field
-				var event = new Event('change');
+				var event = new CustomEvent('change');
 				that.$target[0].dispatchEvent(event);
 				return;
 			})
