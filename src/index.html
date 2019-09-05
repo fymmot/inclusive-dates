@@ -14,18 +14,19 @@
         <main>
         <nav class="text-left"><a href="https://github.com/fymmot/inclusive-dates">View GitHub repository</a></nav>
 
-        <h1 class="h1__main">Inclusive datepicker demo</h1>
+        <h1 class="h1__main">Tommy's inclusive datepicker</h1>
        
         
         <section class="align-center">
 
             <div class="inclusive-datepicker_input__wrapper" id="input_wrapper">
                 <div class="form-field" style="margin:0 auto">
-                    <label class="form-field__label date" for="date">Write a date</label>
-                    <input autocomplete="off" id="date" class="date form-field__input-date inclusive-datepicker_input__date" type="date" value="2019-08-09" min="2019-08-05" max="2019-12-29" placeholder='e.g. 2019-09-01'>
-                
+                    <label class="form-field__label date" for="inclusive-datepicker_input">Write a date
+                    </label>
+                    <input autocomplete="off" id="inclusive-datepicker_input" class="date form-field__input-date inclusive-datepicker_input__date" type="date" value="" min="" max="" placeholder='e.g. 2019-09-01'>
+                    <p id="date-error" aria-live="assertive" class="hidden inclusive-datepicker_input__date-error"></p>
                 </div>
-                <p id="date-error" class="hidden inclusive-datepicker_input__date-error"></p>
+                
             </div>
             
             <div class="" id="datepicker_wrapper">
@@ -45,18 +46,10 @@
         <script>
             $(document).ready(function() {
                 //Initiate calendar!
-                $('#date').a11ydate({
+                $('#inclusive-datepicker_input').a11ydate({
                     demo: true,
                     popup: true
                 });
-
-                //Click listener for expanding info
-                $("#moredetails").click(function(){
-                    var toggle = !$(this).attr("aria-hidden");
-                    $(this).attr("aria-hidden", toggle);
-
-                    $("#details").toggleClass("hidden");  
-                })
             });
         </script>
 

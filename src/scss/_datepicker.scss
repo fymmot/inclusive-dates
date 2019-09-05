@@ -314,15 +314,15 @@ table tbody tr:nth-child(even) {
     position: absolute;
     left: -9999px;
     padding: 1rem;
-    background-color: #222;
-    color:white;
+    background-color: white;
+    color:#222;
     font-size:1.2rem;
 
-    &:focus-within{
+    &:focus{
     	/*left:45%;*/
     	left:50%;
     	top:12%;
-    	outline: auto;
+    	outline: none;
     	margin-left:auto;
     	margin-right:auto;
     	transform: translate(-50%)
@@ -330,7 +330,7 @@ table tbody tr:nth-child(even) {
 	}
 	button:focus{
 		//outline:0;
-		color:white;
+		//color:white;
 	}
 }
 
@@ -341,7 +341,7 @@ table tbody tr:nth-child(even) {
     background-color: white;
     border: 1px solid #222;
     border-radius: 8px;
-    padding-top:2rem;
+    padding-top:1rem;
     z-index: 50;
     text-align: initial;
 
@@ -355,11 +355,23 @@ table tbody tr:nth-child(even) {
     	text-align: center;		
     }
 }
+//Hack to force visible scrollbar
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
 
 .keyboard_modal__inner{
-	max-width:80%;
+	max-width:90%;
 	margin: 0 auto;
-	max-height: 80%;
+	padding: 10px 20px;
+	max-height: 90%;
 	overflow: scroll;
 	p {
     font-size:1.1rem;
@@ -368,7 +380,7 @@ table tbody tr:nth-child(even) {
 .keyboard_modal__bottom{
 	max-width: 80%;
 	margin:0 auto;
-	margin-top:2rem;
+	//margin-top:2rem;
 }
 
 #moredetails{
