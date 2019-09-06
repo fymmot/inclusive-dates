@@ -24052,6 +24052,7 @@ function loopFocus(config) {
     }
   };
 }
+
 (function(factory){
 	if (typeof define === "function" && define.amd) {
 		define(["jquery"], factory);
@@ -24067,6 +24068,7 @@ function loopFocus(config) {
 	'use strict';
 	var that;
 
+	//Define the main Datepicker variable and various settings
 	var A11ydate = function (target, options) {
 		that = this;
 		this.$target = $(target);
@@ -24151,7 +24153,12 @@ function loopFocus(config) {
 		});
 	}
 
-
+	/**
+	 * This function generates an object containing all the dates in a given month. Used to populate the calendar
+	 * 
+	 * @param  {String} startDate Start date formatted as ISO date string (e.g. 2019-09-05)
+	 *
+	 */
 	A11ydate.prototype.generateDays = function(startDate){
 
 		/**
@@ -24170,7 +24177,7 @@ function loopFocus(config) {
 			return d;
 		}
 		/**
-		 * Extend Date object with Helper function to check if a date has already passed or not. Returns a boolean.
+		 * Extend Date object with helper function to check if a date has already passed or not. Returns a boolean.
 		 */
 		Date.prototype.dayHasPassed = function(){
 			var now = new Date();
@@ -24237,6 +24244,10 @@ function loopFocus(config) {
 	    return this.calendarDates;
 	    
 	}
+	/**
+	 * Function to generate a the <table> container for the calendar
+	 * @return {void} 
+	 */
 	A11ydate.prototype.generateCalendarTable = function(){
 		this.$calendar = $('<table id="datepicker_table" role="presentation"><thead role="presentation"></thead><tbody role="presentation"></tbody></table>');
 
@@ -24244,6 +24255,10 @@ function loopFocus(config) {
 		this.$datePickerGrid = this.$calendar.find('tbody');
 	}
 
+	/**
+	 * Function to generate the calendar header, including Next and previous month buttons
+	 * @return {void} 
+	 */
 	A11ydate.prototype.generateCalendarHeader = function(){
 		//Generate Month buttons and heading
 		var calendarHeaderNav = $('<div class="month-nav__wrapper"><button class="btn month-nav__sides__btn left">Previous<span class="visually-hidden"> month</span></button><h2 class="h3" id="month-label" aria-live="polite" class="">' + this.months[+this.calendarDates[0].month-1] + ' ' + this.calendarDates[0].year + '<span class="visually-hidden"> currently displayed</span></h3> <button class="btn month-nav__sides__btn right">Next<span class="visually-hidden"> month</span></i></button> </div>');
@@ -24260,6 +24275,10 @@ function loopFocus(config) {
 		this.$calendar.find('thead').append(headerRow);
 	}
 
+	/**
+	 * Generates the HTML and content needed for the keyboard and screen reader instructions modal
+	 * @return {void} 
+	 */
 	A11ydate.prototype.generateKeyboardHelp = function(){
 		var idvalues = {
 			dialogID: 'keyboard_shortcuts_modal',
@@ -24282,6 +24301,11 @@ function loopFocus(config) {
 		initializeKeyboardModal(idvalues.openID, idvalues.dialogID, idvalues.closeID);
 	}
 
+	/**
+	 * Function to handle calendar updates, for instance when moving between months
+	 * @param  {String} newDate The new startdate for the calendar. Formatted as Date ISO string
+	 * @return {void}        
+	 */
 	A11ydate.prototype.updateCalendar = function(newDate){
 
 		//Check if a startdate has been provided
@@ -24294,11 +24318,16 @@ function loopFocus(config) {
 			date = new Date().toISOString().slice(0,10);
 		}
 
+		//Always clear the calendar of old content
 		this.clearCalendar();
-		//this.$target.val(date);
 		this.setUpCalendar(date);
+		return;
 	}
 
+	/**
+	 * Main function to setup the calendar and populate it with day buttons
+	 * @param {String} startDate Date formatted as 
+	 */
 	A11ydate.prototype.setUpCalendar = function(startDate){
 
     	$("#datepicker_table").remove();
@@ -24319,7 +24348,6 @@ function loopFocus(config) {
     	daString = da.toISOString().slice(0,10);
     	this.generateDays(daString);
 
-    	//Always clear the calendar of old content
     	this.generateCalendarTable();
     	this.generateCalendarHeader();
     	this.generateKeyboardHelp();
@@ -24434,8 +24462,10 @@ function loopFocus(config) {
 	    //Track the updated year + month in the State object
 	    this.STATE.calendarState = daString.slice(0, 7);
     }
+	
 	/**
-	 * Register mouse listeners for each cell in the table
+	 * Register click listeners for all buttons in the calendar
+	 * @return {void}
 	 */
 	A11ydate.prototype.registerClickListeners = function(){
 
@@ -24461,7 +24491,10 @@ function loopFocus(config) {
 		});
 	
 	}
-
+	/**
+	 * Input listeners and behaviors needed for the Chrono.js date parser
+	 * @return {void} 
+	 */
 	A11ydate.prototype.registerInputListeners = function(){
 
 		//Progressive enhancement: Change placeholder and label when additional features are available
@@ -24470,12 +24503,12 @@ function loopFocus(config) {
 			.attr("type", "text");
 		this.$target.prev("label").html('Write a date (any way you like)');
 
-		//Add quick chips
+		//Add quick shortcut chips/buttons
 		if (!$(".chip-set").length){
 			addChips();
 		}
 		
-
+		//Generate the shortcut chip buttons
 		function addChips(){
 			//Add the chips
 			var chips = '<ul aria-label="Date shortcuts" class="chip-set"><li><button class="chip">Yesterday</button></li><li><button class="chip">Tomorrow</button></li><li><button class="chip">Next week</button></li><li><button class="chip">In 30 days</button></li></ul>'
@@ -24490,9 +24523,9 @@ function loopFocus(config) {
 				that.$target[0].dispatchEvent(event);
 				return;
 			})
-
 		}
 
+		//Handle when Chrono.js does not find a matching date
 		function setInvalid() {
 			that.$target.val("")
 					.addClass("error")
@@ -24500,17 +24533,18 @@ function loopFocus(config) {
 			$("#date-error").removeClass("hidden").html("Sorry, we couldn't find a matching date<br>Please try again.")
 
 			return;
-
 		}
 
+		//Success handler for Chrono.js
 		function setValid(date) {
 			that.$target.removeClass("error").removeAttr("aria-invalid");
 			$("#date-error").addClass("hidden").html("");
 			
 		}
 
+		//Check if parsed date from Chrono is a valid date in the calendar.
+		//Return either false or the parsed date
 		function checkInput() {
-
 			var guessedDate = chrono.parseDate(that.$target.val());
 
 			if (guessedDate == null){
@@ -24523,23 +24557,22 @@ function loopFocus(config) {
 
 			else {
 				return guessedDate;
-
 			}
 		}
 
+		//Update the calendar with the new date
 		function updateCal(newdate) {
-
 			var newValue = newdate.toISOString().slice(0,10);
 			that.$target.val(newValue);
 
-			//Kolla om dagen finns i visad månad, annars uppdatera kalendern
+			//Necessary check to see if parsed date is already visible in the calendar
 			if (that.findMatchingDayButton(newValue) != false){
 				that.setSelected(that.findMatchingDayButton(newValue));
 			}
 			else that.updateCalendar(newValue);
 		}
 
-		//user is "finished typing," do something
+		//User is "finished typing," do something
 		function doneTyping () {
 			var check = checkInput();
 
@@ -24551,9 +24584,8 @@ function loopFocus(config) {
 		}
 
 		
-
+		//Run date parser when user presses enter or leaves the input field	
 		this.$target.change(function(){
-
 
 			var check = checkInput();
 
@@ -24575,7 +24607,7 @@ function loopFocus(config) {
 		var typingTimer;                //timer identifier
 		var doneTypingInterval =2500;  //time in ms (5 seconds)
 
-		//on keyup, start the countdown
+		//Run date parsing 2.5 seconds after the user stops typing
 		that.$target.keyup(function(){
 		    clearTimeout(typingTimer);
 		    if (that.$target.val()) {
@@ -24584,6 +24616,10 @@ function loopFocus(config) {
 		});
 	}
 
+	/**
+	 * Register key listeners for the calendar widget and behavior for when the user tabs out of the calendar
+	 * @return {void} 
+	 */
 	A11ydate.prototype.registerKeyListeners = function(){
 
 		this.$calendar.keydown(function( event ) {
@@ -24670,7 +24706,10 @@ function loopFocus(config) {
 
 
 	
-
+	/**
+	 * Manage screen reader labels for calendar days
+	 * @param {JQuery Object} cell The targeted cell
+	 */
     A11ydate.prototype.setAriaLabel = function(cell){
     	var isActive = (cell.hasClass("active"));
     	
@@ -24693,7 +24732,10 @@ function loopFocus(config) {
     }
 
 	/**
-	 * Go to next or previous day
+	 * Move to the next or previous calendar day
+	 * @param  {JQuery Object} cell  The current cell
+	 * @param  {Integer} delta The desired direction (accepts 1 or -1)
+	 * @return {JQuery Object}       The new cell
 	 */
 	A11ydate.prototype.incrementDay = function(cell, delta){
 		var a = this.ALL_ACTIVE_DATEPICKER_DAYS;
@@ -24724,7 +24766,12 @@ function loopFocus(config) {
 		}
 	}
 	
-
+	/**
+	 * Move to the next or previous week
+	 * @param  {Jquery Object} cell  The current
+	 * @param  {Integer} delta The desired direction (accepts 1 or -1)
+	 * @return {JQuery Object}       The new cell
+	 */
 	A11ydate.prototype.incrementWeek = function(cell, delta){
 		var a = this.ALL_ACTIVE_DATEPICKER_DAYS;
 		var idx = a.index(cell);
@@ -24769,6 +24816,12 @@ function loopFocus(config) {
 
 	}
 
+	/**
+	 * Move to the next or previous Month
+	 * @param  {Jquery Object} cell  The current cell in the calendar
+	 * @param  {Integer} delta The desired direction (accepts 1 or -1)
+	 * @return {JQuery Object}       The new cell
+	 */
 	A11ydate.prototype.incrementMonth = function(cell, delta){
 
 		//If no cell provided (i.e. I pressed a button)
@@ -24858,13 +24911,21 @@ function loopFocus(config) {
 		}
 
 	}
+
+	/**
+	 * Move to the first selectable day in the current month
+	 * @return {Jquery Object} The matching cell
+	 */		
 	A11ydate.prototype.firstDayInMonth = function(){
 		var a = this.ALL_ACTIVE_DATEPICKER_DAYS;
 		this.STATE.focusedCell = a.first();
 
 		return this.STATE.focusedCell.focus();
 	}
-
+	/**
+	 * Move to the last selectable day in the current month
+	 * @return {JQuery Object} The matching cell
+	 */
 	A11ydate.prototype.lastDayInMonth = function(){
 		var a = this.ALL_ACTIVE_DATEPICKER_DAYS;
 		this.STATE.focusedCell = a.last();
@@ -24877,7 +24938,6 @@ function loopFocus(config) {
 	 * aria attributes and classes.
 	 * @param {[type]} cell The new cell to be made active
 	 */
-
 	A11ydate.prototype.setSelected = function(cell){
 
 		var $currently_active = $(".active");
@@ -24916,25 +24976,28 @@ function loopFocus(config) {
 
 
     /**
-     * Clear calendar
+     * Clear calendar from old content
      */
     A11ydate.prototype.clearCalendar = function(){
     	$("#datepicker_wrapper").empty();
     }
 
-
+    /**
+     * Cleanup tabindexes, for instance when tabbing out of the calendar
+     * @return {[type]} [description]
+     */
 	A11ydate.prototype.cleanup = function (){
 		this.STATE.focusedCell = null;
 
 		return this.ALL_ACTIVE_DATEPICKER_DAYS.attr("tabindex", "-1");
 	}
 
-
+	/**
+	 * Function to generate the screen reader demo feature. 
+	 * @return {void}
+	 */
 	A11ydate.prototype.generateA11yDemo = function(){
 		var ad = $('<div id="a11y_demo"><h3 style="font-size:1rem; font-weight:400;">Text read by screen reader <strong>(demo only)</strong></h3><div id="screen-reader-text">Text will be displayed here when you interact with the calender </div></div>');
-		/*if (this.options.popup){
-			ad.addClass("hidden");
-		}*/
 
 		$("#datepicker_wrapper").append(ad);
 
@@ -24949,6 +25012,10 @@ function loopFocus(config) {
 		});
 	}
 	
+	/**
+	 * Clears the screen reader demo of all content
+	 * @return {void} 
+	 */
 	A11ydate.prototype.clearA11yDemo = function(){
 		$("#screen-reader-text")
 			.html("Text will be displayed here when you interact with the calender")
@@ -24984,6 +25051,7 @@ function loopFocus(config) {
 
 	// DATEPICKER PLUGIN DEFINITION
 	// ==========================
+	// Registers the datepicker as a JQuery plugin. 
 
 	var old = $.fn.a11ydate
 
