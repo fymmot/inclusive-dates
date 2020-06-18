@@ -2,6 +2,9 @@
 # Inclusive Dates datepicker
 A human-friendly and fully accessible datepicker. Currently proof-of-concept, help me improve it!
 
+## Demo
+https://fymmot.github.io/inclusive-dates/
+
 ## Main features
 * Text input field that supports natural language processing through Chrono.js. You can type ```tomorrow```, ```"May fifteen"``` or ```"In 5 days"```! 
 * Shortcut buttons make it easy to select most common dates.
