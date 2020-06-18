@@ -1,6 +1,6 @@
 
 # Inclusive Dates datepicker
-A human-friendly and fully accessible datepicker. Currently proof-of-concept, help me improve it!
+A human-friendly and fully accessible datepicker. **Currently proof-of-concept, help me improve it!**
 
 ## Demo
 https://fymmot.github.io/inclusive-dates/
