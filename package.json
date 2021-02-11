@@ -38,6 +38,8 @@
     "run-sequence": "^1.2.2"
   },
   "dependencies": {
+    "ally.js": "^1.4.1",
+    "focus-trap": "^4.0.2",
     "chrono-node": "^1.4.8",
     "focus-visible": "^5.2.0",
     "foundation-sites": "^6.6.3",
