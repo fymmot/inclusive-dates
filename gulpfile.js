@@ -12,7 +12,7 @@ var htmlReplace = require('gulp-html-replace');
 var htmlMin = require('gulp-htmlmin');
 var del = require('del');
 var axe = require('gulp-axe-webdriver');
-var deploy      = require('gulp-gh-pages');
+var deploy      = require('gulp4-gh-pages');
 
 
 var config = {
