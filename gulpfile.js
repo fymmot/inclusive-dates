@@ -130,6 +130,6 @@ gulp.task('clean', function() {
   return del([config.dist]);
 });
 
-gulp.task('build', gulp.series('clean', gulp.parallel('html', 'js', 'sass', 'css', 'img')));
+gulp.task('build', gulp.series('clean', 'sass', gulp.parallel('html', 'js', 'css', 'img')));
 
 gulp.task('default', gulp.series('build', 'serve'));
