@@ -21,9 +21,9 @@
   ],
   "author": "Tommy Feldt",
   "devDependencies": {
-    "browser-sync": "^2.26.7",
+    "browser-sync": "^2.26.14",
     "del": "^2.2.2",
-    "gulp": "3.9.1",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-axe-webdriver": "^3.1.0",
     "gulp-changed": "^1.3.2",
@@ -33,17 +33,15 @@
     "gulp-html-replace": "^1.6.1",
     "gulp-htmlmin": "^3.0.0",
     "gulp-imagemin": "^3.0.3",
-    "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^2.1.1",
     "gulp-uglify": "^2.0.0",
     "run-sequence": "^1.2.2"
   },
   "dependencies": {
-    "ally.js": "^1.4.1",
-    "chrono-node": "^1.3.11",
-    "focus-trap": "^4.0.2",
-    "focus-visible": "^5.0.2",
-    "foundation-sites": "^6.5.3",
-    "jquery": "^3.4.1"
+    "chrono-node": "^1.4.8",
+    "focus-visible": "^5.2.0",
+    "foundation-sites": "^6.6.3",
+    "gulp-dart-sass": "^1.0.2",
+    "jquery": "^3.5.1"
   }
 }

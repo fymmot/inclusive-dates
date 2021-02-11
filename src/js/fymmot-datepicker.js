@@ -135,7 +135,7 @@
 		  	}
 		}
 		/**
-		 * Extend Date object with Helper function to get number of days in the month
+		 * Extend Date object with Helper function to get number of days in the months
 		 */
 		Date.prototype.monthDays = function(){
 		    var d= new Date(this.getFullYear(), this.getMonth()+1, 0);
@@ -548,18 +548,6 @@
 
 			return;
 		})
-
-		//setup before functions
-		var typingTimer;                //timer identifier
-		var doneTypingInterval =2500;  //time in ms (5 seconds)
-
-		//Run date parsing 2.5 seconds after the user stops typing
-		that.$target.keyup(function(){
-		    clearTimeout(typingTimer);
-		    if (that.$target.val()) {
-		        typingTimer = setTimeout(doneTyping, doneTypingInterval);
-		    }
-		});
 	}
 
 	/**

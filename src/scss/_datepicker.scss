@@ -12,29 +12,19 @@
 .js-focus-visible .chip-set .chip:focus:not(.focus-visible){
     border-color: inherit;
     box-shadow: none;
-    //background-color: inherit;
 }
-
-/*#input_wrapper{
-		background-color:pink!important;
-		position:relative;
-		max-width: rem-calc(500px);
-	    margin: 0 auto;
-	    margin-bottom: 2rem;
-	    overflow:hidden;
-	  }*/
 
 .inclusive-datepicker_input {
 	&__wrapper{
 		position:relative;
-		max-width: rem-calc(500px);
+		max-width: 500px;
 	    margin: 0 auto;
 	    margin-bottom: 2rem;
 	    overflow:hidden;
 
-	    @include breakpoint(small only) { 
+	    /*@include breakpoint(small only) { 
 		max-width: 100%;
-		}
+		}*/
 	 }
 	&__date[type="text"]{
 		margin-bottom: 0.25rem;
@@ -47,7 +37,6 @@
 			padding: 3px 2px 3px 11px;
 		}
 
-
 		&::placeholder{
 			color:#696767;
 		}
@@ -57,7 +46,6 @@
 		display: block;
     	font-weight: initial;
     	font-size: 0.9rem;
-
 	}
 
 	&__date-error {
@@ -70,25 +58,20 @@
 
 #datepicker_wrapper {
 	position:relative;
-	max-width: rem-calc(550px);
+	max-width: 550px;
     margin: 0 auto;
-    overflow:hidden;
+    text-align: center;
     //background-color: #f5f5f5;
 
     table{
     	font-size:1.2rem;
+    	width:100%;
+    	margin-left:-35px;
 
-    	@include breakpoint(small only) { 
-		font-size: 1rem;
-
-		}
+    	@include breakpoint(phablet){
+    		margin-left:initial;
+    	}
     }
-
-
-    @include breakpoint(small only) { 
-		max-width: 100%;
-	}
-
 
 }
 
@@ -129,7 +112,7 @@ button.month-nav__sides {
 }
 
 table#datepicker_table {
-	text-align: center;
+	//text-align: center;
 	background-color:#f5f5f5;
 	padding:0.5rem;
 	//margin: 1rem auto 2rem auto;
@@ -154,11 +137,11 @@ table#datepicker_table {
 		background-color: #fefefe;
 		width:100%;
 
-		@include breakpoint(small only) { 
+		/*@include breakpoint(small only) { 
 			height:auto;
 			padding:1rem;
-
-		}
+		
+		}*/
 
 		&.today{
 			text-decoration: underline;
@@ -472,12 +455,4 @@ abbr[title]{
 
 	    }
 }
-}
-
-
-
-
-html[data-whatintent="mouse"] .chip:focus, html[data-whatintent="touch"] .chip:focus{
-	box-shadow: none;
-	border:inherit;
 }

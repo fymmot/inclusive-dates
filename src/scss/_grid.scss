@@ -1,0 +1,31 @@
+/* ungrid-flex.css (54 bytes minified) */
+@include breakpoint(phablet) {
+    .row { 
+    	display: flex;
+    	margin: 0 auto;
+    	width: 100%;
+
+        @include breakpoint(laptop) {
+            width: 60%;
+        }
+
+    	@include breakpoint(tablet) {
+			width: 70%;
+		}
+
+        
+
+    }
+    .col { 
+    	flex: 1;
+    	width: 100%;
+    }
+}
+/* */
+
+.wrapper {
+	margin-left: $grid-gutter-size;
+	margin-right: $grid-gutter-size;
+
+
+}
