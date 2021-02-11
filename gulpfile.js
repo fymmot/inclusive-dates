@@ -24,7 +24,8 @@ var config = {
     'node_modules/foundation-sites/dist/js/foundation.js',
     'node_modules/focus-visible/dist/focus-visible.min.js',
     'node_modules/chrono-node/dist/chrono.min.js',
-    'src/js/**/*.js'
+    'node_modules/ally.js/ally.min.js',
+    'src/js/**/*.js',
     ],
   imgin: 'src/img/**/*.{jpg,jpeg,png,gif}',
   htmlin: 'src/*.html',

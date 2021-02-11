@@ -364,6 +364,16 @@ table tbody tr:nth-child(even) {
 	max-width: 80%;
 	margin:0 auto;
 	//margin-top:2rem;
+	button {
+		border: 1px solid #888;
+		border-radius: 20px;
+		background-color: #f2f2f2;
+		color: black;
+		font-size: 1rem;
+		line-height: 1.25rem;
+		cursor: pointer;
+		padding: 7px 14px;
+	}
 }
 
 #moredetails{

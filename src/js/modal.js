@@ -8,6 +8,8 @@ var disabledHandle;
 var hiddenHandle;
 var focusedElementBeforeDialogOpened;
 
+console.log("initializeModal");
+
 
 
 	function openDialog() {
