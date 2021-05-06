@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "ally.js": "^1.4.1",
-    "chrono-node": "^1.4.8",
+    "chrono-node": "^2.2.4",
     "focus-trap": "^4.0.2",
     "focus-visible": "^5.2.0",
     "foundation-sites": "^6.6.3",
