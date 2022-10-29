@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <meta
+      name="description"
+      content="A small, accessible and customizable datepicker written in TypeScript."
+    />
+
+    <title>WC Datepicker</title>
+
+    <link rel="stylesheet" href="css/bamboo.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/prism.css" />
+    <link rel="stylesheet" href="themes/light.css" />
+
+    <script type="module" src="dist/esm/wc-datepicker.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>WC Datepicker</h1>
+      <p>
+        A small, accessible and customizable datepicker written in TypeScript.
+      </p>
+
+      <a href="https://github.com/Sqrrl/wc-datepicker">Gitub repository</a> •
+      <a href="https://www.npmjs.com/package/wc-datepicker">NPM package</a>
+    </header>
+
+    <nav aria-labelledby="toc">
+      <h2 id="toc">Table of contents</h2>
+
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#install">Install</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#options">Options</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#styling">Styling</a></li>
+        <li><a href="#browser-support">Browser support</a></li>
+        <li><a href="#keyboard-controls">Keyboard controls</a></li>
+        <li><a href="#license">License</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section>
+        <h2 id="features">Features</h2>
+
+        <ul>
+          <li>
+            <strong>🦶 Small footprint:</strong> About 8 KB minified and
+            gzipped.
+          </li>
+          <li>
+            <strong>🪁 Dependency-free:</strong> No external dependencies.
+          </li>
+          <li>
+            <strong>🖼 Framework-agnostic:</strong> Standard Web Component that
+            works with any framework.
+          </li>
+          <li><strong>💪 Strongly typed:</strong> Written in TypeScript.</li>
+          <li>
+            <strong>🧏‍♀️ Accessible:</strong> Built to support users of assistive
+            technology.
+          </li>
+          <li>
+            <strong>🇪🇺 Localizable:</strong> Customizable labels and date
+            formats.
+          </li>
+          <li>
+            <strong>🌈 Customizable:</strong> Semantic markup with no built-in
+            styles.
+          </li>
+          <li>
+            <strong>🧪 Well tested:</strong> Quality assured by means of unit
+            tests.
+          </li>
+          <li>
+            <strong>📆 Range selection:</strong> Allows to select single dates
+            or ranges.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 id="demo">Demo</h2>
+
+        <div class="demo">
+          <div class="demo__preview">
+            <wc-datepicker id="datepicker"></wc-datepicker>
+          </div>
+          <div class="demo__code">
+            <pre><code class="language-html" id="demo-code"></code></pre>
+          </div>
+          <div class="demo__controls">
+            <table>
+              <thead>
+                <tr>
+                  <th>Property</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <code id="first-day-of-week-label">first-day-of-week</code
+                    ><br />
+                    <small>Configure the first week day</small>
+                  </td>
+                  <td>
+                    <select
+                      aria-labelledby="first-day-of-week-label"
+                      id="first-day-of-week"
+                      name="first-day-of-week"
+                    >
+                      <option value="1">Monday</option>
+                      <option value="2">Tuesday</option>
+                      <option value="3">Wednesday</option>
+                      <option value="4">Thursday</option>
+                      <option value="5">Friday</option>
+                      <option value="6">Saturday</option>
+                      <option value="0" selected>Sunday</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <code id="range-label">range</code><br />
+                    <small>Enable range input</small>
+                  </td>
+                  <td>
+                    <input
+                      aria-labelledby="range-label"
+                      id="range"
+                      type="checkbox"
+                      value="range"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <code id="locale-label">locale</code><br />
+                    <small>BCP 47 language tag</small>
+                  </td>
+                  <td>
+                    <input
+                      aria-labelledby="locale-label"
+                      id="locale"
+                      type="text"
+                      value=""
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <code id="show-month-stepper-label">show-month-stepper</code
+                    ><br />
+                    <small>Enable month stepper</small>
+                  </td>
+                  <td>
+                    <input
+                      aria-labelledby="show-month-stepper-label"
+                      checked
+                      id="show-month-stepper"
+                      type="checkbox"
+                      value="show-month-stepper"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <code id="show-year-stepper-label">show-year-stepper</code
+                    ><br />
+                    <small>Enable year stepper</small>
+                  </td>
+                  <td>
+                    <input
+                      aria-labelledby="show-year-stepper-label"
+                      id="show-year-stepper"
+                      type="checkbox"
+                      value="show-year-stepper"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <code id="show-clear-button-label">show-clear-button</code
+                    ><br />
+                    <small>Enable clear button</small>
+                  </td>
+                  <td>
+                    <input
+                      aria-labelledby="show-clear-button-label"
+                      id="show-clear-button"
+                      type="checkbox"
+                      value="show-clear-button"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <code id="show-today-button-label">show-today-button</code
+                    ><br />
+                    <small>Enable today button</small>
+                  </td>
+                  <td>
+                    <input
+                      aria-labelledby="show-today-button-label"
+                      id="show-today-button"
+                      type="checkbox"
+                      value="show-today-button"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <code id="start-date-label">start-date</code><br />
+                    <small>Date to show initially</small>
+                  </td>
+                  <td>
+                    <input
+                      aria-labelledby="start-date-label"
+                      id="start-date"
+                      type="text"
+                      placeholder="YYYY-MM-DD"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td><code id="value-label">value</code><br /></td>
+                  <td>
+                    <input
+                      aria-labelledby="value-label"
+                      disabled
+                      id="value"
+                      type="text"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="install">Install</h2>
+
+        <pre><code>npm install --save wc-datepicker
+# or
+yarn add wc-datepicker</code></pre>
+      </section>
+
+      <section>
+        <h2 id="usage">Usage</h2>
+
+        <p>
+          <strong>WC Datepicker</strong> provides a standalone datepicker that
+          makes no assumptions about how you use it. Therefore it is up to you
+          to connect it to an input field or display it in a popover dialog, for
+          example.
+        </p>
+
+        <h3>Via script tags</h3>
+
+        <p>Include the following script tags in your HTML.</p>
+
+        <pre><code class="language-html">&lt;head&gt;
+  &lt;script
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/wc-datepicker/dist/esm/wc-datepicker.js"
+  /&gt;
+
+  &lt;!-- Loading the theme is optional. --&gt;
+  &lt;link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/wc-datepicker/dist/themes/light.css"
+  /&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;wc-datepicker&gt;&lt;/wc-datepicker&gt;
+&lt;/body&gt;</code></pre>
+
+        <h3>Using a bundler</h3>
+
+        <p>
+          Import the component using a bundler like
+          <a href="https://rollupjs.org/">rollup.js</a> or
+          <a href="https://esbuild.github.io/">esbuild</a>.
+        </p>
+
+        <pre><code class="language-javascript">import { WcDatepicker } from "wc-datepicker/dist/components/wc-datepicker";
+
+// Importing a theme is optional.
+import "wc-datepicker/dist/themes/light.css";
+
+customElements.define("wc-datepicker", WcDatepicker);</code></pre>
+
+        <h3>With a bundler and automatic lazy loading</h3>
+
+        <p>
+          If you are using a bundler and want to take advantage of automatic
+          lazy loading, you can call the provided
+          <code>defineCustomElements</code> function. This will only load a
+          small entry file on page load. The component code is loaded only when
+          the component is actually rendered.
+        </p>
+
+        <pre><code class="language-javascript">import { defineCustomElements } from "wc-datepicker/dist/loader";
+
+// Importing a theme is optional.
+import "wc-datepicker/dist/themes/light.css";
+
+defineCustomElements();</code></pre>
+      </section>
+
+      <section>
+        <h2 id="options">Options</h2>
+
+        <p>
+          Options with a primitive type can be passed as attributes.
+          Non-primitive options have to be set as properties on the datepicker
+          instance.
+        </p>
+
+        <strong>Example:</strong>
+        <pre><code class="language-html">&lt;wc-datepicker first-day-of-week="1" id="datepicker"&gt;&lt;/wc-datepicker&gt;
+
+&lt;script&gt;
+  const datepicker = document.getElementById('datepicker');
+
+  datepicker.disableDate = function(date) {
+    // disable Sundays
+    return date.getDay() === 0;
+  }
+&lt;/script&gt;</code></pre>
+
+        <table class="options-table">
+          <thead>
+            <tr>
+              <th>Attribute / Property</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>disableDate</code></td>
+              <td><code>(date: Date) => boolean</code></td>
+              <td><code>() => false</code></td>
+              <td>
+                Function that gets passed each displayed date. Should return
+                <code>true</code> to disable it.
+              </td>
+            </tr>
+            <tr>
+              <td><code>element-class-name</code></td>
+              <td><code>string</code></td>
+              <td><code>wc-datepicker</code></td>
+              <td>Prefix for all element class names.</td>
+            </tr>
+            <tr>
+              <td><code>first-day-of-week</code></td>
+              <td><code>number</code></td>
+              <td><code>7</code></td>
+              <td>
+                Set first day of a week. <code>0</code> for Sunday,
+                <code>6</code> for Saturday.
+              </td>
+            </tr>
+            <tr>
+              <td><code>range</code></td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+              <td>Enable/disable range selection.</td>
+            </tr>
+            <tr>
+              <td><code>labels</code></td>
+              <td><code>WCDatepickerLabels</code></td>
+              <td>See below.</td>
+              <td>Set label text.</td>
+            </tr>
+            <tr>
+              <td><code>locale</code></td>
+              <td><code>string</code></td>
+              <td><code>navigator?.language || 'en-US'</code></td>
+              <td>BCP 47 locale string used to format dates.</td>
+            </tr>
+            <tr>
+              <td><code>show-clear-button</code></td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+              <td>Enable/disable the clear button.</td>
+            </tr>
+            <tr>
+              <td><code>show-month-stepper</code></td>
+              <td><code>boolean</code></td>
+              <td><code>true</code></td>
+              <td>Enable/disable the month stepper buttons.</td>
+            </tr>
+            <tr>
+              <td><code>show-today-button</code></td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+              <td>Enable/disable the today button.</td>
+            </tr>
+            <tr>
+              <td><code>show-year-stepper</code></td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+              <td>Enable/disable the year stepper buttons.</td>
+            </tr>
+            <tr>
+              <td><code>start-date</code></td>
+              <td><code>string</code></td>
+              <td>The current date.</td>
+              <td>
+                Date in <code>YYYY-MM-DD</code> format used to determine the
+                initially displayed month.
+              </td>
+            </tr>
+            <tr>
+              <td><code>value</code></td>
+              <td><code>Date | Date[] | undefined</code></td>
+              <td></td>
+              <td>
+                The currently selected date. Array of start and end date if
+                range selection is enabled.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <strong>Default labels:</strong>
+
+        <pre><code class="language-javascript">{
+  clearButton: 'Clear value',
+  monthSelect: 'Select month',
+  nextMonthButton: 'Next month',
+  nextYearButton: 'Next year',
+  picker: 'Choose date',
+  previousMonthButton: 'Previous month',
+  previousYearButton: 'Previous year',
+  todayButton: 'Show today',
+  yearSelect: 'Select year'
+}</code></pre>
+      </section>
+
+      <section>
+        <h2 id="events">Events</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>selectDate</td>
+              <td>
+                <code>CustomEvent&lt;string | string[] | undefined&gt;</code>
+              </td>
+              <td>Fired when a date is selected.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <strong>Example:</strong>
+        <pre><code class="language-html">&lt;wc-datepicker id="datepicker"&gt;&lt;/wc-datepicker&gt;
+
+&lt;script&gt;
+  const datepicker = document.getElementById('datepicker');
+
+  datepicker.addEventListener('selectDate', function(event) {
+    console.log(event.detail);
+  });
+&lt;/script&gt;</code></pre>
+      </section>
+
+      <section>
+        <h2 id="styling">Styling</h2>
+
+        <p>
+          The datepicker comes without any bundled styles. You can either load
+          one of the included themes or write your own styles. Below is a list
+          of all element classes you can use for styling.
+        </p>
+
+        <table class="styling-table">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Element description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.wc-datepicker</code></td>
+              <td>Outer element of the datepicker</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__header</code></td>
+              <td>
+                Element containing the stepper buttons and month/year input
+                fields
+              </td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__previous-year-button</code></td>
+              <td>Previous year stepper button</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__previous-month-button</code></td>
+              <td>Previous month stepper button</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__next-year-button</code></td>
+              <td>Next year stepper button</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__next-month-button</code></td>
+              <td>Next month stepper button</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__current-month</code></td>
+              <td>Wrapper of the month/year input fields</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__month-select</code></td>
+              <td>Month select element</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__year-select</code></td>
+              <td>Year text input element</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__body</code></td>
+              <td>Wrapper of the calendar table</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__calendar</code></td>
+              <td>Calendar table element</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__calendar-header</code></td>
+              <td>Table header including the weekdays</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__weekday-row</code></td>
+              <td>Table row including the weekday cells</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__weekday</code></td>
+              <td>Weekday cell</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__calendar-row</code></td>
+              <td>Table row including one week of dates</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__date</code></td>
+              <td>Date cell</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__date--current</code></td>
+              <td>Currently focused date cell</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__date--disabled</code></td>
+              <td>Disabled date cell</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__date--overflowing</code></td>
+              <td>Date cell of the previous or next month</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__date--today</code></td>
+              <td>Date cell of the current day</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__date--selected</code></td>
+              <td>Currently selected date cell</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__date--in-range</code></td>
+              <td>Date cell within the currently selected range</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__footer</code></td>
+              <td>Table footer containing the today and clear buttons</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__today-button</code></td>
+              <td>Today button element</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker__clear-button</code></td>
+              <td>Clear button element</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2 id="browser-support">Browser support</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Browser</th>
+              <th>Supported versions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Google Chrome</td>
+              <td>61+</td>
+            </tr>
+            <tr>
+              <td>Apple Safari</td>
+              <td>11+</td>
+            </tr>
+            <tr>
+              <td>Mozilla Firefox</td>
+              <td>63+</td>
+            </tr>
+            <tr>
+              <td>Microsoft Edge</td>
+              <td>79+</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2 id="keyboard-controls">Keyboard controls</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><kbd>Tab</kbd></td>
+              <td>Cycle through the focusable elements.</td>
+            </tr>
+            <tr>
+              <td><kbd>Space</kbd>, <kbd>Enter</kbd></td>
+              <td>Select current day.</td>
+            </tr>
+            <tr>
+              <td>
+                <kbd>Arrow left</kbd>
+              </td>
+              <td>Move cursor to previous day.</td>
+            </tr>
+            <tr>
+              <td>
+                <kbd>Arrow right</kbd>
+              </td>
+              <td>Move cursor to next day.</td>
+            </tr>
+            <tr>
+              <td>
+                <kbd>Arrow up</kbd>
+              </td>
+              <td>Move cursor to previous week.</td>
+            </tr>
+            <tr>
+              <td>
+                <kbd>Arrow down</kbd>
+              </td>
+              <td>Move cursor to next week.</td>
+            </tr>
+            <tr>
+              <td>
+                <kbd>Page up</kbd>
+              </td>
+              <td>Move cursor to previous month.</td>
+            </tr>
+            <tr>
+              <td>
+                <kbd>Page down</kbd>
+              </td>
+              <td>Move cursor to next month.</td>
+            </tr>
+            <tr>
+              <td><kbd>Shift</kbd> + <kbd>Page up</kbd></td>
+              <td>Move cursor to previous year.</td>
+            </tr>
+            <tr>
+              <td><kbd>Shift</kbd> + <kbd>Page down</kbd></td>
+              <td>Move cursor to next year.</td>
+            </tr>
+            <tr>
+              <td>
+                <kbd>Home</kbd>
+              </td>
+              <td>Move cursor to first day of the month.</td>
+            </tr>
+            <tr>
+              <td>
+                <kbd>End</kbd>
+              </td>
+              <td>Move cursor to last day of the month.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2 id="license">License</h2>
+
+        <p>
+          Licensed under the
+          <a href="https://github.com/Sqrrl/wc-datepicker/blob/main/LICENSE"
+            >MIT license</a
+          >.
+        </p>
+      </section>
+    </main>
+
+    <script src="js/prism.js"></script>
+
+    <script>
+      const datepicker = document.getElementById('datepicker');
+
+      const demoCodeContainer = document.getElementById('demo-code');
+
+      const firstDayOfWeekInput = document.getElementById('first-day-of-week');
+      const localeInput = document.getElementById('locale');
+      const rangeInput = document.getElementById('range');
+      const showClearButtonInput = document.getElementById('show-clear-button');
+      const showMonthStepperInput =
+        document.getElementById('show-month-stepper');
+      const showTodayButtonInput = document.getElementById('show-today-button');
+      const showYearStepperInput = document.getElementById('show-year-stepper');
+      const startDateInput = document.getElementById('start-date');
+      const valueInput = document.getElementById('value');
+
+      function updateDemoCode() {
+        demoCodeContainer.innerText = `${
+          this.datepicker.outerHTML.split('>')[0]
+        }></wc-datepicker>`
+          .replace(/ class="([a-zA-Z0-9-_ ])+"/, '')
+          .replace(' id="datepicker"', '')
+          .replace(/="true"/g, '');
+
+        window.Prism.highlightAll();
+      }
+
+      datepicker.addEventListener('selectDate', (event) => {
+        valueInput.value = event.detail ? JSON.stringify(event.detail) : '';
+      });
+
+      firstDayOfWeekInput.addEventListener('change', (event) => {
+        datepicker.setAttribute('first-day-of-week', event.target.value);
+        updateDemoCode();
+      });
+
+      localeInput.addEventListener('change', (event) => {
+        if (event.target.value) {
+          datepicker.setAttribute('locale', event.target.value);
+        } else {
+          datepicker.removeAttribute('locale');
+        }
+
+        updateDemoCode();
+      });
+
+      rangeInput.addEventListener('change', (event) => {
+        datepicker.setAttribute('range', String(event.target.checked));
+        updateDemoCode();
+      });
+
+      showClearButtonInput.addEventListener('change', (event) => {
+        datepicker.setAttribute(
+          'show-clear-button',
+          String(event.target.checked)
+        );
+        updateDemoCode();
+      });
+
+      showMonthStepperInput.addEventListener('change', (event) => {
+        datepicker.setAttribute(
+          'show-month-stepper',
+          String(event.target.checked)
+        );
+        updateDemoCode();
+      });
+
+      showYearStepperInput.addEventListener('change', (event) => {
+        datepicker.setAttribute(
+          'show-year-stepper',
+          String(event.target.checked)
+        );
+        updateDemoCode();
+      });
+
+      showTodayButtonInput.addEventListener('change', (event) => {
+        datepicker.setAttribute(
+          'show-today-button',
+          String(event.target.checked)
+        );
+        updateDemoCode();
+      });
+
+      startDateInput.addEventListener('change', (event) => {
+        if (event.target.value) {
+          datepicker.setAttribute('start-date', event.target.value);
+        } else {
+          datepicker.removeAttribute('start-date');
+        }
+
+        updateDemoCode();
+      });
+
+      updateDemoCode();
+    </script>
+  </body>
+</html>

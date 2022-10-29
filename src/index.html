@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+
+    <title>Datepicker</title>
+
+    <link rel="stylesheet" href="/themes/light.css" />
+
+    <script type="module" src="/build/wc-datepicker.esm.js"></script>
+    <script nomodule src="/build/wc-datepicker.js"></script>
+  </head>
+  <body>
+    <main>
+      <wc-datepicker id="datepicker"></wc-datepicker>
+      <wc-datepicker range></wc-datepicker>
+    </main>
+
+    <script>
+      const datepicker = document.getElementById('datepicker');
+
+      datepicker.disableDate = (date) =>
+        date.getDay() === 6 || date.getDay() === 0;
+    </script>
+  </body>
+</html>

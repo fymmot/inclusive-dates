@@ -1,0 +1,36 @@
+.demo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.demo__code {
+  padding: 1.5rem;
+  border: 0.0625rem solid var(--b-line);
+}
+
+.demo__code > pre {
+  margin-bottom: 0;
+}
+
+.demo__controls {
+  padding: 1.5rem;
+  border: 0.0625rem solid var(--b-line);
+}
+
+.options-table th,
+.options-table td {
+  vertical-align: top;
+}
+
+.options-table th {
+  white-space: nowrap;
+}
+
+.styling-table td {
+  vertical-align: top;
+}
+
+.styling-table td code {
+  white-space: nowrap;
+}
