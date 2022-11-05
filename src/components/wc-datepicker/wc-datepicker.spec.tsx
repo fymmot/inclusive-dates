@@ -295,4 +295,150 @@ describe('wc-datepicker', () => {
     expect(dateCell.getAttribute('aria-disabled')).toBe('true');
     expect(spy).not.toHaveBeenCalled();
   });
+
+  it('changes months', async () => {
+    const page = await newSpecPage({
+      components: [WCDatepicker],
+      html: `<wc-datepicker start-date="2022-01-01"></wc-datepicker>`,
+      language: 'en'
+    });
+
+    const monthSelect = page.root.querySelector<HTMLSelectElement>(
+      '.wc-datepicker__month-select'
+    );
+
+    const header = page.root.querySelector<HTMLElement>(
+      '.wc-datepicker__header'
+    );
+
+    const previousMonthButton = page.root.querySelector<HTMLButtonElement>(
+      '.wc-datepicker__previous-month-button'
+    );
+
+    const nextMonthButton = page.root.querySelector<HTMLButtonElement>(
+      '.wc-datepicker__next-month-button'
+    );
+
+    expect(header.innerText.startsWith('January')).toBeTruthy();
+
+    monthSelect.value = '5';
+    monthSelect.dispatchEvent(new Event('change'));
+
+    await page.waitForChanges();
+
+    expect(header.innerText.startsWith('May')).toBeTruthy();
+
+    previousMonthButton.click();
+    await page.waitForChanges();
+
+    expect(header.innerText.startsWith('April')).toBeTruthy();
+
+    nextMonthButton.click();
+    await page.waitForChanges();
+
+    expect(header.innerText.startsWith('May')).toBeTruthy();
+  });
+
+  it('changes year', async () => {
+    const page = await newSpecPage({
+      components: [WCDatepicker],
+      html: `<wc-datepicker show-year-stepper="true" start-date="2022-01-01"></wc-datepicker>`,
+      language: 'en'
+    });
+
+    const yearSelect = page.root.querySelector<HTMLInputElement>(
+      '.wc-datepicker__year-select'
+    );
+
+    const header = page.root.querySelector<HTMLElement>(
+      '.wc-datepicker__header'
+    );
+
+    const previousYearButton = page.root.querySelector<HTMLButtonElement>(
+      '.wc-datepicker__previous-year-button'
+    );
+
+    const nextYearButton = page.root.querySelector<HTMLButtonElement>(
+      '.wc-datepicker__next-year-button'
+    );
+
+    expect(header.innerText.includes('2022')).toBeTruthy();
+
+    yearSelect.value = '1989';
+    yearSelect.dispatchEvent(new Event('change'));
+
+    await page.waitForChanges();
+
+    expect(header.innerText.includes('1989')).toBeTruthy();
+
+    previousYearButton.click();
+    await page.waitForChanges();
+
+    expect(header.innerText.includes('1988')).toBeTruthy();
+
+    nextYearButton.click();
+    await page.waitForChanges();
+
+    expect(header.innerText.includes('1989')).toBeTruthy();
+  });
+
+  it('jumps to current month', async () => {
+    const page = await newSpecPage({
+      components: [WCDatepicker],
+      html: `<wc-datepicker show-today-button="true" start-date="1989-01-01"></wc-datepicker>`,
+      language: 'en'
+    });
+
+    const todayButton = page.root.querySelector<HTMLButtonElement>(
+      '.wc-datepicker__today-button'
+    );
+
+    const header = page.root.querySelector<HTMLElement>(
+      '.wc-datepicker__header'
+    );
+
+    const today = new Date();
+
+    expect(header.innerText.includes('January 1, 1989')).toBeTruthy();
+
+    todayButton.click();
+    await page.waitForChanges();
+
+    expect(
+      header.innerText.includes(
+        Intl.DateTimeFormat('en-US', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        }).format(today)
+      )
+    ).toBeTruthy();
+  });
+
+  it('clears its value', async () => {
+    const page = await newSpecPage({
+      components: [WCDatepicker],
+      html: `<wc-datepicker show-clear-button="true" start-date="2022-01-01"></wc-datepicker>`,
+      language: 'en'
+    });
+
+    const spy = jest.fn();
+
+    const clearButton = page.root.querySelector<HTMLButtonElement>(
+      '.wc-datepicker__clear-button'
+    );
+
+    page.root.addEventListener('selectDate', spy);
+
+    page.root
+      .querySelector<HTMLTableCellElement>('.wc-datepicker__date')
+      .click();
+
+    expect(spy.mock.calls[0][0].detail).toBe('2021-12-26');
+
+    clearButton.click();
+    await page.waitForChanges();
+
+    expect(spy.mock.calls[1][0].detail).toBe(undefined);
+  });
 });
