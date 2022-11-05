@@ -18,6 +18,17 @@
   border: 0.0625rem solid var(--b-line);
 }
 
+.theme-toggle {
+  display: inline-block;
+  margin: 0;
+  margin-left: 0.25rem;
+  padding: 0;
+  border: none;
+  color: #0000ff;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 .options-table th,
 .options-table td {
   vertical-align: top;

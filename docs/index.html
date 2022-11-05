@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/bamboo.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/prism.css" />
-    <link rel="stylesheet" href="themes/light.css" />
+    <link rel="stylesheet" href="themes/light.css" id="theme" />
 
     <script type="module" src="dist/esm/wc-datepicker.js"></script>
   </head>
@@ -93,6 +93,14 @@
 
       <section>
         <h2 id="demo">Demo</h2>
+
+        <p>
+          <strong>Current theme:</strong>
+          <code id="current-theme-label">light.css</code>
+          <button class="theme-toggle" onclick="toggleTheme()" type="button">
+            Toggle theme
+          </button>
+        </p>
 
         <div class="demo">
           <div class="demo__preview">
@@ -764,6 +772,19 @@ defineCustomElements();</code></pre>
           .replace(/="true"/g, '');
 
         window.Prism.highlightAll();
+      }
+
+      function toggleTheme() {
+        const stylesheet = document.getElementById('theme');
+        const themeLabel = document.getElementById('current-theme-label');
+
+        if (stylesheet.getAttribute('href').includes('light.css')) {
+          stylesheet.setAttribute('href', 'themes/dark.css');
+          themeLabel.innerHTML = 'dark.css';
+        } else {
+          stylesheet.setAttribute('href', 'themes/light.css');
+          themeLabel.innerHTML = 'light.css';
+        }
       }
 
       datepicker.addEventListener('selectDate', (event) => {
