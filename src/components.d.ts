@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { WCDatepickerLabels } from "./components/wc-datepicker/wc-datepicker";
+import { MonthChangedEventDetails, WCDatepickerLabels } from "./components/wc-datepicker/wc-datepicker";
 export namespace Components {
     interface WcDatepicker {
         "clearButtonContent"?: string;
@@ -53,6 +53,7 @@ declare namespace LocalJSX {
         "locale"?: string;
         "nextMonthButtonContent"?: string;
         "nextYearButtonContent"?: string;
+        "onChangeMonth"?: (event: WcDatepickerCustomEvent<MonthChangedEventDetails>) => void;
         "onSelectDate"?: (event: WcDatepickerCustomEvent<string | string[] | undefined>) => void;
         "previousMonthButtonContent"?: string;
         "previousYearButtonContent"?: string;

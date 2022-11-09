@@ -15,6 +15,7 @@ import {
   getFirstOfMonth,
   getISODateString,
   getLastOfMonth,
+  getMonth,
   getMonths,
   getNextDay,
   getNextMonth,
@@ -23,6 +24,7 @@ import {
   getPreviousMonth,
   getPreviousYear,
   getWeekDays,
+  getYear,
   isDateInRange,
   isSameDay,
   subDays
@@ -51,6 +53,11 @@ const defaultLabels: WCDatepickerLabels = {
   todayButton: 'Show today',
   yearSelect: 'Select year'
 };
+
+export interface MonthChangedEventDetails {
+  month: number;
+  year: number;
+}
 
 @Component({
   scoped: true,
@@ -85,6 +92,7 @@ export class WCDatepicker {
   @State() weekdays: string[][];
 
   @Event() selectDate: EventEmitter<string | string[] | undefined>;
+  @Event() changeMonth: EventEmitter<MonthChangedEventDetails>;
 
   private moveFocusAfterMonthChanged: Boolean;
 
@@ -191,12 +199,19 @@ export class WCDatepicker {
   }
 
   private updateCurrentDate(date: Date, moveFocus?: boolean) {
-    const monthChanged =
-      date.getMonth() !== this.currentDate.getMonth() ||
-      date.getFullYear() !== this.currentDate.getFullYear();
+    const month = date.getMonth();
+    const year = date.getFullYear();
 
-    if (monthChanged && moveFocus) {
-      this.moveFocusAfterMonthChanged = true;
+    const monthChanged =
+      month !== this.currentDate.getMonth() ||
+      year !== this.currentDate.getFullYear();
+
+    if (monthChanged) {
+      this.changeMonth.emit({ month: getMonth(date), year: getYear(date) });
+
+      if (moveFocus) {
+        this.moveFocusAfterMonthChanged = true;
+      }
     }
 
     this.currentDate = date;
