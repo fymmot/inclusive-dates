@@ -53,7 +53,7 @@ declare namespace LocalJSX {
         "locale"?: string;
         "nextMonthButtonContent"?: string;
         "nextYearButtonContent"?: string;
-        "onMonthChanged"?: (event: WcDatepickerCustomEvent<MonthChangedEventDetails>) => void;
+        "onChangeMonth"?: (event: WcDatepickerCustomEvent<MonthChangedEventDetails>) => void;
         "onSelectDate"?: (event: WcDatepickerCustomEvent<string | string[] | undefined>) => void;
         "previousMonthButtonContent"?: string;
         "previousYearButtonContent"?: string;

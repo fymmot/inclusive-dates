@@ -15,6 +15,7 @@ import {
   getFirstOfMonth,
   getISODateString,
   getLastOfMonth,
+  getMonth,
   getMonths,
   getNextDay,
   getNextMonth,
@@ -23,6 +24,7 @@ import {
   getPreviousMonth,
   getPreviousYear,
   getWeekDays,
+  getYear,
   isDateInRange,
   isSameDay,
   subDays
@@ -90,7 +92,7 @@ export class WCDatepicker {
   @State() weekdays: string[][];
 
   @Event() selectDate: EventEmitter<string | string[] | undefined>;
-  @Event() monthChanged: EventEmitter<MonthChangedEventDetails>;
+  @Event() changeMonth: EventEmitter<MonthChangedEventDetails>;
 
   private moveFocusAfterMonthChanged: Boolean;
 
@@ -203,9 +205,9 @@ export class WCDatepicker {
     const monthChanged =
       month !== this.currentDate.getMonth() ||
       year !== this.currentDate.getFullYear();
-    
+
     if (monthChanged) {
-      this.monthChanged.emit({ month, year });
+      this.changeMonth.emit({ month: getMonth(date), year: getYear(date) });
 
       if (moveFocus) {
         this.moveFocusAfterMonthChanged = true;

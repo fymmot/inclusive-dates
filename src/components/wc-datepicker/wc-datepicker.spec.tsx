@@ -304,7 +304,7 @@ describe('wc-datepicker', () => {
     });
 
     const spy = jest.fn();
-    page.root.addEventListener('monthChanged', spy);
+    page.root.addEventListener('changeMonth', spy);
 
     const monthSelect = page.root.querySelector<HTMLSelectElement>(
       '.wc-datepicker__month-select'
@@ -330,19 +330,19 @@ describe('wc-datepicker', () => {
     await page.waitForChanges();
 
     expect(header.innerText.startsWith('May')).toBeTruthy();
-    expect(spy.mock.calls[0][0].detail).toEqual({ month: 4, year: 2022 });
+    expect(spy.mock.calls[0][0].detail).toEqual({ month: 5, year: 2022 });
 
     previousMonthButton.click();
     await page.waitForChanges();
 
     expect(header.innerText.startsWith('April')).toBeTruthy();
-    expect(spy.mock.calls[1][0].detail).toEqual({ month: 3, year: 2022 });
+    expect(spy.mock.calls[1][0].detail).toEqual({ month: 4, year: 2022 });
 
     nextMonthButton.click();
     await page.waitForChanges();
 
     expect(header.innerText.startsWith('May')).toBeTruthy();
-    expect(spy.mock.calls[2][0].detail).toEqual({ month: 4, year: 2022 });
+    expect(spy.mock.calls[2][0].detail).toEqual({ month: 5, year: 2022 });
   });
 
   it('changes year', async () => {
@@ -353,7 +353,7 @@ describe('wc-datepicker', () => {
     });
 
     const spy = jest.fn();
-    page.root.addEventListener('monthChanged', spy);
+    page.root.addEventListener('changeMonth', spy);
 
     const yearSelect = page.root.querySelector<HTMLInputElement>(
       '.wc-datepicker__year-select'
@@ -379,19 +379,19 @@ describe('wc-datepicker', () => {
     await page.waitForChanges();
 
     expect(header.innerText.includes('1989')).toBeTruthy();
-    expect(spy.mock.calls[0][0].detail).toEqual({ month: 0, year: 1989 });
+    expect(spy.mock.calls[0][0].detail).toEqual({ month: 1, year: 1989 });
 
     previousYearButton.click();
     await page.waitForChanges();
 
     expect(header.innerText.includes('1988')).toBeTruthy();
-    expect(spy.mock.calls[1][0].detail).toEqual({ month: 0, year: 1988 });
+    expect(spy.mock.calls[1][0].detail).toEqual({ month: 1, year: 1988 });
 
     nextYearButton.click();
     await page.waitForChanges();
 
     expect(header.innerText.includes('1989')).toBeTruthy();
-    expect(spy.mock.calls[2][0].detail).toEqual({ month: 0, year: 1989 });
+    expect(spy.mock.calls[2][0].detail).toEqual({ month: 1, year: 1989 });
   });
 
   it('jumps to current month', async () => {
