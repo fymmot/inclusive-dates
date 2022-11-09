@@ -52,6 +52,11 @@ const defaultLabels: WCDatepickerLabels = {
   yearSelect: 'Select year'
 };
 
+export interface MonthChangedEventDetails {
+  month: number;
+  year: number;
+}
+
 @Component({
   scoped: true,
   shadow: false,
@@ -85,6 +90,7 @@ export class WCDatepicker {
   @State() weekdays: string[][];
 
   @Event() selectDate: EventEmitter<string | string[] | undefined>;
+  @Event() monthChanged: EventEmitter<MonthChangedEventDetails>;
 
   private moveFocusAfterMonthChanged: Boolean;
 
@@ -191,12 +197,19 @@ export class WCDatepicker {
   }
 
   private updateCurrentDate(date: Date, moveFocus?: boolean) {
-    const monthChanged =
-      date.getMonth() !== this.currentDate.getMonth() ||
-      date.getFullYear() !== this.currentDate.getFullYear();
+    const month = date.getMonth();
+    const year = date.getFullYear();
 
-    if (monthChanged && moveFocus) {
-      this.moveFocusAfterMonthChanged = true;
+    const monthChanged =
+      month !== this.currentDate.getMonth() ||
+      year !== this.currentDate.getFullYear();
+    
+    if (monthChanged) {
+      this.monthChanged.emit({ month, year });
+
+      if (moveFocus) {
+        this.moveFocusAfterMonthChanged = true;
+      }
     }
 
     this.currentDate = date;
