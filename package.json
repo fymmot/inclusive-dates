@@ -24,7 +24,7 @@
     "browser-sync": "^2.26.14",
     "del": "^2.2.2",
     "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^3.1.1",
+    "gulp-autoprefixer": "^8.0.0",
     "gulp-axe-webdriver": "^3.1.0",
     "gulp-changed": "^1.3.2",
     "gulp-clean-css": "^2.0.13",
