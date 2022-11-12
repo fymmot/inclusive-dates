@@ -1,5 +1,11 @@
 # wc-datepicker
 
+## 0.4.0
+
+### Minor Changes
+
+- [`e0e6f6d`](https://github.com/Sqrrl/wc-datepicker/commit/e0e6f6d7a1f51e88028c8a259a254ce030594008) Thanks [@Sqrrl](https://github.com/Sqrrl)! - Add "disabled" property
+
 ## 0.3.0
 
 ### Minor Changes
