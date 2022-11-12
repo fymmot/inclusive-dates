@@ -10,6 +10,7 @@ export namespace Components {
     interface WcDatepicker {
         "clearButtonContent"?: string;
         "disableDate"?: (date: Date) => boolean;
+        "disabled"?: boolean;
         "elementClassName"?: string;
         "firstDayOfWeek"?: number;
         "labels"?: WCDatepickerLabels;
@@ -47,6 +48,7 @@ declare namespace LocalJSX {
     interface WcDatepicker {
         "clearButtonContent"?: string;
         "disableDate"?: (date: Date) => boolean;
+        "disabled"?: boolean;
         "elementClassName"?: string;
         "firstDayOfWeek"?: number;
         "labels"?: WCDatepickerLabels;

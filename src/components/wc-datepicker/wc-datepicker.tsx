@@ -69,6 +69,7 @@ export class WCDatepicker {
   @Element() el: HTMLElement;
 
   @Prop() clearButtonContent?: string;
+  @Prop() disabled?: boolean = false;
   @Prop() disableDate?: (date: Date) => boolean = () => false;
   @Prop() elementClassName?: string = 'wc-datepicker';
   @Prop() firstDayOfWeek?: number = 0;
@@ -284,6 +285,10 @@ export class WCDatepicker {
   };
 
   private onClick = (event: Event) => {
+    if (this.disabled) {
+      return;
+    }
+
     const target = (event.target as HTMLElement).closest<HTMLElement>(
       '[data-date]'
     );
@@ -317,6 +322,10 @@ export class WCDatepicker {
   };
 
   private onKeyDown = (event: KeyboardEvent) => {
+    if (this.disabled) {
+      return;
+    }
+
     if (event.code === 'ArrowLeft') {
       event.preventDefault();
       this.updateCurrentDate(getPreviousDay(this.currentDate), true);
@@ -358,6 +367,10 @@ export class WCDatepicker {
   };
 
   private onMouseEnter = (event: MouseEvent) => {
+    if (this.disabled) {
+      return;
+    }
+
     const date = new Date(
       (event.target as HTMLElement).closest('td').dataset.date
     );
@@ -375,8 +388,12 @@ export class WCDatepicker {
     return (
       <Host>
         <div
+          aria-disabled={String(this.disabled)}
           aria-label={this.labels.picker}
-          class={this.getClassName()}
+          class={{
+            [this.getClassName()]: true,
+            [`${this.getClassName()}--disabled`]: this.disabled
+          }}
           role="group"
         >
           <div class={this.getClassName('header')}>
@@ -387,6 +404,7 @@ export class WCDatepicker {
               <button
                 aria-label={this.labels.previousYearButton}
                 class={this.getClassName('previous-year-button')}
+                disabled={this.disabled}
                 innerHTML={this.previousYearButtonContent || undefined}
                 onClick={this.previousYear}
                 type="button"
@@ -410,6 +428,7 @@ export class WCDatepicker {
               <button
                 aria-label={this.labels.previousMonthButton}
                 class={this.getClassName('previous-month-button')}
+                disabled={this.disabled}
                 innerHTML={this.previousMonthButtonContent || undefined}
                 onClick={this.previousMonth}
                 type="button"
@@ -432,6 +451,7 @@ export class WCDatepicker {
               <select
                 aria-label={this.labels.monthSelect}
                 class={this.getClassName('month-select')}
+                disabled={this.disabled}
                 name="month"
                 onChange={this.onMonthSelect}
               >
@@ -448,6 +468,7 @@ export class WCDatepicker {
               <input
                 aria-label={this.labels.yearSelect}
                 class={this.getClassName('year-select')}
+                disabled={this.disabled}
                 max={9999}
                 min={1}
                 name="year"
@@ -460,6 +481,7 @@ export class WCDatepicker {
               <button
                 aria-label={this.labels.nextMonthButton}
                 class={this.getClassName('next-month-button')}
+                disabled={this.disabled}
                 innerHTML={this.nextMonthButtonContent || undefined}
                 onClick={this.nextMonth}
                 type="button"
@@ -482,6 +504,7 @@ export class WCDatepicker {
               <button
                 aria-label={this.labels.nextYearButton}
                 class={this.getClassName('next-year-button')}
+                disabled={this.disabled}
                 innerHTML={this.nextYearButtonContent || undefined}
                 onClick={this.nextYear}
                 type="button"
@@ -585,7 +608,11 @@ export class WCDatepicker {
                             onMouseEnter={this.onMouseEnter}
                             onMouseLeave={this.onMouseLeave}
                             role="gridcell"
-                            tabIndex={isSameDay(day, this.currentDate) ? 0 : -1}
+                            tabIndex={
+                              isSameDay(day, this.currentDate) && !this.disabled
+                                ? 0
+                                : -1
+                            }
                           >
                             <Tag aria-hidden="true">{day.getDate()}</Tag>
                             <span class="visually-hidden">
@@ -609,6 +636,7 @@ export class WCDatepicker {
               {this.showTodayButton && (
                 <button
                   class={this.getClassName('today-button')}
+                  disabled={this.disabled}
                   innerHTML={this.todayButtonContent || undefined}
                   onClick={this.showToday}
                   type="button"
@@ -619,6 +647,7 @@ export class WCDatepicker {
               {this.showClearButton && (
                 <button
                   class={this.getClassName('clear-button')}
+                  disabled={this.disabled}
                   innerHTML={this.clearButtonContent || undefined}
                   onClick={this.clear}
                   type="button"

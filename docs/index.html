@@ -120,6 +120,20 @@
               <tbody>
                 <tr>
                   <td>
+                    <code id="disabled-label">disabled</code><br />
+                    <small>Disable the datepicker</small>
+                  </td>
+                  <td>
+                    <input
+                      aria-labelledby="disabled-label"
+                      id="disabled"
+                      type="checkbox"
+                      value="disabled"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
                     <code id="first-day-of-week-label">first-day-of-week</code
                     ><br />
                     <small>Configure the first week day</small>
@@ -364,6 +378,12 @@ defineCustomElements();</code></pre>
           </thead>
           <tbody>
             <tr>
+              <td><code>disabled</code></td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+              <td>Disable the datepicker.</td>
+            </tr>
+            <tr>
               <td><code>disableDate</code></td>
               <td><code>(date: Date) => boolean</code></td>
               <td><code>() => false</code></td>
@@ -526,6 +546,10 @@ defineCustomElements();</code></pre>
             <tr>
               <td><code>.wc-datepicker</code></td>
               <td>Outer element of the datepicker</td>
+            </tr>
+            <tr>
+              <td><code>.wc-datepicker--disabled</code></td>
+              <td>Outer element of the disabled datepicker</td>
             </tr>
             <tr>
               <td><code>.wc-datepicker__header</code></td>
@@ -759,6 +783,7 @@ defineCustomElements();</code></pre>
 
       const demoCodeContainer = document.getElementById('demo-code');
 
+      const disabledInput = document.getElementById('disabled');
       const firstDayOfWeekInput = document.getElementById('first-day-of-week');
       const localeInput = document.getElementById('locale');
       const rangeInput = document.getElementById('range');
@@ -796,6 +821,11 @@ defineCustomElements();</code></pre>
 
       datepicker.addEventListener('selectDate', (event) => {
         valueInput.value = event.detail ? JSON.stringify(event.detail) : '';
+      });
+
+      disabledInput.addEventListener('change', (event) => {
+        datepicker.setAttribute('disabled', String(event.target.checked));
+        updateDemoCode();
       });
 
       firstDayOfWeekInput.addEventListener('change', (event) => {

@@ -453,4 +453,33 @@ describe('wc-datepicker', () => {
 
     expect(spy.mock.calls[1][0].detail).toBe(undefined);
   });
+
+  it('can be disabled', async () => {
+    const page = await newSpecPage({
+      components: [WCDatepicker],
+      html: `<wc-datepicker disabled></wc-datepicker>`,
+      language: 'en'
+    });
+
+    const spy = jest.fn();
+
+    page.root.startDate = new Date('2022-01-01');
+    page.root.addEventListener('selectDate', spy);
+    page.root.addEventListener('changeMonth', spy);
+
+    await page.waitForChanges();
+
+    page.root
+      .querySelector<HTMLTableCellElement>('.wc-datepicker__date')
+      .click();
+
+    triggerKeyDown(page, 'ArrowRight');
+    triggerKeyDown(page, 'Space');
+
+    expect(
+      page.root.children[0].classList.contains('wc-datepicker--disabled')
+    ).toBeTruthy();
+
+    expect(spy).not.toHaveBeenCalled();
+  });
 });

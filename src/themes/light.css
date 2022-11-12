@@ -27,6 +27,37 @@ wc-datepicker {
   line-height: 1.5;
 }
 
+.wc-datepicker--disabled *:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.wc-datepicker--disabled .wc-datepicker__weekday {
+  color: #767676;
+}
+
+.wc-datepicker--disabled .wc-datepicker__date:focus > * {
+  outline: none;
+}
+
+.wc-datepicker--disabled .wc-datepicker__date {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.wc-datepicker--disabled .wc-datepicker__date:hover > * {
+  background-color: transparent;
+}
+
+.wc-datepicker--disabled .wc-datepicker__date--in-range:hover > * {
+  background-color: #f2f3f5;
+}
+
+.wc-datepicker--disabled .wc-datepicker__date--selected:hover > * {
+  color: #fff;
+  background-color: #0000ff;
+}
+
 .wc-datepicker__header {
   display: flex;
   padding: 0.75rem;
@@ -158,11 +189,13 @@ wc-datepicker {
   cursor: default;
 }
 
-.wc-datepicker__date--disabled:hover > * {
+.wc-datepicker__date--disabled:not(.wc-datepicker__date--selected):not(.wc-datepicker__date--in-range):hover
+  > * {
   background-color: transparent;
 }
 
-.wc-datepicker__date--disabled.wc-datepicker__date--in-range > * {
+.wc-datepicker__date--disabled.wc-datepicker__date--in-range:not(.wc-datepicker__date--selected):not(.wc-datepicker__date--in-range)
+  > * {
   background-color: transparent;
 }
 
