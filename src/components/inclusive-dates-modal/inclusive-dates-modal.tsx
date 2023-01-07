@@ -7,16 +7,17 @@ import {
   State
 } from '@stencil/core';
 import "@a11y/focus-trap";
+import { hideOthers } from 'aria-hidden';
 
 /**
  * @slot slot - The dialog content
  */
 @Component({
   shadow: true,
-  styleUrl: "a11y-modal.css",
-  tag: "a11y-modal",
+  styleUrl: "inclusive-dates-modal.css",
+  tag: "inclusive-dates-modal",
 })
-export class A11yModal {
+export class InclusiveDatesModal {
   @Prop() hideLabel?: boolean;
   @Prop() label!: string;
   @State() closing = false;
@@ -26,6 +27,9 @@ export class A11yModal {
   private triggerElement: HTMLElement
   private anchorEl: HTMLElement;
   private bodyRef: HTMLElement
+  private containerRef: HTMLElement
+  private el: HTMLElement
+  private undo: () => void
 
   /**
    * Open the dialog.
@@ -33,7 +37,12 @@ export class A11yModal {
   @Method()
   async open() {
     this.showing = true
+    this.undo = hideOthers(this.el)
     this.opened.emit(undefined)
+    setTimeout(()=>{
+      if (this.containerRef)
+      this.containerRef.focus();
+    }, 50)
   }
 
   /**
@@ -42,6 +51,8 @@ export class A11yModal {
   @Method()
   async close() {
     this.showing = false
+    this.undo()
+
     if (this.triggerElement)
       this.triggerElement.focus()
   }
@@ -79,7 +90,7 @@ export class A11yModal {
   render() {
 
     return (
-      <Host showing={this.showing} >
+      <Host showing={this.showing} ref={(r) => {this.el = r}} >
         {this.showing && (
           <div
             aria-describedby="content"
@@ -90,6 +101,8 @@ export class A11yModal {
             onKeyDown={this.onKeyDown}
             role="dialog"
             class="dialog__root"
+            tabindex={-1}
+            ref={(r) => {this.containerRef = r}}
           >
             <focus-trap>
               <div class="dialog__backdrop" onClick={this.onBackdropClick}></div>

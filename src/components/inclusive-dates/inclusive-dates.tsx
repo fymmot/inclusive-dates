@@ -7,11 +7,11 @@ import {
 @Component({
   scoped: true,
   shadow: false,
-  styleUrl: 'wc-input.css',
-  tag: 'wc-input'
+  styleUrl: 'inclusive-dates.css',
+  tag: 'inclusive-dates'
 })
 
-export class WCInput {
+export class InclusiveDates {
   @Element() el: HTMLElement;
 
   @Prop() locale?: string = navigator?.language || 'en-US';
@@ -26,7 +26,7 @@ export class WCInput {
 
   @Event() selectDate: EventEmitter<string | string[] | undefined>;
 
-  private modalRef?: HTMLA11yModalElement;
+  private modalRef?: HTMLInclusiveDatesModalElement;
   private inputRef?: HTMLInputElement;
   private calendarButtonRef?: HTMLButtonElement;
   private pickerRef?: HTMLWcDatepickerElement
@@ -48,14 +48,6 @@ export class WCInput {
       event.target.value = parsedDate.toISOString().slice(0, 10)
       this.pickerRef.value = parsedDate
     }
-  }
-
-
-  /*setNewDate = async (newDate: string) => {
-    // await this.calendarRef.setValue(newDate);
-  }*/
-
-  componentDidLoad() {
   }
 
   @Watch('locale')
@@ -96,9 +88,9 @@ export class WCInput {
           onClick={this.clickHandler}
           class="wc-datepicker__calendar-button"
         >Open calendar</button>
-        <a11y-modal label="Calendar" hideLabel={true} ref={el => (this.modalRef = el)} onOpened={()=>{}}>
+        <inclusive-dates-modal label="Calendar" hideLabel={true} ref={el => (this.modalRef = el)} onOpened={()=>{}}>
           <wc-datepicker onSelectDate={(event)=> this.handlePickerSelection(event.detail as string)} ref={el => (this.pickerRef = el)}/>
-        </a11y-modal>
+        </inclusive-dates-modal>
       </Host>
     )
   }

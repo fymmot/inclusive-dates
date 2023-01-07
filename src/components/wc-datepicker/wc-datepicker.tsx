@@ -179,7 +179,7 @@ export class WCDatepicker {
     return calendarRows;
   }
 
-  private getTitle() {
+  /*private getTitle() {
     if (!Boolean(this.currentDate)) {
       return;
     }
@@ -189,7 +189,7 @@ export class WCDatepicker {
       month: 'long',
       year: 'numeric'
     }).format(this.currentDate);
-  }
+  }*/
 
   private focusDate(date: Date) {
     this.el
@@ -390,17 +390,15 @@ export class WCDatepicker {
       <Host>
         <div
           aria-disabled={String(this.disabled)}
-          aria-label={this.labels.picker}
           class={{
             [this.getClassName()]: true,
             [`${this.getClassName()}--disabled`]: this.disabled
           }}
-          role="group"
         >
           <div class={this.getClassName('header')}>
-            <span aria-atomic="true" aria-live="polite" class="visually-hidden">
+            {/*<span aria-atomic="true" aria-live="polite" class="visually-hidden">
               {this.getTitle()}
-            </span>
+            </span>*/}
             {this.showYearStepper && (
               <button
                 aria-label={this.labels.previousYearButton}
@@ -537,12 +535,16 @@ export class WCDatepicker {
                 <tr class={this.getClassName('weekday-row')}>
                   {this.weekdays.map((weekday) => (
                     <th
+                      role="columnheader"
                       abbr={weekday[1]}
                       class={this.getClassName('weekday')}
                       key={weekday[0]}
                       scope="col"
                     >
-                      <span>{weekday[0]}</span>
+                      <span aria-hidden="true">{weekday[0]}</span>
+                      <span class="visually-hidden">
+                        {weekday[1]}
+                      </span>
                     </th>
                   ))}
                 </tr>
