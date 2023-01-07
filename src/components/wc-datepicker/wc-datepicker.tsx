@@ -94,14 +94,6 @@ export class WCDatepicker {
 
   @Event() selectDate: EventEmitter<string | string[] | undefined>;
   @Event() changeMonth: EventEmitter<MonthChangedEventDetails>;
-/*
-  @Method()
-  async setValue(newValue: string) {
-    console.log("setting new value")
-    await console.log(newValue)
-    console.log(new Date(newValue))
-    this.value = new Date(newValue)
-  }*/
 
   private moveFocusAfterMonthChanged: Boolean;
 
@@ -130,6 +122,7 @@ export class WCDatepicker {
 
   @Watch('startDate')
   watchStartDate() {
+    console.log(this.startDate)
     this.currentDate = this.startDate ? new Date(this.startDate) : new Date();
   }
 
@@ -152,7 +145,6 @@ export class WCDatepicker {
   }
 
   private init = () => {
-    console.log(this.value)
     this.currentDate = this.startDate ? new Date(this.startDate) : new Date();
     this.updateWeekdays();
   };
@@ -389,6 +381,7 @@ export class WCDatepicker {
   private onMouseLeave = () => {
     this.hoveredDate = undefined;
   };
+
 
   render() {
     const showFooter = this.showTodayButton || this.showClearButton;

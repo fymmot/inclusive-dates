@@ -209,7 +209,8 @@ wc-datepicker {
 }
 
 .wc-datepicker__clear-button,
-.wc-datepicker__today-button {
+.wc-datepicker__today-button,
+.wc-datepicker__calendar-button{
   display: inline-flex;
   height: 2rem;
   padding-right: 0.5rem;
@@ -223,4 +224,25 @@ wc-datepicker {
   font: inherit;
   line-height: 1;
   cursor: pointer;
+}
+.label{
+  font-weight: 600;
+  display: block;
+}
+.wc-datepicker__calendar-button {
+  margin-left: 0.5rem;
+}
+
+.wc-datepicker__input{
+  display: inline-flex;
+  height: 2rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 0.25rem;
+  color: #111;
+  line-height: 1;
+  border: 1px solid #14171e;
 }

@@ -19,6 +19,7 @@ export namespace Components {
           * Open the dialog.
          */
         "open": () => Promise<void>;
+        "setAnchorElement": (element: HTMLElement) => Promise<void>;
         "setTriggerElement": (element: HTMLElement) => Promise<void>;
     }
     interface WcDatepicker {

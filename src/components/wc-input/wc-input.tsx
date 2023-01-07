@@ -29,16 +29,27 @@ export class WCInput {
   private modalRef?: HTMLA11yModalElement;
   private inputRef?: HTMLInputElement;
   private calendarButtonRef?: HTMLButtonElement;
+  private pickerRef?: HTMLWcDatepickerElement
   // private calendarRef?: HTMLWcDatepickerElement
 
 
   clickHandler = async () => {
     await this.modalRef.setTriggerElement(this.calendarButtonRef)
+    await this.modalRef.setAnchorElement(this.inputRef)
    if (await this.modalRef.getState() === false)
      await this.modalRef?.open();
    else if (await this.modalRef.getState() === true)
      await this.modalRef?.close();
   }
+  handleChange = async (event) => {
+    const parsedDate = chrono.parseDate(event.target.value, new Date(),{forwardDate: true});
+    if (parsedDate instanceof Date) {
+      this.internalValue = parsedDate.toISOString().slice(0, 10)
+      event.target.value = parsedDate.toISOString().slice(0, 10)
+      this.pickerRef.value = parsedDate
+    }
+  }
+
 
   /*setNewDate = async (newDate: string) => {
     // await this.calendarRef.setValue(newDate);
@@ -64,28 +75,29 @@ export class WCInput {
     this.internalValue = newValue;
     this.modalRef.close()
   }
-  private handleChange(event) {
-    const parsedDate = chrono.parseDate(event.target.value, new Date(),{forwardDate: true});
-    if (parsedDate instanceof Date) {
-      this.internalValue = parsedDate.toISOString().slice(0, 10)
-      event.target.value = parsedDate.toISOString().slice(0, 10)
-    }
-  }
+
 
   render() {
     return (
       <Host>
-        <label>
-        Choose a date
-        <input type='text' ref={(r) => this.inputRef = r} onChange={this.handleChange}/>
-      </label>
+        <label htmlFor="test-id">
+          Choose a date
+        </label>
+        <input
+          id="test-id"
+          type='text'
+          placeholder="Write a date anyway you like"
+          class="wc-datepicker__input"
+          ref={(r) => this.inputRef = r}
+          onChange={this.handleChange} />
+
         <button
           ref={(r) => this.calendarButtonRef = r}
           onClick={this.clickHandler}
+          class="wc-datepicker__calendar-button"
         >Open calendar</button>
-        {this.internalValue}
-        <a11y-modal label="Calendar" hideLabel={true} ref={el => (this.modalRef = el)} onOpened={()=>{console.log(`onOpenModal: ${this.internalValue}`)}}>
-          <wc-datepicker onSelectDate={(event)=> this.handlePickerSelection(event.detail as string)}/>
+        <a11y-modal label="Calendar" hideLabel={true} ref={el => (this.modalRef = el)} onOpened={()=>{}}>
+          <wc-datepicker onSelectDate={(event)=> this.handlePickerSelection(event.detail as string)} ref={el => (this.pickerRef = el)}/>
         </a11y-modal>
       </Host>
     )

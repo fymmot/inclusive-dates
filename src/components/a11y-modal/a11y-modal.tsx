@@ -6,6 +6,7 @@ import {
   Prop,
   State
 } from '@stencil/core';
+import "@a11y/focus-trap";
 
 /**
  * @slot slot - The dialog content
@@ -18,20 +19,19 @@ import {
 export class A11yModal {
   @Prop() hideLabel?: boolean;
   @Prop() label!: string;
-
   @State() closing = false;
-
   @State () showing = false;
   @Event() opened: EventEmitter;
 
   private triggerElement: HTMLElement
+  private anchorEl: HTMLElement;
+  private bodyRef: HTMLElement
 
   /**
    * Open the dialog.
    */
   @Method()
   async open() {
-    console.log(this.triggerElement)
     this.showing = true
     this.opened.emit(undefined)
   }
@@ -41,18 +41,9 @@ export class A11yModal {
    */
   @Method()
   async close() {
-    if (this.closing) {
-      return;
-    }
-
-    this.closing = true;
-
-    setTimeout(() => {
-      this.showing = false
-      this.closing = false;
-      if (this.triggerElement)
-        this.triggerElement.focus()
-    }, 150);
+    this.showing = false
+    if (this.triggerElement)
+      this.triggerElement.focus()
   }
   @Method()
   async getState() {
@@ -62,6 +53,11 @@ export class A11yModal {
   @Method()
   async setTriggerElement(element: HTMLElement) {
     this.triggerElement = element
+  }
+
+  @Method()
+  async setAnchorElement(element: HTMLElement) {
+    this.anchorEl = element
   }
 
   onKeyDown = (event: KeyboardEvent) => {
@@ -74,9 +70,16 @@ export class A11yModal {
     this.close()
   };
 
+  componentDidRender(){
+    if (this.bodyRef && this.anchorEl && this.showing){
+      this.bodyRef.style.cssText = `left:${this.anchorEl.getBoundingClientRect().x}px;top:${this.anchorEl.getBoundingClientRect().y + this.anchorEl.offsetHeight}px`
+    }
+  }
+
   render() {
+
     return (
-      <Host>
+      <Host showing={this.showing} >
         {this.showing && (
           <div
             aria-describedby="content"
@@ -86,20 +89,23 @@ export class A11yModal {
             aria-modal={this.showing}
             onKeyDown={this.onKeyDown}
             role="dialog"
+            class="dialog__root"
           >
-            <div class="dialog__backdrop" onClick={this.onBackdropClick}></div>
-            <div class="dialog__body" role="document">
-              {!this.hideLabel && (
-                <h2 class="dialog__heading" id="label">
-                  {this.label}
-                </h2>
-              )}
-              <div class="dialog__content" id="content">
-                <slot/>
+            <focus-trap>
+              <div class="dialog__backdrop" onClick={this.onBackdropClick}></div>
+              <div class="dialog__body" role="document" ref={(r)=>{this.bodyRef = r}}>
+                {!this.hideLabel && (
+                  <h2 class="dialog__heading" id="label">
+                    {this.label}
+                  </h2>
+                )}
+                <div class="dialog__content" id="content">
+                  <slot/>
+                </div>
               </div>
-            </div>
+            </focus-trap>
           </div>
-        )}
+          )}
       </Host>
     );
   }
