@@ -7,6 +7,20 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MonthChangedEventDetails, WCDatepickerLabels } from "./components/wc-datepicker/wc-datepicker";
 export namespace Components {
+    interface A11yModal {
+        /**
+          * Close the dialog.
+         */
+        "close": () => Promise<void>;
+        "getState": () => Promise<boolean>;
+        "hideLabel"?: boolean;
+        "label": string;
+        /**
+          * Open the dialog.
+         */
+        "open": () => Promise<void>;
+        "setTriggerElement": (element: HTMLElement) => Promise<void>;
+    }
     interface WcDatepicker {
         "clearButtonContent"?: string;
         "disableDate"?: (date: Date) => boolean;
@@ -28,23 +42,58 @@ export namespace Components {
         "todayButtonContent"?: string;
         "value"?: Date | Date[];
     }
+    interface WcInput {
+        "locale"?: string;
+        "nextMonthButtonContent"?: string;
+        "nextYearButtonContent"?: string;
+        "startDate"?: string;
+        "todayButtonContent"?: string;
+        "value"?: string;
+    }
+}
+export interface A11yModalCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLA11yModalElement;
 }
 export interface WcDatepickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLWcDatepickerElement;
 }
+export interface WcInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLWcInputElement;
+}
 declare global {
+    interface HTMLA11yModalElement extends Components.A11yModal, HTMLStencilElement {
+    }
+    var HTMLA11yModalElement: {
+        prototype: HTMLA11yModalElement;
+        new (): HTMLA11yModalElement;
+    };
     interface HTMLWcDatepickerElement extends Components.WcDatepicker, HTMLStencilElement {
     }
     var HTMLWcDatepickerElement: {
         prototype: HTMLWcDatepickerElement;
         new (): HTMLWcDatepickerElement;
     };
+    interface HTMLWcInputElement extends Components.WcInput, HTMLStencilElement {
+    }
+    var HTMLWcInputElement: {
+        prototype: HTMLWcInputElement;
+        new (): HTMLWcInputElement;
+    };
     interface HTMLElementTagNameMap {
+        "a11y-modal": HTMLA11yModalElement;
         "wc-datepicker": HTMLWcDatepickerElement;
+        "wc-input": HTMLWcInputElement;
     }
 }
 declare namespace LocalJSX {
+    interface A11yModal {
+        "hideLabel"?: boolean;
+        "label": string;
+        "onOpened"?: (event: A11yModalCustomEvent<any>) => void;
+    }
     interface WcDatepicker {
         "clearButtonContent"?: string;
         "disableDate"?: (date: Date) => boolean;
@@ -68,15 +117,28 @@ declare namespace LocalJSX {
         "todayButtonContent"?: string;
         "value"?: Date | Date[];
     }
+    interface WcInput {
+        "locale"?: string;
+        "nextMonthButtonContent"?: string;
+        "nextYearButtonContent"?: string;
+        "onSelectDate"?: (event: WcInputCustomEvent<string | string[] | undefined>) => void;
+        "startDate"?: string;
+        "todayButtonContent"?: string;
+        "value"?: string;
+    }
     interface IntrinsicElements {
+        "a11y-modal": A11yModal;
         "wc-datepicker": WcDatepicker;
+        "wc-input": WcInput;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "a11y-modal": LocalJSX.A11yModal & JSXBase.HTMLAttributes<HTMLA11yModalElement>;
             "wc-datepicker": LocalJSX.WcDatepicker & JSXBase.HTMLAttributes<HTMLWcDatepickerElement>;
+            "wc-input": LocalJSX.WcInput & JSXBase.HTMLAttributes<HTMLWcInputElement>;
         }
     }
 }

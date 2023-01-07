@@ -40,7 +40,9 @@
     }
   },
   "dependencies": {
-    "@stencil/core": "^2.13.0"
+    "@stencil/core": "^2.13.0",
+    "a11y-dialog": "^7.5.2",
+    "chrono-node": "^2.5.0"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.7",

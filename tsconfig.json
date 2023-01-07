@@ -11,7 +11,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "jsx": "react",
-    "jsxFactory": "h"
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "h"
   },
   "include": ["src"],
   "exclude": ["node_modules"]

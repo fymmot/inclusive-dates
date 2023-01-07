@@ -1,0 +1,15 @@
+.dialog__body {
+  position: relative;
+  border: 1px solid lightgray;
+  width: fit-content;
+  z-index: 1200;
+  margin-top: 0.5rem;
+}
+.dialog__backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1100;
+}

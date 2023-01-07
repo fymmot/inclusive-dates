@@ -72,8 +72,8 @@ export class WCDatepicker {
   @Prop() disabled?: boolean = false;
   @Prop() disableDate?: (date: Date) => boolean = () => false;
   @Prop() elementClassName?: string = 'wc-datepicker';
-  @Prop() firstDayOfWeek?: number = 0;
-  @Prop() range?: boolean;
+  @Prop() firstDayOfWeek?: number = 1;
+  @Prop() range?: boolean = false;
   @Prop() labels?: WCDatepickerLabels = defaultLabels;
   @Prop() locale?: string = navigator?.language || 'en-US';
   @Prop() nextMonthButtonContent?: string;
@@ -82,7 +82,7 @@ export class WCDatepicker {
   @Prop() previousYearButtonContent?: string;
   @Prop() showClearButton?: boolean = false;
   @Prop() showMonthStepper?: boolean = true;
-  @Prop() showTodayButton?: boolean = false;
+  @Prop() showTodayButton?: boolean = true;
   @Prop() showYearStepper?: boolean = false;
   @Prop() startDate?: string = getISODateString(new Date());
   @Prop() todayButtonContent?: string;
@@ -94,6 +94,14 @@ export class WCDatepicker {
 
   @Event() selectDate: EventEmitter<string | string[] | undefined>;
   @Event() changeMonth: EventEmitter<MonthChangedEventDetails>;
+/*
+  @Method()
+  async setValue(newValue: string) {
+    console.log("setting new value")
+    await console.log(newValue)
+    console.log(new Date(newValue))
+    this.value = new Date(newValue)
+  }*/
 
   private moveFocusAfterMonthChanged: Boolean;
 
@@ -111,7 +119,6 @@ export class WCDatepicker {
     if (!Boolean(this.locale)) {
       this.locale = navigator?.language || 'en-US';
     }
-
     this.updateWeekdays();
   }
 
@@ -145,6 +152,7 @@ export class WCDatepicker {
   }
 
   private init = () => {
+    console.log(this.value)
     this.currentDate = this.startDate ? new Date(this.startDate) : new Date();
     this.updateWeekdays();
   };
@@ -617,8 +625,10 @@ export class WCDatepicker {
                             <Tag aria-hidden="true">{day.getDate()}</Tag>
                             <span class="visually-hidden">
                               {Intl.DateTimeFormat(this.locale, {
+                                weekday: 'long',
                                 day: 'numeric',
-                                month: 'long'
+                                month: 'long',
+                                year: 'numeric'
                               }).format(day)}
                             </span>
                           </td>
