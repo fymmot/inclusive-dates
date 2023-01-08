@@ -214,7 +214,8 @@ wc-datepicker {
 
 .wc-datepicker__clear-button,
 .wc-datepicker__today-button,
-.wc-datepicker__calendar-button {
+.wc-datepicker__calendar-button,
+.wc-datepicker__quick-button {
   display: inline-flex;
   height: 2rem;
   padding-right: 0.5rem;
@@ -235,6 +236,12 @@ wc-datepicker {
 }
 .wc-datepicker__calendar-button {
   margin-left: 0.5rem;
+}
+.wc-datepicker__quick-group {
+  margin-top: 0.5rem;
+  display: inline-grid;
+  grid-auto-flow: column;
+  gap: 0.5rem;
 }
 
 .wc-datepicker__input {

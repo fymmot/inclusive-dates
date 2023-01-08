@@ -24,6 +24,7 @@ export class InclusiveDates {
   @Element() el: HTMLElement;
 
   @Prop() locale?: string = navigator?.language || "en-US";
+  @Prop() disabled?: boolean = false;
   @Prop() nextMonthButtonContent?: string;
   @Prop() nextYearButtonContent?: string;
   @Prop() startDate?: string = getISODateString(new Date());
@@ -45,7 +46,12 @@ export class InclusiveDates {
   private inputRef?: HTMLInputElement;
   private calendarButtonRef?: HTMLButtonElement;
   private pickerRef?: HTMLWcDatepickerElement;
-  private quickButtons?: string[] = ["Tomorrow", "In 10 days"];
+  private quickButtons?: string[] = [
+    "Yesterday",
+    "Today",
+    "Tomorrow",
+    "In 10 days"
+  ];
   // private calendarRef?: HTMLWcDatepickerElement
 
   clickHandler = async () => {
@@ -80,10 +86,11 @@ export class InclusiveDates {
     }
   };
   handleChange = async (event) => {
+    if (event.target.value.length === 0) return (this.errorState = false);
     const parsedDate = chrono.parseDate(event.target.value, new Date(), {
       forwardDate: true
     });
-    if (parsedDate instanceof Date) {
+    if (parsedDate instanceof Date && event.target.value.length > 0) {
       this.internalValue = parsedDate.toISOString().slice(0, 10);
       event.target.value = parsedDate.toISOString().slice(0, 10);
       this.pickerRef.value = parsedDate;
@@ -140,6 +147,7 @@ export class InclusiveDates {
         <br />
         <div class="wc-datepicker__input-container">
           <input
+            disabled={this.disabled}
             id={`${this.pickerid}-input`}
             type="text"
             placeholder={this.placeholder}
@@ -155,27 +163,11 @@ export class InclusiveDates {
             ref={(r) => (this.calendarButtonRef = r)}
             onClick={this.clickHandler}
             class="wc-datepicker__calendar-button"
+            disabled={this.disabled}
           >
             Open calendar
           </button>
         </div>
-        {this.quickButtons?.length > 0 &&
-          this.quickButtons.map((buttonText) => {
-            return (
-              <button onClick={this.handleQuickButtonClick}>
-                {buttonText}
-              </button>
-            );
-          })}
-        {this.errorState && (
-          <div
-            class="wc-datepicker__input-error"
-            id={`${this.pickerid}-error`}
-            role="status"
-          >
-            We could not find a matching date
-          </div>
-        )}
         <inclusive-dates-modal
           label="Calendar"
           hideLabel={true}
@@ -196,8 +188,37 @@ export class InclusiveDates {
             startDate={this.startDate}
             firstDayOfWeek={this.firstDayOfWeek}
             showHiddenTitle={false}
+            disabled={this.disabled}
           />
         </inclusive-dates-modal>
+        {this.quickButtons?.length > 0 && (
+          <div
+            class="wc-datepicker__quick-group"
+            role="group"
+            aria-label="Quick selection"
+          >
+            {this.quickButtons.map((buttonText) => {
+              return (
+                <button
+                  class="wc-datepicker__quick-button"
+                  onClick={this.handleQuickButtonClick}
+                >
+                  {buttonText}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {this.errorState && (
+          <div
+            class="wc-datepicker__input-error"
+            id={`${this.pickerid}-error`}
+            role="status"
+          >
+            We could not find a matching date
+          </div>
+        )}
       </Host>
     );
   }

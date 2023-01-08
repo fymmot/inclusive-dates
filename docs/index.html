@@ -5,10 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
-      name="google-site-verification"
-      content="L2GNpGBzQzxXxovPVNjIUilDCQ2Fea0_sWhkZbaMg34"
-    />
-    <meta
       name="description"
       content="A small, accessible and customizable datepicker written in TypeScript."
     />
@@ -25,13 +21,17 @@
   </head>
   <body>
     <header>
-      <h1>Inclusive dates v2</h1>
+      <h1>Inclusive dates v2.0 (<strong>work in progress!</strong>)</h1>
       <p>
-        A small, accessible and customizable datepicker written in TypeScript.
+        A human-friendly and accessible datepicker with natural language parsing via Chrono.js.
+      </p>
+      <p>
+        Based on the excellent <a href="https://github.com/qrrl/wc-datepicker"><code>sqrrl/wc-datepicker</code></a>
       </p>
 
-      <a href="https://github.com/Sqrrl/wc-datepicker">Github repository</a> •
-      <a href="https://www.npmjs.com/package/wc-datepicker">NPM package</a>
+      <a href="https://github.com/fymmot/inclusive-dates-component">Github repository</a>
+      <p>(No NPM package yet)</p>
+<!--      <a href="https://www.npmjs.com/package/wc-datepicker">NPM package</a>-->
     </header>
 
     <nav aria-labelledby="toc">
@@ -57,21 +57,22 @@
 
         <ul>
           <li>
-            <strong>🦶 Small footprint:</strong> About 8 KB minified and
-            gzipped.
+            <strong>🧏‍♀️ Accessible first:</strong> Built to support users of assistive
+            technology. Follows the <a href="https://www.w3.org/WAI/ARIA/apg/example-index/dialog-modal/datepicker-dialog">WAI-ARIA APG "Datepicker dialog" pattern</a>.
           </li>
           <li>
-            <strong>🪁 Dependency-free:</strong> No external dependencies.
+            <strong>🦶 Small footprint:</strong> Base version is about 8 KB minified and
+            gzipped. About 50kb with Chrono.js language parsing.
+          </li>
+          <li>
+            <strong>🪁 Low dependency:</strong> Few external dependencies.
           </li>
           <li>
             <strong>🖼 Framework-agnostic:</strong> Standard Web Component that
             works with any framework.
           </li>
           <li><strong>💪 Strongly typed:</strong> Written in TypeScript.</li>
-          <li>
-            <strong>🧏‍♀️ Accessible:</strong> Built to support users of assistive
-            technology.
-          </li>
+
           <li>
             <strong>🇪🇺 Localizable:</strong> Customizable labels and date
             formats.
@@ -84,10 +85,10 @@
             <strong>🧪 Well tested:</strong> Quality assured by means of unit
             tests.
           </li>
-          <li>
+          <!--<li>
             <strong>📆 Range selection:</strong> Allows to select single dates
             or ranges.
-          </li>
+          </li>-->
         </ul>
       </section>
 
@@ -528,8 +529,9 @@ defineCustomElements();</code></pre>
 
       <section>
         <h2 id="styling">Styling</h2>
+        <p>Work in progress!</p>
 
-        <p>
+        <!--<p>
           The datepicker comes without any bundled styles. You can either load
           one of the included themes or write your own styles. Below is a list
           of all element classes you can use for styling.
@@ -548,7 +550,7 @@ defineCustomElements();</code></pre>
               <td>Outer element of the datepicker</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker--disabled</code></td>
+              <td><code>.wc-datepicker&#45;&#45;disabled</code></td>
               <td>Outer element of the disabled datepicker</td>
             </tr>
             <tr>
@@ -615,27 +617,27 @@ defineCustomElements();</code></pre>
               <td>Date cell</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__date--current</code></td>
+              <td><code>.wc-datepicker__date&#45;&#45;current</code></td>
               <td>Currently focused date cell</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__date--disabled</code></td>
+              <td><code>.wc-datepicker__date&#45;&#45;disabled</code></td>
               <td>Disabled date cell</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__date--overflowing</code></td>
+              <td><code>.wc-datepicker__date&#45;&#45;overflowing</code></td>
               <td>Date cell of the previous or next month</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__date--today</code></td>
+              <td><code>.wc-datepicker__date&#45;&#45;today</code></td>
               <td>Date cell of the current day</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__date--selected</code></td>
+              <td><code>.wc-datepicker__date&#45;&#45;selected</code></td>
               <td>Currently selected date cell</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__date--in-range</code></td>
+              <td><code>.wc-datepicker__date&#45;&#45;in-range</code></td>
               <td>Date cell within the currently selected range</td>
             </tr>
             <tr>
@@ -651,7 +653,7 @@ defineCustomElements();</code></pre>
               <td>Clear button element</td>
             </tr>
           </tbody>
-        </table>
+        </table>-->
       </section>
 
       <section>
@@ -798,7 +800,7 @@ defineCustomElements();</code></pre>
       function updateDemoCode() {
         demoCodeContainer.innerText = `${
           this.datepicker.outerHTML.split(">")[0]
-        }></wc-datepicker>`
+        }></inclusive-dates>`
           .replace(/ class="([a-zA-Z0-9-_ ])+"/, "")
           .replace(' id="datepicker"', "")
           .replace(/="true"/g, "");

@@ -23,7 +23,7 @@
   flex-grow: 1;
 }
 .wc-datepicker__input-error {
-  display: inline-flex;
+  display: flex;
   padding: 0.5rem;
   color: #d4351c;
   font-weight: 700;
