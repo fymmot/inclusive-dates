@@ -72,9 +72,10 @@ export class InclusiveDates {
   render() {
     return (
       <Host>
-        <label htmlFor="test-id">
+        <label htmlFor="test-id" class="wc-datepicker__label">
           Choose a date
         </label>
+        <br/>
         <input
           id="test-id"
           type='text'

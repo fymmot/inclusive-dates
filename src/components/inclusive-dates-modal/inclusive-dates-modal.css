@@ -1,5 +1,5 @@
 .dialog__body {
-  position: relative;
+  position: absolute;
   border: 1px solid lightgray;
   width: fit-content;
   z-index: 1200;

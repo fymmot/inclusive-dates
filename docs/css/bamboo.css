@@ -232,7 +232,7 @@ textarea {
 }
 
 select:not(.wc-datepicker__month-select),
-input[type='text']:not(.wc-datepicker__year-select) {
+input[type='text']:not(.wc-datepicker__year-select):not(.wc-datepicker__input) {
   width: 100%;
 }
 
