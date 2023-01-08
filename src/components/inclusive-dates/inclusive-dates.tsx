@@ -1,5 +1,7 @@
 import { Component, Element, Event, EventEmitter, h, Host, Prop, State, Watch } from '@stencil/core';
 import * as chrono from 'chrono-node';
+import {announce} from '@react-aria/live-announcer';
+
 import {
   getISODateString
 } from '../../utils/utils';
@@ -18,6 +20,9 @@ export class InclusiveDates {
   @Prop() nextMonthButtonContent?: string;
   @Prop() nextYearButtonContent?: string;
   @Prop() startDate?: string = getISODateString(new Date());
+  @Prop() pickerid!: string
+  @Prop() label?: string = "Choose a date (any way you like)"
+  @Prop() placeholder?: string = `Try "tomorrrow" or "in ten days"`
   @Prop() todayButtonContent?: string;
   @Prop({ mutable: true }) value?: string;
 
@@ -47,6 +52,12 @@ export class InclusiveDates {
       this.internalValue = parsedDate.toISOString().slice(0, 10)
       event.target.value = parsedDate.toISOString().slice(0, 10)
       this.pickerRef.value = parsedDate
+      announce(`${Intl.DateTimeFormat(this.locale, {
+          weekday: 'long',
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        }).format(parsedDate)} selected!`, 'polite')
     }
   }
 
@@ -72,25 +83,33 @@ export class InclusiveDates {
   render() {
     return (
       <Host>
-        <label htmlFor="test-id" class="wc-datepicker__label">
-          Choose a date
+        <label htmlFor={`${this.pickerid}-input`} class="wc-datepicker__label">
+          {this.label}
         </label>
         <br/>
-        <input
-          id="test-id"
-          type='text'
-          placeholder="Write a date anyway you like"
-          class="wc-datepicker__input"
-          ref={(r) => this.inputRef = r}
-          onChange={this.handleChange} />
+        <div class="wc-datepicker__input-container">
+          <input
+            id={`${this.pickerid}-input`}
+            type='text'
+            placeholder={this.placeholder}
+            class="wc-datepicker__input"
+            ref={(r) => this.inputRef = r}
+            onChange={this.handleChange} />
 
-        <button
-          ref={(r) => this.calendarButtonRef = r}
-          onClick={this.clickHandler}
-          class="wc-datepicker__calendar-button"
-        >Open calendar</button>
+          <button
+            ref={(r) => this.calendarButtonRef = r}
+            onClick={this.clickHandler}
+            class="wc-datepicker__calendar-button"
+          >Open calendar
+          </button>
+        </div>
         <inclusive-dates-modal label="Calendar" hideLabel={true} ref={el => (this.modalRef = el)} onOpened={()=>{}}>
-          <wc-datepicker onSelectDate={(event)=> this.handlePickerSelection(event.detail as string)} ref={el => (this.pickerRef = el)}/>
+          <wc-datepicker
+            locale={this.locale}
+            onSelectDate={(event)=> this.handlePickerSelection(event.detail as string)}
+            ref={el => (this.pickerRef = el)}
+            startDate={this.startDate}
+          />
         </inclusive-dates-modal>
       </Host>
     )

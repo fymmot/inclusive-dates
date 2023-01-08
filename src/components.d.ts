@@ -8,9 +8,12 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MonthChangedEventDetails, WCDatepickerLabels } from "./components/wc-datepicker/wc-datepicker";
 export namespace Components {
     interface InclusiveDates {
+        "label"?: string;
         "locale"?: string;
         "nextMonthButtonContent"?: string;
         "nextYearButtonContent"?: string;
+        "pickerid": string;
+        "placeholder"?: string;
         "startDate"?: string;
         "todayButtonContent"?: string;
         "value"?: string;
@@ -91,10 +94,13 @@ declare global {
 }
 declare namespace LocalJSX {
     interface InclusiveDates {
+        "label"?: string;
         "locale"?: string;
         "nextMonthButtonContent"?: string;
         "nextYearButtonContent"?: string;
         "onSelectDate"?: (event: InclusiveDatesCustomEvent<string | string[] | undefined>) => void;
+        "pickerid": string;
+        "placeholder"?: string;
         "startDate"?: string;
         "todayButtonContent"?: string;
         "value"?: string;
