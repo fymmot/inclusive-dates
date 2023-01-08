@@ -8,7 +8,7 @@ import {
   Prop,
   State,
   Watch
-} from '@stencil/core';
+} from "@stencil/core";
 import {
   addDays,
   getDaysOfMonth,
@@ -28,7 +28,7 @@ import {
   isDateInRange,
   isSameDay,
   subDays
-} from '../../utils/utils';
+} from "../../utils/utils";
 
 export type WCDatepickerLabels = {
   clearButton: string;
@@ -43,15 +43,15 @@ export type WCDatepickerLabels = {
 };
 
 const defaultLabels: WCDatepickerLabels = {
-  clearButton: 'Clear value',
-  monthSelect: 'Select month',
-  nextMonthButton: 'Next month',
-  nextYearButton: 'Next year',
-  picker: 'Choose date',
-  previousMonthButton: 'Previous month',
-  previousYearButton: 'Previous year',
-  todayButton: 'Show today',
-  yearSelect: 'Select year'
+  clearButton: "Clear value",
+  monthSelect: "Select month",
+  nextMonthButton: "Next month",
+  nextYearButton: "Next year",
+  picker: "Choose date",
+  previousMonthButton: "Previous month",
+  previousYearButton: "Previous year",
+  todayButton: "Show today",
+  yearSelect: "Select year"
 };
 
 export interface MonthChangedEventDetails {
@@ -62,8 +62,8 @@ export interface MonthChangedEventDetails {
 @Component({
   scoped: true,
   shadow: false,
-  styleUrl: 'wc-datepicker.css',
-  tag: 'wc-datepicker'
+  styleUrl: "wc-datepicker.css",
+  tag: "wc-datepicker"
 })
 export class WCDatepicker {
   @Element() el: HTMLElement;
@@ -72,13 +72,12 @@ export class WCDatepicker {
   @Prop() disabled?: boolean = false;
   @Prop() modalIsOpen?: boolean = false;
 
-
   @Prop() disableDate?: (date: Date) => boolean = () => false;
-  @Prop() elementClassName?: string = 'wc-datepicker';
+  @Prop() elementClassName?: string = "wc-datepicker";
   @Prop() firstDayOfWeek?: number = 1;
   @Prop() range?: boolean = false;
   @Prop() labels?: WCDatepickerLabels = defaultLabels;
-  @Prop() locale?: string = navigator?.language || 'en-US';
+  @Prop() locale?: string = navigator?.language || "en-US";
   @Prop() nextMonthButtonContent?: string;
   @Prop() nextYearButtonContent?: string;
   @Prop() previousMonthButtonContent?: string;
@@ -105,37 +104,37 @@ export class WCDatepicker {
     this.init();
   }
 
-  @Watch('modalIsOpen')
+  @Watch("modalIsOpen")
   watchModalIsOpen() {
-    if (this.modalIsOpen === true){
-      this.moveFocusOnModalOpen = true
+    if (this.modalIsOpen === true) {
+      this.moveFocusOnModalOpen = true;
     }
   }
-  @Watch('firstDayOfWeek')
+  @Watch("firstDayOfWeek")
   watchFirstDayOfWeek() {
     this.updateWeekdays();
   }
 
-  @Watch('locale')
+  @Watch("locale")
   watchLocale() {
     if (!Boolean(this.locale)) {
-      this.locale = navigator?.language || 'en-US';
+      this.locale = navigator?.language || "en-US";
     }
     this.updateWeekdays();
   }
 
-  @Watch('range')
+  @Watch("range")
   watchRange() {
     this.value = undefined;
     this.selectDate.emit(undefined);
   }
 
-  @Watch('startDate')
+  @Watch("startDate")
   watchStartDate() {
     this.currentDate = this.startDate ? new Date(this.startDate) : new Date();
   }
 
-  @Watch('value')
+  @Watch("value")
   watchValue() {
     if (Boolean(this.value)) {
       if (Array.isArray(this.value) && this.value.length >= 1) {
@@ -153,7 +152,7 @@ export class WCDatepicker {
     }
     if (this.moveFocusOnModalOpen) {
       this.focusDate(this.currentDate);
-      this.moveFocusOnModalOpen = false
+      this.moveFocusOnModalOpen = false;
     }
   }
 
@@ -303,7 +302,7 @@ export class WCDatepicker {
     }
 
     const target = (event.target as HTMLElement).closest<HTMLElement>(
-      '[data-date]'
+      "[data-date]"
     );
 
     if (!Boolean(target)) {
@@ -339,19 +338,19 @@ export class WCDatepicker {
       return;
     }
 
-    if (event.code === 'ArrowLeft') {
+    if (event.code === "ArrowLeft") {
       event.preventDefault();
       this.updateCurrentDate(getPreviousDay(this.currentDate), true);
-    } else if (event.code === 'ArrowRight') {
+    } else if (event.code === "ArrowRight") {
       event.preventDefault();
       this.updateCurrentDate(getNextDay(this.currentDate), true);
-    } else if (event.code === 'ArrowUp') {
+    } else if (event.code === "ArrowUp") {
       event.preventDefault();
       this.updateCurrentDate(subDays(this.currentDate, 7), true);
-    } else if (event.code === 'ArrowDown') {
+    } else if (event.code === "ArrowDown") {
       event.preventDefault();
       this.updateCurrentDate(addDays(this.currentDate, 7), true);
-    } else if (event.code === 'PageUp') {
+    } else if (event.code === "PageUp") {
       event.preventDefault();
 
       if (event.shiftKey) {
@@ -359,7 +358,7 @@ export class WCDatepicker {
       } else {
         this.updateCurrentDate(getPreviousMonth(this.currentDate), true);
       }
-    } else if (event.code === 'PageDown') {
+    } else if (event.code === "PageDown") {
       event.preventDefault();
 
       if (event.shiftKey) {
@@ -367,13 +366,13 @@ export class WCDatepicker {
       } else {
         this.updateCurrentDate(getNextMonth(this.currentDate), true);
       }
-    } else if (event.code === 'Home') {
+    } else if (event.code === "Home") {
       event.preventDefault();
       this.updateCurrentDate(getFirstOfMonth(this.currentDate), true);
-    } else if (event.code === 'End') {
+    } else if (event.code === "End") {
       event.preventDefault();
       this.updateCurrentDate(getLastOfMonth(this.currentDate), true);
-    } else if (event.code === 'Space' || event.code === 'Enter') {
+    } else if (event.code === "Space" || event.code === "Enter") {
       event.preventDefault();
       this.onSelectDate(this.currentDate);
     }
@@ -385,7 +384,7 @@ export class WCDatepicker {
     }
 
     const date = new Date(
-      (event.target as HTMLElement).closest('td').dataset.date
+      (event.target as HTMLElement).closest("td").dataset.date
     );
 
     this.hoveredDate = date;
@@ -394,7 +393,6 @@ export class WCDatepicker {
   private onMouseLeave = () => {
     this.hoveredDate = undefined;
   };
-
 
   render() {
     const showFooter = this.showTodayButton || this.showClearButton;
@@ -408,14 +406,14 @@ export class WCDatepicker {
             [`${this.getClassName()}--disabled`]: this.disabled
           }}
         >
-          <div class={this.getClassName('header')}>
+          <div class={this.getClassName("header")}>
             {/*<span aria-atomic="true" aria-live="polite" class="visually-hidden">
               {this.getTitle()}
             </span>*/}
             {this.showYearStepper && (
               <button
                 aria-label={this.labels.previousYearButton}
-                class={this.getClassName('previous-year-button')}
+                class={this.getClassName("previous-year-button")}
                 disabled={this.disabled}
                 innerHTML={this.previousYearButtonContent || undefined}
                 onClick={this.previousYear}
@@ -439,7 +437,7 @@ export class WCDatepicker {
             {this.showMonthStepper && (
               <button
                 aria-label={this.labels.previousMonthButton}
-                class={this.getClassName('previous-month-button')}
+                class={this.getClassName("previous-month-button")}
                 disabled={this.disabled}
                 innerHTML={this.previousMonthButtonContent || undefined}
                 onClick={this.previousMonth}
@@ -459,10 +457,10 @@ export class WCDatepicker {
                 </svg>
               </button>
             )}
-            <span class={this.getClassName('current-month')}>
+            <span class={this.getClassName("current-month")}>
               <select
                 aria-label={this.labels.monthSelect}
-                class={this.getClassName('month-select')}
+                class={this.getClassName("month-select")}
                 disabled={this.disabled}
                 name="month"
                 onChange={this.onMonthSelect}
@@ -479,7 +477,7 @@ export class WCDatepicker {
               </select>
               <input
                 aria-label={this.labels.yearSelect}
-                class={this.getClassName('year-select')}
+                class={this.getClassName("year-select")}
                 disabled={this.disabled}
                 max={9999}
                 min={1}
@@ -492,7 +490,7 @@ export class WCDatepicker {
             {this.showMonthStepper && (
               <button
                 aria-label={this.labels.nextMonthButton}
-                class={this.getClassName('next-month-button')}
+                class={this.getClassName("next-month-button")}
                 disabled={this.disabled}
                 innerHTML={this.nextMonthButtonContent || undefined}
                 onClick={this.nextMonth}
@@ -515,7 +513,7 @@ export class WCDatepicker {
             {this.showYearStepper && (
               <button
                 aria-label={this.labels.nextYearButton}
-                class={this.getClassName('next-year-button')}
+                class={this.getClassName("next-year-button")}
                 disabled={this.disabled}
                 innerHTML={this.nextYearButtonContent || undefined}
                 onClick={this.nextYear}
@@ -538,26 +536,24 @@ export class WCDatepicker {
             )}
           </div>
 
-          <div class={this.getClassName('body')}>
+          <div class={this.getClassName("body")}>
             <table
-              class={this.getClassName('calendar')}
+              class={this.getClassName("calendar")}
               onKeyDown={this.onKeyDown}
               role="grid"
             >
-              <thead class={this.getClassName('calendar-header')}>
-                <tr class={this.getClassName('weekday-row')}>
+              <thead class={this.getClassName("calendar-header")}>
+                <tr class={this.getClassName("weekday-row")}>
                   {this.weekdays.map((weekday) => (
                     <th
                       role="columnheader"
                       abbr={weekday[1]}
-                      class={this.getClassName('weekday')}
+                      class={this.getClassName("weekday")}
                       key={weekday[0]}
                       scope="col"
                     >
                       <span aria-hidden="true">{weekday[0]}</span>
-                      <span class="visually-hidden">
-                        {weekday[1]}
-                      </span>
+                      <span class="visually-hidden">{weekday[1]}</span>
                     </th>
                   ))}
                 </tr>
@@ -568,7 +564,7 @@ export class WCDatepicker {
                   const rowKey = `row-${calendarRow[0].getMonth()}-${calendarRow[0].getDate()}`;
 
                   return (
-                    <tr class={this.getClassName('calendar-row')} key={rowKey}>
+                    <tr class={this.getClassName("calendar-row")} key={rowKey}>
                       {calendarRow.map((day) => {
                         const isCurrent = isSameDay(day, this.currentDate);
 
@@ -597,26 +593,26 @@ export class WCDatepicker {
                         const cellKey = `cell-${day.getMonth()}-${day.getDate()}`;
 
                         const className = {
-                          [this.getClassName('date')]: true,
-                          [this.getClassName('date--current')]: isCurrent,
-                          [this.getClassName('date--disabled')]: isDisabled,
-                          [this.getClassName('date--overflowing')]:
+                          [this.getClassName("date")]: true,
+                          [this.getClassName("date--current")]: isCurrent,
+                          [this.getClassName("date--disabled")]: isDisabled,
+                          [this.getClassName("date--overflowing")]:
                             isOverflowing,
-                          [this.getClassName('date--today')]: isToday,
-                          [this.getClassName('date--selected')]: isSelected,
-                          [this.getClassName('date--in-range')]: isInRange
+                          [this.getClassName("date--today")]: isToday,
+                          [this.getClassName("date--selected")]: isSelected,
+                          [this.getClassName("date--in-range")]: isInRange
                         };
 
                         const Tag = isSelected
-                          ? 'strong'
+                          ? "strong"
                           : isToday
-                          ? 'em'
-                          : 'span';
+                          ? "em"
+                          : "span";
 
                         return (
                           <td
                             aria-disabled={String(isDisabled)}
-                            aria-selected={isSelected ? 'true' : undefined}
+                            aria-selected={isSelected ? "true" : undefined}
                             class={className}
                             data-date={getISODateString(day)}
                             key={cellKey}
@@ -633,10 +629,10 @@ export class WCDatepicker {
                             <Tag aria-hidden="true">{day.getDate()}</Tag>
                             <span class="visually-hidden">
                               {Intl.DateTimeFormat(this.locale, {
-                                weekday: 'long',
-                                day: 'numeric',
-                                month: 'long',
-                                year: 'numeric'
+                                weekday: "long",
+                                day: "numeric",
+                                month: "long",
+                                year: "numeric"
                               }).format(day)}
                             </span>
                           </td>
@@ -650,10 +646,10 @@ export class WCDatepicker {
           </div>
 
           {showFooter && (
-            <div class={this.getClassName('footer')}>
+            <div class={this.getClassName("footer")}>
               {this.showTodayButton && (
                 <button
-                  class={this.getClassName('today-button')}
+                  class={this.getClassName("today-button")}
                   disabled={this.disabled}
                   innerHTML={this.todayButtonContent || undefined}
                   onClick={this.showToday}
@@ -664,7 +660,7 @@ export class WCDatepicker {
               )}
               {this.showClearButton && (
                 <button
-                  class={this.getClassName('clear-button')}
+                  class={this.getClassName("clear-button")}
                   disabled={this.disabled}
                   innerHTML={this.clearButtonContent || undefined}
                   onClick={this.clear}

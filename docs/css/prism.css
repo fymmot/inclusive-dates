@@ -1,7 +1,7 @@
 /* PrismJS 1.29.0
 https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript+typescript */
-code[class*='language-'],
-pre[class*='language-'] {
+code[class*="language-"],
+pre[class*="language-"] {
   font-family: var(--b-font-mono);
   text-align: left;
   white-space: pre;
@@ -17,11 +17,11 @@ pre[class*='language-'] {
   hyphens: none;
 }
 
-pre[class*='language-'] {
+pre[class*="language-"] {
   overflow: auto;
 }
 
-:not(pre) > code[class*='language-'] {
+:not(pre) > code[class*="language-"] {
   white-space: normal;
 }
 

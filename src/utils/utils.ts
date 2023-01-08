@@ -58,7 +58,7 @@ export function getDaysOfMonth(
 
 export function getFirstOfMonth(date: Date): Date {
   return new Date(
-    `${getYear(date)}-${String(getMonth(date)).padStart(2, '0')}-01`
+    `${getYear(date)}-${String(getMonth(date)).padStart(2, "0")}-01`
   );
 }
 
@@ -68,8 +68,8 @@ export function getISODateString(date: Date): string {
   }
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
     2,
-    '0'
-  )}-${String(date.getDate()).padStart(2, '0')}`;
+    "0"
+  )}-${String(date.getDate()).padStart(2, "0")}`;
 }
 
 export function getLastOfMonth(date: Date): Date {
@@ -87,10 +87,10 @@ export function getMonth(date: Date): number {
 
 export function getMonths(locale?: string): string[] {
   return new Array(12).fill(undefined).map((_, month) => {
-    const date = new Date(`2006-${String(month + 1).padStart(2, '0')}-01`);
+    const date = new Date(`2006-${String(month + 1).padStart(2, "0")}-01`);
 
     return Intl.DateTimeFormat(locale, {
-      month: 'long'
+      month: "long"
     }).format(date);
   });
 }
@@ -147,10 +147,10 @@ export function getWeekDays(
 
       return [
         Intl.DateTimeFormat(locale, {
-          weekday: 'short'
+          weekday: "short"
         }).format(date),
         Intl.DateTimeFormat(locale, {
-          weekday: 'long'
+          weekday: "long"
         }).format(date)
       ];
     });

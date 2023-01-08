@@ -779,112 +779,112 @@ defineCustomElements();</code></pre>
     <script src="js/prism.js"></script>
 
     <script>
-      const datepicker = document.getElementById('datepicker');
+      const datepicker = document.getElementById("datepicker");
 
-      const demoCodeContainer = document.getElementById('demo-code');
+      const demoCodeContainer = document.getElementById("demo-code");
 
-      const disabledInput = document.getElementById('disabled');
-      const firstDayOfWeekInput = document.getElementById('first-day-of-week');
-      const localeInput = document.getElementById('locale');
-      const rangeInput = document.getElementById('range');
-      const showClearButtonInput = document.getElementById('show-clear-button');
+      const disabledInput = document.getElementById("disabled");
+      const firstDayOfWeekInput = document.getElementById("first-day-of-week");
+      const localeInput = document.getElementById("locale");
+      const rangeInput = document.getElementById("range");
+      const showClearButtonInput = document.getElementById("show-clear-button");
       const showMonthStepperInput =
-        document.getElementById('show-month-stepper');
-      const showTodayButtonInput = document.getElementById('show-today-button');
-      const showYearStepperInput = document.getElementById('show-year-stepper');
-      const startDateInput = document.getElementById('start-date');
-      const valueInput = document.getElementById('value');
+        document.getElementById("show-month-stepper");
+      const showTodayButtonInput = document.getElementById("show-today-button");
+      const showYearStepperInput = document.getElementById("show-year-stepper");
+      const startDateInput = document.getElementById("start-date");
+      const valueInput = document.getElementById("value");
 
       function updateDemoCode() {
         demoCodeContainer.innerText = `${
-          this.datepicker.outerHTML.split('>')[0]
+          this.datepicker.outerHTML.split(">")[0]
         }></wc-datepicker>`
-          .replace(/ class="([a-zA-Z0-9-_ ])+"/, '')
-          .replace(' id="datepicker"', '')
-          .replace(/="true"/g, '');
+          .replace(/ class="([a-zA-Z0-9-_ ])+"/, "")
+          .replace(' id="datepicker"', "")
+          .replace(/="true"/g, "");
 
         window.Prism.highlightAll();
       }
 
       function toggleTheme() {
-        const stylesheet = document.getElementById('theme');
-        const themeLabel = document.getElementById('current-theme-label');
+        const stylesheet = document.getElementById("theme");
+        const themeLabel = document.getElementById("current-theme-label");
 
-        if (stylesheet.getAttribute('href').includes('light.css')) {
-          stylesheet.setAttribute('href', 'themes/dark.css');
-          themeLabel.innerHTML = 'dark.css';
+        if (stylesheet.getAttribute("href").includes("light.css")) {
+          stylesheet.setAttribute("href", "themes/dark.css");
+          themeLabel.innerHTML = "dark.css";
         } else {
-          stylesheet.setAttribute('href', 'themes/light.css');
-          themeLabel.innerHTML = 'light.css';
+          stylesheet.setAttribute("href", "themes/light.css");
+          themeLabel.innerHTML = "light.css";
         }
       }
 
-      datepicker.addEventListener('selectDate', (event) => {
-        valueInput.value = event.detail ? JSON.stringify(event.detail) : '';
+      datepicker.addEventListener("selectDate", (event) => {
+        valueInput.value = event.detail ? JSON.stringify(event.detail) : "";
       });
 
-      disabledInput.addEventListener('change', (event) => {
-        datepicker.setAttribute('disabled', String(event.target.checked));
+      disabledInput.addEventListener("change", (event) => {
+        datepicker.setAttribute("disabled", String(event.target.checked));
         updateDemoCode();
       });
 
-      firstDayOfWeekInput.addEventListener('change', (event) => {
-        datepicker.setAttribute('first-day-of-week', event.target.value);
+      firstDayOfWeekInput.addEventListener("change", (event) => {
+        datepicker.setAttribute("first-day-of-week", event.target.value);
         updateDemoCode();
       });
 
-      localeInput.addEventListener('change', (event) => {
+      localeInput.addEventListener("change", (event) => {
         if (event.target.value) {
-          datepicker.setAttribute('locale', event.target.value);
+          datepicker.setAttribute("locale", event.target.value);
         } else {
-          datepicker.removeAttribute('locale');
+          datepicker.removeAttribute("locale");
         }
 
         updateDemoCode();
       });
 
-      rangeInput.addEventListener('change', (event) => {
-        datepicker.setAttribute('range', String(event.target.checked));
+      rangeInput.addEventListener("change", (event) => {
+        datepicker.setAttribute("range", String(event.target.checked));
         updateDemoCode();
       });
 
-      showClearButtonInput.addEventListener('change', (event) => {
+      showClearButtonInput.addEventListener("change", (event) => {
         datepicker.setAttribute(
-          'show-clear-button',
+          "show-clear-button",
           String(event.target.checked)
         );
         updateDemoCode();
       });
 
-      showMonthStepperInput.addEventListener('change', (event) => {
+      showMonthStepperInput.addEventListener("change", (event) => {
         datepicker.setAttribute(
-          'show-month-stepper',
+          "show-month-stepper",
           String(event.target.checked)
         );
         updateDemoCode();
       });
 
-      showYearStepperInput.addEventListener('change', (event) => {
+      showYearStepperInput.addEventListener("change", (event) => {
         datepicker.setAttribute(
-          'show-year-stepper',
+          "show-year-stepper",
           String(event.target.checked)
         );
         updateDemoCode();
       });
 
-      showTodayButtonInput.addEventListener('change', (event) => {
+      showTodayButtonInput.addEventListener("change", (event) => {
         datepicker.setAttribute(
-          'show-today-button',
+          "show-today-button",
           String(event.target.checked)
         );
         updateDemoCode();
       });
 
-      startDateInput.addEventListener('change', (event) => {
+      startDateInput.addEventListener("change", (event) => {
         if (event.target.value) {
-          datepicker.setAttribute('start-date', event.target.value);
+          datepicker.setAttribute("start-date", event.target.value);
         } else {
-          datepicker.removeAttribute('start-date');
+          datepicker.removeAttribute("start-date");
         }
 
         updateDemoCode();

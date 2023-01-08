@@ -1,34 +1,34 @@
-import { Config } from '@stencil/core';
-import { postcss } from '@stencil/postcss';
-import autoprefixer from 'autoprefixer';
-import postcssNested from 'postcss-nested';
+import { Config } from "@stencil/core";
+import { postcss } from "@stencil/postcss";
+import autoprefixer from "autoprefixer";
+import postcssNested from "postcss-nested";
 
 export const config: Config = {
-  namespace: 'useit',
+  namespace: "useit",
   outputTargets: [
     {
       copy: [
         {
-          src: 'themes/*.css',
-          dest: '../themes',
+          src: "themes/*.css",
+          dest: "../themes",
           warn: true
         }
       ],
-      type: 'dist'
+      type: "dist"
     },
     {
       generateTypeDeclarations: true,
-      type: 'dist-custom-elements'
+      type: "dist-custom-elements"
     },
     {
       copy: [
         {
-          src: 'themes/*.css',
-          dest: 'themes',
+          src: "themes/*.css",
+          dest: "themes",
           warn: true
         }
       ],
-      type: 'www',
+      type: "www",
       serviceWorker: null
     }
   ],

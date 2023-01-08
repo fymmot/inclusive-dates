@@ -20,8 +20,8 @@ wc-datepicker {
   color: #111;
   background-color: #fff;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -189,12 +189,16 @@ wc-datepicker {
   cursor: default;
 }
 
-.wc-datepicker__date--disabled:not(.wc-datepicker__date--selected):not(.wc-datepicker__date--in-range):hover
+.wc-datepicker__date--disabled:not(.wc-datepicker__date--selected):not(
+    .wc-datepicker__date--in-range
+  ):hover
   > * {
   background-color: transparent;
 }
 
-.wc-datepicker__date--disabled.wc-datepicker__date--in-range:not(.wc-datepicker__date--selected):not(.wc-datepicker__date--in-range)
+.wc-datepicker__date--disabled.wc-datepicker__date--in-range:not(
+    .wc-datepicker__date--selected
+  ):not(.wc-datepicker__date--in-range)
   > * {
   background-color: transparent;
 }
@@ -210,7 +214,7 @@ wc-datepicker {
 
 .wc-datepicker__clear-button,
 .wc-datepicker__today-button,
-.wc-datepicker__calendar-button{
+.wc-datepicker__calendar-button {
   display: inline-flex;
   height: 2rem;
   padding-right: 0.5rem;
@@ -225,7 +229,7 @@ wc-datepicker {
   line-height: 1;
   cursor: pointer;
 }
-.label{
+.label {
   font-weight: 600;
   display: block;
 }
@@ -233,7 +237,7 @@ wc-datepicker {
   margin-left: 0.5rem;
 }
 
-.wc-datepicker__input{
+.wc-datepicker__input {
   display: inline-flex;
   height: 2rem;
   padding-right: 0.5rem;

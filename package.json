@@ -21,6 +21,7 @@
     "build": "yarn build:stencil && yarn build:docs",
     "build:stencil": "stencil build",
     "build:docs": "rimraf docs-www && copyfiles -u 1 docs/* docs/**/* dist/themes/* docs-www && copyfiles dist/esm/* docs-www && node terser.js",
+    "prettier": "prettier --write .",
     "start": "yarn start:stencil ",
     "start:stencil": "stencil build --dev --watch --serve",
     "start:docs": "concurrently --kill-others \"npm-watch build:docs\" \"serve docs-www\"",
@@ -29,7 +30,13 @@
     "generate": "stencil generate",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "yarn build:stencil && changeset publish"
+    "release": "yarn build:stencil && changeset publish",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md,html}": [
+      "prettier --write"
+    ]
   },
   "watch": {
     "build:docs": {
@@ -56,10 +63,13 @@
     "concurrently": "^7.5.0",
     "copyfiles": "^2.4.1",
     "glob": "^8.0.3",
+    "husky": "^8.0.3",
     "jest": "^27.0.3",
     "jest-cli": "^27.4.5",
+    "lint-staged": "^13.1.0",
     "npm-watch": "^0.11.0",
     "postcss-nested": "^6.0.0",
+    "prettier": "2.8.2",
     "rimraf": "^3.0.2",
     "serve": "^14.0.1",
     "terser": "^5.15.1"

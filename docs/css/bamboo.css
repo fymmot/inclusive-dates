@@ -1,9 +1,9 @@
 :root {
   --b-font-main: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --b-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    'Liberation Mono', 'Courier New', monospace;
+    "Liberation Mono", "Courier New", monospace;
   --b-txt: #2e3440;
   --b-txt-disabled: #aaa;
   --b-bg-1: #fff;
@@ -232,15 +232,15 @@ textarea {
 }
 
 select:not(.wc-datepicker__month-select),
-input[type='text']:not(.wc-datepicker__year-select):not(.wc-datepicker__input) {
+input[type="text"]:not(.wc-datepicker__year-select):not(.wc-datepicker__input) {
   width: 100%;
 }
 
-[type='color' i] {
+[type="color" i] {
   min-height: 2.125rem;
 }
 
-[type='checkbox' i] {
+[type="checkbox" i] {
   width: 1rem;
   height: 1rem;
 }
@@ -268,9 +268,9 @@ textarea:not([rows]) {
 }
 
 button,
-[type='button' i],
-[type='submit' i],
-[type='reset' i] {
+[type="button" i],
+[type="submit" i],
+[type="reset" i] {
   display: inline-block;
   border: 0;
   color: var(--b-btn-txt);
@@ -283,9 +283,9 @@ button,
 }
 
 button[disabled],
-[type='button' i][disabled],
-[type='submit' i][disabled],
-[type='reset' i][disabled] {
+[type="button" i][disabled],
+[type="submit" i][disabled],
+[type="reset" i][disabled] {
   opacity: 0.5;
 }
 
@@ -293,7 +293,7 @@ progress {
   vertical-align: middle;
 }
 
-[type='search' i] {
+[type="search" i] {
   outline-offset: -2px;
   -webkit-appearance: textfield;
 }
@@ -330,7 +330,7 @@ progress {
   box-shadow: none;
 }
 
-[aria-busy='true' i] {
+[aria-busy="true" i] {
   cursor: progress;
 }
 
@@ -338,7 +338,7 @@ progress {
   cursor: pointer;
 }
 
-[aria-disabled='true' i],
+[aria-disabled="true" i],
 [disabled] {
   color: var(--b-txt-disabled);
   cursor: default;
