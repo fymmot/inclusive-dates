@@ -33,9 +33,11 @@ export class InclusiveDates {
   @Prop() placeholder?: string = `Try "tomorrrow" or "in ten days"`;
   @Prop() todayButtonContent?: string;
   @Prop({ mutable: true }) value?: string;
+  @Prop({ mutable: true }) hasError?: boolean = false;
 
   @State() currentDate: Date;
   @State() internalValue: string;
+  @State() errorState: boolean;
 
   @Event() selectDate: EventEmitter<string | string[] | undefined>;
 
@@ -43,6 +45,7 @@ export class InclusiveDates {
   private inputRef?: HTMLInputElement;
   private calendarButtonRef?: HTMLButtonElement;
   private pickerRef?: HTMLWcDatepickerElement;
+  private quickButtons?: string[] = ["Tomorrow", "In 10 days"];
   // private calendarRef?: HTMLWcDatepickerElement
 
   clickHandler = async () => {
@@ -52,14 +55,19 @@ export class InclusiveDates {
     else if ((await this.modalRef.getState()) === true)
       await this.modalRef?.close();
   };
-  handleChange = async (event) => {
-    const parsedDate = chrono.parseDate(event.target.value, new Date(), {
-      forwardDate: true
-    });
-    if (parsedDate instanceof Date) {
-      this.internalValue = parsedDate.toISOString().slice(0, 10);
-      event.target.value = parsedDate.toISOString().slice(0, 10);
+  handleQuickButtonClick = async (event: MouseEvent) => {
+    const parsedDate = await chrono.parseDate(
+      (event.target as HTMLButtonElement).innerText,
+      new Date(),
+      {
+        forwardDate: true
+      }
+    );
+    if (parsedDate) {
       this.pickerRef.value = parsedDate;
+      this.internalValue = parsedDate.toISOString().slice(0, 10);
+      this.errorState = false;
+      this.inputRef.value = this.internalValue;
       announce(
         `${Intl.DateTimeFormat(this.locale, {
           weekday: "long",
@@ -71,6 +79,30 @@ export class InclusiveDates {
       );
     }
   };
+  handleChange = async (event) => {
+    const parsedDate = chrono.parseDate(event.target.value, new Date(), {
+      forwardDate: true
+    });
+    if (parsedDate instanceof Date) {
+      this.internalValue = parsedDate.toISOString().slice(0, 10);
+      event.target.value = parsedDate.toISOString().slice(0, 10);
+      this.pickerRef.value = parsedDate;
+      this.errorState = false;
+      announce(
+        `${Intl.DateTimeFormat(this.locale, {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        }).format(parsedDate)} selected!`,
+        "polite"
+      );
+    } else this.errorState = true;
+  };
+  @Watch("hasError")
+  watchHasError() {
+    this.errorState = this.hasError;
+  }
 
   @Watch("locale")
   watchLocale() {}
@@ -87,6 +119,7 @@ export class InclusiveDates {
     this.inputRef.value = newValue;
     this.internalValue = newValue;
     this.modalRef.close();
+    this.errorState = false;
     announce(
       `${Intl.DateTimeFormat(this.locale, {
         weekday: "long",
@@ -113,8 +146,11 @@ export class InclusiveDates {
             class="wc-datepicker__input"
             ref={(r) => (this.inputRef = r)}
             onChange={this.handleChange}
+            aria-describedby={
+              this.errorState ? `${this.pickerid}-error` : undefined
+            }
+            aria-invalid={this.errorState}
           />
-
           <button
             ref={(r) => (this.calendarButtonRef = r)}
             onClick={this.clickHandler}
@@ -123,6 +159,23 @@ export class InclusiveDates {
             Open calendar
           </button>
         </div>
+        {this.quickButtons?.length > 0 &&
+          this.quickButtons.map((buttonText) => {
+            return (
+              <button onClick={this.handleQuickButtonClick}>
+                {buttonText}
+              </button>
+            );
+          })}
+        {this.errorState && (
+          <div
+            class="wc-datepicker__input-error"
+            id={`${this.pickerid}-error`}
+            role="status"
+          >
+            We could not find a matching date
+          </div>
+        )}
         <inclusive-dates-modal
           label="Calendar"
           hideLabel={true}
