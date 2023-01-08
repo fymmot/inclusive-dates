@@ -14,17 +14,26 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <link rel="stylesheet" href="css/bamboo.css" />
     <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/prism.css" />
+    <link rel="stylesheet" href="css/prism.css" id="prism"/>
     <link rel="stylesheet" href="themes/light.css" id="theme" />
 
     <script type="module" src="dist/esm/useit.js"></script>
+    <script>
+      /*if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").classList.add("dark");
+      }
+      else {
+        document.querySelector("html").classList.remove("dark");
+      }*/
+
+    </script>
   </head>
   <body>
     <header>
       <h1>Inclusive dates v2.0 (<strong>work in progress!</strong>)</h1>
-      <p>Next version of <a href="https://github.com/fymmot/inclusive-dates"><code>fymmot/inclusive-dates</code></a>. A human-friendly and accessible Web Component datepicker with natural language parsing via <a href="https://github.com/wanasit/chrono"><code>Chrono.js</code></a>.</p>
+      <p>Next version of <a href="https://github.com/fymmot/inclusive-dates"><code>fymmot/inclusive-dates</code></a>. A human-friendly and accessible datepicker with support for natural language input. Now as a reusable Web Component!</p>
       <p>
-        Based on the excellent <a href="https://github.com/sqrrl/wc-datepicker"><code>sqrrl/wc-datepicker</code></a>
+        Forked from the excellent <a href="https://github.com/sqrrl/wc-datepicker"><code>sqrrl/wc-datepicker</code></a>
       </p>
 
       <a href="https://github.com/fymmot/inclusive-dates-component">Github repository</a>
@@ -55,10 +64,10 @@
 
         <ul>
           <li>
-            <strong>🧏‍♀️ Smart date parsing:</strong> Accepts natural language input thanks to Chrono.js. Try "yesterday", "May tenth" or "in one year"!</a>.
+            <strong>🧏‍♀️ Smart date parsing:</strong> Accepts natural language input using <a href="https://github.com/wanasit/chrono"><code>Chrono.js</code></a>. Try "yesterday", "May tenth" or "in one year"!</a>.
           </li>
           <li>
-            <strong>🧏‍♀️ Accessible first:</strong> Built to support users of assistive
+            <strong>🧏‍♀️ Accessibility first:</strong> Built to support users of assistive
             technology. Follows the <a href="https://www.w3.org/WAI/ARIA/apg/example-index/dialog-modal/datepicker-dialog">WAI-ARIA APG Datepicker dialog pattern</a>.
           </li>
           <li>
@@ -811,13 +820,17 @@ defineCustomElements();</code></pre>
 
       function toggleTheme() {
         const stylesheet = document.getElementById("theme");
+        const prismCSS = document.getElementById("prism")
         const themeLabel = document.getElementById("current-theme-label");
+        document.querySelector("html").classList.toggle("dark")
 
         if (stylesheet.getAttribute("href").includes("light.css")) {
           stylesheet.setAttribute("href", "themes/dark.css");
+          prismCSS.setAttribute("href", "css/prism-dark.css")
           themeLabel.innerHTML = "dark.css";
         } else {
           stylesheet.setAttribute("href", "themes/light.css");
+          prismCSS.setAttribute("href", "css/prism.css")
           themeLabel.innerHTML = "light.css";
         }
       }

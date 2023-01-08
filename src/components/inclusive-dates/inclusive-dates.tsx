@@ -27,6 +27,8 @@ export class InclusiveDates {
   @Prop() disabled?: boolean = false;
   @Prop() nextMonthButtonContent?: string;
   @Prop() nextYearButtonContent?: string;
+  @Prop() showYearStepper?: boolean = false;
+  @Prop() showMonthStepper?: boolean = true;
   @Prop() startDate?: string = getISODateString(new Date());
   @Prop() pickerid!: string;
   @Prop() firstDayOfWeek?: number = 1; // Monday
@@ -36,7 +38,6 @@ export class InclusiveDates {
   @Prop({ mutable: true }) value?: string;
   @Prop({ mutable: true }) hasError?: boolean = false;
 
-  @State() currentDate: Date;
   @State() internalValue: string;
   @State() errorState: boolean;
 
@@ -54,7 +55,24 @@ export class InclusiveDates {
   ];
   // private calendarRef?: HTMLWcDatepickerElement
 
-  clickHandler = async () => {
+  updateValue(newValue: Date) {
+    this.pickerRef.value = newValue;
+    this.internalValue = newValue.toISOString().slice(0, 10);
+    this.errorState = false;
+    this.inputRef.value = this.internalValue;
+    this.selectDate.emit(this.internalValue);
+    announce(
+      `${Intl.DateTimeFormat(this.locale, {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      }).format(newValue)} selected!`,
+      "polite"
+    );
+  }
+
+  handleCalendarButtonClick = async () => {
     await this.modalRef.setTriggerElement(this.calendarButtonRef);
     await this.modalRef.setAnchorElement(this.inputRef);
     if ((await this.modalRef.getState()) === false) await this.modalRef?.open();
@@ -70,19 +88,7 @@ export class InclusiveDates {
       }
     );
     if (parsedDate) {
-      this.pickerRef.value = parsedDate;
-      this.internalValue = parsedDate.toISOString().slice(0, 10);
-      this.errorState = false;
-      this.inputRef.value = this.internalValue;
-      announce(
-        `${Intl.DateTimeFormat(this.locale, {
-          weekday: "long",
-          day: "numeric",
-          month: "long",
-          year: "numeric"
-        }).format(parsedDate)} selected!`,
-        "polite"
-      );
+      this.updateValue(parsedDate);
     }
   };
   handleChange = async (event) => {
@@ -90,20 +96,8 @@ export class InclusiveDates {
     const parsedDate = chrono.parseDate(event.target.value, new Date(), {
       forwardDate: true
     });
-    if (parsedDate instanceof Date && event.target.value.length > 0) {
-      this.internalValue = parsedDate.toISOString().slice(0, 10);
-      event.target.value = parsedDate.toISOString().slice(0, 10);
-      this.pickerRef.value = parsedDate;
-      this.errorState = false;
-      announce(
-        `${Intl.DateTimeFormat(this.locale, {
-          weekday: "long",
-          day: "numeric",
-          month: "long",
-          year: "numeric"
-        }).format(parsedDate)} selected!`,
-        "polite"
-      );
+    if (parsedDate instanceof Date) {
+      this.updateValue(parsedDate);
     } else this.errorState = true;
   };
   @Watch("hasError")
@@ -117,7 +111,6 @@ export class InclusiveDates {
   @Watch("value")
   watchValue() {
     if (Boolean(this.value)) {
-      this.currentDate = new Date(this.value);
       this.internalValue = this.value;
     }
   }
@@ -141,14 +134,17 @@ export class InclusiveDates {
   render() {
     return (
       <Host>
-        <label htmlFor={`${this.pickerid}-input`} class="wc-datepicker__label">
+        <label
+          htmlFor={this.pickerid ? `${this.pickerid}-input` : undefined}
+          class="wc-datepicker__label"
+        >
           {this.label}
         </label>
         <br />
         <div class="wc-datepicker__input-container">
           <input
             disabled={this.disabled}
-            id={`${this.pickerid}-input`}
+            id={this.pickerid ? `${this.pickerid}-input` : undefined}
             type="text"
             placeholder={this.placeholder}
             class="wc-datepicker__input"
@@ -161,7 +157,7 @@ export class InclusiveDates {
           />
           <button
             ref={(r) => (this.calendarButtonRef = r)}
-            onClick={this.clickHandler}
+            onClick={this.handleCalendarButtonClick}
             class="wc-datepicker__calendar-button"
             disabled={this.disabled}
           >
@@ -189,6 +185,8 @@ export class InclusiveDates {
             firstDayOfWeek={this.firstDayOfWeek}
             showHiddenTitle={false}
             disabled={this.disabled}
+            showMonthStepper={this.showMonthStepper}
+            showYearStepper={this.showYearStepper}
           />
         </inclusive-dates-modal>
         {this.quickButtons?.length > 0 && (
@@ -213,7 +211,7 @@ export class InclusiveDates {
         {this.errorState && (
           <div
             class="wc-datepicker__input-error"
-            id={`${this.pickerid}-error`}
+            id={this.pickerid ? `${this.pickerid}-error` : undefined}
             role="status"
           >
             We could not find a matching date

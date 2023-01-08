@@ -8,11 +8,24 @@
   --b-txt-disabled: #aaa;
   --b-bg-1: #fff;
   --b-bg-2: #f2f3f5;
+  --b-bg-3: #f2f3f5;
   --b-line: #f2f3f5;
   --b-link: #0000ff;
   --b-btn-bg: #0000ff;
   --b-btn-txt: #fff;
   --b-focus: #0000ff;
+}
+:root.dark {
+  --b-txt: #fff;
+  --b-txt-disabled: #aaa;
+  --b-bg-1: #000;
+  --b-bg-2: #222;
+  --b-bg-3: #f2f3f5;
+  --b-line: #333;
+  --b-link: #6d6dff;
+  --b-btn-bg: #0000ff;
+  --b-btn-txt: #fff;
+  --b-focus: #eeff51;
 }
 
 *,

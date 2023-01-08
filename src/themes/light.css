@@ -244,6 +244,12 @@ wc-datepicker {
   gap: 0.5rem;
 }
 
+.wc-datepicker__quick-button {
+  color: #111;
+  background-color: inherit;
+  text-decoration: underline;
+}
+
 .wc-datepicker__input {
   display: inline-flex;
   height: 2rem;
