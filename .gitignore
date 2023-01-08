@@ -3,6 +3,8 @@ www/
 loader/
 docs-www/
 
+src/components.d.ts
+
 *~
 *.sw[mnpcod]
 *.log
