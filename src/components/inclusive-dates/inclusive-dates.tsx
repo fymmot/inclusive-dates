@@ -21,6 +21,7 @@ export class InclusiveDates {
   @Prop() nextYearButtonContent?: string;
   @Prop() startDate?: string = getISODateString(new Date());
   @Prop() pickerid!: string
+  @Prop() firstDayOfWeek?: number = 1 // Monday
   @Prop() label?: string = "Choose a date (any way you like)"
   @Prop() placeholder?: string = `Try "tomorrrow" or "in ten days"`
   @Prop() todayButtonContent?: string;
@@ -77,6 +78,12 @@ export class InclusiveDates {
     this.inputRef.value = newValue;
     this.internalValue = newValue;
     this.modalRef.close()
+    announce(`${Intl.DateTimeFormat(this.locale, {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    }).format(new Date(newValue))} selected!`, 'polite')
   }
 
 
@@ -103,12 +110,13 @@ export class InclusiveDates {
           >Open calendar
           </button>
         </div>
-        <inclusive-dates-modal label="Calendar" hideLabel={true} ref={el => (this.modalRef = el)} onOpened={()=>{}}>
+        <inclusive-dates-modal label="Calendar" hideLabel={true} ref={el => (this.modalRef = el)} onOpened={()=>{this.pickerRef.modalIsOpen = true}} onClosed={()=>{this.pickerRef.modalIsOpen = false}}>
           <wc-datepicker
             locale={this.locale}
             onSelectDate={(event)=> this.handlePickerSelection(event.detail as string)}
             ref={el => (this.pickerRef = el)}
             startDate={this.startDate}
+            firstDayOfWeek={this.firstDayOfWeek}
           />
         </inclusive-dates-modal>
       </Host>

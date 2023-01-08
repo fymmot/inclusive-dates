@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MonthChangedEventDetails, WCDatepickerLabels } from "./components/wc-datepicker/wc-datepicker";
 export namespace Components {
     interface InclusiveDates {
+        "firstDayOfWeek"?: number;
         "label"?: string;
         "locale"?: string;
         "nextMonthButtonContent"?: string;
@@ -41,6 +42,7 @@ export namespace Components {
         "firstDayOfWeek"?: number;
         "labels"?: WCDatepickerLabels;
         "locale"?: string;
+        "modalIsOpen"?: boolean;
         "nextMonthButtonContent"?: string;
         "nextYearButtonContent"?: string;
         "previousMonthButtonContent"?: string;
@@ -94,6 +96,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface InclusiveDates {
+        "firstDayOfWeek"?: number;
         "label"?: string;
         "locale"?: string;
         "nextMonthButtonContent"?: string;
@@ -108,6 +111,7 @@ declare namespace LocalJSX {
     interface InclusiveDatesModal {
         "hideLabel"?: boolean;
         "label": string;
+        "onClosed"?: (event: InclusiveDatesModalCustomEvent<any>) => void;
         "onOpened"?: (event: InclusiveDatesModalCustomEvent<any>) => void;
     }
     interface WcDatepicker {
@@ -118,6 +122,7 @@ declare namespace LocalJSX {
         "firstDayOfWeek"?: number;
         "labels"?: WCDatepickerLabels;
         "locale"?: string;
+        "modalIsOpen"?: boolean;
         "nextMonthButtonContent"?: string;
         "nextYearButtonContent"?: string;
         "onChangeMonth"?: (event: WcDatepickerCustomEvent<MonthChangedEventDetails>) => void;

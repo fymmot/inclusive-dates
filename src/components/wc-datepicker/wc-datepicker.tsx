@@ -70,6 +70,9 @@ export class WCDatepicker {
 
   @Prop() clearButtonContent?: string;
   @Prop() disabled?: boolean = false;
+  @Prop() modalIsOpen?: boolean = false;
+
+
   @Prop() disableDate?: (date: Date) => boolean = () => false;
   @Prop() elementClassName?: string = 'wc-datepicker';
   @Prop() firstDayOfWeek?: number = 1;
@@ -96,11 +99,18 @@ export class WCDatepicker {
   @Event() changeMonth: EventEmitter<MonthChangedEventDetails>;
 
   private moveFocusAfterMonthChanged: Boolean;
+  private moveFocusOnModalOpen: Boolean;
 
   componentWillLoad() {
     this.init();
   }
 
+  @Watch('modalIsOpen')
+  watchModalIsOpen() {
+    if (this.modalIsOpen === true){
+      this.moveFocusOnModalOpen = true
+    }
+  }
   @Watch('firstDayOfWeek')
   watchFirstDayOfWeek() {
     this.updateWeekdays();
@@ -122,7 +132,6 @@ export class WCDatepicker {
 
   @Watch('startDate')
   watchStartDate() {
-    console.log(this.startDate)
     this.currentDate = this.startDate ? new Date(this.startDate) : new Date();
   }
 
@@ -141,6 +150,10 @@ export class WCDatepicker {
     if (this.moveFocusAfterMonthChanged) {
       this.focusDate(this.currentDate);
       this.moveFocusAfterMonthChanged = false;
+    }
+    if (this.moveFocusOnModalOpen) {
+      this.focusDate(this.currentDate);
+      this.moveFocusOnModalOpen = false
     }
   }
 

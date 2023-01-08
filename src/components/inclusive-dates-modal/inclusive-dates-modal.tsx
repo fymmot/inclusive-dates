@@ -23,6 +23,7 @@ export class InclusiveDatesModal {
   @State() closing = false;
   @State () showing = false;
   @Event() opened: EventEmitter;
+  @Event() closed: EventEmitter;
 
   private triggerElement: HTMLElement
   private anchorEl: HTMLElement;
@@ -39,8 +40,8 @@ export class InclusiveDatesModal {
     this.undo = hideOthers(this.el)
     this.opened.emit(undefined)
     setTimeout(()=>{
-      if (this.bodyRef)
-      this.bodyRef.focus();
+      if (this.bodyRef){}
+      // this.bodyRef.focus();
     }, 50)
   }
 
@@ -50,6 +51,7 @@ export class InclusiveDatesModal {
   @Method()
   async close() {
     this.showing = false
+    this.closed.emit(undefined)
     this.undo()
 
     if (this.triggerElement)
