@@ -142,6 +142,7 @@ export class InclusiveDates {
             ref={(el) => (this.pickerRef = el)}
             startDate={this.startDate}
             firstDayOfWeek={this.firstDayOfWeek}
+            showHiddenTitle={false}
           />
         </inclusive-dates-modal>
       </Host>

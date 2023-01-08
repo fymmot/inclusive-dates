@@ -302,7 +302,7 @@ describe("wc-datepicker", () => {
   it("changes months", async () => {
     const page = await newSpecPage({
       components: [WCDatepicker],
-      html: `<wc-datepicker start-date="2022-01-01"></wc-datepicker>`,
+      html: `<wc-datepicker show-hidden-title="true" start-date="2022-01-01"></wc-datepicker>`,
       language: "en"
     });
 
@@ -351,7 +351,7 @@ describe("wc-datepicker", () => {
   it("changes year", async () => {
     const page = await newSpecPage({
       components: [WCDatepicker],
-      html: `<wc-datepicker show-year-stepper="true" start-date="2022-01-01"></wc-datepicker>`,
+      html: `<wc-datepicker show-hidden-title="true" show-year-stepper="true" start-date="2022-01-01"></wc-datepicker>`,
       language: "en"
     });
 
@@ -400,7 +400,7 @@ describe("wc-datepicker", () => {
   it("jumps to current month", async () => {
     const page = await newSpecPage({
       components: [WCDatepicker],
-      html: `<wc-datepicker show-today-button="true" start-date="1989-01-01"></wc-datepicker>`,
+      html: `<wc-datepicker show-hidden-title="true" show-today-button="true" start-date="1989-01-01"></wc-datepicker>`,
       language: "en"
     });
 

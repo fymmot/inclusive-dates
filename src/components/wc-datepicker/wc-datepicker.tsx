@@ -86,6 +86,7 @@ export class WCDatepicker {
   @Prop() showMonthStepper?: boolean = true;
   @Prop() showTodayButton?: boolean = true;
   @Prop() showYearStepper?: boolean = false;
+  @Prop() showHiddenTitle?: boolean = true;
   @Prop() startDate?: string = getISODateString(new Date());
   @Prop() todayButtonContent?: string;
   @Prop({ mutable: true }) value?: Date | Date[];
@@ -419,13 +420,16 @@ export class WCDatepicker {
           }}
         >
           <div class={this.getClassName("header")}>
-            <span
-            // aria-atomic="true"
-            // aria-live="polite"
-            // class="visually-hidden"
-            >
-              {this.getTitle()}
-            </span>
+            {this.showHiddenTitle && (
+              <span
+                aria-atomic="true"
+                aria-live="polite"
+                class="visually-hidden"
+              >
+                {this.getTitle()}
+              </span>
+            )}
+
             {this.showYearStepper && (
               <button
                 aria-label={this.labels.previousYearButton}
