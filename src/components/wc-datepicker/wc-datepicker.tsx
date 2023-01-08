@@ -74,7 +74,7 @@ export class WCDatepicker {
 
   @Prop() disableDate?: (date: Date) => boolean = () => false;
   @Prop() elementClassName?: string = "wc-datepicker";
-  @Prop() firstDayOfWeek?: number = 1;
+  @Prop() firstDayOfWeek?: number = 0;
   @Prop() range?: boolean = false;
   @Prop() labels?: WCDatepickerLabels = defaultLabels;
   @Prop() locale?: string = navigator?.language || "en-US";
@@ -189,6 +189,18 @@ export class WCDatepicker {
     }
 
     return calendarRows;
+  }
+
+  private getTitle() {
+    if (!Boolean(this.currentDate)) {
+      return;
+    }
+
+    return Intl.DateTimeFormat(this.locale, {
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    }).format(this.currentDate);
   }
 
   /*private getTitle() {
@@ -407,9 +419,13 @@ export class WCDatepicker {
           }}
         >
           <div class={this.getClassName("header")}>
-            {/*<span aria-atomic="true" aria-live="polite" class="visually-hidden">
+            <span
+            // aria-atomic="true"
+            // aria-live="polite"
+            // class="visually-hidden"
+            >
               {this.getTitle()}
-            </span>*/}
+            </span>
             {this.showYearStepper && (
               <button
                 aria-label={this.labels.previousYearButton}

@@ -89,7 +89,8 @@ describe("wc-datepicker", () => {
     const weekdaysHeader1 = getWeekdaysHeader(page);
 
     expect(weekdaysHeader1).toEqual(
-      getWeekDays(0, "en-US").map((weekday) => weekday[0])
+      // Results in double weekday names due to screen reader text
+      getWeekDays(0, "en-US").map((weekday) => `${weekday[0]}${weekday[1]}`)
     );
 
     page.root.setAttribute("first-day-of-week", "1");
@@ -98,7 +99,8 @@ describe("wc-datepicker", () => {
     const weekdaysHeader2 = getWeekdaysHeader(page);
 
     expect(weekdaysHeader2).toEqual(
-      getWeekDays(1, "en-US").map((weekday) => weekday[0])
+      // Results in double weekday names due to screen reader text
+      getWeekDays(1, "en-US").map((weekday) => `${weekday[0]}${weekday[1]}`)
     );
 
     page.root.setAttribute("locale", "de-DE");
@@ -107,7 +109,8 @@ describe("wc-datepicker", () => {
     const weekdaysHeader3 = getWeekdaysHeader(page);
 
     expect(weekdaysHeader3).toEqual(
-      getWeekDays(1, "de-DE").map((weekday) => weekday[0])
+      // Results in double weekday names due to screen reader text
+      getWeekDays(1, "de-DE").map((weekday) => `${weekday[0]}${weekday[1]}`)
     );
   });
 
