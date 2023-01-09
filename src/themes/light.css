@@ -16,7 +16,8 @@ wc-datepicker {
   width: min-content;
   min-width: 17rem;
   max-width: 24rem;
-  border: 0.0625rem solid #f2f3f5;
+  border: 0.0625rem solid #949494;
+  border-radius: 0.375rem;
   color: #111;
   background-color: #fff;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
@@ -257,9 +258,8 @@ wc-datepicker {
   padding-left: 0.5rem;
   justify-content: center;
   align-items: center;
-  border: none;
   border-radius: 0.25rem;
   color: #111;
   line-height: 1;
-  border: 1px solid #14171e;
+  border: 1px solid #949494;
 }

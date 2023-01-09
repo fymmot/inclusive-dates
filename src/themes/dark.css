@@ -16,7 +16,7 @@ wc-datepicker {
   width: min-content;
   min-width: 17rem;
   max-width: 24rem;
-  border: 0.0625rem solid #14171e;
+  border: 0.0625rem solid #595959;
   border-radius: 0.375rem;
   color: #fff;
   background-color: #14171e;
@@ -263,9 +263,9 @@ wc-datepicker {
   justify-content: center;
   align-items: center;
   border-radius: 0.25rem;
-  color: #111;
+  color: #fff;
   line-height: 1;
-  border: 1px solid #fff;
+  border: 1px solid #595959;
 }
 .wc-datepicker__input::placeholder {
   color: #fff;

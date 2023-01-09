@@ -22,7 +22,7 @@
   --b-bg-2: #222;
   --b-bg-3: #f2f3f5;
   --b-line: #333;
-  --b-link: #6d6dff;
+  --b-link: #c7c7ff;
   --b-btn-bg: #0000ff;
   --b-btn-txt: #fff;
   --b-focus: #eeff51;
@@ -115,7 +115,8 @@ h6 {
 
 a {
   color: var(--b-link);
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 a:hover {
