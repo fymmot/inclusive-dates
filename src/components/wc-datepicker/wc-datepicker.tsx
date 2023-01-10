@@ -40,6 +40,8 @@ export type WCDatepickerLabels = {
   previousYearButton: string;
   todayButton: string;
   yearSelect: string;
+  keyboardHint: string;
+  selected: string;
 };
 
 const defaultLabels: WCDatepickerLabels = {
@@ -51,7 +53,9 @@ const defaultLabels: WCDatepickerLabels = {
   previousMonthButton: "Previous month",
   previousYearButton: "Previous year",
   todayButton: "Show today",
-  yearSelect: "Select year"
+  yearSelect: "Select year",
+  keyboardHint: "Keyboard commands",
+  selected: "Selected date"
 };
 
 export interface MonthChangedEventDetails {
@@ -86,6 +90,7 @@ export class WCDatepicker {
   @Prop() showMonthStepper?: boolean = true;
   @Prop() showTodayButton?: boolean = true;
   @Prop() showYearStepper?: boolean = false;
+  @Prop() showKeyboardInstructions?: boolean = false;
   @Prop() showHiddenTitle?: boolean = true;
   @Prop() startDate?: string = getISODateString(new Date());
   @Prop() todayButtonContent?: string;
@@ -203,18 +208,6 @@ export class WCDatepicker {
       year: "numeric"
     }).format(this.currentDate);
   }
-
-  /*private getTitle() {
-    if (!Boolean(this.currentDate)) {
-      return;
-    }
-
-    return Intl.DateTimeFormat(this.locale, {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
-    }).format(this.currentDate);
-  }*/
 
   private focusDate(date: Date) {
     this.el
@@ -408,7 +401,10 @@ export class WCDatepicker {
   };
 
   render() {
-    const showFooter = this.showTodayButton || this.showClearButton;
+    const showFooter =
+      this.showTodayButton ||
+      this.showClearButton ||
+      this.showKeyboardInstructions;
 
     return (
       <Host>
@@ -648,12 +644,13 @@ export class WCDatepicker {
                           >
                             <Tag aria-hidden="true">{day.getDate()}</Tag>
                             <span class="visually-hidden">
-                              {Intl.DateTimeFormat(this.locale, {
-                                weekday: "long",
+                              {`${
+                                isSelected ? `${this.labels.selected}, ` : ""
+                              }${Intl.DateTimeFormat(this.locale, {
                                 day: "numeric",
                                 month: "long",
                                 year: "numeric"
-                              }).format(day)}
+                              }).format(day)}`}
                             </span>
                           </td>
                         );
@@ -667,28 +664,48 @@ export class WCDatepicker {
 
           {showFooter && (
             <div class={this.getClassName("footer")}>
-              {this.showTodayButton && (
-                <button
-                  class={this.getClassName("today-button")}
-                  disabled={this.disabled}
-                  innerHTML={this.todayButtonContent || undefined}
-                  onClick={this.showToday}
-                  type="button"
-                >
-                  {this.labels.todayButton}
-                </button>
-              )}
-              {this.showClearButton && (
-                <button
-                  class={this.getClassName("clear-button")}
-                  disabled={this.disabled}
-                  innerHTML={this.clearButtonContent || undefined}
-                  onClick={this.clear}
-                  type="button"
-                >
-                  {this.labels.clearButton}
-                </button>
-              )}
+              <div class={this.getClassName("footer-buttons")}>
+                {this.showTodayButton && (
+                  <button
+                    class={this.getClassName("today-button")}
+                    disabled={this.disabled}
+                    innerHTML={this.todayButtonContent || undefined}
+                    onClick={this.showToday}
+                    type="button"
+                  >
+                    {this.labels.todayButton}
+                  </button>
+                )}
+                {this.showClearButton && (
+                  <button
+                    class={this.getClassName("clear-button")}
+                    disabled={this.disabled}
+                    innerHTML={this.clearButtonContent || undefined}
+                    onClick={this.clear}
+                    type="button"
+                  >
+                    {this.labels.clearButton}
+                  </button>
+                )}
+              </div>
+              {this.showKeyboardInstructions &&
+                !window.matchMedia("(pointer: coarse)").matches && (
+                  <button
+                    type="button"
+                    onClick={() => alert("Todo: Add Keyboard helper!")}
+                    class={this.getClassName("keyboard-hint")}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="1em"
+                      width="1em"
+                      viewBox="0 0 48 48"
+                    >
+                      <path d="M7 38q-1.2 0-2.1-.925Q4 36.15 4 35V13q0-1.2.9-2.1.9-.9 2.1-.9h34q1.2 0 2.1.9.9.9.9 2.1v22q0 1.15-.9 2.075Q42.2 38 41 38Zm0-3h34V13H7v22Zm8-3.25h18v-3H15Zm-4.85-6.25h3v-3h-3Zm6.2 0h3v-3h-3Zm6.15 0h3v-3h-3Zm6.2 0h3v-3h-3Zm6.15 0h3v-3h-3Zm-24.7-6.25h3v-3h-3Zm6.2 0h3v-3h-3Zm6.15 0h3v-3h-3Zm6.2 0h3v-3h-3Zm6.15 0h3v-3h-3ZM7 35V13v22Z" />
+                    </svg>
+                    {this.labels.keyboardHint}
+                  </button>
+                )}
             </div>
           )}
         </div>

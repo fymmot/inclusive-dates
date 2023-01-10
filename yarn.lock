@@ -893,6 +893,11 @@
     autoprefixer "^10.3.6"
     postcss "~8.3.8"
 
+"@stencil/sass@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-2.0.2.tgz#253c96e534b6021de7eac7b0910adf13e8e37509"
+  integrity sha512-+hdPubxA4cBEyJR0ge0aGl9FUr0y6e4yqcsfrxkocOT6Nv+Mi+QpfZ9kx1W3ECL640VRcHqQifPcnoauvmqPZg==
+
 "@swc/helpers@^0.4.14":
   version "0.4.14"
   resolved "https://registry.npmjs.org/@swc/helpers/-/helpers-0.4.14.tgz"

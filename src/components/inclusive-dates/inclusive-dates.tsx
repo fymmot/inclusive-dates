@@ -13,6 +13,21 @@ import * as chrono from "chrono-node";
 import { announce } from "@react-aria/live-announcer";
 
 import { getISODateString } from "../../utils/utils";
+import { MonthChangedEventDetails } from "../wc-datepicker/wc-datepicker";
+
+export interface InclusiveDatesLabels {
+  selected?: string;
+  openCalendar?: string;
+  calendar?: string;
+  errorMessage?: string;
+}
+
+const defaultLabels: InclusiveDatesLabels = {
+  selected: "selected",
+  openCalendar: "Open calendar",
+  calendar: "calendar",
+  errorMessage: "We could not find a matching date"
+};
 
 @Component({
   scoped: true,
@@ -24,11 +39,16 @@ export class InclusiveDates {
   @Element() el: HTMLElement;
 
   @Prop() locale?: string = navigator?.language || "en-US";
+  @Prop() disableDate?: HTMLWcDatepickerElement["disableDate"];
   @Prop() disabled?: boolean = false;
   @Prop() nextMonthButtonContent?: string;
   @Prop() nextYearButtonContent?: string;
   @Prop() showYearStepper?: boolean = false;
   @Prop() showMonthStepper?: boolean = true;
+  @Prop() showClearButton?: boolean = true;
+  @Prop() showTodayButton?: boolean = true;
+  @Prop() showKeyboardInstructions?: boolean = true;
+  @Prop() labels?: InclusiveDatesLabels = defaultLabels;
   @Prop() startDate?: string = getISODateString(new Date());
   @Prop() pickerid!: string;
   @Prop() firstDayOfWeek?: number = 1; // Monday
@@ -39,7 +59,8 @@ export class InclusiveDates {
   @Prop({ mutable: true }) hasError?: boolean = false;
 
   @State() internalValue: string;
-  @State() errorState: boolean;
+  @State() errorState: boolean = this.hasError;
+  @State() disabledState: boolean = this.disabled;
 
   @Event() selectDate: EventEmitter<string | string[] | undefined>;
 
@@ -67,7 +88,7 @@ export class InclusiveDates {
         day: "numeric",
         month: "long",
         year: "numeric"
-      }).format(newValue)} selected!`,
+      }).format(newValue)} ${this.labels.selected}`,
       "polite"
     );
   }
@@ -91,6 +112,16 @@ export class InclusiveDates {
       this.updateValue(parsedDate);
     }
   };
+
+  handleChangedMonths = (newMonth: MonthChangedEventDetails) => {
+    announce(
+      `${Intl.DateTimeFormat(this.locale, {
+        month: "long",
+        year: "numeric"
+      }).format(new Date(`${newMonth.year}-${newMonth.month}`))}`,
+      "assertive"
+    );
+  };
   handleChange = async (event) => {
     if (event.target.value.length === 0) return (this.errorState = false);
     const parsedDate = chrono.parseDate(event.target.value, new Date(), {
@@ -105,8 +136,10 @@ export class InclusiveDates {
     this.errorState = this.hasError;
   }
 
-  @Watch("locale")
-  watchLocale() {}
+  @Watch("disabled")
+  watchDisabled() {
+    this.disabledState = this.disabled;
+  }
 
   @Watch("value")
   watchValue() {
@@ -126,7 +159,7 @@ export class InclusiveDates {
         day: "numeric",
         month: "long",
         year: "numeric"
-      }).format(new Date(newValue))} selected!`,
+      }).format(new Date(newValue))} ${this.labels.selected}!`,
       "polite"
     );
   }
@@ -143,7 +176,7 @@ export class InclusiveDates {
         <br />
         <div class="wc-datepicker__input-container">
           <input
-            disabled={this.disabled}
+            disabled={this.disabledState}
             id={this.pickerid ? `${this.pickerid}-input` : undefined}
             type="text"
             placeholder={this.placeholder}
@@ -159,13 +192,13 @@ export class InclusiveDates {
             ref={(r) => (this.calendarButtonRef = r)}
             onClick={this.handleCalendarButtonClick}
             class="wc-datepicker__calendar-button"
-            disabled={this.disabled}
+            disabled={this.disabledState}
           >
-            Open calendar
+            {this.labels.openCalendar}
           </button>
         </div>
         <inclusive-dates-modal
-          label="Calendar"
+          label={this.labels.calendar}
           hideLabel={true}
           ref={(el) => (this.modalRef = el)}
           onOpened={() => {
@@ -180,13 +213,18 @@ export class InclusiveDates {
             onSelectDate={(event) =>
               this.handlePickerSelection(event.detail as string)
             }
+            onChangeMonth={(event) =>
+              this.handleChangedMonths(event.detail as MonthChangedEventDetails)
+            }
             ref={(el) => (this.pickerRef = el)}
             startDate={this.startDate}
             firstDayOfWeek={this.firstDayOfWeek}
             showHiddenTitle={false}
-            disabled={this.disabled}
+            disabled={this.disabledState}
             showMonthStepper={this.showMonthStepper}
             showYearStepper={this.showYearStepper}
+            showClearButton={this.showClearButton}
+            showKeyboardInstructions={this.showKeyboardInstructions}
           />
         </inclusive-dates-modal>
         {this.quickButtons?.length > 0 && (
@@ -200,6 +238,7 @@ export class InclusiveDates {
                 <button
                   class="wc-datepicker__quick-button"
                   onClick={this.handleQuickButtonClick}
+                  disabled={this.disabledState}
                 >
                   {buttonText}
                 </button>
@@ -214,7 +253,7 @@ export class InclusiveDates {
             id={this.pickerid ? `${this.pickerid}-error` : undefined}
             role="status"
           >
-            We could not find a matching date
+            {this.labels.errorMessage}
           </div>
         )}
       </Host>
