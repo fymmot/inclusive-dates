@@ -147,7 +147,7 @@ wc-datepicker {
   outline: none;
 }
 
-.wc-datepicker__date:focus > * {
+.wc-datepicker__date:focus-visible > * {
   outline: 0.125rem solid var(--focus-color);
 }
 
@@ -244,6 +244,7 @@ wc-datepicker {
 }
 .wc-datepicker__calendar-button {
   margin-left: 0.5rem;
+  height: 2.25rem;
 }
 .wc-datepicker__quick-group {
   margin-top: 0.5rem;
@@ -269,9 +270,6 @@ wc-datepicker {
   color: var(--text-color);
   line-height: 1;
   border: 1px solid var(--border-color);
-}
-
-.wc-datepicker__input::placeholder {
   font-size: 1rem;
 }
 

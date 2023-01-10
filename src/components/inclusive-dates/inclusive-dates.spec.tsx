@@ -23,7 +23,7 @@ describe("inclusive-dates", () => {
   it("Label and input are correctly associated", async () => {
     const page = await newSpecPage({
       components: [InclusiveDates],
-      html: `<inclusive-dates pickerid="test123"></inclusive-dates>`,
+      html: `<inclusive-dates id="test123"></inclusive-dates>`,
       language: "en"
     });
     const input = getInput(page);
