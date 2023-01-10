@@ -18,11 +18,11 @@
     "dist/"
   ],
   "scripts": {
-    "build": "yarn test && yarn build:stencil && yarn build:docs",
+    "build": "yarn test && yarn build:stencil && yarn sass:build && yarn build:docs",
     "build:stencil": "stencil build",
     "build:docs": "rimraf docs-www && copyfiles -u 1 docs/* docs/**/* dist/themes/* docs-www && copyfiles dist/esm/* docs-www && node terser.js",
     "prettier": "prettier --write .",
-    "start": "yarn start:stencil ",
+    "start": "yarn start:stencil & (sleep 30 && yarn sass:dev)",
     "start:stencil": "stencil build --dev --watch --serve",
     "start:docs": "concurrently --kill-others \"npm-watch build:docs\" \"serve docs-www\"",
     "test": "stencil test --spec",
@@ -31,7 +31,9 @@
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "yarn build:stencil && changeset publish",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "sass:dev": "sass src/themes/dark.scss:www/themes/dark.css src/themes/light.scss:www/themes/light.css",
+    "sass:build": "sass src/themes/dark.scss:dist/themes/dark.css src/themes/light.scss:dist/themes/light.css"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md,html}": [
@@ -72,6 +74,7 @@
     "postcss-nested": "^6.0.0",
     "prettier": "2.8.2",
     "rimraf": "^3.0.2",
+    "sass": "^1.57.1",
     "serve": "^14.0.1",
     "terser": "^5.15.1"
   },

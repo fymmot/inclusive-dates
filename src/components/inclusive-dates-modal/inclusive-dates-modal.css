@@ -1,21 +1,13 @@
-.dialog__body {
+:host::part(body) {
   position: absolute;
   width: fit-content;
   z-index: 1200;
   margin-top: 0.5rem;
 }
-.dialog__backdrop {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1100;
+:host::part(backdrop) {
+  /* Placeholder */
 }
-.dialog__root {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+
+:host::part(content) {
+  /* Placeholder */
 }

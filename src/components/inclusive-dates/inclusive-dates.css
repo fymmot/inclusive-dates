@@ -7,24 +7,3 @@
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
 }
-.wc-datepicker__label {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  display: inline-block;
-  font-family: "Segoe UI", sans-serif;
-}
-
-.wc-datepicker__input-container {
-  min-width: 300px;
-  max-width: 400px;
-  display: flex;
-}
-.wc-datepicker__input {
-  flex-grow: 1;
-}
-.wc-datepicker__input-error {
-  display: flex;
-  padding: 0.5rem;
-  color: #d4351c;
-  font-weight: 700;
-}

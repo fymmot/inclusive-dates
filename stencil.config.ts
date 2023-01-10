@@ -8,13 +8,13 @@ export const config: Config = {
   namespace: "useit",
   outputTargets: [
     {
-      copy: [
+      /*copy: [
         {
-          src: "themes/*.scss",
+          src: "themes/!*.scss",
           dest: "../themes",
           warn: true
         }
-      ],
+      ],*/
       type: "dist"
     },
     {
@@ -22,13 +22,13 @@ export const config: Config = {
       type: "dist-custom-elements"
     },
     {
-      copy: [
+      /*copy: [
         {
-          src: "themes/*.{scss,css}",
+          src: "themes/!*.{scss,css}",
           dest: "themes",
           warn: true
         }
-      ],
+      ],*/
       type: "www",
       serviceWorker: null
     }

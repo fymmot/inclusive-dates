@@ -6,16 +6,25 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
+    <style>
+      :root {
+        color-scheme: dark light;
+      }
+    </style>
 
     <title>Datepicker</title>
 
-    <link rel="stylesheet" href="/themes/dark.css" />
+    <link rel="stylesheet" href="/themes/dark.css" id="theme" />
 
     <script type="module" src="/build/useit.esm.js"></script>
     <script nomodule src="/build/useit.js"></script>
   </head>
   <body>
     <main>
+      <button onclick="toggleTheme()">Toggle theme</button>
+      <br />
+      <br />
+      <br />
       <inclusive-dates
         pickerid="test"
         locale="en-GB"
@@ -24,6 +33,17 @@
     </main>
 
     <script>
+      function toggleTheme() {
+        var script = document.getElementById("theme");
+        console.log(script.getAttribute("href"));
+        if (script.getAttribute("href") === "/themes/light.css") {
+          script.setAttribute("href", "/themes/dark.css");
+          document.querySelector("html").style.colorScheme = "dark";
+        } else {
+          script.setAttribute("href", "/themes/light.css");
+          document.querySelector("html").style.colorScheme = "light";
+        }
+      }
       /*datepicker.disableDate = (date) =>
         date.getDay() === 6 || date.getDay() === 0;*/
     </script>

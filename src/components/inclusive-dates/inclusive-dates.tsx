@@ -199,7 +199,6 @@ export class InclusiveDates {
         </div>
         <inclusive-dates-modal
           label={this.labels.calendar}
-          hideLabel={true}
           ref={(el) => (this.modalRef = el)}
           onOpened={() => {
             this.pickerRef.modalIsOpen = true;

@@ -21,7 +21,7 @@ import { hideOthers } from "aria-hidden";
   tag: "inclusive-dates-modal"
 })
 export class InclusiveDatesModal {
-  @Prop() hideLabel?: boolean;
+  // Mandatory for accessibility
   @Prop() label!: string;
   @State() closing = false;
   @State() showing = false;
@@ -109,26 +109,19 @@ export class InclusiveDatesModal {
       >
         {this.showing && (
           <div
-            class="dialog__body"
+            part="body"
             ref={(r) => {
               this.bodyRef = r;
             }}
             onKeyDown={this.onKeyDown}
             role="dialog"
             tabindex={-1}
-            aria-describedby="content"
             aria-hidden={!this.showing}
-            aria-labelledby={this.hideLabel ? undefined : "label"}
-            aria-label={this.hideLabel ? this.label : undefined}
+            aria-label={this.label}
             aria-modal={this.showing}
           >
             <focus-trap>
-              {!this.hideLabel && (
-                <h2 class="dialog__heading" id="label">
-                  {this.label}
-                </h2>
-              )}
-              <div class="dialog__content" id="content">
+              <div part="content">
                 <slot />
               </div>
             </focus-trap>
