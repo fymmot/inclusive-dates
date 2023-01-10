@@ -32,4 +32,4 @@
 
 ## Documentation & Demo
 
-**https://inclusive-dates-v2.vercel.app/**
+**https://inclusive-dates.vercel.app/**
