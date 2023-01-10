@@ -7,7 +7,7 @@
   
   <p>
     <a href="https://inclusive-dates-v2.vercel.app/">
-      <img alt="Screenshot of the datepicker" height="315" src="https://github.com/fymmot/inclusive-dates-v2/blob/main/docs/images/screenshot-1.png?raw=true" width="282">
+      <img alt="Screenshot of the datepicker" height="315" src="https://github.com/fymmot/inclusive-dates/blob/new-version/docs/images/screenshot-1.jpg?raw=true">
     </a>
   </p>
   
