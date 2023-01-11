@@ -1,10 +1,10 @@
 {
-  "name": "wc-datepicker",
-  "version": "0.4.0",
-  "description": "A small, accessible and customizable datepicker written in TypeScript.",
+  "name": "inclusive-dates",
+  "version": "0.0.1",
+  "description": "A small, accessible datepicker Web Component with natural language date input.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Sqrrl/wc-datepicker.git"
+    "url": "https://github.com/fymmot/inclusive-dates"
   },
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",

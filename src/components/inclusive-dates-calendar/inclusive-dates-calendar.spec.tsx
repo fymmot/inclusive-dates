@@ -422,7 +422,7 @@ describe("inclusive-dates-calendar", () => {
 
     const today = new Date();
 
-    expect(header.innerText.includes("January 1, 1989")).toBeTruthy();
+    expect(header.innerText.includes("January 1989")).toBeTruthy();
 
     todayButton.click();
     await page.waitForChanges();
@@ -430,7 +430,6 @@ describe("inclusive-dates-calendar", () => {
     expect(
       header.innerText.includes(
         Intl.DateTimeFormat("en-US", {
-          day: "numeric",
           month: "long",
           year: "numeric"
         }).format(today)
