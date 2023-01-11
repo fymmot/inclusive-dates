@@ -1,5 +1,11 @@
 # inclusive-dates
 
+## 0.1.1
+
+### Patch Changes
+
+- [`3c247ac`](https://github.com/fymmot/inclusive-dates/commit/3c247acf73915f8117f6ff2f93a19453ad95ed76) Thanks [@fymmot](https://github.com/fymmot)! - Re-add mising theme css files to build output
+
 ## 0.1.0
 
 ### Minor Changes
