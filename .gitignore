@@ -4,6 +4,8 @@ loader/
 docs-www/
 
 src/components.d.ts
+src/themes/*.css
+src/themes/*.css.map
 
 *~
 *.sw[mnpcod]
