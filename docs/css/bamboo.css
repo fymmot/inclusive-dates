@@ -229,6 +229,22 @@ h2#features + ul > li {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.about-me {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.dark .useit-logo {
+  filter: invert(1);
+}
+footer {
+  margin-bottom: 2rem;
+  margin-top: 4rem;
+}
+.fistbump {
+  width: 100%;
+}
 
 li > ul,
 li > ol {
