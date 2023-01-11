@@ -51,6 +51,8 @@
     }
   },
   "dependencies": {
+    "@stencil/core": "^2.13.0",
+    "@stencil/sass": "^2.0.2",
     "@a11y/focus-trap": "^1.0.5",
     "@react-aria/live-announcer": "^3.1.2",
     "aria-hidden": "^1.2.2",
