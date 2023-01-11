@@ -30,7 +30,7 @@ import {
   subDays
 } from "../../utils/utils";
 
-export type WCDatepickerLabels = {
+export type InclusiveDatesCalendarLabels = {
   clearButton: string;
   monthSelect: string;
   nextMonthButton: string;
@@ -44,7 +44,7 @@ export type WCDatepickerLabels = {
   selected: string;
 };
 
-const defaultLabels: WCDatepickerLabels = {
+const defaultLabels: InclusiveDatesCalendarLabels = {
   clearButton: "Clear value",
   monthSelect: "Select month",
   nextMonthButton: "Next month",
@@ -66,10 +66,10 @@ export interface MonthChangedEventDetails {
 @Component({
   scoped: true,
   shadow: false,
-  styleUrl: "wc-datepicker.css",
-  tag: "wc-datepicker"
+  styleUrl: "inclusive-dates-calendar.css",
+  tag: "inclusive-dates-calendar"
 })
-export class WCDatepicker {
+export class InclusiveDatesCalendar {
   @Element() el: HTMLElement;
 
   @Prop() clearButtonContent?: string;
@@ -77,10 +77,10 @@ export class WCDatepicker {
   @Prop() modalIsOpen?: boolean = false;
 
   @Prop() disableDate?: (date: Date) => boolean = () => false;
-  @Prop() elementClassName?: string = "wc-datepicker";
+  @Prop() elementClassName?: string = "inclusive-dates-calendar";
   @Prop() firstDayOfWeek?: number = 0;
   @Prop() range?: boolean = false;
-  @Prop() labels?: WCDatepickerLabels = defaultLabels;
+  @Prop() labels?: InclusiveDatesCalendarLabels = defaultLabels;
   @Prop() locale?: string = navigator?.language || "en-US";
   @Prop() nextMonthButtonContent?: string;
   @Prop() nextYearButtonContent?: string;

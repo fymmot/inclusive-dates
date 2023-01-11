@@ -196,25 +196,25 @@ table caption {
   margin-bottom: 0.5rem;
 }
 
-tr:not(.wc-datepicker__calendar-row):not(.wc-datepicker__weekday-row) {
+tr:not(.inclusive-dates-calendar__calendar-row):not(.inclusive-dates-calendar__weekday-row) {
   border-bottom: 1px solid var(--b-line);
 }
 
-td:not(.wc-datepicker__date) {
+td:not(.inclusive-dates-calendar__date) {
   padding: 0.5rem 0;
 }
 
-th:not(:first-of-type):not(.wc-datepicker__weekday),
-td:not(:first-of-type):not(.wc-datepicker__date) {
+th:not(:first-of-type):not(.inclusive-dates-calendar__weekday),
+td:not(:first-of-type):not(.inclusive-dates-calendar__date) {
   padding-left: 0.5rem;
 }
 
-th:not(:last-of-type):not(.wc-datepicker__weekday),
-td:not(:last-of-type):not(.wc-datepicker__date) {
+th:not(:last-of-type):not(.inclusive-dates-calendar__weekday),
+td:not(:last-of-type):not(.inclusive-dates-calendar__date) {
   padding-right: 0.5rem;
 }
 
-th:not(.wc-datepicker__weekday) {
+th:not(.inclusive-dates-calendar__weekday) {
   padding-bottom: 0.5rem;
   text-align: left;
 }
@@ -245,8 +245,8 @@ textarea {
   line-height: 1.125;
 }
 
-select:not(.wc-datepicker__month-select),
-input[type="text"]:not(.wc-datepicker__year-select):not(.wc-datepicker__input) {
+select:not(.inclusive-dates-calendar__month-select),
+input[type="text"]:not(.inclusive-dates-calendar__year-select):not(.inclusive-dates__input) {
   width: 100%;
 }
 
@@ -259,7 +259,7 @@ input[type="text"]:not(.wc-datepicker__year-select):not(.wc-datepicker__input) {
   height: 1rem;
 }
 
-select:not([multiple]):not([size]):not(.wc-datepicker__month-select) {
+select:not([multiple]):not([size]):not(.inclusive-dates-calendar__month-select) {
   padding-right: 1.5rem;
   background-repeat: no-repeat;
   background-position: right 0.5rem center;
@@ -268,7 +268,7 @@ select:not([multiple]):not([size]):not(.wc-datepicker__month-select) {
   appearance: none;
 }
 
-select:not([multiple]):not([size]):not(.wc-datepicker__month-select) {
+select:not([multiple]):not([size]):not(.inclusive-dates-calendar__month-select) {
   background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg' fill='%232e3440'%3E%3Cpath d='M5 6l5 5 5-5 2 1-7 7-7-7 2-1z'/%3E%3C/svg%3E");
 }
 

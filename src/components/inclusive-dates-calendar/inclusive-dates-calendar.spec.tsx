@@ -6,18 +6,22 @@ import {
   getWeekDays,
   getYear
 } from "../../utils/utils";
-import { WCDatepicker } from "./wc-datepicker";
+import { InclusiveDatesCalendar } from "./inclusive-dates-calendar";
 
 function getDisplayedDates(page: SpecPage) {
   return Array.from(
-    page.root.querySelectorAll<HTMLTableCellElement>(".wc-datepicker__date")
+    page.root.querySelectorAll<HTMLTableCellElement>(
+      ".inclusive-dates-calendar__date"
+    )
   ).map((el) => +(el.children[0] as HTMLElement).innerText);
 }
 
 function getSelectedMonth(page: SpecPage) {
   return +Array.from(
     page.root
-      .querySelector<HTMLSelectElement>(".wc-datepicker__month-select")
+      .querySelector<HTMLSelectElement>(
+        ".inclusive-dates-calendar__month-select"
+      )
       .querySelectorAll("option")
   )
     .find((option) => option.getAttribute("selected") === "")
@@ -26,27 +30,29 @@ function getSelectedMonth(page: SpecPage) {
 
 function getSelectedYear(page: SpecPage) {
   return +page.root.querySelector<HTMLInputElement>(
-    ".wc-datepicker__year-select"
+    ".inclusive-dates-calendar__year-select"
   ).value;
 }
 
 function getWeekdaysHeader(page: SpecPage) {
   return Array.from(
-    page.root.querySelectorAll<HTMLTableCellElement>(".wc-datepicker__weekday")
+    page.root.querySelectorAll<HTMLTableCellElement>(
+      ".inclusive-dates-calendar__weekday"
+    )
   ).map((el) => el.innerText);
 }
 
 function triggerKeyDown(page: SpecPage, code: string) {
   page.root
-    .querySelector(".wc-datepicker__calendar")
+    .querySelector(".inclusive-dates-calendar__calendar")
     .dispatchEvent(new KeyboardEvent("keydown", { code }));
 }
 
-describe("wc-datepicker", () => {
+describe("inclusive-dates-calendar", () => {
   it("initially shows the current month", async () => {
     const page = await newSpecPage({
-      components: [WCDatepicker],
-      html: `<wc-datepicker></wc-datepicker>`,
+      components: [InclusiveDatesCalendar],
+      html: `<inclusive-dates-calendar></inclusive-dates-calendar>`,
       language: "en"
     });
 
@@ -64,8 +70,8 @@ describe("wc-datepicker", () => {
 
   it("shows configured start date", async () => {
     const page = await newSpecPage({
-      components: [WCDatepicker],
-      html: `<wc-datepicker></wc-datepicker>`,
+      components: [InclusiveDatesCalendar],
+      html: `<inclusive-dates-calendar></inclusive-dates-calendar>`,
       language: "en"
     });
 
@@ -81,8 +87,8 @@ describe("wc-datepicker", () => {
 
   it("shows weekday header", async () => {
     const page = await newSpecPage({
-      components: [WCDatepicker],
-      html: `<wc-datepicker></wc-datepicker>`,
+      components: [InclusiveDatesCalendar],
+      html: `<inclusive-dates-calendar></inclusive-dates-calendar>`,
       language: "en"
     });
 
@@ -116,8 +122,8 @@ describe("wc-datepicker", () => {
 
   it("fires selectDate events", async () => {
     const page = await newSpecPage({
-      components: [WCDatepicker],
-      html: `<wc-datepicker></wc-datepicker>`,
+      components: [InclusiveDatesCalendar],
+      html: `<inclusive-dates-calendar></inclusive-dates-calendar>`,
       language: "en"
     });
 
@@ -129,7 +135,7 @@ describe("wc-datepicker", () => {
     await page.waitForChanges();
 
     page.root
-      .querySelector<HTMLTableCellElement>(".wc-datepicker__date")
+      .querySelector<HTMLTableCellElement>(".inclusive-dates-calendar__date")
       .click();
 
     triggerKeyDown(page, "ArrowRight");
@@ -154,7 +160,7 @@ describe("wc-datepicker", () => {
     await page.waitForChanges();
 
     page.root
-      .querySelector<HTMLTableCellElement>(".wc-datepicker__date")
+      .querySelector<HTMLTableCellElement>(".inclusive-dates-calendar__date")
       .click();
 
     triggerKeyDown(page, "ArrowRight");
@@ -165,7 +171,7 @@ describe("wc-datepicker", () => {
     expect(spy.mock.calls[7][0].detail).toEqual(["2021-11-28", "2021-11-29"]);
 
     page.root
-      .querySelector<HTMLTableCellElement>(".wc-datepicker__date")
+      .querySelector<HTMLTableCellElement>(".inclusive-dates-calendar__date")
       .click();
 
     expect(spy.mock.calls[6][0].detail).toEqual(["2021-11-28"]);
@@ -173,8 +179,8 @@ describe("wc-datepicker", () => {
 
   it("highlights current date with keyboard selection", async () => {
     const page = await newSpecPage({
-      components: [WCDatepicker],
-      html: `<wc-datepicker></wc-datepicker>`,
+      components: [InclusiveDatesCalendar],
+      html: `<inclusive-dates-calendar></inclusive-dates-calendar>`,
       language: "en"
     });
 
@@ -186,79 +192,79 @@ describe("wc-datepicker", () => {
     await page.waitForChanges();
 
     expect(
-      page.root.querySelector(".wc-datepicker__date--current").children[0]
-        .innerHTML
+      page.root.querySelector(".inclusive-dates-calendar__date--current")
+        .children[0].innerHTML
     ).toBe("2");
 
     triggerKeyDown(page, "ArrowRight");
     await page.waitForChanges();
 
     expect(
-      page.root.querySelector(".wc-datepicker__date--current").children[0]
-        .innerHTML
+      page.root.querySelector(".inclusive-dates-calendar__date--current")
+        .children[0].innerHTML
     ).toBe("3");
 
     triggerKeyDown(page, "ArrowDown");
     await page.waitForChanges();
 
     expect(
-      page.root.querySelector(".wc-datepicker__date--current").children[0]
-        .innerHTML
+      page.root.querySelector(".inclusive-dates-calendar__date--current")
+        .children[0].innerHTML
     ).toBe("10");
 
     triggerKeyDown(page, "ArrowLeft");
     await page.waitForChanges();
 
     expect(
-      page.root.querySelector(".wc-datepicker__date--current").children[0]
-        .innerHTML
+      page.root.querySelector(".inclusive-dates-calendar__date--current")
+        .children[0].innerHTML
     ).toBe("9");
 
     triggerKeyDown(page, "ArrowUp");
     await page.waitForChanges();
 
     expect(
-      page.root.querySelector(".wc-datepicker__date--current").children[0]
-        .innerHTML
+      page.root.querySelector(".inclusive-dates-calendar__date--current")
+        .children[0].innerHTML
     ).toBe("2");
 
     triggerKeyDown(page, "End");
     await page.waitForChanges();
 
     expect(
-      page.root.querySelector(".wc-datepicker__date--current").children[0]
-        .innerHTML
+      page.root.querySelector(".inclusive-dates-calendar__date--current")
+        .children[0].innerHTML
     ).toBe("31");
 
     triggerKeyDown(page, "Home");
     await page.waitForChanges();
 
     expect(
-      page.root.querySelector(".wc-datepicker__date--current").children[0]
-        .innerHTML
+      page.root.querySelector(".inclusive-dates-calendar__date--current")
+        .children[0].innerHTML
     ).toBe("1");
 
     triggerKeyDown(page, "PageDown");
     await page.waitForChanges();
 
     expect(
-      page.root.querySelector(".wc-datepicker__date--current").children[0]
-        .innerHTML
+      page.root.querySelector(".inclusive-dates-calendar__date--current")
+        .children[0].innerHTML
     ).toBe("1");
 
     triggerKeyDown(page, "PageUp");
     await page.waitForChanges();
 
     expect(
-      page.root.querySelector(".wc-datepicker__date--current").children[0]
-        .innerHTML
+      page.root.querySelector(".inclusive-dates-calendar__date--current")
+        .children[0].innerHTML
     ).toBe("1");
   });
 
   it("resets value after range prop is changed", async () => {
     const page = await newSpecPage({
-      components: [WCDatepicker],
-      html: `<wc-datepicker></wc-datepicker>`,
+      components: [InclusiveDatesCalendar],
+      html: `<inclusive-dates-calendar></inclusive-dates-calendar>`,
       language: "en"
     });
 
@@ -275,8 +281,8 @@ describe("wc-datepicker", () => {
 
   it("disables dates", async () => {
     const page = await newSpecPage({
-      components: [WCDatepicker],
-      html: `<wc-datepicker></wc-datepicker>`,
+      components: [InclusiveDatesCalendar],
+      html: `<inclusive-dates-calendar></inclusive-dates-calendar>`,
       language: "en"
     });
 
@@ -290,7 +296,9 @@ describe("wc-datepicker", () => {
     await page.waitForChanges();
 
     const dateCell = Array.from(
-      page.root.querySelectorAll<HTMLTableCellElement>(".wc-datepicker__date")
+      page.root.querySelectorAll<HTMLTableCellElement>(
+        ".inclusive-dates-calendar__date"
+      )
     ).find((el) => el.dataset.date === "2022-01-01");
 
     dateCell.click();
@@ -301,8 +309,8 @@ describe("wc-datepicker", () => {
 
   it("changes months", async () => {
     const page = await newSpecPage({
-      components: [WCDatepicker],
-      html: `<wc-datepicker show-hidden-title="true" start-date="2022-01-01"></wc-datepicker>`,
+      components: [InclusiveDatesCalendar],
+      html: `<inclusive-dates-calendar show-hidden-title="true" start-date="2022-01-01"></inclusive-dates-calendar>`,
       language: "en"
     });
 
@@ -310,19 +318,19 @@ describe("wc-datepicker", () => {
     page.root.addEventListener("changeMonth", spy);
 
     const monthSelect = page.root.querySelector<HTMLSelectElement>(
-      ".wc-datepicker__month-select"
+      ".inclusive-dates-calendar__month-select"
     );
 
     const header = page.root.querySelector<HTMLElement>(
-      ".wc-datepicker__header"
+      ".inclusive-dates-calendar__header"
     );
 
     const previousMonthButton = page.root.querySelector<HTMLButtonElement>(
-      ".wc-datepicker__previous-month-button"
+      ".inclusive-dates-calendar__previous-month-button"
     );
 
     const nextMonthButton = page.root.querySelector<HTMLButtonElement>(
-      ".wc-datepicker__next-month-button"
+      ".inclusive-dates-calendar__next-month-button"
     );
 
     expect(header.innerText.startsWith("January")).toBeTruthy();
@@ -350,8 +358,8 @@ describe("wc-datepicker", () => {
 
   it("changes year", async () => {
     const page = await newSpecPage({
-      components: [WCDatepicker],
-      html: `<wc-datepicker show-hidden-title="true" show-year-stepper="true" start-date="2022-01-01"></wc-datepicker>`,
+      components: [InclusiveDatesCalendar],
+      html: `<inclusive-dates-calendar show-hidden-title="true" show-year-stepper="true" start-date="2022-01-01"></inclusive-dates-calendar>`,
       language: "en"
     });
 
@@ -359,19 +367,19 @@ describe("wc-datepicker", () => {
     page.root.addEventListener("changeMonth", spy);
 
     const yearSelect = page.root.querySelector<HTMLInputElement>(
-      ".wc-datepicker__year-select"
+      ".inclusive-dates-calendar__year-select"
     );
 
     const header = page.root.querySelector<HTMLElement>(
-      ".wc-datepicker__header"
+      ".inclusive-dates-calendar__header"
     );
 
     const previousYearButton = page.root.querySelector<HTMLButtonElement>(
-      ".wc-datepicker__previous-year-button"
+      ".inclusive-dates-calendar__previous-year-button"
     );
 
     const nextYearButton = page.root.querySelector<HTMLButtonElement>(
-      ".wc-datepicker__next-year-button"
+      ".inclusive-dates-calendar__next-year-button"
     );
 
     expect(header.innerText.includes("2022")).toBeTruthy();
@@ -399,17 +407,17 @@ describe("wc-datepicker", () => {
 
   it("jumps to current month", async () => {
     const page = await newSpecPage({
-      components: [WCDatepicker],
-      html: `<wc-datepicker show-hidden-title="true" show-today-button="true" start-date="1989-01-01"></wc-datepicker>`,
+      components: [InclusiveDatesCalendar],
+      html: `<inclusive-dates-calendar show-hidden-title="true" show-today-button="true" start-date="1989-01-01"></inclusive-dates-calendar>`,
       language: "en"
     });
 
     const todayButton = page.root.querySelector<HTMLButtonElement>(
-      ".wc-datepicker__today-button"
+      ".inclusive-dates-calendar__today-button"
     );
 
     const header = page.root.querySelector<HTMLElement>(
-      ".wc-datepicker__header"
+      ".inclusive-dates-calendar__header"
     );
 
     const today = new Date();
@@ -432,21 +440,21 @@ describe("wc-datepicker", () => {
 
   it("clears its value", async () => {
     const page = await newSpecPage({
-      components: [WCDatepicker],
-      html: `<wc-datepicker show-clear-button="true" start-date="2022-01-01"></wc-datepicker>`,
+      components: [InclusiveDatesCalendar],
+      html: `<inclusive-dates-calendar show-clear-button="true" start-date="2022-01-01"></inclusive-dates-calendar>`,
       language: "en"
     });
 
     const spy = jest.fn();
 
     const clearButton = page.root.querySelector<HTMLButtonElement>(
-      ".wc-datepicker__clear-button"
+      ".inclusive-dates-calendar__clear-button"
     );
 
     page.root.addEventListener("selectDate", spy);
 
     page.root
-      .querySelector<HTMLTableCellElement>(".wc-datepicker__date")
+      .querySelector<HTMLTableCellElement>(".inclusive-dates-calendar__date")
       .click();
 
     expect(spy.mock.calls[0][0].detail).toBe("2021-12-26");
@@ -459,8 +467,8 @@ describe("wc-datepicker", () => {
 
   it("can be disabled", async () => {
     const page = await newSpecPage({
-      components: [WCDatepicker],
-      html: `<wc-datepicker disabled></wc-datepicker>`,
+      components: [InclusiveDatesCalendar],
+      html: `<inclusive-dates-calendar disabled></inclusive-dates-calendar>`,
       language: "en"
     });
 
@@ -473,14 +481,16 @@ describe("wc-datepicker", () => {
     await page.waitForChanges();
 
     page.root
-      .querySelector<HTMLTableCellElement>(".wc-datepicker__date")
+      .querySelector<HTMLTableCellElement>(".inclusive-dates-calendar__date")
       .click();
 
     triggerKeyDown(page, "ArrowRight");
     triggerKeyDown(page, "Space");
 
     expect(
-      page.root.children[0].classList.contains("wc-datepicker--disabled")
+      page.root.children[0].classList.contains(
+        "inclusive-dates-calendar--disabled"
+      )
     ).toBeTruthy();
 
     expect(spy).not.toHaveBeenCalled();

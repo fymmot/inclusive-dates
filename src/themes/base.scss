@@ -1,17 +1,17 @@
-wc-datepicker,
-wc-datepicker *,
-wc-datepicker *:before,
-wc-datepicker *:after {
+inclusive-dates-calendar,
+inclusive-dates-calendar *,
+inclusive-dates-calendar *:before,
+inclusive-dates-calendar *:after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-wc-datepicker {
+inclusive-dates-calendar {
   display: inline-flex;
 }
 
-.wc-datepicker,
+.inclusive-dates-calendar,
 .inclusive-dates {
   display: block;
   width: min-content;
@@ -29,52 +29,56 @@ wc-datepicker {
   line-height: 1.5;
 }
 
-.wc-datepicker--disabled *:disabled {
+.inclusive-dates-calendar--disabled *:disabled {
   opacity: 0.5;
   cursor: default;
 }
 
-.wc-datepicker--disabled .wc-datepicker__weekday {
+.inclusive-dates-calendar--disabled .inclusive-dates-calendar__weekday {
   color: var(--disabled-color);
 }
 
-.wc-datepicker--disabled .wc-datepicker__date:focus > * {
+.inclusive-dates-calendar--disabled .inclusive-dates-calendar__date:focus > * {
   outline: none;
 }
 
-.wc-datepicker--disabled .wc-datepicker__date {
+.inclusive-dates-calendar--disabled .inclusive-dates-calendar__date {
   cursor: default;
   opacity: 0.5;
 }
 
-.wc-datepicker--disabled .wc-datepicker__date:hover > * {
+.inclusive-dates-calendar--disabled .inclusive-dates-calendar__date:hover > * {
   background-color: transparent;
 }
 
-.wc-datepicker--disabled .wc-datepicker__date--in-range:hover > * {
+.inclusive-dates-calendar--disabled
+  .inclusive-dates-calendar__date--in-range:hover
+  > * {
   background-color: #f2f3f5;
 }
 
-.wc-datepicker--disabled .wc-datepicker__date--selected:hover > * {
+.inclusive-dates-calendar--disabled
+  .inclusive-dates-calendar__date--selected:hover
+  > * {
   color: #fff;
   background-color: var(--hover-color);
 }
 
-.wc-datepicker__header {
+.inclusive-dates-calendar__header {
   display: flex;
   padding: 0.75rem;
   align-items: center;
   gap: 0.5rem;
 }
 
-.wc-datepicker__current-month {
+.inclusive-dates-calendar__current-month {
   display: flex;
   flex-grow: 1;
   gap: 0.5rem;
 }
 
-.wc-datepicker__month-select,
-.wc-datepicker__year-select {
+.inclusive-dates-calendar__month-select,
+.inclusive-dates-calendar__year-select {
   display: flex;
   height: 2rem;
   padding-right: 0.5rem;
@@ -88,20 +92,20 @@ wc-datepicker {
   line-height: 1.125;
 }
 
-.wc-datepicker__month-select {
+.inclusive-dates-calendar__month-select {
   flex-grow: 1;
   cursor: pointer;
   appearance: none;
 }
 
-.wc-datepicker__year-select {
+.inclusive-dates-calendar__year-select {
   max-width: 5rem;
 }
 
-.wc-datepicker__previous-month-button,
-.wc-datepicker__next-month-button,
-.wc-datepicker__previous-year-button,
-.wc-datepicker__next-year-button {
+.inclusive-dates-calendar__previous-month-button,
+.inclusive-dates-calendar__next-month-button,
+.inclusive-dates-calendar__previous-year-button,
+.inclusive-dates-calendar__next-year-button {
   display: inline-flex;
   width: 2rem;
   height: 2rem;
@@ -116,19 +120,19 @@ wc-datepicker {
   cursor: pointer;
 }
 
-.wc-datepicker__body {
+.inclusive-dates-calendar__body {
   padding-right: 0.75rem;
   padding-bottom: 0.75rem;
   padding-left: 0.75rem;
 }
 
-.wc-datepicker__calendar {
+.inclusive-dates-calendar__calendar {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
 }
 
-.wc-datepicker__weekday > span {
+.inclusive-dates-calendar__weekday > span {
   display: flex;
   padding: 0.125rem;
   justify-content: center;
@@ -137,25 +141,25 @@ wc-datepicker {
   aspect-ratio: 1;
 }
 
-.wc-datepicker__date {
+.inclusive-dates-calendar__date {
   padding: 0.125rem;
   text-align: center;
   cursor: pointer;
 }
 
-.wc-datepicker__date:focus {
+.inclusive-dates-calendar__date:focus {
   outline: none;
 }
 
-.wc-datepicker__date:focus-visible > * {
+.inclusive-dates-calendar__date:focus-visible > * {
   outline: 0.125rem solid var(--focus-color);
 }
 
-.wc-datepicker__date:hover > * {
+.inclusive-dates-calendar__date:hover > * {
   background-color: var(--hover-color);
 }
 
-.wc-datepicker__date > * {
+.inclusive-dates-calendar__date > * {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -163,49 +167,49 @@ wc-datepicker {
   aspect-ratio: 1;
 }
 
-.wc-datepicker__date--current {
+.inclusive-dates-calendar__date--current {
 }
 
-.wc-datepicker__date--overflowing {
+.inclusive-dates-calendar__date--overflowing {
 }
 
-.wc-datepicker__date--today > * {
+.inclusive-dates-calendar__date--today > * {
   font-weight: 700;
   font-style: normal;
 }
 
-.wc-datepicker__date--in-range > * {
+.inclusive-dates-calendar__date--in-range > * {
   background-color: var(--bg2-color);
 }
 
-.wc-datepicker__date--selected > *,
-.wc-datepicker__date--selected:hover > * {
+.inclusive-dates-calendar__date--selected > *,
+.inclusive-dates-calendar__date--selected:hover > * {
   color: var(--bg-color);
   background-color: var(--focus-color);
   font-weight: 500;
   outline-offset: 0.125rem;
 }
 
-.wc-datepicker__date--disabled {
+.inclusive-dates-calendar__date--disabled {
   color: var(--disabled-color);
   cursor: default;
 }
 
-.wc-datepicker__date--disabled:not(.wc-datepicker__date--selected):not(
-    .wc-datepicker__date--in-range
-  ):hover
+.inclusive-dates-calendar__date--disabled:not(
+    .inclusive-dates-calendar__date--selected
+  ):not(.inclusive-dates-calendar__date--in-range):hover
   > * {
   background-color: transparent;
 }
 
-.wc-datepicker__date--disabled.wc-datepicker__date--in-range:not(
-    .wc-datepicker__date--selected
-  ):not(.wc-datepicker__date--in-range)
+.inclusive-dates-calendar__date--disabled.inclusive-dates-calendar__date--in-range:not(
+    .inclusive-dates-calendar__date--selected
+  ):not(.inclusive-dates-calendar__date--in-range)
   > * {
   background-color: transparent;
 }
 
-.wc-datepicker__footer {
+.inclusive-dates-calendar__footer {
   padding-right: 0.75rem;
   padding-bottom: 0.75rem;
   padding-left: 0.75rem;
@@ -213,17 +217,16 @@ wc-datepicker {
   flex-direction: column;
   gap: 1rem;
 }
-.wc-datepicker__footer-buttons {
+.inclusive-dates-calendar__footer-buttons {
   align-items: center;
   display: flex;
   gap: 0.5rem;
 }
 
-.wc-datepicker__clear-button,
-.wc-datepicker__today-button,
-.wc-datepicker__calendar-button,
-.wc-datepicker__quick-button,
-.wc-datepicker__calendar-button {
+.inclusive-dates-calendar__clear-button,
+.inclusive-dates-calendar__today-button,
+.inclusive-dates__quick-button,
+.inclusive-dates__calendar-button {
   display: inline-flex;
   height: 2rem;
   padding-right: 0.5rem;
@@ -242,38 +245,40 @@ wc-datepicker {
   font-weight: 600;
   display: block;
 }
-.wc-datepicker__calendar-button {
+.inclusive-dates__calendar-button {
   margin-left: 0.5rem;
-  height: 2.25rem;
+  height: 2.5rem;
 }
-.wc-datepicker__quick-group {
+.inclusive-dates__quick-group {
   margin-top: 0.5rem;
   display: inline-grid;
   grid-auto-flow: column;
   gap: 0.5rem;
 }
 
-.wc-datepicker__quick-button {
+.inclusive-dates__quick-button {
   color: var(--text-color);
   background-color: inherit;
   text-decoration: underline;
 }
 
-.wc-datepicker__input {
+.inclusive-dates__input {
+  box-sizing: border-box;
   display: inline-flex;
-  height: 2rem;
+  height: 2.5rem;
   padding-right: 0.5rem;
   padding-left: 0.5rem;
   justify-content: center;
   align-items: center;
   border-radius: 0.25rem;
   color: var(--text-color);
+  background: var(--bg2-color);
   line-height: 1;
   border: 1px solid var(--border-color);
   font-size: 1rem;
 }
 
-.wc-datepicker__keyboard-hint {
+.inclusive-dates-calendar__keyboard-hint {
   color: var(--secondary-color);
   display: flex;
   align-items: center;
@@ -293,23 +298,23 @@ wc-datepicker {
   padding: 0.25rem;
 }
 
-.wc-datepicker__label {
+.inclusive-dates__label {
   font-weight: 600;
   margin-bottom: 0.5rem;
   display: inline-block;
   font-family: "Segoe UI", sans-serif;
 }
 
-.wc-datepicker__input {
+.inclusive-dates__input {
   flex-grow: 1;
 }
 
-.wc-datepicker__input-container {
+.inclusive-dates__input-container {
   min-width: 300px;
   max-width: 400px;
   display: flex;
 }
-.wc-datepicker__input-error {
+.inclusive-dates__input-error {
   display: flex;
   padding: 0.5rem;
   color: var(--error-color);

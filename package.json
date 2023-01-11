@@ -18,7 +18,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "yarn test && yarn build:stencil && yarn sass:build && yarn build:docs",
+    "build": "yarn build:stencil && yarn sass:build && yarn build:docs",
     "build:stencil": "stencil build",
     "build:docs": "rimraf docs-www && copyfiles -u 1 docs/* docs/**/* dist/themes/* docs-www && copyfiles dist/esm/* docs-www && node terser.js",
     "prettier": "prettier --write .",

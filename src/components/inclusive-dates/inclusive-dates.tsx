@@ -14,7 +14,8 @@ import * as chrono from "chrono-node";
 import { announce } from "@react-aria/live-announcer";
 
 import { getISODateString } from "../../utils/utils";
-import { MonthChangedEventDetails } from "../wc-datepicker/wc-datepicker";
+import { MonthChangedEventDetails } from "../inclusive-dates-calendar/inclusive-dates-calendar";
+import { ChronoOptions } from "./inclusive-dates.type";
 export interface InclusiveDatesLabels {
   selected?: string;
   openCalendar?: string;
@@ -39,7 +40,8 @@ export class InclusiveDates {
   @Element() el: HTMLElement;
 
   @Prop() locale?: string = navigator?.language || "en-US";
-  @Prop() disableDate?: HTMLWcDatepickerElement["disableDate"];
+  @Prop() disableDate?: HTMLInclusiveDatesCalendarElement["disableDate"];
+  @Prop() elementClassName?: string = "inclusive-dates";
   @Prop() disabled?: boolean = false;
   @Prop() nextMonthButtonContent?: string;
   @Prop() nextYearButtonContent?: string;
@@ -76,7 +78,7 @@ export class InclusiveDates {
   private modalRef?: HTMLInclusiveDatesModalElement;
   private inputRef?: HTMLInputElement;
   private calendarButtonRef?: HTMLButtonElement;
-  private pickerRef?: HTMLWcDatepickerElement;
+  private pickerRef?: HTMLInclusiveDatesCalendarElement;
   private chronoSupportedLocale = ["en", "jp", "fr", "nl", "ru", "pt"].includes(
     this.locale.slice(0, 2)
   );
@@ -97,10 +99,14 @@ export class InclusiveDates {
       );
   }
 
-  // External method to parse text string using Chrono.js and set as value.
+  // External method to parse text string using Chrono.js and (optionally) set as value.
   @Method()
-  async parseDate(text: string, shouldSetValue = true) {
-    const parsedDate = await this.chronoParseDate(text);
+  async parseDate(
+    text: string,
+    shouldSetValue = true,
+    chronoOptions: ChronoOptions = undefined
+  ) {
+    const parsedDate = await this.chronoParseDate(text, chronoOptions);
     if (shouldSetValue) {
       if (parsedDate instanceof Date) {
         this.updateValue(parsedDate);
@@ -114,13 +120,72 @@ export class InclusiveDates {
     };
   }
 
+  private chronoParseDate = async (
+    dateString: string,
+    options?: ChronoOptions
+  ): Promise<Date> => {
+    // Assign default values if no options object provided
+    if (!options) {
+      options = {
+        referenceDate: new Date(),
+        useStrict: false,
+        locale: this.locale.slice(0, 2),
+        customExpressions: []
+      };
+    }
+    // Destructure options object
+    let { referenceDate, useStrict, locale, customExpressions } = options;
+
+    // Assign defaults if not provided
+    referenceDate = referenceDate || new Date();
+    useStrict = useStrict || false;
+    locale = locale || this.locale.slice(0, 2);
+    customExpressions = customExpressions || [];
+
+    // Return if Chrono is not supported
+    if (!this.chronoSupportedLocale) {
+      if (isValidISODate(dateString)) return new Date(dateString);
+      else return null;
+    }
+    const custom = chrono[locale].casual.clone();
+    customExpressions.forEach((expression) =>
+      custom.parsers.push({
+        pattern: () => expression.pattern,
+        extract: () => {
+          return expression.match;
+        }
+      })
+    );
+
+    function isValidISODate(dateString) {
+      var isoFormat = /^\d{4}-\d{2}-\d{2}$/;
+      if (dateString.match(isoFormat) == null) {
+        return false;
+      } else {
+        var d = new Date(dateString);
+        return !isNaN(d.getTime());
+      }
+    }
+    let parsedDate;
+    if (useStrict)
+      parsedDate = await chrono[locale].strict.parseDate(
+        dateString,
+        referenceDate,
+        {
+          forwardDate: true
+        }
+      );
+    else
+      parsedDate = await custom.parseDate(dateString, referenceDate, {
+        forwardDate: true
+      });
+    return parsedDate;
+  };
+
   private updateValue(newValue: Date) {
     this.pickerRef.value = newValue;
     this.internalValue = newValue.toISOString().slice(0, 10);
     this.errorState = false;
-    if (document.activeElement !== this.inputRef) {
-      this.formatInput(true);
-    }
     this.selectDate.emit(this.internalValue);
     announce(
       `${Intl.DateTimeFormat(this.locale, {
@@ -141,58 +206,15 @@ export class InclusiveDates {
       await this.modalRef?.close();
   };
 
-  private chronoParseDate = async (
-    dateString: string,
-    referenceDate = new Date(),
-    useStrict = false,
-    locale: string = this.locale.slice(0, 2),
-    customExpressions: {
-      pattern: RegExp;
-      match: { month: number; day: number };
-    }[] = []
-  ): Promise<Date> => {
-    const custom = this.chronoSupportedLocale
-      ? chrono[locale].casual.clone()
-      : chrono.casual.clone();
-    customExpressions.forEach((expression) =>
-      custom.parsers.push({
-        pattern: () => expression.pattern,
-        extract: () => {
-          return expression.match;
-        }
-      })
-    );
-
-    function isValidISODate(dateString) {
-      var isoFormat = /^\d{4}-\d{2}-\d{2}$/;
-      if (dateString.match(isoFormat) == null) {
-        return false;
-      } else {
-        var d = new Date(dateString);
-        return !isNaN(d.getTime());
-      }
-    }
-    if (!this.chronoSupportedLocale) {
-      if (isValidISODate(dateString)) return new Date(dateString);
-      else return null;
-    }
-    let parsedDate;
-    if (useStrict)
-      parsedDate = await chrono.strict.parseDate(dateString, referenceDate, {
-        forwardDate: true
-      });
-    else
-      parsedDate = await custom.parseDate(dateString, referenceDate, {
-        forwardDate: true
-      });
-    return parsedDate;
-  };
   private handleQuickButtonClick = async (event: MouseEvent) => {
     const parsedDate = await this.chronoParseDate(
       (event.target as HTMLButtonElement).innerText
     );
     if (parsedDate) {
       this.updateValue(parsedDate);
+      if (document.activeElement !== this.inputRef) {
+        this.formatInput(true, false);
+      }
     }
   };
 
@@ -206,14 +228,23 @@ export class InclusiveDates {
     );
   };
   private handleChange = async (event) => {
-    if (event.target.value.length === 0) return (this.errorState = false);
+    console.log("change");
+    if (event.target.value.length === 0) {
+      console.log("handle change 0");
+      this.internalValue = "";
+      this.pickerRef.value = null;
+      return (this.errorState = false);
+    }
     const parsedDate = await this.chronoParseDate(event.target.value);
     if (parsedDate instanceof Date) {
       this.updateValue(parsedDate);
+      if (document.activeElement !== this.inputRef) {
+        this.formatInput(true);
+      }
     } else this.errorState = true;
   };
 
-  private formatInput(state: boolean) {
+  private formatInput(state: boolean, useInputValue = true) {
     if (
       state &&
       this.internalValue &&
@@ -225,7 +256,9 @@ export class InclusiveDates {
         day: "numeric",
         month: "long",
         year: "numeric"
-      }).format(new Date(this.internalValue));
+      }).format(
+        new Date(useInputValue ? this.inputRef.value : this.internalValue)
+      );
     } else if (
       this.internalValue &&
       this.internalValue.length > 0 &&
@@ -240,7 +273,7 @@ export class InclusiveDates {
     this.modalRef.close();
     this.errorState = false;
     if (document.activeElement !== this.inputRef) {
-      this.formatInput(true);
+      this.formatInput(true, false);
     }
     announce(
       `${Intl.DateTimeFormat(this.locale, {
@@ -260,7 +293,7 @@ export class InclusiveDates {
 
   @Watch("locale")
   watchLocale() {
-    console.log(this.locale);
+    // console.log(this.locale);
   }
 
   @Watch("disabled")
@@ -275,23 +308,29 @@ export class InclusiveDates {
     }
   }
 
+  private getClassName(element?: string) {
+    return Boolean(element)
+      ? `${this.elementClassName}__${element}`
+      : this.elementClassName;
+  }
+
   render() {
     return (
       <Host>
         <label
           htmlFor={this.id ? `${this.id}-input` : undefined}
-          class="wc-datepicker__label"
+          class={this.getClassName("label")}
         >
           {this.label}
         </label>
         <br />
-        <div class="wc-datepicker__input-container">
+        <div class={this.getClassName("input-container")}>
           <input
             disabled={this.disabledState}
             id={this.id ? `${this.id}-input` : undefined}
             type="text"
             placeholder={this.placeholder}
-            class="wc-datepicker__input"
+            class={this.getClassName("input")}
             ref={(r) => (this.inputRef = r)}
             onChange={this.handleChange}
             onFocus={() => this.formatInput(false)}
@@ -302,7 +341,7 @@ export class InclusiveDates {
           <button
             ref={(r) => (this.calendarButtonRef = r)}
             onClick={this.handleCalendarButtonClick}
-            class="wc-datepicker__calendar-button"
+            class={this.getClassName("calendar-button")}
             disabled={this.disabledState}
           >
             {this.labels.openCalendar}
@@ -318,7 +357,7 @@ export class InclusiveDates {
             this.pickerRef.modalIsOpen = false;
           }}
         >
-          <wc-datepicker
+          <inclusive-dates-calendar
             locale={this.locale}
             onSelectDate={(event) =>
               this.handlePickerSelection(event.detail as string)
@@ -339,14 +378,14 @@ export class InclusiveDates {
         </inclusive-dates-modal>
         {this.quickButtons?.length > 0 && this.chronoSupportedLocale && (
           <div
-            class="wc-datepicker__quick-group"
+            class={this.getClassName("quick-group")}
             role="group"
             aria-label="Quick selection"
           >
             {this.quickButtons.map((buttonText) => {
               return (
                 <button
-                  class="wc-datepicker__quick-button"
+                  class={this.getClassName("quick-button")}
                   onClick={this.handleQuickButtonClick}
                   disabled={this.disabledState}
                 >
@@ -359,7 +398,7 @@ export class InclusiveDates {
 
         {this.errorState && (
           <div
-            class="wc-datepicker__input-error"
+            class={this.getClassName("input-error")}
             id={this.id ? `${this.id}-error` : undefined}
             role="status"
           >
