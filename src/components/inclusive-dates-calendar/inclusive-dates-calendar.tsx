@@ -90,7 +90,7 @@ export class InclusiveDatesCalendar {
   @Prop() showMonthStepper?: boolean = true;
   @Prop() showTodayButton?: boolean = true;
   @Prop() showYearStepper?: boolean = false;
-  @Prop() showKeyboardInstructions?: boolean = false;
+  @Prop() showKeyboardHint?: boolean = false;
   @Prop() showHiddenTitle?: boolean = true;
   @Prop() startDate?: string = getISODateString(new Date());
   @Prop() todayButtonContent?: string;
@@ -402,9 +402,7 @@ export class InclusiveDatesCalendar {
 
   render() {
     const showFooter =
-      this.showTodayButton ||
-      this.showClearButton ||
-      this.showKeyboardInstructions;
+      this.showTodayButton || this.showClearButton || this.showKeyboardHint;
 
     return (
       <Host>
@@ -688,7 +686,7 @@ export class InclusiveDatesCalendar {
                   </button>
                 )}
               </div>
-              {this.showKeyboardInstructions &&
+              {this.showKeyboardHint &&
                 !window.matchMedia("(pointer: coarse)").matches && (
                   <button
                     type="button"

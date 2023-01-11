@@ -225,6 +225,11 @@ dd {
   padding-left: 2rem;
 }
 
+h2#features + ul > li {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 li > ul,
 li > ol {
   margin-bottom: 0;
@@ -248,6 +253,19 @@ textarea {
 select:not(.inclusive-dates-calendar__month-select),
 input[type="text"]:not(.inclusive-dates-calendar__year-select):not(.inclusive-dates__input) {
   width: 100%;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  background-color: var(--b-btn-bg);
+  transform: translateY(-300%);
+  transition: transform 200ms ease-in-out;
+  padding: 1rem;
+  color: var(--b-btn-txt)
+}
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 [type="color" i] {

@@ -29,8 +29,6 @@ export class InclusiveDatesModal {
   @Event() closed: EventEmitter;
 
   private triggerElement: HTMLElement;
-  private anchorEl: HTMLElement;
-  private bodyRef: HTMLElement;
   private el: HTMLElement;
   private undo: () => void;
 
@@ -42,11 +40,6 @@ export class InclusiveDatesModal {
     this.showing = true;
     this.undo = hideOthers(this.el);
     this.opened.emit(undefined);
-    setTimeout(() => {
-      if (this.bodyRef) {
-      }
-      // this.bodyRef.focus();
-    }, 50);
   }
 
   /**
@@ -57,7 +50,6 @@ export class InclusiveDatesModal {
     this.showing = false;
     this.closed.emit(undefined);
     this.undo();
-
     if (this.triggerElement) this.triggerElement.focus();
   }
   @Method()
@@ -68,11 +60,6 @@ export class InclusiveDatesModal {
   @Method()
   async setTriggerElement(element: HTMLElement) {
     this.triggerElement = element;
-  }
-
-  @Method()
-  async setAnchorElement(element: HTMLElement) {
-    this.anchorEl = element;
   }
 
   onKeyDown = (event: KeyboardEvent) => {
@@ -88,17 +75,6 @@ export class InclusiveDatesModal {
     }
   }
 
-  private updatePosition = () => {
-    if (this.bodyRef && this.anchorEl && this.showing) {
-      /*this.bodyRef.style.cssText =
-        `transform:translate3d(${this.anchorEl.getBoundingClientRect().x}px, ${this.anchorEl.getBoundingClientRect().y}px, 0px)`*/
-    }
-  };
-
-  componentDidRender() {
-    this.updatePosition();
-  }
-
   render() {
     return (
       <Host
@@ -110,9 +86,6 @@ export class InclusiveDatesModal {
         {this.showing && (
           <div
             part="body"
-            ref={(r) => {
-              this.bodyRef = r;
-            }}
             onKeyDown={this.onKeyDown}
             role="dialog"
             tabindex={-1}

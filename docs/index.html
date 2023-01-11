@@ -28,27 +28,23 @@
           document.querySelector("html").classList.add("dark");
           stylesheet.setAttribute("href", "themes/dark.css");
           prismCSS.setAttribute("href", "css/prism-dark.css")
-          if (themeLabel) themeLabel.innerHTML = "dark.css";
         }
         if (theme === "light"){
           localStorage.setItem('theme', "light");
           document.querySelector("html").classList.remove("dark");
           stylesheet.setAttribute("href", "themes/light.css");
           prismCSS.setAttribute("href", "css/prism.css")
-          if (themeLabel) themeLabel.innerHTML = "light.css";
         }
+        if (themeLabel) themeLabel.innerHTML = `${localStorage.getItem('theme')}.css`;
       }
-      if (localStorage.getItem('theme'))
+      if (localStorage.getItem('theme')){
         setTheme(localStorage.getItem('theme'))
-      else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        setTheme("dark")
-        // Wait a little for theme label to have rendered
         setTimeout(()=> {
           const themeLabel = document.getElementById("current-theme-label");
-          if (themeLabel) themeLabel.innerHTML = "dark.css";
+          themeLabel.innerHTML = `${localStorage.getItem('theme')}.css`;
         }, 100)
-
       }
+
       else {
         setTheme("light")
       }
@@ -57,8 +53,10 @@
   </head>
   <body>
     <header>
+      <a href="#demo" class="skip-link">Skip to the demo</a>
       <h1>Inclusive dates v2.0 (<strong>work in progress!</strong>)</h1>
-      <p>Next version of <a href="https://github.com/fymmot/inclusive-dates"><code>fymmot/inclusive-dates</code></a>. A human-friendly and accessible datepicker with support for natural language input. Now as a reusable Web Component!</p>
+      <p>Next version of <a href="https://github.com/fymmot/inclusive-dates"><code>fymmot/inclusive-dates</code></a>.</p>
+      <p>A human-friendly and fully accessible datepicker with support for natural language input. Now as a reusable Web Component!</p>
       <p>
         Forked from the excellent <a href="https://github.com/sqrrl/wc-datepicker"><code>sqrrl/wc-datepicker</code></a>
       </p>
@@ -91,22 +89,21 @@
 
         <ul>
           <li>
-            <strong>🧏‍♀️ Smart date parsing:</strong> Accepts natural language input using <a href="https://github.com/wanasit/chrono"><code>Chrono.js</code></a>. Try typing "yesterday", "May tenth" or "in one year"!</a>.
+            <strong>💡️ Natural language input:</strong> Text field accepts natural language input using <a href="https://github.com/wanasit/chrono"><code>Chrono.js</code></a>. Try typing <code>"yesterday"</code>, <code>"May tenth"</code> or <code>"in one year"</code>!</a>.
           </li>
           <li>
             <strong>🧏‍♀️ Accessibility first:</strong> Built to support users of assistive
             technology. Follows the <a href="https://www.w3.org/WAI/ARIA/apg/example-index/dialog-modal/datepicker-dialog">WAI-ARIA APG Datepicker dialog pattern</a>.
           </li>
           <li>
-            <strong>🦶 Small footprint:</strong> Base version is about 8 KB minified and
-            gzipped. About 50kb with Chrono.js language parsing.
-          </li>
-          <li>
-            <strong>🪁 Low dependency:</strong> Few external dependencies.
-          </li>
-          <li>
             <strong>🖼 Framework-agnostic:</strong> Standard Web Component that
-            works with any framework.
+            works with any framework – or no framework at all.
+          </li>
+          <li>
+            <strong>🦶 Small footprint:</strong> The component is ~45KB minified and gzipped with Chrono.js. If you do not need language parsing, the original <a href="https://github.com/sqrrl/wc-datepicker"><code>sqrrl/wc-datepicker</code></a> calendar is ~4KB
+          </li>
+          <li>
+            <strong>🪁 Low dependency:</strong> External dependencies limited to accessibility utils (<code>@react-aria/live-announcer</code>, <code>@a11y/focus-trap</code> and <code>aria-hidden</code>)
           </li>
           <li><strong>💪 Strongly typed:</strong> Written in TypeScript.</li>
 
@@ -116,7 +113,7 @@
           </li>
           <li>
             <strong>🌈 Customizable:</strong> Semantic markup with no built-in
-            styles.
+            styles. Themes are optional.
           </li>
           <li>
             <strong>🧪 Well tested:</strong> Quality assured by means of unit
@@ -130,7 +127,7 @@
       </section>
 
       <section>
-        <h2 id="demo">Demo</h2>
+        <h2 id="demo" tabindex="-1">Demo</h2>
 
         <p>
           <strong>Current theme:</strong>
@@ -142,7 +139,7 @@
 
         <div class="demo">
           <div class="demo__preview">
-            <inclusive-dates id="datepicker"></inclusive-dates>
+            <inclusive-dates id="datepicker" locale="en-US"></inclusive-dates>
           </div>
           <div class="demo__code">
             <pre><code class="language-html" id="demo-code"></code></pre>
@@ -156,6 +153,59 @@
                 </tr>
               </thead>
               <tbody>
+              <tr>
+                <td><code id="value-label">value</code><br /></td>
+                <td>
+                  <input
+                    aria-labelledby="value-label"
+                    disabled
+                    id="value"
+                    type="text"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <code id="id-label">id*</code><br />
+                  <small>A page-unique ID used to identify the component. Mandatory for accessibility!</small>
+                </td>
+                <td>
+                  <input
+                    aria-labelledby="id-label"
+                    id="id"
+                    type="text"
+                    value="datepicker"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <code id="label-label">label</code><br />
+                  <small>Label used for the text input field</small>
+                </td>
+                <td>
+                  <input
+                    aria-labelledby="label-label"
+                    id="label"
+                    type="text"
+                    value="Choose a date (any way you want)"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <code id="placeholder-label">placeholder</code><br />
+                  <small>Placeholder used for the text input field</small>
+                </td>
+                <td>
+                  <input
+                    aria-labelledby="placeholder-label"
+                    id="placeholder"
+                    type="text"
+                    value='Try "tomorrrow" or "in ten days"'
+                  />
+                </td>
+              </tr>
                 <tr>
                   <td>
                     <code id="disabled-label">disabled</code><br />
@@ -170,6 +220,21 @@
                     />
                   </td>
                 </tr>
+              <tr>
+                <td>
+                  <code id="input-should-format-label">input-should-format</code><br />
+                  <small>Format valid dates into a more readable date string</small>
+                </td>
+                <td>
+                  <input
+                    aria-labelledby="input-should-format-label"
+                    id="input-should-format"
+                    type="checkbox"
+                    value="input-should-format"
+                    checked
+                  />
+                </td>
+              </tr>
                 <tr>
                   <td>
                     <code id="first-day-of-week-label">first-day-of-week</code
@@ -194,20 +259,6 @@
                 </tr>
                 <tr>
                   <td>
-                    <code id="range-label">range</code><br />
-                    <small>Enable range input</small>
-                  </td>
-                  <td>
-                    <input
-                      aria-labelledby="range-label"
-                      id="range"
-                      type="checkbox"
-                      value="range"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
                     <code id="locale-label">locale</code><br />
                     <small>BCP 47 language tag</small>
                   </td>
@@ -216,10 +267,25 @@
                       aria-labelledby="locale-label"
                       id="locale"
                       type="text"
-                      value=""
+                      value="en-US"
                     />
                   </td>
                 </tr>
+              <tr>
+                <td>
+                  <code id="range-label">range</code><br />
+                  <small>Enable range input. <strong>Currently not available.</strong></small>
+                </td>
+                <td>
+                  <input
+                    aria-labelledby="range-label"
+                    id="range"
+                    type="checkbox"
+                    value="range"
+                    disabled
+                  />
+                </td>
+              </tr>
                 <tr>
                   <td>
                     <code id="show-month-stepper-label">show-month-stepper</code
@@ -263,6 +329,23 @@
                       id="show-clear-button"
                       type="checkbox"
                       value="show-clear-button"
+                      checked
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <code id="show-keyboard-hint-label">show-keyboard-hint</code
+                    ><br />
+                    <small>Displays a hint with available keyboard commands</small>
+                  </td>
+                  <td>
+                    <input
+                      aria-labelledby="show-keyboard-hint-label"
+                      id="show-keyboard-hint"
+                      type="checkbox"
+                      value="show-keyboard-hint"
+                      checked
                     />
                   </td>
                 </tr>
@@ -278,6 +361,7 @@
                       id="show-today-button"
                       type="checkbox"
                       value="show-today-button"
+                      checked
                     />
                   </td>
                 </tr>
@@ -295,17 +379,6 @@
                     />
                   </td>
                 </tr>
-                <tr>
-                  <td><code id="value-label">value</code><br /></td>
-                  <td>
-                    <input
-                      aria-labelledby="value-label"
-                      disabled
-                      id="value"
-                      type="text"
-                    />
-                  </td>
-                </tr>
               </tbody>
             </table>
           </div>
@@ -315,9 +388,9 @@
       <section>
         <h2 id="install">Install</h2>
 
-        <pre><code>npm install --save wc-datepicker
+        <pre><code>npm install --save inclusive-dates
 # or
-yarn add wc-datepicker</code></pre>
+yarn add inclusive-dates</code></pre>
       </section>
 
       <section>
@@ -337,18 +410,18 @@ yarn add wc-datepicker</code></pre>
         <pre><code class="language-html">&lt;head&gt;
   &lt;script
     type="module"
-    src="https://cdn.jsdelivr.net/npm/wc-datepicker/dist/esm/wc-datepicker.js"
+    src="https://cdn.jsdelivr.net/npm/inclusive-dates/dist/esm/inclusive-dates.js"
   /&gt;
 
   &lt;!-- Loading the theme is optional. --&gt;
   &lt;link
     rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/wc-datepicker/dist/themes/light.css"
+    href="https://cdn.jsdelivr.net/npm/inclusive-dates/dist/themes/light.css"
   /&gt;
 &lt;/head&gt;
 
 &lt;body&gt;
-  &lt;wc-datepicker&gt;&lt;/wc-datepicker&gt;
+  &lt;inclusive-dates&gt;&lt;/inclusive-dates&gt;
 &lt;/body&gt;</code></pre>
 
         <h3>Using a bundler</h3>
@@ -359,12 +432,12 @@ yarn add wc-datepicker</code></pre>
           <a href="https://esbuild.github.io/">esbuild</a>.
         </p>
 
-        <pre><code class="language-javascript">import { WcDatepicker } from "wc-datepicker/dist/components/wc-datepicker";
+        <pre><code class="language-javascript">import { WcDatepicker } from "inclusive-dates/dist/components/inclusive-dates";
 
 // Importing a theme is optional.
-import "wc-datepicker/dist/themes/light.css";
+import "inclusive-dates/dist/themes/light.css";
 
-customElements.define("wc-datepicker", WcDatepicker);</code></pre>
+customElements.define("inclusive-dates", InclusiveDates);</code></pre>
 
         <h3>With a bundler and automatic lazy loading</h3>
 
@@ -376,10 +449,10 @@ customElements.define("wc-datepicker", WcDatepicker);</code></pre>
           the component is actually rendered.
         </p>
 
-        <pre><code class="language-javascript">import { defineCustomElements } from "wc-datepicker/dist/loader";
+        <pre><code class="language-javascript">import { defineCustomElements } from "inclusive-dates/dist/loader";
 
 // Importing a theme is optional.
-import "wc-datepicker/dist/themes/light.css";
+import "inclusive-dates/dist/themes/light.css";
 
 defineCustomElements();</code></pre>
       </section>
@@ -394,7 +467,7 @@ defineCustomElements();</code></pre>
         </p>
 
         <strong>Example:</strong>
-        <pre><code class="language-html">&lt;wc-datepicker first-day-of-week="1" id="datepicker"&gt;&lt;/wc-datepicker&gt;
+        <pre><code class="language-html">&lt;inclusive-dates first-day-of-week="1" id="datepicker"&gt;&lt;/inclusive-dates&gt;
 
 &lt;script&gt;
   const datepicker = document.getElementById('datepicker');
@@ -434,7 +507,7 @@ defineCustomElements();</code></pre>
             <tr>
               <td><code>element-class-name</code></td>
               <td><code>string</code></td>
-              <td><code>wc-datepicker</code></td>
+              <td><code>inclusive-dates</code></td>
               <td>Prefix for all element class names.</td>
             </tr>
             <tr>
@@ -556,7 +629,7 @@ defineCustomElements();</code></pre>
         </div>
 
         <strong>Example:</strong>
-        <pre><code class="language-html">&lt;wc-datepicker id="datepicker"&gt;&lt;/wc-datepicker&gt;
+        <pre><code class="language-html">&lt;inclusive-dates id="datepicker"&gt;&lt;/inclusive-dates&gt;
 
 &lt;script&gt;
   const datepicker = document.getElementById('datepicker');
@@ -586,110 +659,110 @@ defineCustomElements();</code></pre>
           </thead>
           <tbody>
             <tr>
-              <td><code>.wc-datepicker</code></td>
+              <td><code>.inclusive-dates-calendar</code></td>
               <td>Outer element of the datepicker</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker&#45;&#45;disabled</code></td>
+              <td><code>.inclusive-dates-calendar&#45;&#45;disabled</code></td>
               <td>Outer element of the disabled datepicker</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__header</code></td>
+              <td><code>.inclusive-dates-calendar__header</code></td>
               <td>
                 Element containing the stepper buttons and month/year input
                 fields
               </td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__previous-year-button</code></td>
+              <td><code>.inclusive-dates-calendar__previous-year-button</code></td>
               <td>Previous year stepper button</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__previous-month-button</code></td>
+              <td><code>.inclusive-dates-calendar__previous-month-button</code></td>
               <td>Previous month stepper button</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__next-year-button</code></td>
+              <td><code>.inclusive-dates-calendar__next-year-button</code></td>
               <td>Next year stepper button</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__next-month-button</code></td>
+              <td><code>.inclusive-dates-calendar__next-month-button</code></td>
               <td>Next month stepper button</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__current-month</code></td>
+              <td><code>.inclusive-dates-calendar__current-month</code></td>
               <td>Wrapper of the month/year input fields</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__month-select</code></td>
+              <td><code>.inclusive-dates-calendar__month-select</code></td>
               <td>Month select element</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__year-select</code></td>
+              <td><code>.inclusive-dates-calendar__year-select</code></td>
               <td>Year text input element</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__body</code></td>
+              <td><code>.inclusive-dates-calendar__body</code></td>
               <td>Wrapper of the calendar table</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__calendar</code></td>
+              <td><code>.inclusive-dates-calendar__calendar</code></td>
               <td>Calendar table element</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__calendar-header</code></td>
+              <td><code>.inclusive-dates-calendar__calendar-header</code></td>
               <td>Table header including the weekdays</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__weekday-row</code></td>
+              <td><code>.inclusive-dates-calendar__weekday-row</code></td>
               <td>Table row including the weekday cells</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__weekday</code></td>
+              <td><code>.inclusive-dates-calendar__weekday</code></td>
               <td>Weekday cell</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__calendar-row</code></td>
+              <td><code>.inclusive-dates-calendar__calendar-row</code></td>
               <td>Table row including one week of dates</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__date</code></td>
+              <td><code>.inclusive-dates-calendar__date</code></td>
               <td>Date cell</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__date&#45;&#45;current</code></td>
+              <td><code>.inclusive-dates-calendar__date&#45;&#45;current</code></td>
               <td>Currently focused date cell</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__date&#45;&#45;disabled</code></td>
+              <td><code>.inclusive-dates-calendar__date&#45;&#45;disabled</code></td>
               <td>Disabled date cell</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__date&#45;&#45;overflowing</code></td>
+              <td><code>.inclusive-dates-calendar__date&#45;&#45;overflowing</code></td>
               <td>Date cell of the previous or next month</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__date&#45;&#45;today</code></td>
+              <td><code>.inclusive-dates-calendar__date&#45;&#45;today</code></td>
               <td>Date cell of the current day</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__date&#45;&#45;selected</code></td>
+              <td><code>.inclusive-dates-calendar__date&#45;&#45;selected</code></td>
               <td>Currently selected date cell</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__date&#45;&#45;in-range</code></td>
+              <td><code>.inclusive-dates-calendar__date&#45;&#45;in-range</code></td>
               <td>Date cell within the currently selected range</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__footer</code></td>
+              <td><code>.inclusive-dates-calendar__footer</code></td>
               <td>Table footer containing the today and clear buttons</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__today-button</code></td>
+              <td><code>.inclusive-dates-calendar__today-button</code></td>
               <td>Today button element</td>
             </tr>
             <tr>
-              <td><code>.wc-datepicker__clear-button</code></td>
+              <td><code>.inclusive-dates-calendar__clear-button</code></td>
               <td>Clear button element</td>
             </tr>
           </tbody>
@@ -815,7 +888,7 @@ defineCustomElements();</code></pre>
 
         <p>
           Licensed under the
-          <a href="https://github.com/Sqrrl/wc-datepicker/blob/main/LICENSE"
+          <a href="https://github.com/Sqrrl/inclusive-dates/blob/main/LICENSE"
             >MIT license</a
           >.
         </p>
@@ -828,6 +901,12 @@ defineCustomElements();</code></pre>
       const datepicker = document.getElementById("datepicker");
 
       const demoCodeContainer = document.getElementById("demo-code");
+
+      const idInput = document.getElementById("id");
+      const labelInput = document.getElementById("label");
+      const placeholderInput = document.getElementById("placeholder");
+      const formatInput = document.getElementById("input-should-format");
+      const keyboardHintInput = document.getElementById("show-keyboard-hint");
 
       const disabledInput = document.getElementById("disabled");
       const firstDayOfWeekInput = document.getElementById("first-day-of-week");
@@ -864,6 +943,31 @@ defineCustomElements();</code></pre>
 
       datepicker.addEventListener("selectDate", (event) => {
         valueInput.value = event.detail ? JSON.stringify(event.detail) : "";
+      });
+
+      idInput.addEventListener("change", (event) => {
+        datepicker.setAttribute("id", event.target.value);
+        updateDemoCode();
+      });
+
+      labelInput.addEventListener("change", (event) => {
+        datepicker.setAttribute("label", event.target.value);
+        updateDemoCode();
+      });
+
+      placeholderInput.addEventListener("change", (event) => {
+        datepicker.setAttribute("placeholder", event.target.value);
+        updateDemoCode();
+      });
+
+      formatInput.addEventListener("change", (event) => {
+        datepicker.setAttribute("input-should-format", event.target.value);
+        updateDemoCode();
+      });
+
+      keyboardHintInput.addEventListener("change", (event) => {
+        datepicker.setAttribute("input-should-format", String(event.target.checked));
+        updateDemoCode();
       });
 
       disabledInput.addEventListener("change", (event) => {

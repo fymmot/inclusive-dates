@@ -49,8 +49,9 @@ export class InclusiveDates {
   @Prop() showMonthStepper?: boolean = true;
   @Prop() showClearButton?: boolean = true;
   @Prop() showTodayButton?: boolean = true;
-  @Prop() formatInputOnAccept?: boolean = true;
-  @Prop() showKeyboardInstructions?: boolean = true;
+  @Prop({ attribute: "input-should-format" }) formatInputOnAccept?: boolean =
+    true;
+  @Prop() showKeyboardHint?: boolean = true;
   @Prop() useStrictDateParsing?: boolean = false;
   @Prop() labels?: InclusiveDatesLabels = defaultLabels;
   @Prop() startDate?: string = getISODateString(new Date());
@@ -200,7 +201,6 @@ export class InclusiveDates {
 
   private handleCalendarButtonClick = async () => {
     await this.modalRef.setTriggerElement(this.calendarButtonRef);
-    await this.modalRef.setAnchorElement(this.inputRef);
     if ((await this.modalRef.getState()) === false) await this.modalRef?.open();
     else if ((await this.modalRef.getState()) === true)
       await this.modalRef?.close();
@@ -228,25 +228,27 @@ export class InclusiveDates {
     );
   };
   private handleChange = async (event) => {
-    console.log("change");
     if (event.target.value.length === 0) {
-      console.log("handle change 0");
       this.internalValue = "";
       this.pickerRef.value = null;
+      this.selectDate.emit(this.internalValue);
       return (this.errorState = false);
     }
     const parsedDate = await this.chronoParseDate(event.target.value);
     if (parsedDate instanceof Date) {
       this.updateValue(parsedDate);
       if (document.activeElement !== this.inputRef) {
-        this.formatInput(true);
+        this.formatInput(true, false);
       }
     } else this.errorState = true;
   };
 
-  private formatInput(state: boolean, useInputValue = true) {
+  private formatInput(enabled: boolean, useInputValue = true) {
+    if (this.formatInputOnAccept === false || enabled === false) {
+      if (this.internalValue) this.inputRef.value = this.internalValue;
+      return;
+    }
     if (
-      state &&
       this.internalValue &&
       this.formatInputOnAccept === true &&
       this.errorState === false
@@ -268,9 +270,9 @@ export class InclusiveDates {
   }
 
   private handlePickerSelection(newValue: string) {
+    this.modalRef.close();
     this.inputRef.value = newValue;
     this.internalValue = newValue;
-    this.modalRef.close();
     this.errorState = false;
     if (document.activeElement !== this.inputRef) {
       this.formatInput(true, false);
@@ -287,18 +289,24 @@ export class InclusiveDates {
   }
 
   @Watch("hasError")
-  watchHasError() {
-    this.errorState = this.hasError;
+  watchHasError(newValue) {
+    this.hasError = newValue;
   }
 
   @Watch("locale")
-  watchLocale() {
-    // console.log(this.locale);
+  watchLocale(newValue) {
+    this.locale = newValue;
+  }
+
+  @Watch("label")
+  watchLabel(newValue) {
+    this.label = newValue;
   }
 
   @Watch("disabled")
-  watchDisabled() {
-    this.disabledState = this.disabled;
+  watchDisabled(newValue) {
+    this.disabledState = newValue;
+    this.disabled = newValue;
   }
 
   @Watch("value")
@@ -334,7 +342,7 @@ export class InclusiveDates {
             ref={(r) => (this.inputRef = r)}
             onChange={this.handleChange}
             onFocus={() => this.formatInput(false)}
-            onBlur={() => this.formatInput(true)}
+            onBlur={() => this.formatInput(true, false)}
             aria-describedby={this.errorState ? `${this.id}-error` : undefined}
             aria-invalid={this.errorState}
           />
@@ -368,12 +376,12 @@ export class InclusiveDates {
             ref={(el) => (this.pickerRef = el)}
             startDate={this.startDate}
             firstDayOfWeek={this.firstDayOfWeek}
-            showHiddenTitle={false}
+            showHiddenTitle={true}
             disabled={this.disabledState}
             showMonthStepper={this.showMonthStepper}
             showYearStepper={this.showYearStepper}
             showClearButton={this.showClearButton}
-            showKeyboardInstructions={this.showKeyboardInstructions}
+            showKeyboardHint={this.showKeyboardHint}
           />
         </inclusive-dates-modal>
         {this.quickButtons?.length > 0 && this.chronoSupportedLocale && (
