@@ -880,11 +880,6 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stencil/core@^2.13.0":
-  version "2.18.1"
-  resolved "https://registry.npmjs.org/@stencil/core/-/core-2.18.1.tgz"
-  integrity sha512-/fXkh1lwZ+X9JQCw50mPjhBogzEHOBvVC5pLoDLZqodVYK0DGWILM2YLV4dcIUBNEK8/HMDpO/Rq81/rS3mNOw==
-
 "@stencil/postcss@^2.1.0":
   version "2.1.0"
   resolved "https://registry.npmjs.org/@stencil/postcss/-/postcss-2.1.0.tgz"
@@ -892,11 +887,6 @@
   dependencies:
     autoprefixer "^10.3.6"
     postcss "~8.3.8"
-
-"@stencil/sass@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.npmjs.org/@stencil/sass/-/sass-2.0.2.tgz"
-  integrity sha512-+hdPubxA4cBEyJR0ge0aGl9FUr0y6e4yqcsfrxkocOT6Nv+Mi+QpfZ9kx1W3ECL640VRcHqQifPcnoauvmqPZg==
 
 "@swc/helpers@^0.4.14":
   version "0.4.14"
@@ -1035,13 +1025,6 @@
   version "2.21.0"
   resolved "https://registry.npmjs.org/@zeit/schemas/-/schemas-2.21.0.tgz"
   integrity sha512-/J4WBTpWtQ4itN1rb3ao8LfClmVcmz2pO6oYb7Qd4h7VSqUhIbJIvrykz9Ew1WMg6eFWsKdsMHc5uPbFxqlCpg==
-
-a11y-dialog@^7.5.2:
-  version "7.5.2"
-  resolved "https://registry.npmjs.org/a11y-dialog/-/a11y-dialog-7.5.2.tgz"
-  integrity sha512-zfWtVvrbGbP3AFnEJ1aJFtu7GvedgjOEKbkyEUSeaNWDzmFJk9O5nuolDQrRDyRDE5fqSJRiBJtD5bUYKveoUg==
-  dependencies:
-    focusable-selectors "^0.4.0"
 
 abab@^2.0.3, abab@^2.0.5:
   version "2.0.6"
@@ -2171,11 +2154,6 @@ find-yarn-workspace-root2@1.2.16:
     micromatch "^4.0.2"
     pkg-dir "^4.2.0"
 
-focusable-selectors@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/focusable-selectors/-/focusable-selectors-0.4.0.tgz"
-  integrity sha512-tc/236hUU3xemsRLu1RKhRQ5UWHjRM9iJTli1zdac43h7b1biRSgG0mILM0qrcsKaGCHcOPJ6NKbk12ouKHLpw==
-
 form-data@^3.0.0:
   version "3.0.1"
   resolved "https://registry.npmjs.org/form-data/-/form-data-3.0.1.tgz"
@@ -3210,9 +3188,9 @@ json-schema-traverse@^1.0.0:
   integrity sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==
 
 json5@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.npmjs.org/json5/-/json5-2.2.1.tgz"
-  integrity sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.3.tgz#78cd6f1a19bdc12b73db5ad0c61efd66c1e29283"
+  integrity sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==
 
 jsonfile@^4.0.0:
   version "4.0.0"
