@@ -201,9 +201,7 @@ export class InclusiveDatesCalendar {
     if (!Boolean(this.currentDate)) {
       return;
     }
-
     return Intl.DateTimeFormat(this.locale, {
-      day: "numeric",
       month: "long",
       year: "numeric"
     }).format(this.currentDate);
@@ -555,6 +553,7 @@ export class InclusiveDatesCalendar {
               class={this.getClassName("calendar")}
               onKeyDown={this.onKeyDown}
               role="grid"
+              aria-label={this.getTitle()}
             >
               <thead class={this.getClassName("calendar-header")}>
                 <tr class={this.getClassName("weekday-row")}>

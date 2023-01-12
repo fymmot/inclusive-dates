@@ -1,5 +1,5 @@
 import { Config } from "@stencil/core";
-import { sass } from '@stencil/sass';
+import { sass } from "@stencil/sass";
 import { postcss } from "@stencil/postcss";
 import autoprefixer from "autoprefixer";
 import postcssNested from "postcss-nested";
@@ -8,13 +8,13 @@ export const config: Config = {
   namespace: "useit",
   outputTargets: [
     {
-      /*copy: [
+      copy: [
         {
-          src: "themes/!*.scss",
+          src: "themes/*.css",
           dest: "../themes",
           warn: true
         }
-      ],*/
+      ],
       type: "dist"
     },
     {
@@ -22,23 +22,23 @@ export const config: Config = {
       type: "dist-custom-elements"
     },
     {
-      /*copy: [
+      copy: [
         {
-          src: "themes/!*.{scss,css}",
+          src: "themes/!*.{css}",
           dest: "themes",
           warn: true
         }
-      ],*/
+      ],
       type: "www",
       serviceWorker: null
     }
   ],
   plugins: [
     sass({
-      includePaths: ["src/themes"],
+      includePaths: ["src/themes"]
     }),
     postcss({
       plugins: [autoprefixer(), postcssNested()]
-    }),
+    })
   ]
 };

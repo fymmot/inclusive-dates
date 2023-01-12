@@ -1,10 +1,10 @@
 {
-  "name": "wc-datepicker",
-  "version": "0.4.0",
-  "description": "A small, accessible and customizable datepicker written in TypeScript.",
+  "name": "inclusive-dates",
+  "version": "0.1.1",
+  "description": "A small, accessible datepicker Web Component with natural language date input.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Sqrrl/wc-datepicker.git"
+    "url": "https://github.com/fymmot/inclusive-dates"
   },
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -18,12 +18,12 @@
     "dist/"
   ],
   "scripts": {
-    "build": "yarn build:stencil && yarn sass:build && yarn build:docs",
-    "build:stencil": "stencil build",
+    "build": "yarn build:stencil && yarn build:docs",
+    "build:stencil": "yarn sass && stencil build",
     "build:docs": "rimraf docs-www && copyfiles -u 1 docs/* docs/**/* dist/themes/* docs-www && copyfiles dist/esm/* docs-www && node terser.js",
     "prettier": "prettier --write .",
-    "start": "yarn start:stencil & (sleep 30 && yarn sass:dev)",
-    "start:stencil": "stencil build --dev --watch --serve",
+    "start": "yarn start:stencil",
+    "start:stencil": "yarn sass && stencil build --dev --watch --serve",
     "start:docs": "concurrently --kill-others \"npm-watch build:docs\" \"serve docs-www\"",
     "test": "stencil test --spec",
     "test:watch": "stencil test --spec --watchAll",
@@ -32,8 +32,8 @@
     "version-packages": "changeset version",
     "release": "yarn build:stencil && changeset publish",
     "prepare": "husky install",
-    "sass:dev": "sass src/themes/dark.scss:www/themes/dark.css src/themes/light.scss:www/themes/light.css",
-    "sass:build": "sass src/themes/dark.scss:dist/themes/dark.css src/themes/light.scss:dist/themes/light.css",
+    "sass:watch": "sass src/themes/base.scss:src/themes/base.css src/themes/dark.scss:src/themes/dark.css src/themes/light.scss:src/themes/light.css --watch --style compressed",
+    "sass": "sass src/themes/dark.scss:src/themes/dark.css src/themes/light.scss:src/themes/light.css --style compressed",
     "@stencil/core": "^2.13.0",
     "@stencil/sass": "^2.0.2"
   },
@@ -51,6 +51,8 @@
     }
   },
   "dependencies": {
+    "@stencil/core": "^2.13.0",
+    "@stencil/sass": "^2.0.2",
     "@a11y/focus-trap": "^1.0.5",
     "@react-aria/live-announcer": "^3.1.2",
     "aria-hidden": "^1.2.2",
