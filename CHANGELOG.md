@@ -1,5 +1,11 @@
 # inclusive-dates
 
+## 0.1.2
+
+### Patch Changes
+
+- [`cdf0113`](https://github.com/fymmot/inclusive-dates/commit/cdf011379042a19ac1b6eb92ddf4f63d0b86636e) Thanks [@fymmot](https://github.com/fymmot)! - Bugfix for Safari VoiceOver crash and missing input date formatting on submit.
+
 ## 0.1.1
 
 ### Patch Changes
