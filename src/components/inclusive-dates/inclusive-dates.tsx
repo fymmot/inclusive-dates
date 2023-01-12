@@ -237,9 +237,7 @@ export class InclusiveDates {
     const parsedDate = await this.chronoParseDate(event.target.value);
     if (parsedDate instanceof Date) {
       this.updateValue(parsedDate);
-      if (document.activeElement !== this.inputRef) {
-        this.formatInput(true, false);
-      }
+      this.formatInput(true, false);
     } else this.errorState = true;
   };
 

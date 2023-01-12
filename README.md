@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>Inclusive dates v2</h1>
+  <h1>Inclusive datepicker 2.0</h1>
   
   <p><strong>A human-friendly and fully accessible datepicker with support for natural language input. </strong>Now as a reusable Web Component!</p>
 <p>Try typing "tomorrow" or "in 10 days"!</p>
@@ -7,7 +7,7 @@
   <p>Forked from the excellent <a href="https://github.com/Sqrrl/wc-datepicker"><code>sqrrl/wc-datepicker</code></a></p>
   
   <p>
-    <a href="https://inclusive-dates-v2.vercel.app/">
+    <a href="https://fymmot.github.io/inclusive-dates">
       <img alt="Screenshot of the datepicker" height="315" src="https://github.com/fymmot/inclusive-dates/blob/main/docs/images/screenshot-1.jpg?raw=true">
     </a>
   </p>
@@ -33,4 +33,4 @@
 
 ## Documentation & Demo
 
-**https://inclusive-dates.vercel.app/**
+**https://fymmot.github.io/inclusive-dates/**
