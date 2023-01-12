@@ -157,8 +157,11 @@ export class InclusiveDatesCalendar {
       this.moveFocusAfterMonthChanged = false;
     }
     if (this.moveFocusOnModalOpen) {
-      this.focusDate(this.currentDate);
-      this.moveFocusOnModalOpen = false;
+      // Timeout added to stop VoiceOver from crashing Safari when openin the calendar. TODO: Investigate a neater solution
+      setTimeout(() => {
+        this.focusDate(this.currentDate);
+        this.moveFocusOnModalOpen = false;
+      }, 100);
     }
   }
 

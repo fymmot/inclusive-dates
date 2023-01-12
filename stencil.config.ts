@@ -5,7 +5,7 @@ import autoprefixer from "autoprefixer";
 import postcssNested from "postcss-nested";
 
 export const config: Config = {
-  namespace: "useit",
+  namespace: "inclusive-dates",
   outputTargets: [
     {
       copy: [
@@ -24,8 +24,8 @@ export const config: Config = {
     {
       copy: [
         {
-          src: "themes/!*.{css}",
-          dest: "themes",
+          src: "themes/*.{css}",
+          dest: "../themes",
           warn: true
         }
       ],
