@@ -80,7 +80,7 @@ export class InclusiveDates {
   private inputRef?: HTMLInputElement;
   private calendarButtonRef?: HTMLButtonElement;
   private pickerRef?: HTMLInclusiveDatesCalendarElement;
-  private chronoSupportedLocale = ["en", "jp", "fr", "nl", "ru", "pt"].includes(
+  private chronoSupportedLocale = ["en", "ja", "fr", "nl", "ru", "pt"].includes(
     this.locale.slice(0, 2)
   );
 
