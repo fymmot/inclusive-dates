@@ -129,6 +129,9 @@ inclusive-dates-calendar {
   color: var(--text-color);
   background-color: var(--bg2-color);
   cursor: pointer;
+  &:disabled {
+    color: var(--disabled-color);
+  }
 }
 
 .inclusive-dates-calendar__body {

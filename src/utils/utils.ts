@@ -123,7 +123,6 @@ export function getPreviousMonth(date: Date): Date {
   const newDate = new Date(date);
 
   newDate.setMonth(newDate.getMonth() - 1);
-
   return newDate;
 }
 
@@ -189,4 +188,41 @@ export function subDays(date: Date, days: number): Date {
   newDate.setDate(newDate.getDate() - days);
 
   return newDate;
+}
+
+export function dateIsWithinLowerBounds(date: Date, minDate?: string): boolean {
+  if (minDate) return date >= new Date(minDate);
+  else return true;
+}
+
+export function dateIsWithinUpperBounds(date: Date, maxDate?: string): boolean {
+  if (maxDate) return date <= new Date(maxDate);
+  else return true;
+}
+
+export function dateIsWithinBounds(
+  date: Date,
+  minDate?: string,
+  maxDate?: string
+): boolean {
+  return (
+    dateIsWithinLowerBounds(date, minDate) &&
+    dateIsWithinUpperBounds(date, maxDate)
+  );
+}
+
+export function monthIsDisabled(
+  month: number,
+  year: number,
+  minDate: string,
+  maxDate: string
+) {
+  const firstDate = new Date(year, month, 1);
+  firstDate.setDate(firstDate.getDate() - 1);
+  const lastDate = new Date(year, month + 1, 0);
+  lastDate.setDate(firstDate.getDate() + 1);
+  return (
+    !dateIsWithinBounds(firstDate, minDate, maxDate) &&
+    !dateIsWithinBounds(lastDate, minDate, maxDate)
+  );
 }

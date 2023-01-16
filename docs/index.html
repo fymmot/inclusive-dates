@@ -206,6 +206,34 @@
                   />
                 </td>
               </tr>
+              <tr>
+                <td>
+                  <code id="minDate-label">min-date</code><br />
+                  <small>Earliest accepted date</small>
+                </td>
+                <td>
+                  <input
+                    aria-labelledby="minDate-label"
+                    id="minDate"
+                    type="text"
+                    placeholder='YYYY-MM-DD'
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <code id="maxDate-label">max-date</code><br />
+                  <small>Latest accepted date</small>
+                </td>
+                <td>
+                  <input
+                    aria-labelledby="maxDate-label"
+                    id="maxDate"
+                    type="text"
+                    placeholder='YYYY-MM-DD'
+                  />
+                </td>
+              </tr>
                 <tr>
                   <td>
                     <code id="disabled-label">disabled</code><br />
@@ -1094,6 +1122,8 @@ defineCustomElements();</code></pre>
       const idInput = document.getElementById("id");
       const labelInput = document.getElementById("label");
       const placeholderInput = document.getElementById("placeholder");
+      const minDateInput = document.getElementById("minDate");
+      const maxDateInput = document.getElementById("maxDate");
       const formatInput = document.getElementById("input-should-format");
       const keyboardHintInput = document.getElementById("show-keyboard-hint");
 
@@ -1146,6 +1176,16 @@ defineCustomElements();</code></pre>
 
       placeholderInput.addEventListener("change", (event) => {
         datepicker.setAttribute("placeholder", event.target.value);
+        updateDemoCode();
+      });
+
+      minDateInput.addEventListener("change", (event) => {
+        datepicker.setAttribute("min-date", event.target.value);
+        updateDemoCode();
+      });
+
+      maxDateInput.addEventListener("change", (event) => {
+        datepicker.setAttribute("max-date", event.target.value);
         updateDemoCode();
       });
 

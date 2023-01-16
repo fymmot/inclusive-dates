@@ -16,6 +16,7 @@ import { announce } from "@react-aria/live-announcer";
 import { getISODateString } from "../../utils/utils";
 import { MonthChangedEventDetails } from "../inclusive-dates-calendar/inclusive-dates-calendar";
 import { ChronoOptions } from "./inclusive-dates.type";
+import { dateIsWithinBounds } from "../../utils/utils";
 export interface InclusiveDatesLabels {
   selected?: string;
   openCalendar?: string;
@@ -43,6 +44,8 @@ export class InclusiveDates {
   @Prop() disableDate?: HTMLInclusiveDatesCalendarElement["disableDate"];
   @Prop() elementClassName?: string = "inclusive-dates";
   @Prop() disabled?: boolean = false;
+  @Prop() minDate?: string;
+  @Prop() maxDate?: string;
   @Prop() nextMonthButtonContent?: string;
   @Prop() nextYearButtonContent?: string;
   @Prop() showYearStepper?: boolean = false;
@@ -93,10 +96,6 @@ export class InclusiveDates {
     if (!this.chronoSupportedLocale)
       console.warn(
         `inclusive-dates: The chosen locale "${this.locale}" is not supported by Chrono.js. Date parsing has been disabled`
-      );
-    if (!this.chronoSupportedLocale && this.quickButtons.length > 0)
-      console.warn(
-        `inclusive-dates: The chosen locale "${this.locale}" is not supported by Chrono.js. Quick date buttons have been hidden because they will not work.`
       );
   }
 
@@ -180,7 +179,10 @@ export class InclusiveDates {
       parsedDate = await custom.parseDate(dateString, referenceDate, {
         forwardDate: true
       });
-    return parsedDate;
+
+    if (dateIsWithinBounds(parsedDate, this.minDate, this.maxDate))
+      return parsedDate;
+    else return null;
   };
 
   private updateValue(newValue: Date) {
@@ -307,6 +309,21 @@ export class InclusiveDates {
     this.disabled = newValue;
   }
 
+  @Watch("minDate")
+  watchMinDate(newValue) {
+    this.minDate = newValue;
+  }
+
+  @Watch("maxDate")
+  watchMaxDate(newValue) {
+    this.maxDate = newValue;
+  }
+
+  @Watch("formatInputOnAccept")
+  watchFormatInput(newValue) {
+    this.formatInputOnAccept = newValue;
+  }
+
   @Watch("value")
   watchValue() {
     if (Boolean(this.value)) {
@@ -380,6 +397,8 @@ export class InclusiveDates {
             showYearStepper={this.showYearStepper}
             showClearButton={this.showClearButton}
             showKeyboardHint={this.showKeyboardHint}
+            minDate={this.minDate}
+            maxDate={this.maxDate}
           />
         </inclusive-dates-modal>
         {this.quickButtons?.length > 0 && this.chronoSupportedLocale && (

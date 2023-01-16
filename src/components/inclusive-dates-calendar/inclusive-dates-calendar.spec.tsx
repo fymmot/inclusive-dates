@@ -307,10 +307,80 @@ describe("inclusive-dates-calendar", () => {
     expect(spy).not.toHaveBeenCalled();
   });
 
+  it("respects min date", async () => {
+    const page = await newSpecPage({
+      components: [InclusiveDatesCalendar],
+      html: `<inclusive-dates-calendar min-date="2022-01-05"></inclusive-dates-calendar>`,
+      language: "en"
+    });
+
+    const spy = jest.fn();
+
+    page.root.addEventListener("selectDate", spy);
+    page.root.setAttribute("start-date", "2022-01-15");
+
+    await page.waitForChanges();
+
+    const disabledDateCell = Array.from(
+      page.root.querySelectorAll<HTMLTableCellElement>(
+        ".inclusive-dates-calendar__date"
+      )
+    ).find((el) => el.dataset.date === "2022-01-04");
+
+    const nonDisabledDateCell = Array.from(
+      page.root.querySelectorAll<HTMLTableCellElement>(
+        ".inclusive-dates-calendar__date"
+      )
+    ).find((el) => el.dataset.date === "2022-01-15");
+
+    disabledDateCell.click();
+
+    expect(disabledDateCell.getAttribute("aria-disabled")).toBe("true");
+    expect(spy).not.toHaveBeenCalled();
+
+    nonDisabledDateCell.click();
+    expect(nonDisabledDateCell.getAttribute("aria-disabled")).toBe("false");
+  });
+
+  it("respects max date", async () => {
+    const page = await newSpecPage({
+      components: [InclusiveDatesCalendar],
+      html: `<inclusive-dates-calendar max-date="2022-01-29"></inclusive-dates-calendar>`,
+      language: "en"
+    });
+
+    const spy = jest.fn();
+
+    page.root.addEventListener("selectDate", spy);
+    page.root.setAttribute("start-date", "2022-01-15");
+
+    await page.waitForChanges();
+
+    const disabledDateCell = Array.from(
+      page.root.querySelectorAll<HTMLTableCellElement>(
+        ".inclusive-dates-calendar__date"
+      )
+    ).find((el) => el.dataset.date === "2022-01-30");
+
+    const nonDisabledDateCell = Array.from(
+      page.root.querySelectorAll<HTMLTableCellElement>(
+        ".inclusive-dates-calendar__date"
+      )
+    ).find((el) => el.dataset.date === "2022-01-20");
+
+    disabledDateCell.click();
+
+    expect(disabledDateCell.getAttribute("aria-disabled")).toBe("true");
+    expect(spy).not.toHaveBeenCalled();
+
+    nonDisabledDateCell.click();
+    expect(nonDisabledDateCell.getAttribute("aria-disabled")).toBe("false");
+  });
+
   it("changes months", async () => {
     const page = await newSpecPage({
       components: [InclusiveDatesCalendar],
-      html: `<inclusive-dates-calendar show-hidden-title="true" start-date="2022-01-01"></inclusive-dates-calendar>`,
+      html: `<inclusive-dates-calendar show-hidden-title="true" start-date="2022-02-01" min-date="2022-02-01" max-date="2022-05-30"></inclusive-dates-calendar>`,
       language: "en"
     });
 
@@ -333,7 +403,7 @@ describe("inclusive-dates-calendar", () => {
       ".inclusive-dates-calendar__next-month-button"
     );
 
-    expect(header.innerText.startsWith("January")).toBeTruthy();
+    expect(header.innerText.startsWith("February")).toBeTruthy();
 
     monthSelect.value = "5";
     monthSelect.dispatchEvent(new Event("change"));
@@ -354,12 +424,30 @@ describe("inclusive-dates-calendar", () => {
 
     expect(header.innerText.startsWith("May")).toBeTruthy();
     expect(spy.mock.calls[2][0].detail).toEqual({ month: 5, year: 2022 });
+
+    nextMonthButton.click(); // Should not work - max date has been set
+    await page.waitForChanges();
+
+    expect(header.innerText.startsWith("May")).toBeTruthy();
+    expect(spy.mock.calls[2][0].detail).toEqual({ month: 5, year: 2022 });
+    expect(previousMonthButton.getAttribute("disabled")).toEqual(null);
+
+    monthSelect.value = "2";
+    monthSelect.dispatchEvent(new Event("change"));
+    await page.waitForChanges();
+
+    previousMonthButton.click(); // Should not work - min date has been set
+    monthSelect.dispatchEvent(new Event("change"));
+    await page.waitForChanges();
+
+    expect(header.innerText.startsWith("February")).toBeTruthy();
+    expect(previousMonthButton.getAttribute("disabled")).toEqual("");
   });
 
   it("changes year", async () => {
     const page = await newSpecPage({
       components: [InclusiveDatesCalendar],
-      html: `<inclusive-dates-calendar show-hidden-title="true" show-year-stepper="true" start-date="2022-01-01"></inclusive-dates-calendar>`,
+      html: `<inclusive-dates-calendar show-hidden-title="true" show-year-stepper="true" start-date="2022-01-01" max-date="2025-12-31" min-date="1988"></inclusive-dates-calendar>`,
       language: "en"
     });
 
@@ -403,6 +491,26 @@ describe("inclusive-dates-calendar", () => {
 
     expect(header.innerText.includes("1989")).toBeTruthy();
     expect(spy.mock.calls[2][0].detail).toEqual({ month: 1, year: 1989 });
+
+    yearSelect.value = "2025";
+    yearSelect.dispatchEvent(new Event("change"));
+    await page.waitForChanges();
+
+    nextYearButton.click();
+    await page.waitForChanges();
+
+    expect(header.innerText.includes("2026")).toBeFalsy();
+    expect(nextYearButton.getAttribute("disabled")).toEqual("");
+
+    yearSelect.value = "1988";
+    yearSelect.dispatchEvent(new Event("change"));
+    await page.waitForChanges();
+
+    previousYearButton.click();
+    await page.waitForChanges();
+
+    expect(header.innerText.includes("1987")).toBeFalsy();
+    expect(previousYearButton.getAttribute("disabled")).toEqual("");
   });
 
   it("jumps to current month", async () => {

@@ -1,5 +1,6 @@
 import {
   addDays,
+  dateIsWithinBounds,
   getDaysOfMonth,
   getFirstOfMonth,
   getISODateString,
@@ -221,5 +222,25 @@ describe("format", () => {
       new Date("2022-01-01")
     );
     expect(subDays(new Date("2022-01-01"), -1)).toEqual(new Date("2022-01-02"));
+  });
+
+  it("handles min-date and max-date", () => {
+    expect(dateIsWithinBounds(new Date("2023-01-15"))).toEqual(true);
+    expect(dateIsWithinBounds(new Date("2023-01-15"), "2023-01-14")).toEqual(
+      true
+    );
+    expect(dateIsWithinBounds(new Date("2023-01-15"), "2023-01-17")).toEqual(
+      false
+    );
+    expect(
+      dateIsWithinBounds(new Date("2023-01-25"), "2023-01-17", "2023-01-30")
+    ).toEqual(true);
+    expect(dateIsWithinBounds(new Date("2023-01-15"))).toEqual(true);
+    expect(
+      dateIsWithinBounds(new Date("2023-01-15"), undefined, "2023-01-30")
+    ).toEqual(true);
+    expect(
+      dateIsWithinBounds(new Date("2023-01-15"), undefined, "2023-01-13")
+    ).toEqual(false);
   });
 });

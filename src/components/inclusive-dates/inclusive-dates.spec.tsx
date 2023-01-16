@@ -168,4 +168,20 @@ describe("inclusive-dates", () => {
     let parsedDate = await datepicker.parseDate("2023-02-02");
     expect(parsedDate.date).toEqual("2023-02-02");
   });
+
+  it("Chrono returns error when date is out of bounds", async () => {
+    const page = await newSpecPage({
+      components: [InclusiveDates],
+      html: `<inclusive-dates id="test123" locale="en-GB" min-date="2023-01-15" max-date="2023-01-30"></inclusive-dates>`,
+      language: "en"
+    });
+    const datepicker = getDatePicker(page);
+
+    let parsedDate = await datepicker.parseDate("January first 2023");
+    expect(parsedDate.date).toEqual(undefined);
+    parsedDate = await datepicker.parseDate("January 31 2023");
+    expect(parsedDate.date).toEqual(undefined);
+    parsedDate = await datepicker.parseDate("January 17 2023");
+    expect(parsedDate.date).toEqual("2023-01-17");
+  });
 });
