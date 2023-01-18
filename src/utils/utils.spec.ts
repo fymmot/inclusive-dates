@@ -1,6 +1,7 @@
 import {
   addDays,
   dateIsWithinBounds,
+  dateIsWithinUpperBounds,
   getDaysOfMonth,
   getFirstOfMonth,
   getISODateString,
@@ -17,6 +18,7 @@ import {
   getYear,
   isDateInRange,
   isSameDay,
+  monthIsDisabled,
   subDays
 } from "./utils";
 
@@ -225,8 +227,18 @@ describe("format", () => {
   });
 
   it("handles min-date and max-date", () => {
+    expect(dateIsWithinUpperBounds(new Date("2023-01-15"))).toEqual(true);
+    expect(
+      dateIsWithinUpperBounds(new Date("2023-01-15"), "2023-01-15")
+    ).toEqual(true);
+    expect(
+      dateIsWithinUpperBounds(new Date("2023-01-16"), "2023-01-15")
+    ).toEqual(false);
     expect(dateIsWithinBounds(new Date("2023-01-15"))).toEqual(true);
     expect(dateIsWithinBounds(new Date("2023-01-15"), "2023-01-14")).toEqual(
+      true
+    );
+    expect(dateIsWithinBounds(new Date("2023-01-15"), "2023-01-15")).toEqual(
       true
     );
     expect(dateIsWithinBounds(new Date("2023-01-15"), "2023-01-17")).toEqual(
@@ -235,12 +247,35 @@ describe("format", () => {
     expect(
       dateIsWithinBounds(new Date("2023-01-25"), "2023-01-17", "2023-01-30")
     ).toEqual(true);
+    expect(
+      dateIsWithinBounds(new Date("2023-01-17"), "2023-01-17", "2023-01-30")
+    ).toEqual(true);
     expect(dateIsWithinBounds(new Date("2023-01-15"))).toEqual(true);
     expect(
       dateIsWithinBounds(new Date("2023-01-15"), undefined, "2023-01-30")
     ).toEqual(true);
     expect(
+      dateIsWithinBounds(new Date("2023-01-30"), "2023-01-17", "2023-01-30")
+    ).toEqual(true);
+    expect(
       dateIsWithinBounds(new Date("2023-01-15"), undefined, "2023-01-13")
     ).toEqual(false);
+    expect(
+      dateIsWithinBounds(new Date("2023-01-14"), undefined, "2023-01-13")
+    ).toEqual(false);
+  });
+
+  it("can disable months", () => {
+    expect(monthIsDisabled(2, 1999, undefined, undefined)).toBeFalsy();
+    expect(monthIsDisabled(0, 2023, "2023-01-01", undefined)).toBeFalsy();
+    expect(monthIsDisabled(0, 2023, "2022-12-31", undefined)).toBeFalsy();
+    expect(monthIsDisabled(11, 2022, "2023-01-01", undefined)).toBeTruthy();
+    expect(monthIsDisabled(2, 2023, "2023-01-31", undefined)).toBeFalsy();
+    expect(monthIsDisabled(2, 1999, "2023-01-31", undefined)).toBeTruthy();
+    expect(monthIsDisabled(2, 1999, undefined, "2023-12-12")).toBeFalsy();
+    expect(monthIsDisabled(11, 2023, undefined, "2023-12-12")).toBeFalsy();
+    expect(monthIsDisabled(0, 2024, undefined, "2023-12-12")).toBeTruthy();
+    expect(monthIsDisabled(0, 2024, "1999-02-02", "2023-12-12")).toBeTruthy();
+    expect(monthIsDisabled(0, 2024, "1999-02-02", "2024-12-12")).toBeFalsy();
   });
 });

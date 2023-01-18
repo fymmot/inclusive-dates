@@ -226,3 +226,13 @@ export function monthIsDisabled(
     !dateIsWithinBounds(lastDate, minDate, maxDate)
   );
 }
+
+export function isValidISODate(dateString) {
+  var isoFormat = /^\d{4}-\d{2}-\d{2}$/;
+  if (dateString.match(isoFormat) == null) {
+    return false;
+  } else {
+    var d = new Date(dateString);
+    return !isNaN(d.getTime());
+  }
+}

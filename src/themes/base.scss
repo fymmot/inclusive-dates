@@ -193,6 +193,7 @@ inclusive-dates-calendar {
 .inclusive-dates-calendar__date--today > * {
   font-weight: 700;
   font-style: normal;
+  color: var(--focus-color);
 }
 
 .inclusive-dates-calendar__date--in-range > * {

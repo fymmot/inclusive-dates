@@ -183,5 +183,9 @@ describe("inclusive-dates", () => {
     expect(parsedDate.date).toEqual(undefined);
     parsedDate = await datepicker.parseDate("January 17 2023");
     expect(parsedDate.date).toEqual("2023-01-17");
+    parsedDate = await datepicker.parseDate("January 30 2023");
+    expect(parsedDate.date).toEqual("2023-01-30");
+    parsedDate = await datepicker.parseDate("January 15 2023");
+    expect(parsedDate.date).toEqual("2023-01-15");
   });
 });

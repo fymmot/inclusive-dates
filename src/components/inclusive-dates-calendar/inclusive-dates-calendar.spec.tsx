@@ -327,7 +327,7 @@ describe("inclusive-dates-calendar", () => {
       )
     ).find((el) => el.dataset.date === "2022-01-04");
 
-    const nonDisabledDateCell = Array.from(
+    let nonDisabledDateCell = Array.from(
       page.root.querySelectorAll<HTMLTableCellElement>(
         ".inclusive-dates-calendar__date"
       )
@@ -339,6 +339,14 @@ describe("inclusive-dates-calendar", () => {
     expect(spy).not.toHaveBeenCalled();
 
     nonDisabledDateCell.click();
+    expect(nonDisabledDateCell.getAttribute("aria-disabled")).toBe("false");
+    expect(spy).toHaveBeenCalled();
+
+    nonDisabledDateCell = Array.from(
+      page.root.querySelectorAll<HTMLTableCellElement>(
+        ".inclusive-dates-calendar__date"
+      )
+    ).find((el) => el.dataset.date === "2022-01-05");
     expect(nonDisabledDateCell.getAttribute("aria-disabled")).toBe("false");
   });
 
@@ -362,7 +370,7 @@ describe("inclusive-dates-calendar", () => {
       )
     ).find((el) => el.dataset.date === "2022-01-30");
 
-    const nonDisabledDateCell = Array.from(
+    let nonDisabledDateCell = Array.from(
       page.root.querySelectorAll<HTMLTableCellElement>(
         ".inclusive-dates-calendar__date"
       )
@@ -374,6 +382,13 @@ describe("inclusive-dates-calendar", () => {
     expect(spy).not.toHaveBeenCalled();
 
     nonDisabledDateCell.click();
+    expect(nonDisabledDateCell.getAttribute("aria-disabled")).toBe("false");
+
+    nonDisabledDateCell = Array.from(
+      page.root.querySelectorAll<HTMLTableCellElement>(
+        ".inclusive-dates-calendar__date"
+      )
+    ).find((el) => el.dataset.date === "2022-01-29");
     expect(nonDisabledDateCell.getAttribute("aria-disabled")).toBe("false");
   });
 
