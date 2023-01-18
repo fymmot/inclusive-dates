@@ -129,6 +129,9 @@ inclusive-dates-calendar {
   color: var(--text-color);
   background-color: var(--bg2-color);
   cursor: pointer;
+  &:disabled {
+    color: var(--disabled-color);
+  }
 }
 
 .inclusive-dates-calendar__body {
@@ -190,6 +193,7 @@ inclusive-dates-calendar {
 .inclusive-dates-calendar__date--today > * {
   font-weight: 700;
   font-style: normal;
+  color: var(--focus-color);
 }
 
 .inclusive-dates-calendar__date--in-range > * {

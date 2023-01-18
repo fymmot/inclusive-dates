@@ -25,13 +25,18 @@
       <br />
       <br />
       <br />
-      <inclusive-dates locale="en-GB" week-starts-on="1"></inclusive-dates>
+      <inclusive-dates
+        id="datepicker"
+        show-year-stepper="true"
+        week-starts-on="1"
+        max-date="2034-11-02"
+        min-date="1988-12-30"
+      ></inclusive-dates>
     </main>
 
     <script>
       function toggleTheme() {
         var script = document.getElementById("theme");
-        console.log(script.getAttribute("href"));
         if (script.getAttribute("href") === "/themes/light.css") {
           script.setAttribute("href", "/themes/dark.css");
           document.querySelector("html").style.colorScheme = "dark";

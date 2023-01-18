@@ -13,21 +13,32 @@ import {
 import * as chrono from "chrono-node";
 import { announce } from "@react-aria/live-announcer";
 
-import { getISODateString } from "../../utils/utils";
+import {
+  dateIsWithinLowerBounds,
+  dateIsWithinUpperBounds,
+  getISODateString,
+  isValidISODate
+} from "../../utils/utils";
 import { MonthChangedEventDetails } from "../inclusive-dates-calendar/inclusive-dates-calendar";
 import { ChronoOptions } from "./inclusive-dates.type";
+import { dateIsWithinBounds } from "../../utils/utils";
 export interface InclusiveDatesLabels {
   selected?: string;
   openCalendar?: string;
   calendar?: string;
   errorMessage?: string;
+  invalidDateError?: string;
+  maxDateError?: string;
+  minDateError?: string;
 }
 
 const defaultLabels: InclusiveDatesLabels = {
   selected: "selected",
   openCalendar: "Open calendar",
   calendar: "calendar",
-  errorMessage: "We could not find a matching date"
+  invalidDateError: "We could not find a matching date",
+  minDateError: `Please fill in a date after `,
+  maxDateError: `Please fill in a date before `
 };
 
 @Component({
@@ -43,6 +54,8 @@ export class InclusiveDates {
   @Prop() disableDate?: HTMLInclusiveDatesCalendarElement["disableDate"];
   @Prop() elementClassName?: string = "inclusive-dates";
   @Prop() disabled?: boolean = false;
+  @Prop() minDate?: string;
+  @Prop() maxDate?: string;
   @Prop() nextMonthButtonContent?: string;
   @Prop() nextYearButtonContent?: string;
   @Prop() showYearStepper?: boolean = false;
@@ -83,6 +96,7 @@ export class InclusiveDates {
   private chronoSupportedLocale = ["en", "ja", "fr", "nl", "ru", "pt"].includes(
     this.locale.slice(0, 2)
   );
+  private errorMessage = "Default error message";
 
   componentDidLoad() {
     if (!this.id) {
@@ -93,10 +107,6 @@ export class InclusiveDates {
     if (!this.chronoSupportedLocale)
       console.warn(
         `inclusive-dates: The chosen locale "${this.locale}" is not supported by Chrono.js. Date parsing has been disabled`
-      );
-    if (!this.chronoSupportedLocale && this.quickButtons.length > 0)
-      console.warn(
-        `inclusive-dates: The chosen locale "${this.locale}" is not supported by Chrono.js. Quick date buttons have been hidden because they will not work.`
       );
   }
 
@@ -124,7 +134,7 @@ export class InclusiveDates {
   private chronoParseDate = async (
     dateString: string,
     options?: ChronoOptions
-  ): Promise<Date> => {
+  ): Promise<{ value: null; reason: string } | Date> => {
     // Assign default values if no options object provided
     if (!options) {
       options = {
@@ -158,15 +168,6 @@ export class InclusiveDates {
       })
     );
 
-    function isValidISODate(dateString) {
-      var isoFormat = /^\d{4}-\d{2}-\d{2}$/;
-      if (dateString.match(isoFormat) == null) {
-        return false;
-      } else {
-        var d = new Date(dateString);
-        return !isNaN(d.getTime());
-      }
-    }
     let parsedDate;
     if (useStrict)
       parsedDate = await chrono[locale].strict.parseDate(
@@ -180,7 +181,26 @@ export class InclusiveDates {
       parsedDate = await custom.parseDate(dateString, referenceDate, {
         forwardDate: true
       });
-    return parsedDate;
+
+    if (parsedDate instanceof Date) {
+      const sanitizedParsedDate = new Date(
+        parsedDate.toISOString().slice(0, 10)
+      );
+
+      if (dateIsWithinBounds(sanitizedParsedDate, this.minDate, this.maxDate))
+        return sanitizedParsedDate;
+      else if (
+        parsedDate instanceof Date &&
+        !dateIsWithinLowerBounds(sanitizedParsedDate, this.minDate)
+      ) {
+        return { value: null, reason: "minDate" };
+      } else if (
+        parsedDate instanceof Date &&
+        !dateIsWithinUpperBounds(sanitizedParsedDate, this.maxDate)
+      ) {
+        return { value: null, reason: "maxDate" };
+      }
+    } else return { value: null, reason: "invalid" };
   };
 
   private updateValue(newValue: Date) {
@@ -210,7 +230,7 @@ export class InclusiveDates {
     const parsedDate = await this.chronoParseDate(
       (event.target as HTMLButtonElement).innerText
     );
-    if (parsedDate) {
+    if (parsedDate instanceof Date) {
       this.updateValue(parsedDate);
       if (document.activeElement !== this.inputRef) {
         this.formatInput(true, false);
@@ -228,17 +248,41 @@ export class InclusiveDates {
     );
   };
   private handleChange = async (event) => {
+    this.errorState = false;
     if (event.target.value.length === 0) {
       this.internalValue = "";
       this.pickerRef.value = null;
-      this.selectDate.emit(this.internalValue);
-      return (this.errorState = false);
+      return this.selectDate.emit(this.internalValue);
     }
     const parsedDate = await this.chronoParseDate(event.target.value);
     if (parsedDate instanceof Date) {
       this.updateValue(parsedDate);
       this.formatInput(true, false);
-    } else this.errorState = true;
+    } else {
+      this.errorState = true;
+      this.internalValue = null;
+      let maxDate = undefined;
+      let minDate = undefined;
+      if (this.maxDate) {
+        maxDate = this.maxDate ? new Date(this.maxDate) : undefined;
+        maxDate.setDate(maxDate.getDate() + 1);
+      }
+      if (this.minDate) {
+        minDate = this.minDate ? new Date(this.minDate) : undefined;
+        minDate.setDate(minDate.getDate() - 1);
+      }
+      this.errorMessage = parsedDate.reason;
+      this.errorMessage = {
+        // TODO: Add locale date formatting to these messages
+        minDate: minDate
+          ? `${this.labels.minDateError} ${minDate.toISOString().slice(0, 10)}`
+          : "",
+        maxDate: maxDate
+          ? `${this.labels.maxDateError} ${maxDate?.toISOString().slice(0, 10)}`
+          : "",
+        invalid: this.labels.invalidDateError
+      }[parsedDate.reason];
+    }
   };
 
   private formatInput(enabled: boolean, useInputValue = true) {
@@ -305,6 +349,21 @@ export class InclusiveDates {
   watchDisabled(newValue) {
     this.disabledState = newValue;
     this.disabled = newValue;
+  }
+
+  @Watch("minDate")
+  watchMinDate(newValue) {
+    this.minDate = newValue;
+  }
+
+  @Watch("maxDate")
+  watchMaxDate(newValue) {
+    this.maxDate = newValue;
+  }
+
+  @Watch("formatInputOnAccept")
+  watchFormatInput(newValue) {
+    this.formatInputOnAccept = newValue;
   }
 
   @Watch("value")
@@ -380,6 +439,8 @@ export class InclusiveDates {
             showYearStepper={this.showYearStepper}
             showClearButton={this.showClearButton}
             showKeyboardHint={this.showKeyboardHint}
+            minDate={this.minDate}
+            maxDate={this.maxDate}
           />
         </inclusive-dates-modal>
         {this.quickButtons?.length > 0 && this.chronoSupportedLocale && (
@@ -408,7 +469,7 @@ export class InclusiveDates {
             id={this.id ? `${this.id}-error` : undefined}
             role="status"
           >
-            {this.labels.errorMessage}
+            {this.errorMessage}
           </div>
         )}
       </Host>
