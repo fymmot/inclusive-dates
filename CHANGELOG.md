@@ -1,5 +1,11 @@
 # inclusive-dates
 
+## 0.1.3
+
+### Patch Changes
+
+- [#40](https://github.com/fymmot/inclusive-dates/pull/40) [`6bedd7b`](https://github.com/fymmot/inclusive-dates/commit/6bedd7b5020953c65e04b8e893445a4455c940ad) Thanks [@fymmot](https://github.com/fymmot)! - Add support for min and max date props, with tests.
+
 ## 0.1.2
 
 ### Patch Changes
