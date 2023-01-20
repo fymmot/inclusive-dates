@@ -1,5 +1,11 @@
 # inclusive-dates
 
+## 0.1.4
+
+### Patch Changes
+
+- [#43](https://github.com/fymmot/inclusive-dates/pull/43) [`7aac694`](https://github.com/fymmot/inclusive-dates/commit/7aac694ca1d02573e6480376bb08362dfd5b8cb2) Thanks [@fymmot](https://github.com/fymmot)! - Add timezone handling
+
 ## 0.1.3
 
 ### Patch Changes
