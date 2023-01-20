@@ -202,13 +202,15 @@ export function subDays(date: Date, days: number): Date {
 }
 
 export function dateIsWithinLowerBounds(date: Date, minDate?: string): boolean {
-  if (minDate) return date >= removeTimezoneOffset(new Date(minDate));
-  else return true;
+  if (minDate) {
+    const min = removeTimezoneOffset(new Date(minDate));
+    return date >= min || isSameDay(min, date);
+  } else return true;
 }
 
 export function dateIsWithinUpperBounds(date: Date, maxDate?: string): boolean {
-  const max = removeTimezoneOffset(new Date(maxDate));
   if (maxDate) {
+    const max = removeTimezoneOffset(new Date(maxDate));
     return date <= max || isSameDay(date, max);
   } else return true;
 }
