@@ -4,6 +4,15 @@ import { ParsingComponents, ParsingResult } from "chrono-node/dist/results";
 
 export type supportedChronoLocales = "en" | "jp" | "fr" | "nl" | "ru" | "pt";
 
+export type ChronoParsedDate = {
+  value?: Date;
+  reason?: "invalid" | "minDate" | "maxDate";
+};
+export type ChronoParsedDateString = {
+  value?: string;
+  reason?: "invalid" | "minDate" | "maxDate";
+};
+
 export interface Parser {
   pattern: (context: ParsingContext) => RegExp;
   extract: (

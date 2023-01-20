@@ -10,18 +10,16 @@ import {
   State,
   Watch
 } from "@stencil/core";
-import * as chrono from "chrono-node";
 import { announce } from "@react-aria/live-announcer";
 
-import {
-  dateIsWithinLowerBounds,
-  dateIsWithinUpperBounds,
-  getISODateString,
-  isValidISODate
-} from "../../utils/utils";
+import { getISODateString, removeTimezoneOffset } from "../../utils/utils";
 import { MonthChangedEventDetails } from "../inclusive-dates-calendar/inclusive-dates-calendar";
-import { ChronoOptions } from "./inclusive-dates.type";
-import { dateIsWithinBounds } from "../../utils/utils";
+import {
+  ChronoOptions,
+  ChronoParsedDateString
+} from "../../utils/chrono-parser/chrono-parser.type";
+import { chronoParseDate } from "../../utils/chrono-parser/chrono-parser";
+
 export interface InclusiveDatesLabels {
   selected?: string;
   openCalendar?: string;
@@ -67,7 +65,9 @@ export class InclusiveDates {
   @Prop() showKeyboardHint?: boolean = true;
   @Prop() useStrictDateParsing?: boolean = false;
   @Prop() labels?: InclusiveDatesLabels = defaultLabels;
-  @Prop() startDate?: string = getISODateString(new Date());
+  @Prop() startDate?: string = getISODateString(
+    removeTimezoneOffset(new Date())
+  );
   // A unique ID for the datepicker. Mandatory for accessibility
   @Prop({ reflect: true }) id: string;
   @Prop() firstDayOfWeek?: number = 1; // Monday
@@ -116,96 +116,32 @@ export class InclusiveDates {
     text: string,
     shouldSetValue = true,
     chronoOptions: ChronoOptions = undefined
-  ) {
-    const parsedDate = await this.chronoParseDate(text, chronoOptions);
+  ): Promise<ChronoParsedDateString> {
+    const parsedDate = await chronoParseDate(
+      text,
+      this.locale,
+      this.chronoSupportedLocale,
+      this.minDate,
+      this.maxDate,
+      chronoOptions
+    );
     if (shouldSetValue) {
-      if (parsedDate instanceof Date) {
-        this.updateValue(parsedDate);
+      if (parsedDate && parsedDate.value instanceof Date) {
+        this.updateValue(parsedDate.value);
       } else this.errorState = true;
     }
     return {
-      date:
-        parsedDate instanceof Date
-          ? parsedDate.toISOString().slice(0, 10)
-          : undefined
+      value:
+        parsedDate && parsedDate.value instanceof Date
+          ? getISODateString(parsedDate.value)
+          : undefined,
+      reason: parsedDate && parsedDate.reason ? parsedDate.reason : undefined
     };
   }
 
-  private chronoParseDate = async (
-    dateString: string,
-    options?: ChronoOptions
-  ): Promise<{ value: null; reason: string } | Date> => {
-    // Assign default values if no options object provided
-    if (!options) {
-      options = {
-        referenceDate: new Date(),
-        useStrict: false,
-        locale: this.locale.slice(0, 2),
-        customExpressions: []
-      };
-    }
-    // Destructure options object
-    let { referenceDate, useStrict, locale, customExpressions } = options;
-
-    // Assign defaults if not provided
-    referenceDate = referenceDate || new Date();
-    useStrict = useStrict || false;
-    locale = locale || this.locale.slice(0, 2);
-    customExpressions = customExpressions || [];
-
-    // Return if Chrono is not supported
-    if (!this.chronoSupportedLocale) {
-      if (isValidISODate(dateString)) return new Date(dateString);
-      else return null;
-    }
-    const custom = chrono[locale].casual.clone();
-    customExpressions.forEach((expression) =>
-      custom.parsers.push({
-        pattern: () => expression.pattern,
-        extract: () => {
-          return expression.match;
-        }
-      })
-    );
-
-    let parsedDate;
-    if (useStrict)
-      parsedDate = await chrono[locale].strict.parseDate(
-        dateString,
-        referenceDate,
-        {
-          forwardDate: true
-        }
-      );
-    else
-      parsedDate = await custom.parseDate(dateString, referenceDate, {
-        forwardDate: true
-      });
-
-    if (parsedDate instanceof Date) {
-      const sanitizedParsedDate = new Date(
-        parsedDate.toISOString().slice(0, 10)
-      );
-
-      if (dateIsWithinBounds(sanitizedParsedDate, this.minDate, this.maxDate))
-        return sanitizedParsedDate;
-      else if (
-        parsedDate instanceof Date &&
-        !dateIsWithinLowerBounds(sanitizedParsedDate, this.minDate)
-      ) {
-        return { value: null, reason: "minDate" };
-      } else if (
-        parsedDate instanceof Date &&
-        !dateIsWithinUpperBounds(sanitizedParsedDate, this.maxDate)
-      ) {
-        return { value: null, reason: "maxDate" };
-      }
-    } else return { value: null, reason: "invalid" };
-  };
-
   private updateValue(newValue: Date) {
     this.pickerRef.value = newValue;
-    this.internalValue = newValue.toISOString().slice(0, 10);
+    this.internalValue = getISODateString(newValue);
     this.errorState = false;
     this.selectDate.emit(this.internalValue);
     announce(
@@ -227,8 +163,12 @@ export class InclusiveDates {
   };
 
   private handleQuickButtonClick = async (event: MouseEvent) => {
-    const parsedDate = await this.chronoParseDate(
-      (event.target as HTMLButtonElement).innerText
+    const parsedDate = await chronoParseDate(
+      (event.target as HTMLButtonElement).innerText,
+      this.locale,
+      this.chronoSupportedLocale,
+      this.minDate,
+      this.maxDate
     );
     if (parsedDate instanceof Date) {
       this.updateValue(parsedDate);
@@ -243,7 +183,9 @@ export class InclusiveDates {
       `${Intl.DateTimeFormat(this.locale, {
         month: "long",
         year: "numeric"
-      }).format(new Date(`${newMonth.year}-${newMonth.month}`))}`,
+      }).format(
+        removeTimezoneOffset(new Date(`${newMonth.year}-${newMonth.month}`))
+      )}`,
       "assertive"
     );
   };
@@ -254,9 +196,15 @@ export class InclusiveDates {
       this.pickerRef.value = null;
       return this.selectDate.emit(this.internalValue);
     }
-    const parsedDate = await this.chronoParseDate(event.target.value);
-    if (parsedDate instanceof Date) {
-      this.updateValue(parsedDate);
+    const parsedDate = await chronoParseDate(
+      event.target.value,
+      this.locale,
+      this.chronoSupportedLocale,
+      this.minDate,
+      this.maxDate
+    );
+    if (parsedDate.value instanceof Date) {
+      this.updateValue(parsedDate.value);
       this.formatInput(true, false);
     } else {
       this.errorState = true;
@@ -264,21 +212,25 @@ export class InclusiveDates {
       let maxDate = undefined;
       let minDate = undefined;
       if (this.maxDate) {
-        maxDate = this.maxDate ? new Date(this.maxDate) : undefined;
+        maxDate = this.maxDate
+          ? removeTimezoneOffset(new Date(this.maxDate))
+          : undefined;
         maxDate.setDate(maxDate.getDate() + 1);
       }
       if (this.minDate) {
-        minDate = this.minDate ? new Date(this.minDate) : undefined;
+        minDate = this.minDate
+          ? removeTimezoneOffset(new Date(this.minDate))
+          : undefined;
         minDate.setDate(minDate.getDate() - 1);
       }
       this.errorMessage = parsedDate.reason;
       this.errorMessage = {
         // TODO: Add locale date formatting to these messages
         minDate: minDate
-          ? `${this.labels.minDateError} ${minDate.toISOString().slice(0, 10)}`
+          ? `${this.labels.minDateError} ${getISODateString(minDate)}`
           : "",
         maxDate: maxDate
-          ? `${this.labels.maxDateError} ${maxDate?.toISOString().slice(0, 10)}`
+          ? `${this.labels.maxDateError} ${getISODateString(maxDate)}`
           : "",
         invalid: this.labels.invalidDateError
       }[parsedDate.reason];
@@ -301,7 +253,9 @@ export class InclusiveDates {
         month: "long",
         year: "numeric"
       }).format(
-        new Date(useInputValue ? this.inputRef.value : this.internalValue)
+        removeTimezoneOffset(
+          new Date(useInputValue ? this.inputRef.value : this.internalValue)
+        )
       );
     } else if (
       this.internalValue &&
@@ -325,7 +279,9 @@ export class InclusiveDates {
         day: "numeric",
         month: "long",
         year: "numeric"
-      }).format(new Date(newValue))} ${this.labels.selected}!`,
+      }).format(removeTimezoneOffset(new Date(newValue)))} ${
+        this.labels.selected
+      }!`,
       "polite"
     );
   }
