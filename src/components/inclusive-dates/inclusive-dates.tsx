@@ -17,7 +17,8 @@ import {
   dateIsWithinLowerBounds,
   dateIsWithinUpperBounds,
   getISODateString,
-  isValidISODate
+  isValidISODate,
+  removeTimezoneOffset
 } from "../../utils/utils";
 import { MonthChangedEventDetails } from "../inclusive-dates-calendar/inclusive-dates-calendar";
 import { ChronoOptions } from "./inclusive-dates.type";
@@ -67,7 +68,9 @@ export class InclusiveDates {
   @Prop() showKeyboardHint?: boolean = true;
   @Prop() useStrictDateParsing?: boolean = false;
   @Prop() labels?: InclusiveDatesLabels = defaultLabels;
-  @Prop() startDate?: string = getISODateString(new Date());
+  @Prop() startDate?: string = getISODateString(
+    removeTimezoneOffset(new Date())
+  );
   // A unique ID for the datepicker. Mandatory for accessibility
   @Prop({ reflect: true }) id: string;
   @Prop() firstDayOfWeek?: number = 1; // Monday
@@ -138,7 +141,7 @@ export class InclusiveDates {
     // Assign default values if no options object provided
     if (!options) {
       options = {
-        referenceDate: new Date(),
+        referenceDate: removeTimezoneOffset(new Date()),
         useStrict: false,
         locale: this.locale.slice(0, 2),
         customExpressions: []
@@ -148,7 +151,7 @@ export class InclusiveDates {
     let { referenceDate, useStrict, locale, customExpressions } = options;
 
     // Assign defaults if not provided
-    referenceDate = referenceDate || new Date();
+    referenceDate = referenceDate || removeTimezoneOffset(new Date());
     useStrict = useStrict || false;
     locale = locale || this.locale.slice(0, 2);
     customExpressions = customExpressions || [];
@@ -177,15 +180,21 @@ export class InclusiveDates {
           forwardDate: true
         }
       );
-    else
-      parsedDate = await custom.parseDate(dateString, referenceDate, {
-        forwardDate: true
-      });
+    else {
+      parsedDate = await custom.parseDate(
+        dateString,
+        {
+          instant: referenceDate,
+          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+        },
+        {
+          forwardDate: true
+        }
+      );
+    }
 
     if (parsedDate instanceof Date) {
-      const sanitizedParsedDate = new Date(
-        parsedDate.toISOString().slice(0, 10)
-      );
+      const sanitizedParsedDate = parsedDate;
 
       if (dateIsWithinBounds(sanitizedParsedDate, this.minDate, this.maxDate))
         return sanitizedParsedDate;
@@ -243,7 +252,9 @@ export class InclusiveDates {
       `${Intl.DateTimeFormat(this.locale, {
         month: "long",
         year: "numeric"
-      }).format(new Date(`${newMonth.year}-${newMonth.month}`))}`,
+      }).format(
+        removeTimezoneOffset(new Date(`${newMonth.year}-${newMonth.month}`))
+      )}`,
       "assertive"
     );
   };
@@ -264,11 +275,15 @@ export class InclusiveDates {
       let maxDate = undefined;
       let minDate = undefined;
       if (this.maxDate) {
-        maxDate = this.maxDate ? new Date(this.maxDate) : undefined;
+        maxDate = this.maxDate
+          ? removeTimezoneOffset(new Date(this.maxDate))
+          : undefined;
         maxDate.setDate(maxDate.getDate() + 1);
       }
       if (this.minDate) {
-        minDate = this.minDate ? new Date(this.minDate) : undefined;
+        minDate = this.minDate
+          ? removeTimezoneOffset(new Date(this.minDate))
+          : undefined;
         minDate.setDate(minDate.getDate() - 1);
       }
       this.errorMessage = parsedDate.reason;
@@ -301,7 +316,9 @@ export class InclusiveDates {
         month: "long",
         year: "numeric"
       }).format(
-        new Date(useInputValue ? this.inputRef.value : this.internalValue)
+        removeTimezoneOffset(
+          new Date(useInputValue ? this.inputRef.value : this.internalValue)
+        )
       );
     } else if (
       this.internalValue &&
@@ -325,7 +342,9 @@ export class InclusiveDates {
         day: "numeric",
         month: "long",
         year: "numeric"
-      }).format(new Date(newValue))} ${this.labels.selected}!`,
+      }).format(removeTimezoneOffset(new Date(newValue)))} ${
+        this.labels.selected
+      }!`,
       "polite"
     );
   }

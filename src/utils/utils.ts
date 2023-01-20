@@ -57,9 +57,10 @@ export function getDaysOfMonth(
 }
 
 export function getFirstOfMonth(date: Date): Date {
-  return new Date(
-    `${getYear(date)}-${String(getMonth(date)).padStart(2, "0")}-01`
+  const firstOfMonth = removeTimezoneOffset(
+    new Date(`${getYear(date)}-${String(getMonth(date)).padStart(2, "0")}-01`)
   );
+  return firstOfMonth;
 }
 
 export function getISODateString(date: Date): string {
@@ -87,7 +88,9 @@ export function getMonth(date: Date): number {
 
 export function getMonths(locale?: string): string[] {
   return new Array(12).fill(undefined).map((_, month) => {
-    const date = new Date(`2006-${String(month + 1).padStart(2, "0")}-01`);
+    const date = removeTimezoneOffset(
+      new Date(`2006-${String(month + 1).padStart(2, "0")}-01`)
+    );
 
     return Intl.DateTimeFormat(locale, {
       month: "long"
@@ -182,6 +185,14 @@ export function isSameDay(date1?: Date, date2?: Date) {
   );
 }
 
+export function removeTimezoneOffset(date: Date): Date {
+  const newDate = new Date(date);
+
+  newDate.setMinutes(newDate.getMinutes() + newDate.getTimezoneOffset());
+
+  return newDate;
+}
+
 export function subDays(date: Date, days: number): Date {
   const newDate = new Date(date);
 
@@ -191,13 +202,15 @@ export function subDays(date: Date, days: number): Date {
 }
 
 export function dateIsWithinLowerBounds(date: Date, minDate?: string): boolean {
-  if (minDate) return date >= new Date(minDate);
+  if (minDate) return date >= removeTimezoneOffset(new Date(minDate));
   else return true;
 }
 
 export function dateIsWithinUpperBounds(date: Date, maxDate?: string): boolean {
-  if (maxDate) return date <= new Date(maxDate);
-  else return true;
+  const max = removeTimezoneOffset(new Date(maxDate));
+  if (maxDate) {
+    return date <= max || isSameDay(date, max);
+  } else return true;
 }
 
 export function dateIsWithinBounds(
