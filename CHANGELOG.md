@@ -1,5 +1,11 @@
 # inclusive-dates
 
+## 0.1.5
+
+### Patch Changes
+
+- [`f3ace08`](https://github.com/fymmot/inclusive-dates/commit/f3ace08ca32b01cbcce010113fad03552846a098) Thanks [@fymmot](https://github.com/fymmot)! - Refactored Chrono date parsing and fixes some bugs in certain timezones. More tests + updated docs page.
+
 ## 0.1.4
 
 ### Patch Changes
