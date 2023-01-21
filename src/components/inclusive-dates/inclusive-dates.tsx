@@ -117,14 +117,12 @@ export class InclusiveDates {
     shouldSetValue = true,
     chronoOptions: ChronoOptions = undefined
   ): Promise<ChronoParsedDateString> {
-    const parsedDate = await chronoParseDate(
-      text,
-      this.locale,
-      this.chronoSupportedLocale,
-      this.minDate,
-      this.maxDate,
-      chronoOptions
-    );
+    const parsedDate = await chronoParseDate(text, {
+      locale: this.locale.slice(0, 2),
+      minDate: this.minDate,
+      maxDate: this.minDate,
+      ...chronoOptions
+    });
     if (shouldSetValue) {
       if (parsedDate && parsedDate.value instanceof Date) {
         this.updateValue(parsedDate.value);
@@ -165,10 +163,11 @@ export class InclusiveDates {
   private handleQuickButtonClick = async (event: MouseEvent) => {
     const parsedDate = await chronoParseDate(
       (event.target as HTMLButtonElement).innerText,
-      this.locale,
-      this.chronoSupportedLocale,
-      this.minDate,
-      this.maxDate
+      {
+        locale: this.locale,
+        minDate: this.minDate,
+        maxDate: this.minDate
+      }
     );
     if (parsedDate instanceof Date) {
       this.updateValue(parsedDate);
@@ -196,13 +195,11 @@ export class InclusiveDates {
       this.pickerRef.value = null;
       return this.selectDate.emit(this.internalValue);
     }
-    const parsedDate = await chronoParseDate(
-      event.target.value,
-      this.locale,
-      this.chronoSupportedLocale,
-      this.minDate,
-      this.maxDate
-    );
+    const parsedDate = await chronoParseDate(event.target.value, {
+      locale: this.locale,
+      minDate: this.minDate,
+      maxDate: this.minDate
+    });
     if (parsedDate.value instanceof Date) {
       this.updateValue(parsedDate.value);
       this.formatInput(true, false);

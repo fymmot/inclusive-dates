@@ -1,4 +1,8 @@
-import { ChronoOptions, ChronoParsedDate } from "./chrono-parser.type";
+import {
+  ChronoOptions,
+  ChronoParsedDate,
+  supportedChronoLocales
+} from "./chrono-parser.type";
 import * as chrono from "chrono-node";
 import {
   dateIsWithinBounds,
@@ -8,12 +12,10 @@ import {
   removeTimezoneOffset
 } from "../utils";
 
+const supportedChronoLocales = ["en", "fr", "ru", "pt", "ja", "nl"];
+
 export const chronoParseDate = async (
   dateString: string,
-  pickerLocale: string,
-  chronoSupportedLocale: boolean,
-  minDate: HTMLInclusiveDatesElement["minDate"],
-  maxDate: HTMLInclusiveDatesElement["maxDate"],
   options?: ChronoOptions
 ): Promise<ChronoParsedDate> => {
   // Assign default values if no options object provided
@@ -21,18 +23,33 @@ export const chronoParseDate = async (
     options = {
       referenceDate: new Date(),
       useStrict: false,
-      locale: pickerLocale.slice(0, 2),
-      customExpressions: []
+      locale: "en",
+      customExpressions: [],
+      minDate: undefined,
+      maxDate: undefined
     };
   }
-  // Destructure options object
-  let { referenceDate, useStrict, locale, customExpressions } = options;
 
-  // Assign defaults if not provided
+  // Destructure options object
+  let {
+    referenceDate = removeTimezoneOffset(new Date()),
+    useStrict = false,
+    locale = "en",
+    customExpressions = [],
+    minDate = undefined,
+    maxDate = undefined
+  } = options;
+
+  const chronoSupportedLocale = supportedChronoLocales.includes(locale);
+
+  /*  // Assign defaults if not provided
   referenceDate = referenceDate || removeTimezoneOffset(new Date());
   useStrict = useStrict || false;
-  locale = locale || pickerLocale.slice(0, 2);
+  locale = locale = "en";
   customExpressions = customExpressions || [];
+  chronoSupportedLocale = true || chronoSupportedLocale;
+  minDate = minDate || undefined;
+  maxDate = maxDate || undefined;*/
 
   // Return if Chrono is not supported
   if (!chronoSupportedLocale) {
@@ -40,7 +57,7 @@ export const chronoParseDate = async (
       return { value: removeTimezoneOffset(new Date(dateString)) };
     else return null;
   }
-  const custom = chrono[locale].casual.clone();
+  const custom = chrono[locale as supportedChronoLocales].casual.clone();
   customExpressions.forEach((expression) =>
     custom.parsers.push({
       pattern: () => expression.pattern,

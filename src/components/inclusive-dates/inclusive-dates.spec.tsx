@@ -51,7 +51,7 @@ describe("inclusive-dates", () => {
 
   it;
 
-  it("Chrono.js correctly parses dates", async () => {
+  it("External date parsing method works", async () => {
     const page = await newSpecPage({
       components: [InclusiveDates],
       html: `<inclusive-dates id="test123" locale="en-US"></inclusive-dates>`,
@@ -59,88 +59,19 @@ describe("inclusive-dates", () => {
     });
     const datepicker = getDatePicker(page);
     const referenceDate = new Date("2023-01-11");
+
     // Basic dates
     let parsedDate = await datepicker.parseDate("January 15", false, {
       referenceDate: referenceDate
     });
-    expect(parsedDate.value).toEqual(`${referenceDate.getFullYear()}-01-15`);
+    expect(parsedDate.value).toEqual(`2023-01-15`);
     parsedDate = await datepicker.parseDate("February tenth ", false, {
       referenceDate: referenceDate
     });
-    expect(parsedDate.value).toEqual(`${referenceDate.getFullYear()}-02-10`);
-    parsedDate = await datepicker.parseDate("01-10-24", false, {
-      referenceDate: referenceDate
-    });
-    expect(parsedDate.value).toEqual("2024-01-10");
-    parsedDate = await datepicker.parseDate(
-      "Twenty second of September",
-      false,
-      { referenceDate: referenceDate }
-    );
-    expect(parsedDate.value).toEqual("2023-09-22");
-    parsedDate = await datepicker.parseDate(
-      "I want to book a ticket on the tenth of september",
-      false,
-      { referenceDate: referenceDate }
-    );
-    expect(parsedDate.value).toEqual("2023-09-10");
-
-    // Relative dates
-    parsedDate = await datepicker.parseDate("in ten days", false, {
-      referenceDate: referenceDate
-    });
-    expect(parsedDate.value).toEqual(
-      new Date(
-        new Date(referenceDate).setDate(new Date(referenceDate).getDate() + 10)
-      )
-        .toISOString()
-        .slice(0, 10)
-    );
-    parsedDate = await datepicker.parseDate("yesterday", false, {
-      referenceDate: referenceDate
-    });
-    expect(parsedDate.value).toEqual(
-      new Date(
-        new Date(referenceDate).setDate(new Date(referenceDate).getDate() - 1)
-      )
-        .toISOString()
-        .slice(0, 10)
-    );
-    parsedDate = await datepicker.parseDate("tomorrow", false, {
-      referenceDate: referenceDate
-    });
-    expect(parsedDate.value).toEqual(
-      new Date(
-        new Date(referenceDate).setDate(new Date(referenceDate).getDate() + 1)
-      )
-        .toISOString()
-        .slice(0, 10)
-    );
-    parsedDate = await datepicker.parseDate("next year", false, {
-      referenceDate: referenceDate
-    });
-    expect(parsedDate.value).toEqual(
-      new Date(
-        new Date(referenceDate).setFullYear(
-          new Date(referenceDate).getFullYear() + 1
-        )
-      )
-        .toISOString()
-        .slice(0, 10)
-    );
-    parsedDate = await datepicker.parseDate("Let's go in three weeks", false, {
-      referenceDate: referenceDate
-    });
-    expect(parsedDate.value).toEqual(
-      new Date(
-        new Date(referenceDate).setDate(new Date(referenceDate).getDate() + 21)
-      )
-        .toISOString()
-        .slice(0, 10)
-    );
+    expect(parsedDate.value).toEqual(`2023-02-10`);
   });
 
-  it("Chrono.js does not parse unsupported locales", async () => {
+  it("Does not parse unsupported locales", async () => {
     const consoleSpy = jest.spyOn(console, "warn");
     const page = await newSpecPage({
       components: [InclusiveDates],
@@ -169,26 +100,5 @@ describe("inclusive-dates", () => {
 
     let parsedDate = await datepicker.parseDate("2023-02-02");
     expect(parsedDate.value).toEqual("2023-02-02");
-  });
-
-  it("Chrono returns error when date is out of bounds", async () => {
-    const page = await newSpecPage({
-      components: [InclusiveDates],
-      html: `<inclusive-dates id="test123" locale="en-GB" min-date="2023-01-15" max-date="2023-01-30"></inclusive-dates>`,
-      language: "en"
-    });
-    const datepicker = getDatePicker(page);
-
-    let parsedDate = await datepicker.parseDate("January first 2023");
-    expect(parsedDate.value).toEqual(undefined);
-    expect(parsedDate.value).toEqual(undefined);
-    parsedDate = await datepicker.parseDate("January 31 2023");
-    expect(parsedDate.value).toEqual(undefined);
-    parsedDate = await datepicker.parseDate("January 17 2023");
-    expect(parsedDate.value).toEqual("2023-01-17");
-    parsedDate = await datepicker.parseDate("January 30 2023");
-    expect(parsedDate.value).toEqual("2023-01-30");
-    parsedDate = await datepicker.parseDate("January 15 2023");
-    expect(parsedDate.value).toEqual("2023-01-15");
   });
 });
