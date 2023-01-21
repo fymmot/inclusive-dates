@@ -251,9 +251,9 @@ li > ol {
   margin-bottom: 0;
 }
 
-button,
-input,
-select,
+button:not(inclusive-dates button),
+input:not(inclusive-dates input),
+select:not(inclusive-dates select),
 textarea {
   max-width: 100%;
   margin: 0;
@@ -267,7 +267,7 @@ textarea {
 }
 
 select:not(.inclusive-dates-calendar__month-select),
-input[type="text"]:not(.inclusive-dates-calendar__year-select):not(.inclusive-dates__input) {
+input[type="text"]:not(inclusive-dates input) {
   width: 100%;
 }
 
@@ -315,8 +315,8 @@ textarea:not([rows]) {
   height: 8rem;
 }
 
-button,
-[type="button" i],
+button:not(inclusive-dates button),
+[type="button" i]:not(inclusive-dates button),
 [type="submit" i],
 [type="reset" i] {
   display: inline-block;
@@ -408,4 +408,11 @@ progress {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
   }
+}
+
+inclusive-dates-modal::part(body) {
+  background-color: white;
+}
+.dark inclusive-dates-modal::part(body) {
+  background-color: black;
 }

@@ -35,7 +35,14 @@
           stylesheet.setAttribute("href", "themes/light.css");
           prismCSS.setAttribute("href", "css/prism.css")
         }
-        if (themeLabel) themeLabel.innerHTML = `${localStorage.getItem('theme')}.css`;
+        if (theme === "none"){
+          document.querySelector("html").classList.remove("dark");
+          stylesheet.setAttribute("href", "none");
+        }
+        if (themeLabel){
+          if (theme === "none") themeLabel.innerHTML = `No CSS`;
+          else themeLabel.innerHTML = `${theme}.css`;
+        }
       }
       if (localStorage.getItem('theme')){
         setTheme(localStorage.getItem('theme'))
@@ -1154,8 +1161,12 @@ defineCustomElements();</code></pre>
         const stylesheet = document.getElementById("theme");
 
         if (stylesheet.getAttribute("href").includes("light.css")) {
+          setTheme("none")
+        }
+        else if (stylesheet.getAttribute("href").includes("none"))
           setTheme("dark")
-        } else {
+
+        else if (stylesheet.getAttribute("href").includes("dark.css")) {
           setTheme("light")
         }
       }

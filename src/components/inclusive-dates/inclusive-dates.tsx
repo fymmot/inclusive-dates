@@ -119,7 +119,7 @@ export class InclusiveDates {
   private chronoSupportedLocale = ["en", "ja", "fr", "nl", "ru", "pt"].includes(
     this.locale.slice(0, 2)
   );
-  private errorMessage = "Default error message";
+  private errorMessage = "";
 
   componentDidLoad() {
     if (!this.id) {
@@ -227,7 +227,7 @@ export class InclusiveDates {
       maxDate: this.maxDate,
       referenceDate: removeTimezoneOffset(new Date(this.referenceDate))
     });
-    if (parsedDate.value instanceof Date) {
+    if (parsedDate && parsedDate.value instanceof Date) {
       this.updateValue(parsedDate.value);
       this.formatInput(true, false);
     } else {

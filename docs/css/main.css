@@ -23,7 +23,7 @@
   display: inline-block;
   margin: 0;
   margin-left: 0.25rem;
-  padding: 0;
+  padding: 0.5rem 0.75rem;
   border: none;
   color: var(--b-link);
   background-color: transparent;
