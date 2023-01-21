@@ -230,7 +230,7 @@ export class InclusiveDates {
     if (parsedDate && parsedDate.value instanceof Date) {
       this.updateValue(parsedDate.value);
       this.formatInput(true, false);
-    } else {
+    } else if (parsedDate) {
       this.errorState = true;
       this.internalValue = null;
       let maxDate = undefined;
