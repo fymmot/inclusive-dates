@@ -323,7 +323,7 @@ export class InclusiveDatesCalendar {
   };
 
   private showToday = () => {
-    this.updateCurrentDate(new Date());
+    this.updateCurrentDate(new Date(), true);
   };
 
   private clear = () => {

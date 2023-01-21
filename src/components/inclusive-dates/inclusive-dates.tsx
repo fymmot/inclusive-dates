@@ -119,7 +119,7 @@ export class InclusiveDates {
   private chronoSupportedLocale = ["en", "ja", "fr", "nl", "ru", "pt"].includes(
     this.locale.slice(0, 2)
   );
-  private errorMessage = "Default error message";
+  private errorMessage = "";
 
   componentDidLoad() {
     if (!this.id) {
