@@ -47,41 +47,64 @@ const defaultLabels: InclusiveDatesLabels = {
 })
 export class InclusiveDates {
   @Element() el: HTMLElement;
-
-  @Prop() locale?: string = navigator?.language || "en-US";
-  @Prop() disableDate?: HTMLInclusiveDatesCalendarElement["disableDate"];
-  @Prop() elementClassName?: string = "inclusive-dates";
-  @Prop() disabled?: boolean = false;
-  @Prop() minDate?: string;
-  @Prop() maxDate?: string;
-  @Prop() nextMonthButtonContent?: string;
-  @Prop() nextYearButtonContent?: string;
-  @Prop() showYearStepper?: boolean = false;
-  @Prop() showMonthStepper?: boolean = true;
-  @Prop() showClearButton?: boolean = true;
-  @Prop() showTodayButton?: boolean = true;
-  @Prop({ attribute: "input-should-format" }) formatInputOnAccept?: boolean =
-    true;
-  @Prop() showKeyboardHint?: boolean = true;
-  @Prop() useStrictDateParsing?: boolean = false;
-  @Prop() labels?: InclusiveDatesLabels = defaultLabels;
-  @Prop() startDate?: string = getISODateString(
-    removeTimezoneOffset(new Date())
-  );
   // A unique ID for the datepicker. Mandatory for accessibility
   @Prop({ reflect: true }) id: string;
-  @Prop() firstDayOfWeek?: number = 1; // Monday
-  @Prop() label?: string = "Choose a date";
+  // Current value of the datepicker
+  @Prop({ mutable: true }) value?: string;
+  // A label for the text field
+  @Prop() label: string = "Choose a date";
+  // A placeholder for the text field
   @Prop() placeholder?: string = `Try "tomorrrow" or "in ten days"`;
+  // Locale used for internal translations and date parsing
+  @Prop() locale?: string = navigator?.language || "en-US";
+  // If the datepicker is disabled
+  @Prop() disabled?: boolean = false;
+  // Earliest accepted date (YYYY-MM-DD)
+  @Prop() minDate?: string;
+  // Latest accepted date (YYYY-MM-DD)
+  @Prop() maxDate?: string;
+  // Which date to be displayed when calendar is first opened
+  @Prop() startDate?: string = getISODateString(new Date());
+  // Reference date used for Chrono date parsing. Equals "today"
+  @Prop() referenceDate?: string = getISODateString(new Date());
+  // Enable or disable strict Chrono date parsing
+  @Prop() useStrictDateParsing?: boolean = false;
+  // Labels used for internal translations
+  @Prop() labels?: InclusiveDatesLabels = defaultLabels;
+  // Current error state of the input field
+  @Prop({ mutable: true }) hasError?: boolean = false;
+  // Text label for next month button
+  @Prop() nextMonthButtonContent?: string;
+  // Text label for next year button
+  @Prop() nextYearButtonContent?: string;
+  // Show or hide the next/previous year buttons
+  @Prop() showYearStepper?: boolean = false;
+  // Show or hide the next/previous month buttons
+  @Prop() showMonthStepper?: boolean = true;
+  // Show or hide the clear button
+  @Prop() showClearButton?: boolean = true;
+  // Show or hide the today button
+  @Prop() showTodayButton?: boolean = true;
+  // Enable or disable input field formatting for accepted dates (eg. "Tuesday May 2, 2021" instead of "2021-05-02")
+  @Prop({ attribute: "input-should-format" }) formatInputOnAccept?: boolean =
+    true;
+  // Show or hide the keyboard hints
+  @Prop() showKeyboardHint?: boolean = true;
+  // Function to disable individual dates
+  @Prop() disableDate?: HTMLInclusiveDatesCalendarElement["disableDate"];
+  // Component name used to generate CSS classes
+  @Prop() elementClassName?: string = "inclusive-dates";
+  // Which day that should start the week (0 is sunday, 1 is monday)
+  @Prop() firstDayOfWeek?: number = 1; // Monday
+  // Quick buttons with dates displayed under the text field
   @Prop() quickButtons?: string[] = [
     "Yesterday",
     "Today",
     "Tomorrow",
     "In 10 days"
   ];
+  // Text content for the today button in the calendar
   @Prop() todayButtonContent?: string;
-  @Prop({ mutable: true }) value?: string;
-  @Prop({ mutable: true }) hasError?: boolean = false;
 
   @State() internalValue: string;
   @State() errorState: boolean = this.hasError;
@@ -121,6 +144,7 @@ export class InclusiveDates {
       locale: this.locale.slice(0, 2),
       minDate: this.minDate,
       maxDate: this.minDate,
+      referenceDate: removeTimezoneOffset(new Date(this.referenceDate)),
       ...chronoOptions
     });
     if (shouldSetValue) {
@@ -154,6 +178,7 @@ export class InclusiveDates {
   }
 
   private handleCalendarButtonClick = async () => {
+    await customElements.whenDefined("inclusive-dates-modal");
     await this.modalRef.setTriggerElement(this.calendarButtonRef);
     if ((await this.modalRef.getState()) === false) await this.modalRef?.open();
     else if ((await this.modalRef.getState()) === true)
@@ -164,13 +189,14 @@ export class InclusiveDates {
     const parsedDate = await chronoParseDate(
       (event.target as HTMLButtonElement).innerText,
       {
-        locale: this.locale,
+        locale: this.locale.slice(0, 2),
         minDate: this.minDate,
-        maxDate: this.minDate
+        maxDate: this.maxDate,
+        referenceDate: removeTimezoneOffset(new Date(this.referenceDate))
       }
     );
-    if (parsedDate instanceof Date) {
-      this.updateValue(parsedDate);
+    if (parsedDate && parsedDate.value instanceof Date) {
+      this.updateValue(parsedDate.value);
       if (document.activeElement !== this.inputRef) {
         this.formatInput(true, false);
       }
@@ -196,9 +222,10 @@ export class InclusiveDates {
       return this.selectDate.emit(this.internalValue);
     }
     const parsedDate = await chronoParseDate(event.target.value, {
-      locale: this.locale,
+      locale: this.locale.slice(0, 2),
       minDate: this.minDate,
-      maxDate: this.minDate
+      maxDate: this.maxDate,
+      referenceDate: removeTimezoneOffset(new Date(this.referenceDate))
     });
     if (parsedDate.value instanceof Date) {
       this.updateValue(parsedDate.value);

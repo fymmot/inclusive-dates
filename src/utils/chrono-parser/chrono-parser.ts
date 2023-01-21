@@ -21,7 +21,7 @@ export const chronoParseDate = async (
   // Assign default values if no options object provided
   if (!options) {
     options = {
-      referenceDate: new Date(),
+      referenceDate: removeTimezoneOffset(new Date()),
       useStrict: false,
       locale: "en",
       customExpressions: [],

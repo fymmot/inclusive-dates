@@ -515,7 +515,7 @@ describe("inclusive-dates-calendar", () => {
     await page.waitForChanges();
 
     expect(header.innerText.includes("2026")).toBeFalsy();
-    expect(nextYearButton.getAttribute("disabled")).toEqual("");
+    expect(nextYearButton.getAttribute("aria-disabled")).toBe("");
 
     yearSelect.value = "1988";
     yearSelect.dispatchEvent(new Event("change"));
@@ -525,7 +525,7 @@ describe("inclusive-dates-calendar", () => {
     await page.waitForChanges();
 
     expect(header.innerText.includes("1987")).toBeFalsy();
-    expect(previousYearButton.getAttribute("disabled")).toEqual("");
+    expect(previousYearButton.getAttribute("aria-disabled")).toBe("");
   });
 
   it("jumps to current month", async () => {

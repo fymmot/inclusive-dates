@@ -22,6 +22,12 @@ import {
   subDays
 } from "./utils";
 
+describe("Timezones", () => {
+  it("should always be UTC", () => {
+    expect(new Date().getTimezoneOffset()).toBe(0);
+  });
+});
+
 describe("format", () => {
   it("adds days to date", () => {
     expect(addDays(new Date("2022-01-01"), 1)).toEqual(new Date("2022-01-02"));

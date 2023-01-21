@@ -440,7 +440,6 @@ export class InclusiveDatesCalendar {
     return (
       <Host>
         <div
-          aria-disabled={String(this.disabled)}
           class={{
             [this.getClassName()]: true,
             [`${this.getClassName()}--disabled`]: this.disabled
@@ -461,7 +460,7 @@ export class InclusiveDatesCalendar {
               <button
                 aria-label={this.labels.previousYearButton}
                 class={this.getClassName("previous-year-button")}
-                disabled={
+                aria-disabled={
                   this.disabled ||
                   new Date(this.minDate).getFullYear() >
                     getPreviousYear(this.currentDate).getFullYear()
@@ -489,7 +488,7 @@ export class InclusiveDatesCalendar {
               <button
                 aria-label={this.labels.previousMonthButton}
                 class={this.getClassName("previous-month-button")}
-                disabled={
+                aria-disabled={
                   this.disabled ||
                   monthIsDisabled(
                     getPreviousMonth(this.currentDate).getMonth(),
@@ -520,7 +519,7 @@ export class InclusiveDatesCalendar {
               <select
                 aria-label={this.labels.monthSelect}
                 class={this.getClassName("month-select")}
-                disabled={this.disabled}
+                aria-disabled={this.disabled}
                 name="month"
                 onChange={this.onMonthSelect}
               >
@@ -545,7 +544,7 @@ export class InclusiveDatesCalendar {
               <input
                 aria-label={this.labels.yearSelect}
                 class={this.getClassName("year-select")}
-                disabled={this.disabled}
+                aria-disabled={this.disabled}
                 max={this.maxDate ? this.maxDate.slice(0, 4) : 9999}
                 min={this.minDate ? this.minDate.slice(0, 4) : 1}
                 name="year"
@@ -558,7 +557,7 @@ export class InclusiveDatesCalendar {
               <button
                 aria-label={this.labels.nextMonthButton}
                 class={this.getClassName("next-month-button")}
-                disabled={
+                aria-disabled={
                   this.disabled ||
                   monthIsDisabled(
                     getNextMonth(this.currentDate).getMonth(),
@@ -589,7 +588,7 @@ export class InclusiveDatesCalendar {
               <button
                 aria-label={this.labels.nextYearButton}
                 class={this.getClassName("next-year-button")}
-                disabled={
+                aria-disabled={
                   this.disabled ||
                   new Date(this.maxDate).getFullYear() <
                     getNextYear(this.currentDate).getFullYear()

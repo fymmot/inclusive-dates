@@ -10,17 +10,23 @@ function getInput(page: SpecPage): HTMLInputElement {
 function getLabel(page: SpecPage): HTMLLabelElement {
   return page.root.querySelector<HTMLLabelElement>(".inclusive-dates__label");
 }
-
-/*function getCalendarButton(page: SpecPage): HTMLButtonElement {
-  return page.root.querySelector<HTMLButtonElement>(
-    ".inclusive-dates__calendar-button"
+function getQuickButtons(page: SpecPage): NodeListOf<HTMLButtonElement> {
+  return page.root.querySelectorAll<HTMLButtonElement>(
+    ".inclusive-dates__quick-button"
   );
 }
-function getModal(page: SpecPage): HTMLInclusiveDatesModalElement {
-  return page.root.querySelector<HTMLInclusiveDatesModalElement>(
-    "inclusive-dates-modal"
-  );
-}*/
+
+// function getCalendarButton(page: SpecPage): HTMLButtonElement {
+//   return page.root.querySelector<HTMLButtonElement>(
+//     ".inclusive-dates__calendar-button"
+//   );
+// }
+//
+// function getModal(page: SpecPage): HTMLInclusiveDatesModalElement {
+//   return page.root.querySelector<HTMLInclusiveDatesModalElement>(
+//     "inclusive-dates-modal"
+//   );
+// }
 
 describe("inclusive-dates", () => {
   it("Label and input are correctly associated", async () => {
@@ -49,7 +55,82 @@ describe("inclusive-dates", () => {
     consoleSpy.mockClear();
   });
 
-  it;
+  /*it("Calendar button opens the calendar", async () => {
+    const page = await newSpecPage({
+      components: [InclusiveDates],
+      html: `<inclusive-dates id="test123" locale="sv-SE"></inclusive-dates>`,
+      language: "en"
+    });
+    const modal = getModal(page);
+    const calendarButton = getCalendarButton(page);
+
+    calendarButton.click();
+    await page.waitForChanges();
+
+    console.log(modal.getState());
+  });*/
+
+  it("Datepicker text input parses dates", async () => {
+    const page = await newSpecPage({
+      components: [InclusiveDates],
+      html: `<inclusive-dates id="test123" locale="en" reference-date="2023-01-21" max-date="2034-11-02"
+        min-date="1988-12-30"></inclusive-dates>`,
+      language: "en"
+    });
+    const input = getInput(page);
+
+    input.value = "Yesterday";
+    input.dispatchEvent(new Event("change"));
+    await page.waitForChanges();
+    expect(input.value).toContain("January 20, 2023");
+
+    input.value = "In ten days";
+    input.dispatchEvent(new Event("change"));
+    await page.waitForChanges();
+    expect(input.value).toContain("January 31, 2023");
+
+    input.value = "August 8 2004";
+    input.dispatchEvent(new Event("change"));
+    await page.waitForChanges();
+    expect(input.value).toContain("August 8, 2004");
+
+    input.value = "50 years ago"; // Min-date error
+    input.dispatchEvent(new Event("change"));
+    await page.waitForChanges();
+    expect(input.value).toContain("50 years ago");
+    expect(input.getAttribute("aria-invalid")).toEqual("");
+    expect(
+      page.root.querySelectorAll(".inclusive-dates__input-error")
+    ).toHaveLength(1);
+
+    input.value = "In 50 years"; // Max-date error
+    input.dispatchEvent(new Event("change"));
+    await page.waitForChanges();
+    expect(input.value).toContain("In 50 years");
+    expect(input.getAttribute("aria-invalid")).toEqual("");
+    expect(
+      page.root.querySelectorAll(".inclusive-dates__input-error")
+    ).toHaveLength(1);
+  });
+
+  it("Quick buttons changes dates", async () => {
+    const page = await newSpecPage({
+      components: [InclusiveDates],
+      html: `<inclusive-dates id="test123" locale="en" reference-date="2023-01-21"></inclusive-dates>`,
+      language: "en"
+    });
+    const input = getInput(page);
+    const datePicker = getDatePicker(page);
+    datePicker.quickButtons = ["Yesterday", "In ten days"];
+    await page.waitForChanges();
+    const quickButtons = getQuickButtons(page);
+    quickButtons[0].click();
+    await page.waitForChanges();
+    expect(input.value).toEqual("Friday, January 20, 2023");
+    quickButtons[1].click();
+    await page.waitForChanges();
+    expect(input.value).toEqual("Tuesday, January 31, 2023");
+  });
 
   it("External date parsing method works", async () => {
     const page = await newSpecPage({
@@ -78,27 +159,29 @@ describe("inclusive-dates", () => {
       html: `<inclusive-dates id="test123" locale="sv-SE"></inclusive-dates>`,
       language: "en"
     });
-    const datepicker = getDatePicker(page);
+    const input = getInput(page);
 
-    let parsedDate = await datepicker.parseDate("in ten days");
-    expect(parsedDate.value).toEqual(undefined);
-    parsedDate = await datepicker.parseDate("January 5");
-    expect(parsedDate.value).toEqual(undefined);
+    input.value = "om tio dagar";
+    input.dispatchEvent(new Event("change"));
+    await page.waitForChanges();
+    expect(input.value).toContain("om tio dagar");
     expect(consoleSpy).toHaveBeenCalledWith(
       `inclusive-dates: The chosen locale "sv-SE" is not supported by Chrono.js. Date parsing has been disabled`
     );
     consoleSpy.mockClear();
   });
 
-  it("Datepicker still accepts ISO-formatted dates when Chrono.js is not supported", async () => {
+  it("Text field still accepts ISO-formatted dates for non-Chrono locales", async () => {
     const page = await newSpecPage({
       components: [InclusiveDates],
       html: `<inclusive-dates id="test123" locale="sv-SE"></inclusive-dates>`,
       language: "en"
     });
-    const datepicker = getDatePicker(page);
+    const input = getInput(page);
 
-    let parsedDate = await datepicker.parseDate("2023-02-02");
-    expect(parsedDate.value).toEqual("2023-02-02");
+    input.value = "2023-02-02";
+    input.dispatchEvent(new Event("change"));
+    await page.waitForChanges();
+    expect(input.value).toContain("2 februari 2023");
   });
 });

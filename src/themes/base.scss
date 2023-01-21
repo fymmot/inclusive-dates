@@ -37,7 +37,7 @@ inclusive-dates-calendar {
   }
 }
 
-.inclusive-dates-calendar--disabled *:disabled {
+.inclusive-dates-calendar--disabled *[aria-disabled] {
   opacity: 0.5;
   cursor: default;
 }
@@ -129,7 +129,7 @@ inclusive-dates-calendar {
   color: var(--text-color);
   background-color: var(--bg2-color);
   cursor: pointer;
-  &:disabled {
+  &[aria-disabled] {
     color: var(--disabled-color);
   }
 }
