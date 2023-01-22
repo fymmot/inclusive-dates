@@ -31,6 +31,8 @@ export interface InclusiveDatesLabels {
   invalidDateError?: string;
   maxDateError?: string;
   minDateError?: string;
+  rangeOutOfBoundsError?: string;
+  to?: string;
 }
 
 const defaultLabels: InclusiveDatesLabels = {
@@ -39,7 +41,9 @@ const defaultLabels: InclusiveDatesLabels = {
   calendar: "calendar",
   invalidDateError: "We could not find a matching date",
   minDateError: `Please fill in a date after `,
-  maxDateError: `Please fill in a date before `
+  maxDateError: `Please fill in a date before `,
+  rangeOutOfBoundsError: `Please enter a valid range of dates`,
+  to: "to"
 };
 
 @Component({
@@ -54,15 +58,20 @@ export class InclusiveDates {
   @Prop({ reflect: true }) id: string;
   // Current value of the datepicker
   @Prop({ mutable: true }) value?: string | string[];
+  // Enable or disable range mode
+  @Prop() range?: boolean = false;
   // A label for the text field
-  @Prop() label: string = "Choose a date";
+  @Prop() label: string = this.range
+    ? "Choose a date range (any way you like)"
+    : "Choose a date (any way you like)";
   // A placeholder for the text field
-  @Prop() placeholder?: string = `Try "tomorrrow" or "in ten days"`;
+  @Prop() placeholder?: string = this.range
+    ? `Try "June 8 to 12"`
+    : `Try "tomorrrow" or "in ten days"`;
   // Locale used for internal translations and date parsing
   @Prop() locale?: string = navigator?.language || "en-US";
   // If the datepicker is disabled
   @Prop() disabled?: boolean = false;
-  @Prop() range?: boolean = false;
   // Earliest accepted date (YYYY-MM-DD)
   @Prop() minDate?: string;
   // Latest accepted date (YYYY-MM-DD)
@@ -101,12 +110,9 @@ export class InclusiveDates {
   // Which day that should start the week (0 is sunday, 1 is monday)
   @Prop() firstDayOfWeek?: number = 1; // Monday
   // Quick buttons with dates displayed under the text field
-  @Prop() quickButtons?: string[] = [
-    "Yesterday",
-    "Today",
-    "Tomorrow",
-    "In 10 days"
-  ];
+  @Prop() quickButtons?: string[] = this.range
+    ? ["Monday to Wednesday", "July 5 to 10"]
+    : ["Yesterday", "Today", "Tomorrow", "In 10 days"];
   // Text content for the today button in the calendar
   @Prop() todayButtonContent?: string;
 
@@ -176,26 +182,18 @@ export class InclusiveDates {
   }
 
   private updateValue(newValue: Date | Date[]) {
+    // Range
     if (Array.isArray(newValue)) {
-      this.pickerRef.value = newValue;
       this.internalValue = newValue.map((date) => getISODateString(date));
-      this.errorState = false;
-      this.selectDate.emit(this.internalValue);
-    } else {
-      this.pickerRef.value = newValue;
-      this.internalValue = getISODateString(newValue);
-      this.errorState = false;
-      this.selectDate.emit(this.internalValue);
-      announce(
-        `${Intl.DateTimeFormat(this.locale, {
-          weekday: "long",
-          day: "numeric",
-          month: "long",
-          year: "numeric"
-        }).format(newValue)} ${this.labels.selected}`,
-        "polite"
-      );
     }
+    // Single
+    else {
+      this.internalValue = getISODateString(newValue);
+    }
+    this.pickerRef.value = newValue;
+    this.errorState = false;
+    this.selectDate.emit(this.internalValue);
+    this.announceDateChange(this.internalValue);
   }
 
   private handleCalendarButtonClick = async () => {
@@ -207,7 +205,8 @@ export class InclusiveDates {
   };
 
   private handleQuickButtonClick = async (event: MouseEvent) => {
-    const parsedDate = await chronoParseDate(
+    const parser = this.range ? chronoParseRange : chronoParseDate;
+    const parsedDate = await parser(
       (event.target as HTMLButtonElement).innerText,
       {
         locale: this.locale.slice(0, 2),
@@ -216,9 +215,22 @@ export class InclusiveDates {
         referenceDate: removeTimezoneOffset(new Date(this.referenceDate))
       }
     );
-    if (parsedDate && parsedDate.value instanceof Date) {
-      this.updateValue(parsedDate.value);
-      if (document.activeElement !== this.inputRef) {
+    if (parsedDate) {
+      // Single date
+      if (parsedDate.value instanceof Date) {
+        this.updateValue(parsedDate.value);
+        if (document.activeElement !== this.inputRef) {
+          this.formatInput(true, false);
+        }
+      } else {
+        // Date range
+        const newValue = [];
+        if (parsedDate.value.start instanceof Date) {
+          newValue.push(parsedDate.value.start);
+        }
+        if (parsedDate.value && parsedDate.value.end instanceof Date)
+          newValue.push(parsedDate.value.end);
+        this.updateValue(newValue);
         this.formatInput(true, false);
       }
     }
@@ -249,20 +261,19 @@ export class InclusiveDates {
         maxDate: this.maxDate,
         referenceDate: removeTimezoneOffset(new Date(this.referenceDate))
       });
-      if (
-        parsedRange.value &&
-        parsedRange.value.start instanceof Date &&
-        parsedRange.value.end instanceof Date
-      ) {
-        const newValue = [];
+      const newValue = [];
+      if (parsedRange.value && parsedRange.value.start instanceof Date)
         newValue.push(parsedRange.value.start);
+      if (parsedRange.value && parsedRange.value.end instanceof Date)
         newValue.push(parsedRange.value.end);
-        this.updateValue(newValue);
-        this.formatInput(true, false);
-      } else {
+      this.updateValue(newValue);
+      this.formatInput(true, false);
+
+      if (newValue.length === 0) {
+        this.errorState = true;
         this.errorMessage = {
           invalid: this.labels.invalidDateError,
-          rangeOutOfBounds: this.labels.invalidDateError
+          rangeOutOfBounds: this.labels.rangeOutOfBoundsError
         }[parsedRange.reason];
       }
     } else {
@@ -315,10 +326,12 @@ export class InclusiveDates {
 
   private formatInput(enabled: boolean, useInputValue = true) {
     if (this.formatInputOnAccept === false || enabled === false) {
-      if (this.internalValue)
+      if (this.internalValue) {
+        if (this.internalValue.length === 0) return;
         this.inputRef.value = this.internalValue
           .toString()
-          .replace(",", " to ");
+          .replace(",", ` ${this.labels.to} `);
+      }
       return;
     }
     if (
@@ -327,28 +340,22 @@ export class InclusiveDates {
       this.errorState === false
     ) {
       if (Array.isArray(this.internalValue)) {
-        const formatted = `${Intl.DateTimeFormat(this.locale, {
-          day: "numeric",
-          month: "short",
-          year: "numeric"
-        }).format(
-          removeTimezoneOffset(
-            new Date(
-              useInputValue ? this.inputRef.value : this.internalValue[0]
+        if (this.internalValue.length === 0) return; // Range date is invalid, leave the text field as is
+        let output = "";
+        this.internalValue.forEach((value, index) => {
+          return (output += `${
+            index === 1 ? ` ${this.labels.to} ` : ""
+          }${Intl.DateTimeFormat(this.locale, {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+          }).format(
+            removeTimezoneOffset(
+              new Date(useInputValue ? this.inputRef.value : value)
             )
-          )
-        )} to ${Intl.DateTimeFormat(this.locale, {
-          day: "numeric",
-          month: "short",
-          year: "numeric"
-        }).format(
-          removeTimezoneOffset(
-            new Date(
-              useInputValue ? this.inputRef.value : this.internalValue[1]
-            )
-          )
-        )}`;
-        this.inputRef.value = formatted;
+          )}`);
+        });
+        this.inputRef.value = output;
       } else {
         this.inputRef.value = Intl.DateTimeFormat(this.locale, {
           weekday: "long",
@@ -372,10 +379,12 @@ export class InclusiveDates {
   private handlePickerSelection(newValue: string | string[]) {
     if (this.isRangeValue(newValue)) {
       if (newValue.length === 2) this.modalRef.close();
-      this.inputRef.value = newValue.toString().replace(",", " to ");
-      this.internalValue = newValue.toString().replace(",", " to ");
+      this.internalValue = newValue;
       this.errorState = false;
-      console.log(newValue);
+      if (document.activeElement !== this.inputRef) {
+        this.formatInput(true, false);
+      }
+      this.announceDateChange(this.internalValue);
     } else {
       this.modalRef.close();
       this.inputRef.value = newValue as string;
@@ -384,18 +393,34 @@ export class InclusiveDates {
       if (document.activeElement !== this.inputRef) {
         this.formatInput(true, false);
       }
-      announce(
-        `${Intl.DateTimeFormat(this.locale, {
-          weekday: "long",
-          day: "numeric",
-          month: "long",
-          year: "numeric"
-        }).format(removeTimezoneOffset(new Date(newValue as string)))} ${
-          this.labels.selected
-        }!`,
-        "polite"
-      );
+      this.announceDateChange(this.internalValue);
     }
+  }
+
+  private announceDateChange(newValue: string | string[]) {
+    let content = "";
+    if (Array.isArray(newValue))
+      newValue.forEach(
+        (value, index) =>
+          (content += `${
+            index === 1 ? ` ${this.labels.to} ` : ""
+          }${Intl.DateTimeFormat(this.locale, {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+          }).format(removeTimezoneOffset(new Date(value)))}`)
+      );
+    else
+      content = Intl.DateTimeFormat(this.locale, {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      }).format(removeTimezoneOffset(new Date(newValue)));
+    if (content.length === 0) return;
+    content += ` ${this.labels.selected}`;
+    announce(content, "polite");
   }
 
   @Watch("hasError")
@@ -417,6 +442,10 @@ export class InclusiveDates {
     this.disabledState = newValue;
     this.disabled = newValue;
   }
+  @Watch("range")
+  watchRange(newValue) {
+    this.range = newValue;
+  }
 
   @Watch("minDate")
   watchMinDate(newValue) {
@@ -426,11 +455,6 @@ export class InclusiveDates {
   @Watch("maxDate")
   watchMaxDate(newValue) {
     this.maxDate = newValue;
-  }
-
-  @Watch("formatInputOnAccept")
-  watchFormatInput(newValue) {
-    this.formatInputOnAccept = newValue;
   }
 
   @Watch("value")

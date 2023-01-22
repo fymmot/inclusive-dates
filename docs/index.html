@@ -1,448 +1,464 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="A small, accessible datepicker Web Component with natural language date input. Written in Typescript."
-    />
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta
+    name="description"
+    content="A small, accessible datepicker Web Component with natural language date input. Written in Typescript."
+  />
 
-    <title>Inclusive dates v2</title>
+  <title>Inclusive dates v2</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <link rel="stylesheet" href="css/bamboo.css" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/prism.css" id="prism"/>
-    <link rel="stylesheet" href="themes/light.css" id="theme" />
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+  <link rel="stylesheet" href="css/bamboo.css"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/prism.css" id="prism"/>
+  <link rel="stylesheet" href="themes/light.css" id="theme"/>
 
-    <script type="module" src="dist/esm/inclusive-dates.js"></script>
-    <script>
-      function setTheme(theme) {
-        const stylesheet = document.getElementById("theme");
-        const prismCSS = document.getElementById("prism")
+  <script type="module" src="dist/esm/inclusive-dates.js"></script>
+  <script>
+    function setTheme(theme) {
+      const stylesheet = document.getElementById("theme");
+      const prismCSS = document.getElementById("prism")
+      const themeLabel = document.getElementById("current-theme-label");
+      if (theme === "dark") {
+        localStorage.setItem('theme', "dark");
+        document.querySelector("html").classList.add("dark");
+        stylesheet.setAttribute("href", "themes/dark.css");
+        prismCSS.setAttribute("href", "css/prism-dark.css")
+      }
+      if (theme === "light") {
+        localStorage.setItem('theme', "light");
+        document.querySelector("html").classList.remove("dark");
+        stylesheet.setAttribute("href", "themes/light.css");
+        prismCSS.setAttribute("href", "css/prism.css")
+      }
+      if (theme === "none") {
+        document.querySelector("html").classList.remove("dark");
+        stylesheet.setAttribute("href", "none");
+      }
+      if (themeLabel) {
+        if (theme === "none") themeLabel.innerHTML = `No CSS`;
+        else themeLabel.innerHTML = `${theme}.css`;
+      }
+    }
+
+    if (localStorage.getItem('theme')) {
+      setTheme(localStorage.getItem('theme'))
+      setTimeout(() => {
         const themeLabel = document.getElementById("current-theme-label");
-        if (theme === "dark") {
-          localStorage.setItem('theme', "dark");
-          document.querySelector("html").classList.add("dark");
-          stylesheet.setAttribute("href", "themes/dark.css");
-          prismCSS.setAttribute("href", "css/prism-dark.css")
-        }
-        if (theme === "light"){
-          localStorage.setItem('theme', "light");
-          document.querySelector("html").classList.remove("dark");
-          stylesheet.setAttribute("href", "themes/light.css");
-          prismCSS.setAttribute("href", "css/prism.css")
-        }
-        if (theme === "none"){
-          document.querySelector("html").classList.remove("dark");
-          stylesheet.setAttribute("href", "none");
-        }
-        if (themeLabel){
-          if (theme === "none") themeLabel.innerHTML = `No CSS`;
-          else themeLabel.innerHTML = `${theme}.css`;
-        }
-      }
-      if (localStorage.getItem('theme')){
-        setTheme(localStorage.getItem('theme'))
-        setTimeout(()=> {
-          const themeLabel = document.getElementById("current-theme-label");
-          themeLabel.innerHTML = `${localStorage.getItem('theme')}.css`;
-        }, 100)
-      }
+        themeLabel.innerHTML = `${localStorage.getItem('theme')}.css`;
+      }, 100)
+    } else {
+      setTheme("light")
+    }
 
-      else {
-        setTheme("light")
-      }
+  </script>
+  <script src="https://www.googletagmanager.com/gtag/js?id=UA-163782015-1" async></script>
+  <script>window.dataLayer = window.dataLayer || [];
 
-    </script>
-  </head>
-  <body>
-    <header>
-      <a href="#demo" class="skip-link">Skip to the demo</a>
-      <h1>Inclusive datepicker 2.0</h1>
-      <p>Next version of <a href="https://github.com/fymmot/inclusive-dates"><code>fymmot/inclusive-dates</code></a>. <strong>Work in progress!</strong></p>
-      <p>A human-friendly and fully accessible datepicker with support for natural language input. Now as a reusable Web Component!</p>
-      <p>
-        Forked from the excellent <a href="https://github.com/sqrrl/wc-datepicker"><code>sqrrl/wc-datepicker</code></a>
-      </p>
+  function gtag() {
+    dataLayer.push(arguments);
+  }
 
-      <a href="https://github.com/fymmot/inclusive-dates">Github repository</a> •
-      <a href="https://www.npmjs.com/package/inclusive-dates">NPM package</a>
-<!--      <a href="https://www.npmjs.com/package/wc-datepicker">NPM package</a>-->
-    </header>
+  gtag('js', new Date());
 
-    <nav aria-labelledby="toc">
-      <h2 id="toc">Table of contents</h2>
+  gtag('config', 'UA-163782015-1');</script>
+</head>
+<body>
+<header>
+  <a href="#demo" class="skip-link">Skip to the demo</a>
+  <h1>Inclusive datepicker 2.0</h1>
+  <p>Next version of <a href="https://github.com/fymmot/inclusive-dates"><code>fymmot/inclusive-dates</code></a>.
+    <strong>Work in progress!</strong></p>
+  <p>A human-friendly and fully accessible datepicker with support for natural language input. Now as a reusable Web
+    Component!</p>
+  <p>
+    Forked from the excellent <a href="https://github.com/sqrrl/wc-datepicker"><code>sqrrl/wc-datepicker</code></a>
+  </p>
 
-      <ul>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#demo">Demo</a></li>
-        <li><a href="#install">Install</a></li>
-        <li><a href="#usage">Usage</a></li>
-        <li><a href="#options">Options</a></li>
-        <li><a href="#events">Events</a></li>
-        <li><a href="#styling">Styling</a></li>
-        <li><a href="#browser-support">Browser support</a></li>
-        <li><a href="#keyboard-controls">Keyboard controls</a></li>
-        <li><a href="#license">License</a></li>
-      </ul>
-    </nav>
+  <a href="https://github.com/fymmot/inclusive-dates">Github repository</a> •
+  <a href="https://www.npmjs.com/package/inclusive-dates">NPM package</a>
+  <!--      <a href="https://www.npmjs.com/package/wc-datepicker">NPM package</a>-->
+</header>
 
-    <main>
-      <section>
-        <h2 id="features">Features</h2>
+<nav aria-labelledby="toc">
+  <h2 id="toc">Table of contents</h2>
 
-        <ul>
-          <li>
-            <strong>💡️ Natural language input:</strong> Text field accepts natural language input using <a href="https://github.com/wanasit/chrono"><code>Chrono.js</code></a>. Try typing <code>"yesterday"</code>, <code>"May tenth"</code> or <code>"in one year"</code>!</a>.
-          </li>
-          <li>
-            <strong>🧏‍♀️ Accessibility first:</strong> Built to support users of assistive
-            technology. Follows the <a href="https://www.w3.org/WAI/ARIA/apg/example-index/dialog-modal/datepicker-dialog">WAI-ARIA APG Datepicker dialog pattern</a>.
-          </li>
-          <li>
-            <strong>🖼 Framework-agnostic:</strong> Standard Web Component that
-            works with any framework – or no framework at all.
-          </li>
-          <li>
-            <strong>🦶 Small footprint:</strong> The component is ~45KB minified and gzipped with Chrono.js. If you do not need language parsing, the original <a href="https://github.com/sqrrl/wc-datepicker"><code>sqrrl/wc-datepicker</code></a> calendar is ~4KB
-          </li>
-          <li>
-            <strong>🪁 Low dependency:</strong> External dependencies limited to accessibility utils (<code>@react-aria/live-announcer</code>, <code>@a11y/focus-trap</code> and <code>aria-hidden</code>)
-          </li>
-          <li><strong>💪 Strongly typed:</strong> Written in TypeScript.</li>
+  <ul>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#install">Install</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#options">Options</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#styling">Styling</a></li>
+    <li><a href="#browser-support">Browser support</a></li>
+    <li><a href="#keyboard-controls">Keyboard controls</a></li>
+    <li><a href="#license">License</a></li>
+  </ul>
+</nav>
 
-          <li>
-            <strong>🇪🇺 Localizable:</strong> Customizable labels and date
-            formats.
-          </li>
-          <li>
-            <strong>🌈 Customizable:</strong> Semantic markup with no built-in
-            styles. Themes are optional.
-          </li>
-          <li>
-            <strong>🧪 Well tested:</strong> Quality assured by means of unit
-            tests.
-          </li>
-          <!--<li>
-            <strong>📆 Range selection:</strong> Allows to select single dates
-            or ranges.
-          </li>-->
-        </ul>
-      </section>
+<main>
+  <section>
+    <h2 id="features">Features</h2>
 
-      <section>
-        <h2 id="demo" tabindex="-1">Demo</h2>
+    <ul>
+      <li>
+        <strong>💡️ Natural language input:</strong> Text field accepts natural language input using <a
+        href="https://github.com/wanasit/chrono"><code>Chrono.js</code></a>. Try typing <code>"yesterday"</code>, <code>"May
+        tenth"</code>, <code>"in one year"</code> or <code>"July 8 to 12"</code>!</a>
+      </li>
+      <li>
+        <strong>🧏‍♀️ Accessibility first:</strong> Built to support users of assistive
+        technology. Follows the <a href="https://www.w3.org/WAI/ARIA/apg/example-index/dialog-modal/datepicker-dialog">WAI-ARIA
+        APG Datepicker dialog pattern</a>.
+      </li>
+      <li>
+        <strong>🖼 Framework-agnostic:</strong> Standard Web Component that
+        works with any framework – or no framework at all.
+      </li>
+      <li>
+        <strong>📆 Range selection:</strong> Allows user to select single dates
+        or date ranges.
+      </li>
+      <li>
+        <strong>🦶 Small footprint:</strong> The component is ~45KB minified and gzipped with Chrono.js. If you do not
+        need language parsing, the original <a
+        href="https://github.com/sqrrl/wc-datepicker"><code>sqrrl/wc-datepicker</code></a> calendar is ~4KB
+      </li>
+      <li>
+        <strong>🪁 Low dependency:</strong> External dependencies limited to accessibility utils (<code>@react-aria/live-announcer</code>,
+        <code>@a11y/focus-trap</code> and <code>aria-hidden</code>)
+      </li>
+      <li><strong>💪 Strongly typed:</strong> Written in TypeScript.</li>
 
-        <p>
-          <strong>Current theme:</strong>
-          <code id="current-theme-label">light.css</code>
-          <button class="theme-toggle" onclick="toggleTheme()" type="button">
-            Toggle theme
-          </button>
-        </p>
+      <li>
+        <strong>🇪🇺 Localizable:</strong> Customizable labels and date
+        formats.
+      </li>
+      <li>
+        <strong>🌈 Customizable:</strong> Semantic markup with no built-in
+        styles. Themes are optional.
+      </li>
+      <li>
+        <strong>🧪 Well tested:</strong> Quality assured by means of unit
+        tests.
+      </li>
+    </ul>
+  </section>
 
-        <div class="demo">
-          <div class="demo__preview">
-            <inclusive-dates id="datepicker" locale="en-US"></inclusive-dates>
-          </div>
-          <div class="demo__code">
-            <pre><code class="language-html" id="demo-code"></code></pre>
-          </div>
-          <div class="demo__controls">
-            <table>
-              <thead>
-                <tr>
-                  <th>Property</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td><code id="value-label">value</code><br /></td>
-                <td>
-                  <input
-                    aria-labelledby="value-label"
-                    disabled
-                    id="value"
-                    type="text"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <code id="id-label">id*</code><br />
-                  <small>A page-unique ID used to identify the component. Mandatory for accessibility!</small>
-                </td>
-                <td>
-                  <input
-                    aria-labelledby="id-label"
-                    id="id"
-                    type="text"
-                    value="datepicker"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <code id="label-label">label</code><br />
-                  <small>Label used for the text input field</small>
-                </td>
-                <td>
-                  <input
-                    aria-labelledby="label-label"
-                    id="label"
-                    type="text"
-                    value="Choose a date (any way you want)"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <code id="placeholder-label">placeholder</code><br />
-                  <small>Placeholder used for the text input field</small>
-                </td>
-                <td>
-                  <input
-                    aria-labelledby="placeholder-label"
-                    id="placeholder"
-                    type="text"
-                    value='Try "tomorrrow" or "in ten days"'
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <code id="minDate-label">min-date</code><br />
-                  <small>Earliest accepted date</small>
-                </td>
-                <td>
-                  <input
-                    aria-labelledby="minDate-label"
-                    id="minDate"
-                    type="text"
-                    placeholder='YYYY-MM-DD'
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <code id="maxDate-label">max-date</code><br />
-                  <small>Latest accepted date</small>
-                </td>
-                <td>
-                  <input
-                    aria-labelledby="maxDate-label"
-                    id="maxDate"
-                    type="text"
-                    placeholder='YYYY-MM-DD'
-                  />
-                </td>
-              </tr>
-                <tr>
-                  <td>
-                    <code id="disabled-label">disabled</code><br />
-                    <small>Disable the datepicker</small>
-                  </td>
-                  <td>
-                    <input
-                      aria-labelledby="disabled-label"
-                      id="disabled"
-                      type="checkbox"
-                      value="disabled"
-                    />
-                  </td>
-                </tr>
-              <tr>
-                <td>
-                  <code id="input-should-format-label">input-should-format</code><br />
-                  <small>Format valid dates into a more readable date string</small>
-                </td>
-                <td>
-                  <input
-                    aria-labelledby="input-should-format-label"
-                    id="input-should-format"
-                    type="checkbox"
-                    value="input-should-format"
-                    checked
-                  />
-                </td>
-              </tr>
-                <tr>
-                  <td>
-                    <code id="first-day-of-week-label">first-day-of-week</code
-                    ><br />
-                    <small>Configure the first week day</small>
-                  </td>
-                  <td>
-                    <select
-                      aria-labelledby="first-day-of-week-label"
-                      id="first-day-of-week"
-                      name="first-day-of-week"
-                    >
-                      <option value="1">Monday</option>
-                      <option value="2">Tuesday</option>
-                      <option value="3">Wednesday</option>
-                      <option value="4">Thursday</option>
-                      <option value="5">Friday</option>
-                      <option value="6">Saturday</option>
-                      <option value="0" selected>Sunday</option>
-                    </select>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <code id="locale-label">locale</code><br />
-                    <small>BCP 47 language tag</small>
-                  </td>
-                  <td>
-                    <input
-                      aria-labelledby="locale-label"
-                      id="locale"
-                      type="text"
-                      value="en-US"
-                    />
-                  </td>
-                </tr>
-              <tr>
-                <td>
-                  <code id="range-label">range</code><br />
-                  <small>Enable range input. <strong>Currently not available.</strong></small>
-                </td>
-                <td>
-                  <input
-                    aria-labelledby="range-label"
-                    id="range"
-                    type="checkbox"
-                    value="range"
-                    disabled
-                  />
-                </td>
-              </tr>
-                <tr>
-                  <td>
-                    <code id="show-month-stepper-label">show-month-stepper</code
-                    ><br />
-                    <small>Enable month stepper</small>
-                  </td>
-                  <td>
-                    <input
-                      aria-labelledby="show-month-stepper-label"
-                      checked
-                      id="show-month-stepper"
-                      type="checkbox"
-                      value="show-month-stepper"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <code id="show-year-stepper-label">show-year-stepper</code
-                    ><br />
-                    <small>Enable year stepper</small>
-                  </td>
-                  <td>
-                    <input
-                      aria-labelledby="show-year-stepper-label"
-                      id="show-year-stepper"
-                      type="checkbox"
-                      value="show-year-stepper"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <code id="show-clear-button-label">show-clear-button</code
-                    ><br />
-                    <small>Enable clear button</small>
-                  </td>
-                  <td>
-                    <input
-                      aria-labelledby="show-clear-button-label"
-                      id="show-clear-button"
-                      type="checkbox"
-                      value="show-clear-button"
-                      checked
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <code id="show-keyboard-hint-label">show-keyboard-hint</code
-                    ><br />
-                    <small>Displays a hint with available keyboard commands</small>
-                  </td>
-                  <td>
-                    <input
-                      aria-labelledby="show-keyboard-hint-label"
-                      id="show-keyboard-hint"
-                      type="checkbox"
-                      value="show-keyboard-hint"
-                      checked
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <code id="show-today-button-label">show-today-button</code
-                    ><br />
-                    <small>Enable today button</small>
-                  </td>
-                  <td>
-                    <input
-                      aria-labelledby="show-today-button-label"
-                      id="show-today-button"
-                      type="checkbox"
-                      value="show-today-button"
-                      checked
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <code id="start-date-label">start-date</code><br />
-                    <small>Date to show initially</small>
-                  </td>
-                  <td>
-                    <input
-                      aria-labelledby="start-date-label"
-                      id="start-date"
-                      type="text"
-                      placeholder="YYYY-MM-DD"
-                    />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+  <section>
+    <h2 id="demo" tabindex="-1">Demo</h2>
 
-      <section>
-        <h2 id="install">Install</h2>
+    <p>
+      <strong>Current theme:</strong>
+      <code id="current-theme-label">light.css</code>
+      <button class="theme-toggle" onclick="toggleTheme()" type="button">
+        Toggle theme
+      </button>
+    </p>
 
-        <pre><code>npm install --save inclusive-dates
+    <div class="demo">
+      <div class="demo__preview">
+        <inclusive-dates id="datepicker" locale="en-US"></inclusive-dates>
+      </div>
+      <div class="demo__code">
+        <pre><code class="language-html" id="demo-code"></code></pre>
+      </div>
+      <div class="demo__controls">
+        <table>
+          <thead>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><code id="value-label">value</code><br/></td>
+            <td>
+              <input
+                aria-labelledby="value-label"
+                disabled
+                id="value"
+                type="text"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code id="range-label">range</code><br/>
+              <small>Enable range input</small>
+            </td>
+            <td>
+              <input
+                aria-labelledby="range-label"
+                id="range"
+                type="checkbox"
+                value="range"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code id="id-label">id*</code><br/>
+              <small>A page-unique ID used to identify the component. Mandatory for accessibility!</small>
+            </td>
+            <td>
+              <input
+                aria-labelledby="id-label"
+                id="id"
+                type="text"
+                value="datepicker"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code id="label-label">label</code><br/>
+              <small>Label used for the text input field</small>
+            </td>
+            <td>
+              <input
+                aria-labelledby="label-label"
+                id="label"
+                type="text"
+                value=""
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code id="placeholder-label">placeholder</code><br/>
+              <small>Placeholder used for the text input field</small>
+            </td>
+            <td>
+              <input
+                aria-labelledby="placeholder-label"
+                id="placeholder"
+                type="text"
+                value=""
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code id="locale-label">locale</code><br/>
+              <small>BCP 47 language tag</small>
+            </td>
+            <td>
+              <input
+                aria-labelledby="locale-label"
+                id="locale"
+                type="text"
+                value="en-US"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code id="minDate-label">min-date</code><br/>
+              <small>Earliest accepted date</small>
+            </td>
+            <td>
+              <input
+                aria-labelledby="minDate-label"
+                id="minDate"
+                type="text"
+                placeholder='YYYY-MM-DD'
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code id="maxDate-label">max-date</code><br/>
+              <small>Latest accepted date</small>
+            </td>
+            <td>
+              <input
+                aria-labelledby="maxDate-label"
+                id="maxDate"
+                type="text"
+                placeholder='YYYY-MM-DD'
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code id="disabled-label">disabled</code><br/>
+              <small>Disable the datepicker</small>
+            </td>
+            <td>
+              <input
+                aria-labelledby="disabled-label"
+                id="disabled"
+                type="checkbox"
+                value="disabled"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code id="input-should-format-label">input-should-format</code><br/>
+              <small>Format valid dates into a more readable date string</small>
+            </td>
+            <td>
+              <input
+                aria-labelledby="input-should-format-label"
+                id="input-should-format"
+                type="checkbox"
+                value="input-should-format"
+                checked
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code id="first-day-of-week-label">first-day-of-week</code
+              ><br/>
+              <small>Configure the first week day</small>
+            </td>
+            <td>
+              <select
+                aria-labelledby="first-day-of-week-label"
+                id="first-day-of-week"
+                name="first-day-of-week"
+              >
+                <option value="1" selected>Monday</option>
+                <option value="2">Tuesday</option>
+                <option value="3">Wednesday</option>
+                <option value="4">Thursday</option>
+                <option value="5">Friday</option>
+                <option value="6">Saturday</option>
+                <option value="0">Sunday</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code id="show-month-stepper-label">show-month-stepper</code
+              ><br/>
+              <small>Enable month stepper</small>
+            </td>
+            <td>
+              <input
+                aria-labelledby="show-month-stepper-label"
+                checked
+                id="show-month-stepper"
+                type="checkbox"
+                value="show-month-stepper"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code id="show-year-stepper-label">show-year-stepper</code
+              ><br/>
+              <small>Enable year stepper</small>
+            </td>
+            <td>
+              <input
+                aria-labelledby="show-year-stepper-label"
+                id="show-year-stepper"
+                type="checkbox"
+                value="show-year-stepper"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code id="show-clear-button-label">show-clear-button</code
+              ><br/>
+              <small>Enable clear button</small>
+            </td>
+            <td>
+              <input
+                aria-labelledby="show-clear-button-label"
+                id="show-clear-button"
+                type="checkbox"
+                value="show-clear-button"
+                checked
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code id="show-keyboard-hint-label">show-keyboard-hint</code
+              ><br/>
+              <small>Displays a hint with available keyboard commands</small>
+            </td>
+            <td>
+              <input
+                aria-labelledby="show-keyboard-hint-label"
+                id="show-keyboard-hint"
+                type="checkbox"
+                value="show-keyboard-hint"
+                checked
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code id="show-today-button-label">show-today-button</code
+              ><br/>
+              <small>Enable today button</small>
+            </td>
+            <td>
+              <input
+                aria-labelledby="show-today-button-label"
+                id="show-today-button"
+                type="checkbox"
+                value="show-today-button"
+                checked
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code id="start-date-label">start-date</code><br/>
+              <small>Date to show initially</small>
+            </td>
+            <td>
+              <input
+                aria-labelledby="start-date-label"
+                id="start-date"
+                type="text"
+                placeholder="YYYY-MM-DD"
+              />
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="install">Install</h2>
+
+    <pre><code>npm install --save inclusive-dates
 # or
 yarn add inclusive-dates</code></pre>
-      </section>
+  </section>
 
-      <section>
-        <h2 id="usage">Usage</h2>
+  <section>
+    <h2 id="usage">Usage</h2>
 
-        <!--<p>
-          <strong>Inclusive Dates</strong> provides a standalone datepicker that
-          makes no assumptions about how you use it. Therefore it is up to you
-          to connect it to an input field or display it in a popover dialog, for
-          example.
-        </p>-->
+    <!--<p>
+      <strong>Inclusive Dates</strong> provides a standalone datepicker that
+      makes no assumptions about how you use it. Therefore it is up to you
+      to connect it to an input field or display it in a popover dialog, for
+      example.
+    </p>-->
 
-        <h3>Via script tags</h3>
+    <h3>Via script tags</h3>
 
-        <p>Include the following script tags in your HTML.</p>
+    <p>Include the following script tags in your HTML.</p>
 
-        <pre><code class="language-html">&lt;head&gt;
+    <pre><code class="language-html">&lt;head&gt;
   &lt;script
     type="module"
     src="https://cdn.jsdelivr.net/npm/inclusive-dates/dist/esm/inclusive-dates.js"
@@ -459,50 +475,50 @@ yarn add inclusive-dates</code></pre>
   &lt;inclusive-dates&gt;&lt;/inclusive-dates&gt;
 &lt;/body&gt;</code></pre>
 
-        <h3>Using a bundler</h3>
+    <h3>Using a bundler</h3>
 
-        <p>
-          Import the component using a bundler like
-          <a href="https://rollupjs.org/">rollup.js</a> or
-          <a href="https://esbuild.github.io/">esbuild</a>.
-        </p>
+    <p>
+      Import the component using a bundler like
+      <a href="https://rollupjs.org/">rollup.js</a> or
+      <a href="https://esbuild.github.io/">esbuild</a>.
+    </p>
 
-        <pre><code class="language-javascript">import { InclusiveDates } from "inclusive-dates/dist/components/inclusive-dates";
+    <pre><code class="language-javascript">import { InclusiveDates } from "inclusive-dates/dist/components/inclusive-dates";
 
 // Importing a theme is optional.
 import "inclusive-dates/dist/themes/light.css";
 
 customElements.define("inclusive-dates", InclusiveDates);</code></pre>
 
-        <h3>With a bundler and automatic lazy loading</h3>
+    <h3>With a bundler and automatic lazy loading</h3>
 
-        <p>
-          If you are using a bundler and want to take advantage of automatic
-          lazy loading, you can call the provided
-          <code>defineCustomElements</code> function. This will only load a
-          small entry file on page load. The component code is loaded only when
-          the component is actually rendered.
-        </p>
+    <p>
+      If you are using a bundler and want to take advantage of automatic
+      lazy loading, you can call the provided
+      <code>defineCustomElements</code> function. This will only load a
+      small entry file on page load. The component code is loaded only when
+      the component is actually rendered.
+    </p>
 
-        <pre><code class="language-javascript">import { defineCustomElements } from "inclusive-dates/dist/loader";
+    <pre><code class="language-javascript">import { defineCustomElements } from "inclusive-dates/dist/loader";
 
 // Importing a theme is optional.
 import "inclusive-dates/dist/themes/light.css";
 
 defineCustomElements();</code></pre>
-      </section>
+  </section>
 
-      <section>
-        <h2 id="options">Options</h2>
+  <section>
+    <h2 id="options">Options</h2>
 
-        <p>
-          Options with a primitive type can be passed as attributes.
-          Non-primitive options have to be set as properties on the datepicker
-          instance.
-        </p>
+    <p>
+      Options with a primitive type can be passed as attributes.
+      Non-primitive options have to be set as properties on the datepicker
+      instance.
+    </p>
 
-        <strong>Example:</strong>
-        <pre><code class="language-html">&lt;inclusive-dates first-day-of-week="1" id="datepicker"&gt;&lt;/inclusive-dates&gt;
+    <strong>Example:</strong>
+    <pre><code class="language-html">&lt;inclusive-dates first-day-of-week="1" id="datepicker"&gt;&lt;/inclusive-dates&gt;
 
 &lt;script&gt;
   const datepicker = document.getElementById('datepicker');
@@ -513,114 +529,114 @@ defineCustomElements();</code></pre>
   }
 &lt;/script&gt;</code></pre>
 
-        <div tabindex="0" style="overflow-x: scroll">
-        <table class="options-table">
-          <thead>
-            <tr>
-              <th>Attribute / Property</th>
-              <th>Type</th>
-              <th>Default</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>disabled</code></td>
-              <td><code>boolean</code></td>
-              <td><code>false</code></td>
-              <td>Disable the datepicker.</td>
-            </tr>
-            <tr>
-              <td><code>disableDate</code></td>
-              <td><code>(date: Date) => boolean</code></td>
-              <td><code>() => false</code></td>
-              <td>
-                Function that gets passed each displayed date. Should return
-                <code>true</code> to disable it.
-              </td>
-            </tr>
-            <tr>
-              <td><code>element-class-name</code></td>
-              <td><code>string</code></td>
-              <td><code>inclusive-dates</code></td>
-              <td>Prefix for all element class names.</td>
-            </tr>
-            <tr>
-              <td><code>first-day-of-week</code></td>
-              <td><code>number</code></td>
-              <td><code>0</code></td>
-              <td>
-                Set first day of a week. <code>0</code> for Sunday,
-                <code>6</code> for Saturday.
-              </td>
-            </tr>
-            <tr>
-              <td><code>range</code></td>
-              <td><code>boolean</code></td>
-              <td><code>false</code></td>
-              <td>Enable/disable range selection.</td>
-            </tr>
-            <tr>
-              <td><code>labels</code></td>
-              <td><code>WCDatepickerLabels</code></td>
-              <td>See below.</td>
-              <td>Set label text.</td>
-            </tr>
-            <tr>
-              <td><code>locale</code></td>
-              <td><code>string</code></td>
-              <td><code>navigator?.language || 'en-US'</code></td>
-              <td>BCP 47 locale string used to format dates.</td>
-            </tr>
-            <tr>
-              <td><code>show-clear-button</code></td>
-              <td><code>boolean</code></td>
-              <td><code>false</code></td>
-              <td>Enable/disable the clear button.</td>
-            </tr>
-            <tr>
-              <td><code>show-month-stepper</code></td>
-              <td><code>boolean</code></td>
-              <td><code>true</code></td>
-              <td>Enable/disable the month stepper buttons.</td>
-            </tr>
-            <tr>
-              <td><code>show-today-button</code></td>
-              <td><code>boolean</code></td>
-              <td><code>false</code></td>
-              <td>Enable/disable the today button.</td>
-            </tr>
-            <tr>
-              <td><code>show-year-stepper</code></td>
-              <td><code>boolean</code></td>
-              <td><code>false</code></td>
-              <td>Enable/disable the year stepper buttons.</td>
-            </tr>
-            <tr>
-              <td><code>start-date</code></td>
-              <td><code>string</code></td>
-              <td>The current date.</td>
-              <td>
-                Date in <code>YYYY-MM-DD</code> format used to determine the
-                initially displayed month.
-              </td>
-            </tr>
-            <tr>
-              <td><code>value</code></td>
-              <td><code>Date | Date[] | undefined</code></td>
-              <td></td>
-              <td>
-                The currently selected date. Array of start and end date if
-                range selection is enabled.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        </div>
+    <div tabindex="0" style="overflow-x: scroll">
+      <table class="options-table">
+        <thead>
+        <tr>
+          <th>Attribute / Property</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><code>disabled</code></td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Disable the datepicker.</td>
+        </tr>
+        <tr>
+          <td><code>disableDate</code></td>
+          <td><code>(date: Date) => boolean</code></td>
+          <td><code>() => false</code></td>
+          <td>
+            Function that gets passed each displayed date. Should return
+            <code>true</code> to disable it.
+          </td>
+        </tr>
+        <tr>
+          <td><code>element-class-name</code></td>
+          <td><code>string</code></td>
+          <td><code>inclusive-dates</code></td>
+          <td>Prefix for all element class names.</td>
+        </tr>
+        <tr>
+          <td><code>first-day-of-week</code></td>
+          <td><code>number</code></td>
+          <td><code>0</code></td>
+          <td>
+            Set first day of a week. <code>0</code> for Sunday,
+            <code>6</code> for Saturday.
+          </td>
+        </tr>
+        <tr>
+          <td><code>range</code></td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Enable/disable range selection.</td>
+        </tr>
+        <tr>
+          <td><code>labels</code></td>
+          <td><code>WCDatepickerLabels</code></td>
+          <td>See below.</td>
+          <td>Set label text.</td>
+        </tr>
+        <tr>
+          <td><code>locale</code></td>
+          <td><code>string</code></td>
+          <td><code>navigator?.language || 'en-US'</code></td>
+          <td>BCP 47 locale string used to format dates.</td>
+        </tr>
+        <tr>
+          <td><code>show-clear-button</code></td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Enable/disable the clear button.</td>
+        </tr>
+        <tr>
+          <td><code>show-month-stepper</code></td>
+          <td><code>boolean</code></td>
+          <td><code>true</code></td>
+          <td>Enable/disable the month stepper buttons.</td>
+        </tr>
+        <tr>
+          <td><code>show-today-button</code></td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Enable/disable the today button.</td>
+        </tr>
+        <tr>
+          <td><code>show-year-stepper</code></td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Enable/disable the year stepper buttons.</td>
+        </tr>
+        <tr>
+          <td><code>start-date</code></td>
+          <td><code>string</code></td>
+          <td>The current date.</td>
+          <td>
+            Date in <code>YYYY-MM-DD</code> format used to determine the
+            initially displayed month.
+          </td>
+        </tr>
+        <tr>
+          <td><code>value</code></td>
+          <td><code>Date | Date[] | undefined</code></td>
+          <td></td>
+          <td>
+            The currently selected date. Array of start and end date if
+            range selection is enabled.
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
 
-        <strong>Default labels:</strong>
+    <strong>Default labels:</strong>
 
-        <pre><code class="language-javascript">{
+    <pre><code class="language-javascript">{
   clearButton: 'Clear value',
   monthSelect: 'Select month',
   nextMonthButton: 'Next month',
@@ -631,40 +647,40 @@ defineCustomElements();</code></pre>
   todayButton: 'Show today',
   yearSelect: 'Select year'
 }</code></pre>
-      </section>
+  </section>
 
-      <section>
-        <h2 id="events">Events</h2>
-        <div tabindex="0" style="overflow-x: scroll">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>selectDate</td>
-              <td>
-                <code>CustomEvent&lt;string | string[] | undefined&gt;</code>
-              </td>
-              <td>Fired when a date is selected.</td>
-            </tr>
-            <tr>
-              <td>changeMonth</td>
-              <td>
-                <code>CustomEvent&lt;{ month: number; year: number; }&gt;</code>
-              </td>
-              <td>Fired when the displayed month or year changes.</td>
-            </tr>
-          </tbody>
-        </table>
-        </div>
+  <section>
+    <h2 id="events">Events</h2>
+    <div tabindex="0" style="overflow-x: scroll">
+      <table>
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>selectDate</td>
+          <td>
+            <code>CustomEvent&lt;string | string[] | undefined&gt;</code>
+          </td>
+          <td>Fired when a date is selected.</td>
+        </tr>
+        <tr>
+          <td>changeMonth</td>
+          <td>
+            <code>CustomEvent&lt;{ month: number; year: number; }&gt;</code>
+          </td>
+          <td>Fired when the displayed month or year changes.</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
 
-        <strong>Example:</strong>
-        <pre><code class="language-html">&lt;inclusive-dates id="datepicker"&gt;&lt;/inclusive-dates&gt;
+    <strong>Example:</strong>
+    <pre><code class="language-html">&lt;inclusive-dates id="datepicker"&gt;&lt;/inclusive-dates&gt;
 
 &lt;script&gt;
   const datepicker = document.getElementById('datepicker');
@@ -673,611 +689,783 @@ defineCustomElements();</code></pre>
     console.log(event.detail);
   });
 &lt;/script&gt;</code></pre>
-      </section>
+  </section>
 
-      <section>
-        <h2 id="styling">Styling</h2>
-        <p>Work in progress!</p>
+  <section>
+    <h2 id="styling">Styling</h2>
+    <p>Work in progress!</p>
 
-        <!--<p>
-          The datepicker comes without any bundled styles. You can either load
-          one of the included themes or write your own styles. Below is a list
-          of all element classes you can use for styling.
-        </p>
+    <!--<p>
+      The datepicker comes without any bundled styles. You can either load
+      one of the included themes or write your own styles. Below is a list
+      of all element classes you can use for styling.
+    </p>
 
-        <table class="styling-table">
-          <thead>
-            <tr>
-              <th>Class</th>
-              <th>Element description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>.inclusive-dates-calendar</code></td>
-              <td>Outer element of the datepicker</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar&#45;&#45;disabled</code></td>
-              <td>Outer element of the disabled datepicker</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__header</code></td>
-              <td>
-                Element containing the stepper buttons and month/year input
-                fields
-              </td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__previous-year-button</code></td>
-              <td>Previous year stepper button</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__previous-month-button</code></td>
-              <td>Previous month stepper button</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__next-year-button</code></td>
-              <td>Next year stepper button</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__next-month-button</code></td>
-              <td>Next month stepper button</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__current-month</code></td>
-              <td>Wrapper of the month/year input fields</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__month-select</code></td>
-              <td>Month select element</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__year-select</code></td>
-              <td>Year text input element</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__body</code></td>
-              <td>Wrapper of the calendar table</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__calendar</code></td>
-              <td>Calendar table element</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__calendar-header</code></td>
-              <td>Table header including the weekdays</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__weekday-row</code></td>
-              <td>Table row including the weekday cells</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__weekday</code></td>
-              <td>Weekday cell</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__calendar-row</code></td>
-              <td>Table row including one week of dates</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__date</code></td>
-              <td>Date cell</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__date&#45;&#45;current</code></td>
-              <td>Currently focused date cell</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__date&#45;&#45;disabled</code></td>
-              <td>Disabled date cell</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__date&#45;&#45;overflowing</code></td>
-              <td>Date cell of the previous or next month</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__date&#45;&#45;today</code></td>
-              <td>Date cell of the current day</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__date&#45;&#45;selected</code></td>
-              <td>Currently selected date cell</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__date&#45;&#45;in-range</code></td>
-              <td>Date cell within the currently selected range</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__footer</code></td>
-              <td>Table footer containing the today and clear buttons</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__today-button</code></td>
-              <td>Today button element</td>
-            </tr>
-            <tr>
-              <td><code>.inclusive-dates-calendar__clear-button</code></td>
-              <td>Clear button element</td>
-            </tr>
-          </tbody>
-        </table>-->
-      </section>
+    <table class="styling-table">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Element description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>.inclusive-dates-calendar</code></td>
+          <td>Outer element of the datepicker</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar&#45;&#45;disabled</code></td>
+          <td>Outer element of the disabled datepicker</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__header</code></td>
+          <td>
+            Element containing the stepper buttons and month/year input
+            fields
+          </td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__previous-year-button</code></td>
+          <td>Previous year stepper button</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__previous-month-button</code></td>
+          <td>Previous month stepper button</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__next-year-button</code></td>
+          <td>Next year stepper button</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__next-month-button</code></td>
+          <td>Next month stepper button</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__current-month</code></td>
+          <td>Wrapper of the month/year input fields</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__month-select</code></td>
+          <td>Month select element</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__year-select</code></td>
+          <td>Year text input element</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__body</code></td>
+          <td>Wrapper of the calendar table</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__calendar</code></td>
+          <td>Calendar table element</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__calendar-header</code></td>
+          <td>Table header including the weekdays</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__weekday-row</code></td>
+          <td>Table row including the weekday cells</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__weekday</code></td>
+          <td>Weekday cell</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__calendar-row</code></td>
+          <td>Table row including one week of dates</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__date</code></td>
+          <td>Date cell</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__date&#45;&#45;current</code></td>
+          <td>Currently focused date cell</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__date&#45;&#45;disabled</code></td>
+          <td>Disabled date cell</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__date&#45;&#45;overflowing</code></td>
+          <td>Date cell of the previous or next month</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__date&#45;&#45;today</code></td>
+          <td>Date cell of the current day</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__date&#45;&#45;selected</code></td>
+          <td>Currently selected date cell</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__date&#45;&#45;in-range</code></td>
+          <td>Date cell within the currently selected range</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__footer</code></td>
+          <td>Table footer containing the today and clear buttons</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__today-button</code></td>
+          <td>Today button element</td>
+        </tr>
+        <tr>
+          <td><code>.inclusive-dates-calendar__clear-button</code></td>
+          <td>Clear button element</td>
+        </tr>
+      </tbody>
+    </table>-->
+  </section>
 
-      <section>
-        <h2 id="browser-support">Browser support</h2>
+  <section>
+    <h2 id="browser-support">Browser support</h2>
 
-        <div tabindex="0" style="overflow-x: scroll">
-        <table>
-          <thead>
-            <tr>
-              <th>Browser</th>
-              <th>Supported versions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Google Chrome</td>
-              <td>61+</td>
-            </tr>
-            <tr>
-              <td>Apple Safari</td>
-              <td>11+</td>
-            </tr>
-            <tr>
-              <td>Mozilla Firefox</td>
-              <td>63+</td>
-            </tr>
-            <tr>
-              <td>Microsoft Edge</td>
-              <td>79+</td>
-            </tr>
-          </tbody>
-        </table>
-        </div>
-      </section>
+    <div tabindex="0" style="overflow-x: scroll">
+      <table>
+        <thead>
+        <tr>
+          <th>Browser</th>
+          <th>Supported versions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Google Chrome</td>
+          <td>61+</td>
+        </tr>
+        <tr>
+          <td>Apple Safari</td>
+          <td>11+</td>
+        </tr>
+        <tr>
+          <td>Mozilla Firefox</td>
+          <td>63+</td>
+        </tr>
+        <tr>
+          <td>Microsoft Edge</td>
+          <td>79+</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-      <section>
-        <h2 id="keyboard-controls">Keyboard controls</h2>
+  <section>
+    <h2 id="keyboard-controls">Keyboard controls</h2>
 
-        <div tabindex="0" style="overflow-x: scroll">
-        <table>
-          <thead>
-            <tr>
-              <th>Key</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><kbd>Tab</kbd></td>
-              <td>Cycle through the focusable elements.</td>
-            </tr>
-            <tr>
-              <td><kbd>Space</kbd>, <kbd>Enter</kbd></td>
-              <td>Select current day.</td>
-            </tr>
-            <tr>
-              <td>
-                <kbd>Arrow left</kbd>
-              </td>
-              <td>Move cursor to previous day.</td>
-            </tr>
-            <tr>
-              <td>
-                <kbd>Arrow right</kbd>
-              </td>
-              <td>Move cursor to next day.</td>
-            </tr>
-            <tr>
-              <td>
-                <kbd>Arrow up</kbd>
-              </td>
-              <td>Move cursor to previous week.</td>
-            </tr>
-            <tr>
-              <td>
-                <kbd>Arrow down</kbd>
-              </td>
-              <td>Move cursor to next week.</td>
-            </tr>
-            <tr>
-              <td>
-                <kbd>Page up</kbd>
-              </td>
-              <td>Move cursor to previous month.</td>
-            </tr>
-            <tr>
-              <td>
-                <kbd>Page down</kbd>
-              </td>
-              <td>Move cursor to next month.</td>
-            </tr>
-            <tr>
-              <td><kbd>Shift</kbd> + <kbd>Page up</kbd></td>
-              <td>Move cursor to previous year.</td>
-            </tr>
-            <tr>
-              <td><kbd>Shift</kbd> + <kbd>Page down</kbd></td>
-              <td>Move cursor to next year.</td>
-            </tr>
-            <tr>
-              <td>
-                <kbd>Home</kbd>
-              </td>
-              <td>Move cursor to first day of the month.</td>
-            </tr>
-            <tr>
-              <td>
-                <kbd>End</kbd>
-              </td>
-              <td>Move cursor to last day of the month.</td>
-            </tr>
-          </tbody>
-        </table>
-        </div>
-      </section>
+    <div tabindex="0" style="overflow-x: scroll">
+      <table>
+        <thead>
+        <tr>
+          <th>Key</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><kbd>Tab</kbd></td>
+          <td>Cycle through the focusable elements.</td>
+        </tr>
+        <tr>
+          <td><kbd>Space</kbd>, <kbd>Enter</kbd></td>
+          <td>Select current day.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Arrow left</kbd>
+          </td>
+          <td>Move cursor to previous day.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Arrow right</kbd>
+          </td>
+          <td>Move cursor to next day.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Arrow up</kbd>
+          </td>
+          <td>Move cursor to previous week.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Arrow down</kbd>
+          </td>
+          <td>Move cursor to next week.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Page up</kbd>
+          </td>
+          <td>Move cursor to previous month.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Page down</kbd>
+          </td>
+          <td>Move cursor to next month.</td>
+        </tr>
+        <tr>
+          <td><kbd>Shift</kbd> + <kbd>Page up</kbd></td>
+          <td>Move cursor to previous year.</td>
+        </tr>
+        <tr>
+          <td><kbd>Shift</kbd> + <kbd>Page down</kbd></td>
+          <td>Move cursor to next year.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Home</kbd>
+          </td>
+          <td>Move cursor to first day of the month.</td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>End</kbd>
+          </td>
+          <td>Move cursor to last day of the month.</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-      <section>
-        <h2 id="license">License</h2>
+  <section>
+    <h2 id="license">License</h2>
 
-        <p>
-          Licensed under the
-          <a href="https://github.com/Sqrrl/inclusive-dates/blob/main/LICENSE"
-          >MIT license</a
-          >.
-        </p>
-      </section>
+    <p>
+      Licensed under the
+      <a href="https://github.com/Sqrrl/inclusive-dates/blob/main/LICENSE"
+      >MIT license</a
+      >.
+    </p>
+  </section>
 
-      <section>
-        <h2>About me</h2>
-        <p>I'm Tommy Feldt, an accessibility specialist at <a href="https://useit.se/en"><strong>Useit</strong></a> based in Stockholm, Sweden</p>
-        <p>I do inclusive UX design, frontend development, accessibility consulting, WCAG 2.1 audits, talks and more</p>
-        <p>Check out <a href="https://github.com/fymmot">some of my work on GitHub</a> or <a href="mailto:tommy.feldt@useit.se">send me an e-mail</a>
-          <div class="about-me">
-        <svg width="197" height="210" viewBox="0 0 262 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M131.31 260.48C202.555 260.48 260.31 202.725 260.31 131.48C260.31 60.2352 202.555 2.47998 131.31 2.47998C60.0653 2.47998 2.31 60.2352 2.31 131.48C2.31 202.725 60.0653 260.48 131.31 260.48Z" fill="#F5DEAE"/>
-          <path d="M166.6 152.32C167.15 153.52 167.86 154.63 168.58 155.73C169.7 157.47 170.83 159.22 171.95 160.96C171.65 160.5 173.2 155.58 173.24 154.61C173.32 152.27 173 149.88 172.25 147.65C171.18 144.47 168.52 142.02 164.84 142.69C164.65 145.78 165.31 149.48 166.6 152.32V152.32Z" fill="#E5DCD7"/>
-          <path d="M102.69 167.05C102.72 167.13 102.76 167.22 102.84 167.25C102.95 167.3 103.07 167.22 103.15 167.13C103.87 166.42 103.95 165.3 103.93 164.28C103.89 162.62 104.2 158.69 101.63 160.17C100.26 160.96 100.62 161.56 101.12 162.88C101.65 164.26 102.17 165.65 102.69 167.03V167.05Z" fill="#DBCFC8"/>
-          <path d="M163.97 129.25C163.97 130.32 163.97 131.35 164.03 132.33C164.44 139.14 164.73 144.33 167.36 150.87C169.91 157.21 173.32 163.76 172.18 170.82C171.36 175.89 170.01 180.6 169.43 185.72C168.62 192.94 168.52 198.84 165.42 205.18C164.03 208.03 164.22 211.36 163.58 214.46C162.57 219.33 159.52 223.48 156.54 227.47C150.1 236.11 143.66 244.75 137.22 253.39C135.67 250.97 133.1 250.19 131.24 248.21C129.06 245.89 127.78 242.33 126.59 239.44C124.23 233.71 122.58 227.63 119.03 222.47C116.82 219.26 113.96 216.55 111.66 213.41C101.53 199.61 103.71 180.78 101.84 163.77C100.96 155.79 99.1 147.96 97.24 140.15C110.51 133.7 126.54 133.68 138.82 125.5C143.12 122.63 146.75 118.88 150.35 115.16C153.24 112.16 159.79 101.8 162.51 107.89C165.13 113.77 164.03 122.34 163.98 129.26L163.97 129.25Z" fill="#ECCEB7"/>
-          <path opacity="0.26" d="M172.23 165.36C171.59 160.34 169.24 155.55 167.36 150.87C164.73 144.34 164.44 139.14 164.03 132.33C163.97 131.35 163.96 130.32 163.97 129.25C163.97 128.13 164.02 126.96 164.06 125.76C163.59 120.82 163.17 115.85 163.17 110.98C162.81 106.29 160.44 113.34 160.16 114.51C159.36 117.76 158.45 120.99 157.4 124.17C155.26 130.64 152.53 136.97 148.55 142.54C143.88 149.08 137.19 154.57 129.42 156.94C126.1 157.95 120.92 156.59 122.01 161.31C122.95 165.39 126.97 168.4 130.7 170.71C131.96 171.49 133.19 172.19 134.26 172.83C135.51 173.57 136.7 174.45 138.02 175.05C139.38 175.67 140.85 175.99 142.33 176.21C151.2 177.55 160.56 175.34 167.89 170.16C169.67 168.9 171.41 167.32 172.23 165.36V165.36Z" fill="url(#paint0_linear_33_2)"/>
-          <path d="M88.64 128.15C81.35 109.68 79.49 89.39 77.52 70.02C76.92 64.07 76.32 57.99 77.68 52.16C79.58 44.04 85.3 37.07 92.47 32.82C99.65 28.57 108.17 26.91 116.51 27.22C122.01 27.43 127.54 28.48 132.47 30.94C142.03 35.7 148.33 45.11 153.43 54.49C155.51 58.32 157.47 62.23 158.96 66.32C163.11 77.72 163.43 90.03 162.69 102.01C162.41 106.59 163 111.11 162.57 115.74C162.15 120.19 161.38 124.61 160.16 128.9C157.78 137.27 153.57 145.16 147.79 151.53C142.56 157.3 138.02 160.4 130.14 161.54C127.63 161.9 125.09 162.2 122.57 161.96C116.85 161.41 112.86 158.1 108.82 154.38C104.58 150.48 99.85 147.93 96.56 143.16C93.33 138.49 90.71 133.42 88.62 128.14L88.64 128.15Z" fill="#ECCEB7"/>
-          <path opacity="0.6" d="M125.88 237.61C130.37 239.56 135.58 240.15 140.13 238.39C139.33 223.05 137.89 207.74 135.83 192.51C133.91 178.37 130.29 164.92 127.48 150.93C125.49 141.01 126.11 130.74 123.8 120.86C121.95 112.92 119.12 105.27 117.32 97.32C115.47 89.12 115.48 80.74 113.36 72.47C111.25 64.23 108.58 55.81 108.89 47.2C108.95 45.6 110.14 30.98 111.87 30.98C103.37 31.99 93.2 31.09 86.19 37.36C82.07 41.07 78.91 46.81 77.66 52.16C76.3 57.98 76.89 64.07 77.5 70.02C79.47 89.39 81.33 109.68 88.62 128.15C90.7 133.43 93.33 138.5 96.56 143.17C97.16 144.04 97.82 144.82 98.51 145.56C99.9 151.58 101.16 157.63 101.84 163.76C103.72 180.77 101.53 199.61 111.66 213.4C113.97 216.54 116.82 219.25 119.03 222.46C122.21 227.07 123.87 232.43 125.87 237.6L125.88 237.61Z" fill="url(#paint1_linear_33_2)"/>
-          <path opacity="0.53" d="M89.32 85.9001C87.89 87.4201 86.82 90.4601 87.32 92.5501C87.69 94.1001 89.59 95.3501 90.93 94.4801C91.65 94.0101 91.96 93.1201 92.35 92.3501C93.46 90.1901 95.59 88.6801 97.9 87.9101C100.21 87.1401 102.68 87.0601 105.11 87.2101C106.63 87.3001 108.52 87.2901 109.23 85.9501C109.82 84.8301 109.16 83.4201 108.22 82.5801C102.92 77.8201 93.44 81.5101 89.32 85.9101V85.9001Z" fill="url(#paint2_linear_33_2)"/>
-          <path opacity="0.64" d="M113.88 44.09C110.81 43.33 107.62 43.2 104.44 43.07C100.55 42.92 92.89 42.63 98.09 47.89C100.03 49.85 102.1 51.69 104.27 53.39C100.74 54.1 97.06 54.07 93.55 53.31C94.84 53.76 96.01 54.41 96.95 55.37C93.08 57.28 89.09 51.43 86.11 56.96C83.61 61.58 86.4 67.86 84.89 72.31C82.09 80.61 80.04 89.16 78.8 97.83C80.36 89.06 77.57 80.19 75.81 71.45C74.05 62.72 73.56 52.85 78.89 45.71C83.19 39.96 90.34 37.25 97.09 34.82C100.55 33.58 104.13 32.31 107.8 32.56C112.79 32.89 117.12 35.93 121.4 38.51C130.3 43.85 140.3 47.54 148.39 54.18C151.99 57.14 162.57 66.04 154.79 68.72C137.94 74.53 128.4 47.69 113.87 44.09H113.88Z" fill="#C8A38A"/>
-          <path opacity="0.37" d="M122.75 79.8501C127.11 78.1201 131.67 76.9201 136.32 76.2701C139.58 75.8101 143.08 75.6701 146 77.1801C148.64 78.5401 151.38 80.7101 151.67 83.8701C148.95 84.6001 146.16 83.2501 143.47 82.4101C140.36 81.4401 137.04 81.1501 133.81 81.5501C131.72 81.8101 129.55 82.4301 128.13 83.9901C124.62 87.8601 130.92 92.0201 131.77 96.0001C132.53 99.5701 129.79 104.77 126.35 101.12C124.11 98.7301 124.02 94.4401 122.75 91.5301C121.36 88.3501 120 84.5801 121.73 81.5801C124.11 77.4601 130.21 78.0001 134.37 75.6801" fill="url(#paint3_linear_33_2)"/>
-          <path d="M86.47 46.27C84.99 48.38 83.5 50.51 82.52 52.88C81.2 56.05 80.84 59.53 80.53 62.95C79.72 71.89 79.2 80.85 78.97 89.82C79.09 87.9 78.15 86.09 77.48 84.28C75.91 80.06 75.73 75.34 76.98 71.01C74.74 67.06 74.43 62.09 76.15 57.89C76.83 56.22 77.81 54.69 78.53 53.04C79.41 51 79.9 48.79 80.96 46.83C82.02 44.87 83.88 43.13 86.1 43.09C85.58 46.55 84.52 49.93 82.99 53.08" fill="url(#paint4_linear_33_2)"/>
-          <path d="M84.98 34.62C81.57 35.47 78.22 36.61 75 38.02C75.78 39.52 74.87 41.63 73.25 42.1C72.33 44.39 70.74 46.4 68.73 47.81C69.3 47.9 69.87 48 70.44 48.09C67.75 53.64 64.47 58.9 60.66 63.75L63.37 62.71C62.98 63.62 62.44 64.47 61.76 65.19L64.25 64.47L63.5 67.92L65.78 67.14L63.74 72.48L66.89 70.89C66.74 72.37 66.6 73.85 66.45 75.34C66.14 75.08 66.73 74.6 67.05 74.85C67.37 75.1 67.36 75.57 67.31 75.97C67.12 77.74 66.92 79.51 66.73 81.28C67.05 80.57 67.71 80.02 68.46 79.83C69.12 80.67 69.52 81.7 69.62 82.76C70.18 82.33 70.74 81.89 71.3 81.46C72.3 84.8 73.29 88.15 74.29 91.49C75.79 89.67 76.84 92.75 77.39 93.79C78.29 95.49 78.97 97.29 79.58 99.11C80.19 100.93 80.74 102.82 81.36 104.65C81.95 106.37 83 108.05 83.49 109.77C81.33 102.3 79.92 94.47 80.17 86.69C80.19 86.21 80.19 85.7 79.91 85.31C79.63 84.92 78.95 84.8 78.7 85.2C79.09 83.51 79.47 81.82 79.86 80.13C79.94 79.77 79.77 79.18 79.44 79.35C79.94 78.06 80.04 76.61 79.72 75.27L78.71 75.68C78.67 75.16 80.51 68.93 80.04 68.85C78.39 68.58 77.9 66.43 78.01 64.76C78.18 62.27 78.84 59.82 79.94 57.59C80.29 56.89 80.69 56.13 80.56 55.36C80 52.06 79.82 48.98 83.15 46.8C82.77 46.74 82.36 46.82 82.03 47.02C83.14 42.69 85.88 40.98 88.29 37.8C87.57 37.72 86.86 37.73 86.13 37.72C86.37 36.42 85.66 35.76 84.97 34.63L84.98 34.62Z" fill="url(#paint5_linear_33_2)"/>
-          <path d="M165.04 82.13L167.06 78.38C167.31 77.91 167.63 77.39 168.16 77.3C168.53 77.24 168.89 77.41 169.21 77.61C172.69 79.75 173.13 84.24 173.66 87.91C174.31 92.37 174.7 97.73 174.42 102.24C174.25 105.08 173.12 108.06 170.7 109.55C168.28 111.04 164.46 110.22 163.56 107.52C163.35 106.88 163.31 106.2 163.27 105.52C162.77 96.99 162.33 88.12 165.57 80.22C165.91 79.39 166.45 78.46 167.35 78.41" fill="#ECCEB7"/>
-          <path d="M73.62 94.13C73.07 100.68 77.91 116.03 78.25 117.12C78.85 119.07 79.53 121.14 81.14 122.39C82.75 123.64 85.59 123.45 86.35 121.56C86.77 120.51 86.43 119.32 86.09 118.24C84 111.61 81.91 104.97 79.81 98.35C79.15 96.29 78.66 91.94 76.04 91.28C74.5 90.89 73.79 92.08 73.62 94.14V94.13Z" fill="#E3C1A9"/>
-          <path opacity="0.7" d="M75.79 104.85C76 105.33 76.25 105.76 76.56 106.14C77.63 103.85 77.85 100.52 77.31 98.04C77.11 97.11 76.74 96.16 75.99 95.58C75.63 95.3 75.12 95.12 74.7 95.32C74.03 95.65 74.11 96.61 74.28 97.33C74.78 99.51 74.82 102.63 75.79 104.85V104.85Z" fill="#C98969"/>
-          <path opacity="0.7" d="M80.88 107.09C81.06 106.24 80.92 105.32 80.49 104.56C80.35 104.31 80.11 104.06 79.83 104.13C79.67 104.17 79.56 104.32 79.47 104.46C78.91 105.38 78.89 106.52 78.88 107.6C78.88 108.44 78.87 109.29 78.86 110.13C78.86 110.88 79.05 111.86 79.79 111.93C81.08 110.35 81.01 108.1 80.88 106.07C80.85 105.54 80.72 104.89 80.21 104.75C80.37 104.83 80.52 104.91 80.68 105" fill="#C98969"/>
-          <path d="M173.36 93.09C172.26 91.6 171.81 89.71 171.66 87.86C171.51 86.01 171.63 84.15 171.51 82.29C171.48 81.84 171.39 81.32 170.99 81.12C170.69 80.98 170.34 81.07 170.05 81.22C168.79 81.85 168.11 83.23 167.59 84.54C166.75 86.69 166.11 88.92 165.68 91.18C165.5 92.11 165.4 93.17 165.98 93.92C166.28 93.19 167.32 93.02 168.03 93.37C168.74 93.72 169.19 94.43 169.61 95.11C170.22 96.1 170.84 97.09 171.45 98.08C172.12 96.82 172.2 95.25 171.66 93.93C171.12 92.61 169.96 91.55 168.6 91.12C168.27 91.02 167.89 90.92 167.72 90.62C167.52 90.28 167.7 89.83 167.98 89.54C168.65 88.87 169.88 88.89 170.53 89.58C171.29 90.38 171.22 91.76 172.08 92.45C172.21 92.56 172.39 92.64 172.54 92.58C172.67 92.53 172.75 92.38 172.8 92.25C173.36 90.74 172.69 89.1 172.21 87.57C171.62 85.68 171.31 83.7 171.3 81.72C171.3 81.16 171.11 80.39 170.55 80.43C170.38 80.44 170.23 80.54 170.1 80.64C169.06 81.4 168.29 82.54 167.98 83.79" fill="#D5A38A"/>
-          <path d="M117.26 127.84C118.48 128.29 119.71 128.7 120.97 128.95C126.4 130.01 130.32 127.54 134.59 124.6C136.49 123.29 137.88 121.72 139.3 119.93C138.36 121.09 133.53 120.92 132.13 121.29C129.13 122.06 126.26 123.27 123.2 123.81C120.79 124.24 118.35 124.5 115.92 124.83C114.07 125.08 112.18 125.33 110.39 125.84C112.77 126.06 114.99 127 117.25 127.84H117.26Z" fill="#D0997D"/>
-          <path d="M134.89 121.92C133.91 122.13 132.91 122.2 131.92 122.38C129.34 122.87 127.3 124.48 124.74 125.04C123.48 125.31 122.2 125.42 120.92 125.53C117.37 125.82 113.69 125.38 110.22 126.32C110.97 125.76 111.71 125.2 112.46 124.64C113.71 123.7 115.38 123.2 116.72 122.29C118.05 121.38 119.49 120.3 121.08 120.53C121.87 120.65 122.6 121.09 123.4 121.04C124.38 120.98 125.11 120.21 125.86 119.66C126.29 119.34 126.81 119.14 127.33 119.02C127.78 118.91 128.24 118.8 128.71 118.77C129.99 118.7 131.21 119.29 132.48 119.51C134.9 119.94 137.47 119.08 139.8 119.85C138.92 120.13 138.08 120.52 137.27 120.95C136.87 121.16 136.48 121.4 136.08 121.6C135.73 121.78 135.29 121.84 134.9 121.92H134.89Z" fill="url(#paint6_linear_33_2)"/>
-          <path d="M120.41 125.82C122.16 125.75 123.91 125.69 125.63 125.36C127.96 124.91 130.17 123.98 132.35 123.05C133.13 122.72 140.19 119.39 140.62 120.33C140.37 119.78 139.67 119.57 139.08 119.66C138.49 119.75 137.96 120.07 137.41 120.32C134.28 121.73 130.47 121.32 127.41 123.07C126.61 123.52 125.91 124.17 125.04 124.45C123.56 124.92 121.97 124.25 120.43 124.33C119.7 124.37 118.99 124.57 118.29 124.74C116.71 125.14 114.97 125.35 113.34 125.37C111.99 125.39 110.68 125.2 109.77 126.47C110.17 125.91 114.53 125.99 115.3 125.98C117 125.97 118.71 125.87 120.43 125.81L120.41 125.82Z" fill="url(#paint7_linear_33_2)"/>
-          <path opacity="0.7" d="M104.56 122.53C104.36 124.22 104.63 125.94 104.58 127.64C103.73 127.09 103.49 125.97 103.41 124.96C103.3 123.57 103.37 122.12 103.95 120.85C104.47 119.71 105.47 118.69 106.73 118.42C105.56 119.54 104.76 120.81 104.56 122.53V122.53Z" fill="#C98969"/>
-          <path opacity="0.7" d="M141.72 112.02C142.03 112.27 142.32 112.55 142.58 112.84C144.3 114.76 144.84 117.5 144.74 120.07C144.7 121.04 144.38 122.16 143.89 123.01C144.67 121.72 145.75 120.62 146.01 119.08C146.27 117.54 146.27 115.64 145.58 114.21C144.69 112.37 142.71 111.34 140.81 110.57C139.86 110.19 138.88 109.84 137.85 109.79C139.2 110.42 140.58 111.08 141.72 112.02V112.02Z" fill="#C98969"/>
-          <path opacity="0.5" d="M151.43 120.8C151.45 118.85 151.47 116.9 151.32 114.95C151.22 113.57 150.87 112.07 151.18 110.7C152.75 113.35 152.36 116.86 151.97 119.78C151.9 120.32 151.79 120.9 151.43 121.31C151.43 121.14 151.43 120.97 151.43 120.8Z" fill="#C98969"/>
-          <path opacity="0.44" d="M125.81 103.81C127.87 103.72 129.88 104.79 130.15 107.18C130.32 108.69 129.35 110.16 127.74 110.18C126.25 110.2 124.19 109.22 122.82 110.12C122.51 110.32 122.26 110.62 121.95 110.81C121.11 111.31 120.04 110.95 119.1 110.69C118.16 110.43 116.94 110.37 116.4 111.18C116.17 111.52 116.12 111.95 115.89 112.29C115.49 112.88 114.63 113.03 113.97 112.77C113.31 112.51 112.82 111.92 112.49 111.29C110.55 107.64 112.76 104.74 116.7 105.46C117.49 105.61 118.26 105.9 119.07 105.93C120.74 106 122.22 104.99 123.74 104.29C124.4 103.99 125.11 103.82 125.82 103.79L125.81 103.81Z" fill="#C98969"/>
-          <path d="M122.43 108.28C122.89 108.29 123.36 108.31 123.79 108.48C124.03 108.58 124.24 108.72 124.47 108.84C124.78 108.99 125.11 109.09 125.44 109.19C125.79 109.29 126.16 109.38 126.52 109.3C127.12 109.18 127.27 108.67 127.29 108.13C127.34 107.01 126.6 106.4 125.57 106.21C124.89 106.09 124.18 106.48 123.72 106.94C123.28 107.38 122.85 107.82 122.43 108.28Z" fill="#693F47"/>
-          <path d="M106.49 80.7C103.83 79.13 100.62 78.52 97.57 79.02L98.89 79.72C98.1 79.71 97.3 79.82 96.54 80.04C96.25 80.13 95.97 80.6 96.28 80.64C92.35 80.43 88.39 82.76 86.66 86.3C87.05 86.07 87.5 85.95 87.95 85.96C87.61 86.2 87.31 86.49 87.05 86.82L87.77 87.38C86.94 88.08 86.52 89.22 86.68 90.29C88.38 87.11 91.48 84.84 94.87 83.59C98.26 82.34 101.92 82.05 105.52 82.11L104.51 81.68C105.09 81.7 105.66 81.62 106.21 81.45C106.36 81.4 106.52 81.34 106.62 81.22C106.96 80.78 106.26 80.28 105.72 80.16C104.84 79.96 103.97 79.76 103.09 79.56" fill="url(#paint8_linear_33_2)"/>
-          <path d="M125.36 79.85C123.64 80.58 121.96 81.45 120.15 81.92C120.82 80.37 123.46 76.22 125.57 76.67C125.44 76.75 125.37 76.9 125.4 77.05C129.68 74.6 135.79 73.56 140.67 73.64C140.53 73.8 140.39 73.97 140.25 74.13C143.36 75.01 146.78 76.28 149.25 78.44C149.62 78.76 149.98 79.3 149.68 79.69C147.81 79.41 146.19 78.27 144.42 77.58C142.93 77 142.21 76.73 140.61 76.82C139.92 76.86 138.16 76.31 137.47 76.33C136.61 76.36 135.75 76.43 134.89 76.52C131.53 76.89 128.46 78.53 125.35 79.85H125.36Z" fill="url(#paint9_linear_33_2)"/>
-          <path d="M98.15 91.35C99.11 91.88 100.26 91.71 101.26 91.4C101.88 91.2 103.31 90.76 103.69 90.22C103.99 89.79 104.07 89 104.1 88.5C104.13 87.96 104.04 87.36 103.62 87.02C103.47 86.9 103.29 86.82 103.11 86.76C101.4 86.14 99.24 86.39 97.76 87.47C97.03 88 96.59 89 96.78 89.89C96.88 90.36 97.17 90.75 97.58 91C97.74 91.1 97.94 91.23 98.16 91.35H98.15Z" fill="black"/>
-          <path d="M137.15 81.7201C137.66 81.7801 138.19 81.9001 138.59 82.2401C139.38 82.9201 139.31 84.1301 139.17 85.1601C139.09 85.7501 135.8 86.1001 135.31 86.1301C133.79 86.2201 132.76 86.1701 132.47 84.4601C132.01 81.7801 135.12 81.4801 137.16 81.7201H137.15Z" fill="black"/>
-          <path opacity="0.5" d="M146.15 82.93C142.9 80.88 139.12 79.69 135.28 79.53C134.15 79.48 133.01 79.53 131.92 79.82C129.35 80.53 128.18 82.7601 126.05 83.9101C126.9 80.5301 130.81 79.24 133.83 78.96C136.1 78.74 138.43 78.9 140.62 79.56C142.95 80.27 144.22 81.7101 146.16 82.9401L146.15 82.93Z" fill="url(#paint10_linear_33_2)"/>
-          <path opacity="0.5" d="M103.73 83.18C101.66 83.01 99.59 83.43 97.61 84.05C95.71 84.64 93.84 85.44 92.35 86.75C90.86 88.06 89.79 89.96 89.85 91.95C91.65 88.59 94.82 85.99 98.47 84.87C102 83.78 105.23 84.37 108.66 85.41C108.33 83.87 105.06 83.29 103.74 83.18H103.73Z" fill="url(#paint11_linear_33_2)"/>
-          <path d="M99.25 85.85C95.53 86.63 91.97 90.6 90.57 93.65C92.51 92.14 93.58 90.54 95.52 89.03C96.26 88.46 98.05 87.39 98.91 87.03C101.49 85.95 105.71 86.53 107.78 87.03C106.91 85.14 102.54 85.16 99.25 85.85V85.85Z" fill="black"/>
-          <path d="M127.02 85.07C129.47 82.9 132.01 81.26 135.02 80.84C138.91 80.29 143.29 82.2001 146.44 84.0501C144.38 84.3901 142.47 83.05 140.48 82.43C135.79 80.97 130.59 83.04 126.67 86C127.49 86.15 128.31 86.3 129.13 86.45C128.34 86.86 127.4 86.9601 126.55 86.7301C126.28 86.6601 125.98 86.5101 125.93 86.2301C125.89 86.0101 126.04 85.8001 126.18 85.6201C126.98 84.6801 128.06 83.9901 129.25 83.6601" fill="black"/>
-          <path opacity="0.68" d="M156.98 82.75C154.18 83.96 149.01 85.58 146.06 84.26C147.03 83.29 149.76 83.88 151.08 83.75C152.87 83.57 155.31 83.47 156.97 82.75H156.98Z" fill="#C98969"/>
-          <path opacity="0.3" d="M143.17 87.26C143.64 86.94 144.08 86.57 144.61 86.36C145.14 86.15 145.8 86.16 146.21 86.54C145.21 89.35 142.09 90.52 139.22 91.34C134.97 92.56 128.35 90.61 126.04 88.82C127.49 88.32 133.31 89.84 134.84 89.82C137.56 89.77 140.91 88.8 143.16 87.26H143.17Z" fill="url(#paint12_linear_33_2)"/>
-          <path opacity="0.46" d="M106.63 93.7901C107.97 92.8301 109.13 91.2001 109.61 89.6301C109.66 89.4701 109.71 89.2901 109.64 89.1301C109.55 88.9101 109.27 88.8101 109.03 88.8501C108.79 88.8901 108.59 89.0301 108.39 89.1701C105.9 90.9501 103.51 92.5301 100.66 93.6601C97.65 94.8501 93.76 95.0001 90.58 94.5801C92.28 95.4001 94.06 96.0701 95.88 96.5801C96.74 96.8301 97.68 97.1301 98.57 97.2201C99.41 97.3001 100.25 97.0201 101.03 96.7301C103.01 96.0101 104.9 95.0101 106.61 93.7901H106.63Z" fill="url(#paint13_linear_33_2)"/>
-          <path opacity="0.5" d="M130.39 102.83C129.45 101.43 128.02 100.22 126.81 99.03C124.88 97.13 123.61 94.32 123.16 91.68C122.93 90.31 122.81 88.75 121.72 87.88C121.55 91.24 121.8 94.61 122.45 97.91C122.6 98.67 122.79 99.45 123.28 100.04C123.87 100.75 124.79 101.08 125.65 101.41C127.59 102.15 129.7 103.37 130.02 105.42C130.29 107.15 129.12 108.81 127.71 109.85C129.17 110.04 130.6 108.94 131.08 107.55C131.72 105.69 131.28 104.17 130.38 102.83H130.39Z" fill="#C98969"/>
-          <path opacity="0.4" d="M114.1 115.62C114.1 115.62 114.19 115.55 114.23 115.52C114.67 115.21 115.27 114.94 115.71 115.25C115.86 115.36 115.98 115.53 116.15 115.6C116.62 115.79 116.98 115.18 117.14 114.7C117.3 114.22 117.76 113.65 118.18 113.92C118.46 114.1 118.53 114.6 118.86 114.61C119.15 113.92 119.65 113.1 120.39 113.2C120.73 113.25 121.01 113.5 121.31 113.66C121.61 113.82 122.04 113.88 122.26 113.61C122.4 113.43 122.42 113.15 122.61 113.03C122.8 112.91 123.04 113 123.24 113.1C123.73 113.35 124.2 113.63 124.64 113.95C124.84 113.45 125.34 112.34 125.95 112.25C126.52 112.16 127.29 112.93 127.86 113.05C128.69 113.23 129.56 112.9 130.41 112.95C131.23 113 131.96 113.39 132.75 113.55C133.65 113.74 134 113.51 134.81 113.25C135.62 112.99 135.71 113.13 136.45 113.33C137.37 113.57 137.99 114.13 138.86 113.57C139.06 113.44 139.34 113.51 139.54 113.65C139.74 113.79 139.9 113.97 140.11 114.09C140.55 114.34 141.11 114.25 141.58 114.42C142.04 114.58 142.37 114.96 142.69 115.33C142.96 115.65 144.21 116.82 143.42 117.26C143.05 116.69 142.4 116.31 141.72 116.27C141.89 116.37 141.81 116.65 141.64 116.74C141.47 116.83 141.26 116.78 141.07 116.73C140.72 116.64 140.38 116.54 140.03 116.45C140.16 116.58 140.06 116.81 139.89 116.88C139.24 117.15 138.04 116.47 137.28 116.53C136.43 116.6 135.54 116.7 134.68 116.78C134.63 116.9 134.5 117.25 134.56 117.38C134.22 117 133.59 117.16 133.14 117.41C132.69 117.66 132.2 117.98 131.71 117.82C131.42 117.73 131.13 117.47 130.85 117.6C130.65 117.7 130.58 117.96 130.4 118.09C130.15 118.27 129.81 118.13 129.52 118.02C128.06 117.49 126.45 118.04 124.99 118.58C124.18 118.88 123.36 119.18 122.55 119.49C122.31 119.58 122.06 119.67 121.82 119.6C121.36 119.47 121.08 118.81 120.62 118.92C120.35 118.98 120.22 119.28 120.01 119.46C119.59 119.82 119.1 119.61 118.62 119.64C117.95 119.68 117.7 119.84 117.12 120.14C116.34 120.56 115.09 121.12 114.52 120.02C113.71 120.65 112.9 121.28 112.09 121.91C112.06 121.6 111.67 121.43 111.37 121.51C111.07 121.59 110.84 121.82 110.62 122.04C110.22 122.46 109.82 122.88 109.41 123.3C109.33 123.07 109.01 123 108.78 123.1C108.55 123.2 108.41 123.42 108.26 123.61C107.73 124.31 107.05 124.91 106.29 125.37C106.2 125.43 106.08 125.48 105.98 125.44C105.82 125.38 105.82 125.15 105.85 124.98C106.04 123.87 106.24 122.75 106.72 121.73C107.36 120.36 108.39 119.79 109.59 119.03C110.4 118.52 111.33 118.06 112.09 117.5C112.85 116.94 113.34 116.17 114.07 115.6L114.1 115.62Z" fill="#A27267"/>
-          <path opacity="0.4" d="M160.49 94.72C161.22 103.23 161.17 111.81 160.35 120.31C160.21 121.73 160.05 123.17 159.64 124.54C158.85 127.22 157.16 129.52 155.51 131.77C154.9 132.6 154.25 133.46 153.32 133.89C152.8 134.13 152.22 134.22 151.71 134.48C151.14 134.77 150.69 135.26 150.25 135.73C147.82 138.36 145.4 140.99 142.97 143.63C142.74 143.17 142.2 142.89 141.69 142.97C141.29 143.99 140.62 144.91 139.78 145.61L138.32 144.47L137.29 146.28C135.75 146.3 134.83 143.77 133.36 144.24C132.97 144.37 132.68 144.69 132.3 144.84C130.71 145.44 129.86 142.79 128.27 142.17C127.83 142.88 126.69 143 126.11 142.4C125.6 143.12 125.09 143.84 124.58 144.55C124.16 143.97 123.24 144.3 122.65 144.73C121.06 145.88 119.65 147.33 117.84 148.09C116.03 148.85 113.59 148.64 112.55 146.97C112.31 146.59 112.13 146.12 111.73 145.93C111.35 145.75 110.91 145.87 110.5 145.88C109.68 145.9 108.92 145.47 108.2 145.06C105.13 143.28 102.07 141.49 99 139.71C97.71 138.96 96.42 138.21 95.29 137.23C91.23 133.72 90.02 128.04 88.62 122.85C87.01 116.86 84.87 111.03 82.72 105.21C84.29 110.76 85.86 116.3 87.42 121.85C88.82 126.81 90.24 131.8 92.45 136.46C96.36 144.71 102.7 151.68 110.1 157.01C116.66 161.73 124.84 165.32 132.68 163.4C141.19 161.32 146.86 153.51 151.76 146.25C154.37 142.39 157.24 138.74 159.95 135.02C162.49 131.55 162.57 125.66 162.96 121.53C163.54 115.35 164.1 109.09 164.11 102.88C164.11 99.67 163.8 96.48 163.33 93.31C163.13 91.94 160.99 85.19 161.69 84.26C159.52 87.16 160.18 91.28 160.47 94.71L160.49 94.72Z" fill="url(#paint14_linear_33_2)"/>
-          <path d="M105.73 39.67C105.76 38.92 105.87 38.18 106.08 37.46C104.76 38.09 103.45 38.72 102.13 39.36C102.06 38.78 102.19 38.19 102.48 37.69L100.02 39.2L100.63 37.6C99.74 38.05 98.93 38.65 98.23 39.36C98.08 38.81 97.93 38.26 97.78 37.72C97.08 38.37 96.48 39.12 95.99 39.95C95.71 39.33 95.29 38.77 94.77 38.33C94.38 38.91 94 39.49 93.61 40.07C93.48 40.26 93.35 40.46 93.14 40.58C92.51 40.93 91.82 40.24 91.42 39.64C90.7 40.44 90.18 41.42 89.92 42.46C89.3 41.95 88.64 41.49 87.95 41.08C87.73 41.93 87.52 42.77 87.3 43.62C87.16 42.02 87.66 40.37 88.68 39.12C89.39 38.25 90.33 37.59 91.3 37.02C94.69 35.03 98.59 34.06 102.49 33.61C104.37 33.39 106.3 33.29 108.15 33.68C110 34.07 111.8 35 112.94 36.52C112.07 36.46 111.17 36.76 110.52 37.35C110.7 37.19 112.01 37.48 112.28 37.52C111.48 38.31 110.37 38.26 109.35 38.39C108.07 38.56 106.89 39.16 105.74 39.71L105.73 39.67Z" fill="url(#paint15_linear_33_2)"/>
-          <path d="M83.26 34.03C89.64 28.52 97.16 24.34 105.21 21.84L99.42 25.67C108.85 22.03 119.42 21.39 129.22 23.87C127.7 23.05 125.8 22.96 124.22 23.65C130.68 22.41 137.37 22.38 143.85 23.55C141.49 23.77 139.13 23.98 136.78 24.2C144.89 25.86 152.5 29.88 158.45 35.63L156.28 34.16C159.84 36.67 163.16 39.53 166.17 42.69L163.79 42.9C166.06 49.42 168.28 55.96 170.44 62.53C170.01 62.11 169.57 61.69 169.14 61.27C169.3 64.35 169.09 67.44 168.87 70.52C168.67 73.31 168.48 76.1 168.28 78.89C165.3 80.71 163.94 84.81 165.25 88.05C164.63 87.67 164 87.29 163.38 86.91C163.01 88.87 162.37 90.78 161.48 92.57C159.9 83.61 157.75 74.75 155.06 66.06C153.82 66.43 152.46 65.71 151.69 64.67C150.92 63.63 150.6 62.34 150.3 61.08C149.73 61.64 149.15 62.2 148.58 62.76C146.68 58.83 143.89 55.34 140.48 52.62C140.82 53.48 141.16 54.35 141.5 55.21C140.96 54.83 140.43 54.44 139.89 54.06C141 57.09 141.76 60.24 142.15 63.45C141.34 61.24 140.15 59.17 138.64 57.36L137.47 59.81C135.32 50.4 126.91 42.99 117.43 41.18L116.06 42.54C115.72 40.85 114.91 39.26 113.75 37.99C112.57 40.01 109.48 39.14 107.47 37.93C105.46 36.72 102.58 35.55 101.08 37.35C99.7 35.76 97.15 36.35 95.18 37.08C93.12 37.84 91.06 38.59 89 39.35C88.8 38.25 88.6 37.14 88.4 36.04C87.57 36.11 86.73 36.18 85.9 36.25C85.9 35.63 85.9 35 85.9 34.38C85 34.7 84.1 35.01 83.19 35.33C85.04 32.24 88.19 29.95 91.7 29.15" fill="url(#paint16_linear_33_2)"/>
-          <path d="M93.27 46.66C90.78 44.66 89.03 41.62 88.81 38.52C88.75 37.58 88.78 36.56 88.21 35.81C87.66 35.09 86.66 34.82 85.76 34.96C84.86 35.1 84.06 35.59 83.34 36.15C82 37.2 80.85 38.55 80.3 40.16C79.07 43.7 81.36 46.25 84.18 48.04C89.14 51.19 95.09 52.76 100.96 52.44C99.53 51.61 98.1 50.78 96.68 49.95C100.26 50.42 103.97 49.81 107.2 48.22C104.77 47.97 102.38 48.91 99.93 49.02C97.51 49.13 95.17 48.2 93.26 46.66H93.27Z" fill="url(#paint17_linear_33_2)"/>
-          <path d="M118.67 109.23C118.23 108.84 117.74 108.5 117.21 108.24C116.78 108.02 116.3 107.85 115.84 107.95C115.16 108.1 114.7 108.89 114.91 109.55C115.12 110.21 115.96 110.59 116.6 110.32C116.99 110.15 117.26 109.8 117.58 109.51C117.9 109.22 118.33 108.99 118.73 109.12" fill="#693F47"/>
-          <path opacity="0.26" d="M103.75 116.01C102.9 117.34 101.91 118.69 101.76 120.26C101.59 122.07 102.56 123.76 103.49 125.31C104.12 121.84 105.63 118.62 107.3 115.54C109.55 111.41 112.59 108.24 112.6 103.21C112.6 102.73 112.56 102.21 112.25 101.84C111.84 101.36 111.07 101.33 110.51 101.62C109.95 101.91 109.56 102.45 109.25 102.99C107.75 105.58 107.33 108.66 106.18 111.38C105.5 112.99 104.69 114.54 103.74 116.01H103.75Z" fill="url(#paint18_linear_33_2)"/>
-          <path opacity="0.26" d="M139.63 110.34C142.56 111.66 145.56 114.03 145.58 117.25C147.53 113.1 145.3 107.52 141.03 105.86C139.07 105.1 136.87 105.09 134.91 104.32C131.65 103.03 129.6 99.86 127.76 96.88C126.5 94.83 125.22 92.75 124.56 90.43C124.14 88.97 123.57 87.07 122.05 87.04C122.31 89.17 123.16 91.08 123.24 93.24C123.26 93.69 123.25 94.15 123.34 94.6C123.43 95.07 123.62 95.52 123.82 95.95C124.92 98.28 126.54 100.26 128.49 101.92C130.23 103.4 131.11 105.31 132.74 106.92C134.88 109.04 137.06 109.19 139.62 110.35L139.63 110.34Z" fill="url(#paint19_linear_33_2)"/>
-          <path opacity="0.37" d="M118.66 134.04C118.95 134.13 119.14 133.59 118.86 133.48C118.58 133.37 118.36 133.9 118.63 134.02C118.37 133.73 118.42 133.22 118.73 132.99C119.04 132.76 119.47 132.9 119.72 133.16C119.76 132.75 120.01 132.42 120.17 132.07C120.92 133.01 119.53 133.43 118.78 133.4C119.03 133.92 119.47 134.66 120.05 134.89C120.63 135.12 121.14 134.63 121.61 134.74C122.15 134.87 122.75 134.71 123.16 134.32C123.45 134.05 123.74 133.64 124.12 133.73C124.45 133.81 124.64 134.24 124.98 134.21C125.18 134.19 125.33 134.01 125.51 133.92C126.18 133.59 127.03 134.64 127.64 134.2C127.97 133.96 127.98 133.39 128.36 133.23C128.82 133.04 129.22 133.64 129.7 133.72C130.03 133.24 130.26 132.69 130.37 132.12C130.76 132.37 131.17 132.64 131.63 132.65C133.2 132.71 133.04 129.38 132.25 129.96C132.06 130.1 131.96 130.33 131.85 130.55C131.64 130.97 131.35 131.38 130.92 131.57C130.49 131.76 129.9 131.63 129.7 131.2C129.41 131.63 129.17 132.08 128.98 132.57C128.56 132.18 127.99 131.77 127.46 131.99C127.21 132.1 127.03 132.33 126.82 132.52C126.61 132.71 126.31 132.84 126.07 132.72C125.65 132.5 125.74 131.69 125.27 131.6C124.98 131.18 124.13 131.75 123.84 131.33C123.58 131.82 123.32 132.31 123.05 132.8C123.01 132.87 122.97 132.94 122.91 132.99C122.65 133.18 122.35 132.81 122.06 132.67C121.59 132.45 121.09 132.88 120.62 133.1" fill="#977267"/>
-          <path opacity="0.2" d="M92.05 135.09C96.47 140.9 100.95 146.79 106.74 151.24C114.29 157.06 124.36 160.16 133.58 157.74C142.26 155.47 149.18 148.65 153.6 140.83C158.01 133.02 160.26 124.2 162.46 115.5C162.49 119.67 161.56 123.77 160.59 127.83C158.66 135.91 156.39 144.25 151.01 150.58C147.32 154.91 142.42 158 137.48 160.81C135.89 161.72 134.27 162.61 132.49 163.06C126.96 164.45 120.68 163.32 115.87 160.23C113.73 158.85 111.89 157.03 109.59 155.88C107.29 154.73 105.45 153.54 103.65 151.79C101.69 149.88 100.05 147.68 98.42 145.48C97 143.57 95.63 141.6 94.16 139.73C93.12 138.4 91.32 136.94 91.79 135.02C92.79 136.2 93.94 137.25 95.2 138.14" fill="black"/>
-          <path d="M96.74 41.31C95.79 38.49 96.66 35.14 98.88 33.15C100.53 31.67 102.73 30.97 104.9 30.51C110.21 29.37 115.7 29.36 121.13 29.36" stroke="#73492D" stroke-width="0.5" stroke-miterlimit="10" stroke-linecap="round"/>
-          <path d="M99.79 39.49C101.84 35.33 106.65 32.73 111.25 33.28" stroke="#73492D" stroke-width="0.5" stroke-miterlimit="10" stroke-linecap="round"/>
-          <path d="M103.93 39.67C109.1 36.21 115.82 35.18 121.79 36.94" stroke="#73492D" stroke-width="0.5" stroke-miterlimit="10" stroke-linecap="round"/>
-          <path d="M99.25 29.85C109.85 26.97 121.37 27.59 131.61 31.58C141.85 35.57 150.74 42.91 156.6 52.2" stroke="#633A1D" stroke-width="0.5" stroke-miterlimit="10" stroke-linecap="round"/>
-          <path d="M124.92 271.72C149.88 272.32 174.91 268.84 198.75 261.53C211.49 257.62 223.93 252.7 235.89 246.83C243.73 242.98 248.24 236.06 253.86 229.48C254.64 228.56 255.44 227.63 255.93 226.52C256.75 224.67 256.62 222.55 256.47 220.53C256.24 217.33 256.01 214.14 255.77 210.94C255.61 208.68 255.44 206.39 254.73 204.24C252.49 197.44 251.81 188.96 244.3 185.8C224.31 177.4 204.32 169 184.34 160.6C182.51 181.33 173.09 200.65 156.74 213.52C148.51 220 141.31 221.74 139.15 232.61C140.31 226.77 128.07 219.19 124.41 216.48C117.81 211.59 112.69 205.32 106.49 199.96C102.5 196.51 96.85 191.92 97.08 186.01C97.16 183.83 98.57 181.87 98.96 179.73C99.59 176.25 99.9 172.68 100.41 169.18C100.7 167.19 101.56 165.63 101.25 163.56C99.37 164.06 97.6 164.88 95.86 165.73C93.33 166.97 91 168.86 88.58 170.31C83.53 173.33 78.32 176.06 73.11 178.79C69.96 180.44 66.81 182.09 63.66 183.74C60.84 185.22 57.43 186.47 55.05 188.63C50.44 192.81 45.23 195.8 39.88 199.04C35.27 201.84 30.6 204.69 26.92 208.63C18.6 217.54 16.6 230.46 15 242.54C14.75 244.46 14.51 246.53 15.41 248.25C16.16 249.69 17.58 250.65 18.99 251.47C26.94 256.09 36.73 258.53 45.46 261.28C67.37 268.2 88.93 269.11 111.42 271C115.92 271.38 120.43 271.62 124.94 271.73L124.92 271.72Z" fill="#FCFAF9"/>
-          <path d="M168.78 211.09C169.24 211.08 169.69 211.08 170.15 211.09C175.33 211.23 183.25 215.09 187.54 211.13C183.12 211.01 178.18 210.82 175.21 207.66C172.11 204.36 167.2 205.85 163.69 207.59C162.86 208 161.98 208.33 161.32 208.96C160.48 209.76 159.83 210.84 159.02 211.69C157.36 213.41 155.48 214.9 153.43 216.13C156.12 214.92 158.9 213.9 161.72 213.05C164.16 212.31 166.14 211.18 168.78 211.1V211.09Z" fill="#E5DCD7"/>
-          <path d="M168.48 143.21C170.09 146.1 171.73 149.13 171.9 152.43C172.1 156.31 171 160.74 170.27 164.55C168.92 171.64 165.86 178.21 165.52 185.4C165.1 194.08 161.01 201.93 160.3 210.54C161.39 208.86 163.29 207.73 165.29 207.56C167.24 207.4 169.15 208.1 171 208.73C178.74 211.38 186.84 212.99 195.01 213.51C194.36 211.68 193.71 209.84 193.06 208.01C191.21 202.77 190.51 201.37 190.63 195.82C190.87 184.99 190.21 174.36 187.42 163.86C186.47 160.29 183.02 158.13 180.72 155.48C179.58 154.18 178.65 152.72 177.6 151.34C174.98 147.91 171.71 145.88 168.49 143.19L168.48 143.21Z" fill="#F6F3EF"/>
-          <path d="M97.64 162.3C96.92 163.95 96.74 165.88 96.15 167.59C95.47 169.57 94.65 171.5 93.89 173.45C90.87 181.19 88.64 189.24 87.24 197.43C86.22 203.39 85.14 209.34 84.04 215.31C83.79 216.64 83.42 217.91 83.16 219.19C82.74 221.27 82.88 222.88 83.28 224.94C88.03 220.35 93.71 216.82 99.45 213.61C101.69 212.36 103.44 212.16 105.88 211.74C107.48 211.47 109.03 210.89 110.6 210.47C111.27 210.29 115.37 208.83 115.82 209.24C106.88 201.02 106.87 189.19 104.15 178.13C103.44 175.26 103.1 172.31 102.67 169.39C102.45 167.86 102.38 166.04 101.78 164.61C101.24 163.32 101.12 162.29 101.24 160.85C101.26 160.66 101.28 160.46 101.36 160.28C101.4 160.19 101.46 160.1 101.47 160C101.51 159.62 100.75 158.56 101.07 158.24C100.39 158.92 99.85 159.8 99.11 160.4C98.46 160.93 97.99 161.52 97.65 162.3H97.64Z" fill="#F6F3EF"/>
-          <path d="M139.06 270.47C139.25 265.47 138.88 255.95 139.07 250.94C139.17 248.17 139.28 245.39 138.9 242.64C138.54 240.04 139.77 232.67 138.74 230.26C134.62 220.7 124.78 218.16 117.16 211.08C122.61 217.7 129.45 219.84 134.18 226.99C135.64 229.2 137.97 231.28 137.99 233.92C138.02 238.67 137.51 247.22 137.54 251.53C137.58 257.86 137.61 264.18 137.65 270.51C138.27 270.7 138.45 270.27 139.07 270.46L139.06 270.47Z" fill="#E5DCD7"/>
-          <path d="M107.28 210.41C109.79 209.51 112.71 209.32 115.36 209.3C115.44 209.3 115.53 209.3 115.61 209.34C115.69 209.38 115.75 209.45 115.8 209.53C116.03 209.84 116.3 210.14 116.47 210.48C115.85 210.78 114.99 210.84 114.31 211.02C113.56 211.22 112.82 211.43 112.08 211.66C110.6 212.12 109.14 212.65 107.7 213.2C104.8 214.31 101.94 215.54 99.04 216.65C97.59 217.2 96.14 217.73 94.66 218.19C93.92 218.42 93.18 218.64 92.43 218.83C92.04 218.93 91.65 219.03 91.26 219.12C90.99 219.18 90.49 219.19 90.26 219.34C94.12 216.77 98.01 214.2 102.25 212.31C106.49 210.43 111.14 209.25 115.76 209.65C115.95 209.1 115.73 209.67 115.15 209.65C113.17 209.62 109.15 209.75 107.28 210.41V210.41Z" fill="#E5DCD7"/>
-          <path d="M220.16 227C219.01 236.05 218.19 245.15 217.7 254.26C216.59 255.01 215.32 256.23 214.33 256.62C217.21 247.32 218.94 236.64 220.16 226.99V227Z" fill="#E5DCD7"/>
-          <path d="M232.81 208.82C233.47 203.52 234.15 197.86 237.62 193.8C234.67 195.64 233.57 199.33 232.73 202.71C230.6 211.27 228.64 219.88 226.83 228.52C225.93 232.78 225.07 237.05 224.25 241.32C223.53 245.03 223.47 251.56 221.04 254.59C221.79 253.65 222.9 253 224.09 252.8C224.51 249.3 225.96 246.06 226.58 242.59C228.62 231.27 231.38 220.35 232.81 208.83V208.82Z" fill="#E5DCD7"/>
-          <path d="M58.44 242.37C58.12 239.52 57.77 236.57 56.58 234.14C55.58 232.1 54.06 230.59 52.57 229.13C46.56 223.24 40.45 217.27 33.45 213.67C37.09 212.02 40.96 214.86 44.06 217.84C47.42 221.06 50.62 224.58 53.62 228.36C54.96 230.05 56.27 231.8 57.27 233.86C59.19 237.82 59.79 242.58 60.36 247.2C60.52 248.52 62.21 265.94 62.19 265.93C61.32 265.43 60.45 264.93 59.58 264.43C58.19 257.33 58.44 249.64 58.44 242.37Z" fill="#F6F3EF"/>
-          <path d="M111.41 270.99C113.46 271.16 115.51 271.3 117.57 271.41C116.45 267.88 117.7 263.3 118.75 260.02C118.94 259.42 119.16 258.78 119.01 258.17C118.61 256.54 116.34 256.54 114.68 256.72C109.48 257.31 104.28 256.1 99.11 255.3C92.65 254.3 85.99 253.75 79.45 253.73C76.03 253.72 74.1 254.89 73.65 258.29C73.25 261.31 73 264.27 72.64 267.26C85.41 269.09 98.25 269.87 111.41 270.97V270.99Z" fill="#F6F3EF"/>
-          <path opacity="0.6" d="M162.73 106.75C162.69 106.09 162.87 105.43 162.96 104.77C163.04 104.11 163.02 103.44 163 102.78C162.95 101.37 162.99 99.93 162.85 98.53C162.38 98.95 162.66 99.91 162.68 100.47C162.71 101.3 162.73 102.13 162.75 102.95C162.77 104.61 162.76 106.26 162.71 107.92C162.46 115.8 161.35 123.66 159.39 131.3C157.97 136.82 153.38 143.27 150.05 147.9C144.14 156.12 134.91 163.01 124.19 161.64C121.45 161.29 118.77 160.5 116.24 159.4C115.11 158.91 114.09 158.12 113.03 157.49C111.85 156.78 110.69 156.04 109.59 155.23C108.88 154.71 108.2 154.16 107.56 153.56C106.95 153 106.35 152.39 105.57 152.12C107.04 153.75 108.71 155.19 110.37 156.63C110.88 157.07 111.39 157.51 111.93 157.9C112.77 158.5 113.68 158.99 114.59 159.48C115.3 159.86 116.02 160.25 116.73 160.63C117.37 160.97 118 161.31 118.66 161.61C121.56 162.93 124.78 163.22 127.93 163.15C135.24 163 141.34 159.33 146.26 154.13C151.03 149.08 156.8 142.8 159.15 136.2C162.47 126.85 163.09 122.28 163.7 112.38C163.75 111.5 163.8 110.63 163.83 109.75C163.97 105.88 163.92 102 163.71 98.13C163.66 97.17 163.59 96.2 163.52 95.24C163.48 94.76 163.45 94.28 163.4 93.81C163.36 93.4 163.26 92.94 163.33 92.53C163.47 91.68 163.39 90.81 163.38 89.94C163.36 88.95 163.34 87.96 163.32 86.98C163.32 86.71 163.31 86.44 163.23 86.18C163.16 86.34 163.08 86.49 163.01 86.65C162.77 86.1 163.11 85.45 162.93 84.88C162.34 85.43 162.19 86.29 162.07 87.09L161.84 88.62C161.77 89.06 161.62 89.57 161.66 90.01C161.7 90.41 161.72 90.81 161.75 91.22C161.75 91.35 161.97 92.66 161.95 92.67C162.02 92.63 162.09 92.6 162.15 92.56C161.96 93.62 161.92 94.71 162.03 95.79C162.11 95.7 162.2 95.62 162.28 95.53C162.33 95.98 162.41 95.79 162.44 96.25C162.51 97.17 162.57 98.09 162.62 99.01C162.67 98.43 162.79 98.27 162.84 97.68C162.65 97.93 162.51 98.24 162.46 98.55C162.51 97.9 162.46 97.23 162.3 96.6C162.3 97.35 162.47 98.09 162.47 98.84C162.61 98.71 162.75 98.57 162.89 98.44C162.3 102.77 163.6 107.29 162.36 111.48" fill="url(#paint20_linear_33_2)"/>
-          <path d="M103.78 177.98C103.99 179.5 104.2 181.03 104.64 182.5C105.23 184.46 106.2 186.28 106.92 188.2C106.96 188.31 106.99 188.42 107.03 188.53C105.78 184.23 104.71 179.88 103.83 175.49C103.34 173.05 102.91 170.6 102.53 168.14C102.4 167.27 102.32 166.58 102.32 165.95C101.94 169.9 103.32 174.63 103.79 177.99L103.78 177.98Z" fill="#E5DCD7"/>
-          <path d="M101.25 171.2C101.47 180.29 105.02 188.92 108.52 197.3C107.6 195.09 107.62 191.94 107.08 189.57C106.46 186.85 105.76 184.16 105.08 181.45C104.4 178.74 103.78 176.15 103.27 173.47C102.87 171.36 103.11 167.51 102.04 165.76C101.19 167.32 101.2 169.45 101.25 171.2V171.2Z" fill="#DBCFC8"/>
-          <path d="M95.94 123.07C95.83 124.45 96.78 125.84 98.1 126.26C96.78 125.54 96.23 123.94 95.98 122.45" fill="#C98969"/>
-          <path d="M166.94 104.22C168.11 104 169.23 103.51 170.18 102.79C170.53 101.89 170.71 100.62 169.85 100.2C167.86 99.23 167.1 104.83 165.19 103.71C166.58 104.8 168.7 104.83 170.12 103.79" fill="#D5A38A"/>
-          <path opacity="0.2" d="M136.79 150.22C137.01 150.68 136.99 151.29 136.79 151.79C136.47 152.61 135.79 153.72 135.2 154.38C134.12 155.58 132.49 156.12 130.91 156.49C127.81 157.21 124.39 157.4 121.49 155.89C120.57 155.41 119.91 154.87 119.26 154.08C119.12 153.91 117.43 151.07 118.23 151.32C119.58 151.74 120.69 153.21 122.05 153.84C123.66 154.58 125.4 155.03 127.15 155.28C128.1 155.42 129.06 155.51 130 155.39C132.21 155.11 134.19 153.67 135.37 151.78C135.79 151.12 135.92 150.38 136.29 149.7C136.51 149.82 136.67 150.01 136.78 150.23L136.79 150.22Z" fill="url(#paint21_linear_33_2)"/>
-          <path opacity="0.68" d="M109.49 87.77C109.64 88.26 109.56 88.78 109.35 89.24C109.16 89.65 108.86 90.02 108.51 90.3C108.01 90.7 107.3 91.08 106.69 91.1C107.28 89.87 108.74 88.96 109.5 87.77H109.49Z" fill="#C98969"/>
-          <defs>
-            <linearGradient id="paint0_linear_33_2" x1="121.86" y1="142.99" x2="172.23" y2="142.99" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#AA8260"/>
-              <stop offset="1" stop-color="#D0997D"/>
-            </linearGradient>
-            <linearGradient id="paint1_linear_33_2" x1="76.85" y1="135.21" x2="140.13" y2="135.21" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#C3997D"/>
-              <stop offset="1" stop-color="#E7C5A3"/>
-            </linearGradient>
-            <linearGradient id="paint2_linear_33_2" x1="87.2" y1="87.5601" x2="109.46" y2="87.5601" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#AA8260"/>
-              <stop offset="1" stop-color="#D0997D"/>
-            </linearGradient>
-            <linearGradient id="paint3_linear_33_2" x1="120.92" y1="89.0301" x2="151.67" y2="89.0301" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#AA8260"/>
-              <stop offset="1" stop-color="#D0997D"/>
-            </linearGradient>
-            <linearGradient id="paint4_linear_33_2" x1="75.04" y1="66.47" x2="86.47" y2="66.47" gradientUnits="userSpaceOnUse">
-              <stop offset="0.1" stop-color="#56391E"/>
-              <stop offset="1" stop-color="#3D312D"/>
-            </linearGradient>
-            <linearGradient id="paint5_linear_33_2" x1="60.66" y1="72.19" x2="88.29" y2="72.19" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#81624A"/>
-              <stop offset="1" stop-color="#56391E"/>
-            </linearGradient>
-            <linearGradient id="paint6_linear_33_2" x1="110.22" y1="122.54" x2="139.79" y2="122.54" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#BF6851"/>
-              <stop offset="1" stop-color="#D8AC94"/>
-            </linearGradient>
-            <linearGradient id="paint7_linear_33_2" x1="109.75" y1="123.06" x2="140.61" y2="123.06" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#BF6751"/>
-              <stop offset="0.52" stop-color="#AE6650"/>
-              <stop offset="1" stop-color="#BF6751"/>
-            </linearGradient>
-            <linearGradient id="paint8_linear_33_2" x1="96.67" y1="90.29" x2="96.67" y2="78.85" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#956D57"/>
-              <stop offset="1" stop-color="#673110"/>
-            </linearGradient>
-            <linearGradient id="paint9_linear_33_2" x1="120.16" y1="77.77" x2="149.79" y2="77.77" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#956D57"/>
-              <stop offset="1" stop-color="#673110"/>
-            </linearGradient>
-            <linearGradient id="paint10_linear_33_2" x1="126.05" y1="81.38" x2="146.15" y2="81.38" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#56391E"/>
-              <stop offset="1" stop-color="#81624A"/>
-            </linearGradient>
-            <linearGradient id="paint11_linear_33_2" x1="89.85" y1="87.55" x2="108.65" y2="87.55" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#56391E"/>
-              <stop offset="1" stop-color="#81624A"/>
-            </linearGradient>
-            <linearGradient id="paint12_linear_33_2" x1="126.05" y1="88.98" x2="146.21" y2="88.98" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#AA8260"/>
-              <stop offset="1" stop-color="#D0997D"/>
-            </linearGradient>
-            <linearGradient id="paint13_linear_33_2" x1="90.6" y1="93.0301" x2="109.68" y2="93.0301" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#AA8260"/>
-              <stop offset="1" stop-color="#D0997D"/>
-            </linearGradient>
-            <linearGradient id="paint14_linear_33_2" x1="82.74" y1="124.1" x2="164.13" y2="124.1" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#56391E"/>
-              <stop offset="1" stop-color="#8D624A"/>
-            </linearGradient>
-            <linearGradient id="paint15_linear_33_2" x1="87.27" y1="38.48" x2="112.94" y2="38.48" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#56391E"/>
-              <stop offset="1" stop-color="#927762"/>
-            </linearGradient>
-            <linearGradient id="paint16_linear_33_2" x1="83.16" y1="57.21" x2="170.44" y2="57.21" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#81624A"/>
-              <stop offset="1" stop-color="#56391E"/>
-            </linearGradient>
-            <linearGradient id="paint17_linear_33_2" x1="79.96" y1="43.7" x2="107.2" y2="43.7" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#56391E"/>
-              <stop offset="1" stop-color="#81624A"/>
-            </linearGradient>
-            <linearGradient id="paint18_linear_33_2" x1="101.74" y1="113.37" x2="112.61" y2="113.37" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#AA8260"/>
-              <stop offset="1" stop-color="#D0997D"/>
-            </linearGradient>
-            <linearGradient id="paint19_linear_33_2" x1="122.05" y1="102.14" x2="146.3" y2="102.14" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#AA8260"/>
-              <stop offset="1" stop-color="#D0997D"/>
-            </linearGradient>
-            <linearGradient id="paint20_linear_33_2" x1="105.55" y1="124" x2="163.9" y2="124" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#81624A"/>
-              <stop offset="1" stop-color="#56391E"/>
-            </linearGradient>
-            <linearGradient id="paint21_linear_33_2" x1="118.03" y1="153.35" x2="136.95" y2="153.35" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#56391E"/>
-              <stop offset="1" stop-color="#8D624A"/>
-            </linearGradient>
-          </defs>
-        </svg>
-        <svg class="useit-logo" width="150" height="150" viewBox="0 0 351 352" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <g id="Gul-med-border" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g id="useit-NEW" transform="translate(6.000000, 6.000000)" fill-rule="nonzero">
-              <g id="Lager_4" fill="#FBF3DF" stroke="#111111" stroke-width="11.643">
-                <path d="M338.2,339.3 L10,339.3 C4.5,339.3 0,334.8 0,329.3 L0,10.7 C0,5.2 4.5,0.7 10,0.7 L328.2,0.7 C333.7,0.7 338.2,5.2 338.2,10.7 L338.2,339.3 Z" id="Path"></path>
-              </g>
-              <g id="Lager_3" transform="translate(77.000000, 69.000000)" fill="#111111">
-                <path d="M37.7,0 L48,0 L48,63 C48,75.2 37.8,85 25.2,85 L23.2,85 C10.5,85 0.4,75.1 0.4,62.8 L0.4,0 L10.6,0 L10.6,63 C10.6,69.9 16.2,75.6 23.6,75.6 L24.9,75.6 C32.2,75.6 37.8,70.1 37.8,63.1 L37.8,0 L37.7,0 Z M114.3,41.1 L104.3,41.1 C104.3,36.1 99.9,31.4 94.7,31.4 L92.4,31.4 C87.7,31.4 83.4,34.5 83.4,38.7 C83.4,50.8 114,46.1 114,67.8 C114,77.4 104.5,85.1 94,85.1 L91.4,85.1 C79.3,85.1 71.1,75.9 71.1,66.4 L71.1,65 L80.7,65 L80.7,66.1 C80.7,71.7 85.7,76.5 91.8,76.5 L94,76.5 C99.5,76.5 104.2,72.7 104.2,67.6 C104.2,54.9 73.3,59 73.3,39.4 C73.3,29.5 82,22.7 92.4,22.7 L94.7,22.7 C107.8,22.8 114.3,33.4 114.3,41.1 Z M174.3,65.5 L184.2,65.5 C184.2,74.7 175.2,85 162.6,85 L160.6,85 C147.9,85 137.8,75.1 137.8,62.8 L137.8,44.6 C137.8,32.4 147.9,22.7 160.6,22.7 L162.8,22.7 C175.4,22.7 185.2,32.4 185.2,44.6 L185.2,56.8 L147.6,56.8 L147.6,63.4 C147.6,70.6 153.5,76.5 161.1,76.5 L162.4,76.5 C169.7,76.6 174.3,70.2 174.3,65.5 Z M147.4,44.3 L147.4,48.1 L175.5,48.1 L175.5,44.3 C175.5,37.1 169.9,31.4 162.3,31.4 L160.9,31.4 C153.3,31.4 147.4,37.1 147.4,44.3 Z M0,152.4 L0,143.8 L30,143.8 L30,195.1 L48.4,195.1 L48.4,203.7 L0,203.7 L0,195.1 L20.4,195.1 L20.4,152.4 L0,152.4 L0,152.4 Z M19.2,125.1 L19.2,125.1 C19.2,122.2 21.6,119.8 24.5,119.8 L24.9,119.8 C27.8,119.8 30.2,122.2 30.2,125.1 L30.2,125.1 C30.2,128 27.8,130.4 24.9,130.4 L24.5,130.4 C21.6,130.5 19.2,128.1 19.2,125.1 Z M71.2,185.6 L71.2,152.4 L71.2,143.8 L71.2,126.8 L80.9,126.8 L80.9,143.8 L114.3,143.8 L114.3,152.4 L80.9,152.4 L80.9,184.9 C80.9,190.9 85.6,196.3 92.2,196.3 L93.4,196.3 C99.4,196.3 104.3,190.9 104.3,184.9 L114.2,184.9 C114.2,196.3 106.7,205 93,205 L91.8,205 C78.7,205 71.2,196.3 71.2,185.6 Z M155.4,197.8 L155.4,197.8 C155.4,194.6 158,191.9 161.3,191.9 L161.3,191.9 C164.5,191.9 167.2,194.5 167.2,197.8 L167.2,197.8 C167.2,201 164.6,203.7 161.3,203.7 L161.3,203.7 C158.1,203.7 155.4,201.1 155.4,197.8 Z" id="Use-it."></path>
-              </g>
+  <section>
+    <h2>About me</h2>
+    <p>I'm Tommy Feldt, an accessibility specialist at <a href="https://useit.se/en"><strong>Useit</strong></a> based in
+      Stockholm, Sweden</p>
+    <p>I do inclusive UX design, frontend development, accessibility consulting, WCAG 2.1 audits, talks and more</p>
+    <p>Check out <a href="https://github.com/fymmot">some of my work on GitHub</a> or <a
+      href="mailto:tommy.feldt@useit.se">send me an e-mail</a>
+    <div class="about-me">
+      <svg width="197" height="210" viewBox="0 0 262 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M131.31 260.48C202.555 260.48 260.31 202.725 260.31 131.48C260.31 60.2352 202.555 2.47998 131.31 2.47998C60.0653 2.47998 2.31 60.2352 2.31 131.48C2.31 202.725 60.0653 260.48 131.31 260.48Z"
+          fill="#F5DEAE"/>
+        <path
+          d="M166.6 152.32C167.15 153.52 167.86 154.63 168.58 155.73C169.7 157.47 170.83 159.22 171.95 160.96C171.65 160.5 173.2 155.58 173.24 154.61C173.32 152.27 173 149.88 172.25 147.65C171.18 144.47 168.52 142.02 164.84 142.69C164.65 145.78 165.31 149.48 166.6 152.32V152.32Z"
+          fill="#E5DCD7"/>
+        <path
+          d="M102.69 167.05C102.72 167.13 102.76 167.22 102.84 167.25C102.95 167.3 103.07 167.22 103.15 167.13C103.87 166.42 103.95 165.3 103.93 164.28C103.89 162.62 104.2 158.69 101.63 160.17C100.26 160.96 100.62 161.56 101.12 162.88C101.65 164.26 102.17 165.65 102.69 167.03V167.05Z"
+          fill="#DBCFC8"/>
+        <path
+          d="M163.97 129.25C163.97 130.32 163.97 131.35 164.03 132.33C164.44 139.14 164.73 144.33 167.36 150.87C169.91 157.21 173.32 163.76 172.18 170.82C171.36 175.89 170.01 180.6 169.43 185.72C168.62 192.94 168.52 198.84 165.42 205.18C164.03 208.03 164.22 211.36 163.58 214.46C162.57 219.33 159.52 223.48 156.54 227.47C150.1 236.11 143.66 244.75 137.22 253.39C135.67 250.97 133.1 250.19 131.24 248.21C129.06 245.89 127.78 242.33 126.59 239.44C124.23 233.71 122.58 227.63 119.03 222.47C116.82 219.26 113.96 216.55 111.66 213.41C101.53 199.61 103.71 180.78 101.84 163.77C100.96 155.79 99.1 147.96 97.24 140.15C110.51 133.7 126.54 133.68 138.82 125.5C143.12 122.63 146.75 118.88 150.35 115.16C153.24 112.16 159.79 101.8 162.51 107.89C165.13 113.77 164.03 122.34 163.98 129.26L163.97 129.25Z"
+          fill="#ECCEB7"/>
+        <path opacity="0.26"
+              d="M172.23 165.36C171.59 160.34 169.24 155.55 167.36 150.87C164.73 144.34 164.44 139.14 164.03 132.33C163.97 131.35 163.96 130.32 163.97 129.25C163.97 128.13 164.02 126.96 164.06 125.76C163.59 120.82 163.17 115.85 163.17 110.98C162.81 106.29 160.44 113.34 160.16 114.51C159.36 117.76 158.45 120.99 157.4 124.17C155.26 130.64 152.53 136.97 148.55 142.54C143.88 149.08 137.19 154.57 129.42 156.94C126.1 157.95 120.92 156.59 122.01 161.31C122.95 165.39 126.97 168.4 130.7 170.71C131.96 171.49 133.19 172.19 134.26 172.83C135.51 173.57 136.7 174.45 138.02 175.05C139.38 175.67 140.85 175.99 142.33 176.21C151.2 177.55 160.56 175.34 167.89 170.16C169.67 168.9 171.41 167.32 172.23 165.36V165.36Z"
+              fill="url(#paint0_linear_33_2)"/>
+        <path
+          d="M88.64 128.15C81.35 109.68 79.49 89.39 77.52 70.02C76.92 64.07 76.32 57.99 77.68 52.16C79.58 44.04 85.3 37.07 92.47 32.82C99.65 28.57 108.17 26.91 116.51 27.22C122.01 27.43 127.54 28.48 132.47 30.94C142.03 35.7 148.33 45.11 153.43 54.49C155.51 58.32 157.47 62.23 158.96 66.32C163.11 77.72 163.43 90.03 162.69 102.01C162.41 106.59 163 111.11 162.57 115.74C162.15 120.19 161.38 124.61 160.16 128.9C157.78 137.27 153.57 145.16 147.79 151.53C142.56 157.3 138.02 160.4 130.14 161.54C127.63 161.9 125.09 162.2 122.57 161.96C116.85 161.41 112.86 158.1 108.82 154.38C104.58 150.48 99.85 147.93 96.56 143.16C93.33 138.49 90.71 133.42 88.62 128.14L88.64 128.15Z"
+          fill="#ECCEB7"/>
+        <path opacity="0.6"
+              d="M125.88 237.61C130.37 239.56 135.58 240.15 140.13 238.39C139.33 223.05 137.89 207.74 135.83 192.51C133.91 178.37 130.29 164.92 127.48 150.93C125.49 141.01 126.11 130.74 123.8 120.86C121.95 112.92 119.12 105.27 117.32 97.32C115.47 89.12 115.48 80.74 113.36 72.47C111.25 64.23 108.58 55.81 108.89 47.2C108.95 45.6 110.14 30.98 111.87 30.98C103.37 31.99 93.2 31.09 86.19 37.36C82.07 41.07 78.91 46.81 77.66 52.16C76.3 57.98 76.89 64.07 77.5 70.02C79.47 89.39 81.33 109.68 88.62 128.15C90.7 133.43 93.33 138.5 96.56 143.17C97.16 144.04 97.82 144.82 98.51 145.56C99.9 151.58 101.16 157.63 101.84 163.76C103.72 180.77 101.53 199.61 111.66 213.4C113.97 216.54 116.82 219.25 119.03 222.46C122.21 227.07 123.87 232.43 125.87 237.6L125.88 237.61Z"
+              fill="url(#paint1_linear_33_2)"/>
+        <path opacity="0.53"
+              d="M89.32 85.9001C87.89 87.4201 86.82 90.4601 87.32 92.5501C87.69 94.1001 89.59 95.3501 90.93 94.4801C91.65 94.0101 91.96 93.1201 92.35 92.3501C93.46 90.1901 95.59 88.6801 97.9 87.9101C100.21 87.1401 102.68 87.0601 105.11 87.2101C106.63 87.3001 108.52 87.2901 109.23 85.9501C109.82 84.8301 109.16 83.4201 108.22 82.5801C102.92 77.8201 93.44 81.5101 89.32 85.9101V85.9001Z"
+              fill="url(#paint2_linear_33_2)"/>
+        <path opacity="0.64"
+              d="M113.88 44.09C110.81 43.33 107.62 43.2 104.44 43.07C100.55 42.92 92.89 42.63 98.09 47.89C100.03 49.85 102.1 51.69 104.27 53.39C100.74 54.1 97.06 54.07 93.55 53.31C94.84 53.76 96.01 54.41 96.95 55.37C93.08 57.28 89.09 51.43 86.11 56.96C83.61 61.58 86.4 67.86 84.89 72.31C82.09 80.61 80.04 89.16 78.8 97.83C80.36 89.06 77.57 80.19 75.81 71.45C74.05 62.72 73.56 52.85 78.89 45.71C83.19 39.96 90.34 37.25 97.09 34.82C100.55 33.58 104.13 32.31 107.8 32.56C112.79 32.89 117.12 35.93 121.4 38.51C130.3 43.85 140.3 47.54 148.39 54.18C151.99 57.14 162.57 66.04 154.79 68.72C137.94 74.53 128.4 47.69 113.87 44.09H113.88Z"
+              fill="#C8A38A"/>
+        <path opacity="0.37"
+              d="M122.75 79.8501C127.11 78.1201 131.67 76.9201 136.32 76.2701C139.58 75.8101 143.08 75.6701 146 77.1801C148.64 78.5401 151.38 80.7101 151.67 83.8701C148.95 84.6001 146.16 83.2501 143.47 82.4101C140.36 81.4401 137.04 81.1501 133.81 81.5501C131.72 81.8101 129.55 82.4301 128.13 83.9901C124.62 87.8601 130.92 92.0201 131.77 96.0001C132.53 99.5701 129.79 104.77 126.35 101.12C124.11 98.7301 124.02 94.4401 122.75 91.5301C121.36 88.3501 120 84.5801 121.73 81.5801C124.11 77.4601 130.21 78.0001 134.37 75.6801"
+              fill="url(#paint3_linear_33_2)"/>
+        <path
+          d="M86.47 46.27C84.99 48.38 83.5 50.51 82.52 52.88C81.2 56.05 80.84 59.53 80.53 62.95C79.72 71.89 79.2 80.85 78.97 89.82C79.09 87.9 78.15 86.09 77.48 84.28C75.91 80.06 75.73 75.34 76.98 71.01C74.74 67.06 74.43 62.09 76.15 57.89C76.83 56.22 77.81 54.69 78.53 53.04C79.41 51 79.9 48.79 80.96 46.83C82.02 44.87 83.88 43.13 86.1 43.09C85.58 46.55 84.52 49.93 82.99 53.08"
+          fill="url(#paint4_linear_33_2)"/>
+        <path
+          d="M84.98 34.62C81.57 35.47 78.22 36.61 75 38.02C75.78 39.52 74.87 41.63 73.25 42.1C72.33 44.39 70.74 46.4 68.73 47.81C69.3 47.9 69.87 48 70.44 48.09C67.75 53.64 64.47 58.9 60.66 63.75L63.37 62.71C62.98 63.62 62.44 64.47 61.76 65.19L64.25 64.47L63.5 67.92L65.78 67.14L63.74 72.48L66.89 70.89C66.74 72.37 66.6 73.85 66.45 75.34C66.14 75.08 66.73 74.6 67.05 74.85C67.37 75.1 67.36 75.57 67.31 75.97C67.12 77.74 66.92 79.51 66.73 81.28C67.05 80.57 67.71 80.02 68.46 79.83C69.12 80.67 69.52 81.7 69.62 82.76C70.18 82.33 70.74 81.89 71.3 81.46C72.3 84.8 73.29 88.15 74.29 91.49C75.79 89.67 76.84 92.75 77.39 93.79C78.29 95.49 78.97 97.29 79.58 99.11C80.19 100.93 80.74 102.82 81.36 104.65C81.95 106.37 83 108.05 83.49 109.77C81.33 102.3 79.92 94.47 80.17 86.69C80.19 86.21 80.19 85.7 79.91 85.31C79.63 84.92 78.95 84.8 78.7 85.2C79.09 83.51 79.47 81.82 79.86 80.13C79.94 79.77 79.77 79.18 79.44 79.35C79.94 78.06 80.04 76.61 79.72 75.27L78.71 75.68C78.67 75.16 80.51 68.93 80.04 68.85C78.39 68.58 77.9 66.43 78.01 64.76C78.18 62.27 78.84 59.82 79.94 57.59C80.29 56.89 80.69 56.13 80.56 55.36C80 52.06 79.82 48.98 83.15 46.8C82.77 46.74 82.36 46.82 82.03 47.02C83.14 42.69 85.88 40.98 88.29 37.8C87.57 37.72 86.86 37.73 86.13 37.72C86.37 36.42 85.66 35.76 84.97 34.63L84.98 34.62Z"
+          fill="url(#paint5_linear_33_2)"/>
+        <path
+          d="M165.04 82.13L167.06 78.38C167.31 77.91 167.63 77.39 168.16 77.3C168.53 77.24 168.89 77.41 169.21 77.61C172.69 79.75 173.13 84.24 173.66 87.91C174.31 92.37 174.7 97.73 174.42 102.24C174.25 105.08 173.12 108.06 170.7 109.55C168.28 111.04 164.46 110.22 163.56 107.52C163.35 106.88 163.31 106.2 163.27 105.52C162.77 96.99 162.33 88.12 165.57 80.22C165.91 79.39 166.45 78.46 167.35 78.41"
+          fill="#ECCEB7"/>
+        <path
+          d="M73.62 94.13C73.07 100.68 77.91 116.03 78.25 117.12C78.85 119.07 79.53 121.14 81.14 122.39C82.75 123.64 85.59 123.45 86.35 121.56C86.77 120.51 86.43 119.32 86.09 118.24C84 111.61 81.91 104.97 79.81 98.35C79.15 96.29 78.66 91.94 76.04 91.28C74.5 90.89 73.79 92.08 73.62 94.14V94.13Z"
+          fill="#E3C1A9"/>
+        <path opacity="0.7"
+              d="M75.79 104.85C76 105.33 76.25 105.76 76.56 106.14C77.63 103.85 77.85 100.52 77.31 98.04C77.11 97.11 76.74 96.16 75.99 95.58C75.63 95.3 75.12 95.12 74.7 95.32C74.03 95.65 74.11 96.61 74.28 97.33C74.78 99.51 74.82 102.63 75.79 104.85V104.85Z"
+              fill="#C98969"/>
+        <path opacity="0.7"
+              d="M80.88 107.09C81.06 106.24 80.92 105.32 80.49 104.56C80.35 104.31 80.11 104.06 79.83 104.13C79.67 104.17 79.56 104.32 79.47 104.46C78.91 105.38 78.89 106.52 78.88 107.6C78.88 108.44 78.87 109.29 78.86 110.13C78.86 110.88 79.05 111.86 79.79 111.93C81.08 110.35 81.01 108.1 80.88 106.07C80.85 105.54 80.72 104.89 80.21 104.75C80.37 104.83 80.52 104.91 80.68 105"
+              fill="#C98969"/>
+        <path
+          d="M173.36 93.09C172.26 91.6 171.81 89.71 171.66 87.86C171.51 86.01 171.63 84.15 171.51 82.29C171.48 81.84 171.39 81.32 170.99 81.12C170.69 80.98 170.34 81.07 170.05 81.22C168.79 81.85 168.11 83.23 167.59 84.54C166.75 86.69 166.11 88.92 165.68 91.18C165.5 92.11 165.4 93.17 165.98 93.92C166.28 93.19 167.32 93.02 168.03 93.37C168.74 93.72 169.19 94.43 169.61 95.11C170.22 96.1 170.84 97.09 171.45 98.08C172.12 96.82 172.2 95.25 171.66 93.93C171.12 92.61 169.96 91.55 168.6 91.12C168.27 91.02 167.89 90.92 167.72 90.62C167.52 90.28 167.7 89.83 167.98 89.54C168.65 88.87 169.88 88.89 170.53 89.58C171.29 90.38 171.22 91.76 172.08 92.45C172.21 92.56 172.39 92.64 172.54 92.58C172.67 92.53 172.75 92.38 172.8 92.25C173.36 90.74 172.69 89.1 172.21 87.57C171.62 85.68 171.31 83.7 171.3 81.72C171.3 81.16 171.11 80.39 170.55 80.43C170.38 80.44 170.23 80.54 170.1 80.64C169.06 81.4 168.29 82.54 167.98 83.79"
+          fill="#D5A38A"/>
+        <path
+          d="M117.26 127.84C118.48 128.29 119.71 128.7 120.97 128.95C126.4 130.01 130.32 127.54 134.59 124.6C136.49 123.29 137.88 121.72 139.3 119.93C138.36 121.09 133.53 120.92 132.13 121.29C129.13 122.06 126.26 123.27 123.2 123.81C120.79 124.24 118.35 124.5 115.92 124.83C114.07 125.08 112.18 125.33 110.39 125.84C112.77 126.06 114.99 127 117.25 127.84H117.26Z"
+          fill="#D0997D"/>
+        <path
+          d="M134.89 121.92C133.91 122.13 132.91 122.2 131.92 122.38C129.34 122.87 127.3 124.48 124.74 125.04C123.48 125.31 122.2 125.42 120.92 125.53C117.37 125.82 113.69 125.38 110.22 126.32C110.97 125.76 111.71 125.2 112.46 124.64C113.71 123.7 115.38 123.2 116.72 122.29C118.05 121.38 119.49 120.3 121.08 120.53C121.87 120.65 122.6 121.09 123.4 121.04C124.38 120.98 125.11 120.21 125.86 119.66C126.29 119.34 126.81 119.14 127.33 119.02C127.78 118.91 128.24 118.8 128.71 118.77C129.99 118.7 131.21 119.29 132.48 119.51C134.9 119.94 137.47 119.08 139.8 119.85C138.92 120.13 138.08 120.52 137.27 120.95C136.87 121.16 136.48 121.4 136.08 121.6C135.73 121.78 135.29 121.84 134.9 121.92H134.89Z"
+          fill="url(#paint6_linear_33_2)"/>
+        <path
+          d="M120.41 125.82C122.16 125.75 123.91 125.69 125.63 125.36C127.96 124.91 130.17 123.98 132.35 123.05C133.13 122.72 140.19 119.39 140.62 120.33C140.37 119.78 139.67 119.57 139.08 119.66C138.49 119.75 137.96 120.07 137.41 120.32C134.28 121.73 130.47 121.32 127.41 123.07C126.61 123.52 125.91 124.17 125.04 124.45C123.56 124.92 121.97 124.25 120.43 124.33C119.7 124.37 118.99 124.57 118.29 124.74C116.71 125.14 114.97 125.35 113.34 125.37C111.99 125.39 110.68 125.2 109.77 126.47C110.17 125.91 114.53 125.99 115.3 125.98C117 125.97 118.71 125.87 120.43 125.81L120.41 125.82Z"
+          fill="url(#paint7_linear_33_2)"/>
+        <path opacity="0.7"
+              d="M104.56 122.53C104.36 124.22 104.63 125.94 104.58 127.64C103.73 127.09 103.49 125.97 103.41 124.96C103.3 123.57 103.37 122.12 103.95 120.85C104.47 119.71 105.47 118.69 106.73 118.42C105.56 119.54 104.76 120.81 104.56 122.53V122.53Z"
+              fill="#C98969"/>
+        <path opacity="0.7"
+              d="M141.72 112.02C142.03 112.27 142.32 112.55 142.58 112.84C144.3 114.76 144.84 117.5 144.74 120.07C144.7 121.04 144.38 122.16 143.89 123.01C144.67 121.72 145.75 120.62 146.01 119.08C146.27 117.54 146.27 115.64 145.58 114.21C144.69 112.37 142.71 111.34 140.81 110.57C139.86 110.19 138.88 109.84 137.85 109.79C139.2 110.42 140.58 111.08 141.72 112.02V112.02Z"
+              fill="#C98969"/>
+        <path opacity="0.5"
+              d="M151.43 120.8C151.45 118.85 151.47 116.9 151.32 114.95C151.22 113.57 150.87 112.07 151.18 110.7C152.75 113.35 152.36 116.86 151.97 119.78C151.9 120.32 151.79 120.9 151.43 121.31C151.43 121.14 151.43 120.97 151.43 120.8Z"
+              fill="#C98969"/>
+        <path opacity="0.44"
+              d="M125.81 103.81C127.87 103.72 129.88 104.79 130.15 107.18C130.32 108.69 129.35 110.16 127.74 110.18C126.25 110.2 124.19 109.22 122.82 110.12C122.51 110.32 122.26 110.62 121.95 110.81C121.11 111.31 120.04 110.95 119.1 110.69C118.16 110.43 116.94 110.37 116.4 111.18C116.17 111.52 116.12 111.95 115.89 112.29C115.49 112.88 114.63 113.03 113.97 112.77C113.31 112.51 112.82 111.92 112.49 111.29C110.55 107.64 112.76 104.74 116.7 105.46C117.49 105.61 118.26 105.9 119.07 105.93C120.74 106 122.22 104.99 123.74 104.29C124.4 103.99 125.11 103.82 125.82 103.79L125.81 103.81Z"
+              fill="#C98969"/>
+        <path
+          d="M122.43 108.28C122.89 108.29 123.36 108.31 123.79 108.48C124.03 108.58 124.24 108.72 124.47 108.84C124.78 108.99 125.11 109.09 125.44 109.19C125.79 109.29 126.16 109.38 126.52 109.3C127.12 109.18 127.27 108.67 127.29 108.13C127.34 107.01 126.6 106.4 125.57 106.21C124.89 106.09 124.18 106.48 123.72 106.94C123.28 107.38 122.85 107.82 122.43 108.28Z"
+          fill="#693F47"/>
+        <path
+          d="M106.49 80.7C103.83 79.13 100.62 78.52 97.57 79.02L98.89 79.72C98.1 79.71 97.3 79.82 96.54 80.04C96.25 80.13 95.97 80.6 96.28 80.64C92.35 80.43 88.39 82.76 86.66 86.3C87.05 86.07 87.5 85.95 87.95 85.96C87.61 86.2 87.31 86.49 87.05 86.82L87.77 87.38C86.94 88.08 86.52 89.22 86.68 90.29C88.38 87.11 91.48 84.84 94.87 83.59C98.26 82.34 101.92 82.05 105.52 82.11L104.51 81.68C105.09 81.7 105.66 81.62 106.21 81.45C106.36 81.4 106.52 81.34 106.62 81.22C106.96 80.78 106.26 80.28 105.72 80.16C104.84 79.96 103.97 79.76 103.09 79.56"
+          fill="url(#paint8_linear_33_2)"/>
+        <path
+          d="M125.36 79.85C123.64 80.58 121.96 81.45 120.15 81.92C120.82 80.37 123.46 76.22 125.57 76.67C125.44 76.75 125.37 76.9 125.4 77.05C129.68 74.6 135.79 73.56 140.67 73.64C140.53 73.8 140.39 73.97 140.25 74.13C143.36 75.01 146.78 76.28 149.25 78.44C149.62 78.76 149.98 79.3 149.68 79.69C147.81 79.41 146.19 78.27 144.42 77.58C142.93 77 142.21 76.73 140.61 76.82C139.92 76.86 138.16 76.31 137.47 76.33C136.61 76.36 135.75 76.43 134.89 76.52C131.53 76.89 128.46 78.53 125.35 79.85H125.36Z"
+          fill="url(#paint9_linear_33_2)"/>
+        <path
+          d="M98.15 91.35C99.11 91.88 100.26 91.71 101.26 91.4C101.88 91.2 103.31 90.76 103.69 90.22C103.99 89.79 104.07 89 104.1 88.5C104.13 87.96 104.04 87.36 103.62 87.02C103.47 86.9 103.29 86.82 103.11 86.76C101.4 86.14 99.24 86.39 97.76 87.47C97.03 88 96.59 89 96.78 89.89C96.88 90.36 97.17 90.75 97.58 91C97.74 91.1 97.94 91.23 98.16 91.35H98.15Z"
+          fill="black"/>
+        <path
+          d="M137.15 81.7201C137.66 81.7801 138.19 81.9001 138.59 82.2401C139.38 82.9201 139.31 84.1301 139.17 85.1601C139.09 85.7501 135.8 86.1001 135.31 86.1301C133.79 86.2201 132.76 86.1701 132.47 84.4601C132.01 81.7801 135.12 81.4801 137.16 81.7201H137.15Z"
+          fill="black"/>
+        <path opacity="0.5"
+              d="M146.15 82.93C142.9 80.88 139.12 79.69 135.28 79.53C134.15 79.48 133.01 79.53 131.92 79.82C129.35 80.53 128.18 82.7601 126.05 83.9101C126.9 80.5301 130.81 79.24 133.83 78.96C136.1 78.74 138.43 78.9 140.62 79.56C142.95 80.27 144.22 81.7101 146.16 82.9401L146.15 82.93Z"
+              fill="url(#paint10_linear_33_2)"/>
+        <path opacity="0.5"
+              d="M103.73 83.18C101.66 83.01 99.59 83.43 97.61 84.05C95.71 84.64 93.84 85.44 92.35 86.75C90.86 88.06 89.79 89.96 89.85 91.95C91.65 88.59 94.82 85.99 98.47 84.87C102 83.78 105.23 84.37 108.66 85.41C108.33 83.87 105.06 83.29 103.74 83.18H103.73Z"
+              fill="url(#paint11_linear_33_2)"/>
+        <path
+          d="M99.25 85.85C95.53 86.63 91.97 90.6 90.57 93.65C92.51 92.14 93.58 90.54 95.52 89.03C96.26 88.46 98.05 87.39 98.91 87.03C101.49 85.95 105.71 86.53 107.78 87.03C106.91 85.14 102.54 85.16 99.25 85.85V85.85Z"
+          fill="black"/>
+        <path
+          d="M127.02 85.07C129.47 82.9 132.01 81.26 135.02 80.84C138.91 80.29 143.29 82.2001 146.44 84.0501C144.38 84.3901 142.47 83.05 140.48 82.43C135.79 80.97 130.59 83.04 126.67 86C127.49 86.15 128.31 86.3 129.13 86.45C128.34 86.86 127.4 86.9601 126.55 86.7301C126.28 86.6601 125.98 86.5101 125.93 86.2301C125.89 86.0101 126.04 85.8001 126.18 85.6201C126.98 84.6801 128.06 83.9901 129.25 83.6601"
+          fill="black"/>
+        <path opacity="0.68"
+              d="M156.98 82.75C154.18 83.96 149.01 85.58 146.06 84.26C147.03 83.29 149.76 83.88 151.08 83.75C152.87 83.57 155.31 83.47 156.97 82.75H156.98Z"
+              fill="#C98969"/>
+        <path opacity="0.3"
+              d="M143.17 87.26C143.64 86.94 144.08 86.57 144.61 86.36C145.14 86.15 145.8 86.16 146.21 86.54C145.21 89.35 142.09 90.52 139.22 91.34C134.97 92.56 128.35 90.61 126.04 88.82C127.49 88.32 133.31 89.84 134.84 89.82C137.56 89.77 140.91 88.8 143.16 87.26H143.17Z"
+              fill="url(#paint12_linear_33_2)"/>
+        <path opacity="0.46"
+              d="M106.63 93.7901C107.97 92.8301 109.13 91.2001 109.61 89.6301C109.66 89.4701 109.71 89.2901 109.64 89.1301C109.55 88.9101 109.27 88.8101 109.03 88.8501C108.79 88.8901 108.59 89.0301 108.39 89.1701C105.9 90.9501 103.51 92.5301 100.66 93.6601C97.65 94.8501 93.76 95.0001 90.58 94.5801C92.28 95.4001 94.06 96.0701 95.88 96.5801C96.74 96.8301 97.68 97.1301 98.57 97.2201C99.41 97.3001 100.25 97.0201 101.03 96.7301C103.01 96.0101 104.9 95.0101 106.61 93.7901H106.63Z"
+              fill="url(#paint13_linear_33_2)"/>
+        <path opacity="0.5"
+              d="M130.39 102.83C129.45 101.43 128.02 100.22 126.81 99.03C124.88 97.13 123.61 94.32 123.16 91.68C122.93 90.31 122.81 88.75 121.72 87.88C121.55 91.24 121.8 94.61 122.45 97.91C122.6 98.67 122.79 99.45 123.28 100.04C123.87 100.75 124.79 101.08 125.65 101.41C127.59 102.15 129.7 103.37 130.02 105.42C130.29 107.15 129.12 108.81 127.71 109.85C129.17 110.04 130.6 108.94 131.08 107.55C131.72 105.69 131.28 104.17 130.38 102.83H130.39Z"
+              fill="#C98969"/>
+        <path opacity="0.4"
+              d="M114.1 115.62C114.1 115.62 114.19 115.55 114.23 115.52C114.67 115.21 115.27 114.94 115.71 115.25C115.86 115.36 115.98 115.53 116.15 115.6C116.62 115.79 116.98 115.18 117.14 114.7C117.3 114.22 117.76 113.65 118.18 113.92C118.46 114.1 118.53 114.6 118.86 114.61C119.15 113.92 119.65 113.1 120.39 113.2C120.73 113.25 121.01 113.5 121.31 113.66C121.61 113.82 122.04 113.88 122.26 113.61C122.4 113.43 122.42 113.15 122.61 113.03C122.8 112.91 123.04 113 123.24 113.1C123.73 113.35 124.2 113.63 124.64 113.95C124.84 113.45 125.34 112.34 125.95 112.25C126.52 112.16 127.29 112.93 127.86 113.05C128.69 113.23 129.56 112.9 130.41 112.95C131.23 113 131.96 113.39 132.75 113.55C133.65 113.74 134 113.51 134.81 113.25C135.62 112.99 135.71 113.13 136.45 113.33C137.37 113.57 137.99 114.13 138.86 113.57C139.06 113.44 139.34 113.51 139.54 113.65C139.74 113.79 139.9 113.97 140.11 114.09C140.55 114.34 141.11 114.25 141.58 114.42C142.04 114.58 142.37 114.96 142.69 115.33C142.96 115.65 144.21 116.82 143.42 117.26C143.05 116.69 142.4 116.31 141.72 116.27C141.89 116.37 141.81 116.65 141.64 116.74C141.47 116.83 141.26 116.78 141.07 116.73C140.72 116.64 140.38 116.54 140.03 116.45C140.16 116.58 140.06 116.81 139.89 116.88C139.24 117.15 138.04 116.47 137.28 116.53C136.43 116.6 135.54 116.7 134.68 116.78C134.63 116.9 134.5 117.25 134.56 117.38C134.22 117 133.59 117.16 133.14 117.41C132.69 117.66 132.2 117.98 131.71 117.82C131.42 117.73 131.13 117.47 130.85 117.6C130.65 117.7 130.58 117.96 130.4 118.09C130.15 118.27 129.81 118.13 129.52 118.02C128.06 117.49 126.45 118.04 124.99 118.58C124.18 118.88 123.36 119.18 122.55 119.49C122.31 119.58 122.06 119.67 121.82 119.6C121.36 119.47 121.08 118.81 120.62 118.92C120.35 118.98 120.22 119.28 120.01 119.46C119.59 119.82 119.1 119.61 118.62 119.64C117.95 119.68 117.7 119.84 117.12 120.14C116.34 120.56 115.09 121.12 114.52 120.02C113.71 120.65 112.9 121.28 112.09 121.91C112.06 121.6 111.67 121.43 111.37 121.51C111.07 121.59 110.84 121.82 110.62 122.04C110.22 122.46 109.82 122.88 109.41 123.3C109.33 123.07 109.01 123 108.78 123.1C108.55 123.2 108.41 123.42 108.26 123.61C107.73 124.31 107.05 124.91 106.29 125.37C106.2 125.43 106.08 125.48 105.98 125.44C105.82 125.38 105.82 125.15 105.85 124.98C106.04 123.87 106.24 122.75 106.72 121.73C107.36 120.36 108.39 119.79 109.59 119.03C110.4 118.52 111.33 118.06 112.09 117.5C112.85 116.94 113.34 116.17 114.07 115.6L114.1 115.62Z"
+              fill="#A27267"/>
+        <path opacity="0.4"
+              d="M160.49 94.72C161.22 103.23 161.17 111.81 160.35 120.31C160.21 121.73 160.05 123.17 159.64 124.54C158.85 127.22 157.16 129.52 155.51 131.77C154.9 132.6 154.25 133.46 153.32 133.89C152.8 134.13 152.22 134.22 151.71 134.48C151.14 134.77 150.69 135.26 150.25 135.73C147.82 138.36 145.4 140.99 142.97 143.63C142.74 143.17 142.2 142.89 141.69 142.97C141.29 143.99 140.62 144.91 139.78 145.61L138.32 144.47L137.29 146.28C135.75 146.3 134.83 143.77 133.36 144.24C132.97 144.37 132.68 144.69 132.3 144.84C130.71 145.44 129.86 142.79 128.27 142.17C127.83 142.88 126.69 143 126.11 142.4C125.6 143.12 125.09 143.84 124.58 144.55C124.16 143.97 123.24 144.3 122.65 144.73C121.06 145.88 119.65 147.33 117.84 148.09C116.03 148.85 113.59 148.64 112.55 146.97C112.31 146.59 112.13 146.12 111.73 145.93C111.35 145.75 110.91 145.87 110.5 145.88C109.68 145.9 108.92 145.47 108.2 145.06C105.13 143.28 102.07 141.49 99 139.71C97.71 138.96 96.42 138.21 95.29 137.23C91.23 133.72 90.02 128.04 88.62 122.85C87.01 116.86 84.87 111.03 82.72 105.21C84.29 110.76 85.86 116.3 87.42 121.85C88.82 126.81 90.24 131.8 92.45 136.46C96.36 144.71 102.7 151.68 110.1 157.01C116.66 161.73 124.84 165.32 132.68 163.4C141.19 161.32 146.86 153.51 151.76 146.25C154.37 142.39 157.24 138.74 159.95 135.02C162.49 131.55 162.57 125.66 162.96 121.53C163.54 115.35 164.1 109.09 164.11 102.88C164.11 99.67 163.8 96.48 163.33 93.31C163.13 91.94 160.99 85.19 161.69 84.26C159.52 87.16 160.18 91.28 160.47 94.71L160.49 94.72Z"
+              fill="url(#paint14_linear_33_2)"/>
+        <path
+          d="M105.73 39.67C105.76 38.92 105.87 38.18 106.08 37.46C104.76 38.09 103.45 38.72 102.13 39.36C102.06 38.78 102.19 38.19 102.48 37.69L100.02 39.2L100.63 37.6C99.74 38.05 98.93 38.65 98.23 39.36C98.08 38.81 97.93 38.26 97.78 37.72C97.08 38.37 96.48 39.12 95.99 39.95C95.71 39.33 95.29 38.77 94.77 38.33C94.38 38.91 94 39.49 93.61 40.07C93.48 40.26 93.35 40.46 93.14 40.58C92.51 40.93 91.82 40.24 91.42 39.64C90.7 40.44 90.18 41.42 89.92 42.46C89.3 41.95 88.64 41.49 87.95 41.08C87.73 41.93 87.52 42.77 87.3 43.62C87.16 42.02 87.66 40.37 88.68 39.12C89.39 38.25 90.33 37.59 91.3 37.02C94.69 35.03 98.59 34.06 102.49 33.61C104.37 33.39 106.3 33.29 108.15 33.68C110 34.07 111.8 35 112.94 36.52C112.07 36.46 111.17 36.76 110.52 37.35C110.7 37.19 112.01 37.48 112.28 37.52C111.48 38.31 110.37 38.26 109.35 38.39C108.07 38.56 106.89 39.16 105.74 39.71L105.73 39.67Z"
+          fill="url(#paint15_linear_33_2)"/>
+        <path
+          d="M83.26 34.03C89.64 28.52 97.16 24.34 105.21 21.84L99.42 25.67C108.85 22.03 119.42 21.39 129.22 23.87C127.7 23.05 125.8 22.96 124.22 23.65C130.68 22.41 137.37 22.38 143.85 23.55C141.49 23.77 139.13 23.98 136.78 24.2C144.89 25.86 152.5 29.88 158.45 35.63L156.28 34.16C159.84 36.67 163.16 39.53 166.17 42.69L163.79 42.9C166.06 49.42 168.28 55.96 170.44 62.53C170.01 62.11 169.57 61.69 169.14 61.27C169.3 64.35 169.09 67.44 168.87 70.52C168.67 73.31 168.48 76.1 168.28 78.89C165.3 80.71 163.94 84.81 165.25 88.05C164.63 87.67 164 87.29 163.38 86.91C163.01 88.87 162.37 90.78 161.48 92.57C159.9 83.61 157.75 74.75 155.06 66.06C153.82 66.43 152.46 65.71 151.69 64.67C150.92 63.63 150.6 62.34 150.3 61.08C149.73 61.64 149.15 62.2 148.58 62.76C146.68 58.83 143.89 55.34 140.48 52.62C140.82 53.48 141.16 54.35 141.5 55.21C140.96 54.83 140.43 54.44 139.89 54.06C141 57.09 141.76 60.24 142.15 63.45C141.34 61.24 140.15 59.17 138.64 57.36L137.47 59.81C135.32 50.4 126.91 42.99 117.43 41.18L116.06 42.54C115.72 40.85 114.91 39.26 113.75 37.99C112.57 40.01 109.48 39.14 107.47 37.93C105.46 36.72 102.58 35.55 101.08 37.35C99.7 35.76 97.15 36.35 95.18 37.08C93.12 37.84 91.06 38.59 89 39.35C88.8 38.25 88.6 37.14 88.4 36.04C87.57 36.11 86.73 36.18 85.9 36.25C85.9 35.63 85.9 35 85.9 34.38C85 34.7 84.1 35.01 83.19 35.33C85.04 32.24 88.19 29.95 91.7 29.15"
+          fill="url(#paint16_linear_33_2)"/>
+        <path
+          d="M93.27 46.66C90.78 44.66 89.03 41.62 88.81 38.52C88.75 37.58 88.78 36.56 88.21 35.81C87.66 35.09 86.66 34.82 85.76 34.96C84.86 35.1 84.06 35.59 83.34 36.15C82 37.2 80.85 38.55 80.3 40.16C79.07 43.7 81.36 46.25 84.18 48.04C89.14 51.19 95.09 52.76 100.96 52.44C99.53 51.61 98.1 50.78 96.68 49.95C100.26 50.42 103.97 49.81 107.2 48.22C104.77 47.97 102.38 48.91 99.93 49.02C97.51 49.13 95.17 48.2 93.26 46.66H93.27Z"
+          fill="url(#paint17_linear_33_2)"/>
+        <path
+          d="M118.67 109.23C118.23 108.84 117.74 108.5 117.21 108.24C116.78 108.02 116.3 107.85 115.84 107.95C115.16 108.1 114.7 108.89 114.91 109.55C115.12 110.21 115.96 110.59 116.6 110.32C116.99 110.15 117.26 109.8 117.58 109.51C117.9 109.22 118.33 108.99 118.73 109.12"
+          fill="#693F47"/>
+        <path opacity="0.26"
+              d="M103.75 116.01C102.9 117.34 101.91 118.69 101.76 120.26C101.59 122.07 102.56 123.76 103.49 125.31C104.12 121.84 105.63 118.62 107.3 115.54C109.55 111.41 112.59 108.24 112.6 103.21C112.6 102.73 112.56 102.21 112.25 101.84C111.84 101.36 111.07 101.33 110.51 101.62C109.95 101.91 109.56 102.45 109.25 102.99C107.75 105.58 107.33 108.66 106.18 111.38C105.5 112.99 104.69 114.54 103.74 116.01H103.75Z"
+              fill="url(#paint18_linear_33_2)"/>
+        <path opacity="0.26"
+              d="M139.63 110.34C142.56 111.66 145.56 114.03 145.58 117.25C147.53 113.1 145.3 107.52 141.03 105.86C139.07 105.1 136.87 105.09 134.91 104.32C131.65 103.03 129.6 99.86 127.76 96.88C126.5 94.83 125.22 92.75 124.56 90.43C124.14 88.97 123.57 87.07 122.05 87.04C122.31 89.17 123.16 91.08 123.24 93.24C123.26 93.69 123.25 94.15 123.34 94.6C123.43 95.07 123.62 95.52 123.82 95.95C124.92 98.28 126.54 100.26 128.49 101.92C130.23 103.4 131.11 105.31 132.74 106.92C134.88 109.04 137.06 109.19 139.62 110.35L139.63 110.34Z"
+              fill="url(#paint19_linear_33_2)"/>
+        <path opacity="0.37"
+              d="M118.66 134.04C118.95 134.13 119.14 133.59 118.86 133.48C118.58 133.37 118.36 133.9 118.63 134.02C118.37 133.73 118.42 133.22 118.73 132.99C119.04 132.76 119.47 132.9 119.72 133.16C119.76 132.75 120.01 132.42 120.17 132.07C120.92 133.01 119.53 133.43 118.78 133.4C119.03 133.92 119.47 134.66 120.05 134.89C120.63 135.12 121.14 134.63 121.61 134.74C122.15 134.87 122.75 134.71 123.16 134.32C123.45 134.05 123.74 133.64 124.12 133.73C124.45 133.81 124.64 134.24 124.98 134.21C125.18 134.19 125.33 134.01 125.51 133.92C126.18 133.59 127.03 134.64 127.64 134.2C127.97 133.96 127.98 133.39 128.36 133.23C128.82 133.04 129.22 133.64 129.7 133.72C130.03 133.24 130.26 132.69 130.37 132.12C130.76 132.37 131.17 132.64 131.63 132.65C133.2 132.71 133.04 129.38 132.25 129.96C132.06 130.1 131.96 130.33 131.85 130.55C131.64 130.97 131.35 131.38 130.92 131.57C130.49 131.76 129.9 131.63 129.7 131.2C129.41 131.63 129.17 132.08 128.98 132.57C128.56 132.18 127.99 131.77 127.46 131.99C127.21 132.1 127.03 132.33 126.82 132.52C126.61 132.71 126.31 132.84 126.07 132.72C125.65 132.5 125.74 131.69 125.27 131.6C124.98 131.18 124.13 131.75 123.84 131.33C123.58 131.82 123.32 132.31 123.05 132.8C123.01 132.87 122.97 132.94 122.91 132.99C122.65 133.18 122.35 132.81 122.06 132.67C121.59 132.45 121.09 132.88 120.62 133.1"
+              fill="#977267"/>
+        <path opacity="0.2"
+              d="M92.05 135.09C96.47 140.9 100.95 146.79 106.74 151.24C114.29 157.06 124.36 160.16 133.58 157.74C142.26 155.47 149.18 148.65 153.6 140.83C158.01 133.02 160.26 124.2 162.46 115.5C162.49 119.67 161.56 123.77 160.59 127.83C158.66 135.91 156.39 144.25 151.01 150.58C147.32 154.91 142.42 158 137.48 160.81C135.89 161.72 134.27 162.61 132.49 163.06C126.96 164.45 120.68 163.32 115.87 160.23C113.73 158.85 111.89 157.03 109.59 155.88C107.29 154.73 105.45 153.54 103.65 151.79C101.69 149.88 100.05 147.68 98.42 145.48C97 143.57 95.63 141.6 94.16 139.73C93.12 138.4 91.32 136.94 91.79 135.02C92.79 136.2 93.94 137.25 95.2 138.14"
+              fill="black"/>
+        <path
+          d="M96.74 41.31C95.79 38.49 96.66 35.14 98.88 33.15C100.53 31.67 102.73 30.97 104.9 30.51C110.21 29.37 115.7 29.36 121.13 29.36"
+          stroke="#73492D" stroke-width="0.5" stroke-miterlimit="10" stroke-linecap="round"/>
+        <path d="M99.79 39.49C101.84 35.33 106.65 32.73 111.25 33.28" stroke="#73492D" stroke-width="0.5"
+              stroke-miterlimit="10" stroke-linecap="round"/>
+        <path d="M103.93 39.67C109.1 36.21 115.82 35.18 121.79 36.94" stroke="#73492D" stroke-width="0.5"
+              stroke-miterlimit="10" stroke-linecap="round"/>
+        <path d="M99.25 29.85C109.85 26.97 121.37 27.59 131.61 31.58C141.85 35.57 150.74 42.91 156.6 52.2"
+              stroke="#633A1D" stroke-width="0.5" stroke-miterlimit="10" stroke-linecap="round"/>
+        <path
+          d="M124.92 271.72C149.88 272.32 174.91 268.84 198.75 261.53C211.49 257.62 223.93 252.7 235.89 246.83C243.73 242.98 248.24 236.06 253.86 229.48C254.64 228.56 255.44 227.63 255.93 226.52C256.75 224.67 256.62 222.55 256.47 220.53C256.24 217.33 256.01 214.14 255.77 210.94C255.61 208.68 255.44 206.39 254.73 204.24C252.49 197.44 251.81 188.96 244.3 185.8C224.31 177.4 204.32 169 184.34 160.6C182.51 181.33 173.09 200.65 156.74 213.52C148.51 220 141.31 221.74 139.15 232.61C140.31 226.77 128.07 219.19 124.41 216.48C117.81 211.59 112.69 205.32 106.49 199.96C102.5 196.51 96.85 191.92 97.08 186.01C97.16 183.83 98.57 181.87 98.96 179.73C99.59 176.25 99.9 172.68 100.41 169.18C100.7 167.19 101.56 165.63 101.25 163.56C99.37 164.06 97.6 164.88 95.86 165.73C93.33 166.97 91 168.86 88.58 170.31C83.53 173.33 78.32 176.06 73.11 178.79C69.96 180.44 66.81 182.09 63.66 183.74C60.84 185.22 57.43 186.47 55.05 188.63C50.44 192.81 45.23 195.8 39.88 199.04C35.27 201.84 30.6 204.69 26.92 208.63C18.6 217.54 16.6 230.46 15 242.54C14.75 244.46 14.51 246.53 15.41 248.25C16.16 249.69 17.58 250.65 18.99 251.47C26.94 256.09 36.73 258.53 45.46 261.28C67.37 268.2 88.93 269.11 111.42 271C115.92 271.38 120.43 271.62 124.94 271.73L124.92 271.72Z"
+          fill="#FCFAF9"/>
+        <path
+          d="M168.78 211.09C169.24 211.08 169.69 211.08 170.15 211.09C175.33 211.23 183.25 215.09 187.54 211.13C183.12 211.01 178.18 210.82 175.21 207.66C172.11 204.36 167.2 205.85 163.69 207.59C162.86 208 161.98 208.33 161.32 208.96C160.48 209.76 159.83 210.84 159.02 211.69C157.36 213.41 155.48 214.9 153.43 216.13C156.12 214.92 158.9 213.9 161.72 213.05C164.16 212.31 166.14 211.18 168.78 211.1V211.09Z"
+          fill="#E5DCD7"/>
+        <path
+          d="M168.48 143.21C170.09 146.1 171.73 149.13 171.9 152.43C172.1 156.31 171 160.74 170.27 164.55C168.92 171.64 165.86 178.21 165.52 185.4C165.1 194.08 161.01 201.93 160.3 210.54C161.39 208.86 163.29 207.73 165.29 207.56C167.24 207.4 169.15 208.1 171 208.73C178.74 211.38 186.84 212.99 195.01 213.51C194.36 211.68 193.71 209.84 193.06 208.01C191.21 202.77 190.51 201.37 190.63 195.82C190.87 184.99 190.21 174.36 187.42 163.86C186.47 160.29 183.02 158.13 180.72 155.48C179.58 154.18 178.65 152.72 177.6 151.34C174.98 147.91 171.71 145.88 168.49 143.19L168.48 143.21Z"
+          fill="#F6F3EF"/>
+        <path
+          d="M97.64 162.3C96.92 163.95 96.74 165.88 96.15 167.59C95.47 169.57 94.65 171.5 93.89 173.45C90.87 181.19 88.64 189.24 87.24 197.43C86.22 203.39 85.14 209.34 84.04 215.31C83.79 216.64 83.42 217.91 83.16 219.19C82.74 221.27 82.88 222.88 83.28 224.94C88.03 220.35 93.71 216.82 99.45 213.61C101.69 212.36 103.44 212.16 105.88 211.74C107.48 211.47 109.03 210.89 110.6 210.47C111.27 210.29 115.37 208.83 115.82 209.24C106.88 201.02 106.87 189.19 104.15 178.13C103.44 175.26 103.1 172.31 102.67 169.39C102.45 167.86 102.38 166.04 101.78 164.61C101.24 163.32 101.12 162.29 101.24 160.85C101.26 160.66 101.28 160.46 101.36 160.28C101.4 160.19 101.46 160.1 101.47 160C101.51 159.62 100.75 158.56 101.07 158.24C100.39 158.92 99.85 159.8 99.11 160.4C98.46 160.93 97.99 161.52 97.65 162.3H97.64Z"
+          fill="#F6F3EF"/>
+        <path
+          d="M139.06 270.47C139.25 265.47 138.88 255.95 139.07 250.94C139.17 248.17 139.28 245.39 138.9 242.64C138.54 240.04 139.77 232.67 138.74 230.26C134.62 220.7 124.78 218.16 117.16 211.08C122.61 217.7 129.45 219.84 134.18 226.99C135.64 229.2 137.97 231.28 137.99 233.92C138.02 238.67 137.51 247.22 137.54 251.53C137.58 257.86 137.61 264.18 137.65 270.51C138.27 270.7 138.45 270.27 139.07 270.46L139.06 270.47Z"
+          fill="#E5DCD7"/>
+        <path
+          d="M107.28 210.41C109.79 209.51 112.71 209.32 115.36 209.3C115.44 209.3 115.53 209.3 115.61 209.34C115.69 209.38 115.75 209.45 115.8 209.53C116.03 209.84 116.3 210.14 116.47 210.48C115.85 210.78 114.99 210.84 114.31 211.02C113.56 211.22 112.82 211.43 112.08 211.66C110.6 212.12 109.14 212.65 107.7 213.2C104.8 214.31 101.94 215.54 99.04 216.65C97.59 217.2 96.14 217.73 94.66 218.19C93.92 218.42 93.18 218.64 92.43 218.83C92.04 218.93 91.65 219.03 91.26 219.12C90.99 219.18 90.49 219.19 90.26 219.34C94.12 216.77 98.01 214.2 102.25 212.31C106.49 210.43 111.14 209.25 115.76 209.65C115.95 209.1 115.73 209.67 115.15 209.65C113.17 209.62 109.15 209.75 107.28 210.41V210.41Z"
+          fill="#E5DCD7"/>
+        <path
+          d="M220.16 227C219.01 236.05 218.19 245.15 217.7 254.26C216.59 255.01 215.32 256.23 214.33 256.62C217.21 247.32 218.94 236.64 220.16 226.99V227Z"
+          fill="#E5DCD7"/>
+        <path
+          d="M232.81 208.82C233.47 203.52 234.15 197.86 237.62 193.8C234.67 195.64 233.57 199.33 232.73 202.71C230.6 211.27 228.64 219.88 226.83 228.52C225.93 232.78 225.07 237.05 224.25 241.32C223.53 245.03 223.47 251.56 221.04 254.59C221.79 253.65 222.9 253 224.09 252.8C224.51 249.3 225.96 246.06 226.58 242.59C228.62 231.27 231.38 220.35 232.81 208.83V208.82Z"
+          fill="#E5DCD7"/>
+        <path
+          d="M58.44 242.37C58.12 239.52 57.77 236.57 56.58 234.14C55.58 232.1 54.06 230.59 52.57 229.13C46.56 223.24 40.45 217.27 33.45 213.67C37.09 212.02 40.96 214.86 44.06 217.84C47.42 221.06 50.62 224.58 53.62 228.36C54.96 230.05 56.27 231.8 57.27 233.86C59.19 237.82 59.79 242.58 60.36 247.2C60.52 248.52 62.21 265.94 62.19 265.93C61.32 265.43 60.45 264.93 59.58 264.43C58.19 257.33 58.44 249.64 58.44 242.37Z"
+          fill="#F6F3EF"/>
+        <path
+          d="M111.41 270.99C113.46 271.16 115.51 271.3 117.57 271.41C116.45 267.88 117.7 263.3 118.75 260.02C118.94 259.42 119.16 258.78 119.01 258.17C118.61 256.54 116.34 256.54 114.68 256.72C109.48 257.31 104.28 256.1 99.11 255.3C92.65 254.3 85.99 253.75 79.45 253.73C76.03 253.72 74.1 254.89 73.65 258.29C73.25 261.31 73 264.27 72.64 267.26C85.41 269.09 98.25 269.87 111.41 270.97V270.99Z"
+          fill="#F6F3EF"/>
+        <path opacity="0.6"
+              d="M162.73 106.75C162.69 106.09 162.87 105.43 162.96 104.77C163.04 104.11 163.02 103.44 163 102.78C162.95 101.37 162.99 99.93 162.85 98.53C162.38 98.95 162.66 99.91 162.68 100.47C162.71 101.3 162.73 102.13 162.75 102.95C162.77 104.61 162.76 106.26 162.71 107.92C162.46 115.8 161.35 123.66 159.39 131.3C157.97 136.82 153.38 143.27 150.05 147.9C144.14 156.12 134.91 163.01 124.19 161.64C121.45 161.29 118.77 160.5 116.24 159.4C115.11 158.91 114.09 158.12 113.03 157.49C111.85 156.78 110.69 156.04 109.59 155.23C108.88 154.71 108.2 154.16 107.56 153.56C106.95 153 106.35 152.39 105.57 152.12C107.04 153.75 108.71 155.19 110.37 156.63C110.88 157.07 111.39 157.51 111.93 157.9C112.77 158.5 113.68 158.99 114.59 159.48C115.3 159.86 116.02 160.25 116.73 160.63C117.37 160.97 118 161.31 118.66 161.61C121.56 162.93 124.78 163.22 127.93 163.15C135.24 163 141.34 159.33 146.26 154.13C151.03 149.08 156.8 142.8 159.15 136.2C162.47 126.85 163.09 122.28 163.7 112.38C163.75 111.5 163.8 110.63 163.83 109.75C163.97 105.88 163.92 102 163.71 98.13C163.66 97.17 163.59 96.2 163.52 95.24C163.48 94.76 163.45 94.28 163.4 93.81C163.36 93.4 163.26 92.94 163.33 92.53C163.47 91.68 163.39 90.81 163.38 89.94C163.36 88.95 163.34 87.96 163.32 86.98C163.32 86.71 163.31 86.44 163.23 86.18C163.16 86.34 163.08 86.49 163.01 86.65C162.77 86.1 163.11 85.45 162.93 84.88C162.34 85.43 162.19 86.29 162.07 87.09L161.84 88.62C161.77 89.06 161.62 89.57 161.66 90.01C161.7 90.41 161.72 90.81 161.75 91.22C161.75 91.35 161.97 92.66 161.95 92.67C162.02 92.63 162.09 92.6 162.15 92.56C161.96 93.62 161.92 94.71 162.03 95.79C162.11 95.7 162.2 95.62 162.28 95.53C162.33 95.98 162.41 95.79 162.44 96.25C162.51 97.17 162.57 98.09 162.62 99.01C162.67 98.43 162.79 98.27 162.84 97.68C162.65 97.93 162.51 98.24 162.46 98.55C162.51 97.9 162.46 97.23 162.3 96.6C162.3 97.35 162.47 98.09 162.47 98.84C162.61 98.71 162.75 98.57 162.89 98.44C162.3 102.77 163.6 107.29 162.36 111.48"
+              fill="url(#paint20_linear_33_2)"/>
+        <path
+          d="M103.78 177.98C103.99 179.5 104.2 181.03 104.64 182.5C105.23 184.46 106.2 186.28 106.92 188.2C106.96 188.31 106.99 188.42 107.03 188.53C105.78 184.23 104.71 179.88 103.83 175.49C103.34 173.05 102.91 170.6 102.53 168.14C102.4 167.27 102.32 166.58 102.32 165.95C101.94 169.9 103.32 174.63 103.79 177.99L103.78 177.98Z"
+          fill="#E5DCD7"/>
+        <path
+          d="M101.25 171.2C101.47 180.29 105.02 188.92 108.52 197.3C107.6 195.09 107.62 191.94 107.08 189.57C106.46 186.85 105.76 184.16 105.08 181.45C104.4 178.74 103.78 176.15 103.27 173.47C102.87 171.36 103.11 167.51 102.04 165.76C101.19 167.32 101.2 169.45 101.25 171.2V171.2Z"
+          fill="#DBCFC8"/>
+        <path d="M95.94 123.07C95.83 124.45 96.78 125.84 98.1 126.26C96.78 125.54 96.23 123.94 95.98 122.45"
+              fill="#C98969"/>
+        <path
+          d="M166.94 104.22C168.11 104 169.23 103.51 170.18 102.79C170.53 101.89 170.71 100.62 169.85 100.2C167.86 99.23 167.1 104.83 165.19 103.71C166.58 104.8 168.7 104.83 170.12 103.79"
+          fill="#D5A38A"/>
+        <path opacity="0.2"
+              d="M136.79 150.22C137.01 150.68 136.99 151.29 136.79 151.79C136.47 152.61 135.79 153.72 135.2 154.38C134.12 155.58 132.49 156.12 130.91 156.49C127.81 157.21 124.39 157.4 121.49 155.89C120.57 155.41 119.91 154.87 119.26 154.08C119.12 153.91 117.43 151.07 118.23 151.32C119.58 151.74 120.69 153.21 122.05 153.84C123.66 154.58 125.4 155.03 127.15 155.28C128.1 155.42 129.06 155.51 130 155.39C132.21 155.11 134.19 153.67 135.37 151.78C135.79 151.12 135.92 150.38 136.29 149.7C136.51 149.82 136.67 150.01 136.78 150.23L136.79 150.22Z"
+              fill="url(#paint21_linear_33_2)"/>
+        <path opacity="0.68"
+              d="M109.49 87.77C109.64 88.26 109.56 88.78 109.35 89.24C109.16 89.65 108.86 90.02 108.51 90.3C108.01 90.7 107.3 91.08 106.69 91.1C107.28 89.87 108.74 88.96 109.5 87.77H109.49Z"
+              fill="#C98969"/>
+        <defs>
+          <linearGradient id="paint0_linear_33_2" x1="121.86" y1="142.99" x2="172.23" y2="142.99"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#AA8260"/>
+            <stop offset="1" stop-color="#D0997D"/>
+          </linearGradient>
+          <linearGradient id="paint1_linear_33_2" x1="76.85" y1="135.21" x2="140.13" y2="135.21"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#C3997D"/>
+            <stop offset="1" stop-color="#E7C5A3"/>
+          </linearGradient>
+          <linearGradient id="paint2_linear_33_2" x1="87.2" y1="87.5601" x2="109.46" y2="87.5601"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#AA8260"/>
+            <stop offset="1" stop-color="#D0997D"/>
+          </linearGradient>
+          <linearGradient id="paint3_linear_33_2" x1="120.92" y1="89.0301" x2="151.67" y2="89.0301"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#AA8260"/>
+            <stop offset="1" stop-color="#D0997D"/>
+          </linearGradient>
+          <linearGradient id="paint4_linear_33_2" x1="75.04" y1="66.47" x2="86.47" y2="66.47"
+                          gradientUnits="userSpaceOnUse">
+            <stop offset="0.1" stop-color="#56391E"/>
+            <stop offset="1" stop-color="#3D312D"/>
+          </linearGradient>
+          <linearGradient id="paint5_linear_33_2" x1="60.66" y1="72.19" x2="88.29" y2="72.19"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#81624A"/>
+            <stop offset="1" stop-color="#56391E"/>
+          </linearGradient>
+          <linearGradient id="paint6_linear_33_2" x1="110.22" y1="122.54" x2="139.79" y2="122.54"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#BF6851"/>
+            <stop offset="1" stop-color="#D8AC94"/>
+          </linearGradient>
+          <linearGradient id="paint7_linear_33_2" x1="109.75" y1="123.06" x2="140.61" y2="123.06"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#BF6751"/>
+            <stop offset="0.52" stop-color="#AE6650"/>
+            <stop offset="1" stop-color="#BF6751"/>
+          </linearGradient>
+          <linearGradient id="paint8_linear_33_2" x1="96.67" y1="90.29" x2="96.67" y2="78.85"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#956D57"/>
+            <stop offset="1" stop-color="#673110"/>
+          </linearGradient>
+          <linearGradient id="paint9_linear_33_2" x1="120.16" y1="77.77" x2="149.79" y2="77.77"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#956D57"/>
+            <stop offset="1" stop-color="#673110"/>
+          </linearGradient>
+          <linearGradient id="paint10_linear_33_2" x1="126.05" y1="81.38" x2="146.15" y2="81.38"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#56391E"/>
+            <stop offset="1" stop-color="#81624A"/>
+          </linearGradient>
+          <linearGradient id="paint11_linear_33_2" x1="89.85" y1="87.55" x2="108.65" y2="87.55"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#56391E"/>
+            <stop offset="1" stop-color="#81624A"/>
+          </linearGradient>
+          <linearGradient id="paint12_linear_33_2" x1="126.05" y1="88.98" x2="146.21" y2="88.98"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#AA8260"/>
+            <stop offset="1" stop-color="#D0997D"/>
+          </linearGradient>
+          <linearGradient id="paint13_linear_33_2" x1="90.6" y1="93.0301" x2="109.68" y2="93.0301"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#AA8260"/>
+            <stop offset="1" stop-color="#D0997D"/>
+          </linearGradient>
+          <linearGradient id="paint14_linear_33_2" x1="82.74" y1="124.1" x2="164.13" y2="124.1"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#56391E"/>
+            <stop offset="1" stop-color="#8D624A"/>
+          </linearGradient>
+          <linearGradient id="paint15_linear_33_2" x1="87.27" y1="38.48" x2="112.94" y2="38.48"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#56391E"/>
+            <stop offset="1" stop-color="#927762"/>
+          </linearGradient>
+          <linearGradient id="paint16_linear_33_2" x1="83.16" y1="57.21" x2="170.44" y2="57.21"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#81624A"/>
+            <stop offset="1" stop-color="#56391E"/>
+          </linearGradient>
+          <linearGradient id="paint17_linear_33_2" x1="79.96" y1="43.7" x2="107.2" y2="43.7"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#56391E"/>
+            <stop offset="1" stop-color="#81624A"/>
+          </linearGradient>
+          <linearGradient id="paint18_linear_33_2" x1="101.74" y1="113.37" x2="112.61" y2="113.37"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#AA8260"/>
+            <stop offset="1" stop-color="#D0997D"/>
+          </linearGradient>
+          <linearGradient id="paint19_linear_33_2" x1="122.05" y1="102.14" x2="146.3" y2="102.14"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#AA8260"/>
+            <stop offset="1" stop-color="#D0997D"/>
+          </linearGradient>
+          <linearGradient id="paint20_linear_33_2" x1="105.55" y1="124" x2="163.9" y2="124"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#81624A"/>
+            <stop offset="1" stop-color="#56391E"/>
+          </linearGradient>
+          <linearGradient id="paint21_linear_33_2" x1="118.03" y1="153.35" x2="136.95" y2="153.35"
+                          gradientUnits="userSpaceOnUse">
+            <stop stop-color="#56391E"/>
+            <stop offset="1" stop-color="#8D624A"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <svg class="useit-logo" width="150" height="150" viewBox="0 0 351 352" version="1.1"
+           xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g id="Gul-med-border" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="useit-NEW" transform="translate(6.000000, 6.000000)" fill-rule="nonzero">
+            <g id="Lager_4" fill="#FBF3DF" stroke="#111111" stroke-width="11.643">
+              <path
+                d="M338.2,339.3 L10,339.3 C4.5,339.3 0,334.8 0,329.3 L0,10.7 C0,5.2 4.5,0.7 10,0.7 L328.2,0.7 C333.7,0.7 338.2,5.2 338.2,10.7 L338.2,339.3 Z"
+                id="Path"></path>
+            </g>
+            <g id="Lager_3" transform="translate(77.000000, 69.000000)" fill="#111111">
+              <path
+                d="M37.7,0 L48,0 L48,63 C48,75.2 37.8,85 25.2,85 L23.2,85 C10.5,85 0.4,75.1 0.4,62.8 L0.4,0 L10.6,0 L10.6,63 C10.6,69.9 16.2,75.6 23.6,75.6 L24.9,75.6 C32.2,75.6 37.8,70.1 37.8,63.1 L37.8,0 L37.7,0 Z M114.3,41.1 L104.3,41.1 C104.3,36.1 99.9,31.4 94.7,31.4 L92.4,31.4 C87.7,31.4 83.4,34.5 83.4,38.7 C83.4,50.8 114,46.1 114,67.8 C114,77.4 104.5,85.1 94,85.1 L91.4,85.1 C79.3,85.1 71.1,75.9 71.1,66.4 L71.1,65 L80.7,65 L80.7,66.1 C80.7,71.7 85.7,76.5 91.8,76.5 L94,76.5 C99.5,76.5 104.2,72.7 104.2,67.6 C104.2,54.9 73.3,59 73.3,39.4 C73.3,29.5 82,22.7 92.4,22.7 L94.7,22.7 C107.8,22.8 114.3,33.4 114.3,41.1 Z M174.3,65.5 L184.2,65.5 C184.2,74.7 175.2,85 162.6,85 L160.6,85 C147.9,85 137.8,75.1 137.8,62.8 L137.8,44.6 C137.8,32.4 147.9,22.7 160.6,22.7 L162.8,22.7 C175.4,22.7 185.2,32.4 185.2,44.6 L185.2,56.8 L147.6,56.8 L147.6,63.4 C147.6,70.6 153.5,76.5 161.1,76.5 L162.4,76.5 C169.7,76.6 174.3,70.2 174.3,65.5 Z M147.4,44.3 L147.4,48.1 L175.5,48.1 L175.5,44.3 C175.5,37.1 169.9,31.4 162.3,31.4 L160.9,31.4 C153.3,31.4 147.4,37.1 147.4,44.3 Z M0,152.4 L0,143.8 L30,143.8 L30,195.1 L48.4,195.1 L48.4,203.7 L0,203.7 L0,195.1 L20.4,195.1 L20.4,152.4 L0,152.4 L0,152.4 Z M19.2,125.1 L19.2,125.1 C19.2,122.2 21.6,119.8 24.5,119.8 L24.9,119.8 C27.8,119.8 30.2,122.2 30.2,125.1 L30.2,125.1 C30.2,128 27.8,130.4 24.9,130.4 L24.5,130.4 C21.6,130.5 19.2,128.1 19.2,125.1 Z M71.2,185.6 L71.2,152.4 L71.2,143.8 L71.2,126.8 L80.9,126.8 L80.9,143.8 L114.3,143.8 L114.3,152.4 L80.9,152.4 L80.9,184.9 C80.9,190.9 85.6,196.3 92.2,196.3 L93.4,196.3 C99.4,196.3 104.3,190.9 104.3,184.9 L114.2,184.9 C114.2,196.3 106.7,205 93,205 L91.8,205 C78.7,205 71.2,196.3 71.2,185.6 Z M155.4,197.8 L155.4,197.8 C155.4,194.6 158,191.9 161.3,191.9 L161.3,191.9 C164.5,191.9 167.2,194.5 167.2,197.8 L167.2,197.8 C167.2,201 164.6,203.7 161.3,203.7 L161.3,203.7 C158.1,203.7 155.4,201.1 155.4,197.8 Z"
+                id="Use-it."></path>
             </g>
           </g>
-        </svg>
+        </g>
+      </svg>
 
 
-      </div>
+    </div>
 
 
-      </section>
-      <footer>
-        <img src="images/fistbump.png" alt="" width="600" class="fistbump">
-      </footer>
-    </main>
+  </section>
+  <footer>
+    <img src="images/fistbump.png" alt="" width="600" class="fistbump">
+  </footer>
+</main>
 
-    <script src="js/prism.js"></script>
+<script src="js/prism.js"></script>
 
-    <script>
-      const datepicker = document.getElementById("datepicker");
+<script>
+  const datepicker = document.getElementById("datepicker");
 
-      const demoCodeContainer = document.getElementById("demo-code");
+  const demoCodeContainer = document.getElementById("demo-code");
 
-      const idInput = document.getElementById("id");
-      const labelInput = document.getElementById("label");
-      const placeholderInput = document.getElementById("placeholder");
-      const minDateInput = document.getElementById("minDate");
-      const maxDateInput = document.getElementById("maxDate");
-      const formatInput = document.getElementById("input-should-format");
-      const keyboardHintInput = document.getElementById("show-keyboard-hint");
+  const idInput = document.getElementById("id");
+  const labelInput = document.getElementById("label");
+  const placeholderInput = document.getElementById("placeholder");
+  const minDateInput = document.getElementById("minDate");
+  const maxDateInput = document.getElementById("maxDate");
+  const formatInput = document.getElementById("input-should-format");
+  const keyboardHintInput = document.getElementById("show-keyboard-hint");
 
-      const disabledInput = document.getElementById("disabled");
-      const firstDayOfWeekInput = document.getElementById("first-day-of-week");
-      const localeInput = document.getElementById("locale");
-      const rangeInput = document.getElementById("range");
-      const showClearButtonInput = document.getElementById("show-clear-button");
-      const showMonthStepperInput =
-        document.getElementById("show-month-stepper");
-      const showTodayButtonInput = document.getElementById("show-today-button");
-      const showYearStepperInput = document.getElementById("show-year-stepper");
-      const startDateInput = document.getElementById("start-date");
-      const valueInput = document.getElementById("value");
+  const disabledInput = document.getElementById("disabled");
+  const firstDayOfWeekInput = document.getElementById("first-day-of-week");
+  const localeInput = document.getElementById("locale");
+  const rangeInput = document.getElementById("range");
+  const showClearButtonInput = document.getElementById("show-clear-button");
+  const showMonthStepperInput =
+    document.getElementById("show-month-stepper");
+  const showTodayButtonInput = document.getElementById("show-today-button");
+  const showYearStepperInput = document.getElementById("show-year-stepper");
+  const startDateInput = document.getElementById("start-date");
+  const valueInput = document.getElementById("value");
 
-      function updateDemoCode() {
-        demoCodeContainer.innerText = `${
-          this.datepicker.outerHTML.split(">")[0]
-        }></inclusive-dates>`
-          .replace(/ class="([a-zA-Z0-9-_ ])+"/, "")
-          .replace(' id="datepicker"', "")
-          .replace(/="true"/g, "");
+  function updateDemoCode() {
+    demoCodeContainer.innerText = `${
+      this.datepicker.outerHTML.split(">")[0]
+    }></inclusive-dates>`
+      .replace(/ class="([a-zA-Z0-9-_ ])+"/, "")
+      .replace(' id="datepicker"', "")
+      .replace(/="true"/g, "");
 
-        window.Prism.highlightAll();
-      }
+    window.Prism.highlightAll();
+  }
 
-      function toggleTheme() {
-        const stylesheet = document.getElementById("theme");
+  function toggleTheme() {
+    const stylesheet = document.getElementById("theme");
 
-        if (stylesheet.getAttribute("href").includes("light.css")) {
-          setTheme("none")
-        }
-        else if (stylesheet.getAttribute("href").includes("none"))
-          setTheme("dark")
+    if (stylesheet.getAttribute("href").includes("light.css")) {
+      setTheme("none")
+    } else if (stylesheet.getAttribute("href").includes("none"))
+      setTheme("dark")
 
-        else if (stylesheet.getAttribute("href").includes("dark.css")) {
-          setTheme("light")
-        }
-      }
+    else if (stylesheet.getAttribute("href").includes("dark.css")) {
+      setTheme("light")
+    }
+  }
 
-      datepicker.addEventListener("selectDate", (event) => {
-        valueInput.value = event.detail ? JSON.stringify(event.detail) : "";
-      });
+  datepicker.addEventListener("selectDate", (event) => {
+    valueInput.value = event.detail ? JSON.stringify(event.detail) : "";
+  });
 
-      idInput.addEventListener("change", (event) => {
-        datepicker.setAttribute("id", event.target.value);
-        updateDemoCode();
-      });
+  idInput.addEventListener("change", (event) => {
+    datepicker.setAttribute("id", event.target.value);
+    updateDemoCode();
+  });
 
-      labelInput.addEventListener("change", (event) => {
-        datepicker.setAttribute("label", event.target.value);
-        updateDemoCode();
-      });
+  labelInput.addEventListener("change", (event) => {
+    datepicker.setAttribute("label", event.target.value);
+    updateDemoCode();
+  });
 
-      placeholderInput.addEventListener("change", (event) => {
-        datepicker.setAttribute("placeholder", event.target.value);
-        updateDemoCode();
-      });
+  placeholderInput.addEventListener("change", (event) => {
+    datepicker.setAttribute("placeholder", event.target.value);
+    updateDemoCode();
+  });
 
-      minDateInput.addEventListener("change", (event) => {
-        datepicker.setAttribute("min-date", event.target.value);
-        updateDemoCode();
-      });
+  minDateInput.addEventListener("change", (event) => {
+    datepicker.setAttribute("min-date", event.target.value);
+    updateDemoCode();
+  });
 
-      maxDateInput.addEventListener("change", (event) => {
-        datepicker.setAttribute("max-date", event.target.value);
-        updateDemoCode();
-      });
+  maxDateInput.addEventListener("change", (event) => {
+    datepicker.setAttribute("max-date", event.target.value);
+    updateDemoCode();
+  });
 
-      formatInput.addEventListener("change", (event) => {
-        datepicker.setAttribute("input-should-format", event.target.value);
-        updateDemoCode();
-      });
+  formatInput.addEventListener("change", (event) => {
+    datepicker.setAttribute("input-should-format", event.target.value);
+    updateDemoCode();
+  });
 
-      keyboardHintInput.addEventListener("change", (event) => {
-        datepicker.setAttribute("input-should-format", String(event.target.checked));
-        updateDemoCode();
-      });
+  keyboardHintInput.addEventListener("change", (event) => {
+    datepicker.setAttribute("input-should-format", String(event.target.checked));
+    updateDemoCode();
+  });
 
-      disabledInput.addEventListener("change", (event) => {
-        datepicker.setAttribute("disabled", String(event.target.checked));
-        updateDemoCode();
-      });
+  disabledInput.addEventListener("change", (event) => {
+    datepicker.setAttribute("disabled", String(event.target.checked));
+    updateDemoCode();
+  });
 
-      firstDayOfWeekInput.addEventListener("change", (event) => {
-        datepicker.setAttribute("first-day-of-week", event.target.value);
-        updateDemoCode();
-      });
+  firstDayOfWeekInput.addEventListener("change", (event) => {
+    datepicker.setAttribute("first-day-of-week", event.target.value);
+    updateDemoCode();
+  });
 
-      localeInput.addEventListener("change", (event) => {
-        if (event.target.value) {
-          datepicker.setAttribute("locale", event.target.value);
-        } else {
-          datepicker.removeAttribute("locale");
-        }
+  localeInput.addEventListener("change", (event) => {
+    if (event.target.value) {
+      datepicker.setAttribute("locale", event.target.value);
+    } else {
+      datepicker.removeAttribute("locale");
+    }
 
-        updateDemoCode();
-      });
+    updateDemoCode();
+  });
 
-      rangeInput.addEventListener("change", (event) => {
-        datepicker.setAttribute("range", String(event.target.checked));
-        updateDemoCode();
-      });
+  rangeInput.addEventListener("change", (event) => {
+    datepicker.setAttribute("range", String(event.target.checked));
+    if (event.target.checked) {
+      datepicker.setAttribute("label", "Choose a date range")
+      datepicker.setAttribute("placeholder", "Try \"June 8 to 12\"")
+      datepicker.quickButtons = ["Monday to Wednesday", "July 5 to 10"]
+    } else {
+      datepicker.setAttribute("label", "Choose a date")
+      datepicker.setAttribute("placeholder", "Try \"tomorrrow\" or \"in ten days\"")
+      datepicker.quickButtons = ["Yesterday", "Today", "Tomorrow", "In 10 days"]
 
-      showClearButtonInput.addEventListener("change", (event) => {
-        datepicker.setAttribute(
-          "show-clear-button",
-          String(event.target.checked)
-        );
-        updateDemoCode();
-      });
+    }
 
-      showMonthStepperInput.addEventListener("change", (event) => {
-        datepicker.setAttribute(
-          "show-month-stepper",
-          String(event.target.checked)
-        );
-        updateDemoCode();
-      });
 
-      showYearStepperInput.addEventListener("change", (event) => {
-        datepicker.setAttribute(
-          "show-year-stepper",
-          String(event.target.checked)
-        );
-        updateDemoCode();
-      });
+    updateDemoCode();
+  });
 
-      showTodayButtonInput.addEventListener("change", (event) => {
-        datepicker.setAttribute(
-          "show-today-button",
-          String(event.target.checked)
-        );
-        updateDemoCode();
-      });
+  showClearButtonInput.addEventListener("change", (event) => {
+    datepicker.setAttribute(
+      "show-clear-button",
+      String(event.target.checked)
+    );
+    updateDemoCode();
+  });
 
-      startDateInput.addEventListener("change", (event) => {
-        if (event.target.value) {
-          datepicker.setAttribute("start-date", event.target.value);
-        } else {
-          datepicker.removeAttribute("start-date");
-        }
+  showMonthStepperInput.addEventListener("change", (event) => {
+    datepicker.setAttribute(
+      "show-month-stepper",
+      String(event.target.checked)
+    );
+    updateDemoCode();
+  });
 
-        updateDemoCode();
-      });
+  showYearStepperInput.addEventListener("change", (event) => {
+    datepicker.setAttribute(
+      "show-year-stepper",
+      String(event.target.checked)
+    );
+    updateDemoCode();
+  });
 
-      updateDemoCode();
-    </script>
-  </body>
+  showTodayButtonInput.addEventListener("change", (event) => {
+    datepicker.setAttribute(
+      "show-today-button",
+      String(event.target.checked)
+    );
+    updateDemoCode();
+  });
+
+  startDateInput.addEventListener("change", (event) => {
+    if (event.target.value) {
+      datepicker.setAttribute("start-date", event.target.value);
+    } else {
+      datepicker.removeAttribute("start-date");
+    }
+
+    updateDemoCode();
+  });
+
+  updateDemoCode();
+</script>
+</body>
 </html>

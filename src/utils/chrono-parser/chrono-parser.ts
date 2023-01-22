@@ -9,6 +9,7 @@ import {
   dateIsWithinBounds,
   dateIsWithinLowerBounds,
   dateIsWithinUpperBounds,
+  extractDates,
   isValidISODate,
   removeTimezoneOffset
 } from "../utils";
@@ -132,11 +133,15 @@ export const chronoParseRange = async (
 
   // Return if Chrono is not supported
   if (!chronoSupportedLocale) {
-    if (isValidISODate(dateString))
+    const possibleDates = extractDates(dateString);
+    possibleDates.filter((dateString) => isValidISODate(dateString));
+    if (possibleDates.length > 0)
       return {
         value: {
-          start: removeTimezoneOffset(new Date(dateString)),
-          end: undefined
+          start: removeTimezoneOffset(new Date(possibleDates[0])),
+          end: possibleDates[1]
+            ? removeTimezoneOffset(new Date(possibleDates[1]))
+            : undefined
         }
       };
     else return null;
@@ -175,20 +180,31 @@ export const chronoParseRange = async (
       }
     );
   }
+  let startDate: Date;
+  let endDate: Date;
 
   if (
+    parsedRange.length > 0 &&
     parsedRange[0].start &&
-    parsedRange[0].start.date() instanceof Date &&
+    parsedRange[0].start.date() instanceof Date
+  )
+    startDate = parsedRange[0].start.date();
+  if (
+    parsedRange.length > 0 &&
     parsedRange[0].end &&
     parsedRange[0].end.date() instanceof Date
-  ) {
-    const startDate = parsedRange[0].start.date();
-    const endDate = parsedRange[0].end.date();
-    if (
-      dateIsWithinBounds(startDate, minDate, maxDate) &&
-      dateIsWithinBounds(endDate, minDate, maxDate)
-    )
-      return { value: { start: startDate, end: endDate } };
+  )
+    endDate = parsedRange[0].end.date();
+
+  const returnValue = { value: { start: null, end: null } };
+
+  if (startDate instanceof Date || endDate instanceof Date) {
+    if (startDate && dateIsWithinBounds(startDate, minDate, maxDate))
+      returnValue.value.start = startDate;
+    if (endDate && dateIsWithinBounds(endDate, minDate, maxDate))
+      returnValue.value.end = endDate;
+    if (returnValue.value.start !== null || returnValue.value.end !== null)
+      return returnValue;
     else return { value: null, reason: "rangeOutOfBounds" };
   } else return { value: null, reason: "invalid" };
 };

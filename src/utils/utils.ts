@@ -251,3 +251,9 @@ export function isValidISODate(dateString) {
     return !isNaN(d.getTime());
   }
 }
+
+export function extractDates(text) {
+  var dateRegex = /\d{4}-\d{2}-\d{2}/g;
+  var matches = text.match(dateRegex);
+  return matches.slice(0, 2);
+}

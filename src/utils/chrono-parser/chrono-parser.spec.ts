@@ -121,6 +121,12 @@ describe("Chrono date parser", () => {
     expect(
       isSameDay(parsedRange.value.end, new Date("2008-06-03"))
     ).toBeTruthy();
+
+    parsedRange = await parseRangeWithOptions("june second 2008");
+    expect(
+      isSameDay(parsedRange.value.start, new Date("2008-06-02"))
+    ).toBeTruthy();
+    expect(parsedRange.value.end).toBeNull();
   });
 
   it("adapts to different reference dates", async () => {
