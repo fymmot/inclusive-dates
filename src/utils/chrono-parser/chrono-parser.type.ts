@@ -8,6 +8,12 @@ export type ChronoParsedDate = {
   value?: Date;
   reason?: "invalid" | "minDate" | "maxDate";
 };
+
+export type ChronoParsedRange = {
+  value?: { start: Date; end: Date };
+  reason?: "invalid" | "minDate" | "maxDate" | "rangeOutOfBounds";
+};
+
 export type ChronoParsedDateString = {
   value?: string;
   reason?: "invalid" | "minDate" | "maxDate";

@@ -113,6 +113,30 @@ describe("inclusive-dates", () => {
     ).toHaveLength(1);
   });
 
+  it("Datepicker text input parses date ranges", async () => {
+    const page = await newSpecPage({
+      components: [InclusiveDates],
+      html: `<inclusive-dates id="test123" locale="en" reference-date="2023-01-21" range="true"></inclusive-dates>`,
+      language: "en"
+    });
+    const input = getInput(page);
+
+    input.value = "From today to tomorrow";
+    input.dispatchEvent(new Event("change"));
+    await page.waitForChanges();
+    expect(input.value).toContain("Jan 21, 2023 to Jan 22, 2023");
+
+    input.value = "June to august 1984";
+    input.dispatchEvent(new Event("change"));
+    await page.waitForChanges();
+    expect(input.value).toContain("Jun 1, 1984 to Aug 1, 1984");
+
+    input.value = "Today to 20 days";
+    input.dispatchEvent(new Event("change"));
+    await page.waitForChanges();
+    expect(input.value).toContain("Jan 21, 2023 to Feb 10, 2023");
+  });
+
   it("Quick buttons changes dates", async () => {
     const page = await newSpecPage({
       components: [InclusiveDates],
@@ -135,21 +159,17 @@ describe("inclusive-dates", () => {
   it("External date parsing method works", async () => {
     const page = await newSpecPage({
       components: [InclusiveDates],
-      html: `<inclusive-dates id="test123" locale="en-US"></inclusive-dates>`,
+      html: `<inclusive-dates id="test123" locale="en-US" reference-date="2023-01-11"></inclusive-dates>`,
       language: "en"
     });
     const datepicker = getDatePicker(page);
-    const referenceDate = new Date("2023-01-11");
-
     // Basic dates
-    let parsedDate = await datepicker.parseDate("January 15", false, {
-      referenceDate: referenceDate
-    });
+    let parsedDate = await datepicker.parseDate("January 15", false);
     expect(parsedDate.value).toEqual(`2023-01-15`);
-    parsedDate = await datepicker.parseDate("February tenth ", false, {
-      referenceDate: referenceDate
-    });
+    parsedDate = await datepicker.parseDate("February tenth ", false);
     expect(parsedDate.value).toEqual(`2023-02-10`);
+    parsedDate = await datepicker.parseDate("February second ", false);
+    expect(parsedDate.value).toEqual(`2023-02-02`);
   });
 
   it("Does not parse unsupported locales", async () => {
