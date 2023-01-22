@@ -151,6 +151,7 @@ pre {
   padding: 1rem;
   border-radius: 0;
   white-space: pre;
+  border: 1px solid transparent;
 }
 
 pre code {
@@ -261,12 +262,12 @@ textarea {
   max-width: 100%;
   margin: 0;
   padding: 0.5rem 0.75rem;
-  border: 0;
   border-radius: 0.25rem;
   color: var(--b-txt);
   background: var(--b-bg-2);
   font: inherit;
   line-height: 1.125;
+  border: 1px solid transparent;
 }
 
 button:not(inclusive-dates button) {
