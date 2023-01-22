@@ -1,5 +1,11 @@
 # inclusive-dates
 
+## 0.1.6
+
+### Patch Changes
+
+- [#46](https://github.com/fymmot/inclusive-dates/pull/46) [`bbd1a50`](https://github.com/fymmot/inclusive-dates/commit/bbd1a5043100fd14c08b06182baa0d3d947eb888) Thanks [@fymmot](https://github.com/fymmot)! - Add support for range input
+
 ## 0.1.5
 
 ### Patch Changes
