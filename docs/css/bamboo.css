@@ -27,7 +27,7 @@
   --b-btn-txt: #fff;
   --b-focus: #ffbf00;
 }
-*:focus-visible {
+*:focus-visible:not(inclusive-dates *) {
   outline: 0.25rem solid var(--b-focus);
 }
 

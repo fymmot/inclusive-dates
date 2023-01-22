@@ -71,17 +71,19 @@
 <header>
   <a href="#demo" class="skip-link">Skip to the demo</a>
   <h1>Inclusive datepicker 2.0</h1>
+  <p>
+    <a href="https://github.com/fymmot/inclusive-dates">Github repository</a> •
+    <a href="https://www.npmjs.com/package/inclusive-dates">NPM package</a>
+  </p>
+
   <p>Next version of <a href="https://github.com/fymmot/inclusive-dates"><code>fymmot/inclusive-dates</code></a>.
     <strong>Work in progress!</strong></p>
   <p>A human-friendly and fully accessible datepicker with support for natural language input. Now as a reusable Web
     Component!</p>
+  <p>Try typing <code>"tomorrow"</code>, <code>"in 10 days"</code> or <code>"May fifth to May tenth"</code>!</p>
   <p>
-    Forked from the excellent <a href="https://github.com/sqrrl/wc-datepicker"><code>sqrrl/wc-datepicker</code></a>
+    Calendar is forked from the excellent <a href="https://github.com/sqrrl/wc-datepicker"><code>sqrrl/wc-datepicker</code></a>
   </p>
-
-  <a href="https://github.com/fymmot/inclusive-dates">Github repository</a> •
-  <a href="https://www.npmjs.com/package/inclusive-dates">NPM package</a>
-  <!--      <a href="https://www.npmjs.com/package/wc-datepicker">NPM package</a>-->
 </header>
 
 <nav aria-labelledby="toc">
@@ -89,6 +91,7 @@
 
   <ul>
     <li><a href="#features">Features</a></li>
+    <li><a href="#limitations">Limitations</a></li>
     <li><a href="#demo">Demo</a></li>
     <li><a href="#install">Install</a></li>
     <li><a href="#usage">Usage</a></li>
@@ -108,7 +111,7 @@
     <ul>
       <li>
         <strong>💡️ Natural language input:</strong> Text field accepts natural language input using <a
-        href="https://github.com/wanasit/chrono"><code>Chrono.js</code></a>. Try typing <code>"yesterday"</code>, <code>"May
+        href="https://github.com/wanasit/chrono"><code>Chrono.js</code></a> for both single dates and date ranges. Try typing <code>"yesterday"</code>, <code>"May
         tenth"</code>, <code>"in one year"</code> or <code>"July 8 to 12"</code>!</a>
       </li>
       <li>
@@ -125,13 +128,13 @@
         or date ranges.
       </li>
       <li>
-        <strong>🦶 Small footprint:</strong> The component is ~45KB minified and gzipped with Chrono.js. If you do not
+        <strong>🦶 Relatively small footprint:</strong> The component is ~45KB minified and gzipped with Chrono.js. If you do not
         need language parsing, the original <a
-        href="https://github.com/sqrrl/wc-datepicker"><code>sqrrl/wc-datepicker</code></a> calendar is ~4KB
+        href="https://github.com/sqrrl/wc-datepicker"><code>sqrrl/wc-datepicker</code></a> calendar is ~8KB
       </li>
       <li>
-        <strong>🪁 Low dependency:</strong> External dependencies limited to accessibility utils (<code>@react-aria/live-announcer</code>,
-        <code>@a11y/focus-trap</code> and <code>aria-hidden</code>)
+        <strong>🪁 Low dependency:</strong> External dependencies are limited to Chrono and some accessibility utils (<code>@react-aria/live-announcer</code>,
+        <code>@a11y/focus-trap</code> and <code>aria-hidden</code>). No date libraries!
       </li>
       <li><strong>💪 Strongly typed:</strong> Written in TypeScript.</li>
 
@@ -151,11 +154,36 @@
   </section>
 
   <section>
+    <h2 id="limitations">Limitations</h2>
+    <ul>
+      <li>
+        <h3>Date parsing</h3>
+        <p>Dates are parsed using the third party library Chrono.js, which comes with some limitations:
+        <ul>
+          <li>
+            <p>Only some languages have support for natural language. <a href="https://github.com/wanasit/chrono#locales">See this list of currently supported locales.</a> Non-supported languages use ISO-formatted dates as a fallback.</p>
+          </li>
+        <li>
+          <p>Only one language can be used for parsing at a time. I.e. you cannot have support for both English and Japanese date formats.</p>
+        </li>
+          <li>
+            <p>Spelled out numbers are limited to numbers 1-12. "Seventeen", "Twenty-second", "fifty"  etc will not be parsed.</p>
+          </li>
+        </ul>
+        </p>
+
+      </li>
+    </ul>
+  </section>
+
+  <section>
     <h2 id="demo" tabindex="-1">Demo</h2>
 
     <p>
-      <strong>Current theme:</strong>
-      <code id="current-theme-label">light.css</code>
+      <div aria-live="polite" aria-atomic="true" style="display: initial">
+        <strong>Current theme:</strong>
+        <code id="current-theme-label">light.css</code>
+      </div>
       <button class="theme-toggle" onclick="toggleTheme()" type="button">
         Toggle theme
       </button>
