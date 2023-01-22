@@ -16,6 +16,7 @@
     <img alt="Github test action status" src="https://github.com/fymmot/inclusive-dates/actions/workflows/test.yml/badge.svg" />
     <!-- <img alt="Github publish action status" src="https://github.com/inclusive-dates-v2/actions/workflows/publish.yml/badge.svg" /> -->
     <img alt="Github docs action status" src="https://github.com/fymmot/inclusive-dates/actions/workflows/docs.yml/badge.svg" />
+    <img alt="NPM version" src="https://img.shields.io/npm/v/inclusive-dates?color=informational">
   </div>
 </div>
 
