@@ -11,6 +11,10 @@ inclusive-dates-calendar {
   display: inline-flex;
 }
 
+inclusive-dates *:focus-visible {
+  outline: 0.25rem solid var(--focus-color);
+}
+
 .inclusive-dates-calendar,
 .inclusive-dates {
   display: block;
@@ -166,7 +170,7 @@ inclusive-dates-calendar {
 }
 
 .inclusive-dates-calendar__date:focus-visible > * {
-  outline: 0.125rem solid var(--focus-color);
+  outline: 0.25rem solid var(--focus-color);
   @media screen and (forced-colors: active) {
     outline-color: Highlight;
   }
@@ -297,6 +301,9 @@ inclusive-dates-calendar {
   line-height: 1;
   border: 1px solid var(--border-color);
   font-size: 1rem;
+  &[aria-invalid] {
+    border-color: var(--error-color);
+  }
 }
 
 .inclusive-dates-calendar__keyboard-hint {

@@ -1,5 +1,9 @@
-import { chronoParseDate } from "./chrono-parser";
-import { ChronoOptions, ChronoParsedDate } from "./chrono-parser.type";
+import { chronoParseDate, chronoParseRange } from "./chrono-parser";
+import {
+  ChronoOptions,
+  ChronoParsedDate,
+  ChronoParsedRange
+} from "./chrono-parser.type";
 import { isSameDay } from "../utils";
 
 async function parseDateWithOptions(
@@ -16,6 +20,22 @@ async function parseDateWithOptions(
     ...options
   });
   return { value: parsedDate.value, reason: parsedDate.reason };
+}
+
+async function parseRangeWithOptions(
+  dateString: string,
+  options?: ChronoOptions
+): Promise<ChronoParsedRange> {
+  if (!options)
+    options = {
+      referenceDate: new Date("2023-01-11")
+    };
+  const { referenceDate = new Date("2023-01-11") } = options;
+  const parsedRange = await chronoParseRange(dateString, {
+    referenceDate: referenceDate,
+    ...options
+  });
+  return { value: parsedRange.value, reason: parsedRange.reason };
 }
 
 describe("Chrono date parser", () => {
@@ -71,6 +91,42 @@ describe("Chrono date parser", () => {
 
     parsedDate = await parseDateWithOptions("in eleven months");
     expect(isSameDay(parsedDate.value, new Date("2023-12-11"))).toBeTruthy();
+  });
+
+  it("can parse range dates", async () => {
+    let parsedRange = await parseRangeWithOptions(
+      "from january 25 to january 30"
+    );
+    expect(
+      isSameDay(parsedRange.value.start, new Date("2023-01-25"))
+    ).toBeTruthy();
+    expect(
+      isSameDay(parsedRange.value.end, new Date("2023-01-30"))
+    ).toBeTruthy();
+
+    parsedRange = await parseRangeWithOptions("june 1984 - february 1990");
+    expect(
+      isSameDay(parsedRange.value.start, new Date("1984-06-01"))
+    ).toBeTruthy();
+    expect(
+      isSameDay(parsedRange.value.end, new Date("1990-02-01"))
+    ).toBeTruthy();
+
+    parsedRange = await parseRangeWithOptions(
+      "june second 2008 - june third 2008"
+    );
+    expect(
+      isSameDay(parsedRange.value.start, new Date("2008-06-02"))
+    ).toBeTruthy();
+    expect(
+      isSameDay(parsedRange.value.end, new Date("2008-06-03"))
+    ).toBeTruthy();
+
+    parsedRange = await parseRangeWithOptions("june second 2008");
+    expect(
+      isSameDay(parsedRange.value.start, new Date("2008-06-02"))
+    ).toBeTruthy();
+    expect(parsedRange.value.end).toBeNull();
   });
 
   it("adapts to different reference dates", async () => {

@@ -25,7 +25,10 @@
   --b-link: #c7c7ff;
   --b-btn-bg: #0000ff;
   --b-btn-txt: #fff;
-  --b-focus: #eeff51;
+  --b-focus: #ffbf00;
+}
+*:focus-visible:not(inclusive-dates *) {
+  outline: 0.25rem solid var(--b-focus);
 }
 
 *,
@@ -266,6 +269,10 @@ textarea {
   line-height: 1.125;
 }
 
+button:not(inclusive-dates button) {
+  outline-offset: 0.125rem;
+}
+
 select:not(.inclusive-dates-calendar__month-select),
 input[type="text"]:not(inclusive-dates input) {
   width: 100%;
@@ -282,6 +289,7 @@ input[type="text"]:not(inclusive-dates input) {
 }
 .skip-link:focus {
   transform: translateY(0);
+  outline-offset: 0.125rem;
 }
 
 [type="color" i] {

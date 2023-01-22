@@ -18,7 +18,10 @@ import {
   ChronoOptions,
   ChronoParsedDateString
 } from "../../utils/chrono-parser/chrono-parser.type";
-import { chronoParseDate } from "../../utils/chrono-parser/chrono-parser";
+import {
+  chronoParseDate,
+  chronoParseRange
+} from "../../utils/chrono-parser/chrono-parser";
 
 export interface InclusiveDatesLabels {
   selected?: string;
@@ -28,6 +31,8 @@ export interface InclusiveDatesLabels {
   invalidDateError?: string;
   maxDateError?: string;
   minDateError?: string;
+  rangeOutOfBoundsError?: string;
+  to?: string;
 }
 
 const defaultLabels: InclusiveDatesLabels = {
@@ -36,7 +41,9 @@ const defaultLabels: InclusiveDatesLabels = {
   calendar: "calendar",
   invalidDateError: "We could not find a matching date",
   minDateError: `Please fill in a date after `,
-  maxDateError: `Please fill in a date before `
+  maxDateError: `Please fill in a date before `,
+  rangeOutOfBoundsError: `Please enter a valid range of dates`,
+  to: "to"
 };
 
 @Component({
@@ -50,11 +57,17 @@ export class InclusiveDates {
   // A unique ID for the datepicker. Mandatory for accessibility
   @Prop({ reflect: true }) id: string;
   // Current value of the datepicker
-  @Prop({ mutable: true }) value?: string;
+  @Prop({ mutable: true }) value?: string | string[];
+  // Enable or disable range mode
+  @Prop() range?: boolean = false;
   // A label for the text field
-  @Prop() label: string = "Choose a date";
+  @Prop() label: string = this.range
+    ? "Choose a date range (any way you like)"
+    : "Choose a date (any way you like)";
   // A placeholder for the text field
-  @Prop() placeholder?: string = `Try "tomorrrow" or "in ten days"`;
+  @Prop() placeholder?: string = this.range
+    ? `Try "June 8 to 12"`
+    : `Try "tomorrrow" or "in ten days"`;
   // Locale used for internal translations and date parsing
   @Prop() locale?: string = navigator?.language || "en-US";
   // If the datepicker is disabled
@@ -97,16 +110,13 @@ export class InclusiveDates {
   // Which day that should start the week (0 is sunday, 1 is monday)
   @Prop() firstDayOfWeek?: number = 1; // Monday
   // Quick buttons with dates displayed under the text field
-  @Prop() quickButtons?: string[] = [
-    "Yesterday",
-    "Today",
-    "Tomorrow",
-    "In 10 days"
-  ];
+  @Prop() quickButtons?: string[] = this.range
+    ? ["Monday to Wednesday", "July 5 to 10"]
+    : ["Yesterday", "Today", "Tomorrow", "In 10 days"];
   // Text content for the today button in the calendar
   @Prop() todayButtonContent?: string;
 
-  @State() internalValue: string;
+  @State() internalValue: string | string[];
   @State() errorState: boolean = this.hasError;
   @State() disabledState: boolean = this.disabled;
 
@@ -161,20 +171,29 @@ export class InclusiveDates {
     };
   }
 
-  private updateValue(newValue: Date) {
+  // @ts-ignore
+  private isRangeValue(value: string | string[]): value is Date[] {
+    if (
+      Array.isArray(value) &&
+      new Date(value[0]) instanceof Date &&
+      new Date(value[1]) instanceof Date
+    )
+      return this.range;
+  }
+
+  private updateValue(newValue: Date | Date[]) {
+    // Range
+    if (Array.isArray(newValue)) {
+      this.internalValue = newValue.map((date) => getISODateString(date));
+    }
+    // Single
+    else {
+      this.internalValue = getISODateString(newValue);
+    }
     this.pickerRef.value = newValue;
-    this.internalValue = getISODateString(newValue);
     this.errorState = false;
     this.selectDate.emit(this.internalValue);
-    announce(
-      `${Intl.DateTimeFormat(this.locale, {
-        weekday: "long",
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-      }).format(newValue)} ${this.labels.selected}`,
-      "polite"
-    );
+    this.announceDateChange(this.internalValue);
   }
 
   private handleCalendarButtonClick = async () => {
@@ -186,7 +205,8 @@ export class InclusiveDates {
   };
 
   private handleQuickButtonClick = async (event: MouseEvent) => {
-    const parsedDate = await chronoParseDate(
+    const parser = this.range ? chronoParseRange : chronoParseDate;
+    const parsedDate = await parser(
       (event.target as HTMLButtonElement).innerText,
       {
         locale: this.locale.slice(0, 2),
@@ -195,9 +215,22 @@ export class InclusiveDates {
         referenceDate: removeTimezoneOffset(new Date(this.referenceDate))
       }
     );
-    if (parsedDate && parsedDate.value instanceof Date) {
-      this.updateValue(parsedDate.value);
-      if (document.activeElement !== this.inputRef) {
+    if (parsedDate) {
+      // Single date
+      if (parsedDate.value instanceof Date) {
+        this.updateValue(parsedDate.value);
+        if (document.activeElement !== this.inputRef) {
+          this.formatInput(true, false);
+        }
+      } else {
+        // Date range
+        const newValue = [];
+        if (parsedDate.value.start instanceof Date) {
+          newValue.push(parsedDate.value.start);
+        }
+        if (parsedDate.value && parsedDate.value.end instanceof Date)
+          newValue.push(parsedDate.value.end);
+        this.updateValue(newValue);
         this.formatInput(true, false);
       }
     }
@@ -215,55 +248,90 @@ export class InclusiveDates {
     );
   };
   private handleChange = async (event) => {
-    this.errorState = false;
-    if (event.target.value.length === 0) {
-      this.internalValue = "";
-      this.pickerRef.value = null;
-      return this.selectDate.emit(this.internalValue);
-    }
-    const parsedDate = await chronoParseDate(event.target.value, {
-      locale: this.locale.slice(0, 2),
-      minDate: this.minDate,
-      maxDate: this.maxDate,
-      referenceDate: removeTimezoneOffset(new Date(this.referenceDate))
-    });
-    if (parsedDate && parsedDate.value instanceof Date) {
-      this.updateValue(parsedDate.value);
+    if (this.range) {
+      this.errorState = false;
+      if (event.target.value.length === 0) {
+        this.internalValue = "";
+        this.pickerRef.value = null;
+        return this.selectDate.emit(this.internalValue);
+      }
+      const parsedRange = await chronoParseRange(event.target.value, {
+        locale: this.locale.slice(0, 2),
+        minDate: this.minDate,
+        maxDate: this.maxDate,
+        referenceDate: removeTimezoneOffset(new Date(this.referenceDate))
+      });
+      const newValue = [];
+      if (parsedRange.value && parsedRange.value.start instanceof Date)
+        newValue.push(parsedRange.value.start);
+      if (parsedRange.value && parsedRange.value.end instanceof Date)
+        newValue.push(parsedRange.value.end);
+      this.updateValue(newValue);
       this.formatInput(true, false);
-    } else if (parsedDate) {
-      this.errorState = true;
-      this.internalValue = null;
-      let maxDate = undefined;
-      let minDate = undefined;
-      if (this.maxDate) {
-        maxDate = this.maxDate
-          ? removeTimezoneOffset(new Date(this.maxDate))
-          : undefined;
-        maxDate.setDate(maxDate.getDate() + 1);
+
+      if (newValue.length === 0) {
+        this.errorState = true;
+        this.errorMessage = {
+          invalid: this.labels.invalidDateError,
+          rangeOutOfBounds: this.labels.rangeOutOfBoundsError
+        }[parsedRange.reason];
       }
-      if (this.minDate) {
-        minDate = this.minDate
-          ? removeTimezoneOffset(new Date(this.minDate))
-          : undefined;
-        minDate.setDate(minDate.getDate() - 1);
+    } else {
+      this.errorState = false;
+      if (event.target.value.length === 0) {
+        this.internalValue = "";
+        this.pickerRef.value = null;
+        return this.selectDate.emit(this.internalValue);
       }
-      this.errorMessage = parsedDate.reason;
-      this.errorMessage = {
-        // TODO: Add locale date formatting to these messages
-        minDate: minDate
-          ? `${this.labels.minDateError} ${getISODateString(minDate)}`
-          : "",
-        maxDate: maxDate
-          ? `${this.labels.maxDateError} ${getISODateString(maxDate)}`
-          : "",
-        invalid: this.labels.invalidDateError
-      }[parsedDate.reason];
+      const parsedDate = await chronoParseDate(event.target.value, {
+        locale: this.locale.slice(0, 2),
+        minDate: this.minDate,
+        maxDate: this.maxDate,
+        referenceDate: removeTimezoneOffset(new Date(this.referenceDate))
+      });
+      if (parsedDate && parsedDate.value instanceof Date) {
+        this.updateValue(parsedDate.value);
+        this.formatInput(true, false);
+      } else if (parsedDate) {
+        this.errorState = true;
+        this.internalValue = null;
+        let maxDate = undefined;
+        let minDate = undefined;
+        if (this.maxDate) {
+          maxDate = this.maxDate
+            ? removeTimezoneOffset(new Date(this.maxDate))
+            : undefined;
+          maxDate.setDate(maxDate.getDate() + 1);
+        }
+        if (this.minDate) {
+          minDate = this.minDate
+            ? removeTimezoneOffset(new Date(this.minDate))
+            : undefined;
+          minDate.setDate(minDate.getDate() - 1);
+        }
+        this.errorMessage = parsedDate.reason;
+        this.errorMessage = {
+          // TODO: Add locale date formatting to these messages
+          minDate: minDate
+            ? `${this.labels.minDateError} ${getISODateString(minDate)}`
+            : "",
+          maxDate: maxDate
+            ? `${this.labels.maxDateError} ${getISODateString(maxDate)}`
+            : "",
+          invalid: this.labels.invalidDateError
+        }[parsedDate.reason];
+      }
     }
   };
 
   private formatInput(enabled: boolean, useInputValue = true) {
     if (this.formatInputOnAccept === false || enabled === false) {
-      if (this.internalValue) this.inputRef.value = this.internalValue;
+      if (this.internalValue) {
+        if (this.internalValue.length === 0) return;
+        this.inputRef.value = this.internalValue
+          .toString()
+          .replace(",", ` ${this.labels.to} `);
+      }
       return;
     }
     if (
@@ -271,50 +339,94 @@ export class InclusiveDates {
       this.formatInputOnAccept === true &&
       this.errorState === false
     ) {
-      this.inputRef.value = Intl.DateTimeFormat(this.locale, {
-        weekday: "long",
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-      }).format(
-        removeTimezoneOffset(
-          new Date(useInputValue ? this.inputRef.value : this.internalValue)
-        )
-      );
+      if (Array.isArray(this.internalValue)) {
+        if (this.internalValue.length === 0) return; // Range date is invalid, leave the text field as is
+        let output = "";
+        this.internalValue.forEach((value, index) => {
+          return (output += `${
+            index === 1 ? ` ${this.labels.to} ` : ""
+          }${Intl.DateTimeFormat(this.locale, {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+          }).format(
+            removeTimezoneOffset(
+              new Date(useInputValue ? this.inputRef.value : value)
+            )
+          )}`);
+        });
+        this.inputRef.value = output;
+      } else {
+        this.inputRef.value = Intl.DateTimeFormat(this.locale, {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        }).format(
+          removeTimezoneOffset(
+            new Date(useInputValue ? this.inputRef.value : this.internalValue)
+          )
+        );
+      }
     } else if (
       this.internalValue &&
       this.internalValue.length > 0 &&
       this.errorState === false
     )
-      this.inputRef.value = this.internalValue;
+      this.inputRef.value = this.internalValue.toString();
   }
 
-  private handlePickerSelection(newValue: string) {
-    this.modalRef.close();
-    this.inputRef.value = newValue;
-    this.internalValue = newValue;
-    this.errorState = false;
-    if (document.activeElement !== this.inputRef) {
-      this.formatInput(true, false);
+  private handlePickerSelection(newValue: string | string[]) {
+    if (this.isRangeValue(newValue)) {
+      if (newValue.length === 2) this.modalRef.close();
+      this.internalValue = newValue;
+      this.errorState = false;
+      if (document.activeElement !== this.inputRef) {
+        this.formatInput(true, false);
+      }
+      this.announceDateChange(this.internalValue);
+    } else {
+      this.modalRef.close();
+      this.inputRef.value = newValue as string;
+      this.internalValue = newValue as string;
+      this.errorState = false;
+      if (document.activeElement !== this.inputRef) {
+        this.formatInput(true, false);
+      }
+      this.announceDateChange(this.internalValue);
     }
-    announce(
-      `${Intl.DateTimeFormat(this.locale, {
+  }
+
+  private announceDateChange(newValue: string | string[]) {
+    let content = "";
+    if (Array.isArray(newValue))
+      newValue.forEach(
+        (value, index) =>
+          (content += `${
+            index === 1 ? ` ${this.labels.to} ` : ""
+          }${Intl.DateTimeFormat(this.locale, {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+          }).format(removeTimezoneOffset(new Date(value)))}`)
+      );
+    else
+      content = Intl.DateTimeFormat(this.locale, {
         weekday: "long",
         day: "numeric",
         month: "long",
         year: "numeric"
-      }).format(removeTimezoneOffset(new Date(newValue)))} ${
-        this.labels.selected
-      }!`,
-      "polite"
-    );
+      }).format(removeTimezoneOffset(new Date(newValue)));
+    if (content.length === 0) return;
+    content += ` ${this.labels.selected}`;
+    announce(content, "polite");
   }
 
   @Watch("hasError")
   watchHasError(newValue) {
     this.hasError = newValue;
   }
-
   @Watch("locale")
   watchLocale(newValue) {
     this.locale = newValue;
@@ -330,6 +442,10 @@ export class InclusiveDates {
     this.disabledState = newValue;
     this.disabled = newValue;
   }
+  @Watch("range")
+  watchRange(newValue) {
+    this.range = newValue;
+  }
 
   @Watch("minDate")
   watchMinDate(newValue) {
@@ -341,15 +457,10 @@ export class InclusiveDates {
     this.maxDate = newValue;
   }
 
-  @Watch("formatInputOnAccept")
-  watchFormatInput(newValue) {
-    this.formatInputOnAccept = newValue;
-  }
-
   @Watch("value")
   watchValue() {
-    if (Boolean(this.value)) {
-      this.internalValue = this.value;
+    if (Boolean(this.value) && !this.isRangeValue(this.value)) {
+      this.internalValue = this.value as string;
     }
   }
 
@@ -403,6 +514,7 @@ export class InclusiveDates {
           }}
         >
           <inclusive-dates-calendar
+            range={this.range}
             locale={this.locale}
             onSelectDate={(event) =>
               this.handlePickerSelection(event.detail as string)
