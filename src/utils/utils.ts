@@ -1,7 +1,7 @@
 export function addDays(date: Date, days: number): Date {
   const newDate = new Date(date);
 
-  newDate.setDate(newDate.getDate() + days);
+  newDate.setUTCDate(newDate.getUTCDate() + days);
 
   return newDate;
 }
@@ -13,9 +13,11 @@ export function getDaysOfMonth(
 ): Date[] {
   const days: Date[] = [];
   const firstOfMonth = getFirstOfMonth(date);
-  const firstDayMonth = firstOfMonth.getDay() === 0 ? 7 : firstOfMonth.getDay();
+  const firstDayMonth =
+    firstOfMonth.getUTCDay() === 0 ? 7 : firstOfMonth.getUTCDay();
   const lastOfMonth = getLastOfMonth(date);
-  const lastDayOfMonth = lastOfMonth.getDay() === 0 ? 7 : lastOfMonth.getDay();
+  const lastDayOfMonth =
+    lastOfMonth.getUTCDay() === 0 ? 7 : lastOfMonth.getUTCDay();
   const lastDayOfWeek = firstDayOfWeek === 1 ? 7 : firstDayOfWeek - 1;
   const leftPaddingDays: Date[] = [];
   const rightPaddingDays: Date[] = [];
@@ -31,7 +33,6 @@ export function getDaysOfMonth(
       leftPaddingDay = getPreviousDay(leftPaddingDay);
       leftPaddingAmount -= 1;
     }
-
     leftPaddingDays.reverse();
 
     const rightPadding = (7 - lastDayOfMonth + lastDayOfWeek) % 7;
@@ -48,7 +49,7 @@ export function getDaysOfMonth(
 
   let currentDay = firstOfMonth;
 
-  while (currentDay.getMonth() === date.getMonth()) {
+  while (currentDay.getUTCMonth() === date.getUTCMonth()) {
     days.push(currentDay);
     currentDay = getNextDay(currentDay);
   }
@@ -57,8 +58,8 @@ export function getDaysOfMonth(
 }
 
 export function getFirstOfMonth(date: Date): Date {
-  const firstOfMonth = removeTimezoneOffset(
-    new Date(`${getYear(date)}-${String(getMonth(date)).padStart(2, "0")}-01`)
+  const firstOfMonth = new Date(
+    `${getYear(date)}-${String(getMonth(date)).padStart(2, "0")}-01`
   );
   return firstOfMonth;
 }
@@ -67,23 +68,23 @@ export function getISODateString(date: Date): string {
   if (!(date instanceof Date)) {
     return;
   }
-  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
+  return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(
     2,
     "0"
-  )}-${String(date.getDate()).padStart(2, "0")}`;
+  )}-${String(date.getUTCDate()).padStart(2, "0")}`;
 }
 
 export function getLastOfMonth(date: Date): Date {
   const newDate = getFirstOfMonth(date);
 
-  newDate.setMonth(newDate.getMonth() + 1);
-  newDate.setDate(newDate.getDate() - 1);
+  newDate.setUTCMonth(newDate.getUTCMonth() + 1);
+  newDate.setUTCDate(newDate.getUTCDate() - 1);
 
   return newDate;
 }
 
 export function getMonth(date: Date): number {
-  return date.getMonth() + 1;
+  return date.getUTCMonth() + 1;
 }
 
 export function getMonths(locale?: string): string[] {
@@ -105,7 +106,7 @@ export function getNextDay(date: Date): Date {
 export function getNextMonth(date: Date): Date {
   const newDate = new Date(date);
 
-  newDate.setMonth(newDate.getMonth() + 1);
+  newDate.setUTCMonth(newDate.getUTCMonth() + 1);
 
   return newDate;
 }
@@ -113,7 +114,7 @@ export function getNextMonth(date: Date): Date {
 export function getNextYear(date: Date): Date {
   const newDate = new Date(date);
 
-  newDate.setFullYear(newDate.getFullYear() + 1);
+  newDate.setUTCFullYear(newDate.getUTCFullYear() + 1);
 
   return newDate;
 }
@@ -125,14 +126,14 @@ export function getPreviousDay(date: Date): Date {
 export function getPreviousMonth(date: Date): Date {
   const newDate = new Date(date);
 
-  newDate.setMonth(newDate.getMonth() - 1);
+  newDate.setUTCMonth(newDate.getUTCMonth() - 1);
   return newDate;
 }
 
 export function getPreviousYear(date: Date): Date {
   const newDate = new Date(date);
 
-  newDate.setFullYear(newDate.getFullYear() - 1);
+  newDate.setUTCFullYear(newDate.getUTCFullYear() - 1);
 
   return newDate;
 }
@@ -145,7 +146,7 @@ export function getWeekDays(
     .fill(undefined)
     .map((_, index) => ((firstDayOfWeek + index) % 7) + 1)
     .map((day) => {
-      const date = new Date(`2006-01-0${day}`);
+      const date = removeTimezoneOffset(new Date(`2006-01-0${day}`));
 
       return [
         Intl.DateTimeFormat(locale, {
@@ -159,7 +160,7 @@ export function getWeekDays(
 }
 
 export function getYear(date: Date): number {
-  return date.getFullYear();
+  return date.getUTCFullYear();
 }
 
 export function isDateInRange(date: Date, range: { from: Date; to: Date }) {
@@ -179,16 +180,16 @@ export function isSameDay(date1?: Date, date2?: Date) {
   }
 
   return (
-    date1.getFullYear() === date2.getFullYear() &&
-    date1.getMonth() === date2.getMonth() &&
-    date1.getDate() === date2.getDate()
+    date1.getUTCFullYear() === date2.getUTCFullYear() &&
+    date1.getUTCMonth() === date2.getUTCMonth() &&
+    date1.getUTCDate() === date2.getUTCDate()
   );
 }
 
 export function removeTimezoneOffset(date: Date): Date {
   const newDate = new Date(date);
 
-  newDate.setMinutes(newDate.getMinutes() + newDate.getTimezoneOffset());
+  newDate.setUTCMinutes(newDate.getUTCMinutes() + newDate.getTimezoneOffset());
 
   return newDate;
 }
@@ -196,21 +197,21 @@ export function removeTimezoneOffset(date: Date): Date {
 export function subDays(date: Date, days: number): Date {
   const newDate = new Date(date);
 
-  newDate.setDate(newDate.getDate() - days);
+  newDate.setUTCDate(newDate.getUTCDate() - days);
 
   return newDate;
 }
 
 export function dateIsWithinLowerBounds(date: Date, minDate?: string): boolean {
   if (minDate) {
-    const min = removeTimezoneOffset(new Date(minDate));
+    const min = new Date(minDate);
     return date >= min || isSameDay(min, date);
   } else return true;
 }
 
 export function dateIsWithinUpperBounds(date: Date, maxDate?: string): boolean {
   if (maxDate) {
-    const max = removeTimezoneOffset(new Date(maxDate));
+    const max = new Date(maxDate);
     return date <= max || isSameDay(date, max);
   } else return true;
 }
@@ -233,9 +234,8 @@ export function monthIsDisabled(
   maxDate: string
 ) {
   const firstDate = new Date(year, month, 1);
-  firstDate.setDate(firstDate.getDate() - 1);
   const lastDate = new Date(year, month + 1, 0);
-  lastDate.setDate(firstDate.getDate() + 1);
+
   return (
     !dateIsWithinBounds(firstDate, minDate, maxDate) &&
     !dateIsWithinBounds(lastDate, minDate, maxDate)

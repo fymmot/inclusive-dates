@@ -22,11 +22,11 @@ import {
   subDays
 } from "./utils";
 
-describe("Timezones", () => {
+/*describe("Timezones", () => {
   it("should always be UTC", () => {
     expect(new Date().getTimezoneOffset()).toBe(0);
   });
-});
+});*/
 
 describe("format", () => {
   it("adds days to date", () => {
@@ -45,6 +45,8 @@ describe("format", () => {
       .map(
         (_, index) => new Date(`2022-01-${String(index + 1).padStart(2, "0")}`)
       );
+    console.log(expected);
+    console.log(new Date(`2022-02-${String(1).padStart(2, "0")}`));
 
     expect(getDaysOfMonth(new Date("2022-01-01"))).toEqual(expected);
 
@@ -152,7 +154,7 @@ describe("format", () => {
     );
   });
 
-  it("returns months labels", () => {
+  it("returns week labels", () => {
     expect(getWeekDays(0, "en-US")).toEqual([
       ["Sun", "Sunday"],
       ["Mon", "Monday"],

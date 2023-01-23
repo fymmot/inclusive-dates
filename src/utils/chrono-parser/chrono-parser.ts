@@ -47,8 +47,7 @@ export const chronoParseDate = async (
 
   // Return if Chrono is not supported
   if (!chronoSupportedLocale) {
-    if (isValidISODate(dateString))
-      return { value: removeTimezoneOffset(new Date(dateString)) };
+    if (isValidISODate(dateString)) return { value: new Date(dateString) };
     else return null;
   }
   const custom = chrono[locale as supportedChronoLocales].casual.clone();
@@ -85,7 +84,6 @@ export const chronoParseDate = async (
       }
     );
   }
-
   if (parsedDate instanceof Date) {
     if (dateIsWithinBounds(parsedDate, minDate, maxDate))
       return { value: parsedDate };
@@ -110,7 +108,7 @@ export const chronoParseRange = async (
   // Assign default values if no options object provided
   if (!options) {
     options = {
-      referenceDate: removeTimezoneOffset(new Date()),
+      referenceDate: new Date(),
       useStrict: false,
       locale: "en",
       customExpressions: [],
@@ -121,7 +119,7 @@ export const chronoParseRange = async (
 
   // Destructure options object
   let {
-    referenceDate = removeTimezoneOffset(new Date()),
+    referenceDate = new Date(),
     useStrict = false,
     locale = "en",
     customExpressions = [],
@@ -138,10 +136,8 @@ export const chronoParseRange = async (
     if (possibleDates.length > 0)
       return {
         value: {
-          start: removeTimezoneOffset(new Date(possibleDates[0])),
-          end: possibleDates[1]
-            ? removeTimezoneOffset(new Date(possibleDates[1]))
-            : undefined
+          start: new Date(possibleDates[0]),
+          end: possibleDates[1] ? new Date(possibleDates[1]) : undefined
         }
       };
     else return null;

@@ -30,7 +30,6 @@ import {
   isDateInRange,
   isSameDay,
   monthIsDisabled,
-  removeTimezoneOffset,
   subDays
 } from "../../utils/utils";
 import { dateIsWithinBounds } from "../../utils/utils";
@@ -144,9 +143,7 @@ export class InclusiveDatesCalendar {
 
   @Watch("startDate")
   watchStartDate() {
-    this.currentDate = this.startDate
-      ? removeTimezoneOffset(new Date(this.startDate))
-      : new Date();
+    this.currentDate = this.startDate ? new Date(this.startDate) : new Date();
   }
 
   @Watch("value")
@@ -184,9 +181,7 @@ export class InclusiveDatesCalendar {
   }
 
   private init = () => {
-    this.currentDate = this.startDate
-      ? removeTimezoneOffset(new Date(this.startDate))
-      : new Date();
+    this.currentDate = this.startDate ? new Date(this.startDate) : new Date();
     this.updateWeekdays();
   };
 
@@ -344,7 +339,7 @@ export class InclusiveDatesCalendar {
       return;
     }
 
-    const date = removeTimezoneOffset(new Date(target.dataset.date));
+    const date = new Date(target.dataset.date);
 
     this.updateCurrentDate(date);
     this.onSelectDate(date);
@@ -422,8 +417,8 @@ export class InclusiveDatesCalendar {
       return;
     }
 
-    const date = removeTimezoneOffset(
-      new Date((event.target as HTMLElement).closest("td").dataset.date)
+    const date = new Date(
+      (event.target as HTMLElement).closest("td").dataset.date
     );
 
     this.hoveredDate = date;
@@ -436,6 +431,33 @@ export class InclusiveDatesCalendar {
   render() {
     const showFooter =
       this.showTodayButton || this.showClearButton || this.showKeyboardHint;
+
+    const disablePreviousYear =
+      this.disabled ||
+      new Date(this.minDate).getUTCFullYear() >
+        getPreviousYear(this.currentDate).getUTCFullYear();
+
+    const disablePreviousMonth =
+      this.disabled ||
+      monthIsDisabled(
+        getPreviousMonth(this.currentDate).getUTCMonth(),
+        getPreviousMonth(this.currentDate).getUTCFullYear(),
+        this.minDate,
+        this.maxDate
+      );
+
+    const disableNextMonth =
+      this.disabled ||
+      monthIsDisabled(
+        getNextMonth(this.currentDate).getUTCMonth(),
+        getNextMonth(this.currentDate).getUTCFullYear(),
+        this.minDate,
+        this.maxDate
+      );
+    const disableNextYear =
+      this.disabled ||
+      new Date(this.maxDate).getUTCFullYear() <
+        getNextYear(this.currentDate).getUTCFullYear();
 
     return (
       <Host>
@@ -460,13 +482,9 @@ export class InclusiveDatesCalendar {
               <button
                 aria-label={this.labels.previousYearButton}
                 class={this.getClassName("previous-year-button")}
-                aria-disabled={
-                  this.disabled ||
-                  new Date(this.minDate).getFullYear() >
-                    getPreviousYear(this.currentDate).getFullYear()
-                }
+                aria-disabled={disablePreviousYear}
                 innerHTML={this.previousYearButtonContent || undefined}
-                onClick={this.previousYear}
+                onClick={disablePreviousYear ? undefined : this.previousYear}
                 type="button"
               >
                 <svg
@@ -488,17 +506,9 @@ export class InclusiveDatesCalendar {
               <button
                 aria-label={this.labels.previousMonthButton}
                 class={this.getClassName("previous-month-button")}
-                aria-disabled={
-                  this.disabled ||
-                  monthIsDisabled(
-                    getPreviousMonth(this.currentDate).getMonth(),
-                    getPreviousMonth(this.currentDate).getFullYear(),
-                    this.minDate,
-                    this.maxDate
-                  )
-                }
+                aria-disabled={disablePreviousMonth}
                 innerHTML={this.previousMonthButtonContent || undefined}
-                onClick={this.previousMonth}
+                onClick={disablePreviousMonth ? undefined : this.previousMonth}
                 type="button"
               >
                 <svg
@@ -557,17 +567,9 @@ export class InclusiveDatesCalendar {
               <button
                 aria-label={this.labels.nextMonthButton}
                 class={this.getClassName("next-month-button")}
-                aria-disabled={
-                  this.disabled ||
-                  monthIsDisabled(
-                    getNextMonth(this.currentDate).getMonth(),
-                    getNextMonth(this.currentDate).getFullYear(),
-                    this.minDate,
-                    this.maxDate
-                  )
-                }
+                aria-disabled={disableNextMonth}
                 innerHTML={this.nextMonthButtonContent || undefined}
-                onClick={this.nextMonth}
+                onClick={disableNextMonth ? undefined : this.nextMonth}
                 type="button"
               >
                 <svg
@@ -588,13 +590,9 @@ export class InclusiveDatesCalendar {
               <button
                 aria-label={this.labels.nextYearButton}
                 class={this.getClassName("next-year-button")}
-                aria-disabled={
-                  this.disabled ||
-                  new Date(this.maxDate).getFullYear() <
-                    getNextYear(this.currentDate).getFullYear()
-                }
+                aria-disabled={disableNextYear}
                 innerHTML={this.nextYearButtonContent || undefined}
-                onClick={this.nextYear}
+                onClick={disableNextYear ? undefined : this.nextYear}
                 type="button"
               >
                 <svg

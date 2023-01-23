@@ -212,7 +212,7 @@ export class InclusiveDates {
         locale: this.locale.slice(0, 2),
         minDate: this.minDate,
         maxDate: this.maxDate,
-        referenceDate: removeTimezoneOffset(new Date(this.referenceDate))
+        referenceDate: new Date(this.referenceDate)
       }
     );
     if (parsedDate) {
@@ -259,7 +259,7 @@ export class InclusiveDates {
         locale: this.locale.slice(0, 2),
         minDate: this.minDate,
         maxDate: this.maxDate,
-        referenceDate: removeTimezoneOffset(new Date(this.referenceDate))
+        referenceDate: new Date(this.referenceDate)
       });
       const newValue = [];
       if (parsedRange.value && parsedRange.value.start instanceof Date)
@@ -287,7 +287,7 @@ export class InclusiveDates {
         locale: this.locale.slice(0, 2),
         minDate: this.minDate,
         maxDate: this.maxDate,
-        referenceDate: removeTimezoneOffset(new Date(this.referenceDate))
+        referenceDate: new Date(this.referenceDate)
       });
       if (parsedDate && parsedDate.value instanceof Date) {
         this.updateValue(parsedDate.value);
