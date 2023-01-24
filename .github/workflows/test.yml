@@ -21,4 +21,4 @@ jobs:
           node-version: 16
           cache: "npm"
       - run: yarn
-      - run: yarn test:tz
+      - run: yarn test

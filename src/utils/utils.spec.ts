@@ -45,6 +45,9 @@ describe("format", () => {
       .map(
         (_, index) => new Date(`2022-01-${String(index + 1).padStart(2, "0")}`)
       );
+    console.log(expected);
+    console.log(new Date(`2022-02-${String(1).padStart(2, "0")}`));
+
     expect(getDaysOfMonth(new Date("2022-01-01"))).toEqual(expected);
 
     expect(getDaysOfMonth(new Date("2022-01-01"), true, 3)).toEqual([

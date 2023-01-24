@@ -5,7 +5,7 @@ import postcssNested from "postcss-nested";
 
 export const config: Config = {
   namespace: "inclusive-dates",
-  // testing: { globalSetup: "<rootDir>/test-setup.ts" },
+  testing: { globalSetup: "<rootDir>/test-setup.ts" },
   outputTargets: [
     {
       copy: [
