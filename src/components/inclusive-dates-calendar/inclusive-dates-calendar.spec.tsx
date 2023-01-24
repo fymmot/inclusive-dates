@@ -56,6 +56,10 @@ describe("inclusive-dates-calendar", () => {
       language: "en"
     });
 
+    console.log(
+      `Current timezone: ${Intl.DateTimeFormat().resolvedOptions().timeZone}`
+    );
+
     const selectedMonth = getSelectedMonth(page);
     const selectedYear = getSelectedYear(page);
     const displayedDates = getDisplayedDates(page);
@@ -64,7 +68,7 @@ describe("inclusive-dates-calendar", () => {
     expect(selectedYear).toBe(getYear(new Date()));
 
     expect(displayedDates).toEqual(
-      getDaysOfMonth(new Date(), true, 7).map((date) => date.getDate())
+      getDaysOfMonth(new Date(), true, 7).map((date) => date.getUTCDate())
     );
   });
 

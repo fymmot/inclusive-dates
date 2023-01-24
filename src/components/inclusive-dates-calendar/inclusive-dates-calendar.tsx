@@ -221,7 +221,8 @@ export class InclusiveDatesCalendar {
     }
     return Intl.DateTimeFormat(this.locale, {
       month: "long",
-      year: "numeric"
+      year: "numeric",
+      timeZone: "UTC"
     }).format(this.currentDate);
   }
 
@@ -351,7 +352,7 @@ export class InclusiveDatesCalendar {
 
     if (!dateIsWithinBounds(date, this.minDate, this.maxDate)) return;
 
-    date.setMonth(month);
+    date.setUTCMonth(month);
 
     this.updateCurrentDate(date);
   };
@@ -362,7 +363,7 @@ export class InclusiveDatesCalendar {
 
     if (!dateIsWithinBounds(date, this.minDate, this.maxDate)) return;
 
-    date.setFullYear(year);
+    date.setUTCFullYear(year);
 
     this.updateCurrentDate(date);
   };
@@ -705,14 +706,15 @@ export class InclusiveDatesCalendar {
                                 : -1
                             }
                           >
-                            <Tag aria-hidden="true">{day.getDate()}</Tag>
+                            <Tag aria-hidden="true">{day.getUTCDate()}</Tag>
                             <span class="visually-hidden">
                               {`${
                                 isSelected ? `${this.labels.selected}, ` : ""
                               }${Intl.DateTimeFormat(this.locale, {
                                 day: "numeric",
                                 month: "long",
-                                year: "numeric"
+                                year: "numeric",
+                                timeZone: "UTC"
                               }).format(day)}`}
                             </span>
                           </td>
