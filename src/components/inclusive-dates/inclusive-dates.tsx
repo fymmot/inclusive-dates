@@ -33,6 +33,7 @@ export interface InclusiveDatesLabels {
   minDateError?: string;
   rangeOutOfBoundsError?: string;
   to?: string;
+  startDate?: string;
 }
 
 const defaultLabels: InclusiveDatesLabels = {
@@ -43,7 +44,8 @@ const defaultLabels: InclusiveDatesLabels = {
   minDateError: `Please fill in a date after `,
   maxDateError: `Please fill in a date before `,
   rangeOutOfBoundsError: `Please enter a valid range of dates`,
-  to: "to"
+  to: "to",
+  startDate: "Start date"
 };
 
 @Component({
@@ -399,7 +401,10 @@ export class InclusiveDates {
 
   private announceDateChange(newValue: string | string[]) {
     let content = "";
-    if (Array.isArray(newValue))
+    if (Array.isArray(newValue)) {
+      if (newValue.length === 1) {
+        content += `${this.labels.startDate} `;
+      }
       newValue.forEach(
         (value, index) =>
           (content += `${
@@ -411,7 +416,7 @@ export class InclusiveDates {
             year: "numeric"
           }).format(removeTimezoneOffset(new Date(value)))}`)
       );
-    else
+    } else
       content = Intl.DateTimeFormat(this.locale, {
         weekday: "long",
         day: "numeric",
@@ -420,7 +425,8 @@ export class InclusiveDates {
       }).format(removeTimezoneOffset(new Date(newValue)));
     if (content.length === 0) return;
     content += ` ${this.labels.selected}`;
-    announce(content, "polite");
+    const contentNoCommas = content.replace(/\,/g, "");
+    announce(contentNoCommas, "polite");
   }
 
   @Watch("hasError")

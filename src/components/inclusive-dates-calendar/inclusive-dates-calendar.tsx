@@ -191,10 +191,7 @@ export class InclusiveDatesCalendar {
   };
 
   private updateWeekdays() {
-    this.weekdays = getWeekDays(
-      this.firstDayOfWeek === 0 ? 7 : this.firstDayOfWeek,
-      this.locale
-    );
+    this.weekdays = getWeekDays(this.firstDayOfWeek, this.locale);
   }
 
   private getClassName(element?: string) {
@@ -652,7 +649,12 @@ export class InclusiveDatesCalendar {
 
                         const isSelected = Array.isArray(this.value)
                           ? isSameDay(day, this.value[0]) ||
-                            isSameDay(day, this.value[1])
+                            (this.value[1] &&
+                              dateIsWithinBounds(
+                                day,
+                                getISODateString(this.value[0]),
+                                getISODateString(this.value[1])
+                              ))
                           : isSameDay(day, this.value);
 
                         const isInRange = !this.isRangeValue
