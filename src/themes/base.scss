@@ -63,10 +63,12 @@ inclusive-dates *:focus-visible {
   background-color: transparent;
 }
 
-.inclusive-dates-calendar--disabled
-  .inclusive-dates-calendar__date--in-range:hover
-  > * {
+.inclusive-dates-calendar--disabled > * {
   background-color: #f2f3f5;
+}
+
+.inclusive-dates-calendar__date--in-range:hover > * {
+  background-color: var(--focus-color);
 }
 
 .inclusive-dates-calendar--disabled
@@ -176,7 +178,10 @@ inclusive-dates *:focus-visible {
   }
 }
 
-.inclusive-dates-calendar__date:hover > * {
+.inclusive-dates-calendar__date:hover:not(
+    .inclusive-dates-calendar__date--in-range
+  )
+  > * {
   background-color: var(--hover-color);
 }
 
@@ -201,7 +206,8 @@ inclusive-dates *:focus-visible {
 }
 
 .inclusive-dates-calendar__date--in-range > * {
-  background-color: var(--bg2-color);
+  background-color: var(--focus-color);
+  color: var(--bg-color);
 }
 
 .inclusive-dates-calendar__date--selected > *,
