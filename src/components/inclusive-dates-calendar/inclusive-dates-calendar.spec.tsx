@@ -177,6 +177,55 @@ describe("inclusive-dates-calendar", () => {
     expect(spy.mock.calls[6][0].detail).toEqual(["2021-11-28"]);
   });
 
+  /*it("gives correct screen reader labels in range mode", async () => {
+    const page = await newSpecPage({
+      components: [InclusiveDatesCalendar],
+      html: `<inclusive-dates-calendar range="true"></inclusive-dates-calendar>`,
+      language: "en"
+    });
+
+    const spy = jest.fn();
+
+    page.root.startDate = new Date("2022-01-01");
+    page.root.addEventListener("selectDate", spy);
+
+    await page.waitForChanges();
+
+    let currentDate = page.root.querySelector<HTMLTableCellElement>(
+      ".inclusive-dates-calendar__date"
+    );
+    expect(currentDate.innerText).toContain("choose as start date");
+
+    currentDate.click();
+
+    triggerKeyDown(page, "ArrowRight");
+    triggerKeyDown(page, "Space");
+
+    expect(spy.mock.calls[0][0].detail).toEqual(["2021-12-26"]);
+
+    triggerKeyDown(page, "ArrowRight");
+    triggerKeyDown(page, "Enter");
+
+    await page.waitForChanges();
+
+    currentDate = page.root.querySelector<HTMLTableCellElement>(
+      ".inclusive-dates-calendar__date--current"
+    );
+
+    expect(currentDate.innerText).toContain("Selected date");
+    expect(spy.mock.calls[1][0].detail).toEqual(["2021-12-26", "2021-12-27"]);
+
+    triggerKeyDown(page, "ArrowDown");
+
+    await page.waitForChanges();
+
+    currentDate = page.root.querySelector<HTMLTableCellElement>(
+      ".inclusive-dates-calendar__date--current"
+    );
+
+    expect(currentDate.innerText).toContain("selected date");
+  });*/
+
   it("highlights current date with keyboard selection", async () => {
     const page = await newSpecPage({
       components: [InclusiveDatesCalendar],

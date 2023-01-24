@@ -135,6 +135,9 @@ inclusive-dates *:focus-visible {
   cursor: pointer;
   &[aria-disabled] {
     color: var(--disabled-color);
+    @media screen and (forced-colors: active) {
+      color: GrayText;
+    }
   }
 }
 
@@ -216,6 +219,20 @@ inclusive-dates *:focus-visible {
 .inclusive-dates-calendar__date--disabled {
   color: var(--disabled-color);
   cursor: default;
+  @media screen and (forced-colors: active) {
+    color: GrayText;
+  }
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    height: 1.5rem;
+    width: 0.078125rem;
+    background-color: var(--disabled-color);
+    transform: rotate(45deg);
+    right: 50%;
+    top: 25%;
+  }
 }
 
 .inclusive-dates-calendar__date--disabled:not(

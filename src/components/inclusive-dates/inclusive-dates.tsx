@@ -13,7 +13,10 @@ import {
 import { announce } from "@react-aria/live-announcer";
 
 import { getISODateString, removeTimezoneOffset } from "../../utils/utils";
-import { MonthChangedEventDetails } from "../inclusive-dates-calendar/inclusive-dates-calendar";
+import {
+  InclusiveDatesCalendarLabels,
+  MonthChangedEventDetails
+} from "../inclusive-dates-calendar/inclusive-dates-calendar";
 import {
   ChronoOptions,
   ChronoParsedDateString
@@ -85,7 +88,10 @@ export class InclusiveDates {
   // Enable or disable strict Chrono date parsing
   @Prop() useStrictDateParsing?: boolean = false;
   // Labels used for internal translations
-  @Prop() labels?: InclusiveDatesLabels = defaultLabels;
+  @Prop() inclusiveDatesLabels?: InclusiveDatesLabels = defaultLabels;
+
+  @Prop() inclusiveDatesCalendarLabels?: InclusiveDatesCalendarLabels;
+
   // Current error state of the input field
   @Prop({ mutable: true }) hasError?: boolean = false;
   // Text label for next month button
@@ -274,8 +280,8 @@ export class InclusiveDates {
       if (newValue.length === 0) {
         this.errorState = true;
         this.errorMessage = {
-          invalid: this.labels.invalidDateError,
-          rangeOutOfBounds: this.labels.rangeOutOfBoundsError
+          invalid: this.inclusiveDatesLabels.invalidDateError,
+          rangeOutOfBounds: this.inclusiveDatesLabels.rangeOutOfBoundsError
         }[parsedRange.reason];
       }
     } else {
@@ -315,12 +321,16 @@ export class InclusiveDates {
         this.errorMessage = {
           // TODO: Add locale date formatting to these messages
           minDate: minDate
-            ? `${this.labels.minDateError} ${getISODateString(minDate)}`
+            ? `${this.inclusiveDatesLabels.minDateError} ${getISODateString(
+                minDate
+              )}`
             : "",
           maxDate: maxDate
-            ? `${this.labels.maxDateError} ${getISODateString(maxDate)}`
+            ? `${this.inclusiveDatesLabels.maxDateError} ${getISODateString(
+                maxDate
+              )}`
             : "",
-          invalid: this.labels.invalidDateError
+          invalid: this.inclusiveDatesLabels.invalidDateError
         }[parsedDate.reason];
       }
     }
@@ -332,7 +342,7 @@ export class InclusiveDates {
         if (this.internalValue.length === 0) return;
         this.inputRef.value = this.internalValue
           .toString()
-          .replace(",", ` ${this.labels.to} `);
+          .replace(",", ` ${this.inclusiveDatesLabels.to} `);
       }
       return;
     }
@@ -346,7 +356,7 @@ export class InclusiveDates {
         let output = "";
         this.internalValue.forEach((value, index) => {
           return (output += `${
-            index === 1 ? ` ${this.labels.to} ` : ""
+            index === 1 ? ` ${this.inclusiveDatesLabels.to} ` : ""
           }${Intl.DateTimeFormat(this.locale, {
             day: "numeric",
             month: "short",
@@ -403,12 +413,12 @@ export class InclusiveDates {
     let content = "";
     if (Array.isArray(newValue)) {
       if (newValue.length === 1) {
-        content += `${this.labels.startDate} `;
+        content += `${this.inclusiveDatesLabels.startDate} `;
       }
       newValue.forEach(
         (value, index) =>
           (content += `${
-            index === 1 ? ` ${this.labels.to} ` : ""
+            index === 1 ? ` ${this.inclusiveDatesLabels.to} ` : ""
           }${Intl.DateTimeFormat(this.locale, {
             weekday: "long",
             day: "numeric",
@@ -424,7 +434,7 @@ export class InclusiveDates {
         year: "numeric"
       }).format(removeTimezoneOffset(new Date(newValue)));
     if (content.length === 0) return;
-    content += ` ${this.labels.selected}`;
+    content += ` ${this.inclusiveDatesLabels.selected}`;
     const contentNoCommas = content.replace(/\,/g, "");
     announce(contentNoCommas, "polite");
   }
@@ -506,11 +516,11 @@ export class InclusiveDates {
             class={this.getClassName("calendar-button")}
             disabled={this.disabledState}
           >
-            {this.labels.openCalendar}
+            {this.inclusiveDatesLabels.openCalendar}
           </button>
         </div>
         <inclusive-dates-modal
-          label={this.labels.calendar}
+          label={this.inclusiveDatesLabels.calendar}
           ref={(el) => (this.modalRef = el)}
           onOpened={() => {
             this.pickerRef.modalIsOpen = true;
@@ -527,6 +537,11 @@ export class InclusiveDates {
             }
             onChangeMonth={(event) =>
               this.handleChangedMonths(event.detail as MonthChangedEventDetails)
+            }
+            labels={
+              this.inclusiveDatesCalendarLabels
+                ? this.inclusiveDatesCalendarLabels
+                : undefined
             }
             ref={(el) => (this.pickerRef = el)}
             startDate={this.startDate}
