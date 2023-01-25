@@ -1,5 +1,15 @@
 # inclusive-dates
 
+## 0.1.7
+
+### Patch Changes
+
+- [#54](https://github.com/fymmot/inclusive-dates/pull/54) [`1a1d617`](https://github.com/fymmot/inclusive-dates/commit/1a1d617cbe8ce89425aa67cdec7f98be72661643) Thanks [@fymmot](https://github.com/fymmot)! - Fixes bug where weekday header was incorrect in US timezones.
+
+  Improves screen reader UX for range selection.
+
+  Improves Windows High Contrast Mode (WHCM) styling.
+
 ## 0.1.6
 
 ### Patch Changes
