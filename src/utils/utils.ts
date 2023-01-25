@@ -145,7 +145,7 @@ export function getWeekDays(
     .fill(undefined)
     .map((_, index) => ((firstDayOfWeek + index) % 7) + 1)
     .map((day) => {
-      const date = new Date(`2006-01-0${day}`);
+      const date = new Date(2006, 0, day);
 
       return [
         Intl.DateTimeFormat(locale, {

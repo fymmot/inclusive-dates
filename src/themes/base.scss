@@ -135,6 +135,9 @@ inclusive-dates *:focus-visible {
   cursor: pointer;
   &[aria-disabled] {
     color: var(--disabled-color);
+    @media screen and (forced-colors: active) {
+      color: GrayText;
+    }
   }
 }
 
@@ -171,6 +174,7 @@ inclusive-dates *:focus-visible {
 
 .inclusive-dates-calendar__date:focus-visible > * {
   outline: 0.25rem solid var(--focus-color);
+  outline-offset: 0.125rem;
   @media screen and (forced-colors: active) {
     outline-color: Highlight;
   }
@@ -200,16 +204,13 @@ inclusive-dates *:focus-visible {
   color: var(--focus-color);
 }
 
-.inclusive-dates-calendar__date--in-range > * {
-  background-color: var(--bg2-color);
-}
-
 .inclusive-dates-calendar__date--selected > *,
-.inclusive-dates-calendar__date--selected:hover > * {
+.inclusive-dates-calendar__date--selected:hover > *,
+.inclusive-dates-calendar__date--in-range:hover > *,
+.inclusive-dates-calendar__date--in-range > * {
   color: var(--bg-color);
   background-color: var(--focus-color);
   font-weight: 500;
-  outline-offset: 0.125rem;
   @media screen and (forced-colors: active) {
     background-color: Highlight;
   }
@@ -218,6 +219,20 @@ inclusive-dates *:focus-visible {
 .inclusive-dates-calendar__date--disabled {
   color: var(--disabled-color);
   cursor: default;
+  @media screen and (forced-colors: active) {
+    color: GrayText;
+  }
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    height: 1.5rem;
+    width: 0.078125rem;
+    background-color: var(--disabled-color);
+    transform: rotate(45deg);
+    right: 50%;
+    top: 25%;
+  }
 }
 
 .inclusive-dates-calendar__date--disabled:not(

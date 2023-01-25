@@ -47,6 +47,8 @@ export type InclusiveDatesCalendarLabels = {
   yearSelect: string;
   keyboardHint: string;
   selected: string;
+  chooseAsStartDate: string;
+  chooseAsEndDate: string;
 };
 
 const defaultLabels: InclusiveDatesCalendarLabels = {
@@ -60,7 +62,9 @@ const defaultLabels: InclusiveDatesCalendarLabels = {
   todayButton: "Show today",
   yearSelect: "Select year",
   keyboardHint: "Keyboard commands",
-  selected: "Selected date"
+  selected: "Selected date",
+  chooseAsStartDate: "choose as start date",
+  chooseAsEndDate: "choose as end date"
 };
 
 export interface MonthChangedEventDetails {
@@ -191,10 +195,7 @@ export class InclusiveDatesCalendar {
   };
 
   private updateWeekdays() {
-    this.weekdays = getWeekDays(
-      this.firstDayOfWeek === 0 ? 7 : this.firstDayOfWeek,
-      this.locale
-    );
+    this.weekdays = getWeekDays(this.firstDayOfWeek, this.locale);
   }
 
   private getClassName(element?: string) {
@@ -652,8 +653,17 @@ export class InclusiveDatesCalendar {
 
                         const isSelected = Array.isArray(this.value)
                           ? isSameDay(day, this.value[0]) ||
-                            isSameDay(day, this.value[1])
+                            (this.value[1] &&
+                              dateIsWithinBounds(
+                                day,
+                                getISODateString(this.value[0]),
+                                getISODateString(this.value[1])
+                              ))
                           : isSameDay(day, this.value);
+
+                        const isDisabled =
+                          this.disableDate(day) ||
+                          !dateIsWithinBounds(day, this.minDate, this.maxDate);
 
                         const isInRange = !this.isRangeValue
                           ? false
@@ -663,15 +673,42 @@ export class InclusiveDatesCalendar {
                                 this.value?.[1] ||
                                 this.hoveredDate ||
                                 this.currentDate
-                            });
+                            }) && !isDisabled;
 
                         const isToday = isSameDay(day, new Date());
 
-                        const isDisabled =
-                          this.disableDate(day) ||
-                          !dateIsWithinBounds(day, this.minDate, this.maxDate);
-
                         const cellKey = `cell-${day.getMonth()}-${day.getDate()}`;
+
+                        const getScreenReaderText = () => {
+                          if (this.range) {
+                            let suffix = !this.value
+                              ? `, ${this.labels.chooseAsStartDate}.`
+                              : "";
+
+                            if (Array.isArray(this.value)) {
+                              suffix = {
+                                1: `, ${this.labels.chooseAsEndDate}.`,
+                                2: `, ${this.labels.chooseAsStartDate}.`
+                              }[this.value.length];
+                            }
+
+                            return `${
+                              isSelected ? `${this.labels.selected}, ` : ""
+                            }${Intl.DateTimeFormat(this.locale, {
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric"
+                            }).format(day)}${suffix}`;
+                          } else {
+                            return `${
+                              isSelected ? `${this.labels.selected}, ` : ""
+                            }${Intl.DateTimeFormat(this.locale, {
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric"
+                            }).format(day)}`;
+                          }
+                        };
 
                         const className = {
                           [this.getClassName("date")]: true,
@@ -709,13 +746,7 @@ export class InclusiveDatesCalendar {
                           >
                             <Tag aria-hidden="true">{day.getDate()}</Tag>
                             <span class="visually-hidden">
-                              {`${
-                                isSelected ? `${this.labels.selected}, ` : ""
-                              }${Intl.DateTimeFormat(this.locale, {
-                                day: "numeric",
-                                month: "long",
-                                year: "numeric"
-                              }).format(day)}`}
+                              {getScreenReaderText()}
                             </span>
                           </td>
                         );
