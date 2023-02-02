@@ -1,16 +1,17 @@
 <div align="center">
-  <h1>Inclusive datepicker 2.0</h1>
+  <h1>Tommy's inclusive datepicker</h1>
+
+  <p>
+    <video controls autoplay>
+      <source src="https://github.com/fymmot/inclusive-dates/blob/main/docs/images/demo.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </p>
   
-  <p><strong>A human-friendly and fully accessible datepicker with support for natural language input. </strong>Now as a reusable Web Component!</p>
+  <p><strong>A human-friendly and fully accessible datepicker with support for natural language input. </strong>Now as a standard Web Component written in Typescript!</p>
 <p>Try typing "tomorrow" or "in 10 days"!</p>
 
-  <p>Forked from the excellent <a href="https://github.com/Sqrrl/wc-datepicker"><code>sqrrl/wc-datepicker</code></a></p>
-  
-  <p>
-    <a href="https://fymmot.github.io/inclusive-dates">
-      <img alt="Screenshot of the datepicker" height="315" src="https://github.com/fymmot/inclusive-dates/blob/main/docs/images/screenshot-1.jpg?raw=true">
-    </a>
-  </p>
+  <p>Calendar is forked from the excellent <a href="https://github.com/Sqrrl/wc-datepicker"><code>sqrrl/wc-datepicker</code></a></p>
   
   <div>
     <img alt="Github test action status" src="https://github.com/fymmot/inclusive-dates/actions/workflows/test.yml/badge.svg" />

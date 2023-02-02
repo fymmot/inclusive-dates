@@ -174,7 +174,6 @@ inclusive-dates *:focus-visible {
 
 .inclusive-dates-calendar__date:focus-visible > * {
   outline: 0.25rem solid var(--focus-color);
-  outline-offset: 0.125rem;
   @media screen and (forced-colors: active) {
     outline-color: Highlight;
   }
@@ -211,6 +210,7 @@ inclusive-dates *:focus-visible {
   color: var(--bg-color);
   background-color: var(--focus-color);
   font-weight: 500;
+  outline-offset: 0.125rem;
   @media screen and (forced-colors: active) {
     background-color: Highlight;
   }

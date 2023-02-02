@@ -9,7 +9,7 @@
     content="A small, accessible datepicker Web Component with natural language date input. Written in Typescript."
   />
 
-  <title>Inclusive dates v2</title>
+  <title>Tommy's inclusive datepicker</title>
 
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
   <link rel="stylesheet" href="css/bamboo.css"/>
@@ -69,17 +69,22 @@
 </head>
 <body>
 <header>
-  <a href="#demo" class="skip-link">Skip to the demo</a>
-  <h1>Inclusive datepicker 2.0</h1>
+  <a href="#demo" class="skip-link">Skip to the interactive demo</a>
+  <h1>Tommy's inclusive datepicker</h1>
+
+  <section aria-label="Demo video">
+    <video controls autoplay>
+      <source src="images/demo.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
   <p>
     <a href="https://github.com/fymmot/inclusive-dates">Github repository</a> •
     <a href="https://www.npmjs.com/package/inclusive-dates">NPM package</a>
   </p>
 
-  <p>Next version of <a href="https://github.com/fymmot/inclusive-dates"><code>fymmot/inclusive-dates</code></a>.
-    <strong>Work in progress!</strong></p>
-  <p>A human-friendly and fully accessible datepicker with support for natural language input. Now as a reusable Web
-    Component!</p>
+  <p>A human-friendly and fully accessible datepicker with support for natural language text input. Now as a standard Web Component written in Typescript!</p>
   <p>Try typing <code>"tomorrow"</code>, <code>"in 10 days"</code> or <code>"May fifth to May tenth"</code>!</p>
   <p>
     Calendar is forked from the excellent <a href="https://github.com/sqrrl/wc-datepicker"><code>sqrrl/wc-datepicker</code></a>
@@ -91,8 +96,8 @@
 
   <ul>
     <li><a href="#features">Features</a></li>
-    <li><a href="#limitations">Limitations</a></li>
     <li><a href="#demo">Demo</a></li>
+    <li><a href="#limitations">Limitations</a></li>
     <li><a href="#install">Install</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#options">Options</a></li>
@@ -149,29 +154,6 @@
       <li>
         <strong>🧪 Well tested:</strong> Quality assured by means of unit
         tests.
-      </li>
-    </ul>
-  </section>
-
-  <section>
-    <h2 id="limitations">Limitations</h2>
-    <ul>
-      <li>
-        <h3>Date parsing</h3>
-        <p>Dates are parsed using the third party library Chrono.js, which comes with some limitations:
-        <ul>
-          <li>
-            <p>Only some languages have support for natural language. <a href="https://github.com/wanasit/chrono#locales">See this list of currently supported locales.</a> Non-supported languages use ISO-formatted dates as a fallback.</p>
-          </li>
-        <li>
-          <p>Only one language can be used for parsing at a time. I.e. you cannot have support for both English and Japanese date formats.</p>
-        </li>
-          <li>
-            <p>Spelled out numbers are limited to numbers 1-12. "Seventeen", "Twenty-second", "fifty"  etc will not be parsed.</p>
-          </li>
-        </ul>
-        </p>
-
       </li>
     </ul>
   </section>
@@ -462,6 +444,29 @@
         </table>
       </div>
     </div>
+  </section>
+
+  <section>
+    <h2 id="limitations">Limitations</h2>
+    <ul>
+      <li>
+        <h3>Date parsing</h3>
+        <p>Dates are parsed using the third party library Chrono.js, which comes with some limitations:
+        <ul>
+          <li>
+            <p>Only some languages have support for natural language. <a href="https://github.com/wanasit/chrono#locales">See this list of currently supported locales.</a> Non-supported languages use ISO-formatted dates as a fallback.</p>
+          </li>
+          <li>
+            <p>Only one language can be used for parsing at a time. I.e. you cannot have support for both English and Japanese date formats.</p>
+          </li>
+          <li>
+            <p>Spelled out numbers are limited to numbers 1-12. "Seventeen", "Twenty-second", "fifty"  etc will not be parsed.</p>
+          </li>
+        </ul>
+        </p>
+
+      </li>
+    </ul>
   </section>
 
   <section>
