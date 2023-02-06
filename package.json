@@ -83,7 +83,7 @@
     "lint-staged": "^13.1.0",
     "npm-watch": "^0.11.0",
     "postcss-nested": "^6.0.0",
-    "prettier": "2.8.2",
+    "prettier": "2.8.3",
     "rimraf": "^3.0.2",
     "sass": "^1.57.1",
     "serve": "^14.0.1",
