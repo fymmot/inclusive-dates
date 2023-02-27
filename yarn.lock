@@ -895,9 +895,9 @@
     postcss "~8.3.8"
 
 "@stencil/sass@^2.0.2":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-2.0.3.tgz#39da1488dd811ec523b4b59f2f0053693cc09145"
-  integrity sha512-ypS+0f6bJH2qXqrNAHirlYOWFax+qKKOIePLs7cu4LfKFr4ZVJSGRFBdgaeRrZMUhJWnhjV6io2uDldhrQhnMg==
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-2.0.4.tgz#7ee981dce5dbbaa5a88c1fefe8833ef40d32fa5c"
+  integrity sha512-tq+ZgJ9ynmag+e21cYmA6+YYJxBJapxjf94eL+uysxY78dM1801ydAhnT+64S5UnX8Jh+22uAuTY2bEYDBPUww==
 
 "@swc/helpers@^0.4.14":
   version "0.4.14"
