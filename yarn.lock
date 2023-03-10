@@ -881,10 +881,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stencil/core@^2.13.0":
-  version "2.18.1"
-  resolved "https://registry.npmjs.org/@stencil/core/-/core-2.18.1.tgz"
-  integrity sha512-/fXkh1lwZ+X9JQCw50mPjhBogzEHOBvVC5pLoDLZqodVYK0DGWILM2YLV4dcIUBNEK8/HMDpO/Rq81/rS3mNOw==
+"@stencil/core@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-3.1.0.tgz#a1320516ebeda056f5f20000628c3488656a4435"
+  integrity sha512-Zfe+evaw9m2L/HkTO97Hu8go2ThXrObyWkVqa7V3HjTnq+8TUd/nwld9PC0bOItC/eyMRXsWHdEDCpJAZ1tEVQ==
 
 "@stencil/postcss@^2.1.0":
   version "2.1.0"
