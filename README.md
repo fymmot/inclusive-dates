@@ -23,15 +23,42 @@
 
 ## Features
 
-- 🧏‍ **Natural language input**: Text field accepts natural language input using Chrono.js. Try typing "yesterday", "May tenth" or "in one year"!.
-- 🧏‍ **Accessibility first**: Built to support users of assistive technology. Follows the WAI-ARIA APG Datepicker dialog pattern.
-- 🖼 **Framework-agnostic**: Standard Web Component that works with any framework – or no framework at all.
-- 🦶 **Small footprint**: The component is ~45KB minified and gzipped with Chrono.js. If you do not need language parsing, the original sqrrl/wc-datepicker calendar is ~4KB
-- 🪁 **Low dependency**: External dependencies limited to accessibility utils (@react-aria/live-announcer, @a11y/focus-trap and aria-hidden).
-- 💪 **Strongly typed**: Written in TypeScript.
-- 🇪🇺 **Localizable**: Customizable labels and date formats.
-- 🌈 **Customizable**: Semantic markup with no built-in styles.
-- 🧪 **Well tested**: Quality assured by means of unit tests.
+### 🧏‍ Natural language input
+
+Text field accepts natural language input using Chrono.js. Try typing "yesterday", "May tenth" or "in one year"!.
+
+### 🧏‍ Accessibility first
+
+Built to support users of assistive technology. Follows the WAI-ARIA APG Datepicker dialog pattern.
+
+### 🖼 Framework-agnostic
+
+Standard Web Component that works with any framework – or no framework at all.
+
+### 🦶 Small footprint
+
+The component is ~45KB minified and gzipped with Chrono.js. If you do not need language parsing, the original sqrrl/wc-datepicker calendar is ~4KB.
+
+### 🪁 Low dependency
+
+External dependencies limited to accessibility utils (@react-aria/live-announcer, @a11y/focus-trap and aria-hidden).
+
+### 💪 Strongly typed
+
+Written in TypeScript.
+
+### 🇪🇺 Localizable
+
+Customizable labels and date formats.
+
+### 🌈 Customizable
+
+Semantic markup with no built-in styles.
+
+### 🧪 Well tested
+
+Quality assured by means of unit tests.
+
 
 ## Documentation & Demo
 
