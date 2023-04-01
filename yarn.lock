@@ -1490,9 +1490,9 @@ chardet@^0.7.0:
     fsevents "~2.3.2"
 
 chrono-node@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.npmjs.org/chrono-node/-/chrono-node-2.5.0.tgz"
-  integrity sha512-GasdFCw4tsb8UKlwyJW1S+3bdN06vsyGR2cEDMlhEGI7ic4SQRnLyl/hbItwSum6pPkkUTrzFcaR3C2tZnnO5Q==
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/chrono-node/-/chrono-node-2.6.2.tgz#cfdd8ddb25efcf7feec6459c4ae8050b70e23a82"
+  integrity sha512-RZvQNwos1gre+xj3n8bZKKlO5BAQ6Z2qMEtbMQuVnF5xtku5kkMLq7F8a0NWPZLwQ5+78yZ9w6FAbqA9d9GwzQ==
   dependencies:
     dayjs "^1.10.0"
 
