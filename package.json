@@ -76,7 +76,7 @@
     "autoprefixer": "^10.4.12",
     "concurrently": "^7.5.0",
     "copyfiles": "^2.4.1",
-    "glob": "^8.0.3",
+    "glob": "^10.2.2",
     "husky": "^8.0.3",
     "jest": "^27.0.3",
     "jest-cli": "^27.4.5",
