@@ -1,5 +1,11 @@
 # inclusive-dates
 
+## 0.1.8
+
+### Patch Changes
+
+- [`a350452`](https://github.com/fymmot/inclusive-dates/commit/a35045246db4b24ba86fd79899e7e636eb72b656) Thanks [@fymmot](https://github.com/fymmot)! - Update dependencies and docs. Add button type=button
+
 ## 0.1.7
 
 ### Patch Changes
