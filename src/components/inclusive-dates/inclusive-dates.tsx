@@ -511,6 +511,7 @@ export class InclusiveDates {
             aria-invalid={this.errorState}
           />
           <button
+            type="button"
             ref={(r) => (this.calendarButtonRef = r)}
             onClick={this.handleCalendarButtonClick}
             class={this.getClassName("calendar-button")}
