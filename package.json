@@ -62,7 +62,7 @@
   },
   "dependencies": {
     "@stencil/core": "^2.13.0",
-    "@stencil/sass": "^2.0.2",
+    "@stencil/sass": "^3.0.0",
     "@a11y/focus-trap": "^1.0.5",
     "@react-aria/live-announcer": "^3.1.2",
     "aria-hidden": "^1.2.2",
@@ -83,8 +83,8 @@
     "lint-staged": "^13.1.0",
     "npm-watch": "^0.11.0",
     "postcss-nested": "^6.0.0",
-    "prettier": "2.8.2",
-    "rimraf": "^3.0.2",
+    "prettier": "2.8.4",
+    "rimraf": "^4.1.2",
     "sass": "^1.57.1",
     "serve": "^14.0.1",
     "terser": "^5.15.1"
