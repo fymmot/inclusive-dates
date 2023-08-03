@@ -569,6 +569,7 @@ export class InclusiveDates {
                   class={this.getClassName("quick-button")}
                   onClick={this.handleQuickButtonClick}
                   disabled={this.disabledState}
+                  type="button"
                 >
                   {buttonText}
                 </button>
