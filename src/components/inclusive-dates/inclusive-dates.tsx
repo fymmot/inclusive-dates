@@ -35,6 +35,7 @@ export interface InclusiveDatesLabels {
   maxDateError?: string;
   minDateError?: string;
   rangeOutOfBoundsError?: string;
+  disabledDateError?: string;
   to?: string;
   startDate?: string;
 }
@@ -47,6 +48,7 @@ const defaultLabels: InclusiveDatesLabels = {
   minDateError: `Please fill in a date after `,
   maxDateError: `Please fill in a date before `,
   rangeOutOfBoundsError: `Please enter a valid range of dates`,
+  disabledDateError: `Please choose an available date`,
   to: "to",
   startDate: "Start date"
 };
@@ -92,6 +94,9 @@ export class InclusiveDates {
 
   @Prop() inclusiveDatesCalendarLabels?: InclusiveDatesCalendarLabels;
 
+  // Prevent hiding the calendar
+  @Prop() inline?: boolean = false;
+
   // Current error state of the input field
   @Prop({ mutable: true }) hasError?: boolean = false;
   // Text label for next month button
@@ -112,7 +117,8 @@ export class InclusiveDates {
   // Show or hide the keyboard hints
   @Prop() showKeyboardHint?: boolean = true;
   // Function to disable individual dates
-  @Prop() disableDate?: HTMLInclusiveDatesCalendarElement["disableDate"];
+  @Prop() disableDate?: HTMLInclusiveDatesCalendarElement["disableDate"] = () =>
+    false;
   // Component name used to generate CSS classes
   @Prop() elementClassName?: string = "inclusive-dates";
   // Which day that should start the week (0 is sunday, 1 is monday)
@@ -298,8 +304,13 @@ export class InclusiveDates {
         referenceDate: removeTimezoneOffset(new Date(this.referenceDate))
       });
       if (parsedDate && parsedDate.value instanceof Date) {
-        this.updateValue(parsedDate.value);
-        this.formatInput(true, false);
+        if (this.disableDate(parsedDate.value)) {
+          this.errorState = true;
+          this.errorMessage = this.inclusiveDatesLabels.disabledDateError;
+        } else {
+          this.updateValue(parsedDate.value);
+          this.formatInput(true, false);
+        }
       } else if (parsedDate) {
         this.errorState = true;
         this.internalValue = null;
@@ -510,15 +521,17 @@ export class InclusiveDates {
             aria-describedby={this.errorState ? `${this.id}-error` : undefined}
             aria-invalid={this.errorState}
           />
-          <button
-            type="button"
-            ref={(r) => (this.calendarButtonRef = r)}
-            onClick={this.handleCalendarButtonClick}
-            class={this.getClassName("calendar-button")}
-            disabled={this.disabledState}
-          >
-            {this.inclusiveDatesLabels.openCalendar}
-          </button>
+          {!this.inline && (
+            <button
+              type="button"
+              ref={(r) => (this.calendarButtonRef = r)}
+              onClick={this.handleCalendarButtonClick}
+              class={this.getClassName("calendar-button")}
+              disabled={this.disabledState}
+            >
+              {this.inclusiveDatesLabels.openCalendar}
+            </button>
+          )}
         </div>
         <inclusive-dates-modal
           label={this.inclusiveDatesLabels.calendar}
@@ -529,6 +542,7 @@ export class InclusiveDates {
           onClosed={() => {
             this.pickerRef.modalIsOpen = false;
           }}
+          inline={this.inline}
         >
           <inclusive-dates-calendar
             range={this.range}
@@ -553,6 +567,7 @@ export class InclusiveDates {
             showYearStepper={this.showYearStepper}
             showClearButton={this.showClearButton}
             showKeyboardHint={this.showKeyboardHint}
+            disableDate={this.disableDate}
             minDate={this.minDate}
             maxDate={this.maxDate}
           />

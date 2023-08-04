@@ -23,8 +23,9 @@ import { hideOthers } from "aria-hidden";
 export class InclusiveDatesModal {
   // Mandatory for accessibility
   @Prop() label!: string;
+  @Prop() inline?: boolean = false;
   @State() closing = false;
-  @State() showing = false;
+  @State() showing = this.inline || false;
   @Event() opened: EventEmitter;
   @Event() closed: EventEmitter;
 
@@ -37,6 +38,7 @@ export class InclusiveDatesModal {
    */
   @Method()
   async open() {
+    if (this.inline) return;
     this.showing = true;
     this.undo = hideOthers(this.el);
     this.opened.emit(undefined);
@@ -47,6 +49,7 @@ export class InclusiveDatesModal {
    */
   @Method()
   async close() {
+    if (this.inline) return;
     this.showing = false;
     this.closed.emit(undefined);
     this.undo();
@@ -83,7 +86,7 @@ export class InclusiveDatesModal {
           this.el = r;
         }}
       >
-        {this.showing && (
+        {!this.inline && this.showing && (
           <div
             part="body"
             onKeyDown={this.onKeyDown}
@@ -98,6 +101,11 @@ export class InclusiveDatesModal {
                 <slot />
               </div>
             </focus-trap>
+          </div>
+        )}
+        {this.inline && (
+          <div part="content">
+            <slot />
           </div>
         )}
       </Host>
