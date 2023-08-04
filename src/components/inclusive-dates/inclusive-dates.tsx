@@ -129,6 +129,9 @@ export class InclusiveDates {
     : ["Yesterday", "Today", "Tomorrow", "In 10 days"];
   // Text content for the today button in the calendar
   @Prop() todayButtonContent?: string;
+  // Show or hide the quick buttons
+  @Prop() showQuickButtons?: boolean = true;
+
 
   @State() internalValue: string | string[];
   @State() errorState: boolean = this.hasError;
@@ -572,7 +575,7 @@ export class InclusiveDates {
             maxDate={this.maxDate}
           />
         </inclusive-dates-modal>
-        {this.quickButtons?.length > 0 && this.chronoSupportedLocale && (
+        {this.showQuickButtons && this.quickButtons?.length > 0 && this.chronoSupportedLocale && (
           <div
             class={this.getClassName("quick-group")}
             role="group"
