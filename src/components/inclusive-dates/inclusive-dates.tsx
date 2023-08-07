@@ -132,7 +132,6 @@ export class InclusiveDates {
   // Show or hide the quick buttons
   @Prop() showQuickButtons?: boolean = true;
 
-
   @State() internalValue: string | string[];
   @State() errorState: boolean = this.hasError;
   @State() disabledState: boolean = this.disabled;
@@ -573,28 +572,31 @@ export class InclusiveDates {
             disableDate={this.disableDate}
             minDate={this.minDate}
             maxDate={this.maxDate}
+            inline={this.inline}
           />
         </inclusive-dates-modal>
-        {this.showQuickButtons && this.quickButtons?.length > 0 && this.chronoSupportedLocale && (
-          <div
-            class={this.getClassName("quick-group")}
-            role="group"
-            aria-label="Quick selection"
-          >
-            {this.quickButtons.map((buttonText) => {
-              return (
-                <button
-                  class={this.getClassName("quick-button")}
-                  onClick={this.handleQuickButtonClick}
-                  disabled={this.disabledState}
-                  type="button"
-                >
-                  {buttonText}
-                </button>
-              );
-            })}
-          </div>
-        )}
+        {this.showQuickButtons &&
+          this.quickButtons?.length > 0 &&
+          this.chronoSupportedLocale && (
+            <div
+              class={this.getClassName("quick-group")}
+              role="group"
+              aria-label="Quick selection"
+            >
+              {this.quickButtons.map((buttonText) => {
+                return (
+                  <button
+                    class={this.getClassName("quick-button")}
+                    onClick={this.handleQuickButtonClick}
+                    disabled={this.disabledState}
+                    type="button"
+                  >
+                    {buttonText}
+                  </button>
+                );
+              })}
+            </div>
+          )}
 
         {this.errorState && (
           <div
