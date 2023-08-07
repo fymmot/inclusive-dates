@@ -440,6 +440,16 @@
               />
             </td>
           </tr>
+          <tr>
+            <td>
+              <code id="inline-label">inline</code><br />
+              <small>Keep the calendar visible; turn off hiding</small>
+            </td>
+            <td>
+              <input aria-labelledby="inline-label" id="inline" type="checkbox" value="inline"
+               />
+            </td>
+          </tr>
           </tbody>
         </table>
       </div>
@@ -1363,6 +1373,7 @@ defineCustomElements();</code></pre>
   const showYearStepperInput = document.getElementById("show-year-stepper");
   const startDateInput = document.getElementById("start-date");
   const valueInput = document.getElementById("value");
+  const inlineInput = document.getElementById("inline");
 
   function updateDemoCode() {
     demoCodeContainer.innerText = `${
@@ -1503,6 +1514,14 @@ defineCustomElements();</code></pre>
       datepicker.removeAttribute("start-date");
     }
 
+    updateDemoCode();
+  });
+
+  inlineInput.addEventListener("change", (event) => {
+    datepicker.setAttribute(
+      "inline",
+      String(event.target.checked)
+    );
     updateDemoCode();
   });
 
