@@ -97,6 +97,7 @@ export class InclusiveDatesCalendar {
   @Prop() previousYearButtonContent?: string;
   @Prop() minDate?: string;
   @Prop() maxDate?: string;
+  @Prop() inline?: boolean = false;
   @Prop() showClearButton?: boolean = false;
   @Prop() showMonthStepper?: boolean = true;
   @Prop() showTodayButton?: boolean = true;
@@ -443,7 +444,8 @@ export class InclusiveDatesCalendar {
         <div
           class={{
             [this.getClassName()]: true,
-            [`${this.getClassName()}--disabled`]: this.disabled
+            [`${this.getClassName()}--disabled`]: this.disabled,
+            [this.getClassName("inline")]: this.inline
           }}
         >
           <div class={this.getClassName("header")}>
