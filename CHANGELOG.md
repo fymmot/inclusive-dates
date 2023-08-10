@@ -1,5 +1,11 @@
 # inclusive-dates
 
+## 0.1.9
+
+### Patch Changes
+
+- [`a4d9a05`](https://github.com/fymmot/inclusive-dates/commit/a4d9a05b2f1ae067e0f868f0f8d55dd3791c42ad) Thanks [@fymmot](https://github.com/fymmot)! - Add inline variant. Fix unwanted form submissions from quick buttons. Make sure you cannot type in disabled dates.
+
 ## 0.1.8
 
 ### Patch Changes
