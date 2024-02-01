@@ -1,5 +1,11 @@
 # inclusive-dates
 
+## 0.1.10
+
+### Patch Changes
+
+- [`da45184`](https://github.com/fymmot/inclusive-dates/commit/da451849791565d4c1b74093be5c445325fcfc1e) Thanks [@fymmot](https://github.com/fymmot)! - Add componentReady event
+
 ## 0.1.9
 
 ### Patch Changes
