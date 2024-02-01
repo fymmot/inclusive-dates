@@ -138,6 +138,8 @@ export class InclusiveDates {
 
   @Event() selectDate: EventEmitter<string | string[] | undefined>;
 
+  @Event() componentReady: EventEmitter<void>;
+
   private modalRef?: HTMLInclusiveDatesModalElement;
   private inputRef?: HTMLInputElement;
   private calendarButtonRef?: HTMLButtonElement;
@@ -148,6 +150,7 @@ export class InclusiveDates {
   private errorMessage = "";
 
   componentDidLoad() {
+    this.componentReady.emit();
     if (!this.id) {
       console.error(
         'inclusive-dates: The "id" prop is required for accessibility'
