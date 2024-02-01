@@ -726,6 +726,13 @@ defineCustomElements();</code></pre>
           </td>
           <td>Fired when the displayed month or year changes.</td>
         </tr>
+        <tr>
+          <td>componentReady</td>
+          <td>
+            <code>CustomEvent&lt;void&gt;</code>
+          </td>
+          <td>Fired when this component is fully loaded at the first render.</td>
+        </tr>
         </tbody>
       </table>
     </div>
@@ -739,7 +746,12 @@ defineCustomElements();</code></pre>
   datepicker.addEventListener('selectDate', function(event) {
     console.log(event.detail);
   });
-&lt;/script&gt;</code></pre>
+
+  datepicker.addEventListener('componentReady', function(event) {
+    console.log(datepicker.startDate);
+  });
+  &lt;/script&gt;
+</code></pre>
   </section>
 
   <section>
