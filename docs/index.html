@@ -192,7 +192,6 @@
             <td>
               <input
                 aria-labelledby="value-label"
-                disabled
                 id="value"
                 type="text"
               />
@@ -1413,6 +1412,11 @@ defineCustomElements();</code></pre>
 
   datepicker.addEventListener("selectDate", (event) => {
     valueInput.value = event.detail ? JSON.stringify(event.detail) : "";
+  });
+
+  valueInput.addEventListener("change", (event) => {
+    datepicker.setAttribute("value", event.target.value);
+    updateDemoCode();
   });
 
   idInput.addEventListener("change", (event) => {
