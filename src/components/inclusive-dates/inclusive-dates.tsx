@@ -490,9 +490,20 @@ export class InclusiveDates {
   }
 
   @Watch("value")
-  watchValue() {
-    if (Boolean(this.value) && !this.isRangeValue(this.value)) {
-      this.internalValue = this.value as string;
+  watchValue(newValue) {
+    if (this.range) {
+      const parsedValue = JSON.parse(newValue.replace(/'/g, '"'));
+      this.internalValue = parsedValue;
+      this.pickerRef.value = parsedValue.map((date) =>
+        removeTimezoneOffset(new Date(date as string))
+      );
+    } else {
+      this.internalValue = newValue;
+      this.pickerRef.value = removeTimezoneOffset(new Date(newValue));
+    }
+    this.errorState = false;
+    if (document.activeElement !== this.inputRef) {
+      this.formatInput(true, false);
     }
   }
 
