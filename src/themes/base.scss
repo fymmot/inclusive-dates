@@ -322,12 +322,9 @@ inclusive-dates *:focus-visible {
 }
 
 .inclusive-dates-calendar__keyboard-hint {
-  color: var(--secondary-color);
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
   border: none;
   margin: 0;
   width: auto;
@@ -339,6 +336,19 @@ inclusive-dates *:focus-visible {
   -moz-osx-font-smoothing: inherit;
   -webkit-appearance: none;
   padding: 0.25rem;
+}
+
+.inclusive-dates-calendar__keyboard-shortcuts {
+  margin-inline: 0.25rem;
+}
+
+.inclusive-dates-calendar__keyboard-shortcuts tr {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.inclusive-dates-calendar__keyboard-shortcuts th, 
+.inclusive-dates-calendar__keyboard-shortcuts td {
+  vertical-align: top;
 }
 
 .inclusive-dates__label {

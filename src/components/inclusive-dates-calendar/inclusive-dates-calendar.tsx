@@ -46,6 +46,31 @@ export type InclusiveDatesCalendarLabels = {
   todayButton: string;
   yearSelect: string;
   keyboardHint: string;
+  keyboardKeyTab: string;
+  keyboardKeySpace: string;
+  keyboardKeyEnter: string;
+  keyboardKeyArrowleft: string;
+  keyboardKeyArrowright: string;
+  keyboardKeyArrowup: string;
+  keyboardKeyArrowdown: string;
+  keyboardKeyPageup: string;
+  keyboardKeyPagedown: string;
+  keyboardKeyHome: string;
+  keyboardKeyEnd: string;
+  keyboardShortcutHeaderKey: string;
+  keyboardShortcutHeaderAction: string;
+  keyboardShortcutTab: string;
+  keyboardShortcutEnter: string;
+  keyboardShortcutArrowleft: string;
+  keyboardShortcutArrowright: string;
+  keyboardShortcutArrowup: string;
+  keyboardShortcutArrowdown: string;
+  keyboardShortcutPageup: string;
+  keyboardShortcutPagedown: string;
+  keyboardShortcutShiftPageup: string;
+  keyboardShortcutShiftPagedown: string;
+  keyboardShortcutHome: string;
+  keyboardShortcutEnd: string;
   selected: string;
   chooseAsStartDate: string;
   chooseAsEndDate: string;
@@ -62,6 +87,31 @@ const defaultLabels: InclusiveDatesCalendarLabels = {
   todayButton: "Show today",
   yearSelect: "Select year",
   keyboardHint: "Keyboard commands",
+  keyboardKeyTab: "Tab",
+  keyboardKeySpace: "Space",
+  keyboardKeyEnter: "Enter",
+  keyboardKeyArrowleft: "Arrow left",
+  keyboardKeyArrowright: "Arrow right",
+  keyboardKeyArrowup: "Arrow up",
+  keyboardKeyArrowdown: "Arrow down",
+  keyboardKeyPageup: "Page up",
+  keyboardKeyPagedown: "Page down",
+  keyboardKeyHome: "Home",
+  keyboardKeyEnd: "End",
+  keyboardShortcutHeaderKey: "Key",
+  keyboardShortcutHeaderAction: "Action",
+  keyboardShortcutTab: "Cycle through the focusable elements.",
+  keyboardShortcutEnter: "Select current day.",
+  keyboardShortcutArrowleft: "Move cursor to previous day.",
+  keyboardShortcutArrowright: "Move cursor to next day.",
+  keyboardShortcutArrowup: "Move cursor to previous week.",
+  keyboardShortcutArrowdown: "Move cursor to next week.",
+  keyboardShortcutPageup: "Move cursor to previous month.",
+  keyboardShortcutPagedown: "Move cursor to next month.",
+  keyboardShortcutShiftPageup: "Move cursor to previous year.",
+  keyboardShortcutShiftPagedown: "Move cursor to next year.",
+  keyboardShortcutHome: "Move cursor to first day of the month.",
+  keyboardShortcutEnd: "Move cursor to last day of the month.",
   selected: "Selected date",
   chooseAsStartDate: "choose as start date",
   chooseAsEndDate: "choose as end date"
@@ -788,22 +838,96 @@ export class InclusiveDatesCalendar {
               </div>
               {this.showKeyboardHint &&
                 !window.matchMedia("(pointer: coarse)").matches && (
-                  <button
-                    type="button"
-                    onClick={() => alert("Todo: Add Keyboard helper!")}
-                    class={this.getClassName("keyboard-hint")}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="1em"
-                      width="1em"
-                      viewBox="0 0 48 48"
-                      fill="currentColor"
-                    >
-                      <path d="M7 38q-1.2 0-2.1-.925Q4 36.15 4 35V13q0-1.2.9-2.1.9-.9 2.1-.9h34q1.2 0 2.1.9.9.9.9 2.1v22q0 1.15-.9 2.075Q42.2 38 41 38Zm0-3h34V13H7v22Zm8-3.25h18v-3H15Zm-4.85-6.25h3v-3h-3Zm6.2 0h3v-3h-3Zm6.15 0h3v-3h-3Zm6.2 0h3v-3h-3Zm6.15 0h3v-3h-3Zm-24.7-6.25h3v-3h-3Zm6.2 0h3v-3h-3Zm6.15 0h3v-3h-3Zm6.2 0h3v-3h-3Zm6.15 0h3v-3h-3ZM7 35V13v22Z" />
-                    </svg>
-                    {this.labels.keyboardHint}
-                  </button>
+                  <details class="{this.getClassName("keyboard-shortcuts")}">
+                    <summary>
+                      <span class="{this.getClassName("keyboard-hint")}">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="1em"
+                          width="1em"
+                          viewBox="0 0 48 48"
+                          fill="currentColor"
+                        >
+                          <path d="M7 38q-1.2 0-2.1-.925Q4 36.15 4 35V13q0-1.2.9-2.1.9-.9 2.1-.9h34q1.2 0 2.1.9.9.9.9 2.1v22q0 1.15-.9 2.075Q42.2 38 41 38Zm0-3h34V13H7v22Zm8-3.25h18v-3H15Zm-4.85-6.25h3v-3h-3Zm6.2 0h3v-3h-3Zm6.15 0h3v-3h-3Zm6.2 0h3v-3h-3Zm6.15 0h3v-3h-3Zm-24.7-6.25h3v-3h-3Zm6.2 0h3v-3h-3Zm6.15 0h3v-3h-3Zm6.2 0h3v-3h-3Zm6.15 0h3v-3h-3ZM7 35V13v22Z" />
+                        </svg>
+                      {this.labels.keyboardHint}
+                      </span>
+                    </summary>
+                    <table class="{this.getClassName("keyboard-shortcuts-table")}">
+                          <thead>
+                            <tr>
+                              <th>{this.labels.keyboardShortcutHeaderKey}</th>
+                              <th>{this.labels.keyboardShortcutHeaderAction}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><kbd>{this.labels.keyboardKeyTab}</kbd></td>
+                              <td>{this.labels.keyboardShortcutTab}</td>
+                            </tr>
+                            <tr>
+                              <td><kbd>{this.labels.keyboardKeySpace}</kbd>, <kbd>{this.labels.keyboardKeyEnter}</kbd></td>
+                              <td>{this.labels.keyboardShortcutEnter}</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <kbd>{this.labels.keyboardKeyArrowleft}</kbd>
+                              </td>
+                              <td>{this.labels.keyboardShortcutArrowleft}</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <kbd>{this.labels.keyboardKeyArrowright}</kbd>
+                              </td>
+                              <td>{this.labels.keyboardShortcutArrowRight}</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <kbd>{this.labels.keyboardKeyArrowup}</kbd>
+                              </td>
+                              <td>{this.labels.keyboardShortcutArrowup}</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <kbd>{this.labels.keyboardKeyArrowdown}</kbd>
+                              </td>
+                              <td>{this.labels.keyboardShortcutArrowdown}</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <kbd>{this.labels.keyboardKeyPageup}</kbd>
+                              </td>
+                              <td>{this.labels.keyboardShortcutPageup}</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <kbd>{this.labels.keyboardKeyPagedown}</kbd>
+                              </td>
+                              <td>{this.labels.keyboardShortcutPagedown}</td>
+                            </tr>
+                            <tr>
+                              <td><kbd>{this.labels.keyboardKeyShift}</kbd> + <kbd>{this.labels.keyboardKeyPageup}</kbd></td>
+                              <td>{this.labels.keyboardShortcutShiftPageup}</td>
+                            </tr>
+                            <tr>
+                              <td><kbd>{this.labels.keyboardKeyShift}</kbd> + <kbd>{this.labels.keyboardKeyPagedown}</kbd></td>
+                              <td>{this.labels.keyboardShortcutShiftPagedown}</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <kbd>{this.labels.keyboardKeyHome}</kbd>
+                              </td>
+                              <td>{this.labels.keyboardShortcutHome}</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <kbd>{this.labels.keyboardKeyEnd}</kbd>
+                              </td>
+                              <td>{this.labels.keyboardShortcutEnd}</td>
+                            </tr>
+                            </tbody>
+                          </table>
+                      </details>
                 )}
             </div>
           )}
