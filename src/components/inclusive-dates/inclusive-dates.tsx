@@ -23,7 +23,8 @@ import {
 } from "../../utils/chrono-parser/chrono-parser.type";
 import {
   chronoParseDate,
-  chronoParseRange
+  chronoParseRange,
+  isChronoSupportedLocale
 } from "../../utils/chrono-parser/chrono-parser";
 
 export interface InclusiveDatesLabels {
@@ -144,9 +145,7 @@ export class InclusiveDates {
   private inputRef?: HTMLInputElement;
   private calendarButtonRef?: HTMLButtonElement;
   private pickerRef?: HTMLInclusiveDatesCalendarElement;
-  private chronoSupportedLocale = ["en", "ja", "fr", "nl", "ru", "pt"].includes(
-    this.locale.slice(0, 2)
-  );
+  private chronoSupportedLocale = isChronoSupportedLocale(this.locale);
   private errorMessage = "";
 
   componentDidLoad() {
@@ -170,9 +169,9 @@ export class InclusiveDates {
     chronoOptions: ChronoOptions = undefined
   ): Promise<ChronoParsedDateString> {
     const parsedDate = await chronoParseDate(text, {
-      locale: this.locale.slice(0, 2),
+      locale: this.locale,
       minDate: this.minDate,
-      maxDate: this.minDate,
+      maxDate: this.maxDate,
       referenceDate: removeTimezoneOffset(new Date(this.referenceDate)),
       ...chronoOptions
     });
@@ -228,7 +227,7 @@ export class InclusiveDates {
     const parsedDate = await parser(
       (event.target as HTMLButtonElement).innerText,
       {
-        locale: this.locale.slice(0, 2),
+        locale: this.locale,
         minDate: this.minDate,
         maxDate: this.maxDate,
         referenceDate: removeTimezoneOffset(new Date(this.referenceDate))
@@ -275,7 +274,7 @@ export class InclusiveDates {
         return this.selectDate.emit(this.internalValue);
       }
       const parsedRange = await chronoParseRange(event.target.value, {
-        locale: this.locale.slice(0, 2),
+        locale: this.locale,
         minDate: this.minDate,
         maxDate: this.maxDate,
         referenceDate: removeTimezoneOffset(new Date(this.referenceDate))
@@ -303,7 +302,7 @@ export class InclusiveDates {
         return this.selectDate.emit(this.internalValue);
       }
       const parsedDate = await chronoParseDate(event.target.value, {
-        locale: this.locale.slice(0, 2),
+        locale: this.locale,
         minDate: this.minDate,
         maxDate: this.maxDate,
         referenceDate: removeTimezoneOffset(new Date(this.referenceDate))
@@ -462,6 +461,7 @@ export class InclusiveDates {
   @Watch("locale")
   watchLocale(newValue) {
     this.locale = newValue;
+    this.chronoSupportedLocale = isChronoSupportedLocale(newValue);
   }
 
   @Watch("label")

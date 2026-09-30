@@ -212,6 +212,63 @@ describe("inclusive-dates", () => {
     expect(parsedDate.value).toEqual(`2023-02-02`);
   });
 
+  it("Parses dates according to regional English locales (en-GB, en-AU vs en-US)", async () => {
+    const pageGB = await newSpecPage({
+      components: [InclusiveDates],
+      html: `<inclusive-dates id="testGB" locale="en-GB" reference-date="2023-01-11"></inclusive-dates>`,
+      language: "en"
+    });
+    const datepickerGB = getDatePicker(pageGB);
+    let parsedGB = await datepickerGB.parseDate("9/1/2020", false);
+    expect(parsedGB.value).toEqual("2020-01-09");
+
+    const pageAU = await newSpecPage({
+      components: [InclusiveDates],
+      html: `<inclusive-dates id="testAU" locale="en-AU" reference-date="2023-01-11"></inclusive-dates>`,
+      language: "en"
+    });
+    const datepickerAU = getDatePicker(pageAU);
+    let parsedAU = await datepickerAU.parseDate("9/1/2020", false);
+    expect(parsedAU.value).toEqual("2020-01-09");
+
+    const pageUS = await newSpecPage({
+      components: [InclusiveDates],
+      html: `<inclusive-dates id="testUS" locale="en-US" reference-date="2023-01-11"></inclusive-dates>`,
+      language: "en"
+    });
+    const datepickerUS = getDatePicker(pageUS);
+    let parsedUS = await datepickerUS.parseDate("9/1/2020", false);
+    expect(parsedUS.value).toEqual("2020-09-01");
+  });
+
+  it("Parses user input in text field for regional English locales", async () => {
+    const pageGB = await newSpecPage({
+      components: [InclusiveDates],
+      html: `<inclusive-dates id="testGB" locale="en-GB" reference-date="2023-01-11"></inclusive-dates>`,
+      language: "en"
+    });
+    const inputGB = getInput(pageGB);
+    inputGB.value = "9/1/2020";
+    inputGB.dispatchEvent(new Event("change"));
+    await pageGB.waitForChanges();
+    expect(inputGB.value).toContain("9 January 2020");
+    inputGB.focus();
+    expect(inputGB.value).toEqual("2020-01-09");
+
+    const pageUS = await newSpecPage({
+      components: [InclusiveDates],
+      html: `<inclusive-dates id="testUS" locale="en-US" reference-date="2023-01-11"></inclusive-dates>`,
+      language: "en"
+    });
+    const inputUS = getInput(pageUS);
+    inputUS.value = "9/1/2020";
+    inputUS.dispatchEvent(new Event("change"));
+    await pageUS.waitForChanges();
+    expect(inputUS.value).toContain("September 1, 2020");
+    inputUS.focus();
+    expect(inputUS.value).toEqual("2020-09-01");
+  });
+
   it("Does not parse unsupported locales", async () => {
     const consoleSpy = jest.spyOn(console, "warn");
     const page = await newSpecPage({

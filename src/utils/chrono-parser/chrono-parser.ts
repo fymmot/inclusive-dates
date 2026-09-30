@@ -1,8 +1,7 @@
 import {
   ChronoOptions,
   ChronoParsedDate,
-  ChronoParsedRange,
-  supportedChronoLocales
+  ChronoParsedRange
 } from "./chrono-parser.type";
 import * as chrono from "chrono-node";
 import {
@@ -15,7 +14,80 @@ import {
 } from "../utils";
 import { ParsedResult } from "chrono-node";
 
-const supportedChronoLocales = ["en", "fr", "ru", "pt", "ja", "nl"];
+export interface ChronoParserInstance {
+  casual: chrono.Chrono;
+  strict: chrono.Chrono;
+}
+
+// Regional English configuration:
+// Chrono provides little-endian parsing via chrono.en.GB.
+// For casual parsing, we build a Chrono instance with createCasualConfiguration(true)
+// which uses the exact same little-endian date parser as chrono.en.GB alongside
+// casual relative date parsers (e.g. "today", "tomorrow").
+// For strict parsing, we build a Chrono instance with createConfiguration(true, true).
+const gbCasual =
+  typeof chrono.en?.createCasualConfiguration === "function"
+    ? new chrono.Chrono(chrono.en.createCasualConfiguration(true))
+    : chrono.en.GB;
+
+const gbStrict =
+  typeof chrono.en?.createConfiguration === "function"
+    ? new chrono.Chrono(chrono.en.createConfiguration(true, true))
+    : chrono.en.GB;
+
+export const isRegionalEnglishLocale = (locale: string): boolean => {
+  if (!locale) return false;
+  const normalized = locale.toLowerCase().replace(/_/g, "-");
+  if (!normalized.startsWith("en-")) return false;
+  // US and territories use middle-endian (MM/DD/YYYY)
+  const usLocales = [
+    "en-us",
+    "en-pr",
+    "en-vi",
+    "en-gu",
+    "en-as",
+    "en-mp",
+    "en-um"
+  ];
+  return !usLocales.includes(normalized);
+};
+
+export const isChronoSupportedLocale = (locale?: string): boolean => {
+  if (!locale) return false;
+  const normalized = locale.toLowerCase().replace(/_/g, "-");
+  const lang = normalized.split("-")[0];
+  return ["en", "fr", "ru", "pt", "ja", "nl", "de", "es", "zh"].includes(lang);
+};
+
+export const getChronoParser = (
+  locale?: string
+): ChronoParserInstance | null => {
+  if (!locale) {
+    return {
+      casual: chrono.en.casual,
+      strict: chrono.en.strict
+    };
+  }
+
+  if (isRegionalEnglishLocale(locale)) {
+    return {
+      casual: gbCasual,
+      strict: gbStrict
+    };
+  }
+
+  const normalized = locale.toLowerCase().replace(/_/g, "-");
+  const lang = normalized.split("-")[0];
+
+  if (lang in chrono && (chrono as any)[lang]?.casual) {
+    return {
+      casual: (chrono as any)[lang].casual,
+      strict: (chrono as any)[lang].strict
+    };
+  }
+
+  return null;
+};
 
 export const chronoParseDate = async (
   dateString: string,
@@ -43,15 +115,15 @@ export const chronoParseDate = async (
     maxDate = undefined
   } = options;
 
-  const chronoSupportedLocale = supportedChronoLocales.includes(locale);
+  const parser = getChronoParser(locale);
 
   // Return if Chrono is not supported
-  if (!chronoSupportedLocale) {
+  if (!parser) {
     if (isValidISODate(dateString))
       return { value: removeTimezoneOffset(new Date(dateString)) };
     else return null;
   }
-  const custom = chrono[locale as supportedChronoLocales].casual.clone();
+  const custom = parser.casual.clone();
   customExpressions.forEach((expression) =>
     custom.parsers.push({
       pattern: () => expression.pattern,
@@ -63,7 +135,7 @@ export const chronoParseDate = async (
 
   let parsedDate;
   if (useStrict)
-    parsedDate = await chrono[locale].strict.parseDate(
+    parsedDate = await parser.strict.parseDate(
       dateString,
       {
         instant: referenceDate,
@@ -129,10 +201,10 @@ export const chronoParseRange = async (
     maxDate = undefined
   } = options;
 
-  const chronoSupportedLocale = supportedChronoLocales.includes(locale);
+  const parser = getChronoParser(locale);
 
   // Return if Chrono is not supported
-  if (!chronoSupportedLocale) {
+  if (!parser) {
     const possibleDates = extractDates(dateString);
     possibleDates.filter((dateString) => isValidISODate(dateString));
     if (possibleDates.length > 0)
@@ -146,7 +218,7 @@ export const chronoParseRange = async (
       };
     else return null;
   }
-  const custom = chrono[locale as supportedChronoLocales].casual.clone();
+  const custom = parser.casual.clone();
   customExpressions.forEach((expression) =>
     custom.parsers.push({
       pattern: () => expression.pattern,
@@ -158,7 +230,7 @@ export const chronoParseRange = async (
 
   let parsedRange: ParsedResult[];
   if (useStrict)
-    parsedRange = await chrono[locale].strict.parse(
+    parsedRange = await parser.strict.parse(
       dateString,
       {
         instant: referenceDate,

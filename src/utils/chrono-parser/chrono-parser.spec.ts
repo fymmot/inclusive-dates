@@ -191,4 +191,148 @@ describe("Chrono date parser", () => {
     });
     expect(isSameDay(parsedDate.value, new Date("2030-12-31"))).toBeTruthy();
   });
+
+  it("correctly parses ambiguous dates based on English regional locales (DD/MM/YYYY vs MM/DD/YYYY)", async () => {
+    // Standard English and US English should interpret as MM/DD/YYYY (September 1, 2020)
+    let parsedEn = await parseDateWithOptions("9/1/2020", { locale: "en" });
+    expect(parsedEn.value.getDate()).toEqual(1);
+    expect(isSameDay(parsedEn.value, new Date("2020-09-01"))).toBeTruthy();
+
+    let parsedUS = await parseDateWithOptions("9/1/2020", { locale: "en-US" });
+    expect(parsedUS.value.getDate()).toEqual(1);
+    expect(isSameDay(parsedUS.value, new Date("2020-09-01"))).toBeTruthy();
+
+    let parsedUSUnderscore = await parseDateWithOptions("9/1/2020", {
+      locale: "en_US"
+    });
+    expect(parsedUSUnderscore.value.getDate()).toEqual(1);
+    expect(
+      isSameDay(parsedUSUnderscore.value, new Date("2020-09-01"))
+    ).toBeTruthy();
+
+    // Regional English locales (UK, AU, NZ, CA, IE, ZA) should interpret as DD/MM/YYYY (January 9, 2020)
+    let parsedGB = await parseDateWithOptions("9/1/2020", { locale: "en-GB" });
+    expect(parsedGB.value.getDate()).toEqual(9);
+    expect(isSameDay(parsedGB.value, new Date("2020-01-09"))).toBeTruthy();
+
+    let parsedGBUnderscore = await parseDateWithOptions("9/1/2020", {
+      locale: "en_GB"
+    });
+    expect(parsedGBUnderscore.value.getDate()).toEqual(9);
+    expect(
+      isSameDay(parsedGBUnderscore.value, new Date("2020-01-09"))
+    ).toBeTruthy();
+
+    let parsedAU = await parseDateWithOptions("9/1/2020", { locale: "en-AU" });
+    expect(parsedAU.value.getDate()).toEqual(9);
+    expect(isSameDay(parsedAU.value, new Date("2020-01-09"))).toBeTruthy();
+
+    let parsedAUUnderscore = await parseDateWithOptions("9/1/2020", {
+      locale: "en_AU"
+    });
+    expect(parsedAUUnderscore.value.getDate()).toEqual(9);
+    expect(
+      isSameDay(parsedAUUnderscore.value, new Date("2020-01-09"))
+    ).toBeTruthy();
+
+    let parsedNZ = await parseDateWithOptions("9/1/2020", { locale: "en-NZ" });
+    expect(parsedNZ.value.getDate()).toEqual(9);
+    expect(isSameDay(parsedNZ.value, new Date("2020-01-09"))).toBeTruthy();
+
+    let parsedCA = await parseDateWithOptions("9/1/2020", { locale: "en-CA" });
+    expect(parsedCA.value.getDate()).toEqual(9);
+    expect(isSameDay(parsedCA.value, new Date("2020-01-09"))).toBeTruthy();
+
+    let parsedIE = await parseDateWithOptions("9/1/2020", { locale: "en-IE" });
+    expect(parsedIE.value.getDate()).toEqual(9);
+    expect(isSameDay(parsedIE.value, new Date("2020-01-09"))).toBeTruthy();
+
+    let parsedZA = await parseDateWithOptions("9/1/2020", { locale: "en-ZA" });
+    expect(parsedZA.value.getDate()).toEqual(9);
+    expect(isSameDay(parsedZA.value, new Date("2020-01-09"))).toBeTruthy();
+
+    // Another ambiguous date: 03/04/2022
+    let parsedOtherUS = await parseDateWithOptions("03/04/2022", {
+      locale: "en-US"
+    });
+    expect(parsedOtherUS.value.getDate()).toEqual(4);
+    expect(isSameDay(parsedOtherUS.value, new Date("2022-03-04"))).toBeTruthy();
+
+    let parsedOtherAU = await parseDateWithOptions("03/04/2022", {
+      locale: "en-AU"
+    });
+    expect(parsedOtherAU.value.getDate()).toEqual(3);
+    expect(isSameDay(parsedOtherAU.value, new Date("2022-04-03"))).toBeTruthy();
+
+    let parsedOtherGB = await parseDateWithOptions("03/04/2022", {
+      locale: "en-GB"
+    });
+    expect(parsedOtherGB.value.getDate()).toEqual(3);
+    expect(isSameDay(parsedOtherGB.value, new Date("2022-04-03"))).toBeTruthy();
+  });
+
+  it("honors regional English date formatting in strict mode", async () => {
+    let parsedStrictGB = await parseDateWithOptions("9/1/2020", {
+      locale: "en-GB",
+      useStrict: true
+    });
+    expect(parsedStrictGB.value.getDate()).toEqual(9);
+    expect(
+      isSameDay(parsedStrictGB.value, new Date("2020-01-09"))
+    ).toBeTruthy();
+
+    let parsedStrictAU = await parseDateWithOptions("9/1/2020", {
+      locale: "en-AU",
+      useStrict: true
+    });
+    expect(parsedStrictAU.value.getDate()).toEqual(9);
+    expect(
+      isSameDay(parsedStrictAU.value, new Date("2020-01-09"))
+    ).toBeTruthy();
+
+    let parsedStrictUS = await parseDateWithOptions("9/1/2020", {
+      locale: "en-US",
+      useStrict: true
+    });
+    expect(parsedStrictUS.value.getDate()).toEqual(1);
+    expect(
+      isSameDay(parsedStrictUS.value, new Date("2020-09-01"))
+    ).toBeTruthy();
+  });
+
+  it("correctly parses relative dates and ranges in regional English locales", async () => {
+    let parsedDate = await parseDateWithOptions("today", { locale: "en-GB" });
+    expect(isSameDay(parsedDate.value, new Date("2023-01-11"))).toBeTruthy();
+
+    parsedDate = await parseDateWithOptions("tomorrow", { locale: "en-AU" });
+    expect(isSameDay(parsedDate.value, new Date("2023-01-12"))).toBeTruthy();
+
+    parsedDate = await parseDateWithOptions("yesterday", { locale: "en-GB" });
+    expect(isSameDay(parsedDate.value, new Date("2023-01-10"))).toBeTruthy();
+
+    parsedDate = await parseDateWithOptions("Twenty second of September", {
+      locale: "en-AU"
+    });
+    expect(isSameDay(parsedDate.value, new Date("2023-09-22"))).toBeTruthy();
+
+    let parsedRange = await parseRangeWithOptions("9/1/2020 - 15/1/2020", {
+      locale: "en-GB"
+    });
+    expect(
+      isSameDay(parsedRange.value.start, new Date("2020-01-09"))
+    ).toBeTruthy();
+    expect(
+      isSameDay(parsedRange.value.end, new Date("2020-01-15"))
+    ).toBeTruthy();
+
+    parsedRange = await parseRangeWithOptions("9/1/2020 - 15/1/2020", {
+      locale: "en-AU"
+    });
+    expect(
+      isSameDay(parsedRange.value.start, new Date("2020-01-09"))
+    ).toBeTruthy();
+    expect(
+      isSameDay(parsedRange.value.end, new Date("2020-01-15"))
+    ).toBeTruthy();
+  });
 });
